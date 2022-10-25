@@ -1,0 +1,40 @@
+[book]
+title = "The Rust Programming Language"
+authors = ["Steve Klabnik", "Carol Nichols", "Contributions from the Rust Community"]
+
+[output.html]
+additional-css = ["assets/ferris/ferris.css", "theme/2018-edition.css", "assets/pagetoc/pagetoc_style.css", "assets/css/mdbook-admonish.css"]
+additional-js = ["assets/ferris/ferris.js", "assets/mermaid/mermaid.min.js", "assets/mermaid/mermaid-init.js", "assets/smart-anchor.js", "assets/pagetoc/sidebar.js"]
+git-repository-url = "https://github.com/rust-lang/book"
+
+[output.html.playground]
+editable = true
+copy-js = true
+line-numbers = true
+
+[output.html.fold]
+enable = true
+level = 3
+
+# 添加表格支持
+# ```extended-markdown-table
+# ```
+[preprocessor.extended-markdown-table]
+
+# Enables the `mdbook-mermaid` preprocessor
+[preprocessor.mermaid]
+command = "mdbook-mermaid"
+
+[preprocessor.kroki-preprocessor]
+
+[preprocessor.puml]
+command = "mdbook-puml"
+
+# Enables the `mdbook-checklist` preprocessor
+[preprocessor.checklist]
+title = "待完善: "
+
+# Enables the `mdbook-admonish` preprocessor
+[preprocessor.admonish]
+command = "mdbook-admonish"
+assets_version = "2.0.0" # do not edit: managed by `mdbook-admonish install`
