@@ -1,14 +1,15 @@
 # Recoverable Errors with `Result`
 
 <!--ts-->
+
 * [Recoverable Errors with Result](#recoverable-errors-with-result)
-   * [Result Definition and Basic Usage](#result-definition-and-basic-usage)
-   * [Matching on Different Errors](#matching-on-different-errors)
-   * [Alternatives to Using match with Result&lt;T, E&gt;](#alternatives-to-using-match-with-resultt-e)
-   * [Shortcuts for Panic on Error: unwrap and expect](#shortcuts-for-panic-on-error-unwrap-and-expect)
-   * [Propagating Errors](#propagating-errors)
-      * [A Shortcut for Propagating Errors: the ? Operator](#a-shortcut-for-propagating-errors-the--operator)
-      * [Where The ? Operator Can Be Used](#where-the--operator-can-be-used)
+    * [Result Definition and Basic Usage](#result-definition-and-basic-usage)
+    * [Matching on Different Errors](#matching-on-different-errors)
+    * [Alternatives to Using match with Result&lt;T, E&gt;](#alternatives-to-using-match-with-resultt-e)
+    * [Shortcuts for Panic on Error: unwrap and expect](#shortcuts-for-panic-on-error-unwrap-and-expect)
+    * [Propagating Errors](#propagating-errors)
+        * [A Shortcut for Propagating Errors: the ? Operator](#a-shortcut-for-propagating-errors-the--operator)
+        * [Where The ? Operator Can Be Used](#where-the--operator-can-be-used)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 <!-- Added by: runner, at: Wed Oct 26 03:57:11 UTC 2022 -->
@@ -92,17 +93,15 @@ on the value `File::open` returns.
 Listing 9-4 shows one way to handle the `Result` using a basic tool, the `match` expression that we discussed in
 Chapter 6.
 
-<span class="filename">Filename: src/main.rs</span>
-
 ~~~admonish info title="Listing 9-4: Using a **match** expression to handle the **Result** variants that might be returned" collapsible=true
 ```rust,should_panic
 {{#rustdoc_include ../listings/ch09-error-handling/listing-09-04/src/main.rs}}
 ```
 ~~~
 
-Note that, like the `Option` enum, the `Result` enum and its variants have been
-brought into scope by the prelude, so we don’t need to specify `Result::`
-before the `Ok` and `Err` variants in the `match` arms:
+> Note that, like the `Option` enum, the `Result` enum and its variants have been
+> brought into scope by the prelude, so we don’t need to specify `Result::`
+> before the `Ok` and `Err` variants in the `match` arms:
 
 1. When the result is `Ok`, this code will return the inner `file` value out of
    the `Ok` variant, and we then assign that file handle value to the variable
@@ -123,140 +122,176 @@ As usual, this output tells us exactly what has gone wrong.
 ## Matching on Different Errors
 
 The code in Listing 9-4 will `panic!` no matter why `File::open` failed.
-However, we want to take different actions for different failure reasons: if
-`File::open` failed because the file doesn’t exist, we want to create the file
-and return the handle to the new file. If `File::open` failed for any other
-reason—for example, because we didn’t have permission to open the file—we still
-want the code to `panic!` in the same way as it did in Listing 9-4. For this we
-add an inner `match` expression, shown in Listing 9-5.
+However, we want to take different actions for different failure reasons:
 
-<span class="filename">Filename: src/main.rs</span>
+- if `File::open` failed because the file doesn’t exist, we want to create the file
+  and return the handle to the new file.
+- If `File::open` failed for any other reason—for example, because we didn’t have permission to open the file—we still
+  want the code to `panic!` in the same way as it did in Listing 9-4.
+
+For this we **add an inner match** expression, shown in Listing 9-5.
 
 <!-- ignore this test because otherwise it creates hello.txt which causes other
 tests to fail lol -->
 
+~~~admonish info title="Listing 9-5: Handling different kinds of errors in different ways" collapsible=true
 ```rust,ignore
 {{#rustdoc_include ../listings/ch09-error-handling/listing-09-05/src/main.rs}}
 ```
+~~~
 
-<span class="caption">Listing 9-5: Handling different kinds of errors in
-different ways</span>
+1. The type of the value that `File::open` returns inside the `Err` variant is
+   `io::Error`, which is a struct provided by the standard library.
+2. This struct
+   has a method `kind` that we can call to get an `io::ErrorKind` value.
+3. The enum
+   `io::ErrorKind` is provided by the standard library and has variants
+   representing the different kinds of errors that might result from an `io`
+   operation.
+4. The variant we want to use is `ErrorKind::NotFound`, which indicates
+   the file we’re trying to open doesn’t exist yet.
+5. So we match on
+   `greeting_file_result`, but we also have an inner match on `error.kind()`.
+6. The condition we want to check in the inner match is whether the value returned
+   by `error.kind()` is the `NotFound` variant of the `ErrorKind` enum:
 
-The type of the value that `File::open` returns inside the `Err` variant is
-`io::Error`, which is a struct provided by the standard library. This struct
-has a method `kind` that we can call to get an `io::ErrorKind` value. The enum
-`io::ErrorKind` is provided by the standard library and has variants
-representing the different kinds of errors that might result from an `io`
-operation. The variant we want to use is `ErrorKind::NotFound`, which indicates
-the file we’re trying to open doesn’t exist yet. So we match on
-`greeting_file_result`, but we also have an inner match on `error.kind()`.
+- If it is,
+  we try to create the file with `File::create`.
 
-The condition we want to check in the inner match is whether the value returned
-by `error.kind()` is the `NotFound` variant of the `ErrorKind` enum. If it is,
-we try to create the file with `File::create`. However, because `File::create`
-could also fail, we need a second arm in the inner `match` expression. When the
-file can’t be created, a different error message is printed. The second arm of
-the outer `match` stays the same, so the program panics on any error besides
-the missing file error.
+7. However, because `File::create`
+   could also fail, we need a second arm in the inner `match` expression.
+8. When the
+   file can’t be created, a different error message is printed.
+9. The second arm of
+   the outer `match` stays the same, so the program panics on any error besides
+   the missing file error.
 
-> ## Alternatives to Using `match` with `Result<T, E>`
->
-> That’s a lot of `match`! The `match` expression is very useful but also very
-> much a primitive. In Chapter 13, you’ll learn about closures, which are used
-> with many of the methods defined on `Result<T, E>`. These methods can be more
-> concise than using `match` when handling `Result<T, E>` values in your code.
->
-> For example, here’s another way to write the same logic as shown in Listing
-> 9-5, this time using closures and the `unwrap_or_else` method:
->
-> <!-- CAN'T EXTRACT SEE https://github.com/rust-lang/mdBook/issues/1127 -->
->
-> ```rust,ignore
-> use std::fs::File;
-> use std::io::ErrorKind;
->
-> fn main() {
->     let greeting_file = File::open("hello.txt").unwrap_or_else(|error| {
->         if error.kind() == ErrorKind::NotFound {
->             File::create("hello.txt").unwrap_or_else(|error| {
->                 panic!("Problem creating the file: {:?}", error);
->             })
->         } else {
->             panic!("Problem opening the file: {:?}", error);
->         }
->     });
-> }
-> ```
->
+## Alternatives to Using `match` with `Result<T, E>`
+
+That’s a lot of `match`!
+
+- The `match` expression is very useful but also very
+  much a primitive.
+- In Chapter 13, you’ll learn about closures, which are used
+  with many of the methods defined on `Result<T, E>`.
+- These methods can be more
+  concise than using `match` when handling `Result<T, E>` values in your code.
+
+<!-- CAN'T EXTRACT SEE https://github.com/rust-lang/mdBook/issues/1127 -->
+
+~~~admonish info title="For example, here is another way to write the same logic as shown in Listing 9-5, this time using closures and the *unwrap_or_else* method:" collapsible=true
+
+```rust,ignore
+use std::fs::File;
+use std::io::ErrorKind;
+
+fn main() {
+    let greeting_file = File::open("hello.txt").unwrap_or_else(|error| {
+        if error.kind() == ErrorKind::NotFound {
+            File::create("hello.txt").unwrap_or_else(|error| {
+                panic!("Problem creating the file: {:?}", error);
+            })
+        } else {
+            panic!("Problem opening the file: {:?}", error);
+        }
+    });
+}
+```
+
+~~~
+
 > Although this code has the same behavior as Listing 9-5, it doesn’t contain
-> any `match` expressions and is cleaner to read. Come back to this example
-> after you’ve read Chapter 13, and look up the `unwrap_or_else` method in the
-> standard library documentation. Many more of these methods can clean up huge
-> nested `match` expressions when you’re dealing with errors.
+> any `match` expressions and is cleaner to read.
+
+~~~admonish info title="**unwrap_or_else** method can clean up huge nested **match** expressions" collapsible=true
+Come back to this example
+after you’ve read Chapter 13, and look up the `unwrap_or_else` method in the
+standard library documentation. Many more of these methods can clean up huge
+nested `match` expressions when you’re dealing with errors.
+~~~
 
 ## Shortcuts for Panic on Error: `unwrap` and `expect`
 
+### Why need unwrap and expect
+
 Using `match` works well enough, but it can be a bit verbose and doesn’t always
-communicate intent well. The `Result<T, E>` type has many helper methods
-defined on it to do various, more specific tasks. The `unwrap` method is a
+communicate intent well.
+
+~~~admonish info title="So the **Result<T, E>** type has many helper methods defined on it to do various, more specific tasks:" collapsible=true
+- The `unwrap` method is a
 shortcut method implemented just like the `match` expression we wrote in
-Listing 9-4. If the `Result` value is the `Ok` variant, `unwrap` will return
-the value inside the `Ok`. If the `Result` is the `Err` variant, `unwrap` will
-call the `panic!` macro for us. Here is an example of `unwrap` in action:
+Listing 9-4. 
+- If the `Result` value is the `Ok` variant, `unwrap` will return
+the value inside the `Ok`. 
+- If the `Result` is the `Err` variant, `unwrap` will
+call the `panic!` macro for us.
+~~~
 
-<span class="filename">Filename: src/main.rs</span>
+### Unwrap
 
+~~~admonish info title="Here is an example of **unwrap** in action:" collapsible=true
 ```rust,should_panic
 {{#rustdoc_include ../listings/ch09-error-handling/no-listing-04-unwrap/src/main.rs}}
 ```
+~~~
 
-If we run this code without a *hello.txt* file, we’ll see an error message from
-the `panic!` call that the `unwrap` method makes:
+~~~admonish info title="If we run this code without a *hello.txt* file, we’ll see an error message from the *panic!* call that the *unwrap* method makes:" collapsible=true
 
-<!-- manual-regeneration
+```shell
 cd listings/ch09-error-handling/no-listing-04-unwrap
 cargo run
-copy and paste relevant text
--->
+# copy and paste relevant text
+```
 
 ```text
 thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Os {
 code: 2, kind: NotFound, message: "No such file or directory" }',
 src/main.rs:4:49
 ```
+~~~
+
+### Expect: easier to track down
 
 Similarly, the `expect` method lets us also choose the `panic!` error message.
+
 Using `expect` instead of `unwrap` and providing good error messages can convey
-your intent and make tracking down the source of a panic easier. The syntax of
-`expect` looks like this:
+your intent and make tracking down the source of a panic easier.
 
-<span class="filename">Filename: src/main.rs</span>
-
+~~~admonish info title="The syntax of *expect* looks like this:" collapsible=true
 ```rust,should_panic
 {{#rustdoc_include ../listings/ch09-error-handling/no-listing-05-expect/src/main.rs}}
 ```
+~~~
 
-We use `expect` in the same way as `unwrap`: to return the file handle or call
-the `panic!` macro. The error message used by `expect` in its call to `panic!`
-will be the parameter that we pass to `expect`, rather than the default
-`panic!` message that `unwrap` uses. Here’s what it looks like:
+We use `expect` in the same way as `unwrap`:
 
-<!-- manual-regeneration
+- to return the file handle or call
+  the `panic!` macro.
+- Easier Point: The error message used by `expect` in its call to `panic!`
+  will be the parameter that we pass to `expect`, rather than the default
+  `panic!` message that `unwrap` uses.
+
+~~~admonish info title="Here’s what it looks like: you can compare blow with similar situation above" collapsible=true
+```shell
 cd listings/ch09-error-handling/no-listing-05-expect
 cargo run
-copy and paste relevant text
--->
+# copy and paste relevant text
 
 ```text
 thread 'main' panicked at 'hello.txt should be included in this project: Os {
 code: 2, kind: NotFound, message: "No such file or directory" }',
 src/main.rs:5:10
 ```
+~~~
+
+### Most Rustaceans choose expect rather than unwrap
 
 In production-quality code, most Rustaceans choose `expect` rather than
 `unwrap` and give more context about why the operation is expected to always
-succeed. That way, if your assumptions are ever proven wrong, you have more
-information to use in debugging.
+succeed:
+
+- That way, if your assumptions are ever proven wrong, you have more
+  information to use in debugging.
 
 ## Propagating Errors
 
