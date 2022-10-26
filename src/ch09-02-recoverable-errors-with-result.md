@@ -1,6 +1,18 @@
 # Recoverable Errors with `Result`
 
 <!--ts-->
+* [Recoverable Errors with Result](#recoverable-errors-with-result)
+   * [Result Definition and Basic Usage](#result-definition-and-basic-usage)
+   * [Matching on Different Errors](#matching-on-different-errors)
+   * [Alternatives to Using match with Result&lt;T, E&gt;](#alternatives-to-using-match-with-resultt-e)
+   * [Shortcuts for Panic on Error: unwrap and expect](#shortcuts-for-panic-on-error-unwrap-and-expect)
+   * [Propagating Errors](#propagating-errors)
+      * [A Shortcut for Propagating Errors: the ? Operator](#a-shortcut-for-propagating-errors-the--operator)
+      * [Where The ? Operator Can Be Used](#where-the--operator-can-be-used)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Wed Oct 26 03:57:11 UTC 2022 -->
+
 <!--te-->
 
 Most errors aren’t serious enough to require the program to stop entirely.
