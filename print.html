@@ -8604,7 +8604,14 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 <li><a href="ch09-02-recoverable-errors-with-result.html#result-definition-and-basic-usage">Result Definition and Basic Usage</a></li>
 <li><a href="ch09-02-recoverable-errors-with-result.html#matching-on-different-errors">Matching on Different Errors</a></li>
 <li><a href="ch09-02-recoverable-errors-with-result.html#alternatives-to-using-match-with-resultt-e">Alternatives to Using match with Result&lt;T, E&gt;</a></li>
-<li><a href="ch09-02-recoverable-errors-with-result.html#shortcuts-for-panic-on-error-unwrap-and-expect">Shortcuts for Panic on Error: unwrap and expect</a></li>
+<li><a href="ch09-02-recoverable-errors-with-result.html#shortcuts-for-panic-on-error-unwrap-and-expect">Shortcuts for Panic on Error: unwrap and expect</a>
+<ul>
+<li><a href="ch09-02-recoverable-errors-with-result.html#why-need-unwrap-and-expect">Why need unwrap and expect</a></li>
+<li><a href="ch09-02-recoverable-errors-with-result.html#unwrap">Unwrap</a></li>
+<li><a href="ch09-02-recoverable-errors-with-result.html#expect-easier-to-track-down">Expect: easier to track down</a></li>
+<li><a href="ch09-02-recoverable-errors-with-result.html#most-rustaceans-choose-expect-rather-than-unwrap">Most Rustaceans choose expect rather than unwrap</a></li>
+</ul>
+</li>
 <li><a href="ch09-02-recoverable-errors-with-result.html#propagating-errors">Propagating Errors</a>
 <ul>
 <li><a href="ch09-02-recoverable-errors-with-result.html#a-shortcut-for-propagating-errors-the--operator">A Shortcut for Propagating Errors: the ? Operator</a></li>
@@ -8615,7 +8622,7 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Wed Oct 26 03:57:11 UTC 2022 -->
+<!-- Added by: runner, at: Wed Oct 26 07:03:49 UTC 2022 -->
 <!--te-->
 <p>Most errors aren’t serious enough to require the program to stop entirely.
 Sometimes, when a function fails, it’s for a reason that you can easily
@@ -8702,7 +8709,6 @@ happened.</p>
 on the value <code>File::open</code> returns.</p>
 <p>Listing 9-4 shows one way to handle the <code>Result</code> using a basic tool, the <code>match</code> expression that we discussed in
 Chapter 6.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
 <details id="admonition-listing-9-4-using-a-match-expression-to-handle-the-result-variants-that-might-be-returned" class="admonition info">
 <summary class="admonition-title">
 <p>Listing 9-4: Using a <strong>match</strong> expression to handle the <strong>Result</strong> variants that might be returned</p>
@@ -8722,9 +8728,11 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
+<blockquote>
 <p>Note that, like the <code>Option</code> enum, the <code>Result</code> enum and its variants have been
 brought into scope by the prelude, so we don’t need to specify <code>Result::</code>
 before the <code>Ok</code> and <code>Err</code> variants in the <code>match</code> arms:</p>
+</blockquote>
 <ol>
 <li>
 <p>When the result is <code>Ok</code>, this code will return the inner <code>file</code> value out of
@@ -8755,15 +8763,22 @@ note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 <p>As usual, this output tells us exactly what has gone wrong.</p>
 <h2 id="matching-on-different-errors"><a class="header" href="#matching-on-different-errors">Matching on Different Errors</a></h2>
 <p>The code in Listing 9-4 will <code>panic!</code> no matter why <code>File::open</code> failed.
-However, we want to take different actions for different failure reasons: if
-<code>File::open</code> failed because the file doesn’t exist, we want to create the file
-and return the handle to the new file. If <code>File::open</code> failed for any other
-reason—for example, because we didn’t have permission to open the file—we still
-want the code to <code>panic!</code> in the same way as it did in Listing 9-4. For this we
-add an inner <code>match</code> expression, shown in Listing 9-5.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+However, we want to take different actions for different failure reasons:</p>
+<ul>
+<li>if <code>File::open</code> failed because the file doesn’t exist, we want to create the file
+and return the handle to the new file.</li>
+<li>If <code>File::open</code> failed for any other reason—for example, because we didn’t have permission to open the file—we still
+want the code to <code>panic!</code> in the same way as it did in Listing 9-4.</li>
+</ul>
+<p>For this we <strong>add an inner match</strong> expression, shown in Listing 9-5.</p>
 <!-- ignore this test because otherwise it creates hello.txt which causes other
 tests to fail lol -->
+<details id="admonition-listing-9-5-handling-different-kinds-of-errors-in-different-ways" class="admonition info">
+<summary class="admonition-title">
+<p>Listing 9-5: Handling different kinds of errors in different ways</p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-listing-9-5-handling-different-kinds-of-errors-in-different-ways"></a></p>
+</summary>
+<div>
 <pre><code class="language-rust ignore">use std::fs::File;
 use std::io::ErrorKind;
 
@@ -8772,6 +8787,7 @@ fn main() {
 
     let greeting_file = match greeting_file_result {
         Ok(file) =&gt; file,
+        // add an inner match expression
         Err(error) =&gt; match error.kind() {
             ErrorKind::NotFound =&gt; match File::create(&quot;hello.txt&quot;) {
                 Ok(fc) =&gt; fc,
@@ -8784,34 +8800,54 @@ fn main() {
     };
 }
 </code></pre>
-<p><span class="caption">Listing 9-5: Handling different kinds of errors in
-different ways</span></p>
-<p>The type of the value that <code>File::open</code> returns inside the <code>Err</code> variant is
-<code>io::Error</code>, which is a struct provided by the standard library. This struct
-has a method <code>kind</code> that we can call to get an <code>io::ErrorKind</code> value. The enum
+</div>
+</details>
+<ol>
+<li>The type of the value that <code>File::open</code> returns inside the <code>Err</code> variant is
+<code>io::Error</code>, which is a struct provided by the standard library.</li>
+<li>This struct
+has a method <code>kind</code> that we can call to get an <code>io::ErrorKind</code> value.</li>
+<li>The enum
 <code>io::ErrorKind</code> is provided by the standard library and has variants
 representing the different kinds of errors that might result from an <code>io</code>
-operation. The variant we want to use is <code>ErrorKind::NotFound</code>, which indicates
-the file we’re trying to open doesn’t exist yet. So we match on
-<code>greeting_file_result</code>, but we also have an inner match on <code>error.kind()</code>.</p>
-<p>The condition we want to check in the inner match is whether the value returned
-by <code>error.kind()</code> is the <code>NotFound</code> variant of the <code>ErrorKind</code> enum. If it is,
-we try to create the file with <code>File::create</code>. However, because <code>File::create</code>
-could also fail, we need a second arm in the inner <code>match</code> expression. When the
-file can’t be created, a different error message is printed. The second arm of
+operation.</li>
+<li>The variant we want to use is <code>ErrorKind::NotFound</code>, which indicates
+the file we’re trying to open doesn’t exist yet.</li>
+<li>So we match on
+<code>greeting_file_result</code>, but we also have an inner match on <code>error.kind()</code>.</li>
+<li>The condition we want to check in the inner match is whether the value returned
+by <code>error.kind()</code> is the <code>NotFound</code> variant of the <code>ErrorKind</code> enum:</li>
+</ol>
+<ul>
+<li>If it is,
+we try to create the file with <code>File::create</code>.</li>
+</ul>
+<ol start="7">
+<li>However, because <code>File::create</code>
+could also fail, we need a second arm in the inner <code>match</code> expression.</li>
+<li>When the
+file can’t be created, a different error message is printed.</li>
+<li>The second arm of
 the outer <code>match</code> stays the same, so the program panics on any error besides
-the missing file error.</p>
-<blockquote>
+the missing file error.</li>
+</ol>
 <h2 id="alternatives-to-using-match-with-resultt-e"><a class="header" href="#alternatives-to-using-match-with-resultt-e">Alternatives to Using <code>match</code> with <code>Result&lt;T, E&gt;</code></a></h2>
-<p>That’s a lot of <code>match</code>! The <code>match</code> expression is very useful but also very
-much a primitive. In Chapter 13, you’ll learn about closures, which are used
-with many of the methods defined on <code>Result&lt;T, E&gt;</code>. These methods can be more
-concise than using <code>match</code> when handling <code>Result&lt;T, E&gt;</code> values in your code.</p>
-<p>For example, here’s another way to write the same logic as shown in Listing
-9-5, this time using closures and the <code>unwrap_or_else</code> method:</p>
+<p>That’s a lot of <code>match</code>!</p>
+<ul>
+<li>The <code>match</code> expression is very useful but also very
+much a primitive.</li>
+<li>In Chapter 13, you’ll learn about closures, which are used
+with many of the methods defined on <code>Result&lt;T, E&gt;</code>.</li>
+<li>These methods can be more
+concise than using <code>match</code> when handling <code>Result&lt;T, E&gt;</code> values in your code.</li>
+</ul>
 <!-- CAN'T EXTRACT SEE https://github.com/rust-lang/mdBook/issues/1127 -->
-</blockquote>
-<blockquote>
+<details id="admonition-for-example-here-is-another-way-to-write-the-same-logic-as-shown-in-listing-9-5-this-time-using-closures-and-the-unwrap_or_else-method" class="admonition info">
+<summary class="admonition-title">
+<p>For example, here is another way to write the same logic as shown in Listing 9-5, this time using closures and the <em>unwrap_or_else</em> method:</p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-for-example-here-is-another-way-to-write-the-same-logic-as-shown-in-listing-9-5-this-time-using-closures-and-the-unwrap_or_else-method"></a></p>
+</summary>
+<div>
 <pre><code class="language-rust ignore">use std::fs::File;
 use std::io::ErrorKind;
 
@@ -8827,43 +8863,86 @@ fn main() {
     });
 }
 </code></pre>
+</div>
+</details>
+<blockquote>
 <p>Although this code has the same behavior as Listing 9-5, it doesn’t contain
-any <code>match</code> expressions and is cleaner to read. Come back to this example
+any <code>match</code> expressions and is cleaner to read.</p>
+</blockquote>
+<details id="admonition-unwrap_or_else-method-can-clean-up-huge-nested-match-expressions" class="admonition info">
+<summary class="admonition-title">
+<p><strong>unwrap_or_else</strong> method can clean up huge nested <strong>match</strong> expressions</p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-unwrap_or_else-method-can-clean-up-huge-nested-match-expressions"></a></p>
+</summary>
+<div>
+<p>Come back to this example
 after you’ve read Chapter 13, and look up the <code>unwrap_or_else</code> method in the
 standard library documentation. Many more of these methods can clean up huge
 nested <code>match</code> expressions when you’re dealing with errors.</p>
-</blockquote>
+</div>
+</details>
 <h2 id="shortcuts-for-panic-on-error-unwrap-and-expect"><a class="header" href="#shortcuts-for-panic-on-error-unwrap-and-expect">Shortcuts for Panic on Error: <code>unwrap</code> and <code>expect</code></a></h2>
+<h3 id="why-need-unwrap-and-expect"><a class="header" href="#why-need-unwrap-and-expect">Why need unwrap and expect</a></h3>
 <p>Using <code>match</code> works well enough, but it can be a bit verbose and doesn’t always
-communicate intent well. The <code>Result&lt;T, E&gt;</code> type has many helper methods
-defined on it to do various, more specific tasks. The <code>unwrap</code> method is a
+communicate intent well.</p>
+<details id="admonition-so-the-result-type-has-many-helper-methods-defined-on-it-to-do-various-more-specific-tasks" class="admonition info">
+<summary class="admonition-title">
+<p>So the <strong>Result&lt;T, E&gt;</strong> type has many helper methods defined on it to do various, more specific tasks:</p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-so-the-result-type-has-many-helper-methods-defined-on-it-to-do-various-more-specific-tasks"></a></p>
+</summary>
+<div>
+<ul>
+<li>The <code>unwrap</code> method is a
 shortcut method implemented just like the <code>match</code> expression we wrote in
-Listing 9-4. If the <code>Result</code> value is the <code>Ok</code> variant, <code>unwrap</code> will return
-the value inside the <code>Ok</code>. If the <code>Result</code> is the <code>Err</code> variant, <code>unwrap</code> will
-call the <code>panic!</code> macro for us. Here is an example of <code>unwrap</code> in action:</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+Listing 9-4. </li>
+<li>If the <code>Result</code> value is the <code>Ok</code> variant, <code>unwrap</code> will return
+the value inside the <code>Ok</code>. </li>
+<li>If the <code>Result</code> is the <code>Err</code> variant, <code>unwrap</code> will
+call the <code>panic!</code> macro for us.</li>
+</ul>
+</div>
+</details>
+<h3 id="unwrap"><a class="header" href="#unwrap">Unwrap</a></h3>
+<details id="admonition-here-is-an-example-of-unwrap-in-action" class="admonition info">
+<summary class="admonition-title">
+<p>Here is an example of <strong>unwrap</strong> in action:</p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-here-is-an-example-of-unwrap-in-action"></a></p>
+</summary>
+<div>
 <pre><pre class="playground"><code class="language-rust should_panic">use std::fs::File;
 
 fn main() {
     let greeting_file = File::open(&quot;hello.txt&quot;).unwrap();
 }
 </code></pre></pre>
-<p>If we run this code without a <em>hello.txt</em> file, we’ll see an error message from
-the <code>panic!</code> call that the <code>unwrap</code> method makes:</p>
-<!-- manual-regeneration
-cd listings/ch09-error-handling/no-listing-04-unwrap
+</div>
+</details>
+<details id="admonition-if-we-run-this-code-without-a-hellotxt-file-well-see-an-error-message-from-the-panic-call-that-the-unwrap-method-makes" class="admonition info">
+<summary class="admonition-title">
+<p>If we run this code without a <em>hello.txt</em> file, we’ll see an error message from the <em>panic!</em> call that the <em>unwrap</em> method makes:</p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-if-we-run-this-code-without-a-hellotxt-file-well-see-an-error-message-from-the-panic-call-that-the-unwrap-method-makes"></a></p>
+</summary>
+<div>
+<pre><code class="language-shell">cd listings/ch09-error-handling/no-listing-04-unwrap
 cargo run
-copy and paste relevant text
--->
+# copy and paste relevant text
+</code></pre>
 <pre><code class="language-text">thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Os {
 code: 2, kind: NotFound, message: &quot;No such file or directory&quot; }',
 src/main.rs:4:49
 </code></pre>
-<p>Similarly, the <code>expect</code> method lets us also choose the <code>panic!</code> error message.
-Using <code>expect</code> instead of <code>unwrap</code> and providing good error messages can convey
-your intent and make tracking down the source of a panic easier. The syntax of
-<code>expect</code> looks like this:</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+</div>
+</details>
+<h3 id="expect-easier-to-track-down"><a class="header" href="#expect-easier-to-track-down">Expect: easier to track down</a></h3>
+<p>Similarly, the <code>expect</code> method lets us also choose the <code>panic!</code> error message.</p>
+<p>Using <code>expect</code> instead of <code>unwrap</code> and providing good error messages can convey
+your intent and make tracking down the source of a panic easier.</p>
+<details id="admonition-the-syntax-of-expect-looks-like-this" class="admonition info">
+<summary class="admonition-title">
+<p>The syntax of <em>expect</em> looks like this:</p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-the-syntax-of-expect-looks-like-this"></a></p>
+</summary>
+<div>
 <pre><pre class="playground"><code class="language-rust should_panic">use std::fs::File;
 
 fn main() {
@@ -8871,23 +8950,41 @@ fn main() {
         .expect(&quot;hello.txt should be included in this project&quot;);
 }
 </code></pre></pre>
-<p>We use <code>expect</code> in the same way as <code>unwrap</code>: to return the file handle or call
-the <code>panic!</code> macro. The error message used by <code>expect</code> in its call to <code>panic!</code>
+</div>
+</details>
+<p>We use <code>expect</code> in the same way as <code>unwrap</code>:</p>
+<ul>
+<li>to return the file handle or call
+the <code>panic!</code> macro.</li>
+<li>Easier Point: The error message used by <code>expect</code> in its call to <code>panic!</code>
 will be the parameter that we pass to <code>expect</code>, rather than the default
-<code>panic!</code> message that <code>unwrap</code> uses. Here’s what it looks like:</p>
-<!-- manual-regeneration
-cd listings/ch09-error-handling/no-listing-05-expect
+<code>panic!</code> message that <code>unwrap</code> uses.</li>
+</ul>
+<details id="admonition-heres-what-it-looks-like-you-can-compare-blow-with-similar-situation-above" class="admonition info">
+<summary class="admonition-title">
+<p>Here’s what it looks like: you can compare blow with similar situation above</p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-heres-what-it-looks-like-you-can-compare-blow-with-similar-situation-above"></a></p>
+</summary>
+<div>
+<pre><code class="language-shell">cd listings/ch09-error-handling/no-listing-05-expect
 cargo run
-copy and paste relevant text
--->
-<pre><code class="language-text">thread 'main' panicked at 'hello.txt should be included in this project: Os {
+# copy and paste relevant text
+
+```text
+thread 'main' panicked at 'hello.txt should be included in this project: Os {
 code: 2, kind: NotFound, message: &quot;No such file or directory&quot; }',
 src/main.rs:5:10
 </code></pre>
+</div>
+</details>
+<h3 id="most-rustaceans-choose-expect-rather-than-unwrap"><a class="header" href="#most-rustaceans-choose-expect-rather-than-unwrap">Most Rustaceans choose expect rather than unwrap</a></h3>
 <p>In production-quality code, most Rustaceans choose <code>expect</code> rather than
 <code>unwrap</code> and give more context about why the operation is expected to always
-succeed. That way, if your assumptions are ever proven wrong, you have more
-information to use in debugging.</p>
+succeed:</p>
+<ul>
+<li>That way, if your assumptions are ever proven wrong, you have more
+information to use in debugging.</li>
+</ul>
 <h2 id="propagating-errors"><a class="header" href="#propagating-errors">Propagating Errors</a></h2>
 <p>When a function’s implementation calls something that might fail, instead of
 handling the error within the function itself, you can return the error to the
