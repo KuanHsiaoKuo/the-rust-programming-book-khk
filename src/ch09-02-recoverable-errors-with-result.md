@@ -524,7 +524,7 @@ an example of a function that finds the last character of the first line in the
 given text:
 
 ```rust
-{{# rustdoc_include../ listings / ch09 - error -handling / listing - 09 - 11 / src /main.rs: here}}
+{{#rustdoc_include ../listings/ch09-error-handling/listing-09-11/src/main.rs:here}}
 ```
 
 <span class="caption">Listing 9-11: Using the `?` operator on an `Option<T>`
