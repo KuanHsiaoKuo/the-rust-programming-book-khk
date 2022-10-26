@@ -3,6 +3,8 @@ title = "The Rust Programming Language"
 authors = ["Steve Klabnik", "Carol Nichols", "Contributions from the Rust Community"]
 
 [output.html]
+theme = "mytheme"
+default-theme = "navy"
 additional-css = ["assets/ferris/ferris.css", "theme/2018-edition.css", "assets/pagetoc/pagetoc_style.css", "assets/css/mdbook-admonish.css"]
 additional-js = ["assets/ferris/ferris.js", "assets/mermaid/mermaid.min.js", "assets/mermaid/mermaid-init.js", "assets/smart-anchor.js", "assets/pagetoc/sidebar.js"]
 git-repository-url = "https://github.com/rust-lang/book"

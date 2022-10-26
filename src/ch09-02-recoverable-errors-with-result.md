@@ -1,10 +1,17 @@
-## Recoverable Errors with `Result`
+# Recoverable Errors with `Result`
+
+<!--ts-->
+<!--te-->
 
 Most errors aren’t serious enough to require the program to stop entirely.
 Sometimes, when a function fails, it’s for a reason that you can easily
-interpret and respond to. For example, if you try to open a file and that
-operation fails because the file doesn’t exist, you might want to create the
-file instead of terminating the process.
+interpret and respond to.
+
+> For example, if you try to open a file and that
+> operation fails because the file doesn’t exist, you might want to create the
+> file instead of terminating the process.
+
+## Result Definition and Basic Usage
 
 Recall from [“Handling Potential Failure with `Result`”][handle_failure]<!--
 ignore --> in Chapter 2 that the `Result` enum is defined as having two
@@ -17,7 +24,7 @@ enum Result<T, E> {
 }
 ```
 
-The `T` and `E` are generic **type parameters**, we’ll discuss generics in more
+The `T` and `E` are **generic type parameters**, we’ll discuss generics in more
 detail in Chapter 10.
 
 What you need to know right now is that:
@@ -41,58 +48,67 @@ fail. In Listing 9-3 we try to open a file.
 ```
 ~~~
 
-The return type of `File::open` is a `Result<T, E>`. The generic parameter `T`
-has been filled in by the implementation of `File::open` with the type of the
-success value, `std::fs::File`, which is a file handle. The type of `E` used in
-the error value is `std::io::Error`. This return type means the call to
-`File::open` might succeed and return a file handle that we can read from or
-write to. The function call also might fail: for example, the file might not
+The return type of `File::open` is a `Result<T, E>`:
+
+- The generic parameter `T` has been filled in by the implementation of `File::open` with the type of the
+  success value, `std::fs::File`, which is a file handle.
+
+- The type of `E` used in the error value is `std::io::Error`.
+
+This return type means the call to `File::open` might succeed and return a
+file handle that we can read from or write to.
+
+The function call also might fail:
+for example, the file might not
 exist, or we might not have permission to access the file. The `File::open`
 function needs to have a way to tell us whether it succeeded or failed and at
-the same time give us either the file handle or error information. This
-information is exactly what the `Result` enum conveys.
+the same time give us either the file handle or error information.
 
-In the case where `File::open` succeeds, the value in the variable
-`greeting_file_result` will be an instance of `Ok` that contains a file handle.
-In the case where it fails, the value in `greeting_file_result` will be an
-instance of `Err` that contains more information about the kind of error that
-happened.
+This information is exactly what the `Result` enum conveys:
+
+- In the case where `File::open` succeeds
+  the value in the variable `greeting_file_result` will be an instance of `Ok` that contains a file handle.
+
+- In the case where it fails
+  the value in `greeting_file_result` will be an
+  instance of `Err` that contains more information about the kind of error that
+  happened.
 
 We need to add to the code in Listing 9-3 to take different actions depending
-on the value `File::open` returns. Listing 9-4 shows one way to handle the
-`Result` using a basic tool, the `match` expression that we discussed in
+on the value `File::open` returns.
+
+Listing 9-4 shows one way to handle the `Result` using a basic tool, the `match` expression that we discussed in
 Chapter 6.
 
 <span class="filename">Filename: src/main.rs</span>
 
+~~~admonish info title="Listing 9-4: Using a **match** expression to handle the **Result** variants that might be returned" collapsible=true
 ```rust,should_panic
 {{#rustdoc_include ../listings/ch09-error-handling/listing-09-04/src/main.rs}}
 ```
-
-<span class="caption">Listing 9-4: Using a `match` expression to handle the
-`Result` variants that might be returned</span>
+~~~
 
 Note that, like the `Option` enum, the `Result` enum and its variants have been
 brought into scope by the prelude, so we don’t need to specify `Result::`
-before the `Ok` and `Err` variants in the `match` arms.
+before the `Ok` and `Err` variants in the `match` arms:
 
-When the result is `Ok`, this code will return the inner `file` value out of
-the `Ok` variant, and we then assign that file handle value to the variable
-`greeting_file`. After the `match`, we can use the file handle for reading or
-writing.
+1. When the result is `Ok`, this code will return the inner `file` value out of
+   the `Ok` variant, and we then assign that file handle value to the variable
+   `greeting_file`. After the `match`, we can use the file handle for reading or
+   writing.
 
-The other arm of the `match` handles the case where we get an `Err` value from
-`File::open`. In this example, we’ve chosen to call the `panic!` macro. If
-there’s no file named *hello.txt* in our current directory and we run this
-code, we’ll see the following output from the `panic!` macro:
+2. The other arm of the `match` handles the case where we get an `Err` value from
+   `File::open`. In this example, we’ve chosen to call the `panic!` macro.
 
+~~~admonish info title="If there’s no file named *hello.txt* in our current directory and we run this code, we’ll see the following output from the **panic!** macro:" collapsible=true
 ```console
 {{#include ../listings/ch09-error-handling/listing-09-04/output.txt}}
 ```
+~~~
 
 As usual, this output tells us exactly what has gone wrong.
 
-### Matching on Different Errors
+## Matching on Different Errors
 
 The code in Listing 9-4 will `panic!` no matter why `File::open` failed.
 However, we want to take different actions for different failure reasons: if
@@ -131,7 +147,7 @@ file can’t be created, a different error message is printed. The second arm of
 the outer `match` stays the same, so the program panics on any error besides
 the missing file error.
 
-> ### Alternatives to Using `match` with `Result<T, E>`
+> ## Alternatives to Using `match` with `Result<T, E>`
 >
 > That’s a lot of `match`! The `match` expression is very useful but also very
 > much a primitive. In Chapter 13, you’ll learn about closures, which are used
@@ -166,7 +182,7 @@ the missing file error.
 > standard library documentation. Many more of these methods can clean up huge
 > nested `match` expressions when you’re dealing with errors.
 
-### Shortcuts for Panic on Error: `unwrap` and `expect`
+## Shortcuts for Panic on Error: `unwrap` and `expect`
 
 Using `match` works well enough, but it can be a bit verbose and doesn’t always
 communicate intent well. The `Result<T, E>` type has many helper methods
@@ -230,7 +246,7 @@ In production-quality code, most Rustaceans choose `expect` rather than
 succeed. That way, if your assumptions are ever proven wrong, you have more
 information to use in debugging.
 
-### Propagating Errors
+## Propagating Errors
 
 When a function’s implementation calls something that might fail, instead of
 handling the error within the function itself, you can return the error to the
@@ -250,7 +266,7 @@ file panics. We do want to include it for reader experimentation purposes, but
 don't want to include it for rustdoc testing purposes. -->
 
 ```rust
-{{#include ../listings/ch09-error-handling/listing-09-06/src/main.rs:here}}
+{{# include../ listings / ch09 - error -handling / listing - 09 - 06 / src /main.rs: here}}
 ```
 
 <span class="caption">Listing 9-6: A function that returns errors to the
@@ -307,7 +323,7 @@ it to handle appropriately.
 This pattern of propagating errors is so common in Rust that Rust provides the
 question mark operator `?` to make this easier.
 
-#### A Shortcut for Propagating Errors: the `?` Operator
+### A Shortcut for Propagating Errors: the `?` Operator
 
 Listing 9-7 shows an implementation of `read_username_from_file` that has the
 same functionality as in Listing 9-6, but this implementation uses the
@@ -320,7 +336,7 @@ file panics. We do want to include it for reader experimentation purposes, but
 don't want to include it for rustdoc testing purposes. -->
 
 ```rust
-{{#include ../listings/ch09-error-handling/listing-09-07/src/main.rs:here}}
+{{# include../ listings / ch09 - error -handling / listing - 09 - 07 / src /main.rs: here}}
 ```
 
 <span class="caption">Listing 9-7: A function that returns errors to the
@@ -368,7 +384,7 @@ file panics. We do want to include it for reader experimentation purposes, but
 don't want to include it for rustdoc testing purposes. -->
 
 ```rust
-{{#include ../listings/ch09-error-handling/listing-09-08/src/main.rs:here}}
+{{# include../ listings / ch09 - error -handling / listing - 09 - 08 / src /main.rs: here}}
 ```
 
 <span class="caption">Listing 9-8: Chaining method calls after the `?`
@@ -392,7 +408,7 @@ file panics. We do want to include it for reader experimentation purposes, but
 don't want to include it for rustdoc testing purposes. -->
 
 ```rust
-{{#include ../listings/ch09-error-handling/listing-09-09/src/main.rs:here}}
+{{# include../ listings / ch09 - error -handling / listing - 09 - 09 / src /main.rs: here}}
 ```
 
 <span class="caption">Listing 9-9: Using `fs::read_to_string` instead of
@@ -405,7 +421,7 @@ into that `String`, and returns it. Of course, using `fs::read_to_string`
 doesn’t give us the opportunity to explain all the error handling, so we did it
 the longer way first.
 
-#### Where The `?` Operator Can Be Used
+### Where The `?` Operator Can Be Used
 
 The `?` operator can only be used in functions whose return type is compatible
 with the value the `?` is used on. This is because the `?` operator is defined
@@ -458,7 +474,7 @@ an example of a function that finds the last character of the first line in the
 given text:
 
 ```rust
-{{#rustdoc_include ../listings/ch09-error-handling/listing-09-11/src/main.rs:here}}
+{{# rustdoc_include../ listings / ch09 - error -handling / listing - 09 - 11 / src /main.rs: here}}
 ```
 
 <span class="caption">Listing 9-11: Using the `?` operator on an `Option<T>`
