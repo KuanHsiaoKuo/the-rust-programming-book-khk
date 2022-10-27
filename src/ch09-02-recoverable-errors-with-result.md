@@ -1,18 +1,19 @@
 # Recoverable Errors with `Result`
 
 <!--ts-->
+
 * [Recoverable Errors with Result](#recoverable-errors-with-result)
-   * [Result Definition and Basic Usage](#result-definition-and-basic-usage)
-   * [Matching on Different Errors](#matching-on-different-errors)
-   * [Alternatives to Using match with Result&lt;T, E&gt;](#alternatives-to-using-match-with-resultt-e)
-   * [Shortcuts for Panic on Error: unwrap and expect](#shortcuts-for-panic-on-error-unwrap-and-expect)
-      * [Why need unwrap and expect](#why-need-unwrap-and-expect)
-      * [Unwrap](#unwrap)
-      * [Expect: easier to track down](#expect-easier-to-track-down)
-      * [Most Rustaceans choose expect rather than unwrap](#most-rustaceans-choose-expect-rather-than-unwrap)
-   * [Propagating Errors](#propagating-errors)
-      * [The ? Operator: A Shortcut for Propagating Errors](#the--operator-a-shortcut-for-propagating-errors)
-      * [Where The ? Operator Can Be Used](#where-the--operator-can-be-used)
+    * [Result Definition and Basic Usage](#result-definition-and-basic-usage)
+    * [Matching on Different Errors](#matching-on-different-errors)
+    * [Alternatives to Using match with Result&lt;T, E&gt;](#alternatives-to-using-match-with-resultt-e)
+    * [Shortcuts for Panic on Error: unwrap and expect](#shortcuts-for-panic-on-error-unwrap-and-expect)
+        * [Why need unwrap and expect](#why-need-unwrap-and-expect)
+        * [Unwrap](#unwrap)
+        * [Expect: easier to track down](#expect-easier-to-track-down)
+        * [Most Rustaceans choose expect rather than unwrap](#most-rustaceans-choose-expect-rather-than-unwrap)
+    * [Propagating Errors](#propagating-errors)
+        * [The ? Operator: A Shortcut for Propagating Errors](#the--operator-a-shortcut-for-propagating-errors)
+        * [Where The ? Operator Can Be Used](#where-the--operator-can-be-used)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 <!-- Added by: runner, at: Thu Oct 27 08:37:18 UTC 2022 -->
@@ -20,14 +21,16 @@
 <!--te-->
 
 Most errors aren’t serious enough to require the program to stop entirely.
-Sometimes, when a function fails, it’s for a reason that you can easily
-interpret and respond to.
 
-> For example, if you try to open a file and that
-> operation fails because the file doesn’t exist, you might want to create the
-> file instead of terminating the process.
+~~~admonish tip title="Sometimes, when a function fails, it’s for a reason that you can easily interpret and respond to." collapsible=true
+For example, if you try to open a file and that
+operation fails because the file doesn’t exist, you might want to create the
+file instead of terminating the process.
+~~~
 
 ## Result Definition and Basic Usage
+
+### What the definition of Result conveys?
 
 Recall from [“Handling Potential Failure with `Result`”][handle_failure]<!--
 ignore --> in Chapter 2 that the `Result` enum is defined as having two
@@ -43,20 +46,26 @@ enum Result<T, E> {
 The `T` and `E` are **generic type parameters**, we’ll discuss generics in more
 detail in Chapter 10.
 
+~~~admonish tip title="What you need to know right now is that about *T* and *E*:" collapsible=true
 What you need to know right now is that:
 
 - `T` represents the type of the value that will be returned in a success case within the `Ok`
   variant
 - and `E` represents the type of the error that will be returned in a
   failure case within the `Err` variant.
+~~~
 
 > Because `Result` has these generic type
 > parameters, we can use the `Result` type and the functions defined on it in
 > many different situations where the successful value and error value we want to
 > return may differ.
 
+### What is the information the result enum conveys?
+
 Let’s call a function that returns a `Result` value because the function could
-fail. In Listing 9-3 we try to open a file.
+fail.
+
+In Listing 9-3 we try to open a file.
 
 ~~~admonish info title="Listing 9-3: Opening a file" collapsible=true
 ```rust
@@ -64,23 +73,27 @@ fail. In Listing 9-3 we try to open a file.
 ```
 ~~~
 
-The return type of `File::open` is a `Result<T, E>`:
+~~~admonish info title="The return type of *File::open* is a *Result<T, E>*:" collapsible=true
 
 - The generic parameter `T` has been filled in by the implementation of `File::open` with the type of the
   success value, `std::fs::File`, which is a file handle.
 
 - The type of `E` used in the error value is `std::io::Error`.
+~~~
 
-This return type means the call to `File::open` might succeed and return a
-file handle that we can read from or write to.
+1. This return type means the call to `File::open` might succeed and return a
+   file handle that we can read from or write to.
 
-The function call also might fail:
+2. The function call also might fail:
+
 for example, the file might not
-exist, or we might not have permission to access the file. The `File::open`
-function needs to have a way to tell us whether it succeeded or failed and at
-the same time give us either the file handle or error information.
+exist, or we might not have permission to access the file.
 
-This information is exactly what the `Result` enum conveys:
+> The `File::open`
+> function needs to have a way to tell us whether it succeeded or failed and at
+> the same time give us either the file handle or error information.
+
+~~~admonish info title="This information is exactly what the *Result* enum conveys:" collapsible=true
 
 - In the case where `File::open` succeeds
   the value in the variable `greeting_file_result` will be an instance of `Ok` that contains a file handle.
@@ -89,6 +102,9 @@ This information is exactly what the `Result` enum conveys:
   the value in `greeting_file_result` will be an
   instance of `Err` that contains more information about the kind of error that
   happened.
+~~~
+
+### How to hanle the information? Match Expression
 
 We need to add to the code in Listing 9-3 to take different actions depending
 on the value `File::open` returns.
@@ -102,9 +118,13 @@ Chapter 6.
 ```
 ~~~
 
-> Note that, like the `Option` enum, the `Result` enum and its variants have been
-> brought into scope by the prelude, so we don’t need to specify `Result::`
-> before the `Ok` and `Err` variants in the `match` arms:
+### What happened if the match expression not handle a situation?
+
+> Note that:
+
+like the `Option` enum, the `Result` enum and its variants have been
+brought into scope by the prelude, so we don’t need to specify `Result::`
+before the `Ok` and `Err` variants in the `match` arms:
 
 1. When the result is `Ok`, this code will return the inner `file` value out of
    the `Ok` variant, and we then assign that file handle value to the variable
@@ -309,7 +329,7 @@ information or logic that dictates how the error should be handled than what
 you have available in the context of your code.
 ~~~
 
-~~~admonish question title="Listing 9-6: A function that returns errors to the calling code using *match*" collapsible=true
+~~~admonish note title="Listing 9-6: A function that returns errors to the calling code using *match*" collapsible=true
 For example, Listing 9-6 shows a function that reads a username from a file. 
 
 If the file doesn’t exist or can’t be read, this function will return those errors
@@ -330,7 +350,7 @@ doing a lot of it manually in order to explore error handling;
 
 at the end, we’ll show the shorter way.
 
-~~~admonish question title="Let’s look at the return type of the function first: *Result<String, io::Error>*:" collapsible=true
+~~~admonish note title="Let’s look at the return type of the function first: *Result<String, io::Error>*:" collapsible=true
 - This means the function is returning a value of the type `Result<T, E>`
 - the generic parameter `T` has been filled in with the concrete type `String`
 - and the generic type `E` has been filled in with the concrete type `io::Error`.
@@ -406,12 +426,11 @@ same functionality as in Listing 9-6, but this implementation uses the
 file panics. We do want to include it for reader experimentation purposes, but
 don't want to include it for rustdoc testing purposes. -->
 
+~~~admonish note title="Listing 9-7: A function that returns errors to the calling code using the *?* operator" collapsible=true
 ```rust
-{{# include../ listings / ch09 - error -handling / listing - 09 - 07 / src /main.rs: here}}
+{{#include ../listings/ch09-error-handling/listing-09-07/src/main.rs:here}}
 ```
-
-<span class="caption">Listing 9-7: A function that returns errors to the
-calling code using the `?` operator</span>
+~~~
 
 The `?` placed after a `Result` value is defined to work in almost the same way
 as the `match` expressions we defined to handle the `Result` values in Listing
@@ -454,12 +473,11 @@ method calls immediately after the `?`, as shown in Listing 9-8.
 file panics. We do want to include it for reader experimentation purposes, but
 don't want to include it for rustdoc testing purposes. -->
 
+~~~admonish note title="Listing 9-8: Chaining method calls after the *?* operator" collapsible=true
 ```rust
-{{# include../ listings / ch09 - error -handling / listing - 09 - 08 / src /main.rs: here}}
+{{#include ../listings/ch09-error-handling/listing-09-08/src/main.rs:here}}
 ```
-
-<span class="caption">Listing 9-8: Chaining method calls after the `?`
-operator</span>
+~~~
 
 We’ve moved the creation of the new `String` in `username` to the beginning of
 the function; that part hasn’t changed. Instead of creating a variable
@@ -478,150 +496,198 @@ Listing 9-9 shows a way to make this even shorter using `fs::read_to_string`.
 file panics. We do want to include it for reader experimentation purposes, but
 don't want to include it for rustdoc testing purposes. -->
 
+~~~admonish not title="Listing 9-9: Using *fs::read_to_string* instead of opening and then reading the file" collapsible=true
 ```rust
-{{# include../ listings / ch09 - error -handling / listing - 09 - 09 / src /main.rs: here}}
+{{#include ../listings/ch09-error-handling/listing-09-09/src/main.rs:here}}
 ```
-
-<span class="caption">Listing 9-9: Using `fs::read_to_string` instead of
-opening and then reading the file</span>
+~~~
 
 Reading a file into a string is a fairly common operation, so the standard
-library provides the convenient `fs::read_to_string` function that opens the
-file, creates a new `String`, reads the contents of the file, puts the contents
-into that `String`, and returns it. Of course, using `fs::read_to_string`
+library provides the convenient `fs::read_to_string` function:
+
+- opens the
+  file
+- creates a new `String`
+- reads the contents of the file
+- puts the contents
+  into that `String`, and returns it
+
+Of course, using `fs::read_to_string`
 doesn’t give us the opportunity to explain all the error handling, so we did it
 the longer way first.
 
 ### Where The `?` Operator Can Be Used
 
 The `?` operator can only be used in functions whose return type is compatible
-with the value the `?` is used on. This is because the `?` operator is defined
+with the value the `?` is used on.
+
+This is because the `?` operator is defined
 to perform an early return of a value out of the function, in the same manner
-as the `match` expression we defined in Listing 9-6. In Listing 9-6, the
+as the `match` expression we defined in Listing 9-6.
+
+In Listing 9-6, the
 `match` was using a `Result` value, and the early return arm returned an
-`Err(e)` value. The return type of the function has to be a `Result` so that
-it’s compatible with this `return`.
+`Err(e)` value.
+
+> The return type of the function has to be a `Result` so that
+> it’s compatible with this `return`.
 
 In Listing 9-10, let’s look at the error we’ll get if we use the `?` operator
 in a `main` function with a return type incompatible with the type of the value
 we use `?` on:
 
-<span class="filename">Filename: src/main.rs</span>
-
+~~~admonish not title="Listing 9-10: Attempting to use the *?* in the *main* function that returns *()* won’t compile" collapsible=true
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch09-error-handling/listing-09-10/src/main.rs}}
 ```
+~~~
 
-<span class="caption">Listing 9-10: Attempting to use the `?` in the `main`
-function that returns `()` won’t compile</span>
+This code opens a file, which might fail.
 
-This code opens a file, which might fail. The `?` operator follows the `Result`
+The `?` operator follows the `Result`
 value returned by `File::open`, but this `main` function has the return type of
-`()`, not `Result`. When we compile this code, we get the following error
-message:
+`()`, not `Result`.
 
+~~~admonish not title="When we compile this code, we get the following error message: " collapsible=true
 ```console
 {{#include ../listings/ch09-error-handling/listing-09-10/output.txt}}
 ```
+~~~
 
-This error points out that we’re only allowed to use the `?` operator in a
-function that returns `Result`, `Option`, or another type that implements
+> This error points out that we’re only allowed to use the `?` operator in a
+> function that returns `Result`, `Option`, or another type that implements
 `FromResidual`.
 
-To fix the error, you have two choices. One choice is to change the return type
-of your function to be compatible with the value you’re using the `?` operator
-on as long as you have no restrictions preventing that. The other technique is
-to use a `match` or one of the `Result<T, E>` methods to handle the `Result<T,
-E>` in whatever way is appropriate.
+To fix the error, you have two choices:
 
-The error message also mentioned that `?` can be used with `Option<T>` values
-as well. As with using `?` on `Result`, you can only use `?` on `Option` in a
+1. One choice is to change the return type
+   of your function to be compatible with the value you’re using the `?` operator
+   on as long as you have no restrictions preventing that.
+2. The other technique is
+   to use a `match` or one of the `Result<T, E>` methods to handle the `Result<T,
+   E>` in whatever way is appropriate.
+
+> The error message also mentioned that `?` can be used with `Option<T>` values
+> as well.
+
+As with using `?` on `Result`, you can only use `?` on `Option` in a
 function that returns an `Option`. The behavior of the `?` operator when called
 on an `Option<T>` is similar to its behavior when called on a `Result<T, E>`:
-if the value is `None`, the `None` will be returned early from the function at
-that point. If the value is `Some`, the value inside the `Some` is the
-resulting value of the expression and the function continues. Listing 9-11 has
+
+- if the value is `None`, the `None` will be returned early from the function at
+  that point.
+- If the value is `Some`, the value inside the `Some` is the
+  resulting value of the expression and the function continues.
+
+Listing 9-11 has
 an example of a function that finds the last character of the first line in the
 given text:
 
+~~~admonish not title="Listing 9-11: Using the *?* operator on an *Option<T>* value" collapsible=true
 ```rust
-{{#rustdoc_include ../listings/ch09-error-handling/listing-09-11/src/main.rs:here}}
+{{#rustdoc_include ../listings/ch09-error-handling/listing-09-11/src/main.rs}}
 ```
+~~~
 
-<span class="caption">Listing 9-11: Using the `?` operator on an `Option<T>`
-value</span>
+1. This function returns `Option<char>` because it’s possible that there is a
+   character there, but it’s also possible that there isn’t.
+2. This code takes the
+   `text` string slice argument and calls the `lines` method on it, which returns
+   an iterator over the lines in the string.
+3. Because this function wants to
+   examine the first line, it calls `next` on the iterator to get the first value
+   from the iterator.
+4. If `text` is the empty string, this call to `next` will
+   return `None`, in which case we use `?` to stop and return `None` from
+   `last_char_of_first_line`.
+5. If `text` is not the empty string, `next` will
+   return a `Some` value containing a string slice of the first line in `text`.
 
-This function returns `Option<char>` because it’s possible that there is a
-character there, but it’s also possible that there isn’t. This code takes the
-`text` string slice argument and calls the `lines` method on it, which returns
-an iterator over the lines in the string. Because this function wants to
-examine the first line, it calls `next` on the iterator to get the first value
-from the iterator. If `text` is the empty string, this call to `next` will
-return `None`, in which case we use `?` to stop and return `None` from
-`last_char_of_first_line`. If `text` is not the empty string, `next` will
-return a `Some` value containing a string slice of the first line in `text`.
+> The `?` extracts the string slice, and we can call `chars` on that string slice
+> to get an iterator of its characters.
 
-The `?` extracts the string slice, and we can call `chars` on that string slice
-to get an iterator of its characters. We’re interested in the last character in
-this first line, so we call `last` to return the last item in the iterator.
-This is an `Option` because it’s possible that the first line is the empty
-string, for example if `text` starts with a blank line but has characters on
-other lines, as in `"\nhi"`. However, if there is a last character on the first
-line, it will be returned in the `Some` variant. The `?` operator in the middle
-gives us a concise way to express this logic, allowing us to implement the
-function in one line. If we couldn’t use the `?` operator on `Option`, we’d
-have to implement this logic using more method calls or a `match` expression.
+- We’re interested in the last character in
+  this first line, so we call `last` to return the last item in the iterator.
+- This is an `Option` because it’s possible that the first line is the empty
+  string, for example if `text` starts with a blank line but has characters on
+  other lines, as in `"\nhi"`.
+- However, if there is a last character on the first
+  line, it will be returned in the `Some` variant.
 
-Note that you can use the `?` operator on a `Result` in a function that returns
-`Result`, and you can use the `?` operator on an `Option` in a function that
-returns `Option`, but you can’t mix and match. The `?` operator won’t
-automatically convert a `Result` to an `Option` or vice versa; in those cases,
-you can use methods like the `ok` method on `Result` or the `ok_or` method on
-`Option` to do the conversion explicitly.
+> The `?` operator in the middle
+> gives us a concise way to express this logic, allowing us to implement the
+> function in one line.
+
+- If we couldn’t use the `?` operator on `Option`, we’d
+  have to implement this logic using more method calls or a `match` expression.
+
+Note that:
+
+- you can use the `?` operator on a `Result` in a function that returns
+  `Result`
+- and you can use the `?` operator on an `Option` in a function that
+  returns `Option`
+- but you can’t mix and match.
+- The `?` operator won’t
+  automatically convert a `Result` to an `Option` or vice versa;
+- in those cases,
+  you can use methods like the `ok` method on `Result` or the `ok_or` method on
+  `Option` to do the conversion explicitly.
 
 So far, all the `main` functions we’ve used return `()`. The `main` function is
 special because it’s the entry and exit point of executable programs, and there
 are restrictions on what its return type can be for the programs to behave as
 expected.
 
-Luckily, `main` can also return a `Result<(), E>`. Listing 9-12 has the
+> Luckily, `main` can also return a `Result<(), E>`.
+
+Listing 9-12 has the
 code from Listing 9-10 but we’ve changed the return type of `main` to be
 `Result<(), Box<dyn Error>>` and added a return value `Ok(())` to the end. This
 code will now compile:
 
+~~~admonish not title="Listing 9-12: Changing *main* to return *Result<(), E>* allows the use of the *?* operator on *Result* values" collapsible=true
 ```rust,ignore
 {{#rustdoc_include ../listings/ch09-error-handling/listing-09-12/src/main.rs}}
 ```
+~~~
 
-<span class="caption">Listing 9-12: Changing `main` to return `Result<(), E>`
-allows the use of the `?` operator on `Result` values</span>
+- The `Box<dyn Error>` type is a *trait object*, which we’ll talk about in the
+  [“Using Trait Objects that Allow for Values of Different
+  Types”][trait-objects]<!-- ignore --> section in Chapter 17.
 
-The `Box<dyn Error>` type is a *trait object*, which we’ll talk about in the
-[“Using Trait Objects that Allow for Values of Different
-Types”][trait-objects]<!-- ignore --> section in Chapter 17. For now, you can
-read `Box<dyn Error>` to mean “any kind of error.” Using `?` on a `Result`
-value in a `main` function with the error type `Box<dyn Error>` is allowed,
-because it allows any `Err` value to be returned early. Even though the body of
-this `main` function will only ever return errors of type `std::io::Error`, by
-specifying `Box<dyn Error>`, this signature will continue to be correct even if
-more code that returns other errors is added to the body of `main`.
+> For now, you can
+> read `Box<dyn Error>` to mean “any kind of error.”
+
+- Using `?` on a `Result`
+  value in a `main` function with the error type `Box<dyn Error>` is allowed,
+  because it allows any `Err` value to be returned early.
+- Even though the body of
+  this `main` function will only ever return errors of type `std::io::Error`, by
+  specifying `Box<dyn Error>`, this signature will continue to be correct even if
+  more code that returns other errors is added to the body of `main`.
 
 When a `main` function returns a `Result<(), E>`, the executable will
 exit with a value of `0` if `main` returns `Ok(())` and will exit with a
-nonzero value if `main` returns an `Err` value. Executables written in C return
+nonzero value if `main` returns an `Err` value.
+
+Executables written in C return
 integers when they exit: programs that exit successfully return the integer
-`0`, and programs that error return some integer other than `0`. Rust also
-returns integers from executables to be compatible with this convention.
+`0`, and programs that error return some integer other than `0`.
+
+> Rust also returns integers from executables to be compatible with this convention.
 
 The `main` function may return any types that implement [the
 `std::process::Termination` trait][termination]<!-- ignore -->, which contains
-a function `report` that returns an `ExitCode`. Consult the standard library
+a function `report` that returns an `ExitCode`.
+
+Consult the standard library
 documentation for more information on implementing the `Termination` trait for
 your own types.
 
-Now that we’ve discussed the details of calling `panic!` or returning `Result`,
-let’s return to the topic of how to decide which is appropriate to use in which
-cases.
+> Now that we’ve discussed the details of calling `panic!` or returning `Result`,
+> let’s return to the topic of how to decide which is appropriate to use in which
+> cases.
 
 [handle_failure]: ch02-00-guessing-game-tutorial.html#handling-potential-failure-with-result
 
