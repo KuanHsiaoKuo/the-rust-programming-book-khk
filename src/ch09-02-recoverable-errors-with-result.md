@@ -1,18 +1,19 @@
 # Recoverable Errors with `Result`
 
 <!--ts-->
+
 * [Recoverable Errors with Result](#recoverable-errors-with-result)
-   * [Result Definition and Basic Usage](#result-definition-and-basic-usage)
-   * [Matching on Different Errors](#matching-on-different-errors)
-   * [Alternatives to Using match with Result&lt;T, E&gt;](#alternatives-to-using-match-with-resultt-e)
-   * [Shortcuts for Panic on Error: unwrap and expect](#shortcuts-for-panic-on-error-unwrap-and-expect)
-      * [Why need unwrap and expect](#why-need-unwrap-and-expect)
-      * [Unwrap](#unwrap)
-      * [Expect: easier to track down](#expect-easier-to-track-down)
-      * [Most Rustaceans choose expect rather than unwrap](#most-rustaceans-choose-expect-rather-than-unwrap)
-   * [Propagating Errors](#propagating-errors)
-      * [A Shortcut for Propagating Errors: the ? Operator](#a-shortcut-for-propagating-errors-the--operator)
-      * [Where The ? Operator Can Be Used](#where-the--operator-can-be-used)
+    * [Result Definition and Basic Usage](#result-definition-and-basic-usage)
+    * [Matching on Different Errors](#matching-on-different-errors)
+    * [Alternatives to Using match with Result&lt;T, E&gt;](#alternatives-to-using-match-with-resultt-e)
+    * [Shortcuts for Panic on Error: unwrap and expect](#shortcuts-for-panic-on-error-unwrap-and-expect)
+        * [Why need unwrap and expect](#why-need-unwrap-and-expect)
+        * [Unwrap](#unwrap)
+        * [Expect: easier to track down](#expect-easier-to-track-down)
+        * [Most Rustaceans choose expect rather than unwrap](#most-rustaceans-choose-expect-rather-than-unwrap)
+    * [Propagating Errors](#propagating-errors)
+        * [A Shortcut for Propagating Errors: the ? Operator](#a-shortcut-for-propagating-errors-the--operator)
+        * [Where The ? Operator Can Be Used](#where-the--operator-can-be-used)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 <!-- Added by: runner, at: Wed Oct 26 07:03:49 UTC 2022 -->
@@ -298,82 +299,103 @@ succeed:
 
 ## Propagating Errors
 
+~~~admonish question title="How to propagate the error? Why?" collapsible=true
 When a function’s implementation calls something that might fail, instead of
 handling the error within the function itself, you can return the error to the
-calling code so that it can decide what to do. This is known as *propagating*
+calling code so that it can decide what to do. 
+
+This is known as *propagating*
 the error and gives more control to the calling code, where there might be more
 information or logic that dictates how the error should be handled than what
 you have available in the context of your code.
+~~~
 
-For example, Listing 9-6 shows a function that reads a username from a file. If
-the file doesn’t exist or can’t be read, this function will return those errors
+~~~admonish question title="Listing 9-6: A function that returns errors to the calling code using *match*" collapsible=true
+For example, Listing 9-6 shows a function that reads a username from a file. 
+
+If the file doesn’t exist or can’t be read, this function will return those errors
 to the code that called the function.
 
-<span class="filename">Filename: src/main.rs</span>
 
 <!-- Deliberately not using rustdoc_include here; the `main` function in the
 file panics. We do want to include it for reader experimentation purposes, but
 don't want to include it for rustdoc testing purposes. -->
 
-```rust
-{{# include../ listings / ch09 - error -handling / listing - 09 - 06 / src /main.rs: here}}
+```rust, editable
+{{#include ../listings/ch09-error-handling/listing-09-06/src/main.rs:here}}
 ```
-
-<span class="caption">Listing 9-6: A function that returns errors to the
-calling code using `match`</span>
+~~~
 
 This function can be written in a much shorter way, but we’re going to start by
-doing a lot of it manually in order to explore error handling; at the end,
-we’ll show the shorter way. Let’s look at the return type of the function
-first: `Result<String, io::Error>`. This means the function is returning a
-value of the type `Result<T, E>` where the generic parameter `T` has been
-filled in with the concrete type `String`, and the generic type `E` has been
-filled in with the concrete type `io::Error`.
+doing a lot of it manually in order to explore error handling;
 
-If this function succeeds without any problems, the code that calls this
-function will receive an `Ok` value that holds a `String`—the username that
-this function read from the file. If this function encounters any problems, the
-calling code will receive an `Err` value that holds an instance of `io::Error`
-that contains more information about what the problems were. We chose
-`io::Error` as the return type of this function because that happens to be the
+at the end, we’ll show the shorter way.
+
+~~~admonish question title="Let’s look at the return type of the function first: *Result<String, io::Error>*:" collapsible=true
+- This means the function is returning a value of the type `Result<T, E>`
+- the generic parameter `T` has been filled in with the concrete type `String`
+- and the generic type `E` has been filled in with the concrete type `io::Error`.
+
+1. If this function succeeds without any problems
+   The code that calls this function will receive an `Ok` value that holds a `String`—the username that
+   this function read from the file.
+2. If this function encounters any problems
+   The calling code will receive an `Err` value that holds an instance of `io::Error`
+   that contains more information about what the problems were.
+~~~
+
+~~~admonish question title="Why chose *io::Error* as the return type?" collapsible=true
+> We chose `io::Error` as the return type of this function because that happens to be the
 type of the error value returned from both of the operations we’re calling in
 this function’s body that might fail: the `File::open` function and the
 `read_to_string` method.
+~~~
 
-The body of the function starts by calling the `File::open` function. Then we
-handle the `Result` value with a `match` similar to the `match` in Listing 9-4.
-If `File::open` succeeds, the file handle in the pattern variable `file`
-becomes the value in the mutable variable `username_file` and the function
-continues. In the `Err` case, instead of calling `panic!`, we use the `return`
-keyword to return early out of the function entirely and pass the error value
-from `File::open`, now in the pattern variable `e`, back to the calling code as
-this function’s error value.
+- The body of the function starts by calling the `File::open` function.
+- Then we
+  handle the `Result` value with a `match` similar to the `match` in Listing 9-4.
+- If `File::open` succeeds, the file handle in the pattern variable `file`
+  becomes the value in the mutable variable `username_file` and the function
+  continues.
+- In the `Err` case, instead of calling `panic!`, we use the `return`
+  keyword to return early out of the function entirely and pass the error value
+  from `File::open`, now in the pattern variable `e`, back to the calling code as
+  this function’s error value.
 
-So if we have a file handle in `username_file`, the function then creates a new
-`String` in variable `username` and calls the `read_to_string` method on
-the file handle in `username_file` to read the contents of the file into
-`username`. The `read_to_string` method also returns a `Result` because it
-might fail, even though `File::open` succeeded. So we need another `match` to
-handle that `Result`: if `read_to_string` succeeds, then our function has
-succeeded, and we return the username from the file that’s now in `username`
-wrapped in an `Ok`. If `read_to_string` fails, we return the error value in the
-same way that we returned the error value in the `match` that handled the
-return value of `File::open`. However, we don’t need to explicitly say
+- So if we have a file handle in `username_file`, the function then creates a new
+  `String` in variable `username` and calls the `read_to_string` method on
+  the file handle in `username_file` to read the contents of the file into
+  `username`.
+- The `read_to_string` method also returns a `Result` because it
+  might fail, even though `File::open` succeeded.
+- So we need another `match` to
+  handle that `Result`: if `read_to_string` succeeds, then our function has
+  succeeded, and we return the username from the file that’s now in `username`
+  wrapped in an `Ok`.
+- If `read_to_string` fails, we return the error value in the
+  same way that we returned the error value in the `match` that handled the
+  return value of `File::open`.
+
+> However, we don’t need to explicitly say
 `return`, because this is the last expression in the function.
 
 The code that calls this code will then handle getting either an `Ok` value
-that contains a username or an `Err` value that contains an `io::Error`. It’s
-up to the calling code to decide what to do with those values. If the calling
-code gets an `Err` value, it could call `panic!` and crash the program, use a
-default username, or look up the username from somewhere other than a file, for
-example. We don’t have enough information on what the calling code is actually
-trying to do, so we propagate all the success or error information upward for
-it to handle appropriately.
+that contains a username or an `Err` value that contains an `io::Error`.
 
-This pattern of propagating errors is so common in Rust that Rust provides the
-question mark operator `?` to make this easier.
+It’s up to the calling code to decide what to do with those values:
 
-### A Shortcut for Propagating Errors: the `?` Operator
+- If the calling code gets an `Err` value
+  it could call `panic!` and crash the program, use a default username, or look up
+  the username from somewhere other than a file, for example.
+
+- We don’t have enough information on what the calling code is actually
+  trying to do, so we propagate all the success or error information upward for
+  it to handle appropriately.
+
+> This pattern of propagating errors is so common in Rust that Rust provides the
+> question mark operator `?` to make this easier.
+
+### The `?` Operator: A Shortcut for Propagating Errors
 
 Listing 9-7 shows an implementation of `read_username_from_file` that has the
 same functionality as in Listing 9-6, but this implementation uses the

@@ -23,14 +23,7 @@ level = 3
 # ```
 [preprocessor.extended-markdown-table]
 
-# Enables the `mdbook-mermaid` preprocessor
-[preprocessor.mermaid]
-command = "mdbook-mermaid"
-
 [preprocessor.kroki-preprocessor]
-
-[preprocessor.puml]
-command = "mdbook-puml"
 
 # Enables the `mdbook-checklist` preprocessor
 [preprocessor.checklist]
