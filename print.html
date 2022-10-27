@@ -8605,7 +8605,14 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 <ul>
 <li><a href="ch09-02-recoverable-errors-with-result.html#recoverable-errors-with-result">Recoverable Errors with Result</a>
 <ul>
-<li><a href="ch09-02-recoverable-errors-with-result.html#result-definition-and-basic-usage">Result Definition and Basic Usage</a></li>
+<li><a href="ch09-02-recoverable-errors-with-result.html#result-definition-and-basic-usage">Result Definition and Basic Usage</a>
+<ul>
+<li><a href="ch09-02-recoverable-errors-with-result.html#what-the-definition-of-result-conveys">What the definition of Result conveys?</a></li>
+<li><a href="ch09-02-recoverable-errors-with-result.html#what-is-the-information-the-result-enum-conveys">What is the information the result enum conveys?</a></li>
+<li><a href="ch09-02-recoverable-errors-with-result.html#how-to-hanle-the-information-match-expression">How to hanle the information? Match Expression</a></li>
+<li><a href="ch09-02-recoverable-errors-with-result.html#what-happened-if-the-match-expression-not-handle-a-situation">What happened if the match expression not handle a situation?</a></li>
+</ul>
+</li>
 <li><a href="ch09-02-recoverable-errors-with-result.html#matching-on-different-errors">Matching on Different Errors</a></li>
 <li><a href="ch09-02-recoverable-errors-with-result.html#alternatives-to-using-match-with-resultt-e">Alternatives to Using match with Result&lt;T, E&gt;</a></li>
 <li><a href="ch09-02-recoverable-errors-with-result.html#shortcuts-for-panic-on-error-unwrap-and-expect">Shortcuts for Panic on Error: unwrap and expect</a>
@@ -8626,17 +8633,22 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Oct 27 08:37:18 UTC 2022 -->
+<!-- Added by: runner, at: Thu Oct 27 10:30:42 UTC 2022 -->
 <!--te-->
-<p>Most errors aren’t serious enough to require the program to stop entirely.
-Sometimes, when a function fails, it’s for a reason that you can easily
-interpret and respond to.</p>
-<blockquote>
+<p>Most errors aren’t serious enough to require the program to stop entirely.</p>
+<details id="admonition-sometimes-when-a-function-fails-its-for-a-reason-that-you-can-easily-interpret-and-respond-to" class="admonition tip">
+<summary class="admonition-title">
+<p>Sometimes, when a function fails, it’s for a reason that you can easily interpret and respond to.</p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-sometimes-when-a-function-fails-its-for-a-reason-that-you-can-easily-interpret-and-respond-to"></a></p>
+</summary>
+<div>
 <p>For example, if you try to open a file and that
 operation fails because the file doesn’t exist, you might want to create the
 file instead of terminating the process.</p>
-</blockquote>
+</div>
+</details>
 <h2 id="result-definition-and-basic-usage"><a class="header" href="#result-definition-and-basic-usage">Result Definition and Basic Usage</a></h2>
+<h3 id="what-the-definition-of-result-conveys"><a class="header" href="#what-the-definition-of-result-conveys">What the definition of Result conveys?</a></h3>
 <p>Recall from <a href="ch02-00-guessing-game-tutorial.html#handling-potential-failure-with-result">“Handling Potential Failure with <code>Result</code>”</a><!--
 ignore --> in Chapter 2 that the <code>Result</code> enum is defined as having two
 variants, <code>Ok</code> and <code>Err</code>, as follows:</p>
@@ -8650,6 +8662,12 @@ variants, <code>Ok</code> and <code>Err</code>, as follows:</p>
 </span></code></pre></pre>
 <p>The <code>T</code> and <code>E</code> are <strong>generic type parameters</strong>, we’ll discuss generics in more
 detail in Chapter 10.</p>
+<details id="admonition-what-you-need-to-know-right-now-is-that-about-t-and-e" class="admonition tip">
+<summary class="admonition-title">
+<p>What you need to know right now is that about <em>T</em> and <em>E</em>:</p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-what-you-need-to-know-right-now-is-that-about-t-and-e"></a></p>
+</summary>
+<div>
 <p>What you need to know right now is that:</p>
 <ul>
 <li><code>T</code> represents the type of the value that will be returned in a success case within the <code>Ok</code>
@@ -8657,14 +8675,18 @@ variant</li>
 <li>and <code>E</code> represents the type of the error that will be returned in a
 failure case within the <code>Err</code> variant.</li>
 </ul>
+</div>
+</details>
 <blockquote>
 <p>Because <code>Result</code> has these generic type
 parameters, we can use the <code>Result</code> type and the functions defined on it in
 many different situations where the successful value and error value we want to
 return may differ.</p>
 </blockquote>
+<h3 id="what-is-the-information-the-result-enum-conveys"><a class="header" href="#what-is-the-information-the-result-enum-conveys">What is the information the result enum conveys?</a></h3>
 <p>Let’s call a function that returns a <code>Result</code> value because the function could
-fail. In Listing 9-3 we try to open a file.</p>
+fail.</p>
+<p>In Listing 9-3 we try to open a file.</p>
 <details id="admonition-listing-9-3-opening-a-file" class="admonition info">
 <summary class="admonition-title">
 <p>Listing 9-3: Opening a file</p>
@@ -8679,7 +8701,12 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
-<p>The return type of <code>File::open</code> is a <code>Result&lt;T, E&gt;</code>:</p>
+<details id="admonition-the-return-type-of-fileopen-is-a-result" class="admonition info">
+<summary class="admonition-title">
+<p>The return type of <em>File::open</em> is a <em>Result&lt;T, E&gt;</em>:</p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-the-return-type-of-fileopen-is-a-result"></a></p>
+</summary>
+<div>
 <ul>
 <li>
 <p>The generic parameter <code>T</code> has been filled in by the implementation of <code>File::open</code> with the type of the
@@ -8689,14 +8716,30 @@ success value, <code>std::fs::File</code>, which is a file handle.</p>
 <p>The type of <code>E</code> used in the error value is <code>std::io::Error</code>.</p>
 </li>
 </ul>
+</div>
+</details>
+<ol>
+<li>
 <p>This return type means the call to <code>File::open</code> might succeed and return a
 file handle that we can read from or write to.</p>
-<p>The function call also might fail:
-for example, the file might not
-exist, or we might not have permission to access the file. The <code>File::open</code>
+</li>
+<li>
+<p>The function call also might fail:</p>
+</li>
+</ol>
+<p>for example, the file might not
+exist, or we might not have permission to access the file.</p>
+<blockquote>
+<p>The <code>File::open</code>
 function needs to have a way to tell us whether it succeeded or failed and at
 the same time give us either the file handle or error information.</p>
-<p>This information is exactly what the <code>Result</code> enum conveys:</p>
+</blockquote>
+<details id="admonition-this-information-is-exactly-what-the-result-enum-conveys" class="admonition info">
+<summary class="admonition-title">
+<p>This information is exactly what the <em>Result</em> enum conveys:</p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-this-information-is-exactly-what-the-result-enum-conveys"></a></p>
+</summary>
+<div>
 <ul>
 <li>
 <p>In the case where <code>File::open</code> succeeds
@@ -8709,6 +8752,9 @@ instance of <code>Err</code> that contains more information about the kind of er
 happened.</p>
 </li>
 </ul>
+</div>
+</details>
+<h3 id="how-to-hanle-the-information-match-expression"><a class="header" href="#how-to-hanle-the-information-match-expression">How to hanle the information? Match Expression</a></h3>
 <p>We need to add to the code in Listing 9-3 to take different actions depending
 on the value <code>File::open</code> returns.</p>
 <p>Listing 9-4 shows one way to handle the <code>Result</code> using a basic tool, the <code>match</code> expression that we discussed in
@@ -8732,11 +8778,13 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
+<h3 id="what-happened-if-the-match-expression-not-handle-a-situation"><a class="header" href="#what-happened-if-the-match-expression-not-handle-a-situation">What happened if the match expression not handle a situation?</a></h3>
 <blockquote>
-<p>Note that, like the <code>Option</code> enum, the <code>Result</code> enum and its variants have been
+<p>Note that:</p>
+</blockquote>
+<p>like the <code>Option</code> enum, the <code>Result</code> enum and its variants have been
 brought into scope by the prelude, so we don’t need to specify <code>Result::</code>
 before the <code>Ok</code> and <code>Err</code> variants in the <code>match</code> arms:</p>
-</blockquote>
 <ol>
 <li>
 <p>When the result is <code>Ok</code>, this code will return the inner <code>file</code> value out of
@@ -9005,7 +9053,7 @@ information or logic that dictates how the error should be handled than what
 you have available in the context of your code.</p>
 </div>
 </details>
-<details id="admonition-listing-9-6-a-function-that-returns-errors-to-the-calling-code-using-match" class="admonition question">
+<details id="admonition-listing-9-6-a-function-that-returns-errors-to-the-calling-code-using-match" class="admonition note">
 <summary class="admonition-title">
 <p>Listing 9-6: A function that returns errors to the calling code using <em>match</em></p>
 <p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-listing-9-6-a-function-that-returns-errors-to-the-calling-code-using-match"></a></p>
@@ -9041,7 +9089,7 @@ fn read_username_from_file() -&gt; Result&lt;String, io::Error&gt; {
 <p>This function can be written in a much shorter way, but we’re going to start by
 doing a lot of it manually in order to explore error handling;</p>
 <p>at the end, we’ll show the shorter way.</p>
-<details id="admonition-lets-look-at-the-return-type-of-the-function-first-result" class="admonition question">
+<details id="admonition-lets-look-at-the-return-type-of-the-function-first-result" class="admonition note">
 <summary class="admonition-title">
 <p>Let’s look at the return type of the function first: <em>Result&lt;String, io::Error&gt;</em>:</p>
 <p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-lets-look-at-the-return-type-of-the-function-first-result"></a></p>
@@ -9148,13 +9196,27 @@ same functionality as in Listing 9-6, but this implementation uses the
 <!-- Deliberately not using rustdoc_include here; the `main` function in the
 file panics. We do want to include it for reader experimentation purposes, but
 don't want to include it for rustdoc testing purposes. -->
+<details id="admonition-listing-9-7-a-function-that-returns-errors-to-the-calling-code-using-the--operator" class="admonition note">
+<summary class="admonition-title">
+<p>Listing 9-7: A function that returns errors to the calling code using the <em>?</em> operator</p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-listing-9-7-a-function-that-returns-errors-to-the-calling-code-using-the--operator"></a></p>
+</summary>
+<div>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>{{# include../ listings / ch09 - error -handling / listing - 09 - 07 / src /main.rs: here}}
+</span>use std::fs::File;
+use std::io::{self, Read};
+
+fn read_username_from_file() -&gt; Result&lt;String, io::Error&gt; {
+    let mut username_file = File::open(&quot;hello.txt&quot;)?;
+    let mut username = String::new();
+    username_file.read_to_string(&amp;mut username)?;
+    Ok(username)
+}
 <span class="boring">}
 </span></code></pre></pre>
-<p><span class="caption">Listing 9-7: A function that returns errors to the
-calling code using the <code>?</code> operator</span></p>
+</div>
+</details>
 <p>The <code>?</code> placed after a <code>Result</code> value is defined to work in almost the same way
 as the <code>match</code> expressions we defined to handle the <code>Result</code> values in Listing
 9-6. If the value of the <code>Result</code> is an <code>Ok</code>, the value inside the <code>Ok</code> will
@@ -9189,13 +9251,28 @@ method calls immediately after the <code>?</code>, as shown in Listing 9-8.</p>
 <!-- Deliberately not using rustdoc_include here; the `main` function in the
 file panics. We do want to include it for reader experimentation purposes, but
 don't want to include it for rustdoc testing purposes. -->
+<details id="admonition-listing-9-8-chaining-method-calls-after-the--operator" class="admonition note">
+<summary class="admonition-title">
+<p>Listing 9-8: Chaining method calls after the <em>?</em> operator</p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-listing-9-8-chaining-method-calls-after-the--operator"></a></p>
+</summary>
+<div>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>{{# include../ listings / ch09 - error -handling / listing - 09 - 08 / src /main.rs: here}}
+</span>use std::fs::File;
+use std::io::{self, Read};
+
+fn read_username_from_file() -&gt; Result&lt;String, io::Error&gt; {
+    let mut username = String::new();
+
+    File::open(&quot;hello.txt&quot;)?.read_to_string(&amp;mut username)?;
+
+    Ok(username)
+}
 <span class="boring">}
 </span></code></pre></pre>
-<p><span class="caption">Listing 9-8: Chaining method calls after the <code>?</code>
-operator</span></p>
+</div>
+</details>
 <p>We’ve moved the creation of the new <code>String</code> in <code>username</code> to the beginning of
 the function; that part hasn’t changed. Instead of creating a variable
 <code>username_file</code>, we’ve chained the call to <code>read_to_string</code> directly onto the
@@ -9209,43 +9286,77 @@ this is just a different, more ergonomic way to write it.</p>
 <!-- Deliberately not using rustdoc_include here; the `main` function in the
 file panics. We do want to include it for reader experimentation purposes, but
 don't want to include it for rustdoc testing purposes. -->
+<details id="admonition-listing-9-9-using-fsread_to_string-instead-of-opening-and-then-reading-the-file" class="admonition note">
+<summary class="admonition-title">
+<p>Listing 9-9: Using <em>fs::read_to_string</em> instead of opening and then reading the file</p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-listing-9-9-using-fsread_to_string-instead-of-opening-and-then-reading-the-file"></a></p>
+</summary>
+<div>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>{{# include../ listings / ch09 - error -handling / listing - 09 - 09 / src /main.rs: here}}
+</span>use std::fs;
+use std::io;
+
+fn read_username_from_file() -&gt; Result&lt;String, io::Error&gt; {
+    fs::read_to_string(&quot;hello.txt&quot;)
+}
 <span class="boring">}
 </span></code></pre></pre>
-<p><span class="caption">Listing 9-9: Using <code>fs::read_to_string</code> instead of
-opening and then reading the file</span></p>
+</div>
+</details>
 <p>Reading a file into a string is a fairly common operation, so the standard
-library provides the convenient <code>fs::read_to_string</code> function that opens the
-file, creates a new <code>String</code>, reads the contents of the file, puts the contents
-into that <code>String</code>, and returns it. Of course, using <code>fs::read_to_string</code>
+library provides the convenient <code>fs::read_to_string</code> function:</p>
+<ul>
+<li>opens the
+file</li>
+<li>creates a new <code>String</code></li>
+<li>reads the contents of the file</li>
+<li>puts the contents
+into that <code>String</code>, and returns it</li>
+</ul>
+<p>Of course, using <code>fs::read_to_string</code>
 doesn’t give us the opportunity to explain all the error handling, so we did it
 the longer way first.</p>
 <h3 id="where-the--operator-can-be-used"><a class="header" href="#where-the--operator-can-be-used">Where The <code>?</code> Operator Can Be Used</a></h3>
 <p>The <code>?</code> operator can only be used in functions whose return type is compatible
-with the value the <code>?</code> is used on. This is because the <code>?</code> operator is defined
+with the value the <code>?</code> is used on.</p>
+<p>This is because the <code>?</code> operator is defined
 to perform an early return of a value out of the function, in the same manner
-as the <code>match</code> expression we defined in Listing 9-6. In Listing 9-6, the
+as the <code>match</code> expression we defined in Listing 9-6.</p>
+<p>In Listing 9-6, the
 <code>match</code> was using a <code>Result</code> value, and the early return arm returned an
-<code>Err(e)</code> value. The return type of the function has to be a <code>Result</code> so that
+<code>Err(e)</code> value.</p>
+<blockquote>
+<p>The return type of the function has to be a <code>Result</code> so that
 it’s compatible with this <code>return</code>.</p>
+</blockquote>
 <p>In Listing 9-10, let’s look at the error we’ll get if we use the <code>?</code> operator
 in a <code>main</code> function with a return type incompatible with the type of the value
 we use <code>?</code> on:</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<details id="admonition-listing-9-10-attempting-to-use-the--in-the-main-function-that-returns--wont-compile" class="admonition note">
+<summary class="admonition-title">
+<p>Listing 9-10: Attempting to use the <em>?</em> in the <em>main</em> function that returns <em>()</em> won’t compile</p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-listing-9-10-attempting-to-use-the--in-the-main-function-that-returns--wont-compile"></a></p>
+</summary>
+<div>
 <pre><code class="language-rust ignore does_not_compile">use std::fs::File;
 
 fn main() {
     let greeting_file = File::open(&quot;hello.txt&quot;)?;
 }
 </code></pre>
-<p><span class="caption">Listing 9-10: Attempting to use the <code>?</code> in the <code>main</code>
-function that returns <code>()</code> won’t compile</span></p>
-<p>This code opens a file, which might fail. The <code>?</code> operator follows the <code>Result</code>
+</div>
+</details>
+<p>This code opens a file, which might fail.</p>
+<p>The <code>?</code> operator follows the <code>Result</code>
 value returned by <code>File::open</code>, but this <code>main</code> function has the return type of
-<code>()</code>, not <code>Result</code>. When we compile this code, we get the following error
-message:</p>
+<code>()</code>, not <code>Result</code>.</p>
+<details id="admonition-when-we-compile-this-code-we-get-the-following-error-message" class="admonition note">
+<summary class="admonition-title">
+<p>When we compile this code, we get the following error message: </p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-when-we-compile-this-code-we-get-the-following-error-message"></a></p>
+</summary>
+<div>
 <pre><code class="language-console">$ cargo run
    Compiling error-handling v0.1.0 (file:///projects/error-handling)
 error[E0277]: the `?` operator can only be used in a function that returns `Result` or `Option` (or another type that implements `FromResidual`)
@@ -9262,71 +9373,128 @@ error[E0277]: the `?` operator can only be used in a function that returns `Resu
 For more information about this error, try `rustc --explain E0277`.
 error: could not compile `error-handling` due to previous error
 </code></pre>
+</div>
+</details>
+<blockquote>
 <p>This error points out that we’re only allowed to use the <code>?</code> operator in a
 function that returns <code>Result</code>, <code>Option</code>, or another type that implements
 <code>FromResidual</code>.</p>
-<p>To fix the error, you have two choices. One choice is to change the return type
+</blockquote>
+<p>To fix the error, you have two choices:</p>
+<ol>
+<li>One choice is to change the return type
 of your function to be compatible with the value you’re using the <code>?</code> operator
-on as long as you have no restrictions preventing that. The other technique is
-to use a <code>match</code> or one of the <code>Result&lt;T, E&gt;</code> methods to handle the <code>Result&lt;T, E&gt;</code> in whatever way is appropriate.</p>
+on as long as you have no restrictions preventing that.</li>
+<li>The other technique is
+to use a <code>match</code> or one of the <code>Result&lt;T, E&gt;</code> methods to handle the <code>Result&lt;T, E&gt;</code> in whatever way is appropriate.</li>
+</ol>
+<blockquote>
 <p>The error message also mentioned that <code>?</code> can be used with <code>Option&lt;T&gt;</code> values
-as well. As with using <code>?</code> on <code>Result</code>, you can only use <code>?</code> on <code>Option</code> in a
+as well.</p>
+</blockquote>
+<p>As with using <code>?</code> on <code>Result</code>, you can only use <code>?</code> on <code>Option</code> in a
 function that returns an <code>Option</code>. The behavior of the <code>?</code> operator when called
-on an <code>Option&lt;T&gt;</code> is similar to its behavior when called on a <code>Result&lt;T, E&gt;</code>:
-if the value is <code>None</code>, the <code>None</code> will be returned early from the function at
-that point. If the value is <code>Some</code>, the value inside the <code>Some</code> is the
-resulting value of the expression and the function continues. Listing 9-11 has
+on an <code>Option&lt;T&gt;</code> is similar to its behavior when called on a <code>Result&lt;T, E&gt;</code>:</p>
+<ul>
+<li>if the value is <code>None</code>, the <code>None</code> will be returned early from the function at
+that point.</li>
+<li>If the value is <code>Some</code>, the value inside the <code>Some</code> is the
+resulting value of the expression and the function continues.</li>
+</ul>
+<p>Listing 9-11 has
 an example of a function that finds the last character of the first line in the
 given text:</p>
-<pre><pre class="playground"><code class="language-rust">fn last_char_of_first_line(text: &amp;str) -&gt; Option&lt;char&gt; {
+<details id="admonition-listing-9-11-using-the--operator-on-an-option-value" class="admonition note">
+<summary class="admonition-title">
+<p>Listing 9-11: Using the <em>?</em> operator on an <em>Option<T></em> value</p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-listing-9-11-using-the--operator-on-an-option-value"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">// ANCHOR: here
+fn last_char_of_first_line(text: &amp;str) -&gt; Option&lt;char&gt; {
     text.lines().next()?.chars().last()
 }
-<span class="boring">
-</span><span class="boring">fn main() {
-</span><span class="boring">    assert_eq!(
-</span><span class="boring">        last_char_of_first_line(&quot;Hello, world\nHow are you today?&quot;),
-</span><span class="boring">        Some('d')
-</span><span class="boring">    );
-</span><span class="boring">
-</span><span class="boring">    assert_eq!(last_char_of_first_line(&quot;&quot;), None);
-</span><span class="boring">    assert_eq!(last_char_of_first_line(&quot;\nhi&quot;), None);
-</span><span class="boring">}
-</span></code></pre></pre>
-<p><span class="caption">Listing 9-11: Using the <code>?</code> operator on an <code>Option&lt;T&gt;</code>
-value</span></p>
-<p>This function returns <code>Option&lt;char&gt;</code> because it’s possible that there is a
-character there, but it’s also possible that there isn’t. This code takes the
+// ANCHOR_END: here
+
+fn main() {
+    assert_eq!(
+        last_char_of_first_line(&quot;Hello, world\nHow are you today?&quot;),
+        Some('d')
+    );
+
+    assert_eq!(last_char_of_first_line(&quot;&quot;), None);
+    assert_eq!(last_char_of_first_line(&quot;\nhi&quot;), None);
+}
+</code></pre></pre>
+</div>
+</details>
+<ol>
+<li>This function returns <code>Option&lt;char&gt;</code> because it’s possible that there is a
+character there, but it’s also possible that there isn’t.</li>
+<li>This code takes the
 <code>text</code> string slice argument and calls the <code>lines</code> method on it, which returns
-an iterator over the lines in the string. Because this function wants to
+an iterator over the lines in the string.</li>
+<li>Because this function wants to
 examine the first line, it calls <code>next</code> on the iterator to get the first value
-from the iterator. If <code>text</code> is the empty string, this call to <code>next</code> will
+from the iterator.</li>
+<li>If <code>text</code> is the empty string, this call to <code>next</code> will
 return <code>None</code>, in which case we use <code>?</code> to stop and return <code>None</code> from
-<code>last_char_of_first_line</code>. If <code>text</code> is not the empty string, <code>next</code> will
-return a <code>Some</code> value containing a string slice of the first line in <code>text</code>.</p>
+<code>last_char_of_first_line</code>.</li>
+<li>If <code>text</code> is not the empty string, <code>next</code> will
+return a <code>Some</code> value containing a string slice of the first line in <code>text</code>.</li>
+</ol>
+<blockquote>
 <p>The <code>?</code> extracts the string slice, and we can call <code>chars</code> on that string slice
-to get an iterator of its characters. We’re interested in the last character in
-this first line, so we call <code>last</code> to return the last item in the iterator.
-This is an <code>Option</code> because it’s possible that the first line is the empty
+to get an iterator of its characters.</p>
+</blockquote>
+<ul>
+<li>We’re interested in the last character in
+this first line, so we call <code>last</code> to return the last item in the iterator.</li>
+<li>This is an <code>Option</code> because it’s possible that the first line is the empty
 string, for example if <code>text</code> starts with a blank line but has characters on
-other lines, as in <code>&quot;\nhi&quot;</code>. However, if there is a last character on the first
-line, it will be returned in the <code>Some</code> variant. The <code>?</code> operator in the middle
+other lines, as in <code>&quot;\nhi&quot;</code>.</li>
+<li>However, if there is a last character on the first
+line, it will be returned in the <code>Some</code> variant.</li>
+</ul>
+<blockquote>
+<p>The <code>?</code> operator in the middle
 gives us a concise way to express this logic, allowing us to implement the
-function in one line. If we couldn’t use the <code>?</code> operator on <code>Option</code>, we’d
-have to implement this logic using more method calls or a <code>match</code> expression.</p>
-<p>Note that you can use the <code>?</code> operator on a <code>Result</code> in a function that returns
-<code>Result</code>, and you can use the <code>?</code> operator on an <code>Option</code> in a function that
-returns <code>Option</code>, but you can’t mix and match. The <code>?</code> operator won’t
-automatically convert a <code>Result</code> to an <code>Option</code> or vice versa; in those cases,
+function in one line.</p>
+</blockquote>
+<ul>
+<li>If we couldn’t use the <code>?</code> operator on <code>Option</code>, we’d
+have to implement this logic using more method calls or a <code>match</code> expression.</li>
+</ul>
+<p>Note that:</p>
+<ul>
+<li>you can use the <code>?</code> operator on a <code>Result</code> in a function that returns
+<code>Result</code></li>
+<li>and you can use the <code>?</code> operator on an <code>Option</code> in a function that
+returns <code>Option</code></li>
+<li>but you can’t mix and match.</li>
+<li>The <code>?</code> operator won’t
+automatically convert a <code>Result</code> to an <code>Option</code> or vice versa;</li>
+<li>in those cases,
 you can use methods like the <code>ok</code> method on <code>Result</code> or the <code>ok_or</code> method on
-<code>Option</code> to do the conversion explicitly.</p>
+<code>Option</code> to do the conversion explicitly.</li>
+</ul>
 <p>So far, all the <code>main</code> functions we’ve used return <code>()</code>. The <code>main</code> function is
 special because it’s the entry and exit point of executable programs, and there
 are restrictions on what its return type can be for the programs to behave as
 expected.</p>
-<p>Luckily, <code>main</code> can also return a <code>Result&lt;(), E&gt;</code>. Listing 9-12 has the
+<blockquote>
+<p>Luckily, <code>main</code> can also return a <code>Result&lt;(), E&gt;</code>.</p>
+</blockquote>
+<p>Listing 9-12 has the
 code from Listing 9-10 but we’ve changed the return type of <code>main</code> to be
 <code>Result&lt;(), Box&lt;dyn Error&gt;&gt;</code> and added a return value <code>Ok(())</code> to the end. This
 code will now compile:</p>
+<details id="admonition-listing-9-12-changing-main-to-return-result-allows-the-use-of-the--operator-on-result-values" class="admonition note">
+<summary class="admonition-title">
+<p>Listing 9-12: Changing <em>main</em> to return <em>Result&lt;(), E&gt;</em> allows the use of the <em>?</em> operator on <em>Result</em> values</p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-listing-9-12-changing-main-to-return-result-allows-the-use-of-the--operator-on-result-values"></a></p>
+</summary>
+<div>
 <pre><code class="language-rust ignore">use std::error::Error;
 use std::fs::File;
 
@@ -9336,31 +9504,46 @@ fn main() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
     Ok(())
 }
 </code></pre>
-<p><span class="caption">Listing 9-12: Changing <code>main</code> to return <code>Result&lt;(), E&gt;</code>
-allows the use of the <code>?</code> operator on <code>Result</code> values</span></p>
-<p>The <code>Box&lt;dyn Error&gt;</code> type is a <em>trait object</em>, which we’ll talk about in the
+</div>
+</details>
+<ul>
+<li>The <code>Box&lt;dyn Error&gt;</code> type is a <em>trait object</em>, which we’ll talk about in the
 <a href="ch17-02-trait-objects.html#using-trait-objects-that-allow-for-values-of-different-types">“Using Trait Objects that Allow for Values of Different
-Types”</a><!-- ignore --> section in Chapter 17. For now, you can
-read <code>Box&lt;dyn Error&gt;</code> to mean “any kind of error.” Using <code>?</code> on a <code>Result</code>
+Types”</a><!-- ignore --> section in Chapter 17.</li>
+</ul>
+<blockquote>
+<p>For now, you can
+read <code>Box&lt;dyn Error&gt;</code> to mean “any kind of error.”</p>
+</blockquote>
+<ul>
+<li>Using <code>?</code> on a <code>Result</code>
 value in a <code>main</code> function with the error type <code>Box&lt;dyn Error&gt;</code> is allowed,
-because it allows any <code>Err</code> value to be returned early. Even though the body of
+because it allows any <code>Err</code> value to be returned early.</li>
+<li>Even though the body of
 this <code>main</code> function will only ever return errors of type <code>std::io::Error</code>, by
 specifying <code>Box&lt;dyn Error&gt;</code>, this signature will continue to be correct even if
-more code that returns other errors is added to the body of <code>main</code>.</p>
+more code that returns other errors is added to the body of <code>main</code>.</li>
+</ul>
 <p>When a <code>main</code> function returns a <code>Result&lt;(), E&gt;</code>, the executable will
 exit with a value of <code>0</code> if <code>main</code> returns <code>Ok(())</code> and will exit with a
-nonzero value if <code>main</code> returns an <code>Err</code> value. Executables written in C return
+nonzero value if <code>main</code> returns an <code>Err</code> value.</p>
+<p>Executables written in C return
 integers when they exit: programs that exit successfully return the integer
-<code>0</code>, and programs that error return some integer other than <code>0</code>. Rust also
-returns integers from executables to be compatible with this convention.</p>
+<code>0</code>, and programs that error return some integer other than <code>0</code>.</p>
+<blockquote>
+<p>Rust also returns integers from executables to be compatible with this convention.</p>
+</blockquote>
 <p>The <code>main</code> function may return any types that implement <a href="../std/process/trait.Termination.html">the
 <code>std::process::Termination</code> trait</a><!-- ignore -->, which contains
-a function <code>report</code> that returns an <code>ExitCode</code>. Consult the standard library
+a function <code>report</code> that returns an <code>ExitCode</code>.</p>
+<p>Consult the standard library
 documentation for more information on implementing the <code>Termination</code> trait for
 your own types.</p>
+<blockquote>
 <p>Now that we’ve discussed the details of calling <code>panic!</code> or returning <code>Result</code>,
 let’s return to the topic of how to decide which is appropriate to use in which
 cases.</p>
+</blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="to-panic-or-not-to-panic"><a class="header" href="#to-panic-or-not-to-panic">To <code>panic!</code> or Not to <code>panic!</code></a></h2>
 <p>So how do you decide when you should call <code>panic!</code> and when you should return
 <code>Result</code>? When code panics, there’s no way to recover. You could call <code>panic!</code>
