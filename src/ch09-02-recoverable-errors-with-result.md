@@ -1,22 +1,21 @@
 # Recoverable Errors with `Result`
 
 <!--ts-->
-
 * [Recoverable Errors with Result](#recoverable-errors-with-result)
-    * [Result Definition and Basic Usage](#result-definition-and-basic-usage)
-    * [Matching on Different Errors](#matching-on-different-errors)
-    * [Alternatives to Using match with Result&lt;T, E&gt;](#alternatives-to-using-match-with-resultt-e)
-    * [Shortcuts for Panic on Error: unwrap and expect](#shortcuts-for-panic-on-error-unwrap-and-expect)
-        * [Why need unwrap and expect](#why-need-unwrap-and-expect)
-        * [Unwrap](#unwrap)
-        * [Expect: easier to track down](#expect-easier-to-track-down)
-        * [Most Rustaceans choose expect rather than unwrap](#most-rustaceans-choose-expect-rather-than-unwrap)
-    * [Propagating Errors](#propagating-errors)
-        * [A Shortcut for Propagating Errors: the ? Operator](#a-shortcut-for-propagating-errors-the--operator)
-        * [Where The ? Operator Can Be Used](#where-the--operator-can-be-used)
+   * [Result Definition and Basic Usage](#result-definition-and-basic-usage)
+   * [Matching on Different Errors](#matching-on-different-errors)
+   * [Alternatives to Using match with Result&lt;T, E&gt;](#alternatives-to-using-match-with-resultt-e)
+   * [Shortcuts for Panic on Error: unwrap and expect](#shortcuts-for-panic-on-error-unwrap-and-expect)
+      * [Why need unwrap and expect](#why-need-unwrap-and-expect)
+      * [Unwrap](#unwrap)
+      * [Expect: easier to track down](#expect-easier-to-track-down)
+      * [Most Rustaceans choose expect rather than unwrap](#most-rustaceans-choose-expect-rather-than-unwrap)
+   * [Propagating Errors](#propagating-errors)
+      * [The ? Operator: A Shortcut for Propagating Errors](#the--operator-a-shortcut-for-propagating-errors)
+      * [Where The ? Operator Can Be Used](#where-the--operator-can-be-used)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Wed Oct 26 07:03:49 UTC 2022 -->
+<!-- Added by: runner, at: Thu Oct 27 08:37:18 UTC 2022 -->
 
 <!--te-->
 
