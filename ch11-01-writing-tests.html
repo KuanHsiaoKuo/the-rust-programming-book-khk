@@ -447,8 +447,8 @@ larger rectangle can indeed hold a smaller rectangle</span></p>
 <p>Note that we’ve added a new line inside the <code>tests</code> module: <code>use super::*;</code>.
 The <code>tests</code> module is a regular module that follows the usual visibility rules
 we covered in Chapter 7 in the <a href="ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html">“Paths for Referring to an Item in the Module
-Tree”</a><!-- ignore --></p>
-<p>section. Because the <code>tests</code> module is an inner module, we need to bring the
+Tree”</a><!-- ignore -->
+section. Because the <code>tests</code> module is an inner module, we need to bring the
 code under test in the outer module into the scope of the inner module. We use
 a glob here so anything we define in the outer module is available to this
 <code>tests</code> module.</p>
@@ -712,7 +712,7 @@ test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; 
 error: test failed, to rerun pass '--lib'
 </code></pre>
 <p>Our test caught the bug! The <code>it_adds_two</code> test failed, and the message tells
-us that the assertion that fails was <code>assertion failed: </code>(left == right)``
+us that the assertion that fails was <code>assertion failed: `(left == right)`</code>
 and what the <code>left</code> and <code>right</code> values are. This message helps us start
 debugging: the <code>left</code> argument was <code>4</code> but the <code>right</code> argument, where we had
 <code>add_two(2)</code>, was <code>5</code>. You can imagine that this would be especially helpful
@@ -723,7 +723,7 @@ we specify the arguments matters. However, in Rust, they’re called <code>left<
 <code>right</code>, and the order in which we specify the value we expect and the value
 the code produces doesn’t matter. We could write the assertion in this test as
 <code>assert_eq!(add_two(2), 4)</code>, which would result in the same failure message
-that displays <code>assertion failed: </code>(left == right)``.</p>
+that displays <code>assertion failed: `(left == right)`</code>.</p>
 <p>The <code>assert_ne!</code> macro will pass if the two values we give it are not equal and
 fail if they’re equal. This macro is most useful for cases when we’re not sure
 what a value <em>will</em> be, but we know what the value definitely <em>shouldn’t</em> be.
@@ -749,8 +749,8 @@ optional arguments to the <code>assert!</code>, <code>assert_eq!</code>, and <co
 arguments specified after the required arguments are passed along to the
 <code>format!</code> macro (discussed in Chapter 8 in the <a href="ch08-02-strings.html#concatenation-with-the--operator-or-the-format-macro">“Concatenation with the <code>+</code>
 Operator or the <code>format!</code>
-Macro”</a><!-- ignore --></p>
-<p>section), so you can pass a format string that contains <code>{}</code> placeholders and
+Macro”</a><!-- ignore -->
+section), so you can pass a format string that contains <code>{}</code> placeholders and
 values to go in those placeholders. Custom messages are useful for documenting
 what an assertion means; when a test fails, you’ll have a better idea of what
 the problem is with the code.</p>

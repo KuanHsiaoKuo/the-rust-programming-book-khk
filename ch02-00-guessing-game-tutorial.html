@@ -354,8 +354,8 @@ line. We use the <code>let</code> statement to create the variable. Here’s ano
 <p>This line creates a new variable named <code>apples</code> and binds it to the value 5. In
 Rust, variables are immutable by default, meaning once we give the variable a
 value, the value won’t change. We’ll be discussing this concept in detail in
-the <a href="ch03-01-variables-and-mutability.html#variables-and-mutability">“Variables and Mutability”</a><!-- ignore --></p>
-<p>section in Chapter 3. To make a variable mutable, we add <code>mut</code> before the
+the <a href="ch03-01-variables-and-mutability.html#variables-and-mutability">“Variables and Mutability”</a><!-- ignore -->
+section in Chapter 3. To make a variable mutable, we add <code>mut</code> before the
 variable name:</p>
 <pre><code class="language-rust ignore">let apples = 5; // immutable
 let mut bananas = 5; // mutable
@@ -463,8 +463,8 @@ operation was successful, and inside <code>Ok</code> is the successfully generat
 The <code>Err</code> variant means the operation failed, and <code>Err</code> contains information
 about how or why the operation failed.</p>
 <p>Values of the <code>Result</code> type, like values of any type, have methods defined on
-them. An instance of <code>Result</code> has an <a href="../std/result/enum.Result.html#method.expect"><code>expect</code> method</a><!-- ignore --></p>
-<p>that you can call. If this instance of <code>Result</code> is an <code>Err</code> value, <code>expect</code>
+them. An instance of <code>Result</code> has an <a href="../std/result/enum.Result.html#method.expect"><code>expect</code> method</a><!-- ignore -->
+that you can call. If this instance of <code>Result</code> is an <code>Err</code> value, <code>expect</code>
 will cause the program to crash and display the message that you passed as an
 argument to <code>expect</code>. If the <code>read_line</code> method returns an <code>Err</code>, it would
 likely be the result of an error coming from the underlying operating system.

@@ -183,8 +183,8 @@
                 <h1 id="the-rust-programming-language"><a class="header" href="#the-rust-programming-language">The Rust Programming Language</a></h1>
 <p><em>by Steve Klabnik and Carol Nichols, with contributions from the Rust Community</em></p>
 <p>This version of the text assumes you’re using Rust 1.62 (released 2022-06-30)
-or later. See the <a href="ch01-01-installation.html">“Installation” section of Chapter 1</a><!-- ignore --></p>
-<p>to install or update Rust.</p>
+or later. See the <a href="ch01-01-installation.html">“Installation” section of Chapter 1</a><!-- ignore -->
+to install or update Rust.</p>
 <p>The HTML format is available online at
 <a href="https://doc.rust-lang.org/stable/book/">https://doc.rust-lang.org/stable/book/</a>
 and offline with installations of Rust made with <code>rustup</code>; run <code>rustup docs --book</code> to open.</p>
@@ -373,11 +373,12 @@ message the compiler will show you in each situation. Know that if you enter
 and run a random example, it may not compile! Make sure you read the
 surrounding text to see whether the example you’re trying to run is meant to
 error. Ferris will also help you distinguish code that isn’t meant to work:</p>
-<p>|Ferris|Meaning|
-|------|-------|
-|<img src="img/ferris/does_not_compile.svg" class="ferris-explain" alt="Ferris with a question mark"/>|This code does not compile!|
-|<img src="img/ferris/panics.svg" class="ferris-explain" alt="Ferris throwing up their hands"/>|This code panics!|
-|<img src="img/ferris/not_desired_behavior.svg" class="ferris-explain" alt="Ferris with one claw up, shrugging"/>|This code does not produce the desired behavior.|</p>
+<div class="table-wrapper"><table><thead><tr><th>Ferris</th><th>Meaning</th></tr></thead><tbody>
+<tr><td><img src="img/ferris/does_not_compile.svg" class="ferris-explain" alt="Ferris with a question mark"/></td><td>This code does not compile!</td></tr>
+<tr><td><img src="img/ferris/panics.svg" class="ferris-explain" alt="Ferris throwing up their hands"/></td><td>This code panics!</td></tr>
+<tr><td><img src="img/ferris/not_desired_behavior.svg" class="ferris-explain" alt="Ferris with one claw up, shrugging"/></td><td>This code does not produce the desired behavior.</td></tr>
+</tbody></table>
+</div>
 <p>In most situations, we’ll lead you to the correct version of any code that
 doesn’t compile.</p>
 <h2 id="source-code"><a class="header" href="#source-code">Source Code</a></h2>
@@ -1000,8 +1001,8 @@ line. We use the <code>let</code> statement to create the variable. Here’s ano
 <p>This line creates a new variable named <code>apples</code> and binds it to the value 5. In
 Rust, variables are immutable by default, meaning once we give the variable a
 value, the value won’t change. We’ll be discussing this concept in detail in
-the <a href="ch03-01-variables-and-mutability.html#variables-and-mutability">“Variables and Mutability”</a><!-- ignore --></p>
-<p>section in Chapter 3. To make a variable mutable, we add <code>mut</code> before the
+the <a href="ch03-01-variables-and-mutability.html#variables-and-mutability">“Variables and Mutability”</a><!-- ignore -->
+section in Chapter 3. To make a variable mutable, we add <code>mut</code> before the
 variable name:</p>
 <pre><code class="language-rust ignore">let apples = 5; // immutable
 let mut bananas = 5; // mutable
@@ -1109,8 +1110,8 @@ operation was successful, and inside <code>Ok</code> is the successfully generat
 The <code>Err</code> variant means the operation failed, and <code>Err</code> contains information
 about how or why the operation failed.</p>
 <p>Values of the <code>Result</code> type, like values of any type, have methods defined on
-them. An instance of <code>Result</code> has an <a href="../std/result/enum.Result.html#method.expect"><code>expect</code> method</a><!-- ignore --></p>
-<p>that you can call. If this instance of <code>Result</code> is an <code>Err</code> value, <code>expect</code>
+them. An instance of <code>Result</code> has an <a href="../std/result/enum.Result.html#method.expect"><code>expect</code> method</a><!-- ignore -->
+that you can call. If this instance of <code>Result</code> is an <code>Err</code> value, <code>expect</code>
 will cause the program to crash and display the message that you passed as an
 argument to <code>expect</code>. If the <code>read_line</code> method returns an <code>Err</code>, it would
 likely be the result of an error coming from the underlying operating system.
@@ -1971,7 +1972,7 @@ error: could not compile `variables` due to previous error
 Compiler errors can be frustrating, but really they only mean your program
 isn’t safely doing what you want it to do yet; they do <em>not</em> mean that you’re
 not a good programmer! Experienced Rustaceans still get compiler errors.</p>
-<p>You received the error message <code>cannot assign twice to immutable variable </code>x`` because you tried to assign a second value to the immutable <code>x</code> variable.</p>
+<p>You received the error message <code>cannot assign twice to immutable variable `x`</code> because you tried to assign a second value to the immutable <code>x</code> variable.</p>
 <p>It’s important that we get compile-time errors when we attempt to change a
 value that’s designated as immutable because this very situation can lead to
 bugs. If one part of our code operates on the assumption that a value will
@@ -2169,14 +2170,15 @@ start with <code>i</code> instead of <code>u</code>) that takes up 32 bits of sp
 the built-in integer types in Rust. We can use any of these variants to declare
 the type of an integer value.</p>
 <p><span class="caption">Table 3-1: Integer Types in Rust</span></p>
-<p>|Length|Signed|Unsigned|
-|------|------|--------|
-|8-bit|<code>i8</code>|<code>u8</code>|
-|16-bit|<code>i16</code>|<code>u16</code>|
-|32-bit|<code>i32</code>|<code>u32</code>|
-|64-bit|<code>i64</code>|<code>u64</code>|
-|128-bit|<code>i128</code>|<code>u128</code>|
-|arch|<code>isize</code>|<code>usize</code>|</p>
+<div class="table-wrapper"><table><thead><tr><th>Length</th><th>Signed</th><th>Unsigned</th></tr></thead><tbody>
+<tr><td>8-bit</td><td><code>i8</code></td><td><code>u8</code></td></tr>
+<tr><td>16-bit</td><td><code>i16</code></td><td><code>u16</code></td></tr>
+<tr><td>32-bit</td><td><code>i32</code></td><td><code>u32</code></td></tr>
+<tr><td>64-bit</td><td><code>i64</code></td><td><code>u64</code></td></tr>
+<tr><td>128-bit</td><td><code>i128</code></td><td><code>u128</code></td></tr>
+<tr><td>arch</td><td><code>isize</code></td><td><code>usize</code></td></tr>
+</tbody></table>
+</div>
 <p>Each variant can be either signed or unsigned and has an explicit size.
 <em>Signed</em> and <em>unsigned</em> refer to whether it’s possible for the number to be
 negative—in other words, whether the number needs to have a sign with it
@@ -2201,13 +2203,14 @@ such as <code>57u8</code>, to designate the type. Number literals can also use <
 visual separator to make the number easier to read, such as <code>1_000</code>, which will
 have the same value as if you had specified <code>1000</code>.</p>
 <p><span class="caption">Table 3-2: Integer Literals in Rust</span></p>
-<p>|Number literals|Example|
-|---------------|-------|
-|Decimal|<code>98_222</code>|
-|Hex|<code>0xff</code>|
-|Octal|<code>0o77</code>|
-|Binary|<code>0b1111_0000</code>|
-|Byte (<code>u8</code> only)|<code>b'A'</code>|</p>
+<div class="table-wrapper"><table><thead><tr><th>Number literals</th><th>Example</th></tr></thead><tbody>
+<tr><td>Decimal</td><td><code>98_222</code></td></tr>
+<tr><td>Hex</td><td><code>0xff</code></td></tr>
+<tr><td>Octal</td><td><code>0o77</code></td></tr>
+<tr><td>Binary</td><td><code>0b1111_0000</code></td></tr>
+<tr><td>Byte (<code>u8</code> only)</td><td><code>b'A'</code></td></tr>
+</tbody></table>
+</div>
 <p>So how do you know which type of integer to use? If you’re unsure, Rust’s
 defaults are generally good places to start: integer types default to <code>i32</code>.
 The primary situation in which you’d use <code>isize</code> or <code>usize</code> is when indexing
@@ -2820,8 +2823,8 @@ separate line above the code it’s annotating:</p>
 }
 </code></pre></pre>
 <p>Rust also has another kind of comment, documentation comments, which we’ll
-discuss in the <a href="ch14-02-publishing-to-crates-io.html">“Publishing a Crate to Crates.io”</a><!-- ignore --></p>
-<p>section of Chapter 14.</p>
+discuss in the <a href="ch14-02-publishing-to-crates-io.html">“Publishing a Crate to Crates.io”</a><!-- ignore -->
+section of Chapter 14.</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h2>
 <p>The ability to run some code depending on whether a condition is <code>true</code> and to
 run some code repeatedly while a condition is <code>true</code> are basic building blocks
@@ -4821,8 +4824,6 @@ discuss in Chapter 10. Lifetimes ensure that the data referenced by a struct
 is valid for as long as the struct is. Let’s say you try to store a reference
 in a struct without specifying lifetimes, like the following; this won’t work:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
-</blockquote>
-<blockquote>
 <!-- CAN'T EXTRACT SEE https://github.com/rust-lang/mdBook/issues/1127 -->
 </blockquote>
 <blockquote>
@@ -5815,8 +5816,8 @@ null is a value that is currently invalid or absent for some reason.</p>
 <p>The problem isn’t really with the concept but with the particular
 implementation. As such, Rust does not have nulls, but it does have an enum
 that can encode the concept of a value being present or absent. This enum is
-<code>Option&lt;T&gt;</code>, and it is <a href="../std/option/enum.Option.html">defined by the standard library</a><!-- ignore --></p>
-<p>as follows:</p>
+<code>Option&lt;T&gt;</code>, and it is <a href="../std/option/enum.Option.html">defined by the standard library</a><!-- ignore -->
+as follows:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>enum Option&lt;T&gt; {
@@ -6459,8 +6460,8 @@ Most of the time when Rustaceans say “crate”, they mean library crate, and t
 use “crate” interchangeably with the general programming concept of a “library“.</p>
 <p>The <em>crate root</em> is a source file that the Rust compiler starts from and makes
 up the root module of your crate (we’ll explain modules in depth in the
-<a href="ch07-02-defining-modules-to-control-scope-and-privacy.html">“Defining Modules to Control Scope and Privacy”</a><!-- ignore --></p>
-<p>section).</p>
+<a href="ch07-02-defining-modules-to-control-scope-and-privacy.html">“Defining Modules to Control Scope and Privacy”</a><!-- ignore -->
+section).</p>
 <p>A <em>package</em> is a bundle of one or more crates that provides a set of
 functionality. A package contains a <em>Cargo.toml</em> file that describes how to
 build those crates. Cargo is actually a package that contains the binary crate
@@ -7398,8 +7399,8 @@ was defined.</p>
 into the <code>tests</code> module; we’ll talk about that in the <a href="ch11-01-writing-tests.html#how-to-write-tests">“How to Write
 Tests”</a><!-- ignore --> section in Chapter 11. The glob operator
 is also sometimes used as part of the prelude pattern: see <a href="../std/prelude/index.html#other-preludes">the standard
-library documentation</a><!-- ignore --></p>
-<p>for more information on that pattern.</p>
+library documentation</a><!-- ignore -->
+for more information on that pattern.</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="separating-modules-into-different-files"><a class="header" href="#separating-modules-into-different-files">Separating Modules into Different Files</a></h2>
 <p>So far, all the examples in this chapter defined multiple modules in one file.
 When modules get large, you might want to move their definitions to a separate
@@ -7716,8 +7717,8 @@ elements in a vector</span></p>
 <p>To change the value that the mutable reference refers to, we have to use the
 <code>*</code> dereference operator to get to the value in <code>i</code> before we can use the <code>+=</code>
 operator. We’ll talk more about the dereference operator in the <a href="ch15-02-deref.html#following-the-pointer-to-the-value-with-the-dereference-operator">“Following the
-Pointer to the Value with the Dereference Operator”</a><!-- ignore --></p>
-<p>section of Chapter 15.</p>
+Pointer to the Value with the Dereference Operator”</a><!-- ignore -->
+section of Chapter 15.</p>
 <p>Iterating over a vector, whether immutably or mutably, is safe because of the
 borrow checker’s rules. If we attempted to insert or remove items in the <code>for</code>
 loop bodies in Listing 8-7 and Listing 8-8, we would get a compiler error
@@ -8407,6 +8408,9 @@ Chapter 10. You don’t necessarily have to implement your own hasher from
 scratch; <a href="https://crates.io/">crates.io</a><!-- ignore --> has libraries shared by
 other Rust users that provide hashers implementing many common hashing
 algorithms.</p>
+<div class="footnote-definition" id="siphash"><sup class="footnote-definition-label">1</sup>
+<p><a href="https://en.wikipedia.org/wiki/SipHash">https://en.wikipedia.org/wiki/SipHash</a></p>
+</div>
 <h2 id="summary-7"><a class="header" href="#summary-7">Summary</a></h2>
 <p>Vectors, strings, and hash maps will provide a large amount of functionality
 necessary in programs when you need to store, access, and modify data. Here are
@@ -8614,7 +8618,7 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 </li>
 <li><a href="ch09-02-recoverable-errors-with-result.html#propagating-errors">Propagating Errors</a>
 <ul>
-<li><a href="ch09-02-recoverable-errors-with-result.html#a-shortcut-for-propagating-errors-the--operator">A Shortcut for Propagating Errors: the ? Operator</a></li>
+<li><a href="ch09-02-recoverable-errors-with-result.html#the--operator-a-shortcut-for-propagating-errors">The ? Operator: A Shortcut for Propagating Errors</a></li>
 <li><a href="ch09-02-recoverable-errors-with-result.html#where-the--operator-can-be-used">Where The ? Operator Can Be Used</a></li>
 </ul>
 </li>
@@ -8622,7 +8626,7 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Wed Oct 26 07:03:49 UTC 2022 -->
+<!-- Added by: runner, at: Thu Oct 27 08:37:18 UTC 2022 -->
 <!--te-->
 <p>Most errors aren’t serious enough to require the program to stop entirely.
 Sometimes, when a function fails, it’s for a reason that you can easily
@@ -8986,72 +8990,157 @@ succeed:</p>
 information to use in debugging.</li>
 </ul>
 <h2 id="propagating-errors"><a class="header" href="#propagating-errors">Propagating Errors</a></h2>
+<details id="admonition-how-to-propagate-the-error-why" class="admonition question">
+<summary class="admonition-title">
+<p>How to propagate the error? Why?</p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-how-to-propagate-the-error-why"></a></p>
+</summary>
+<div>
 <p>When a function’s implementation calls something that might fail, instead of
 handling the error within the function itself, you can return the error to the
-calling code so that it can decide what to do. This is known as <em>propagating</em>
+calling code so that it can decide what to do. </p>
+<p>This is known as <em>propagating</em>
 the error and gives more control to the calling code, where there might be more
 information or logic that dictates how the error should be handled than what
 you have available in the context of your code.</p>
-<p>For example, Listing 9-6 shows a function that reads a username from a file. If
-the file doesn’t exist or can’t be read, this function will return those errors
+</div>
+</details>
+<details id="admonition-listing-9-6-a-function-that-returns-errors-to-the-calling-code-using-match" class="admonition question">
+<summary class="admonition-title">
+<p>Listing 9-6: A function that returns errors to the calling code using <em>match</em></p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-listing-9-6-a-function-that-returns-errors-to-the-calling-code-using-match"></a></p>
+</summary>
+<div>
+<p>For example, Listing 9-6 shows a function that reads a username from a file. </p>
+<p>If the file doesn’t exist or can’t be read, this function will return those errors
 to the code that called the function.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
 <!-- Deliberately not using rustdoc_include here; the `main` function in the
 file panics. We do want to include it for reader experimentation purposes, but
 don't want to include it for rustdoc testing purposes. -->
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>{{# include../ listings / ch09 - error -handling / listing - 09 - 06 / src /main.rs: here}}
-<span class="boring">}
-</span></code></pre></pre>
-<p><span class="caption">Listing 9-6: A function that returns errors to the
-calling code using <code>match</code></span></p>
+<pre><pre class="playground"><code class="language-rust  editable">use std::fs::File;
+use std::io::{self, Read};
+
+fn read_username_from_file() -&gt; Result&lt;String, io::Error&gt; {
+    let username_file_result = File::open(&quot;hello.txt&quot;);
+
+    let mut username_file = match username_file_result {
+        Ok(file) =&gt; file,
+        Err(e) =&gt; return Err(e),
+    };
+
+    let mut username = String::new();
+
+    match username_file.read_to_string(&amp;mut username) {
+        Ok(_) =&gt; Ok(username),
+        Err(e) =&gt; Err(e),
+    }
+}
+</code></pre></pre>
+</div>
+</details>
 <p>This function can be written in a much shorter way, but we’re going to start by
-doing a lot of it manually in order to explore error handling; at the end,
-we’ll show the shorter way. Let’s look at the return type of the function
-first: <code>Result&lt;String, io::Error&gt;</code>. This means the function is returning a
-value of the type <code>Result&lt;T, E&gt;</code> where the generic parameter <code>T</code> has been
-filled in with the concrete type <code>String</code>, and the generic type <code>E</code> has been
-filled in with the concrete type <code>io::Error</code>.</p>
-<p>If this function succeeds without any problems, the code that calls this
-function will receive an <code>Ok</code> value that holds a <code>String</code>—the username that
-this function read from the file. If this function encounters any problems, the
-calling code will receive an <code>Err</code> value that holds an instance of <code>io::Error</code>
-that contains more information about what the problems were. We chose
-<code>io::Error</code> as the return type of this function because that happens to be the
+doing a lot of it manually in order to explore error handling;</p>
+<p>at the end, we’ll show the shorter way.</p>
+<details id="admonition-lets-look-at-the-return-type-of-the-function-first-result" class="admonition question">
+<summary class="admonition-title">
+<p>Let’s look at the return type of the function first: <em>Result&lt;String, io::Error&gt;</em>:</p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-lets-look-at-the-return-type-of-the-function-first-result"></a></p>
+</summary>
+<div>
+<ul>
+<li>This means the function is returning a value of the type <code>Result&lt;T, E&gt;</code></li>
+<li>the generic parameter <code>T</code> has been filled in with the concrete type <code>String</code></li>
+<li>and the generic type <code>E</code> has been filled in with the concrete type <code>io::Error</code>.</li>
+</ul>
+<ol>
+<li>If this function succeeds without any problems
+The code that calls this function will receive an <code>Ok</code> value that holds a <code>String</code>—the username that
+this function read from the file.</li>
+<li>If this function encounters any problems
+The calling code will receive an <code>Err</code> value that holds an instance of <code>io::Error</code>
+that contains more information about what the problems were.</li>
+</ol>
+</div>
+</details>
+<details id="admonition-why-chose-ioerror-as-the-return-type" class="admonition question">
+<summary class="admonition-title">
+<p>Why chose <em>io::Error</em> as the return type?</p>
+<p><a class="admonition-anchor-link" href="ch09-02-recoverable-errors-with-result.html#admonition-why-chose-ioerror-as-the-return-type"></a></p>
+</summary>
+<div>
+<blockquote>
+<p>We chose <code>io::Error</code> as the return type of this function because that happens to be the
 type of the error value returned from both of the operations we’re calling in
 this function’s body that might fail: the <code>File::open</code> function and the
 <code>read_to_string</code> method.</p>
-<p>The body of the function starts by calling the <code>File::open</code> function. Then we
-handle the <code>Result</code> value with a <code>match</code> similar to the <code>match</code> in Listing 9-4.
-If <code>File::open</code> succeeds, the file handle in the pattern variable <code>file</code>
+</blockquote>
+</div>
+</details>
+<ul>
+<li>
+<p>The body of the function starts by calling the <code>File::open</code> function.</p>
+</li>
+<li>
+<p>Then we
+handle the <code>Result</code> value with a <code>match</code> similar to the <code>match</code> in Listing 9-4.</p>
+</li>
+<li>
+<p>If <code>File::open</code> succeeds, the file handle in the pattern variable <code>file</code>
 becomes the value in the mutable variable <code>username_file</code> and the function
-continues. In the <code>Err</code> case, instead of calling <code>panic!</code>, we use the <code>return</code>
+continues.</p>
+</li>
+<li>
+<p>In the <code>Err</code> case, instead of calling <code>panic!</code>, we use the <code>return</code>
 keyword to return early out of the function entirely and pass the error value
 from <code>File::open</code>, now in the pattern variable <code>e</code>, back to the calling code as
 this function’s error value.</p>
+</li>
+<li>
 <p>So if we have a file handle in <code>username_file</code>, the function then creates a new
 <code>String</code> in variable <code>username</code> and calls the <code>read_to_string</code> method on
 the file handle in <code>username_file</code> to read the contents of the file into
-<code>username</code>. The <code>read_to_string</code> method also returns a <code>Result</code> because it
-might fail, even though <code>File::open</code> succeeded. So we need another <code>match</code> to
+<code>username</code>.</p>
+</li>
+<li>
+<p>The <code>read_to_string</code> method also returns a <code>Result</code> because it
+might fail, even though <code>File::open</code> succeeded.</p>
+</li>
+<li>
+<p>So we need another <code>match</code> to
 handle that <code>Result</code>: if <code>read_to_string</code> succeeds, then our function has
 succeeded, and we return the username from the file that’s now in <code>username</code>
-wrapped in an <code>Ok</code>. If <code>read_to_string</code> fails, we return the error value in the
+wrapped in an <code>Ok</code>.</p>
+</li>
+<li>
+<p>If <code>read_to_string</code> fails, we return the error value in the
 same way that we returned the error value in the <code>match</code> that handled the
-return value of <code>File::open</code>. However, we don’t need to explicitly say
+return value of <code>File::open</code>.</p>
+</li>
+</ul>
+<blockquote>
+<p>However, we don’t need to explicitly say
 <code>return</code>, because this is the last expression in the function.</p>
+</blockquote>
 <p>The code that calls this code will then handle getting either an <code>Ok</code> value
-that contains a username or an <code>Err</code> value that contains an <code>io::Error</code>. It’s
-up to the calling code to decide what to do with those values. If the calling
-code gets an <code>Err</code> value, it could call <code>panic!</code> and crash the program, use a
-default username, or look up the username from somewhere other than a file, for
-example. We don’t have enough information on what the calling code is actually
+that contains a username or an <code>Err</code> value that contains an <code>io::Error</code>.</p>
+<p>It’s up to the calling code to decide what to do with those values:</p>
+<ul>
+<li>
+<p>If the calling code gets an <code>Err</code> value
+it could call <code>panic!</code> and crash the program, use a default username, or look up
+the username from somewhere other than a file, for example.</p>
+</li>
+<li>
+<p>We don’t have enough information on what the calling code is actually
 trying to do, so we propagate all the success or error information upward for
 it to handle appropriately.</p>
+</li>
+</ul>
+<blockquote>
 <p>This pattern of propagating errors is so common in Rust that Rust provides the
 question mark operator <code>?</code> to make this easier.</p>
-<h3 id="a-shortcut-for-propagating-errors-the--operator"><a class="header" href="#a-shortcut-for-propagating-errors-the--operator">A Shortcut for Propagating Errors: the <code>?</code> Operator</a></h3>
+</blockquote>
+<h3 id="the--operator-a-shortcut-for-propagating-errors"><a class="header" href="#the--operator-a-shortcut-for-propagating-errors">The <code>?</code> Operator: A Shortcut for Propagating Errors</a></h3>
 <p>Listing 9-7 shows an implementation of <code>read_username_from_file</code> that has the
 same functionality as in Listing 9-6, but this implementation uses the
 <code>?</code> operator.</p>
@@ -9189,10 +9278,19 @@ that point. If the value is <code>Some</code>, the value inside the <code>Some</
 resulting value of the expression and the function continues. Listing 9-11 has
 an example of a function that finds the last character of the first line in the
 given text:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust">fn last_char_of_first_line(text: &amp;str) -&gt; Option&lt;char&gt; {
+    text.lines().next()?.chars().last()
+}
+<span class="boring">
 </span><span class="boring">fn main() {
-</span>{{# rustdoc_include../ listings / ch09 - error -handling / listing - 09 - 11 / src /main.rs: here}}
-<span class="boring">}
+</span><span class="boring">    assert_eq!(
+</span><span class="boring">        last_char_of_first_line(&quot;Hello, world\nHow are you today?&quot;),
+</span><span class="boring">        Some('d')
+</span><span class="boring">    );
+</span><span class="boring">
+</span><span class="boring">    assert_eq!(last_char_of_first_line(&quot;&quot;), None);
+</span><span class="boring">    assert_eq!(last_char_of_first_line(&quot;\nhi&quot;), None);
+</span><span class="boring">}
 </span></code></pre></pre>
 <p><span class="caption">Listing 9-11: Using the <code>?</code> operator on an <code>Option&lt;T&gt;</code>
 value</span></p>
@@ -11670,8 +11768,8 @@ larger rectangle can indeed hold a smaller rectangle</span></p>
 <p>Note that we’ve added a new line inside the <code>tests</code> module: <code>use super::*;</code>.
 The <code>tests</code> module is a regular module that follows the usual visibility rules
 we covered in Chapter 7 in the <a href="ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html">“Paths for Referring to an Item in the Module
-Tree”</a><!-- ignore --></p>
-<p>section. Because the <code>tests</code> module is an inner module, we need to bring the
+Tree”</a><!-- ignore -->
+section. Because the <code>tests</code> module is an inner module, we need to bring the
 code under test in the outer module into the scope of the inner module. We use
 a glob here so anything we define in the outer module is available to this
 <code>tests</code> module.</p>
@@ -11935,7 +12033,7 @@ test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; 
 error: test failed, to rerun pass '--lib'
 </code></pre>
 <p>Our test caught the bug! The <code>it_adds_two</code> test failed, and the message tells
-us that the assertion that fails was <code>assertion failed: </code>(left == right)``
+us that the assertion that fails was <code>assertion failed: `(left == right)`</code>
 and what the <code>left</code> and <code>right</code> values are. This message helps us start
 debugging: the <code>left</code> argument was <code>4</code> but the <code>right</code> argument, where we had
 <code>add_two(2)</code>, was <code>5</code>. You can imagine that this would be especially helpful
@@ -11946,7 +12044,7 @@ we specify the arguments matters. However, in Rust, they’re called <code>left<
 <code>right</code>, and the order in which we specify the value we expect and the value
 the code produces doesn’t matter. We could write the assertion in this test as
 <code>assert_eq!(add_two(2), 4)</code>, which would result in the same failure message
-that displays <code>assertion failed: </code>(left == right)``.</p>
+that displays <code>assertion failed: `(left == right)`</code>.</p>
 <p>The <code>assert_ne!</code> macro will pass if the two values we give it are not equal and
 fail if they’re equal. This macro is most useful for cases when we’re not sure
 what a value <em>will</em> be, but we know what the value definitely <em>shouldn’t</em> be.
@@ -11972,8 +12070,8 @@ optional arguments to the <code>assert!</code>, <code>assert_eq!</code>, and <co
 arguments specified after the required arguments are passed along to the
 <code>format!</code> macro (discussed in Chapter 8 in the <a href="ch08-02-strings.html#concatenation-with-the--operator-or-the-format-macro">“Concatenation with the <code>+</code>
 Operator or the <code>format!</code>
-Macro”</a><!-- ignore --></p>
-<p>section), so you can pass a format string that contains <code>{}</code> placeholders and
+Macro”</a><!-- ignore -->
+section), so you can pass a format string that contains <code>{}</code> placeholders and
 values to go in those placeholders. Custom messages are useful for documenting
 what an assertion means; when a test fails, you’ll have a better idea of what
 the problem is with the code.</p>
@@ -12721,8 +12819,8 @@ mod tests {
 <p><span class="caption">Listing 11-12: Testing a private function</span></p>
 <p>Note that the <code>internal_adder</code> function is not marked as <code>pub</code>. Tests are just
 Rust code, and the <code>tests</code> module is just another module. As we discussed in
-the <a href="ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html">“Paths for Referring to an Item in the Module Tree”</a><!-- ignore --></p>
-<p>section, items in child modules can use the items in their ancestor modules. In
+the <a href="ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html">“Paths for Referring to an Item in the Module Tree”</a><!-- ignore -->
+section, items in child modules can use the items in their ancestor modules. In
 this test, we bring all of the <code>test</code> module’s parent’s items into scope with
 <code>use super::*</code>, and then the test can call <code>internal_adder</code>. If you don’t think
 private functions should be tested, there’s nothing in Rust that will compel
@@ -12966,11 +13064,11 @@ background knowledge you need to understand a real-world project such as
 <p>Our <code>grep</code> project will combine a number of concepts you’ve learned so far:</p>
 <ul>
 <li>Organizing code (using what you learned about modules in <a href="ch07-00-managing-growing-projects-with-packages-crates-and-modules.html">Chapter 7</a><!--
-      ignore -->)</li>
+    ignore -->)</li>
 <li>Using vectors and strings (collections, <a href="ch08-00-common-collections.html">Chapter 8</a><!-- ignore -->)</li>
 <li>Handling errors (<a href="ch09-00-error-handling.html">Chapter 9</a><!-- ignore -->)</li>
 <li>Using traits and lifetimes where appropriate (<a href="ch10-00-generics.html">Chapter 10</a><!-- ignore
-      -->)</li>
+    -->)</li>
 <li>Writing tests (<a href="ch11-00-testing.html">Chapter 11</a><!-- ignore -->)</li>
 </ul>
 <p>We’ll also briefly introduce closures, iterators, and trait objects, which
@@ -15277,9 +15375,9 @@ functions, closures can capture values from the scope in which they’re defined
 We’ll demonstrate how these closure features allow for code reuse and behavior
 customization.</p>
 <!-- Old headings. Do not remove or links may break. -->
-<p><a id="creating-an-abstraction-of-behavior-with-closures"></a></p>
-<p><a id="refactoring-using-functions"></a></p>
-<p><a id="refactoring-with-closures-to-store-code"></a></p>
+<p><a id="creating-an-abstraction-of-behavior-with-closures"></a>
+<a id="refactoring-using-functions"></a>
+<a id="refactoring-with-closures-to-store-code"></a></p>
 <h3 id="capturing-the-environment-with-closures"><a class="header" href="#capturing-the-environment-with-closures">Capturing the Environment with Closures</a></h3>
 <p>We’ll first examine how we can use closures to capture values from the
 environment they’re defined in for later use. Here’s the scenario: Every so
@@ -15606,9 +15704,9 @@ so the reference will be valid. Try removing the <code>move</code> keyword or us
 in the main thread after the closure is defined to see what compiler errors you
 get!</p>
 <!-- Old headings. Do not remove or links may break. -->
-<p><a id="storing-closures-using-generic-parameters-and-the-fn-traits"></a></p>
-<p><a id="limitations-of-the-cacher-implementation"></a></p>
-<p><a id="moving-captured-values-out-of-the-closure-and-the-fn-traits"></a></p>
+<p><a id="storing-closures-using-generic-parameters-and-the-fn-traits"></a>
+<a id="limitations-of-the-cacher-implementation"></a>
+<a id="moving-captured-values-out-of-the-closure-and-the-fn-traits"></a></p>
 <h3 id="moving-captured-values-out-of-closures-and-the-fn-traits"><a class="header" href="#moving-captured-values-out-of-closures-and-the-fn-traits">Moving Captured Values Out of Closures and the <code>Fn</code> Traits</a></h3>
 <p>Once a closure has captured a reference or captured ownership of a value from
 the environment where the closure is defined (thus affecting what, if anything,
@@ -16816,21 +16914,11 @@ world.</p>
 our code, but it can do a lot more. In this chapter, we’ll discuss some of its
 other, more advanced features to show you how to do the following:</p>
 <ul>
-<li>
-<p>Customize your build through release profiles</p>
-</li>
-<li>
-<p>Publish libraries on <a href="https://crates.io/">crates.io</a><!-- ignore --></p>
-</li>
-<li>
-<p>Organize large projects with workspaces</p>
-</li>
-<li>
-<p>Install binaries from <a href="https://crates.io/">crates.io</a><!-- ignore --></p>
-</li>
-<li>
-<p>Extend Cargo using custom commands</p>
-</li>
+<li>Customize your build through release profiles</li>
+<li>Publish libraries on <a href="https://crates.io/">crates.io</a><!-- ignore --></li>
+<li>Organize large projects with workspaces</li>
+<li>Install binaries from <a href="https://crates.io/">crates.io</a><!-- ignore --></li>
+<li>Extend Cargo using custom commands</li>
 </ul>
 <p>Cargo can do even more than the functionality we cover in this chapter, so for
 a full explanation of all its features, see <a href="https://doc.rust-lang.org/cargo/">its
@@ -18540,7 +18628,7 @@ CustomSmartPointer created.
 Dropping CustomSmartPointer with data `some data`!
 CustomSmartPointer dropped before the end of main.
 </code></pre>
-<p>The text <code>Dropping CustomSmartPointer with data </code>some data<code>!</code> is printed
+<p>The text <code>Dropping CustomSmartPointer with data `some data`!</code> is printed
 between the <code>CustomSmartPointer created.</code> and <code>CustomSmartPointer dropped before the end of main.</code> text, showing that the <code>drop</code> method code is called to
 drop <code>c</code> at that point.</p>
 <p>You can use code specified in a <code>Drop</code> trait implementation in many ways to
@@ -20684,8 +20772,8 @@ For more information about this error, try `rustc --explain E0277`.
 error: could not compile `shared-state` due to previous error
 </code></pre>
 <p>Wow, that error message is very wordy! Here’s the important part to focus on:
-``Rc&lt;Mutex<i32>&gt;<code> cannot be sent between threads safely</code>. The compiler is
-also telling us the reason why: <code>the trait </code>Send<code>is not implemented for</code>Rc&lt;Mutex<i32>&gt;<code> </code>. We’ll talk about <code>Send</code> in the next section: it’s one of
+<code>`Rc&lt;Mutex&lt;i32&gt;&gt;` cannot be sent between threads safely</code>. The compiler is
+also telling us the reason why: <code>the trait `Send` is not implemented for `Rc&lt;Mutex&lt;i32&gt;&gt;` </code>. We’ll talk about <code>Send</code> in the next section: it’s one of
 the traits that ensures the types we use with threads are meant for use in
 concurrent situations.</p>
 <p>Unfortunately, <code>Rc&lt;T&gt;</code> is not safe to share across threads. When <code>Rc&lt;T&gt;</code>
@@ -23731,8 +23819,8 @@ trait</span></p>
 the compiler can’t verify.</p>
 <p>As an example, recall the <code>Sync</code> and <code>Send</code> marker traits we discussed in the
 <a href="ch16-04-extensible-concurrency-sync-and-send.html#extensible-concurrency-with-the-sync-and-send-traits">“Extensible Concurrency with the <code>Sync</code> and <code>Send</code>
-Traits”</a><!-- ignore --></p>
-<p>section in Chapter 16: the compiler implements these traits automatically if
+Traits”</a><!-- ignore -->
+section in Chapter 16: the compiler implements these traits automatically if
 our types are composed entirely of <code>Send</code> and <code>Sync</code> types. If we implement a
 type that contains a type that is not <code>Send</code> or <code>Sync</code>, such as raw pointers,
 and we want to mark that type as <code>Send</code> or <code>Sync</code>, we must use <code>unsafe</code>. Rust
@@ -24457,8 +24545,8 @@ collection; that code wouldn’t need to know that we assign an <code>i32</code>
 internally. The newtype pattern is a lightweight way to achieve encapsulation
 to hide implementation details, which we discussed in the <a href="ch17-01-what-is-oo.html#encapsulation-that-hides-implementation-details">“Encapsulation that
 Hides Implementation
-Details”</a><!-- ignore --></p>
-<p>section of Chapter 17.</p>
+Details”</a><!-- ignore -->
+section of Chapter 17.</p>
 <h3 id="creating-type-synonyms-with-type-aliases"><a class="header" href="#creating-type-synonyms-with-type-aliases">Creating Type Synonyms with Type Aliases</a></h3>
 <p>Rust provides the ability to declare a <em>type alias</em> to give an existing type
 another name. For this we use the <code>type</code> keyword. For example, we can create
@@ -24649,8 +24737,8 @@ here in Listing 19-26.</p>
 <p><span class="caption">Listing 19-26: A <code>match</code> with an arm that ends in
 <code>continue</code></span></p>
 <p>At the time, we skipped over some details in this code. In Chapter 6 in <a href="ch06-02-match.html#the-match-control-flow-operator">“The
-<code>match</code> Control Flow Operator”</a><!-- ignore --></p>
-<p>section, we discussed that <code>match</code> arms must all return the same type. So, for
+<code>match</code> Control Flow Operator”</a><!-- ignore -->
+section, we discussed that <code>match</code> arms must all return the same type. So, for
 example, the following code doesn’t work:</p>
 <pre><code class="language-rust ignore does_not_compile"><span class="boring">fn main() {
 </span><span class="boring">    let guess = &quot;3&quot;;
@@ -25512,8 +25600,8 @@ of scope and is dropped at the end of the loop, the connection is closed as
 part of the <code>drop</code> implementation. Browsers sometimes deal with closed
 connections by retrying, because the problem might be temporary. The important
 factor is that we’ve successfully gotten a handle to a TCP connection!</p>
-<p>Remember to stop the program by pressing <span class="keystroke">ctrl-c</span></p>
-<p>when you’re done running a particular version of the code. Then restart the
+<p>Remember to stop the program by pressing <span class="keystroke">ctrl-c</span>
+when you’re done running a particular version of the code. Then restart the
 program by invoking the <code>cargo run</code> command after you’ve made each set of code
 changes to make sure you’re running the newest code.</p>
 <h3 id="reading-the-request"><a class="header" href="#reading-the-request">Reading the Request</a></h3>
@@ -26889,8 +26977,8 @@ share ownership of the receiver.</p>
 <p>Let’s finally implement the <code>execute</code> method on <code>ThreadPool</code>. We’ll also change
 <code>Job</code> from a struct to a type alias for a trait object that holds the type of
 closure that <code>execute</code> receives. As discussed in the <a href="ch19-04-advanced-types.html#creating-type-synonyms-with-type-aliases">“Creating Type Synonyms
-with Type Aliases”</a><!-- ignore --></p>
-<p>section of Chapter 19, type aliases allow us to make long types shorter for
+with Type Aliases”</a><!-- ignore -->
+section of Chapter 19, type aliases allow us to make long types shorter for
 ease of use. Look at Listing 20-19.</p>
 <p><span class="filename">Filename: src/lib.rs</span></p>
 <pre><code class="language-rust noplayground"><span class="boring">use std::{
@@ -28211,168 +28299,177 @@ appear in context, a short explanation, and whether that operator is
 overloadable. If an operator is overloadable, the relevant trait to use to
 overload that operator is listed.</p>
 <p><span class="caption">Table B-1: Operators</span></p>
-<p>|Operator|Example|Explanation|Overloadable?|
-|--------|-------|-----------|-------------|
-|<code>!</code>|<code>ident!(...)</code>, <code>ident!{...}</code>, <code>ident![...]</code>|Macro expansion||
-|<code>!</code>|<code>!expr</code>|Bitwise or logical complement|<code>Not</code>|
-|<code>!=</code>|<code>expr != expr</code>|Nonequality comparison|<code>PartialEq</code>|
-|<code>%</code>|<code>expr % expr</code>|Arithmetic remainder|<code>Rem</code>|
-|<code>%=</code>|<code>var %= expr</code>|Arithmetic remainder and assignment|<code>RemAssign</code>|
-|<code>&amp;</code>|<code>&amp;expr</code>, <code>&amp;mut expr</code>|Borrow||
-|<code>&amp;</code>|<code>&amp;type</code>, <code>&amp;mut type</code>, <code>&amp;'a type</code>, <code>&amp;'a mut type</code>|Borrowed pointer type||
-|<code>&amp;</code>|<code>expr &amp; expr</code>|Bitwise AND|<code>BitAnd</code>|
-|<code>&amp;=</code>|<code>var &amp;= expr</code>|Bitwise AND and assignment|<code>BitAndAssign</code>|
-|<code>&amp;&amp;</code>|<code>expr &amp;&amp; expr</code>|Short-circuiting logical AND||
-|<code>*</code>|<code>expr * expr</code>|Arithmetic multiplication|<code>Mul</code>|
-|<code>*=</code>|<code>var *= expr</code>|Arithmetic multiplication and assignment|<code>MulAssign</code>|
-|<code>*</code>|<code>*expr</code>|Dereference|<code>Deref</code>|
-|<code>*</code>|<code>*const type</code>, <code>*mut type</code>|Raw pointer||
-|<code>+</code>|<code>trait + trait</code>, <code>'a + trait</code>|Compound type constraint||
-|<code>+</code>|<code>expr + expr</code>|Arithmetic addition|<code>Add</code>|
-|<code>+=</code>|<code>var += expr</code>|Arithmetic addition and assignment|<code>AddAssign</code>|
-|<code>,</code>|<code>expr, expr</code>|Argument and element separator||
-|<code>-</code>|<code>- expr</code>|Arithmetic negation|<code>Neg</code>|
-|<code>-</code>|<code>expr - expr</code>|Arithmetic subtraction|<code>Sub</code>|
-|<code>-=</code>|<code>var -= expr</code>|Arithmetic subtraction and assignment|<code>SubAssign</code>|
-|<code>-&gt;</code>|<code>fn(...) -&gt; type</code>, <code>|…| -&gt; type</code>|Function and closure return type||
-|<code>.</code>|<code>expr.ident</code>|Member access||
-|<code>..</code>|<code>..</code>, <code>expr..</code>, <code>..expr</code>, <code>expr..expr</code>|Right-exclusive range literal|<code>PartialOrd</code>|
-|<code>..=</code>|<code>..=expr</code>, <code>expr..=expr</code>|Right-inclusive range literal|<code>PartialOrd</code>|
-|<code>..</code>|<code>..expr</code>|Struct literal update syntax||
-|<code>..</code>|<code>variant(x, ..)</code>, <code>struct_type { x, .. }</code>|“And the rest” pattern binding||
-|<code>...</code>|<code>expr...expr</code>|(Deprecated, use <code>..=</code> instead) In a pattern: inclusive range pattern||
-|<code>/</code>|<code>expr / expr</code>|Arithmetic division|<code>Div</code>|
-|<code>/=</code>|<code>var /= expr</code>|Arithmetic division and assignment|<code>DivAssign</code>|
-|<code>:</code>|<code>pat: type</code>, <code>ident: type</code>|Constraints||
-|<code>:</code>|<code>ident: expr</code>|Struct field initializer||
-|<code>:</code>|<code>'a: loop {...}</code>|Loop label||
-|<code>;</code>|<code>expr;</code>|Statement and item terminator||
-|<code>;</code>|<code>[...; len]</code>|Part of fixed-size array syntax||
-|<code>&lt;&lt;</code>|<code>expr &lt;&lt; expr</code>|Left-shift|<code>Shl</code>|
-|<code>&lt;&lt;=</code>|<code>var &lt;&lt;= expr</code>|Left-shift and assignment|<code>ShlAssign</code>|
-|<code>&lt;</code>|<code>expr &lt; expr</code>|Less than comparison|<code>PartialOrd</code>|
-|<code>&lt;=</code>|<code>expr &lt;= expr</code>|Less than or equal to comparison|<code>PartialOrd</code>|
-|<code>=</code>|<code>var = expr</code>, <code>ident = type</code>|Assignment/equivalence||
-|<code>==</code>|<code>expr == expr</code>|Equality comparison|<code>PartialEq</code>|
-|<code>=&gt;</code>|<code>pat =&gt; expr</code>|Part of match arm syntax||
-|<code>&gt;</code>|<code>expr &gt; expr</code>|Greater than comparison|<code>PartialOrd</code>|
-|<code>&gt;=</code>|<code>expr &gt;= expr</code>|Greater than or equal to comparison|<code>PartialOrd</code>|
-|<code>&gt;&gt;</code>|<code>expr &gt;&gt; expr</code>|Right-shift|<code>Shr</code>|
-|<code>&gt;&gt;=</code>|<code>var &gt;&gt;= expr</code>|Right-shift and assignment|<code>ShrAssign</code>|
-|<code>@</code>|<code>ident @ pat</code>|Pattern binding||
-|<code>^</code>|<code>expr ^ expr</code>|Bitwise exclusive OR|<code>BitXor</code>|
-|<code>^=</code>|<code>var ^= expr</code>|Bitwise exclusive OR and assignment|<code>BitXorAssign</code>|
-|<code>|</code>|<code>pat | pat</code>|Pattern alternatives||
-|<code>|</code>|<code>expr | expr</code>|Bitwise OR|<code>BitOr</code>|
-|<code>|=</code>|<code>var |= expr</code>|Bitwise OR and assignment|<code>BitOrAssign</code>|
-|<code>||</code>|<code>expr || expr</code>|Short-circuiting logical OR||
-|<code>?</code>|<code>expr?</code>|Error propagation||</p>
+<div class="table-wrapper"><table><thead><tr><th>Operator</th><th>Example</th><th>Explanation</th><th>Overloadable?</th></tr></thead><tbody>
+<tr><td><code>!</code></td><td><code>ident!(...)</code>, <code>ident!{...}</code>, <code>ident![...]</code></td><td>Macro expansion</td><td></td></tr>
+<tr><td><code>!</code></td><td><code>!expr</code></td><td>Bitwise or logical complement</td><td><code>Not</code></td></tr>
+<tr><td><code>!=</code></td><td><code>expr != expr</code></td><td>Nonequality comparison</td><td><code>PartialEq</code></td></tr>
+<tr><td><code>%</code></td><td><code>expr % expr</code></td><td>Arithmetic remainder</td><td><code>Rem</code></td></tr>
+<tr><td><code>%=</code></td><td><code>var %= expr</code></td><td>Arithmetic remainder and assignment</td><td><code>RemAssign</code></td></tr>
+<tr><td><code>&amp;</code></td><td><code>&amp;expr</code>, <code>&amp;mut expr</code></td><td>Borrow</td><td></td></tr>
+<tr><td><code>&amp;</code></td><td><code>&amp;type</code>, <code>&amp;mut type</code>, <code>&amp;'a type</code>, <code>&amp;'a mut type</code></td><td>Borrowed pointer type</td><td></td></tr>
+<tr><td><code>&amp;</code></td><td><code>expr &amp; expr</code></td><td>Bitwise AND</td><td><code>BitAnd</code></td></tr>
+<tr><td><code>&amp;=</code></td><td><code>var &amp;= expr</code></td><td>Bitwise AND and assignment</td><td><code>BitAndAssign</code></td></tr>
+<tr><td><code>&amp;&amp;</code></td><td><code>expr &amp;&amp; expr</code></td><td>Short-circuiting logical AND</td><td></td></tr>
+<tr><td><code>*</code></td><td><code>expr * expr</code></td><td>Arithmetic multiplication</td><td><code>Mul</code></td></tr>
+<tr><td><code>*=</code></td><td><code>var *= expr</code></td><td>Arithmetic multiplication and assignment</td><td><code>MulAssign</code></td></tr>
+<tr><td><code>*</code></td><td><code>*expr</code></td><td>Dereference</td><td><code>Deref</code></td></tr>
+<tr><td><code>*</code></td><td><code>*const type</code>, <code>*mut type</code></td><td>Raw pointer</td><td></td></tr>
+<tr><td><code>+</code></td><td><code>trait + trait</code>, <code>'a + trait</code></td><td>Compound type constraint</td><td></td></tr>
+<tr><td><code>+</code></td><td><code>expr + expr</code></td><td>Arithmetic addition</td><td><code>Add</code></td></tr>
+<tr><td><code>+=</code></td><td><code>var += expr</code></td><td>Arithmetic addition and assignment</td><td><code>AddAssign</code></td></tr>
+<tr><td><code>,</code></td><td><code>expr, expr</code></td><td>Argument and element separator</td><td></td></tr>
+<tr><td><code>-</code></td><td><code>- expr</code></td><td>Arithmetic negation</td><td><code>Neg</code></td></tr>
+<tr><td><code>-</code></td><td><code>expr - expr</code></td><td>Arithmetic subtraction</td><td><code>Sub</code></td></tr>
+<tr><td><code>-=</code></td><td><code>var -= expr</code></td><td>Arithmetic subtraction and assignment</td><td><code>SubAssign</code></td></tr>
+<tr><td><code>-&gt;</code></td><td><code>fn(...) -&gt; type</code>, <code>|…| -&gt; type</code></td><td>Function and closure return type</td><td></td></tr>
+<tr><td><code>.</code></td><td><code>expr.ident</code></td><td>Member access</td><td></td></tr>
+<tr><td><code>..</code></td><td><code>..</code>, <code>expr..</code>, <code>..expr</code>, <code>expr..expr</code></td><td>Right-exclusive range literal</td><td><code>PartialOrd</code></td></tr>
+<tr><td><code>..=</code></td><td><code>..=expr</code>, <code>expr..=expr</code></td><td>Right-inclusive range literal</td><td><code>PartialOrd</code></td></tr>
+<tr><td><code>..</code></td><td><code>..expr</code></td><td>Struct literal update syntax</td><td></td></tr>
+<tr><td><code>..</code></td><td><code>variant(x, ..)</code>, <code>struct_type { x, .. }</code></td><td>“And the rest” pattern binding</td><td></td></tr>
+<tr><td><code>...</code></td><td><code>expr...expr</code></td><td>(Deprecated, use <code>..=</code> instead) In a pattern: inclusive range pattern</td><td></td></tr>
+<tr><td><code>/</code></td><td><code>expr / expr</code></td><td>Arithmetic division</td><td><code>Div</code></td></tr>
+<tr><td><code>/=</code></td><td><code>var /= expr</code></td><td>Arithmetic division and assignment</td><td><code>DivAssign</code></td></tr>
+<tr><td><code>:</code></td><td><code>pat: type</code>, <code>ident: type</code></td><td>Constraints</td><td></td></tr>
+<tr><td><code>:</code></td><td><code>ident: expr</code></td><td>Struct field initializer</td><td></td></tr>
+<tr><td><code>:</code></td><td><code>'a: loop {...}</code></td><td>Loop label</td><td></td></tr>
+<tr><td><code>;</code></td><td><code>expr;</code></td><td>Statement and item terminator</td><td></td></tr>
+<tr><td><code>;</code></td><td><code>[...; len]</code></td><td>Part of fixed-size array syntax</td><td></td></tr>
+<tr><td><code>&lt;&lt;</code></td><td><code>expr &lt;&lt; expr</code></td><td>Left-shift</td><td><code>Shl</code></td></tr>
+<tr><td><code>&lt;&lt;=</code></td><td><code>var &lt;&lt;= expr</code></td><td>Left-shift and assignment</td><td><code>ShlAssign</code></td></tr>
+<tr><td><code>&lt;</code></td><td><code>expr &lt; expr</code></td><td>Less than comparison</td><td><code>PartialOrd</code></td></tr>
+<tr><td><code>&lt;=</code></td><td><code>expr &lt;= expr</code></td><td>Less than or equal to comparison</td><td><code>PartialOrd</code></td></tr>
+<tr><td><code>=</code></td><td><code>var = expr</code>, <code>ident = type</code></td><td>Assignment/equivalence</td><td></td></tr>
+<tr><td><code>==</code></td><td><code>expr == expr</code></td><td>Equality comparison</td><td><code>PartialEq</code></td></tr>
+<tr><td><code>=&gt;</code></td><td><code>pat =&gt; expr</code></td><td>Part of match arm syntax</td><td></td></tr>
+<tr><td><code>&gt;</code></td><td><code>expr &gt; expr</code></td><td>Greater than comparison</td><td><code>PartialOrd</code></td></tr>
+<tr><td><code>&gt;=</code></td><td><code>expr &gt;= expr</code></td><td>Greater than or equal to comparison</td><td><code>PartialOrd</code></td></tr>
+<tr><td><code>&gt;&gt;</code></td><td><code>expr &gt;&gt; expr</code></td><td>Right-shift</td><td><code>Shr</code></td></tr>
+<tr><td><code>&gt;&gt;=</code></td><td><code>var &gt;&gt;= expr</code></td><td>Right-shift and assignment</td><td><code>ShrAssign</code></td></tr>
+<tr><td><code>@</code></td><td><code>ident @ pat</code></td><td>Pattern binding</td><td></td></tr>
+<tr><td><code>^</code></td><td><code>expr ^ expr</code></td><td>Bitwise exclusive OR</td><td><code>BitXor</code></td></tr>
+<tr><td><code>^=</code></td><td><code>var ^= expr</code></td><td>Bitwise exclusive OR and assignment</td><td><code>BitXorAssign</code></td></tr>
+<tr><td><code>|</code></td><td><code>pat | pat</code></td><td>Pattern alternatives</td><td></td></tr>
+<tr><td><code>|</code></td><td><code>expr | expr</code></td><td>Bitwise OR</td><td><code>BitOr</code></td></tr>
+<tr><td><code>|=</code></td><td><code>var |= expr</code></td><td>Bitwise OR and assignment</td><td><code>BitOrAssign</code></td></tr>
+<tr><td><code>||</code></td><td><code>expr || expr</code></td><td>Short-circuiting logical OR</td><td></td></tr>
+<tr><td><code>?</code></td><td><code>expr?</code></td><td>Error propagation</td><td></td></tr>
+</tbody></table>
+</div>
 <h3 id="non-operator-symbols"><a class="header" href="#non-operator-symbols">Non-operator Symbols</a></h3>
 <p>The following list contains all symbols that don’t function as operators; that
 is, they don’t behave like a function or method call.</p>
 <p>Table B-2 shows symbols that appear on their own and are valid in a variety of
 locations.</p>
 <p><span class="caption">Table B-2: Stand-Alone Syntax</span></p>
-<p>|Symbol|Explanation|
-|------|-----------|
-|<code>'ident</code>|Named lifetime or loop label|
-|<code>...u8</code>, <code>...i32</code>, <code>...f64</code>, <code>...usize</code>, etc.|Numeric literal of specific type|
-|<code>&quot;...&quot;</code>|String literal|
-|<code>r&quot;...&quot;</code>, <code>r#&quot;...&quot;#</code>, <code>r##&quot;...&quot;##</code>, etc.|Raw string literal, escape characters not processed|
-|<code>b&quot;...&quot;</code>|Byte string literal; constructs an array of bytes instead of a string|
-|<code>br&quot;...&quot;</code>, <code>br#&quot;...&quot;#</code>, <code>br##&quot;...&quot;##</code>, etc.|Raw byte string literal, combination of raw and byte string literal|
-|<code>'...'</code>|Character literal|
-|<code>b'...'</code>|ASCII byte literal|
-|<code>|…| expr</code>|Closure|
-|<code>!</code>|Always empty bottom type for diverging functions|
-|<code>_</code>|“Ignored” pattern binding; also used to make integer literals readable|</p>
+<div class="table-wrapper"><table><thead><tr><th>Symbol</th><th>Explanation</th></tr></thead><tbody>
+<tr><td><code>'ident</code></td><td>Named lifetime or loop label</td></tr>
+<tr><td><code>...u8</code>, <code>...i32</code>, <code>...f64</code>, <code>...usize</code>, etc.</td><td>Numeric literal of specific type</td></tr>
+<tr><td><code>&quot;...&quot;</code></td><td>String literal</td></tr>
+<tr><td><code>r&quot;...&quot;</code>, <code>r#&quot;...&quot;#</code>, <code>r##&quot;...&quot;##</code>, etc.</td><td>Raw string literal, escape characters not processed</td></tr>
+<tr><td><code>b&quot;...&quot;</code></td><td>Byte string literal; constructs an array of bytes instead of a string</td></tr>
+<tr><td><code>br&quot;...&quot;</code>, <code>br#&quot;...&quot;#</code>, <code>br##&quot;...&quot;##</code>, etc.</td><td>Raw byte string literal, combination of raw and byte string literal</td></tr>
+<tr><td><code>'...'</code></td><td>Character literal</td></tr>
+<tr><td><code>b'...'</code></td><td>ASCII byte literal</td></tr>
+<tr><td><code>|…| expr</code></td><td>Closure</td></tr>
+<tr><td><code>!</code></td><td>Always empty bottom type for diverging functions</td></tr>
+<tr><td><code>_</code></td><td>“Ignored” pattern binding; also used to make integer literals readable</td></tr>
+</tbody></table>
+</div>
 <p>Table B-3 shows symbols that appear in the context of a path through the module
 hierarchy to an item.</p>
 <p><span class="caption">Table B-3: Path-Related Syntax</span></p>
-<p>|Symbol|Explanation|
-|------|-----------|
-|<code>ident::ident</code>|Namespace path|
-|<code>::path</code>|Path relative to the crate root (i.e., an explicitly absolute path)|
-|<code>self::path</code>|Path relative to the current module (i.e., an explicitly relative path).|
-|<code>super::path</code>|Path relative to the parent of the current module|
-|<code>type::ident</code>, <code>&lt;type as trait&gt;::ident</code>|Associated constants, functions, and types|
-|<code>&lt;type&gt;::...</code>|Associated item for a type that cannot be directly named (e.g., <code>&lt;&amp;T&gt;::...</code>, <code>&lt;[T]&gt;::...</code>, etc.)|
-|<code>trait::method(...)</code>|Disambiguating a method call by naming the trait that defines it|
-|<code>type::method(...)</code>|Disambiguating a method call by naming the type for which it’s defined|
-|<code>&lt;type as trait&gt;::method(...)</code>|Disambiguating a method call by naming the trait and type|</p>
+<div class="table-wrapper"><table><thead><tr><th>Symbol</th><th>Explanation</th></tr></thead><tbody>
+<tr><td><code>ident::ident</code></td><td>Namespace path</td></tr>
+<tr><td><code>::path</code></td><td>Path relative to the crate root (i.e., an explicitly absolute path)</td></tr>
+<tr><td><code>self::path</code></td><td>Path relative to the current module (i.e., an explicitly relative path).</td></tr>
+<tr><td><code>super::path</code></td><td>Path relative to the parent of the current module</td></tr>
+<tr><td><code>type::ident</code>, <code>&lt;type as trait&gt;::ident</code></td><td>Associated constants, functions, and types</td></tr>
+<tr><td><code>&lt;type&gt;::...</code></td><td>Associated item for a type that cannot be directly named (e.g., <code>&lt;&amp;T&gt;::...</code>, <code>&lt;[T]&gt;::...</code>, etc.)</td></tr>
+<tr><td><code>trait::method(...)</code></td><td>Disambiguating a method call by naming the trait that defines it</td></tr>
+<tr><td><code>type::method(...)</code></td><td>Disambiguating a method call by naming the type for which it’s defined</td></tr>
+<tr><td><code>&lt;type as trait&gt;::method(...)</code></td><td>Disambiguating a method call by naming the trait and type</td></tr>
+</tbody></table>
+</div>
 <p>Table B-4 shows symbols that appear in the context of using generic type
 parameters.</p>
 <p><span class="caption">Table B-4: Generics</span></p>
-<p>|Symbol|Explanation|
-|------|-----------|
-|<code>path&lt;...&gt;</code>|Specifies parameters to generic type in a type (e.g., <code>Vec&lt;u8&gt;</code>)|
-|<code>path::&lt;...&gt;</code>, <code>method::&lt;...&gt;</code>|Specifies parameters to generic type, function, or method in an expression; often referred to as turbofish (e.g., <code>&quot;42&quot;.parse::&lt;i32&gt;()</code>)|
-|<code>fn ident&lt;...&gt; ...</code>|Define generic function|
-|<code>struct ident&lt;...&gt; ...</code>|Define generic structure|
-|<code>enum ident&lt;...&gt; ...</code>|Define generic enumeration|
-|<code>impl&lt;...&gt; ...</code>|Define generic implementation|
-|<code>for&lt;...&gt; type</code>|Higher-ranked lifetime bounds|
-|<code>type&lt;ident=type&gt;</code>|A generic type where one or more associated types have specific assignments (e.g., <code>Iterator&lt;Item=T&gt;</code>)|</p>
+<div class="table-wrapper"><table><thead><tr><th>Symbol</th><th>Explanation</th></tr></thead><tbody>
+<tr><td><code>path&lt;...&gt;</code></td><td>Specifies parameters to generic type in a type (e.g., <code>Vec&lt;u8&gt;</code>)</td></tr>
+<tr><td><code>path::&lt;...&gt;</code>, <code>method::&lt;...&gt;</code></td><td>Specifies parameters to generic type, function, or method in an expression; often referred to as turbofish (e.g., <code>&quot;42&quot;.parse::&lt;i32&gt;()</code>)</td></tr>
+<tr><td><code>fn ident&lt;...&gt; ...</code></td><td>Define generic function</td></tr>
+<tr><td><code>struct ident&lt;...&gt; ...</code></td><td>Define generic structure</td></tr>
+<tr><td><code>enum ident&lt;...&gt; ...</code></td><td>Define generic enumeration</td></tr>
+<tr><td><code>impl&lt;...&gt; ...</code></td><td>Define generic implementation</td></tr>
+<tr><td><code>for&lt;...&gt; type</code></td><td>Higher-ranked lifetime bounds</td></tr>
+<tr><td><code>type&lt;ident=type&gt;</code></td><td>A generic type where one or more associated types have specific assignments (e.g., <code>Iterator&lt;Item=T&gt;</code>)</td></tr>
+</tbody></table>
+</div>
 <p>Table B-5 shows symbols that appear in the context of constraining generic type
 parameters with trait bounds.</p>
 <p><span class="caption">Table B-5: Trait Bound Constraints</span></p>
-<p>|Symbol|Explanation|
-|------|-----------|
-|<code>T: U</code>|Generic parameter <code>T</code> constrained to types that implement <code>U</code>|
-|<code>T: 'a</code>|Generic type <code>T</code> must outlive lifetime <code>'a</code> (meaning the type cannot transitively contain any references with lifetimes shorter than <code>'a</code>)|
-|<code>T: 'static</code>|Generic type <code>T</code> contains no borrowed references other than <code>'static</code> ones|
-|<code>'b: 'a</code>|Generic lifetime <code>'b</code> must outlive lifetime <code>'a</code>|
-|<code>T: ?Sized</code>|Allow generic type parameter to be a dynamically sized type|
-|<code>'a + trait</code>, <code>trait + trait</code>|Compound type constraint|</p>
+<div class="table-wrapper"><table><thead><tr><th>Symbol</th><th>Explanation</th></tr></thead><tbody>
+<tr><td><code>T: U</code></td><td>Generic parameter <code>T</code> constrained to types that implement <code>U</code></td></tr>
+<tr><td><code>T: 'a</code></td><td>Generic type <code>T</code> must outlive lifetime <code>'a</code> (meaning the type cannot transitively contain any references with lifetimes shorter than <code>'a</code>)</td></tr>
+<tr><td><code>T: 'static</code></td><td>Generic type <code>T</code> contains no borrowed references other than <code>'static</code> ones</td></tr>
+<tr><td><code>'b: 'a</code></td><td>Generic lifetime <code>'b</code> must outlive lifetime <code>'a</code></td></tr>
+<tr><td><code>T: ?Sized</code></td><td>Allow generic type parameter to be a dynamically sized type</td></tr>
+<tr><td><code>'a + trait</code>, <code>trait + trait</code></td><td>Compound type constraint</td></tr>
+</tbody></table>
+</div>
 <p>Table B-6 shows symbols that appear in the context of calling or defining
 macros and specifying attributes on an item.</p>
 <p><span class="caption">Table B-6: Macros and Attributes</span></p>
-<p>|Symbol|Explanation|
-|------|-----------|
-|<code>#[meta]</code>|Outer attribute|
-|<code>#![meta]</code>|Inner attribute|
-|<code>$ident</code>|Macro substitution|
-|<code>$ident:kind</code>|Macro capture|
-|<code>$(…)…</code>|Macro repetition|
-|<code>ident!(...)</code>, <code>ident!{...}</code>, <code>ident![...]</code>|Macro invocation|</p>
+<div class="table-wrapper"><table><thead><tr><th>Symbol</th><th>Explanation</th></tr></thead><tbody>
+<tr><td><code>#[meta]</code></td><td>Outer attribute</td></tr>
+<tr><td><code>#![meta]</code></td><td>Inner attribute</td></tr>
+<tr><td><code>$ident</code></td><td>Macro substitution</td></tr>
+<tr><td><code>$ident:kind</code></td><td>Macro capture</td></tr>
+<tr><td><code>$(…)…</code></td><td>Macro repetition</td></tr>
+<tr><td><code>ident!(...)</code>, <code>ident!{...}</code>, <code>ident![...]</code></td><td>Macro invocation</td></tr>
+</tbody></table>
+</div>
 <p>Table B-7 shows symbols that create comments.</p>
 <p><span class="caption">Table B-7: Comments</span></p>
-<p>|Symbol|Explanation|
-|------|-----------|
-|<code>//</code>|Line comment|
-|<code>//!</code>|Inner line doc comment|
-|<code>///</code>|Outer line doc comment|
-|<code>/*...*/</code>|Block comment|
-|<code>/*!...*/</code>|Inner block doc comment|
-|<code>/**...*/</code>|Outer block doc comment|</p>
+<div class="table-wrapper"><table><thead><tr><th>Symbol</th><th>Explanation</th></tr></thead><tbody>
+<tr><td><code>//</code></td><td>Line comment</td></tr>
+<tr><td><code>//!</code></td><td>Inner line doc comment</td></tr>
+<tr><td><code>///</code></td><td>Outer line doc comment</td></tr>
+<tr><td><code>/*...*/</code></td><td>Block comment</td></tr>
+<tr><td><code>/*!...*/</code></td><td>Inner block doc comment</td></tr>
+<tr><td><code>/**...*/</code></td><td>Outer block doc comment</td></tr>
+</tbody></table>
+</div>
 <p>Table B-8 shows symbols that appear in the context of using tuples.</p>
 <p><span class="caption">Table B-8: Tuples</span></p>
-<p>|Symbol|Explanation|
-|------|-----------|
-|<code>()</code>|Empty tuple (aka unit), both literal and type|
-|<code>(expr)</code>|Parenthesized expression|
-|<code>(expr,)</code>|Single-element tuple expression|
-|<code>(type,)</code>|Single-element tuple type|
-|<code>(expr, ...)</code>|Tuple expression|
-|<code>(type, ...)</code>|Tuple type|
-|<code>expr(expr, ...)</code>|Function call expression; also used to initialize tuple <code>struct</code>s and tuple <code>enum</code> variants|
-|<code>expr.0</code>, <code>expr.1</code>, etc.|Tuple indexing|</p>
+<div class="table-wrapper"><table><thead><tr><th>Symbol</th><th>Explanation</th></tr></thead><tbody>
+<tr><td><code>()</code></td><td>Empty tuple (aka unit), both literal and type</td></tr>
+<tr><td><code>(expr)</code></td><td>Parenthesized expression</td></tr>
+<tr><td><code>(expr,)</code></td><td>Single-element tuple expression</td></tr>
+<tr><td><code>(type,)</code></td><td>Single-element tuple type</td></tr>
+<tr><td><code>(expr, ...)</code></td><td>Tuple expression</td></tr>
+<tr><td><code>(type, ...)</code></td><td>Tuple type</td></tr>
+<tr><td><code>expr(expr, ...)</code></td><td>Function call expression; also used to initialize tuple <code>struct</code>s and tuple <code>enum</code> variants</td></tr>
+<tr><td><code>expr.0</code>, <code>expr.1</code>, etc.</td><td>Tuple indexing</td></tr>
+</tbody></table>
+</div>
 <p>Table B-9 shows the contexts in which curly braces are used.</p>
 <p><span class="caption">Table B-9: Curly Brackets</span></p>
-<p>|Context|Explanation|
-|-------|-----------|
-|<code>{...}</code>|Block expression|
-|<code>Type {...}</code>|<code>struct</code> literal|</p>
+<div class="table-wrapper"><table><thead><tr><th>Context</th><th>Explanation</th></tr></thead><tbody>
+<tr><td><code>{...}</code></td><td>Block expression</td></tr>
+<tr><td><code>Type {...}</code></td><td><code>struct</code> literal</td></tr>
+</tbody></table>
+</div>
 <p>Table B-10 shows the contexts in which square brackets are used.</p>
 <p><span class="caption">Table B-10: Square Brackets</span></p>
-<p>|Context|Explanation|
-|-------|-----------|
-|<code>[...]</code>|Array literal|
-|<code>[expr; len]</code>|Array literal containing <code>len</code> copies of <code>expr</code>|
-|<code>[type; len]</code>|Array type containing <code>len</code> instances of <code>type</code>|
-|<code>expr[expr]</code>|Collection indexing. Overloadable (<code>Index</code>, <code>IndexMut</code>)|
-|<code>expr[..]</code>, <code>expr[a..]</code>, <code>expr[..b]</code>, <code>expr[a..b]</code>|Collection indexing pretending to be collection slicing, using <code>Range</code>, <code>RangeFrom</code>, <code>RangeTo</code>, or <code>RangeFull</code> as the “index”|</p>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="appendix-c-derivable-traits"><a class="header" href="#appendix-c-derivable-traits">Appendix C: Derivable Traits</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Context</th><th>Explanation</th></tr></thead><tbody>
+<tr><td><code>[...]</code></td><td>Array literal</td></tr>
+<tr><td><code>[expr; len]</code></td><td>Array literal containing <code>len</code> copies of <code>expr</code></td></tr>
+<tr><td><code>[type; len]</code></td><td>Array type containing <code>len</code> instances of <code>type</code></td></tr>
+<tr><td><code>expr[expr]</code></td><td>Collection indexing. Overloadable (<code>Index</code>, <code>IndexMut</code>)</td></tr>
+<tr><td><code>expr[..]</code>, <code>expr[a..]</code>, <code>expr[..b]</code>, <code>expr[a..b]</code></td><td>Collection indexing pretending to be collection slicing, using <code>Range</code>, <code>RangeFrom</code>, <code>RangeTo</code>, or <code>RangeFull</code> as the “index”</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h2 id="appendix-c-derivable-traits"><a class="header" href="#appendix-c-derivable-traits">Appendix C: Derivable Traits</a></h2>
 <p>In various places in the book, we’ve discussed the <code>derive</code> attribute, which
 you can apply to a struct or enum definition. The <code>derive</code> attribute generates
 code that will implement a trait with its own default implementation on the
@@ -28387,8 +28484,8 @@ library that you can use with <code>derive</code>. Each section covers:</p>
 <li>Examples of operations that require the trait</li>
 </ul>
 <p>If you want different behavior from that provided by the <code>derive</code> attribute,
-consult the <a href="../std/index.html">standard library documentation</a><!-- ignore --></p>
-<p>for each trait for details of how to manually implement them.</p>
+consult the <a href="../std/index.html">standard library documentation</a><!-- ignore -->
+for each trait for details of how to manually implement them.</p>
 <p>These traits listed here are the only ones defined by the standard library that
 can be implemented on your types using <code>derive</code>. Other traits defined in the
 standard library don’t have sensible default behavior, so it’s up to you to
@@ -28505,8 +28602,8 @@ derive <code>Default</code>.</p>
 <p>The <code>Default::default</code> function is commonly used in combination with the struct
 update syntax discussed in the <a href="ch05-01-defining-structs.html#creating-instances-from-other-instances-with-struct-update-syntax">“Creating Instances From Other Instances With
 Struct Update
-Syntax”</a><!-- ignore --></p>
-<p>section in Chapter 5. You can customize a few fields of a struct and then
+Syntax”</a><!-- ignore -->
+section in Chapter 5. You can customize a few fields of a struct and then
 set and use a default value for the rest of the fields by using
 <code>..Default::default()</code>.</p>
 <p>The <code>Default</code> trait is required when you use the method <code>unwrap_or_default</code> on
@@ -28629,8 +28726,8 @@ compiler-centric utilities that speaks the <a href="http://langserver.org/">Lang
 ignore -->, which is a specification for IDEs and programming languages to
 communicate with each other. Different clients can use <code>rust-analyzer</code>, such as
 <a href="https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer">the Rust analyzer plug-in for Visual Studio Code</a>.</p>
-<p>Visit the <code>rust-analyzer</code> project’s <a href="https://rust-analyzer.github.io">home page</a><!-- ignore --></p>
-<p>for installation instructions, then install the language server support in your
+<p>Visit the <code>rust-analyzer</code> project’s <a href="https://rust-analyzer.github.io">home page</a><!-- ignore -->
+for installation instructions, then install the language server support in your
 particular IDE. Your IDE will gain abilities such as autocompletion, jump to
 definition, and inline errors.</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="appendix-e---editions"><a class="header" href="#appendix-e---editions">Appendix E - Editions</a></h2>

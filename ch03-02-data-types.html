@@ -222,14 +222,15 @@ start with <code>i</code> instead of <code>u</code>) that takes up 32 bits of sp
 the built-in integer types in Rust. We can use any of these variants to declare
 the type of an integer value.</p>
 <p><span class="caption">Table 3-1: Integer Types in Rust</span></p>
-<p>|Length|Signed|Unsigned|
-|------|------|--------|
-|8-bit|<code>i8</code>|<code>u8</code>|
-|16-bit|<code>i16</code>|<code>u16</code>|
-|32-bit|<code>i32</code>|<code>u32</code>|
-|64-bit|<code>i64</code>|<code>u64</code>|
-|128-bit|<code>i128</code>|<code>u128</code>|
-|arch|<code>isize</code>|<code>usize</code>|</p>
+<div class="table-wrapper"><table><thead><tr><th>Length</th><th>Signed</th><th>Unsigned</th></tr></thead><tbody>
+<tr><td>8-bit</td><td><code>i8</code></td><td><code>u8</code></td></tr>
+<tr><td>16-bit</td><td><code>i16</code></td><td><code>u16</code></td></tr>
+<tr><td>32-bit</td><td><code>i32</code></td><td><code>u32</code></td></tr>
+<tr><td>64-bit</td><td><code>i64</code></td><td><code>u64</code></td></tr>
+<tr><td>128-bit</td><td><code>i128</code></td><td><code>u128</code></td></tr>
+<tr><td>arch</td><td><code>isize</code></td><td><code>usize</code></td></tr>
+</tbody></table>
+</div>
 <p>Each variant can be either signed or unsigned and has an explicit size.
 <em>Signed</em> and <em>unsigned</em> refer to whether it’s possible for the number to be
 negative—in other words, whether the number needs to have a sign with it
@@ -254,13 +255,14 @@ such as <code>57u8</code>, to designate the type. Number literals can also use <
 visual separator to make the number easier to read, such as <code>1_000</code>, which will
 have the same value as if you had specified <code>1000</code>.</p>
 <p><span class="caption">Table 3-2: Integer Literals in Rust</span></p>
-<p>|Number literals|Example|
-|---------------|-------|
-|Decimal|<code>98_222</code>|
-|Hex|<code>0xff</code>|
-|Octal|<code>0o77</code>|
-|Binary|<code>0b1111_0000</code>|
-|Byte (<code>u8</code> only)|<code>b'A'</code>|</p>
+<div class="table-wrapper"><table><thead><tr><th>Number literals</th><th>Example</th></tr></thead><tbody>
+<tr><td>Decimal</td><td><code>98_222</code></td></tr>
+<tr><td>Hex</td><td><code>0xff</code></td></tr>
+<tr><td>Octal</td><td><code>0o77</code></td></tr>
+<tr><td>Binary</td><td><code>0b1111_0000</code></td></tr>
+<tr><td>Byte (<code>u8</code> only)</td><td><code>b'A'</code></td></tr>
+</tbody></table>
+</div>
 <p>So how do you know which type of integer to use? If you’re unsure, Rust’s
 defaults are generally good places to start: integer types default to <code>i32</code>.
 The primary situation in which you’d use <code>isize</code> or <code>usize</code> is when indexing

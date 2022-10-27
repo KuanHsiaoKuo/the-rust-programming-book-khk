@@ -385,8 +385,8 @@ For more information about this error, try `rustc --explain E0277`.
 error: could not compile `shared-state` due to previous error
 </code></pre>
 <p>Wow, that error message is very wordy! Here’s the important part to focus on:
-``Rc&lt;Mutex<i32>&gt;<code> cannot be sent between threads safely</code>. The compiler is
-also telling us the reason why: <code>the trait </code>Send<code>is not implemented for</code>Rc&lt;Mutex<i32>&gt;<code> </code>. We’ll talk about <code>Send</code> in the next section: it’s one of
+<code>`Rc&lt;Mutex&lt;i32&gt;&gt;` cannot be sent between threads safely</code>. The compiler is
+also telling us the reason why: <code>the trait `Send` is not implemented for `Rc&lt;Mutex&lt;i32&gt;&gt;` </code>. We’ll talk about <code>Send</code> in the next section: it’s one of
 the traits that ensures the types we use with threads are meant for use in
 concurrent situations.</p>
 <p>Unfortunately, <code>Rc&lt;T&gt;</code> is not safe to share across threads. When <code>Rc&lt;T&gt;</code>

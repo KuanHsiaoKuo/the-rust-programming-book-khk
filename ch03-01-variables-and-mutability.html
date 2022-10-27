@@ -223,7 +223,7 @@ error: could not compile `variables` due to previous error
 Compiler errors can be frustrating, but really they only mean your program
 isn’t safely doing what you want it to do yet; they do <em>not</em> mean that you’re
 not a good programmer! Experienced Rustaceans still get compiler errors.</p>
-<p>You received the error message <code>cannot assign twice to immutable variable </code>x`` because you tried to assign a second value to the immutable <code>x</code> variable.</p>
+<p>You received the error message <code>cannot assign twice to immutable variable `x`</code> because you tried to assign a second value to the immutable <code>x</code> variable.</p>
 <p>It’s important that we get compile-time errors when we attempt to change a
 value that’s designated as immutable because this very situation can lead to
 bugs. If one part of our code operates on the assumption that a value will

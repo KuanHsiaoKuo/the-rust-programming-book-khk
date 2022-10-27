@@ -197,7 +197,7 @@
 </li>
 <li><a href="#propagating-errors">Propagating Errors</a>
 <ul>
-<li><a href="#a-shortcut-for-propagating-errors-the--operator">A Shortcut for Propagating Errors: the ? Operator</a></li>
+<li><a href="#the--operator-a-shortcut-for-propagating-errors">The ? Operator: A Shortcut for Propagating Errors</a></li>
 <li><a href="#where-the--operator-can-be-used">Where The ? Operator Can Be Used</a></li>
 </ul>
 </li>
@@ -205,7 +205,7 @@
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Wed Oct 26 07:03:49 UTC 2022 -->
+<!-- Added by: runner, at: Thu Oct 27 08:37:18 UTC 2022 -->
 <!--te-->
 <p>Most errors aren’t serious enough to require the program to stop entirely.
 Sometimes, when a function fails, it’s for a reason that you can easily
@@ -569,72 +569,157 @@ succeed:</p>
 information to use in debugging.</li>
 </ul>
 <h2 id="propagating-errors"><a class="header" href="#propagating-errors">Propagating Errors</a></h2>
+<details id="admonition-how-to-propagate-the-error-why" class="admonition question">
+<summary class="admonition-title">
+<p>How to propagate the error? Why?</p>
+<p><a class="admonition-anchor-link" href="#admonition-how-to-propagate-the-error-why"></a></p>
+</summary>
+<div>
 <p>When a function’s implementation calls something that might fail, instead of
 handling the error within the function itself, you can return the error to the
-calling code so that it can decide what to do. This is known as <em>propagating</em>
+calling code so that it can decide what to do. </p>
+<p>This is known as <em>propagating</em>
 the error and gives more control to the calling code, where there might be more
 information or logic that dictates how the error should be handled than what
 you have available in the context of your code.</p>
-<p>For example, Listing 9-6 shows a function that reads a username from a file. If
-the file doesn’t exist or can’t be read, this function will return those errors
+</div>
+</details>
+<details id="admonition-listing-9-6-a-function-that-returns-errors-to-the-calling-code-using-match" class="admonition question">
+<summary class="admonition-title">
+<p>Listing 9-6: A function that returns errors to the calling code using <em>match</em></p>
+<p><a class="admonition-anchor-link" href="#admonition-listing-9-6-a-function-that-returns-errors-to-the-calling-code-using-match"></a></p>
+</summary>
+<div>
+<p>For example, Listing 9-6 shows a function that reads a username from a file. </p>
+<p>If the file doesn’t exist or can’t be read, this function will return those errors
 to the code that called the function.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
 <!-- Deliberately not using rustdoc_include here; the `main` function in the
 file panics. We do want to include it for reader experimentation purposes, but
 don't want to include it for rustdoc testing purposes. -->
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>{{# include../ listings / ch09 - error -handling / listing - 09 - 06 / src /main.rs: here}}
-<span class="boring">}
-</span></code></pre></pre>
-<p><span class="caption">Listing 9-6: A function that returns errors to the
-calling code using <code>match</code></span></p>
+<pre><pre class="playground"><code class="language-rust  editable">use std::fs::File;
+use std::io::{self, Read};
+
+fn read_username_from_file() -&gt; Result&lt;String, io::Error&gt; {
+    let username_file_result = File::open(&quot;hello.txt&quot;);
+
+    let mut username_file = match username_file_result {
+        Ok(file) =&gt; file,
+        Err(e) =&gt; return Err(e),
+    };
+
+    let mut username = String::new();
+
+    match username_file.read_to_string(&amp;mut username) {
+        Ok(_) =&gt; Ok(username),
+        Err(e) =&gt; Err(e),
+    }
+}
+</code></pre></pre>
+</div>
+</details>
 <p>This function can be written in a much shorter way, but we’re going to start by
-doing a lot of it manually in order to explore error handling; at the end,
-we’ll show the shorter way. Let’s look at the return type of the function
-first: <code>Result&lt;String, io::Error&gt;</code>. This means the function is returning a
-value of the type <code>Result&lt;T, E&gt;</code> where the generic parameter <code>T</code> has been
-filled in with the concrete type <code>String</code>, and the generic type <code>E</code> has been
-filled in with the concrete type <code>io::Error</code>.</p>
-<p>If this function succeeds without any problems, the code that calls this
-function will receive an <code>Ok</code> value that holds a <code>String</code>—the username that
-this function read from the file. If this function encounters any problems, the
-calling code will receive an <code>Err</code> value that holds an instance of <code>io::Error</code>
-that contains more information about what the problems were. We chose
-<code>io::Error</code> as the return type of this function because that happens to be the
+doing a lot of it manually in order to explore error handling;</p>
+<p>at the end, we’ll show the shorter way.</p>
+<details id="admonition-lets-look-at-the-return-type-of-the-function-first-result" class="admonition question">
+<summary class="admonition-title">
+<p>Let’s look at the return type of the function first: <em>Result&lt;String, io::Error&gt;</em>:</p>
+<p><a class="admonition-anchor-link" href="#admonition-lets-look-at-the-return-type-of-the-function-first-result"></a></p>
+</summary>
+<div>
+<ul>
+<li>This means the function is returning a value of the type <code>Result&lt;T, E&gt;</code></li>
+<li>the generic parameter <code>T</code> has been filled in with the concrete type <code>String</code></li>
+<li>and the generic type <code>E</code> has been filled in with the concrete type <code>io::Error</code>.</li>
+</ul>
+<ol>
+<li>If this function succeeds without any problems
+The code that calls this function will receive an <code>Ok</code> value that holds a <code>String</code>—the username that
+this function read from the file.</li>
+<li>If this function encounters any problems
+The calling code will receive an <code>Err</code> value that holds an instance of <code>io::Error</code>
+that contains more information about what the problems were.</li>
+</ol>
+</div>
+</details>
+<details id="admonition-why-chose-ioerror-as-the-return-type" class="admonition question">
+<summary class="admonition-title">
+<p>Why chose <em>io::Error</em> as the return type?</p>
+<p><a class="admonition-anchor-link" href="#admonition-why-chose-ioerror-as-the-return-type"></a></p>
+</summary>
+<div>
+<blockquote>
+<p>We chose <code>io::Error</code> as the return type of this function because that happens to be the
 type of the error value returned from both of the operations we’re calling in
 this function’s body that might fail: the <code>File::open</code> function and the
 <code>read_to_string</code> method.</p>
-<p>The body of the function starts by calling the <code>File::open</code> function. Then we
-handle the <code>Result</code> value with a <code>match</code> similar to the <code>match</code> in Listing 9-4.
-If <code>File::open</code> succeeds, the file handle in the pattern variable <code>file</code>
+</blockquote>
+</div>
+</details>
+<ul>
+<li>
+<p>The body of the function starts by calling the <code>File::open</code> function.</p>
+</li>
+<li>
+<p>Then we
+handle the <code>Result</code> value with a <code>match</code> similar to the <code>match</code> in Listing 9-4.</p>
+</li>
+<li>
+<p>If <code>File::open</code> succeeds, the file handle in the pattern variable <code>file</code>
 becomes the value in the mutable variable <code>username_file</code> and the function
-continues. In the <code>Err</code> case, instead of calling <code>panic!</code>, we use the <code>return</code>
+continues.</p>
+</li>
+<li>
+<p>In the <code>Err</code> case, instead of calling <code>panic!</code>, we use the <code>return</code>
 keyword to return early out of the function entirely and pass the error value
 from <code>File::open</code>, now in the pattern variable <code>e</code>, back to the calling code as
 this function’s error value.</p>
+</li>
+<li>
 <p>So if we have a file handle in <code>username_file</code>, the function then creates a new
 <code>String</code> in variable <code>username</code> and calls the <code>read_to_string</code> method on
 the file handle in <code>username_file</code> to read the contents of the file into
-<code>username</code>. The <code>read_to_string</code> method also returns a <code>Result</code> because it
-might fail, even though <code>File::open</code> succeeded. So we need another <code>match</code> to
+<code>username</code>.</p>
+</li>
+<li>
+<p>The <code>read_to_string</code> method also returns a <code>Result</code> because it
+might fail, even though <code>File::open</code> succeeded.</p>
+</li>
+<li>
+<p>So we need another <code>match</code> to
 handle that <code>Result</code>: if <code>read_to_string</code> succeeds, then our function has
 succeeded, and we return the username from the file that’s now in <code>username</code>
-wrapped in an <code>Ok</code>. If <code>read_to_string</code> fails, we return the error value in the
+wrapped in an <code>Ok</code>.</p>
+</li>
+<li>
+<p>If <code>read_to_string</code> fails, we return the error value in the
 same way that we returned the error value in the <code>match</code> that handled the
-return value of <code>File::open</code>. However, we don’t need to explicitly say
+return value of <code>File::open</code>.</p>
+</li>
+</ul>
+<blockquote>
+<p>However, we don’t need to explicitly say
 <code>return</code>, because this is the last expression in the function.</p>
+</blockquote>
 <p>The code that calls this code will then handle getting either an <code>Ok</code> value
-that contains a username or an <code>Err</code> value that contains an <code>io::Error</code>. It’s
-up to the calling code to decide what to do with those values. If the calling
-code gets an <code>Err</code> value, it could call <code>panic!</code> and crash the program, use a
-default username, or look up the username from somewhere other than a file, for
-example. We don’t have enough information on what the calling code is actually
+that contains a username or an <code>Err</code> value that contains an <code>io::Error</code>.</p>
+<p>It’s up to the calling code to decide what to do with those values:</p>
+<ul>
+<li>
+<p>If the calling code gets an <code>Err</code> value
+it could call <code>panic!</code> and crash the program, use a default username, or look up
+the username from somewhere other than a file, for example.</p>
+</li>
+<li>
+<p>We don’t have enough information on what the calling code is actually
 trying to do, so we propagate all the success or error information upward for
 it to handle appropriately.</p>
+</li>
+</ul>
+<blockquote>
 <p>This pattern of propagating errors is so common in Rust that Rust provides the
 question mark operator <code>?</code> to make this easier.</p>
-<h3 id="a-shortcut-for-propagating-errors-the--operator"><a class="header" href="#a-shortcut-for-propagating-errors-the--operator">A Shortcut for Propagating Errors: the <code>?</code> Operator</a></h3>
+</blockquote>
+<h3 id="the--operator-a-shortcut-for-propagating-errors"><a class="header" href="#the--operator-a-shortcut-for-propagating-errors">The <code>?</code> Operator: A Shortcut for Propagating Errors</a></h3>
 <p>Listing 9-7 shows an implementation of <code>read_username_from_file</code> that has the
 same functionality as in Listing 9-6, but this implementation uses the
 <code>?</code> operator.</p>
@@ -772,10 +857,19 @@ that point. If the value is <code>Some</code>, the value inside the <code>Some</
 resulting value of the expression and the function continues. Listing 9-11 has
 an example of a function that finds the last character of the first line in the
 given text:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+<pre><pre class="playground"><code class="language-rust">fn last_char_of_first_line(text: &amp;str) -&gt; Option&lt;char&gt; {
+    text.lines().next()?.chars().last()
+}
+<span class="boring">
 </span><span class="boring">fn main() {
-</span>{{# rustdoc_include../ listings / ch09 - error -handling / listing - 09 - 11 / src /main.rs: here}}
-<span class="boring">}
+</span><span class="boring">    assert_eq!(
+</span><span class="boring">        last_char_of_first_line(&quot;Hello, world\nHow are you today?&quot;),
+</span><span class="boring">        Some('d')
+</span><span class="boring">    );
+</span><span class="boring">
+</span><span class="boring">    assert_eq!(last_char_of_first_line(&quot;&quot;), None);
+</span><span class="boring">    assert_eq!(last_char_of_first_line(&quot;\nhi&quot;), None);
+</span><span class="boring">}
 </span></code></pre></pre>
 <p><span class="caption">Listing 9-11: Using the <code>?</code> operator on an <code>Option&lt;T&gt;</code>
 value</span></p>

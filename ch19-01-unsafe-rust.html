@@ -638,8 +638,8 @@ trait</span></p>
 the compiler can’t verify.</p>
 <p>As an example, recall the <code>Sync</code> and <code>Send</code> marker traits we discussed in the
 <a href="ch16-04-extensible-concurrency-sync-and-send.html#extensible-concurrency-with-the-sync-and-send-traits">“Extensible Concurrency with the <code>Sync</code> and <code>Send</code>
-Traits”</a><!-- ignore --></p>
-<p>section in Chapter 16: the compiler implements these traits automatically if
+Traits”</a><!-- ignore -->
+section in Chapter 16: the compiler implements these traits automatically if
 our types are composed entirely of <code>Send</code> and <code>Sync</code> types. If we implement a
 type that contains a type that is not <code>Send</code> or <code>Sync</code>, such as raw pointers,
 and we want to mark that type as <code>Send</code> or <code>Sync</code>, we must use <code>unsafe</code>. Rust

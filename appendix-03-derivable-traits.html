@@ -194,8 +194,8 @@ library that you can use with <code>derive</code>. Each section covers:</p>
 <li>Examples of operations that require the trait</li>
 </ul>
 <p>If you want different behavior from that provided by the <code>derive</code> attribute,
-consult the <a href="../std/index.html">standard library documentation</a><!-- ignore --></p>
-<p>for each trait for details of how to manually implement them.</p>
+consult the <a href="../std/index.html">standard library documentation</a><!-- ignore -->
+for each trait for details of how to manually implement them.</p>
 <p>These traits listed here are the only ones defined by the standard library that
 can be implemented on your types using <code>derive</code>. Other traits defined in the
 standard library don’t have sensible default behavior, so it’s up to you to
@@ -312,8 +312,8 @@ derive <code>Default</code>.</p>
 <p>The <code>Default::default</code> function is commonly used in combination with the struct
 update syntax discussed in the <a href="ch05-01-defining-structs.html#creating-instances-from-other-instances-with-struct-update-syntax">“Creating Instances From Other Instances With
 Struct Update
-Syntax”</a><!-- ignore --></p>
-<p>section in Chapter 5. You can customize a few fields of a struct and then
+Syntax”</a><!-- ignore -->
+section in Chapter 5. You can customize a few fields of a struct and then
 set and use a default value for the rest of the fields by using
 <code>..Default::default()</code>.</p>
 <p>The <code>Default</code> trait is required when you use the method <code>unwrap_or_default</code> on
