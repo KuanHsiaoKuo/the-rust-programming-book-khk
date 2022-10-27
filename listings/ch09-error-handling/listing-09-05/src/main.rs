@@ -7,6 +7,7 @@ fn main() {
     let greeting_file = match greeting_file_result {
         Ok(file) => file,
         // add an inner match expression
+        // just like try...except xxxException in python
         Err(error) => match error.kind() {
             ErrorKind::NotFound => match File::create("hello.txt") {
                 Ok(fc) => fc,

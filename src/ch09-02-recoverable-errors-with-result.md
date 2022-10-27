@@ -1,22 +1,23 @@
 # Recoverable Errors with `Result`
 
 <!--ts-->
+
 * [Recoverable Errors with Result](#recoverable-errors-with-result)
-   * [Result Definition and Basic Usage](#result-definition-and-basic-usage)
-      * [What the definition of Result conveys?](#what-the-definition-of-result-conveys)
-      * [What is the information the result enum conveys?](#what-is-the-information-the-result-enum-conveys)
-      * [How to hanle the information? Match Expression](#how-to-hanle-the-information-match-expression)
-      * [What happened if the match expression not handle a situation?](#what-happened-if-the-match-expression-not-handle-a-situation)
-   * [Matching on Different Errors](#matching-on-different-errors)
-   * [Alternatives to Using match with Result&lt;T, E&gt;](#alternatives-to-using-match-with-resultt-e)
-   * [Shortcuts for Panic on Error: unwrap and expect](#shortcuts-for-panic-on-error-unwrap-and-expect)
-      * [Why need unwrap and expect](#why-need-unwrap-and-expect)
-      * [Unwrap](#unwrap)
-      * [Expect: easier to track down](#expect-easier-to-track-down)
-      * [Most Rustaceans choose expect rather than unwrap](#most-rustaceans-choose-expect-rather-than-unwrap)
-   * [Propagating Errors](#propagating-errors)
-      * [The ? Operator: A Shortcut for Propagating Errors](#the--operator-a-shortcut-for-propagating-errors)
-      * [Where The ? Operator Can Be Used](#where-the--operator-can-be-used)
+    * [Result Definition and Basic Usage](#result-definition-and-basic-usage)
+        * [What the definition of Result conveys?](#what-the-definition-of-result-conveys)
+        * [What is the information the result enum conveys?](#what-is-the-information-the-result-enum-conveys)
+        * [How to hanle the information? Match Expression](#how-to-hanle-the-information-match-expression)
+        * [What happened if the match expression not handle a situation?](#what-happened-if-the-match-expression-not-handle-a-situation)
+    * [Matching on Different Errors](#matching-on-different-errors)
+    * [Alternatives to Using match with Result&lt;T, E&gt;](#alternatives-to-using-match-with-resultt-e)
+    * [Shortcuts for Panic on Error: unwrap and expect](#shortcuts-for-panic-on-error-unwrap-and-expect)
+        * [Why need unwrap and expect](#why-need-unwrap-and-expect)
+        * [Unwrap](#unwrap)
+        * [Expect: easier to track down](#expect-easier-to-track-down)
+        * [Most Rustaceans choose expect rather than unwrap](#most-rustaceans-choose-expect-rather-than-unwrap)
+    * [Propagating Errors](#propagating-errors)
+        * [The ? Operator: A Shortcut for Propagating Errors](#the--operator-a-shortcut-for-propagating-errors)
+        * [Where The ? Operator Can Be Used](#where-the--operator-can-be-used)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 <!-- Added by: runner, at: Thu Oct 27 10:30:42 UTC 2022 -->
@@ -148,6 +149,7 @@ As usual, this output tells us exactly what has gone wrong.
 ## Matching on Different Errors
 
 The code in Listing 9-4 will `panic!` no matter why `File::open` failed.
+
 However, we want to take different actions for different failure reasons:
 
 - if `File::open` failed because the file doesn’t exist, we want to create the file
@@ -170,38 +172,39 @@ tests to fail lol -->
    `io::Error`, which is a struct provided by the standard library.
 2. This struct
    has a method `kind` that we can call to get an `io::ErrorKind` value.
-3. The enum
-   `io::ErrorKind` is provided by the standard library and has variants
-   representing the different kinds of errors that might result from an `io`
-   operation.
-4. The variant we want to use is `ErrorKind::NotFound`, which indicates
+
+> The enum
+`io::ErrorKind` is provided by the standard library and has variants
+> representing the different kinds of errors that might result from an `io`
+> operation.
+
+3. The variant we want to use is `ErrorKind::NotFound`, which indicates
    the file we’re trying to open doesn’t exist yet.
-5. So we match on
-   `greeting_file_result`, but we also have an inner match on `error.kind()`.
-6. The condition we want to check in the inner match is whether the value returned
+
+> So we match on
+`greeting_file_result`, but we also have an inner match on `error.kind()`.
+
+4. The condition we want to check in the inner match is whether the value returned
    by `error.kind()` is the `NotFound` variant of the `ErrorKind` enum:
 
 - If it is,
   we try to create the file with `File::create`.
 
-7. However, because `File::create`
+5. However, because `File::create`
    could also fail, we need a second arm in the inner `match` expression.
-8. When the
+6. When the
    file can’t be created, a different error message is printed.
-9. The second arm of
+7. The second arm of
    the outer `match` stays the same, so the program panics on any error besides
    the missing file error.
 
-## Alternatives to Using `match` with `Result<T, E>`
+## unwrap_or_else: Alternatives to Using `match` with `Result<T, E>`
 
 That’s a lot of `match`!
 
-- The `match` expression is very useful but also very
-  much a primitive.
-- In Chapter 13, you’ll learn about closures, which are used
-  with many of the methods defined on `Result<T, E>`.
-- These methods can be more
-  concise than using `match` when handling `Result<T, E>` values in your code.
+- The `match` expression is very useful but also very much a primitive.
+- In Chapter 13, you’ll learn about closures, which are used with many of the methods defined on `Result<T, E>`.
+- These methods can be more concise than using `match` when handling `Result<T, E>` values in your code.
 
 <!-- CAN'T EXTRACT SEE https://github.com/rust-lang/mdBook/issues/1127 -->
 
@@ -232,18 +235,20 @@ fn main() {
 ~~~admonish info title="**unwrap_or_else** method can clean up huge nested **match** expressions" collapsible=true
 Come back to this example
 after you’ve read Chapter 13, and look up the `unwrap_or_else` method in the
-standard library documentation. Many more of these methods can clean up huge
+standard library documentation. 
+
+Many more of these methods can clean up huge
 nested `match` expressions when you’re dealing with errors.
 ~~~
 
-## Shortcuts for Panic on Error: `unwrap` and `expect`
+## `unwrap` and `expect`: Shortcuts for Panic on Error
 
 ### Why need unwrap and expect
 
-Using `match` works well enough, but it can be a bit verbose and doesn’t always
-communicate intent well.
+> Using `match` works well enough, but it can be a bit verbose and doesn’t always
+> communicate intent well.
 
-~~~admonish info title="So the **Result<T, E>** type has many helper methods defined on it to do various, more specific tasks:" collapsible=true
+~~~admonish info title="So the **Result<T, E>** type has many helper methods defined on it to do various, more specific tasks: OK or panic!" collapsible=true
 - The `unwrap` method is a
 shortcut method implemented just like the `match` expression we wrote in
 Listing 9-4. 
@@ -294,8 +299,8 @@ We use `expect` in the same way as `unwrap`:
 - to return the file handle or call
   the `panic!` macro.
 - Easier Point: The error message used by `expect` in its call to `panic!`
-  will be the parameter that we pass to `expect`, rather than the default
-  `panic!` message that `unwrap` uses.
+  will be the parameter that we pass to `expect`
+- rather than the default `panic!` message that `unwrap` uses.
 
 ~~~admonish info title="Here’s what it looks like: you can compare blow with similar situation above" collapsible=true
 ```shell
@@ -319,7 +324,7 @@ succeed:
 - That way, if your assumptions are ever proven wrong, you have more
   information to use in debugging.
 
-## Propagating Errors
+## Using *?* to Propagating Errors
 
 ~~~admonish question title="How to propagate the error? Why?" collapsible=true
 When a function’s implementation calls something that might fail, instead of
@@ -369,8 +374,9 @@ at the end, we’ll show the shorter way.
 ~~~admonish question title="Why chose *io::Error* as the return type?" collapsible=true
 > We chose `io::Error` as the return type of this function because that happens to be the
 type of the error value returned from both of the operations we’re calling in
-this function’s body that might fail: the `File::open` function and the
-`read_to_string` method.
+this function’s body that might fail: 
+
+the `File::open` function and the `read_to_string` method.
 ~~~
 
 - The body of the function starts by calling the `File::open` function.
@@ -404,15 +410,18 @@ this function’s body that might fail: the `File::open` function and the
 The code that calls this code will then handle getting either an `Ok` value
 that contains a username or an `Err` value that contains an `io::Error`.
 
-It’s up to the calling code to decide what to do with those values:
-
+~~~admonish tip title="> It’s up to the calling code to decide what to do with those values:" collapsible=true
 - If the calling code gets an `Err` value
+
   it could call `panic!` and crash the program, use a default username, or look up
   the username from somewhere other than a file, for example.
 
 - We don’t have enough information on what the calling code is actually
-  trying to do, so we propagate all the success or error information upward for
+  trying to do
+  
+  so we propagate all the success or error information upward for
   it to handle appropriately.
+~~~
 
 > This pattern of propagating errors is so common in Rust that Rust provides the
 > question mark operator `?` to make this easier.
@@ -423,12 +432,6 @@ Listing 9-7 shows an implementation of `read_username_from_file` that has the
 same functionality as in Listing 9-6, but this implementation uses the
 `?` operator.
 
-<span class="filename">Filename: src/main.rs</span>
-
-<!-- Deliberately not using rustdoc_include here; the `main` function in the
-file panics. We do want to include it for reader experimentation purposes, but
-don't want to include it for rustdoc testing purposes. -->
-
 ~~~admonish note title="Listing 9-7: A function that returns errors to the calling code using the *?* operator" collapsible=true
 ```rust
 {{#include ../listings/ch09-error-handling/listing-09-07/src/main.rs:here}}
@@ -437,67 +440,74 @@ don't want to include it for rustdoc testing purposes. -->
 
 The `?` placed after a `Result` value is defined to work in almost the same way
 as the `match` expressions we defined to handle the `Result` values in Listing
-9-6. If the value of the `Result` is an `Ok`, the value inside the `Ok` will
-get returned from this expression, and the program will continue. If the value
-is an `Err`, the `Err` will be returned from the whole function as if we had
-used the `return` keyword so the error value gets propagated to the calling
-code.
+9-6:
 
-There is a difference between what the `match` expression from Listing 9-6 does
-and what the `?` operator does: error values that have the `?` operator called
-on them go through the `from` function, defined in the `From` trait in the
-standard library, which is used to convert values from one type into another.
-When the `?` operator calls the `from` function, the error type received is
-converted into the error type defined in the return type of the current
-function. This is useful when a function returns one error type to represent
-all the ways a function might fail, even if parts might fail for many different
-reasons.
+1. Return OK:
+   If the value of the `Result` is an `Ok`, the value inside the `Ok` will
+   get returned from this expression, and the program will continue.
+2. Propagate Err:
+   If the value is an `Err`, the `Err` will be returned from the whole function as if we had
+   used the `return` keyword so the error value gets propagated to the calling
+   code.
+
+> There is a difference between what the `match` expression from Listing 9-6 does
+> and what the `?` operator does:
+
+- error values that have the `?` operator called
+  on them go through the `from` function, defined in the `From` trait in the
+  standard library, which is used to convert values from one type into another.
+
+- When the `?` operator calls the `from` function, the error type received is
+  converted into the error type defined in the return type of the current
+  function.
+
+- This is useful when a function returns one error type to represent
+  all the ways a function might fail, even if parts might fail for many different
+  reasons.
 
 For example, we could change the `read_username_from_file` function in Listing
-9-7 to return a custom error type named `OurError` that we define. If we also
-define `impl From<io::Error> for OurError` to construct an instance of
+9-7 to return a custom error type named `OurError` that we define.
+
+> If we also
+> define `impl From<io::Error> for OurError` to construct an instance of
 `OurError` from an `io::Error`, then the `?` operator calls in the body of
 `read_username_from_file` will call `from` and convert the error types without
-needing to add any more code to the function.
+> needing to add any more code to the function.
 
 In the context of Listing 9-7, the `?` at the end of the `File::open` call will
-return the value inside an `Ok` to the variable `username_file`. If an error
-occurs, the `?` operator will return early out of the whole function and give
-any `Err` value to the calling code. The same thing applies to the `?` at the
-end of the `read_to_string` call.
+return the value inside an `Ok` to the variable `username_file`:
+
+- If an error
+  occurs, the `?` operator will return early out of the whole function and give
+  any `Err` value to the calling code.
+- The same thing applies to the `?` at the
+  end of the `read_to_string` call.
 
 The `?` operator eliminates a lot of boilerplate and makes this function’s
-implementation simpler. We could even shorten this code further by chaining
-method calls immediately after the `?`, as shown in Listing 9-8.
+implementation simpler.
 
-<span class="filename">Filename: src/main.rs</span>
-
-<!-- Deliberately not using rustdoc_include here; the `main` function in the
-file panics. We do want to include it for reader experimentation purposes, but
-don't want to include it for rustdoc testing purposes. -->
+> We could even shorten this code further by chaining
+> method calls immediately after the `?`, as shown in Listing 9-8.
 
 ~~~admonish note title="Listing 9-8: Chaining method calls after the *?* operator" collapsible=true
 ```rust
-{{#include ../listings/ch09-error-handling/listing-09-08/src/main.rs:here}}
+{{#include ../listings/ch09-error-handling/listing-09-08/src/main.rs}}
 ```
 ~~~
 
-We’ve moved the creation of the new `String` in `username` to the beginning of
-the function; that part hasn’t changed. Instead of creating a variable
-`username_file`, we’ve chained the call to `read_to_string` directly onto the
-result of `File::open("hello.txt")?`. We still have a `?` at the end of the
-`read_to_string` call, and we still return an `Ok` value containing `username`
-when both `File::open` and `read_to_string` succeed rather than returning
-errors. The functionality is again the same as in Listing 9-6 and Listing 9-7;
-this is just a different, more ergonomic way to write it.
+1. We’ve moved the creation of the new `String` in `username` to the beginning of
+   the function; that part hasn’t changed.
+2. Instead of creating a variable
+   `username_file`, we’ve chained the call to `read_to_string` directly onto the
+   result of `File::open("hello.txt")?`.
+3. We still have a `?` at the end of the
+   `read_to_string` call, and we still return an `Ok` value containing `username`
+   when both `File::open` and `read_to_string` succeed rather than returning
+   errors.
+4. The functionality is again the same as in Listing 9-6 and Listing 9-7;
+   this is just a different, more ergonomic way to write it.
 
 Listing 9-9 shows a way to make this even shorter using `fs::read_to_string`.
-
-<span class="filename">Filename: src/main.rs</span>
-
-<!-- Deliberately not using rustdoc_include here; the `main` function in the
-file panics. We do want to include it for reader experimentation purposes, but
-don't want to include it for rustdoc testing purposes. -->
 
 ~~~admonish not title="Listing 9-9: Using *fs::read_to_string* instead of opening and then reading the file" collapsible=true
 ```rust
@@ -508,12 +518,10 @@ don't want to include it for rustdoc testing purposes. -->
 Reading a file into a string is a fairly common operation, so the standard
 library provides the convenient `fs::read_to_string` function:
 
-- opens the
-  file
+- opens the file
 - creates a new `String`
 - reads the contents of the file
-- puts the contents
-  into that `String`, and returns it
+- puts the contents into that `String`, and returns it
 
 Of course, using `fs::read_to_string`
 doesn’t give us the opportunity to explain all the error handling, so we did it
@@ -521,8 +529,10 @@ the longer way first.
 
 ### Where The `?` Operator Can Be Used
 
-The `?` operator can only be used in functions whose return type is compatible
-with the value the `?` is used on.
+#### Compatible Type
+
+> The `?` operator can only be used in functions whose return type is compatible
+> with the value the `?` is used on.
 
 This is because the `?` operator is defined
 to perform an early return of a value out of the function, in the same manner
@@ -534,6 +544,8 @@ In Listing 9-6, the
 
 > The return type of the function has to be a `Result` so that
 > it’s compatible with this `return`.
+
+#### If Incompatible
 
 In Listing 9-10, let’s look at the error we’ll get if we use the `?` operator
 in a `main` function with a return type incompatible with the type of the value
@@ -561,29 +573,36 @@ value returned by `File::open`, but this `main` function has the return type of
 > function that returns `Result`, `Option`, or another type that implements
 `FromResidual`.
 
-To fix the error, you have two choices:
+#### Two fix choices
 
-1. One choice is to change the return type
+~~~admonish not title="To fix the incompatible error, you have two choices:" collapsible=true
+
+1. Change the return type
+
+One choice is to change the return type
    of your function to be compatible with the value you’re using the `?` operator
    on as long as you have no restrictions preventing that.
-2. The other technique is
-   to use a `match` or one of the `Result<T, E>` methods to handle the `Result<T,
-   E>` in whatever way is appropriate.
+ 
+2. Use match or specific methods
+
+The other technique is
+   to use a `match` or one of the `Result<T, E>` methods to handle the `Result<T, E>` in whatever way is appropriate.
+~~~
 
 > The error message also mentioned that `?` can be used with `Option<T>` values
 > as well.
 
 As with using `?` on `Result`, you can only use `?` on `Option` in a
-function that returns an `Option`. The behavior of the `?` operator when called
-on an `Option<T>` is similar to its behavior when called on a `Result<T, E>`:
+function that returns an `Option`.
 
+~~~admonish not title="The behavior of the *?* operator when called on an *Option<T>* is similar to its behavior when called on a *Result<T, E>*:" collapsible=true
 - if the value is `None`, the `None` will be returned early from the function at
   that point.
 - If the value is `Some`, the value inside the `Some` is the
   resulting value of the expression and the function continues.
+~~~
 
-Listing 9-11 has
-an example of a function that finds the last character of the first line in the
+Listing 9-11 has an example of a function that finds the last character of the first line in the
 given text:
 
 ~~~admonish not title="Listing 9-11: Using the *?* operator on an *Option<T>* value" collapsible=true
@@ -624,20 +643,27 @@ given text:
 - If we couldn’t use the `?` operator on `Option`, we’d
   have to implement this logic using more method calls or a `match` expression.
 
+#### Notes About the *?*
+
 Note that:
 
-- you can use the `?` operator on a `Result` in a function that returns
+- Result: you can use the `?` operator on a `Result` in a function that returns
   `Result`
-- and you can use the `?` operator on an `Option` in a function that
+- Option: and you can use the `?` operator on an `Option` in a function that
   returns `Option`
 - but you can’t mix and match.
 - The `?` operator won’t
   automatically convert a `Result` to an `Option` or vice versa;
-- in those cases,
-  you can use methods like the `ok` method on `Result` or the `ok_or` method on
-  `Option` to do the conversion explicitly.
 
-So far, all the `main` functions we’ve used return `()`. The `main` function is
+> in those cases,
+> you can use methods like the `ok` method on `Result` or the `ok_or` method on
+`Option` to do the conversion explicitly.
+
+#### Changing main to return Result
+
+So far, all the `main` functions we’ve used return `()`.
+
+The `main` function is
 special because it’s the entry and exit point of executable programs, and there
 are restrictions on what its return type can be for the programs to behave as
 expected.
@@ -655,6 +681,8 @@ code will now compile:
 ```
 ~~~
 
+#### What is `Box<dyn Error>`
+
 - The `Box<dyn Error>` type is a *trait object*, which we’ll talk about in the
   [“Using Trait Objects that Allow for Values of Different
   Types”][trait-objects]<!-- ignore --> section in Chapter 17.
@@ -669,6 +697,8 @@ code will now compile:
   this `main` function will only ever return errors of type `std::io::Error`, by
   specifying `Box<dyn Error>`, this signature will continue to be correct even if
   more code that returns other errors is added to the body of `main`.
+
+#### The Executable of main
 
 When a `main` function returns a `Result<(), E>`, the executable will
 exit with a value of `0` if `main` returns `Ok(())` and will exit with a
