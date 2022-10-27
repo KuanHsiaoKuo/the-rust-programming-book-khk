@@ -1,26 +1,31 @@
 # Recoverable Errors with `Result`
 
 <!--ts-->
-
 * [Recoverable Errors with Result](#recoverable-errors-with-result)
-    * [Result Definition and Basic Usage](#result-definition-and-basic-usage)
-        * [What the definition of Result conveys?](#what-the-definition-of-result-conveys)
-        * [What is the information the result enum conveys?](#what-is-the-information-the-result-enum-conveys)
-        * [How to hanle the information? Match Expression](#how-to-hanle-the-information-match-expression)
-        * [What happened if the match expression not handle a situation?](#what-happened-if-the-match-expression-not-handle-a-situation)
-    * [Matching on Different Errors](#matching-on-different-errors)
-    * [Alternatives to Using match with Result&lt;T, E&gt;](#alternatives-to-using-match-with-resultt-e)
-    * [Shortcuts for Panic on Error: unwrap and expect](#shortcuts-for-panic-on-error-unwrap-and-expect)
-        * [Why need unwrap and expect](#why-need-unwrap-and-expect)
-        * [Unwrap](#unwrap)
-        * [Expect: easier to track down](#expect-easier-to-track-down)
-        * [Most Rustaceans choose expect rather than unwrap](#most-rustaceans-choose-expect-rather-than-unwrap)
-    * [Propagating Errors](#propagating-errors)
-        * [The ? Operator: A Shortcut for Propagating Errors](#the--operator-a-shortcut-for-propagating-errors)
-        * [Where The ? Operator Can Be Used](#where-the--operator-can-be-used)
+   * [Result Definition and Basic Usage](#result-definition-and-basic-usage)
+      * [What the definition of Result conveys?](#what-the-definition-of-result-conveys)
+      * [What is the information the result enum conveys?](#what-is-the-information-the-result-enum-conveys)
+      * [How to hanle the information? Match Expression](#how-to-hanle-the-information-match-expression)
+      * [What happened if the match expression not handle a situation?](#what-happened-if-the-match-expression-not-handle-a-situation)
+   * [Matching on Different Errors](#matching-on-different-errors)
+   * [unwrap_or_else: Alternatives to Using match with Result&lt;T, E&gt;](#unwrap_or_else-alternatives-to-using-match-with-resultt-e)
+      * [Why need unwrap and expect](#why-need-unwrap-and-expect)
+      * [Unwrap](#unwrap)
+      * [Expect: easier to track down](#expect-easier-to-track-down)
+      * [Most Rustaceans choose expect rather than unwrap](#most-rustaceans-choose-expect-rather-than-unwrap)
+   * [Using <em>?</em> to Propagating Errors](#using--to-propagating-errors)
+      * [The ? Operator: A Shortcut for Propagating Errors](#the--operator-a-shortcut-for-propagating-errors)
+      * [Where The ? Operator Can Be Used](#where-the--operator-can-be-used)
+         * [Compatible Type](#compatible-type)
+         * [If Incompatible](#if-incompatible)
+         * [Two fix choices](#two-fix-choices)
+         * [Notes About the <em>?</em>](#notes-about-the-)
+         * [Changing main to return Result](#changing-main-to-return-result)
+         * [What is Box&lt;dyn Error&gt;](#what-is-boxdyn-error)
+         * [The Executable of main](#the-executable-of-main)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Oct 27 10:30:42 UTC 2022 -->
+<!-- Added by: runner, at: Thu Oct 27 11:55:11 UTC 2022 -->
 
 <!--te-->
 
