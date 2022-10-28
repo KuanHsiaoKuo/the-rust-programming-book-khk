@@ -2494,11 +2494,28 @@ incorrect index, invalid memory can be accessed. Rust protects you against this
 kind of error by immediately exiting instead of allowing the memory access and
 continuing. Chapter 9 discusses more of Rust’s error handling and how you can
 write readable, safe code that neither panics nor allows invalid memory access.</p>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="functions"><a class="header" href="#functions">Functions</a></h1>
+<!--ts-->
+<ul>
+<li><a href="ch03-03-how-functions-work.html#functions">Functions</a>
+<ul>
+<li><a href="ch03-03-how-functions-work.html#parameters">Parameters</a></li>
+<li><a href="ch03-03-how-functions-work.html#statements-and-expressions">Statements and Expressions</a></li>
+<li><a href="ch03-03-how-functions-work.html#functions-with-return-values">Functions with Return Values</a></li>
+</ul>
+</li>
+</ul>
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Fri Oct 28 01:56:34 UTC 2022 -->
+<!--te-->
 <p>Functions are prevalent in Rust code. You’ve already seen one of the most
-important functions in the language: the <code>main</code> function, which is the entry
-point of many programs. You’ve also seen the <code>fn</code> keyword, which allows you to
-declare new functions.</p>
+important functions in the language: </p>
+<ul>
+<li>the <code>main</code> function, which is the entry
+point of many programs. </li>
+<li>You’ve also seen the <code>fn</code> keyword, which allows you to
+declare new functions.</li>
+</ul>
 <p>Rust code uses <em>snake case</em> as the conventional style for function and variable
 names, in which all letters are lowercase and underscores separate words.
 Here’s a program that contains an example function definition:</p>
@@ -2520,8 +2537,11 @@ body begins and ends.</p>
 of parentheses. Because <code>another_function</code> is defined in the program, it can be
 called from inside the <code>main</code> function. Note that we defined <code>another_function</code>
 <em>after</em> the <code>main</code> function in the source code; we could have defined it before
-as well. Rust doesn’t care where you define your functions, only that they’re
+as well. </p>
+<blockquote>
+<p>Rust doesn’t care where you define your functions, only that they’re
 defined somewhere in a scope that can be seen by the caller.</p>
+</blockquote>
 <p>Let’s start a new binary project named <em>functions</em> to explore functions
 further. Place the <code>another_function</code> example in <em>src/main.rs</em> and run it. You
 should see the following output:</p>
@@ -2535,14 +2555,17 @@ Another function.
 <p>The lines execute in the order in which they appear in the <code>main</code> function.
 First the “Hello, world!” message prints, and then <code>another_function</code> is called
 and its message is printed.</p>
-<h3 id="parameters"><a class="header" href="#parameters">Parameters</a></h3>
+<h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
 <p>We can define functions to have <em>parameters</em>, which are special variables that
 are part of a function’s signature. When a function has parameters, you can
-provide it with concrete values for those parameters. Technically, the concrete
+provide it with concrete values for those parameters. </p>
+<blockquote>
+<p>Technically, the concrete
 values are called <em>arguments</em>, but in casual conversation, people tend to use
 the words <em>parameter</em> and <em>argument</em> interchangeably for either the variables
 in a function’s definition or the concrete values passed in when you call a
 function.</p>
+</blockquote>
 <p>In this version of <code>another_function</code> we add a parameter:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
@@ -2564,11 +2587,14 @@ The value of x is: 5
 <code>x</code> is specified as <code>i32</code>. When we pass <code>5</code> in to <code>another_function</code>, the
 <code>println!</code> macro puts <code>5</code> where the pair of curly brackets containing <code>x</code> was
 in the format string.</p>
-<p>In function signatures, you <em>must</em> declare the type of each parameter. This is
+<p>In function signatures, you <em>must</em> declare the type of each parameter. </p>
+<blockquote>
+<p>This is
 a deliberate decision in Rust’s design: requiring type annotations in function
 definitions means the compiler almost never needs you to use them elsewhere in
 the code to figure out what type you mean. The compiler is also able to give
 more helpful error messages if it knows what types the function expects.</p>
+</blockquote>
 <p>When defining multiple parameters, separate the parameter declarations with
 commas, like this:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
@@ -2594,12 +2620,17 @@ The measurement is: 5h
 </code></pre>
 <p>Because we called the function with <code>5</code> as the value for <code>value</code> and <code>'h'</code> as
 the value for <code>unit_label</code>, the program output contains those values.</p>
-<h3 id="statements-and-expressions"><a class="header" href="#statements-and-expressions">Statements and Expressions</a></h3>
+<h2 id="statements-and-expressions"><a class="header" href="#statements-and-expressions">Statements and Expressions</a></h2>
 <p>Function bodies are made up of a series of statements optionally ending in an
-expression. So far, the functions we’ve covered haven’t included an ending
-expression, but you have seen an expression as part of a statement. Because
+expression. </p>
+<p>So far, the functions we’ve covered haven’t included an ending
+expression, but you have seen an expression as part of a statement. </p>
+<blockquote>
+<p>Because
 Rust is an expression-based language, this is an important distinction to
-understand. Other languages don’t have the same distinctions, so let’s look at
+understand. </p>
+</blockquote>
+<p>Other languages don’t have the same distinctions, so let’s look at
 what statements and expressions are and how their differences affect the bodies
 of functions.</p>
 <ul>
@@ -2607,8 +2638,12 @@ of functions.</p>
 a value.</li>
 <li><strong>Expressions</strong> evaluate to a resultant value. Let’s look at some examples.</li>
 </ul>
-<p>We’ve actually already used statements and expressions. Creating a variable and
-assigning a value to it with the <code>let</code> keyword is a statement. In Listing 3-1,
+<p>We’ve actually already used statements and expressions: </p>
+<ol>
+<li>Creating a variable and
+assigning a value to it with the <code>let</code> keyword is a statement. </li>
+</ol>
+<p>In Listing 3-1,
 <code>let y = 6;</code> is a statement.</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
@@ -2616,9 +2651,16 @@ assigning a value to it with the <code>let</code> keyword is a statement. In Lis
 }
 </code></pre></pre>
 <p><span class="caption">Listing 3-1: A <code>main</code> function declaration containing one statement</span></p>
+<ol start="2">
+<li>
 <p>Function definitions are also statements; the entire preceding example is a
 statement in itself.</p>
-<p>Statements do not return values. Therefore, you can’t assign a <code>let</code> statement
+</li>
+<li>
+<p>Statements do not return values. </p>
+</li>
+</ol>
+<p>Therefore, you can’t assign a <code>let</code> statement
 to another variable, as the following code tries to do; you’ll get an error:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><code class="language-rust ignore does_not_compile">fn main() {
@@ -2662,17 +2704,30 @@ warning: `functions` (bin &quot;functions&quot;) generated 1 warning
 error: could not compile `functions` due to 2 previous errors; 1 warning emitted
 </code></pre>
 <p>The <code>let y = 6</code> statement does not return a value, so there isn’t anything for
-<code>x</code> to bind to. This is different from what happens in other languages, such as
+<code>x</code> to bind to. </p>
+<blockquote>
+<p>This is different from what happens in other languages, such as
 C and Ruby, where the assignment returns the value of the assignment. In those
 languages, you can write <code>x = y = 6</code> and have both <code>x</code> and <code>y</code> have the value
 <code>6</code>; that is not the case in Rust.</p>
-<p>Expressions evaluate to a value and make up most of the rest of the code that
-you’ll write in Rust. Consider a math operation, such as <code>5 + 6</code>, which is an
-expression that evaluates to the value <code>11</code>. Expressions can be part of
-statements: in Listing 3-1, the <code>6</code> in the statement <code>let y = 6;</code> is an
-expression that evaluates to the value <code>6</code>. Calling a function is an
+</blockquote>
+<ol start="4">
+<li>Expressions evaluate to a value and make up most of the rest of the code that
+you’ll write in Rust. </li>
+</ol>
+<p>Consider a math operation, such as <code>5 + 6</code>, which is an
+expression that evaluates to the value <code>11</code>. </p>
+<ol start="5">
+<li>Expressions can be part of
+statements: </li>
+</ol>
+<p>in Listing 3-1, the <code>6</code> in the statement <code>let y = 6;</code> is an
+expression that evaluates to the value <code>6</code>. </p>
+<ol start="6">
+<li>Calling a function is an
 expression. Calling a macro is an expression. A new scope block created with
-curly brackets is an expression, for example:</p>
+curly brackets is an expression, for example:</li>
+</ol>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
     let y = {
@@ -2690,19 +2745,40 @@ curly brackets is an expression, for example:</p>
 }
 </code></pre>
 <p>is a block that, in this case, evaluates to <code>4</code>. That value gets bound to <code>y</code>
-as part of the <code>let</code> statement. Note that the <code>x + 1</code> line doesn’t have a
-semicolon at the end, which is unlike most of the lines you’ve seen so far.
-Expressions do not include ending semicolons. If you add a semicolon to the end
+as part of the <code>let</code> statement. </p>
+<p>Note that the <code>x + 1</code> line doesn’t have a
+semicolon at the end, which is unlike most of the lines you’ve seen so far.</p>
+<ol start="7">
+<li>Expressions do not include ending semicolons. </li>
+</ol>
+<blockquote>
+<p>If you add a semicolon to the end
 of an expression, you turn it into a statement, and it will then not return a
-value. Keep this in mind as you explore function return values and expressions
+value. </p>
+</blockquote>
+<p>Keep this in mind as you explore function return values and expressions
 next.</p>
-<h3 id="functions-with-return-values"><a class="header" href="#functions-with-return-values">Functions with Return Values</a></h3>
-<p>Functions can return values to the code that calls them. We don’t name return
-values, but we must declare their type after an arrow (<code>-&gt;</code>). In Rust, the
-return value of the function is synonymous with the value of the final
-expression in the block of the body of a function. You can return early from a
+<h2 id="functions-with-return-values"><a class="header" href="#functions-with-return-values">Functions with Return Values</a></h2>
+<ol>
+<li>
+<p>Functions can return values to the code that calls them. </p>
+</li>
+<li>
+<p>We don’t name return
+values, but we must declare their type after an arrow (<code>-&gt;</code>). </p>
+</li>
+<li>
+<p>In Rust, the
+return value of the function is synonymous with the value of <em>the final
+expression</em> in the block of the body of a function. </p>
+</li>
+<li>
+<p>You can return early from a
 function by using the <code>return</code> keyword and specifying a value, but most
-functions return the last expression implicitly. Here’s an example of a
+functions return the last expression implicitly.</p>
+</li>
+</ol>
+<p>Here’s an example of a
 function that returns a value:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">fn five() -&gt; i32 {
@@ -2726,18 +2802,27 @@ running this code; the output should look like this:</p>
 The value of x is: 5
 </code></pre>
 <p>The <code>5</code> in <code>five</code> is the function’s return value, which is why the return type
-is <code>i32</code>. Let’s examine this in more detail. There are two important bits:
-first, the line <code>let x = five();</code> shows that we’re using the return value of a
-function to initialize a variable. Because the function <code>five</code> returns a <code>5</code>,
+is <code>i32</code>. </p>
+<p>Let’s examine this in more detail. </p>
+<blockquote>
+<p>There are two important bits:</p>
+</blockquote>
+<ol>
+<li>first, the line <code>let x = five();</code> shows that we’re using the return value of a
+function to initialize a variable. </li>
+</ol>
+<p>Because the function <code>five</code> returns a <code>5</code>,
 that line is the same as the following:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>let x = 5;
 <span class="boring">}
 </span></code></pre></pre>
-<p>Second, the <code>five</code> function has no parameters and defines the type of the
+<ol start="2">
+<li>Second, the <code>five</code> function has no parameters and defines the type of the
 return value, but the body of the function is a lonely <code>5</code> with no semicolon
-because it’s an expression whose value we want to return.</p>
+because it’s an expression whose value we want to return.</li>
+</ol>
 <p>Let’s look at another example:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
@@ -2750,9 +2835,11 @@ fn plus_one(x: i32) -&gt; i32 {
     x + 1
 }
 </code></pre></pre>
+<blockquote>
 <p>Running this code will print <code>The value of x is: 6</code>. But if we place a
 semicolon at the end of the line containing <code>x + 1</code>, changing it from an
 expression to a statement, we’ll get an error:</p>
+</blockquote>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><code class="language-rust ignore does_not_compile">fn main() {
     let x = plus_one(5);
@@ -2781,12 +2868,23 @@ For more information about this error, try `rustc --explain E0308`.
 error: could not compile `functions` due to previous error
 </code></pre>
 <p>The main error message, <code>mismatched types</code>, reveals the core issue with this
-code. The definition of the function <code>plus_one</code> says that it will return an
+code： </p>
+<ol>
+<li>
+<p>The definition of the function <code>plus_one</code> says that it will return an
 <code>i32</code>, but statements don’t evaluate to a value, which is expressed by <code>()</code>,
-the unit type. Therefore, nothing is returned, which contradicts the function
-definition and results in an error. In this output, Rust provides a message to
+the unit type. </p>
+</li>
+<li>
+<p>Therefore, nothing is returned, which contradicts the function
+definition and results in an error. </p>
+</li>
+<li>
+<p>In this output, Rust provides a message to
 possibly help rectify this issue: it suggests removing the semicolon, which
 would fix the error.</p>
+</li>
+</ol>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="comments"><a class="header" href="#comments">Comments</a></h2>
 <p>All programmers strive to make their code easy to understand, but sometimes
 extra explanation is warranted. In these cases, programmers leave <em>comments</em> in
@@ -8642,7 +8740,7 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Oct 27 11:55:11 UTC 2022 -->
+<!-- Added by: runner, at: Fri Oct 28 01:56:38 UTC 2022 -->
 <!--te-->
 <p>Most errors aren’t serious enough to require the program to stop entirely.</p>
 <details id="admonition-sometimes-when-a-function-fails-its-for-a-reason-that-you-can-easily-interpret-and-respond-to" class="admonition tip">
