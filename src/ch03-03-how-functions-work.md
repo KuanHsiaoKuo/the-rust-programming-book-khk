@@ -1,6 +1,14 @@
 # Functions
 
 <!--ts-->
+* [Functions](#functions)
+   * [Parameters](#parameters)
+   * [Statements and Expressions](#statements-and-expressions)
+   * [Functions with Return Values](#functions-with-return-values)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Fri Oct 28 01:56:34 UTC 2022 -->
+
 <!--te-->
 
 Functions are prevalent in Rust code. You’ve already seen one of the most
