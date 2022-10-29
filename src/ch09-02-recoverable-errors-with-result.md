@@ -1,28 +1,29 @@
 # Recoverable Errors with `Result`
 
 <!--ts-->
+
 * [Recoverable Errors with Result](#recoverable-errors-with-result)
-   * [Result Definition and Basic Usage](#result-definition-and-basic-usage)
-      * [What the definition of Result conveys?](#what-the-definition-of-result-conveys)
-      * [What is the information the result enum conveys?](#what-is-the-information-the-result-enum-conveys)
-   * [Match Expression: How to hanle the information?](#match-expression-how-to-hanle-the-information)
-      * [What happened if the match expression not handle a situation?](#what-happened-if-the-match-expression-not-handle-a-situation)
-      * [Matching on Different Errors](#matching-on-different-errors)
-   * [unwrap_or_else: Alternatives to Using match with Result&lt;T, E&gt;](#unwrap_or_else-alternatives-to-using-match-with-resultt-e)
-      * [Why need unwrap and expect](#why-need-unwrap-and-expect)
-      * [Unwrap](#unwrap)
-      * [Expect: easier to track down](#expect-easier-to-track-down)
-      * [Most Rustaceans choose expect rather than unwrap](#most-rustaceans-choose-expect-rather-than-unwrap)
-   * [Using <em>?</em> to Propagating Errors](#using--to-propagating-errors)
-      * [The ? Operator: A Shortcut for Propagating Errors](#the--operator-a-shortcut-for-propagating-errors)
-      * [Where The ? Operator Can Be Used](#where-the--operator-can-be-used)
-         * [Compatible Type](#compatible-type)
-         * [If Incompatible](#if-incompatible)
-         * [Two fix choices](#two-fix-choices)
-         * [Notes About the <em>?</em>](#notes-about-the-)
-         * [Changing main to return Result](#changing-main-to-return-result)
-         * [What is Box&lt;dyn Error&gt;](#what-is-boxdyn-error)
-         * [The Executable of main](#the-executable-of-main)
+    * [Result Definition and Basic Usage](#result-definition-and-basic-usage)
+        * [What the definition of Result conveys?](#what-the-definition-of-result-conveys)
+        * [What is the information the result enum conveys?](#what-is-the-information-the-result-enum-conveys)
+    * [Match Expression: How to hanle the information?](#match-expression-how-to-hanle-the-information)
+        * [What happened if the match expression not handle a situation?](#what-happened-if-the-match-expression-not-handle-a-situation)
+        * [Matching on Different Errors](#matching-on-different-errors)
+    * [unwrap_or_else: Alternatives to Using match with Result&lt;T, E&gt;](#unwrap_or_else-alternatives-to-using-match-with-resultt-e)
+        * [Why need unwrap and expect](#why-need-unwrap-and-expect)
+        * [Unwrap](#unwrap)
+        * [Expect: easier to track down](#expect-easier-to-track-down)
+        * [Most Rustaceans choose expect rather than unwrap](#most-rustaceans-choose-expect-rather-than-unwrap)
+    * [Using <em>?</em> to Propagating Errors](#using--to-propagating-errors)
+        * [The ? Operator: A Shortcut for Propagating Errors](#the--operator-a-shortcut-for-propagating-errors)
+        * [Where The ? Operator Can Be Used](#where-the--operator-can-be-used)
+            * [Compatible Type](#compatible-type)
+            * [If Incompatible](#if-incompatible)
+            * [Two fix choices](#two-fix-choices)
+            * [Notes About the <em>?</em>](#notes-about-the-)
+            * [Changing main to return Result](#changing-main-to-return-result)
+            * [What is Box&lt;dyn Error&gt;](#what-is-boxdyn-error)
+            * [The Executable of main](#the-executable-of-main)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 <!-- Added by: runner, at: Sat Oct 29 04:05:34 UTC 2022 -->
@@ -113,7 +114,7 @@ exist, or we might not have permission to access the file.
   happened.
 ~~~
 
-## Match Expression: How to hanle the information? 
+## Match Expression: How to hanle the information?
 
 We need to add to the code in Listing 9-3 to take different actions depending
 on the value `File::open` returns.
@@ -203,49 +204,6 @@ tests to fail lol -->
    the outer `match` stays the same, so the program panics on any error besides
    the missing file error.
 
-## unwrap_or_else: Alternatives to Using `match` with `Result<T, E>`
-
-That’s a lot of `match`!
-
-- The `match` expression is very useful but also very much a primitive.
-- In Chapter 13, you’ll learn about closures, which are used with many of the methods defined on `Result<T, E>`.
-- These methods can be more concise than using `match` when handling `Result<T, E>` values in your code.
-
-<!-- CAN'T EXTRACT SEE https://github.com/rust-lang/mdBook/issues/1127 -->
-
-~~~admonish info title="For example, here is another way to write the same logic as shown in Listing 9-5, this time using closures and the *unwrap_or_else* method:" collapsible=true
-
-```rust,ignore
-use std::fs::File;
-use std::io::ErrorKind;
-
-fn main() {
-    let greeting_file = File::open("hello.txt").unwrap_or_else(|error| {
-        if error.kind() == ErrorKind::NotFound {
-            File::create("hello.txt").unwrap_or_else(|error| {
-                panic!("Problem creating the file: {:?}", error);
-            })
-        } else {
-            panic!("Problem opening the file: {:?}", error);
-        }
-    });
-}
-```
-
-~~~
-
-> Although this code has the same behavior as Listing 9-5, it doesn’t contain
-> any `match` expressions and is cleaner to read.
-
-~~~admonish info title="**unwrap_or_else** method can clean up huge nested **match** expressions" collapsible=true
-Come back to this example
-after you’ve read Chapter 13, and look up the `unwrap_or_else` method in the
-standard library documentation. 
-
-Many more of these methods can clean up huge
-nested `match` expressions when you’re dealing with errors.
-~~~
-
 ## `unwrap` and `expect`: Shortcuts for Panic on Error
 
 ### Why need unwrap and expect
@@ -281,6 +239,47 @@ thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Os {
 code: 2, kind: NotFound, message: "No such file or directory" }',
 src/main.rs:4:49
 ```
+~~~
+
+### unwrap_or_else: Alternatives to Using `match` with `Result<T, E>`
+
+That’s a lot of `match`!
+
+- The `match` expression is very useful but also very much a primitive.
+- In Chapter 13, you’ll learn about closures, which are used with many of the methods defined on `Result<T, E>`.
+- These methods can be more concise than using `match` when handling `Result<T, E>` values in your code.
+
+~~~admonish info title="For example, here is another way to write the same logic as shown in Listing 9-5, this time using closures and the *unwrap_or_else* method:" collapsible=true
+
+```rust,ignore
+use std::fs::File;
+use std::io::ErrorKind;
+
+fn main() {
+    let greeting_file = File::open("hello.txt").unwrap_or_else(|error| {
+        if error.kind() == ErrorKind::NotFound {
+            File::create("hello.txt").unwrap_or_else(|error| {
+                panic!("Problem creating the file: {:?}", error);
+            })
+        } else {
+            panic!("Problem opening the file: {:?}", error);
+        }
+    });
+}
+```
+
+~~~
+
+> Although this code has the same behavior as Listing 9-5, it doesn’t contain
+> any `match` expressions and is cleaner to read.
+
+~~~admonish info title="**unwrap_or_else** method can clean up huge nested **match** expressions" collapsible=true
+Come back to this example
+after you’ve read Chapter 13, and look up the `unwrap_or_else` method in the
+standard library documentation. 
+
+Many more of these methods can clean up huge
+nested `match` expressions when you’re dealing with errors.
 ~~~
 
 ### Expect: easier to track down
