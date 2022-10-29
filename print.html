@@ -2506,7 +2506,7 @@ write readable, safe code that neither panics nor allows invalid memory access.<
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Oct 28 07:23:03 UTC 2022 -->
+<!-- Added by: runner, at: Sat Oct 29 04:05:20 UTC 2022 -->
 <!--te-->
 <p>Functions are prevalent in Rust code. You’ve already seen one of the most
 important functions in the language: </p>
@@ -8707,11 +8707,14 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 <ul>
 <li><a href="ch09-02-recoverable-errors-with-result.html#what-the-definition-of-result-conveys">What the definition of Result conveys?</a></li>
 <li><a href="ch09-02-recoverable-errors-with-result.html#what-is-the-information-the-result-enum-conveys">What is the information the result enum conveys?</a></li>
-<li><a href="ch09-02-recoverable-errors-with-result.html#how-to-hanle-the-information-match-expression">How to hanle the information? Match Expression</a></li>
-<li><a href="ch09-02-recoverable-errors-with-result.html#what-happened-if-the-match-expression-not-handle-a-situation">What happened if the match expression not handle a situation?</a></li>
 </ul>
 </li>
+<li><a href="ch09-02-recoverable-errors-with-result.html#match-expression-how-to-hanle-the-information">Match Expression: How to hanle the information?</a>
+<ul>
+<li><a href="ch09-02-recoverable-errors-with-result.html#what-happened-if-the-match-expression-not-handle-a-situation">What happened if the match expression not handle a situation?</a></li>
 <li><a href="ch09-02-recoverable-errors-with-result.html#matching-on-different-errors">Matching on Different Errors</a></li>
+</ul>
+</li>
 <li><a href="ch09-02-recoverable-errors-with-result.html#unwrap_or_else-alternatives-to-using-match-with-resultt-e">unwrap_or_else: Alternatives to Using match with Result&lt;T, E&gt;</a>
 <ul>
 <li><a href="ch09-02-recoverable-errors-with-result.html#why-need-unwrap-and-expect">Why need unwrap and expect</a></li>
@@ -8740,7 +8743,7 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Oct 28 07:23:07 UTC 2022 -->
+<!-- Added by: runner, at: Sat Oct 29 04:05:34 UTC 2022 -->
 <!--te-->
 <p>Most errors aren’t serious enough to require the program to stop entirely.</p>
 <details id="admonition-sometimes-when-a-function-fails-its-for-a-reason-that-you-can-easily-interpret-and-respond-to" class="admonition tip">
@@ -8861,7 +8864,7 @@ happened.</p>
 </ul>
 </div>
 </details>
-<h3 id="how-to-hanle-the-information-match-expression"><a class="header" href="#how-to-hanle-the-information-match-expression">How to hanle the information? Match Expression</a></h3>
+<h2 id="match-expression-how-to-hanle-the-information"><a class="header" href="#match-expression-how-to-hanle-the-information">Match Expression: How to hanle the information?</a></h2>
 <p>We need to add to the code in Listing 9-3 to take different actions depending
 on the value <code>File::open</code> returns.</p>
 <p>Listing 9-4 shows one way to handle the <code>Result</code> using a basic tool, the <code>match</code> expression that we discussed in
@@ -8920,7 +8923,7 @@ note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 </div>
 </details>
 <p>As usual, this output tells us exactly what has gone wrong.</p>
-<h2 id="matching-on-different-errors"><a class="header" href="#matching-on-different-errors">Matching on Different Errors</a></h2>
+<h3 id="matching-on-different-errors"><a class="header" href="#matching-on-different-errors">Matching on Different Errors</a></h3>
 <p>The code in Listing 9-4 will <code>panic!</code> no matter why <code>File::open</code> failed.</p>
 <p>However, we want to take different actions for different failure reasons:</p>
 <ul>
