@@ -2506,7 +2506,7 @@ write readable, safe code that neither panics nor allows invalid memory access.<
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Oct 29 04:35:09 UTC 2022 -->
+<!-- Added by: runner, at: Sat Oct 29 04:37:43 UTC 2022 -->
 <!--te-->
 <p>Functions are prevalent in Rust code. You’ve already seen one of the most
 important functions in the language: </p>
@@ -8713,6 +8713,10 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 <ul>
 <li><a href="ch09-02-recoverable-errors-with-result.html#what-happened-if-the-match-expression-not-handle-a-situation">What happened if the match expression not handle a situation?</a></li>
 <li><a href="ch09-02-recoverable-errors-with-result.html#matching-on-different-errors">Matching on Different Errors</a></li>
+</ul>
+</li>
+<li><a href="ch09-02-recoverable-errors-with-result.html#shortcuts-for-panic-on-error-simplify-match-expression">Shortcuts for Panic on Error, simplify match expression</a>
+<ul>
 <li><a href="ch09-02-recoverable-errors-with-result.html#why-need-unwrap-and-expect">Why need unwrap and expect</a></li>
 <li><a href="ch09-02-recoverable-errors-with-result.html#unwrap">Unwrap</a></li>
 <li><a href="ch09-02-recoverable-errors-with-result.html#unwrap_or_else-alternatives-to-using-match-with-resultt-e">unwrap_or_else: Alternatives to Using match with Result&lt;T, E&gt;</a></li>
@@ -8740,7 +8744,7 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Oct 29 04:35:13 UTC 2022 -->
+<!-- Added by: runner, at: Sat Oct 29 04:37:50 UTC 2022 -->
 <!--te-->
 <p>Most errors aren’t serious enough to require the program to stop entirely.</p>
 <details id="admonition-sometimes-when-a-function-fails-its-for-a-reason-that-you-can-easily-interpret-and-respond-to" class="admonition tip">
@@ -9009,7 +9013,7 @@ file can’t be created, a different error message is printed.</li>
 the outer <code>match</code> stays the same, so the program panics on any error besides
 the missing file error.</li>
 </ol>
-<h1 id="unwrapexpect-shortcuts-for-panic-on-error"><a class="header" href="#unwrapexpect-shortcuts-for-panic-on-error"><em>unwrap</em>/<em>?</em>/<em>expect</em>: Shortcuts for Panic on Error</a></h1>
+<h1 id="shortcuts-for-panic-on-error-simplify-match-expression"><a class="header" href="#shortcuts-for-panic-on-error-simplify-match-expression">Shortcuts for Panic on Error, simplify match expression</a></h1>
 <h2 id="why-need-unwrap-and-expect"><a class="header" href="#why-need-unwrap-and-expect">Why need unwrap and expect</a></h2>
 <blockquote>
 <p>Using <code>match</code> works well enough, but it can be a bit verbose and doesn’t always
