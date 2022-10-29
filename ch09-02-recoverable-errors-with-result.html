@@ -194,12 +194,9 @@
 <ul>
 <li><a href="#what-happened-if-the-match-expression-not-handle-a-situation">What happened if the match expression not handle a situation?</a></li>
 <li><a href="#matching-on-different-errors">Matching on Different Errors</a></li>
-</ul>
-</li>
-<li><a href="#unwrap_or_else-alternatives-to-using-match-with-resultt-e">unwrap_or_else: Alternatives to Using match with Result&lt;T, E&gt;</a>
-<ul>
 <li><a href="#why-need-unwrap-and-expect">Why need unwrap and expect</a></li>
 <li><a href="#unwrap">Unwrap</a></li>
+<li><a href="#unwrap_or_else-alternatives-to-using-match-with-resultt-e">unwrap_or_else: Alternatives to Using match with Result&lt;T, E&gt;</a></li>
 <li><a href="#expect-easier-to-track-down">Expect: easier to track down</a></li>
 <li><a href="#most-rustaceans-choose-expect-rather-than-unwrap">Most Rustaceans choose expect rather than unwrap</a></li>
 </ul>
@@ -224,7 +221,7 @@
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Oct 29 04:05:34 UTC 2022 -->
+<!-- Added by: runner, at: Sat Oct 29 04:11:45 UTC 2022 -->
 <!--te-->
 <p>Most errors aren’t serious enough to require the program to stop entirely.</p>
 <details id="admonition-sometimes-when-a-function-fails-its-for-a-reason-that-you-can-easily-interpret-and-respond-to" class="admonition tip">
@@ -483,54 +480,6 @@ file can’t be created, a different error message is printed.</li>
 the outer <code>match</code> stays the same, so the program panics on any error besides
 the missing file error.</li>
 </ol>
-<h2 id="unwrap_or_else-alternatives-to-using-match-with-resultt-e"><a class="header" href="#unwrap_or_else-alternatives-to-using-match-with-resultt-e">unwrap_or_else: Alternatives to Using <code>match</code> with <code>Result&lt;T, E&gt;</code></a></h2>
-<p>That’s a lot of <code>match</code>!</p>
-<ul>
-<li>The <code>match</code> expression is very useful but also very much a primitive.</li>
-<li>In Chapter 13, you’ll learn about closures, which are used with many of the methods defined on <code>Result&lt;T, E&gt;</code>.</li>
-<li>These methods can be more concise than using <code>match</code> when handling <code>Result&lt;T, E&gt;</code> values in your code.</li>
-</ul>
-<!-- CAN'T EXTRACT SEE https://github.com/rust-lang/mdBook/issues/1127 -->
-<details id="admonition-for-example-here-is-another-way-to-write-the-same-logic-as-shown-in-listing-9-5-this-time-using-closures-and-the-unwrap_or_else-method" class="admonition info">
-<summary class="admonition-title">
-<p>For example, here is another way to write the same logic as shown in Listing 9-5, this time using closures and the <em>unwrap_or_else</em> method:</p>
-<p><a class="admonition-anchor-link" href="#admonition-for-example-here-is-another-way-to-write-the-same-logic-as-shown-in-listing-9-5-this-time-using-closures-and-the-unwrap_or_else-method"></a></p>
-</summary>
-<div>
-<pre><code class="language-rust ignore">use std::fs::File;
-use std::io::ErrorKind;
-
-fn main() {
-    let greeting_file = File::open(&quot;hello.txt&quot;).unwrap_or_else(|error| {
-        if error.kind() == ErrorKind::NotFound {
-            File::create(&quot;hello.txt&quot;).unwrap_or_else(|error| {
-                panic!(&quot;Problem creating the file: {:?}&quot;, error);
-            })
-        } else {
-            panic!(&quot;Problem opening the file: {:?}&quot;, error);
-        }
-    });
-}
-</code></pre>
-</div>
-</details>
-<blockquote>
-<p>Although this code has the same behavior as Listing 9-5, it doesn’t contain
-any <code>match</code> expressions and is cleaner to read.</p>
-</blockquote>
-<details id="admonition-unwrap_or_else-method-can-clean-up-huge-nested-match-expressions" class="admonition info">
-<summary class="admonition-title">
-<p><strong>unwrap_or_else</strong> method can clean up huge nested <strong>match</strong> expressions</p>
-<p><a class="admonition-anchor-link" href="#admonition-unwrap_or_else-method-can-clean-up-huge-nested-match-expressions"></a></p>
-</summary>
-<div>
-<p>Come back to this example
-after you’ve read Chapter 13, and look up the <code>unwrap_or_else</code> method in the
-standard library documentation. </p>
-<p>Many more of these methods can clean up huge
-nested <code>match</code> expressions when you’re dealing with errors.</p>
-</div>
-</details>
 <h2 id="unwrap-and-expect-shortcuts-for-panic-on-error"><a class="header" href="#unwrap-and-expect-shortcuts-for-panic-on-error"><code>unwrap</code> and <code>expect</code>: Shortcuts for Panic on Error</a></h2>
 <h3 id="why-need-unwrap-and-expect"><a class="header" href="#why-need-unwrap-and-expect">Why need unwrap and expect</a></h3>
 <blockquote>
@@ -578,11 +527,57 @@ fn main() {
 <pre><code class="language-shell">cd listings/ch09-error-handling/no-listing-04-unwrap
 cargo run
 # copy and paste relevant text
-</code></pre>
-<pre><code class="language-text">thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Os {
+thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Os {
 code: 2, kind: NotFound, message: &quot;No such file or directory&quot; }',
 src/main.rs:4:49
 </code></pre>
+</div>
+</details>
+<h3 id="unwrap_or_else-alternatives-to-using-match-with-resultt-e"><a class="header" href="#unwrap_or_else-alternatives-to-using-match-with-resultt-e">unwrap_or_else: Alternatives to Using <code>match</code> with <code>Result&lt;T, E&gt;</code></a></h3>
+<p>That’s a lot of <code>match</code>!</p>
+<ul>
+<li>The <code>match</code> expression is very useful but also very much a primitive.</li>
+<li>In Chapter 13, you’ll learn about closures, which are used with many of the methods defined on <code>Result&lt;T, E&gt;</code>.</li>
+<li>These methods can be more concise than using <code>match</code> when handling <code>Result&lt;T, E&gt;</code> values in your code.</li>
+</ul>
+<details id="admonition-for-example-here-is-another-way-to-write-the-same-logic-as-shown-in-listing-9-5-this-time-using-closures-and-the-unwrap_or_else-method" class="admonition info">
+<summary class="admonition-title">
+<p>For example, here is another way to write the same logic as shown in Listing 9-5, this time using closures and the <em>unwrap_or_else</em> method:</p>
+<p><a class="admonition-anchor-link" href="#admonition-for-example-here-is-another-way-to-write-the-same-logic-as-shown-in-listing-9-5-this-time-using-closures-and-the-unwrap_or_else-method"></a></p>
+</summary>
+<div>
+<pre><code class="language-rust ignore">use std::fs::File;
+use std::io::ErrorKind;
+
+fn main() {
+    let greeting_file = File::open(&quot;hello.txt&quot;).unwrap_or_else(|error| {
+        if error.kind() == ErrorKind::NotFound {
+            File::create(&quot;hello.txt&quot;).unwrap_or_else(|error| {
+                panic!(&quot;Problem creating the file: {:?}&quot;, error);
+            })
+        } else {
+            panic!(&quot;Problem opening the file: {:?}&quot;, error);
+        }
+    });
+}
+</code></pre>
+</div>
+</details>
+<blockquote>
+<p>Although this code has the same behavior as Listing 9-5, it doesn’t contain
+any <code>match</code> expressions and is cleaner to read.</p>
+</blockquote>
+<details id="admonition-unwrap_or_else-method-can-clean-up-huge-nested-match-expressions" class="admonition info">
+<summary class="admonition-title">
+<p><strong>unwrap_or_else</strong> method can clean up huge nested <strong>match</strong> expressions</p>
+<p><a class="admonition-anchor-link" href="#admonition-unwrap_or_else-method-can-clean-up-huge-nested-match-expressions"></a></p>
+</summary>
+<div>
+<p>Come back to this example
+after you’ve read Chapter 13, and look up the <code>unwrap_or_else</code> method in the
+standard library documentation. </p>
+<p>Many more of these methods can clean up huge
+nested <code>match</code> expressions when you’re dealing with errors.</p>
 </div>
 </details>
 <h3 id="expect-easier-to-track-down"><a class="header" href="#expect-easier-to-track-down">Expect: easier to track down</a></h3>
