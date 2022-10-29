@@ -217,7 +217,7 @@ tests to fail lol -->
    the outer `match` stays the same, so the program panics on any error besides
    the missing file error.
 
-## `unwrap` and `expect`: Shortcuts for Panic on Error
+## *unwrap* and *expect*: Shortcuts for Panic on Error
 
 ### Why need unwrap and expect
 
