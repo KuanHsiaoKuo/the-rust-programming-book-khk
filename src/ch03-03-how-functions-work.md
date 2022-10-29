@@ -1,14 +1,18 @@
 # Functions
 
 <!--ts-->
-
 * [Functions](#functions)
-    * [Parameters](#parameters)
-    * [Statements and Expressions](#statements-and-expressions)
-    * [Functions with Return Values](#functions-with-return-values)
+   * [Parameters](#parameters)
+   * [Statements and Expressions](#statements-and-expressions)
+      * [Function bodies are made up of statements](#function-bodies-are-made-up-of-statements)
+      * [Expression-based language](#expression-based-language)
+      * [Differences](#differences)
+   * [Functions with Return Values](#functions-with-return-values)
+      * [Last return or early return](#last-return-or-early-return)
+      * [place a semicolon or not](#place-a-semicolon-or-not)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Oct 29 04:37:43 UTC 2022 -->
+<!-- Added by: runner, at: Sat Oct 29 05:52:45 UTC 2022 -->
 
 <!--te-->
 
