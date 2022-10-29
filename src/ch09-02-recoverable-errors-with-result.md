@@ -40,7 +40,7 @@ operation fails because the file doesn’t exist, you might want to create the
 file instead of terminating the process.
 ~~~
 
-## Compare Result/Match/unwrap/expected/?
+# Compare Result/Match/unwrap/expected/?
 
 | 错误处理工具           | 用意                                                 | 思路                        |
 |------------------|----------------------------------------------------|---------------------------|
@@ -51,9 +51,9 @@ file instead of terminating the process.
 | expected         | Unwrap OK(T) or throw panic! with specific message | 不仅抛出异常，还手工提供出错信息。一般用于特定问题 |
 | ?                | Simplify unwrap OK(T) or return Err(E)             | 返回异常，用来传播返回给调用者进行处理       |
 
-## Result Definition and Basic Usage
+# Result Definition and Basic Usage
 
-### What the definition of Result conveys?
+## What the definition of Result conveys?
 
 Recall from [“Handling Potential Failure with `Result`”][handle_failure]<!--
 ignore --> in Chapter 2 that the `Result` enum is defined as having two
@@ -83,7 +83,7 @@ What you need to know right now is that:
 > many different situations where the successful value and error value we want to
 > return may differ.
 
-### What is the information the result enum conveys?
+## What is the information the result enum conveys?
 
 Let’s call a function that returns a `Result` value because the function could
 fail.
@@ -127,7 +127,7 @@ exist, or we might not have permission to access the file.
   happened.
 ~~~
 
-## Match Expression: How to hanle the information?
+# Match Expression: How to hanle the information?
 
 We need to add to the code in Listing 9-3 to take different actions depending
 on the value `File::open` returns.
@@ -141,7 +141,7 @@ Chapter 6.
 ```
 ~~~
 
-### What happened if the match expression not handle a situation?
+## What happened if the match expression not handle a situation?
 
 > Note that:
 
@@ -165,7 +165,7 @@ before the `Ok` and `Err` variants in the `match` arms:
 
 As usual, this output tells us exactly what has gone wrong.
 
-### Matching on Different Errors
+## Matching on Different Errors
 
 The code in Listing 9-4 will `panic!` no matter why `File::open` failed.
 
@@ -217,9 +217,9 @@ tests to fail lol -->
    the outer `match` stays the same, so the program panics on any error besides
    the missing file error.
 
-## *unwrap* and *expect*: Shortcuts for Panic on Error
+# *unwrap*/*?*/*expect*: Shortcuts for Panic on Error
 
-### Why need unwrap and expect
+## Why need unwrap and expect
 
 > Using `match` works well enough, but it can be a bit verbose and doesn’t always
 > communicate intent well.
@@ -234,7 +234,7 @@ the value inside the `Ok`.
 call the `panic!` macro for us.
 ~~~
 
-### Unwrap
+## Unwrap
 
 ~~~admonish info title="Here is an example of **unwrap** in action:" collapsible=true
 ```rust,should_panic
@@ -254,7 +254,7 @@ src/main.rs:4:49
 ```
 ~~~
 
-### unwrap_or_else: Alternatives to Using `match` with `Result<T, E>`
+## unwrap_or_else: Alternatives to Using `match` with `Result<T, E>`
 
 That’s a lot of `match`!
 
@@ -295,7 +295,7 @@ Many more of these methods can clean up huge
 nested `match` expressions when you’re dealing with errors.
 ~~~
 
-### Expect: easier to track down
+## Expect: easier to track down
 
 Similarly, the `expect` method lets us also choose the `panic!` error message.
 
@@ -329,7 +329,7 @@ src/main.rs:5:10
 ```
 ~~~
 
-### Most Rustaceans choose expect rather than unwrap
+## Most Rustaceans choose expect rather than unwrap
 
 In production-quality code, most Rustaceans choose `expect` rather than
 `unwrap` and give more context about why the operation is expected to always
