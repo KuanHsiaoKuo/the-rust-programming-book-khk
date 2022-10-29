@@ -113,7 +113,7 @@ exist, or we might not have permission to access the file.
   happened.
 ~~~
 
-### How to hanle the information? Match Expression
+## Match Expression: How to hanle the information? 
 
 We need to add to the code in Listing 9-3 to take different actions depending
 on the value `File::open` returns.
@@ -151,7 +151,7 @@ before the `Ok` and `Err` variants in the `match` arms:
 
 As usual, this output tells us exactly what has gone wrong.
 
-## Matching on Different Errors
+### Matching on Different Errors
 
 The code in Listing 9-4 will `panic!` no matter why `File::open` failed.
 
