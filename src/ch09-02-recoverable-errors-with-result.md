@@ -5,9 +5,9 @@
    * [Result Definition and Basic Usage](#result-definition-and-basic-usage)
       * [What the definition of Result conveys?](#what-the-definition-of-result-conveys)
       * [What is the information the result enum conveys?](#what-is-the-information-the-result-enum-conveys)
-      * [How to hanle the information? Match Expression](#how-to-hanle-the-information-match-expression)
+   * [Match Expression: How to hanle the information?](#match-expression-how-to-hanle-the-information)
       * [What happened if the match expression not handle a situation?](#what-happened-if-the-match-expression-not-handle-a-situation)
-   * [Matching on Different Errors](#matching-on-different-errors)
+      * [Matching on Different Errors](#matching-on-different-errors)
    * [unwrap_or_else: Alternatives to Using match with Result&lt;T, E&gt;](#unwrap_or_else-alternatives-to-using-match-with-resultt-e)
       * [Why need unwrap and expect](#why-need-unwrap-and-expect)
       * [Unwrap](#unwrap)
@@ -25,7 +25,7 @@
          * [The Executable of main](#the-executable-of-main)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Oct 28 07:23:07 UTC 2022 -->
+<!-- Added by: runner, at: Sat Oct 29 04:05:34 UTC 2022 -->
 
 <!--te-->
 
