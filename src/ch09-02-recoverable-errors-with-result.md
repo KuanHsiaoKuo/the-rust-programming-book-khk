@@ -1,4 +1,4 @@
-# Recoverable Errors with `Result`
+# ⭐️ Recoverable Errors with `Result`
 
 <!--ts-->
 
