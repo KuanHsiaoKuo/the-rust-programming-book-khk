@@ -277,9 +277,6 @@ call the `panic!` macro for us.
 cd listings/ch09-error-handling/no-listing-04-unwrap
 cargo run
 # copy and paste relevant text
-```
-
-```text
 thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: Os {
 code: 2, kind: NotFound, message: "No such file or directory" }',
 src/main.rs:4:49
