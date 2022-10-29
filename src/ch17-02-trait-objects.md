@@ -2,6 +2,13 @@
 
 <!--ts-->
 <!--te-->
+## Compare implementing trait with trait bounds and trait objects
+
+| Situations    | Define Trait                                   | Implement Trait                                              |
+| ------------- | ---------------------------------------------- | ------------------------------------------------------------ |
+| Trait Bounds  | pub trait Draw {<br/>    fn draw(&self);<br/>} | pub trait Draw {<br/>    fn draw(&self);<br/>}<br/><br/>pub struct Screen {<br/>    pub components: Vec<Box<dyn Draw>>,<br/>} |
+| Trait Objects | pub trait Draw {<br/>    fn draw(&self);<br/>} |                                                              |
+
 
 ## one limitation of vectors
 
@@ -134,7 +141,7 @@ On the `Screen` struct, we’ll define a method named `run` that will call the
 ```
 ~~~
 
-### Trait Object works diferently from Trait Bounds
+### Trait Object works differently from Trait Bounds
 
 This works differently from defining a struct that **uses a generic type
 parameter with trait bounds**:

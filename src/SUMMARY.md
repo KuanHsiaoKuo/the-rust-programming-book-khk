@@ -128,7 +128,7 @@
 - [Appendix](appendix-00.md)
     - [A - Keywords](appendix-01-keywords.md)
     - [B - Operators and Symbols](appendix-02-operators.md)
-    - [C - Derivable Traits](appendix-03-derivable-traits.md)
+    - [⭐️C - Derivable Traits](appendix-03-derivable-traits.md)
     - [D - Useful Development Tools](appendix-04-useful-development-tools.md)
     - [E - Editions](appendix-05-editions.md)
     - [F - Translations of the Book](appendix-06-translation.md)
