@@ -2506,7 +2506,7 @@ write readable, safe code that neither panics nor allows invalid memory access.<
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Oct 29 04:31:59 UTC 2022 -->
+<!-- Added by: runner, at: Sat Oct 29 04:35:09 UTC 2022 -->
 <!--te-->
 <p>Functions are prevalent in Rust code. You’ve already seen one of the most
 important functions in the language: </p>
@@ -8701,8 +8701,7 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 <div style="break-before: page; page-break-before: always;"></div><h1 id="-recoverable-errors-with-result"><a class="header" href="#-recoverable-errors-with-result">⭐️ Recoverable Errors with <code>Result</code></a></h1>
 <!--ts-->
 <ul>
-<li><a href="ch09-02-recoverable-errors-with-result.html#%EF%B8%8F-recoverable-errors-with-result">Recoverable Errors with Result</a>
-<ul>
+<li><a href="ch09-02-recoverable-errors-with-result.html#%EF%B8%8F-recoverable-errors-with-result">Recoverable Errors with Result</a></li>
 <li><a href="ch09-02-recoverable-errors-with-result.html#compare-resultmatchunwrapexpected">Compare Result/Match/unwrap/expected/?</a></li>
 <li><a href="ch09-02-recoverable-errors-with-result.html#result-definition-and-basic-usage">Result Definition and Basic Usage</a>
 <ul>
@@ -8719,8 +8718,6 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 <li><a href="ch09-02-recoverable-errors-with-result.html#unwrap_or_else-alternatives-to-using-match-with-resultt-e">unwrap_or_else: Alternatives to Using match with Result&lt;T, E&gt;</a></li>
 <li><a href="ch09-02-recoverable-errors-with-result.html#expect-easier-to-track-down">Expect: easier to track down</a></li>
 <li><a href="ch09-02-recoverable-errors-with-result.html#most-rustaceans-choose-expect-rather-than-unwrap">Most Rustaceans choose expect rather than unwrap</a></li>
-</ul>
-</li>
 <li><a href="ch09-02-recoverable-errors-with-result.html#using--to-propagating-errors">Using <em>?</em> to Propagating Errors</a>
 <ul>
 <li><a href="ch09-02-recoverable-errors-with-result.html#about-progating-erors">About Progating Erors</a></li>
@@ -8743,7 +8740,7 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Oct 29 04:32:06 UTC 2022 -->
+<!-- Added by: runner, at: Sat Oct 29 04:35:13 UTC 2022 -->
 <!--te-->
 <p>Most errors aren’t serious enough to require the program to stop entirely.</p>
 <details id="admonition-sometimes-when-a-function-fails-its-for-a-reason-that-you-can-easily-interpret-and-respond-to" class="admonition tip">
@@ -8757,7 +8754,7 @@ operation fails because the file doesn’t exist, you might want to create the
 file instead of terminating the process.</p>
 </div>
 </details>
-<h2 id="compare-resultmatchunwrapexpected"><a class="header" href="#compare-resultmatchunwrapexpected">Compare Result/Match/unwrap/expected/?</a></h2>
+<h1 id="compare-resultmatchunwrapexpected"><a class="header" href="#compare-resultmatchunwrapexpected">Compare Result/Match/unwrap/expected/?</a></h1>
 <div class="table-wrapper"><table><thead><tr><th>错误处理工具</th><th>用意</th><th>思路</th></tr></thead><tbody>
 <tr><td>Result</td><td>Result&lt;T, E&gt;: OK(T) and Err(E)</td><td>区分两类情况：正确/出错</td></tr>
 <tr><td>Match Expression</td><td>Handle different errors on matching arms</td><td>详细处理各种情况，类似try… except</td></tr>
@@ -8767,8 +8764,8 @@ file instead of terminating the process.</p>
 <tr><td>?</td><td>Simplify unwrap OK(T) or return Err(E)</td><td>返回异常，用来传播返回给调用者进行处理</td></tr>
 </tbody></table>
 </div>
-<h2 id="result-definition-and-basic-usage"><a class="header" href="#result-definition-and-basic-usage">Result Definition and Basic Usage</a></h2>
-<h3 id="what-the-definition-of-result-conveys"><a class="header" href="#what-the-definition-of-result-conveys">What the definition of Result conveys?</a></h3>
+<h1 id="result-definition-and-basic-usage"><a class="header" href="#result-definition-and-basic-usage">Result Definition and Basic Usage</a></h1>
+<h2 id="what-the-definition-of-result-conveys"><a class="header" href="#what-the-definition-of-result-conveys">What the definition of Result conveys?</a></h2>
 <p>Recall from <a href="ch02-00-guessing-game-tutorial.html#handling-potential-failure-with-result">“Handling Potential Failure with <code>Result</code>”</a><!--
 ignore --> in Chapter 2 that the <code>Result</code> enum is defined as having two
 variants, <code>Ok</code> and <code>Err</code>, as follows:</p>
@@ -8803,7 +8800,7 @@ parameters, we can use the <code>Result</code> type and the functions defined on
 many different situations where the successful value and error value we want to
 return may differ.</p>
 </blockquote>
-<h3 id="what-is-the-information-the-result-enum-conveys"><a class="header" href="#what-is-the-information-the-result-enum-conveys">What is the information the result enum conveys?</a></h3>
+<h2 id="what-is-the-information-the-result-enum-conveys"><a class="header" href="#what-is-the-information-the-result-enum-conveys">What is the information the result enum conveys?</a></h2>
 <p>Let’s call a function that returns a <code>Result</code> value because the function could
 fail.</p>
 <p>In Listing 9-3 we try to open a file.</p>
@@ -8874,7 +8871,7 @@ happened.</p>
 </ul>
 </div>
 </details>
-<h2 id="match-expression-how-to-hanle-the-information"><a class="header" href="#match-expression-how-to-hanle-the-information">Match Expression: How to hanle the information?</a></h2>
+<h1 id="match-expression-how-to-hanle-the-information"><a class="header" href="#match-expression-how-to-hanle-the-information">Match Expression: How to hanle the information?</a></h1>
 <p>We need to add to the code in Listing 9-3 to take different actions depending
 on the value <code>File::open</code> returns.</p>
 <p>Listing 9-4 shows one way to handle the <code>Result</code> using a basic tool, the <code>match</code> expression that we discussed in
@@ -8898,7 +8895,7 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
-<h3 id="what-happened-if-the-match-expression-not-handle-a-situation"><a class="header" href="#what-happened-if-the-match-expression-not-handle-a-situation">What happened if the match expression not handle a situation?</a></h3>
+<h2 id="what-happened-if-the-match-expression-not-handle-a-situation"><a class="header" href="#what-happened-if-the-match-expression-not-handle-a-situation">What happened if the match expression not handle a situation?</a></h2>
 <blockquote>
 <p>Note that:</p>
 </blockquote>
@@ -8933,7 +8930,7 @@ note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 </div>
 </details>
 <p>As usual, this output tells us exactly what has gone wrong.</p>
-<h3 id="matching-on-different-errors"><a class="header" href="#matching-on-different-errors">Matching on Different Errors</a></h3>
+<h2 id="matching-on-different-errors"><a class="header" href="#matching-on-different-errors">Matching on Different Errors</a></h2>
 <p>The code in Listing 9-4 will <code>panic!</code> no matter why <code>File::open</code> failed.</p>
 <p>However, we want to take different actions for different failure reasons:</p>
 <ul>
@@ -9012,8 +9009,8 @@ file can’t be created, a different error message is printed.</li>
 the outer <code>match</code> stays the same, so the program panics on any error besides
 the missing file error.</li>
 </ol>
-<h2 id="unwrap-and-expect-shortcuts-for-panic-on-error"><a class="header" href="#unwrap-and-expect-shortcuts-for-panic-on-error"><em>unwrap</em> and <em>expect</em>: Shortcuts for Panic on Error</a></h2>
-<h3 id="why-need-unwrap-and-expect"><a class="header" href="#why-need-unwrap-and-expect">Why need unwrap and expect</a></h3>
+<h1 id="unwrapexpect-shortcuts-for-panic-on-error"><a class="header" href="#unwrapexpect-shortcuts-for-panic-on-error"><em>unwrap</em>/<em>?</em>/<em>expect</em>: Shortcuts for Panic on Error</a></h1>
+<h2 id="why-need-unwrap-and-expect"><a class="header" href="#why-need-unwrap-and-expect">Why need unwrap and expect</a></h2>
 <blockquote>
 <p>Using <code>match</code> works well enough, but it can be a bit verbose and doesn’t always
 communicate intent well.</p>
@@ -9035,7 +9032,7 @@ call the <code>panic!</code> macro for us.</li>
 </ul>
 </div>
 </details>
-<h3 id="unwrap"><a class="header" href="#unwrap">Unwrap</a></h3>
+<h2 id="unwrap"><a class="header" href="#unwrap">Unwrap</a></h2>
 <details id="admonition-here-is-an-example-of-unwrap-in-action" class="admonition info">
 <summary class="admonition-title">
 <p>Here is an example of <strong>unwrap</strong> in action:</p>
@@ -9065,7 +9062,7 @@ src/main.rs:4:49
 </code></pre>
 </div>
 </details>
-<h3 id="unwrap_or_else-alternatives-to-using-match-with-resultt-e"><a class="header" href="#unwrap_or_else-alternatives-to-using-match-with-resultt-e">unwrap_or_else: Alternatives to Using <code>match</code> with <code>Result&lt;T, E&gt;</code></a></h3>
+<h2 id="unwrap_or_else-alternatives-to-using-match-with-resultt-e"><a class="header" href="#unwrap_or_else-alternatives-to-using-match-with-resultt-e">unwrap_or_else: Alternatives to Using <code>match</code> with <code>Result&lt;T, E&gt;</code></a></h2>
 <p>That’s a lot of <code>match</code>!</p>
 <ul>
 <li>The <code>match</code> expression is very useful but also very much a primitive.</li>
@@ -9112,7 +9109,7 @@ standard library documentation. </p>
 nested <code>match</code> expressions when you’re dealing with errors.</p>
 </div>
 </details>
-<h3 id="expect-easier-to-track-down"><a class="header" href="#expect-easier-to-track-down">Expect: easier to track down</a></h3>
+<h2 id="expect-easier-to-track-down"><a class="header" href="#expect-easier-to-track-down">Expect: easier to track down</a></h2>
 <p>Similarly, the <code>expect</code> method lets us also choose the <code>panic!</code> error message.</p>
 <p>Using <code>expect</code> instead of <code>unwrap</code> and providing good error messages can convey
 your intent and make tracking down the source of a panic easier.</p>
@@ -9156,7 +9153,7 @@ src/main.rs:5:10
 </code></pre>
 </div>
 </details>
-<h3 id="most-rustaceans-choose-expect-rather-than-unwrap"><a class="header" href="#most-rustaceans-choose-expect-rather-than-unwrap">Most Rustaceans choose expect rather than unwrap</a></h3>
+<h2 id="most-rustaceans-choose-expect-rather-than-unwrap"><a class="header" href="#most-rustaceans-choose-expect-rather-than-unwrap">Most Rustaceans choose expect rather than unwrap</a></h2>
 <p>In production-quality code, most Rustaceans choose <code>expect</code> rather than
 <code>unwrap</code> and give more context about why the operation is expected to always
 succeed:</p>
