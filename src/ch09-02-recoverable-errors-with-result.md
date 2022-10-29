@@ -9,6 +9,7 @@
 * [Match Expression: How to hanle the information?](#match-expression-how-to-hanle-the-information)
    * [What happened if the match expression not handle a situation?](#what-happened-if-the-match-expression-not-handle-a-situation)
    * [Matching on Different Errors](#matching-on-different-errors)
+* [Shortcuts for Panic on Error, simplify match expression](#shortcuts-for-panic-on-error-simplify-match-expression)
    * [Why need unwrap and expect](#why-need-unwrap-and-expect)
    * [Unwrap](#unwrap)
    * [unwrap_or_else: Alternatives to Using match with Result&lt;T, E&gt;](#unwrap_or_else-alternatives-to-using-match-with-resultt-e)
@@ -28,7 +29,7 @@
          * [The Executable of main](#the-executable-of-main)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Oct 29 04:35:13 UTC 2022 -->
+<!-- Added by: runner, at: Sat Oct 29 04:37:50 UTC 2022 -->
 
 <!--te-->
 
