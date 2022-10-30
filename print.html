@@ -2517,7 +2517,7 @@ write readable, safe code that neither panics nor allows invalid memory access.<
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Oct 30 04:20:08 UTC 2022 -->
+<!-- Added by: runner, at: Sun Oct 30 04:23:43 UTC 2022 -->
 <!--te-->
 <p>Functions are prevalent in Rust code. You’ve already seen one of the most
 important functions in the language:</p>
@@ -5415,7 +5415,7 @@ continue to refactor this code by turning the <code>area</code> function into an
 <ul>
 <li><a href="ch05-03-method-syntax.html#similar-and-difference">Similar and Difference</a></li>
 <li><a href="ch05-03-method-syntax.html#defining-methods">Defining Methods</a></li>
-<li><a href="ch05-03-method-syntax.html#rare-self-self-and-mut-self">rare self, &amp;self and &amp;mut self</a></li>
+<li><a href="ch05-03-method-syntax.html#rare-self-self-mut-self-and-self">rare self, &amp;self, &amp;mut self and Self</a></li>
 <li><a href="ch05-03-method-syntax.html#wheres-the---operator">Where’s the <em>-&gt;</em> Operator?</a></li>
 <li><a href="ch05-03-method-syntax.html#methods-with-more-parameters">Methods with More Parameters</a></li>
 <li><a href="ch05-03-method-syntax.html#associated-functions-without-self-not-method-just-like-static-method">Associated Functions Without self: not method, just like static method</a>
@@ -5429,7 +5429,7 @@ continue to refactor this code by turning the <code>area</code> function into an
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Oct 30 04:20:09 UTC 2022 -->
+<!-- Added by: runner, at: Sun Oct 30 04:23:45 UTC 2022 -->
 <!--te-->
 <h2 id="similar-and-difference"><a class="header" href="#similar-and-difference">Similar and Difference</a></h2>
 <blockquote>
@@ -5503,7 +5503,7 @@ instance.</li>
 <li>The method syntax <strong>goes after an instance</strong>: we add a dot followed by
 the method name, parentheses, and any arguments.</li>
 </ol>
-<h2 id="rare-self-self-and-mut-self"><a class="header" href="#rare-self-self-and-mut-self">rare self, &amp;self and &amp;mut self</a></h2>
+<h2 id="rare-self-self-mut-self-and-self"><a class="header" href="#rare-self-self-mut-self-and-self">rare self, &amp;self, &amp;mut self and Self</a></h2>
 <ol>
 <li>Instead:
 In the signature for <code>area</code>, we use <code>&amp;self</code> instead of <code>rectangle: &amp;Rectangle</code>.</li>
@@ -5519,7 +5519,7 @@ lets you abbreviate this with only the name <code>self</code> in the first param
 indicate this method borrows the <code>Self</code> instance, just as we did in <code>rectangle: &amp;Rectangle</code>.</p>
 </blockquote>
 <ol start="5">
-<li>self: take ownership or borrow immutably</li>
+<li>rare self: take ownership or borrow immutably</li>
 </ol>
 <ul>
 <li>Methods can take ownership of <code>self</code>, borrow <code>self</code> immutably as
@@ -5546,6 +5546,9 @@ we’ve called the method on as part of what the method does, we’d use <code>&
 usually used when the method transforms <code>self</code> into something else and you want
 to prevent the caller from using the original instance after the transformation.</li>
 </ul>
+<ol start="8">
+<li>Self: <a href="ch05-03-method-syntax.html#self-keyword-used-in-constructors">Used in Associated Function, always in constructors</a></li>
+</ol>
 <blockquote>
 <p>The main reason for using methods instead of functions, in addition to providing
 method syntax and not having to repeat the type of <code>self</code> in every method’s
@@ -9060,7 +9063,7 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Oct 30 04:15:37 UTC 2022 -->
+<!-- Added by: runner, at: Sun Oct 30 04:23:50 UTC 2022 -->
 <!--te-->
 <p>Most errors aren’t serious enough to require the program to stop entirely.</p>
 <details id="admonition-sometimes-when-a-function-fails-its-for-a-reason-that-you-can-easily-interpret-and-respond-to" class="admonition tip">
