@@ -1,16 +1,17 @@
 # Method Syntax
 
 <!--ts-->
+
 * [Method Syntax](#method-syntax)
-   * [Similar and Difference](#similar-and-difference)
-   * [Defining Methods](#defining-methods)
-   * [rare self, &amp;self and &amp;mut self](#rare-self-self-and-mut-self)
-   * [Where’s the <em>-&gt;</em> Operator?](#wheres-the---operator)
-   * [Methods with More Parameters](#methods-with-more-parameters)
-   * [Associated Functions Without self: not method, just like static method](#associated-functions-without-self-not-method-just-like-static-method)
-      * [Self keyword used in constructors](#self-keyword-used-in-constructors)
-   * [Multiple impl Blocks: Progressive constraints as needed](#multiple-impl-blocks-progressive-constraints-as-needed)
-   * [Summary](#summary)
+    * [Similar and Difference](#similar-and-difference)
+    * [Defining Methods](#defining-methods)
+    * [rare self, &amp;self and &amp;mut self](#rare-self-self-and-mut-self)
+    * [Where’s the <em>-&gt;</em> Operator?](#wheres-the---operator)
+    * [Methods with More Parameters](#methods-with-more-parameters)
+    * [Associated Functions Without self: not method, just like static method](#associated-functions-without-self-not-method-just-like-static-method)
+        * [Self keyword used in constructors](#self-keyword-used-in-constructors)
+    * [Multiple impl Blocks: Progressive constraints as needed](#multiple-impl-blocks-progressive-constraints-as-needed)
+    * [Summary](#summary)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 <!-- Added by: runner, at: Sun Oct 30 04:20:09 UTC 2022 -->
@@ -62,7 +63,7 @@ To define the function within the context of `Rectangle`:
 6. The method syntax **goes after an instance**: we add a dot followed by
    the method name, parentheses, and any arguments.
 
-## rare self, &self and &mut self
+## rare self, &self, &mut self and Self
 
 1. Instead:
    In the signature for `area`, we use `&self` instead of `rectangle: &Rectangle`.
@@ -77,7 +78,7 @@ To define the function within the context of `Rectangle`:
 > indicate this method borrows the `Self` instance, just as we did in `rectangle:
 &Rectangle`.
 
-5. self: take ownership or borrow immutably
+5. rare self: take ownership or borrow immutably
 
 - Methods can take ownership of `self`, borrow `self` immutably as
   we’ve done here, or borrow `self` mutably, just as they can any other parameter.
@@ -99,6 +100,8 @@ To define the function within the context of `Rectangle`:
   self` as the first parameter.
   usually used when the method transforms `self` into something else and you want
   to prevent the caller from using the original instance after the transformation.
+
+8. Self: [Used in Associated Function, always in constructors](#self-keyword-used-in-constructors)
 
 > The main reason for using methods instead of functions, in addition to providing
 > method syntax and not having to repeat the type of `self` in every method’s
