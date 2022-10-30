@@ -1,6 +1,18 @@
 # Generic Data Types
 
 <!--ts-->
+* [Generic Data Types](#generic-data-types)
+   * [In Function Definitions](#in-function-definitions)
+   * [In Struct Definitions](#in-struct-definitions)
+   * [In Enum Definitions](#in-enum-definitions)
+      * [Option](#option)
+      * [Result](#result)
+   * [In Method Definitions](#in-method-definitions)
+   * [Monomorphization：Performance of Code Using Generics](#monomorphizationperformance-of-code-using-generics)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Sun Oct 30 17:10:39 UTC 2022 -->
+
 <!--te-->
 
 We use generics to create definitions for items like function signatures or
