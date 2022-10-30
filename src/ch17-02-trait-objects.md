@@ -2,12 +2,14 @@
 
 <!--ts-->
 <!--te-->
+
 ## Compare implementing trait with trait bounds and trait objects
 
-| Situations    | Define Trait                                   | Implement Trait                                              |
-| ------------- | ---------------------------------------------- | ------------------------------------------------------------ |
-| Trait Bounds  | pub trait Draw {<br/>    fn draw(&self);<br/>} | pub trait Draw {<br/>    fn draw(&self);<br/>}<br/><br/>pub struct Screen {<br/>    pub components: Vec<Box<dyn Draw>>,<br/>} |
-| Trait Objects | pub trait Draw {<br/>    fn draw(&self);<br/>} |                                                              |
+
+
+
+
+
 
 
 ## one limitation of vectors
