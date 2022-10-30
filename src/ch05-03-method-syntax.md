@@ -1,15 +1,16 @@
 # Method Syntax
 
 <!--ts-->
+
 * [Method Syntax](#method-syntax)
-   * [Similar and Difference](#similar-and-difference)
-   * [Defining Methods](#defining-methods)
-   * [rare self, &amp;self and &amp;mut self](#rare-self-self-and-mut-self)
-   * [Where’s the <em>-&gt;</em> Operator?](#wheres-the---operator)
-   * [Methods with More Parameters](#methods-with-more-parameters)
-   * [Associated Functions Without self: not method, just like static method](#associated-functions-without-self-not-method-just-like-static-method)
-   * [Multiple impl Blocks: Progressive constraints as needed](#multiple-impl-blocks-progressive-constraints-as-needed)
-   * [Summary](#summary)
+    * [Similar and Difference](#similar-and-difference)
+    * [Defining Methods](#defining-methods)
+    * [rare self, &amp;self and &amp;mut self](#rare-self-self-and-mut-self)
+    * [Where’s the <em>-&gt;</em> Operator?](#wheres-the---operator)
+    * [Methods with More Parameters](#methods-with-more-parameters)
+    * [Associated Functions Without self: not method, just like static method](#associated-functions-without-self-not-method-just-like-static-method)
+    * [Multiple impl Blocks: Progressive constraints as needed](#multiple-impl-blocks-progressive-constraints-as-needed)
+    * [Summary](#summary)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 <!-- Added by: runner, at: Sun Oct 30 04:15:35 UTC 2022 -->
@@ -269,11 +270,12 @@ are not methods) because they don’t need an instance of the type to work with.
 > We’ve already used one function like this: the `String::from` function that’s
 > defined on the `String` type.
 
+### Self keyword used in constructors
+
 Associated functions that aren’t methods are often used for constructors that
 will return a new instance of the struct:
 
-- These are often called `new`, but
-  `new` isn’t a special name and isn’t built into the language.
+- These are often called `new`, but `new` isn’t a special name and isn’t built into the language.
 
 ~~~admonish info title="For example, we could choose to provide an associated function named *square* that would have one dimension parameter and use that as both width and height, thus making it easier to create a square *Rectangle* rather than having to specify the same value twice:" collapsible=true
 ```rust
