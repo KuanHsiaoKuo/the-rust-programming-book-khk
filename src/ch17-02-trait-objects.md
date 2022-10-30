@@ -5,12 +5,24 @@
 
 ## Compare implementing trait with trait bounds and trait objects
 
+1. The Same Trait definition 
 
+   ```rust
+   pub trait Draw {
+       fn draw(&self);
+   }
+   ```
 
+   
 
+2. Different Call:
 
+   | Situation     | Impl                                   |
+   |----------------------------------------| ---------------------------------- |
+   | Trait Impl    | pub components: Vec\<T\>               |
+   | Trait Objects | pub components: Vec\<Box\<dyn Draw\>\> |
 
-
+   
 
 ## one limitation of vectors
 
