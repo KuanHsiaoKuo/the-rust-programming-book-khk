@@ -16,7 +16,7 @@
 - [Common Programming Concepts](ch03-00-common-programming-concepts.md)
     - [Variables and Mutability](ch03-01-variables-and-mutability.md)
     - [Data Types](ch03-02-data-types.md)
-    - [Functions](ch03-03-how-functions-work.md)
+    - [✨Functions](ch03-03-how-functions-work.md)
     - [Comments](ch03-04-comments.md)
     - [Control Flow](ch03-05-control-flow.md)
 
@@ -55,8 +55,8 @@
     - [To `panic!` or Not to `panic!`](ch09-03-to-panic-or-not-to-panic.md)
 
 - [Generic Types, Traits, and Lifetimes](ch10-00-generics.md)
-    - [Generic Data Types](ch10-01-syntax.md)
-    - [Traits: Defining Shared Behavior](ch10-02-traits.md)
+    - [✨Generic Data Types](ch10-01-syntax.md)
+    - [🪐Traits: Defining Shared Behavior](ch10-02-traits.md)
     - [⭐️Validating References with Lifetimes](ch10-03-lifetime-syntax.md)
 
 - [Writing Automated Tests](ch11-00-testing.md)
@@ -103,7 +103,7 @@
 
 - [Object Oriented Programming Features of Rust](ch17-00-oop.md)
     - [Characteristics of Object-Oriented Languages](ch17-01-what-is-oo.md)
-    - [⭐️Using Trait Objects That Allow for Values of Different Types](ch17-02-trait-objects.md)
+    - [🌛️Using Trait Objects That Allow for Values of Different Types](ch17-02-trait-objects.md)
     - [Implementing an Object-Oriented Design Pattern](ch17-03-oo-design-patterns.md)
 
 ## Advanced Topics
