@@ -189,14 +189,18 @@
 <li><a href="#rare-self-self-and-mut-self">rare self, &amp;self and &amp;mut self</a></li>
 <li><a href="#wheres-the---operator">Where’s the <em>-&gt;</em> Operator?</a></li>
 <li><a href="#methods-with-more-parameters">Methods with More Parameters</a></li>
-<li><a href="#associated-functions-without-self-not-method-just-like-static-method">Associated Functions Without self: not method, just like static method</a></li>
+<li><a href="#associated-functions-without-self-not-method-just-like-static-method">Associated Functions Without self: not method, just like static method</a>
+<ul>
+<li><a href="#self-keyword-used-in-constructors">Self keyword used in constructors</a></li>
+</ul>
+</li>
 <li><a href="#multiple-impl-blocks-progressive-constraints-as-needed">Multiple impl Blocks: Progressive constraints as needed</a></li>
 <li><a href="#summary">Summary</a></li>
 </ul>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Oct 30 04:15:35 UTC 2022 -->
+<!-- Added by: runner, at: Sun Oct 30 04:20:09 UTC 2022 -->
 <!--te-->
 <h2 id="similar-and-difference"><a class="header" href="#similar-and-difference">Similar and Difference</a></h2>
 <blockquote>
@@ -570,11 +574,11 @@ are not methods) because they don’t need an instance of the type to work with.
 We’ve already used one function like this: the <code>String::from</code> function that’s
 defined on the <code>String</code> type.</p>
 </blockquote>
+<h3 id="self-keyword-used-in-constructors"><a class="header" href="#self-keyword-used-in-constructors">Self keyword used in constructors</a></h3>
 <p>Associated functions that aren’t methods are often used for constructors that
 will return a new instance of the struct:</p>
 <ul>
-<li>These are often called <code>new</code>, but
-<code>new</code> isn’t a special name and isn’t built into the language.</li>
+<li>These are often called <code>new</code>, but <code>new</code> isn’t a special name and isn’t built into the language.</li>
 </ul>
 <details id="admonition-for-example-we-could-choose-to-provide-an-associated-function-named-square-that-would-have-one-dimension-parameter-and-use-that-as-both-width-and-height-thus-making-it-easier-to-create-a-square-rectangle-rather-than-having-to-specify-the-same-value-twice" class="admonition info">
 <summary class="admonition-title">
