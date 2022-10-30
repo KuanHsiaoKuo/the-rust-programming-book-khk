@@ -1,6 +1,17 @@
 # Appendix C: Derivable Traits
 
 <!--ts-->
+* [Appendix C: Derivable Traits](#appendix-c-derivable-traits)
+      * [PartialEq](#partialeq)
+      * [Eq](#eq)
+      * [PartialOrd](#partialord)
+      * [Ord](#ord)
+      * [Clone](#clone)
+      * [Copy](#copy)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Sun Oct 30 05:55:36 UTC 2022 -->
+
 <!--te-->
 
 In various places in the book, we’ve discussed the `derive` attribute, which
