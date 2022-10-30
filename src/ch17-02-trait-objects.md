@@ -24,7 +24,7 @@
 
    
 
-## one limitation of vectors
+## one limitation of vectors: only one type
 
 In Chapter 8, we mentioned that **one limitation of vectors** is that they can
 store elements of only one type:
