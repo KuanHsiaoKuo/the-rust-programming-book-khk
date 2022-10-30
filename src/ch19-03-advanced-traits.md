@@ -1,11 +1,14 @@
-## Advanced Traits
+# Advanced Traits
+
+<!--ts-->
+<!--te-->
 
 We first covered traits in the [“Traits: Defining Shared
 Behavior”][traits-defining-shared-behavior]<!-- ignore --> section of Chapter
 10, but we didn’t discuss the more advanced details. Now that you know more
 about Rust, we can get into the nitty-gritty.
 
-### Specifying Placeholder Types in Trait Definitions with Associated Types
+## Specifying Placeholder Types in Trait Definitions with Associated Types
 
 *Associated types* connect a type placeholder with a trait such that the trait
 method definitions can use these placeholder types in their signatures. The
@@ -25,12 +28,11 @@ for the type of the values the type implementing the `Iterator` trait is
 iterating over. The definition of the `Iterator` trait is as shown in Listing
 19-12.
 
+~~~admonish info title="Listing 19-12: The definition of the *Iterator* trait that has an associated type *Item*" collapsible=true
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch19-advanced-features/listing-19-12/src/lib.rs}}
 ```
-
-<span class="caption">Listing 19-12: The definition of the `Iterator` trait
-that has an associated type `Item`</span>
+~~~
 
 The type `Item` is a placeholder, and the `next` method’s definition shows that
 it will return values of type `Option<Self::Item>`. Implementors of the
@@ -39,25 +41,22 @@ method will return an `Option` containing a value of that concrete type.
 
 Associated types might seem like a similar concept to generics, in that the
 latter allow us to define a function without specifying what types it can
-handle. To examine the difference between the two concepts, we’ll look at an
-implementation of the `Iterator` trait on a type named `Counter` that specifies
-the `Item` type is `u32`:
+handle.
 
-<span class="filename">Filename: src/lib.rs</span>
-
+~~~admonish info title="To examine the difference between the two concepts, we’ll look at an implementation of the *Iterator* trait on a type named *Counter* that specifies the *Item* type is *u32*:" collapsible=true
 ```rust,ignore
 {{#rustdoc_include ../listings/ch19-advanced-features/no-listing-22-iterator-on-counter/src/lib.rs:ch19}}
 ```
+~~~
 
 This syntax seems comparable to that of generics. So why not just define the
 `Iterator` trait with generics, as shown in Listing 19-13?
 
+~~~admonish info title="Listing 19-13: A hypothetical definition of the *Iterator* trait using generics" collapsible=true
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch19-advanced-features/listing-19-13/src/lib.rs}}
 ```
-
-<span class="caption">Listing 19-13: A hypothetical definition of the
-`Iterator` trait using generics</span>
+~~~
 
 The difference is that when using generics, as in Listing 19-13, we must
 annotate the types in each implementation; because we can also implement
@@ -80,7 +79,7 @@ trait must provide a type to stand in for the associated type placeholder.
 Associated types often have a name that describes how the type will be used,
 and documenting the associated type in the API documentation is good practice.
 
-### Default Generic Type Parameters and Operator Overloading
+## Default Generic Type Parameters and Operator Overloading
 
 When we use generic type parameters, we can specify a default concrete type for
 the generic type. This eliminates the need for implementors of the trait to
@@ -98,23 +97,18 @@ example, in Listing 19-14 we overload the `+` operator to add two `Point`
 instances together. We do this by implementing the `Add` trait on a `Point`
 struct:
 
-<span class="filename">Filename: src/main.rs</span>
-
+~~~admonish info title="Listing 19-14: Implementing the *Add* trait to overload the *+* operator for *Point* instances" collapsible=true
 ```rust
 {{#rustdoc_include ../listings/ch19-advanced-features/listing-19-14/src/main.rs}}
 ```
-
-<span class="caption">Listing 19-14: Implementing the `Add` trait to overload
-the `+` operator for `Point` instances</span>
+~~~
 
 The `add` method adds the `x` values of two `Point` instances and the `y`
 values of two `Point` instances to create a new `Point`. The `Add` trait has an
 associated type named `Output` that determines the type returned from the `add`
 method.
 
-The default generic type in this code is within the `Add` trait. Here is its
-definition:
-
+~~~admonish info title="The default generic type in this code is within the *Add* trait. Here is its definition:" collapsible=true
 ```rust
 trait Add<Rhs=Self> {
     type Output;
@@ -122,6 +116,7 @@ trait Add<Rhs=Self> {
     fn add(self, rhs: Rhs) -> Self::Output;
 }
 ```
+~~~
 
 This code should look generally familiar: a trait with one method and an
 associated type. The new part is `Rhs=Self`: this syntax is called *default
@@ -144,14 +139,11 @@ Pattern to Implement External Traits on External Types”][newtype]<!-- ignore
 the implementation of `Add` do the conversion correctly. We can implement `Add`
 for `Millimeters` with `Meters` as the `Rhs`, as shown in Listing 19-15.
 
-<span class="filename">Filename: src/lib.rs</span>
-
+~~~admonish info title="Listing 19-15: Implementing the *Add* trait on *Millimeters* to add *Millimeters* to *Meters*" collapsible=true
 ```rust,noplayground
 {{#rustdoc_include ../listings/ch19-advanced-features/listing-19-15/src/lib.rs}}
 ```
-
-<span class="caption">Listing 19-15: Implementing the `Add` trait on
-`Millimeters` to add `Millimeters` to `Meters`</span>
+~~~
 
 To add `Millimeters` and `Meters`, we specify `impl Add<Meters>` to set the
 value of the `Rhs` type parameter instead of using the default of `Self`.
@@ -173,7 +165,7 @@ type parameter to an existing trait, you can give it a default to allow
 extension of the functionality of the trait without breaking the existing
 implementation code.
 
-### Fully Qualified Syntax for Disambiguation: Calling Methods with the Same Name
+## Fully Qualified Syntax for Disambiguation: Calling Methods with the Same Name
 
 Nothing in Rust prevents a trait from having a method with the same name as
 another trait’s method, nor does Rust prevent you from implementing both traits
@@ -186,27 +178,20 @@ want to use. Consider the code in Listing 19-16 where we’ve defined two traits
 both traits on a type `Human` that already has a method named `fly` implemented
 on it. Each `fly` method does something different.
 
-<span class="filename">Filename: src/main.rs</span>
-
+~~~admonish info title="Listing 19-16: Two traits are defined to have a *fly* method and are implemented on the *Human* type, and a *fly* method is implemented on *Human* directly" collapsible=true
 ```rust
 {{#rustdoc_include ../listings/ch19-advanced-features/listing-19-16/src/main.rs:here}}
 ```
-
-<span class="caption">Listing 19-16: Two traits are defined to have a `fly`
-method and are implemented on the `Human` type, and a `fly` method is
-implemented on `Human` directly</span>
+~~~
 
 When we call `fly` on an instance of `Human`, the compiler defaults to calling
 the method that is directly implemented on the type, as shown in Listing 19-17.
 
-<span class="filename">Filename: src/main.rs</span>
-
+~~~admonish info title="Listing 19-17: Calling *fly* on an instance of *Human*" collapsible=true
 ```rust
 {{#rustdoc_include ../listings/ch19-advanced-features/listing-19-17/src/main.rs:here}}
 ```
-
-<span class="caption">Listing 19-17: Calling `fly` on an instance of
-`Human`</span>
+~~~
 
 Running this code will print `*waving arms furiously*`, showing that Rust
 called the `fly` method implemented on `Human` directly.
@@ -215,14 +200,11 @@ To call the `fly` methods from either the `Pilot` trait or the `Wizard` trait,
 we need to use more explicit syntax to specify which `fly` method we mean.
 Listing 19-18 demonstrates this syntax.
 
-<span class="filename">Filename: src/main.rs</span>
-
+~~~admonish info title="Listing 19-18: Specifying which trait’s *fly* method we want to call" collapsible=true
 ```rust
 {{#rustdoc_include ../listings/ch19-advanced-features/listing-19-18/src/main.rs:here}}
 ```
-
-<span class="caption">Listing 19-18: Specifying which trait’s `fly` method we
-want to call</span>
+~~~
 
 Specifying the trait name before the method name clarifies to Rust which
 implementation of `fly` we want to call. We could also write
@@ -230,11 +212,11 @@ implementation of `fly` we want to call. We could also write
 in Listing 19-18, but this is a bit longer to write if we don’t need to
 disambiguate.
 
-Running this code prints the following:
-
+~~~admonish info title="Running this code prints the following:" collapsible=true
 ```console
 {{#include ../listings/ch19-advanced-features/listing-19-18/output.txt}}
 ```
+~~~
 
 Because the `fly` method takes a `self` parameter, if we had two *types* that
 both implement one *trait*, Rust could figure out which implementation of a
@@ -249,15 +231,11 @@ We make an `Animal` trait with an associated non-method function `baby_name`.
 The `Animal` trait is implemented for the struct `Dog`, on which we also
 provide an associated non-method function `baby_name` directly.
 
-<span class="filename">Filename: src/main.rs</span>
-
+~~~admonish info title=">Listing 19-19: A trait with an associated function and a type with an associated function of the same name that also implements the trait" collapsible=true
 ```rust
 {{#rustdoc_include ../listings/ch19-advanced-features/listing-19-19/src/main.rs}}
 ```
-
-<span class="caption">Listing 19-19: A trait with an associated function and a
-type with an associated function of the same name that also implements the
-trait</span>
+~~~
 
 We implement the code for naming all puppies Spot in the `baby_name` associated
 function that is defined on `Dog`. The `Dog` type also implements the trait
@@ -265,12 +243,11 @@ function that is defined on `Dog`. The `Dog` type also implements the trait
 called puppies, and that is expressed in the implementation of the `Animal`
 trait on `Dog` in the `baby_name` function associated with the `Animal` trait.
 
-In `main`, we call the `Dog::baby_name` function, which calls the associated
-function defined on `Dog` directly. This code prints the following:
-
+~~~admonish info title="In *main*, we call the *Dog::baby_name* function, which calls the associated function defined on *Dog* directly. This code prints the following:" collapsible=true
 ```console
 {{#include ../listings/ch19-advanced-features/listing-19-19/output.txt}}
 ```
+~~~
 
 This output isn’t what we wanted. We want to call the `baby_name` function that
 is part of the `Animal` trait that we implemented on `Dog` so the code prints
@@ -278,49 +255,45 @@ is part of the `Animal` trait that we implemented on `Dog` so the code prints
 we used in Listing 19-18 doesn’t help here; if we change `main` to the code in
 Listing 19-20, we’ll get a compilation error.
 
-<span class="filename">Filename: src/main.rs</span>
-
+~~~admonish info title="Listing 19-20: Attempting to call the *baby_name* function from the *Animal* trait, but Rust doesn’t know which implementation to use" collapsible=true
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch19-advanced-features/listing-19-20/src/main.rs:here}}
 ```
-
-<span class="caption">Listing 19-20: Attempting to call the `baby_name`
-function from the `Animal` trait, but Rust doesn’t know which implementation to
-use</span>
+~~~
 
 Because `Animal::baby_name` doesn’t have a `self` parameter, and there could be
 other types that implement the `Animal` trait, Rust can’t figure out which
-implementation of `Animal::baby_name` we want. We’ll get this compiler error:
+implementation of `Animal::baby_name` we want.
 
+~~~admonish info title="We’ll get this compiler error:" collapsible=true
 ```console
 {{#include ../listings/ch19-advanced-features/listing-19-20/output.txt}}
 ```
+~~~
 
 To disambiguate and tell Rust that we want to use the implementation of
 `Animal` for `Dog` as opposed to the implementation of `Animal` for some other
 type, we need to use fully qualified syntax. Listing 19-21 demonstrates how to
 use fully qualified syntax.
 
-<span class="filename">Filename: src/main.rs</span>
-
+~~~admonish info title="Listing 19-21: Using fully qualified syntax to specify that we want to call the *baby_name* function from the *Animal* trait as implemented on *Dog*" collapsible=true
 ```rust
 {{#rustdoc_include ../listings/ch19-advanced-features/listing-19-21/src/main.rs:here}}
 ```
-
-<span class="caption">Listing 19-21: Using fully qualified syntax to specify
-that we want to call the `baby_name` function from the `Animal` trait as
-implemented on `Dog`</span>
+~~~
 
 We’re providing Rust with a type annotation within the angle brackets, which
 indicates we want to call the `baby_name` method from the `Animal` trait as
 implemented on `Dog` by saying that we want to treat the `Dog` type as an
-`Animal` for this function call. This code will now print what we want:
+`Animal` for this function call.
 
+~~~admonish info title=" This code will now print what we want:" collapsible=true
 ```console
 {{#include ../listings/ch19-advanced-features/listing-19-21/output.txt}}
 ```
+~~~
 
-In general, fully qualified syntax is defined as follows:
+> In general, fully qualified syntax is defined as follows:
 
 ```rust,ignore
 <Type as Trait>::function(receiver_if_method, next_arg, ...);
@@ -334,7 +307,7 @@ in the program. You only need to use this more verbose syntax in cases where
 there are multiple implementations that use the same name and Rust needs help
 to identify which implementation you want to call.
 
-### Using Supertraits to Require One Trait’s Functionality Within Another Trait
+## Using Supertraits to Require One Trait’s Functionality Within Another Trait
 
 Sometimes, you might write a trait definition that depends on another trait:
 for a type to implement the first trait, you want to require that type to also
@@ -365,14 +338,11 @@ trait definition by specifying `OutlinePrint: Display`. This technique is
 similar to adding a trait bound to the trait. Listing 19-22 shows an
 implementation of the `OutlinePrint` trait.
 
-<span class="filename">Filename: src/main.rs</span>
-
+~~~admonish info title="Listing 19-22: Implementing the *OutlinePrint* trait that requires the functionality from *Display*" collapsible=true
 ```rust
 {{#rustdoc_include ../listings/ch19-advanced-features/listing-19-22/src/main.rs:here}}
 ```
-
-<span class="caption">Listing 19-22: Implementing the `OutlinePrint` trait that
-requires the functionality from `Display`</span>
+~~~
 
 Because we’ve specified that `OutlinePrint` requires the `Display` trait, we
 can use the `to_string` function that is automatically implemented for any type
@@ -381,35 +351,29 @@ colon and specifying the `Display` trait after the trait name, we’d get an
 error saying that no method named `to_string` was found for the type `&Self` in
 the current scope.
 
-Let’s see what happens when we try to implement `OutlinePrint` on a type that
-doesn’t implement `Display`, such as the `Point` struct:
-
-<span class="filename">Filename: src/main.rs</span>
-
+~~~admonish info title="Let’s see what happens when we try to implement *OutlinePrint* on a type that doesn’t implement *Display*, such as the *Point* struct:" collapsible=true
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch19-advanced-features/no-listing-02-impl-outlineprint-for-point/src/main.rs:here}}
 ```
+~~~
 
-We get an error saying that `Display` is required but not implemented:
-
+~~~admonish info title="We get an error saying that *Display* is required but not implemented:" collapsible=true
 ```console
 {{#include ../listings/ch19-advanced-features/no-listing-02-impl-outlineprint-for-point/output.txt}}
 ```
+~~~
 
-To fix this, we implement `Display` on `Point` and satisfy the constraint that
-`OutlinePrint` requires, like so:
-
-<span class="filename">Filename: src/main.rs</span>
-
+~~~admonish info title="To fix this, we implement *Display* on *Point* and satisfy the constraint that *OutlinePrint* requires, like so:" collapsible=true
 ```rust
 {{#rustdoc_include ../listings/ch19-advanced-features/no-listing-03-impl-display-for-point/src/main.rs:here}}
 ```
+~~~
 
 Then implementing the `OutlinePrint` trait on `Point` will compile
 successfully, and we can call `outline_print` on a `Point` instance to display
 it within an outline of asterisks.
 
-### Using the Newtype Pattern to Implement External Traits on External Types
+## Using the Newtype Pattern to Implement External Traits on External Types
 
 In Chapter 10 in the [“Implementing a Trait on a
 Type”][implementing-a-trait-on-a-type]<!-- ignore --> section, we mentioned the
@@ -431,14 +395,11 @@ orphan rule prevents us from doing directly because the `Display` trait and the
 that holds an instance of `Vec<T>`; then we can implement `Display` on
 `Wrapper` and use the `Vec<T>` value, as shown in Listing 19-23.
 
-<span class="filename">Filename: src/main.rs</span>
-
+~~~admonish info title="Listing 19-23: Creating a *Wrapper* type around *Vec<String>* to implement *Display*" collapsible=true
 ```rust
 {{#rustdoc_include ../listings/ch19-advanced-features/listing-19-23/src/main.rs}}
 ```
-
-<span class="caption">Listing 19-23: Creating a `Wrapper` type around
-`Vec<String>` to implement `Display`</span>
+~~~
 
 The implementation of `Display` uses `self.0` to access the inner `Vec<T>`,
 because `Wrapper` is a tuple struct and `Vec<T>` is the item at index 0 in the
@@ -460,9 +421,13 @@ This newtype pattern is also useful even when traits are not involved. Let’s
 switch focus and look at some advanced ways to interact with Rust’s type system.
 
 [newtype]: ch19-03-advanced-traits.html#using-the-newtype-pattern-to-implement-external-traits-on-external-types
+
 [implementing-a-trait-on-a-type]:
 ch10-02-traits.html#implementing-a-trait-on-a-type
+
 [traits-defining-shared-behavior]:
 ch10-02-traits.html#traits-defining-shared-behavior
+
 [smart-pointer-deref]: ch15-02-deref.html#treating-smart-pointers-like-regular-references-with-the-deref-trait
+
 [tuple-structs]: ch05-01-defining-structs.html#using-tuple-structs-without-named-fields-to-create-different-types
