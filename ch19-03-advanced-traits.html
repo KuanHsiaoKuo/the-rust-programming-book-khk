@@ -186,22 +186,33 @@
 Behavior”</a><!-- ignore --> section of Chapter
 10, but we didn’t discuss the more advanced details. Now that you know more
 about Rust, we can get into the nitty-gritty.</p>
-<h2 id="specifying-placeholder-types-in-trait-definitions-with-associated-types"><a class="header" href="#specifying-placeholder-types-in-trait-definitions-with-associated-types">Specifying Placeholder Types in Trait Definitions with Associated Types</a></h2>
-<p><em>Associated types</em> connect a type placeholder with a trait such that the trait
-method definitions can use these placeholder types in their signatures. The
-implementor of a trait will specify the concrete type to be used instead of the
-placeholder type for the particular implementation. That way, we can define a
+<h2 id="associated-types-specifying-placeholder-types-in-trait-definitions"><a class="header" href="#associated-types-specifying-placeholder-types-in-trait-definitions">Associated Types: Specifying Placeholder Types in Trait Definitions</a></h2>
+<blockquote>
+<p><em>Associated types</em> connect a <em>type placeholder</em> with a trait such that the trait
+method definitions can use these placeholder types in their signatures. </p>
+</blockquote>
+<ul>
+<li>The implementor of a trait will specify the concrete type to be used instead of the
+placeholder type for the particular implementation. </li>
+<li>That way, we can define a
 trait that uses some types without needing to know exactly what those types are
-until the trait is implemented.</p>
+until the trait is implemented.</li>
+</ul>
 <p>We’ve described most of the advanced features in this chapter as being rarely
-needed. Associated types are somewhere in the middle: they’re used more rarely
+needed. </p>
+<blockquote>
+<p>Associated types are somewhere in the middle: they’re used more rarely
 than features explained in the rest of the book but more commonly than many of
 the other features discussed in this chapter.</p>
-<p>One example of a trait with an associated type is the <code>Iterator</code> trait that the
-standard library provides. The associated type is named <code>Item</code> and stands in
+</blockquote>
+<ul>
+<li>One example of a trait with an associated type is the <code>Iterator</code> trait that the
+standard library provides. </li>
+<li>The associated type is named <code>Item</code> and stands in
 for the type of the values the type implementing the <code>Iterator</code> trait is
-iterating over. The definition of the <code>Iterator</code> trait is as shown in Listing
-19-12.</p>
+iterating over.</li>
+</ul>
+<p>The definition of the <code>Iterator</code> trait is as shown in Listing 19-12.</p>
 <details id="admonition-listing-19-12-the-definition-of-the-iterator-trait-that-has-an-associated-type-item" class="admonition info">
 <summary class="admonition-title">
 <p>Listing 19-12: The definition of the <em>Iterator</em> trait that has an associated type <em>Item</em></p>
@@ -216,13 +227,19 @@ iterating over. The definition of the <code>Iterator</code> trait is as shown in
 </code></pre>
 </div>
 </details>
-<p>The type <code>Item</code> is a placeholder, and the <code>next</code> method’s definition shows that
-it will return values of type <code>Option&lt;Self::Item&gt;</code>. Implementors of the
-<code>Iterator</code> trait will specify the concrete type for <code>Item</code>, and the <code>next</code>
-method will return an <code>Option</code> containing a value of that concrete type.</p>
+<ul>
+<li>The type <code>Item</code> is a placeholder</li>
+<li>and the <code>next</code> method’s definition shows that
+it will return values of type <code>Option&lt;Self::Item&gt;</code>. </li>
+<li>Implementors of the <code>Iterator</code> trait will specify the concrete type for <code>Item</code>, and the <code>next</code>
+method will return an <code>Option</code> containing a value of that concrete type.</li>
+</ul>
+<h2 id="difference-between-associated-types-and-generics"><a class="header" href="#difference-between-associated-types-and-generics">Difference between associated types and generics</a></h2>
+<blockquote>
 <p>Associated types might seem like a similar concept to generics, in that the
 latter allow us to define a function without specifying what types it can
 handle.</p>
+</blockquote>
 <details id="admonition-to-examine-the-difference-between-the-two-concepts-well-look-at-an-implementation-of-the-iterator-trait-on-a-type-named-counter-that-specifies-the-item-type-is-u32" class="admonition info">
 <summary class="admonition-title">
 <p>To examine the difference between the two concepts, we’ll look at an implementation of the <em>Iterator</em> trait on a type named <em>Counter</em> that specifies the <em>Item</em> type is <em>u32</em>:</p>
@@ -255,8 +272,11 @@ handle.</p>
 </span></code></pre>
 </div>
 </details>
-<p>This syntax seems comparable to that of generics. So why not just define the
+<p>This syntax seems comparable to that of generics.</p>
+<blockquote>
+<p>So why not just define the
 <code>Iterator</code> trait with generics, as shown in Listing 19-13?</p>
+</blockquote>
 <details id="admonition-listing-19-13-a-hypothetical-definition-of-the-iterator-trait-using-generics" class="admonition info">
 <summary class="admonition-title">
 <p>Listing 19-13: A hypothetical definition of the <em>Iterator</em> trait using generics</p>
@@ -269,35 +289,64 @@ handle.</p>
 </code></pre>
 </div>
 </details>
-<p>The difference is that when using generics, as in Listing 19-13, we must
+<p>The difference is that:</p>
+<ol>
+<li>
+<p>when using generics, as in Listing 19-13, we must
 annotate the types in each implementation; because we can also implement
 <code>Iterator&lt;String&gt; for Counter</code> or any other type, we could have multiple
-implementations of <code>Iterator</code> for <code>Counter</code>. In other words, when a trait has a
+implementations of <code>Iterator</code> for <code>Counter</code>. </p>
+</li>
+<li>
+<p>In other words, when a trait has a
 generic parameter, it can be implemented for a type multiple times, changing
-the concrete types of the generic type parameters each time. When we use the
+the concrete types of the generic type parameters each time. </p>
+</li>
+<li>
+<p>When we use the
 <code>next</code> method on <code>Counter</code>, we would have to provide type annotations to
 indicate which implementation of <code>Iterator</code> we want to use.</p>
+</li>
+<li>
 <p>With associated types, we don’t need to annotate types because we can’t
-implement a trait on a type multiple times. In Listing 19-12 with the
+implement a trait on a type multiple times. </p>
+</li>
+</ol>
+<blockquote>
+<p>In Listing 19-12 with the
 definition that uses associated types, we can only choose what the type of
 <code>Item</code> will be once, because there can only be one <code>impl Iterator for Counter</code>.
 We don’t have to specify that we want an iterator of <code>u32</code> values everywhere
 that we call <code>next</code> on <code>Counter</code>.</p>
-<p>Associated types also become part of the trait’s contract: implementors of the
-trait must provide a type to stand in for the associated type placeholder.
-Associated types often have a name that describes how the type will be used,
-and documenting the associated type in the API documentation is good practice.</p>
+</blockquote>
+<ol start="5">
+<li>Associated types also become part of the trait’s contract: </li>
+</ol>
+<ul>
+<li>implementors of the
+trait must provide a type to stand in for the associated type placeholder.</li>
+<li>Associated types often have a name that describes how the type will be used</li>
+<li>and documenting the associated type in the API documentation is good practice.</li>
+</ul>
 <h2 id="default-generic-type-parameters-and-operator-overloading"><a class="header" href="#default-generic-type-parameters-and-operator-overloading">Default Generic Type Parameters and Operator Overloading</a></h2>
 <p>When we use generic type parameters, we can specify a default concrete type for
-the generic type. This eliminates the need for implementors of the trait to
-specify a concrete type if the default type works. You specify a default type
+the generic type. </p>
+<p>This eliminates the need for implementors of the trait to
+specify a concrete type if the default type works. </p>
+<blockquote>
+<p>You specify a default type
 when declaring a generic type with the <code>&lt;PlaceholderType=ConcreteType&gt;</code> syntax.</p>
+</blockquote>
 <p>A great example of a situation where this technique is useful is with <em>operator
 overloading</em>, in which you customize the behavior of an operator (such as <code>+</code>)
 in particular situations.</p>
 <p>Rust doesn’t allow you to create your own operators or overload arbitrary
-operators. But you can overload the operations and corresponding traits listed
-in <code>std::ops</code> by implementing the traits associated with the operator. For
+operators. </p>
+<blockquote>
+<p>But you can overload the operations and corresponding traits listed
+in <code>std::ops</code> by implementing the traits associated with the operator. </p>
+</blockquote>
+<p>For
 example, in Listing 19-14 we overload the <code>+</code> operator to add two <code>Point</code>
 instances together. We do this by implementing the <code>Add</code> trait on a <code>Point</code>
 struct:</p>
@@ -335,10 +384,12 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
-<p>The <code>add</code> method adds the <code>x</code> values of two <code>Point</code> instances and the <code>y</code>
-values of two <code>Point</code> instances to create a new <code>Point</code>. The <code>Add</code> trait has an
-associated type named <code>Output</code> that determines the type returned from the <code>add</code>
-method.</p>
+<ul>
+<li>The <code>add</code> method adds the <code>x</code> values of two <code>Point</code> instances and the <code>y</code>
+values of two <code>Point</code> instances to create a new <code>Point</code>. </li>
+<li>The <code>Add</code> trait has an
+associated type named <code>Output</code> that determines the type returned from the <code>add</code> method.</li>
+</ul>
 <details id="admonition-the-default-generic-type-in-this-code-is-within-the-add-trait-here-is-its-definition" class="admonition info">
 <summary class="admonition-title">
 <p>The default generic type in this code is within the <em>Add</em> trait. Here is its definition:</p>
@@ -356,24 +407,52 @@ method.</p>
 </span></code></pre></pre>
 </div>
 </details>
-<p>This code should look generally familiar: a trait with one method and an
-associated type. The new part is <code>Rhs=Self</code>: this syntax is called <em>default
-type parameters</em>. The <code>Rhs</code> generic type parameter (short for “right hand
-side”) defines the type of the <code>rhs</code> parameter in the <code>add</code> method. If we don’t
+<p>This code should look generally familiar: </p>
+<ul>
+<li>a trait with one method and an
+associated type. </li>
+<li>The new part is <code>Rhs=Self</code>: this syntax is called <em>default
+type parameters</em>. </li>
+</ul>
+<blockquote>
+<p>The <code>Rhs</code> generic type parameter (short for “right hand
+side”) defines the type of the <code>rhs</code> parameter in the <code>add</code> method. </p>
+</blockquote>
+<ul>
+<li>
+<p>If we don’t
 specify a concrete type for <code>Rhs</code> when we implement the <code>Add</code> trait, the type
 of <code>Rhs</code> will default to <code>Self</code>, which will be the type we’re implementing
 <code>Add</code> on.</p>
+</li>
+<li>
 <p>When we implemented <code>Add</code> for <code>Point</code>, we used the default for <code>Rhs</code> because we
-wanted to add two <code>Point</code> instances. Let’s look at an example of implementing
+wanted to add two <code>Point</code> instances. </p>
+</li>
+</ul>
+<p>Let’s look at an example of implementing
 the <code>Add</code> trait where we want to customize the <code>Rhs</code> type rather than using the
-default.</p>
-<p>We have two structs, <code>Millimeters</code> and <code>Meters</code>, holding values in different
-units. This thin wrapping of an existing type in another struct is known as the
+default: </p>
+<ol>
+<li>We have two structs, <code>Millimeters</code> and <code>Meters</code>, holding values in different
+units. </li>
+</ol>
+<blockquote>
+<p>This thin wrapping of an existing type in another struct is known as the
 <em>newtype pattern</em>, which we describe in more detail in the <a href="ch19-03-advanced-traits.html#using-the-newtype-pattern-to-implement-external-traits-on-external-types">“Using the Newtype
 Pattern to Implement External Traits on External Types”</a><!-- ignore
---> section. We want to add values in millimeters to values in meters and have
-the implementation of <code>Add</code> do the conversion correctly. We can implement <code>Add</code>
+ > --> section. </p>
+</blockquote>
+<ol start="2">
+<li>
+<p>We want to add values in millimeters to values in meters and have
+the implementation of <code>Add</code> do the conversion correctly. </p>
+</li>
+<li>
+<p>We can implement <code>Add</code>
 for <code>Millimeters</code> with <code>Meters</code> as the <code>Rhs</code>, as shown in Listing 19-15.</p>
+</li>
+</ol>
 <details id="admonition-listing-19-15-implementing-the-add-trait-on-millimeters-to-add-millimeters-to-meters" class="admonition info">
 <summary class="admonition-title">
 <p>Listing 19-15: Implementing the <em>Add</em> trait on <em>Millimeters</em> to add <em>Millimeters</em> to <em>Meters</em></p>
@@ -395,33 +474,64 @@ impl Add&lt;Meters&gt; for Millimeters {
 </code></pre>
 </div>
 </details>
+<ol start="4">
+<li>
 <p>To add <code>Millimeters</code> and <code>Meters</code>, we specify <code>impl Add&lt;Meters&gt;</code> to set the
 value of the <code>Rhs</code> type parameter instead of using the default of <code>Self</code>.</p>
+</li>
+<li>
 <p>You’ll use default type parameters in two main ways:</p>
+</li>
+</ol>
 <ul>
 <li>To extend a type without breaking existing code</li>
 <li>To allow customization in specific cases most users won’t need</li>
 </ul>
-<p>The standard library’s <code>Add</code> trait is an example of the second purpose:
-usually, you’ll add two like types, but the <code>Add</code> trait provides the ability to
-customize beyond that. Using a default type parameter in the <code>Add</code> trait
+<blockquote>
+<p>The standard library’s <code>Add</code> trait is an example of the second purpose:</p>
+</blockquote>
+<ul>
+<li>usually, you’ll add two like types, but the <code>Add</code> trait provides the ability to
+customize beyond that. </li>
+<li>Using a default type parameter in the <code>Add</code> trait
 definition means you don’t have to specify the extra parameter most of the
-time. In other words, a bit of implementation boilerplate isn’t needed, making
+time. </li>
+</ul>
+<blockquote>
+<p>In other words, a bit of implementation boilerplate isn’t needed, making
 it easier to use the trait.</p>
-<p>The first purpose is similar to the second but in reverse: if you want to add a
+</blockquote>
+<p>The first purpose is similar to the second but in reverse: </p>
+<ul>
+<li>if you want to add a
 type parameter to an existing trait, you can give it a default to allow
 extension of the functionality of the trait without breaking the existing
-implementation code.</p>
+implementation code.</li>
+</ul>
 <h2 id="fully-qualified-syntax-for-disambiguation-calling-methods-with-the-same-name"><a class="header" href="#fully-qualified-syntax-for-disambiguation-calling-methods-with-the-same-name">Fully Qualified Syntax for Disambiguation: Calling Methods with the Same Name</a></h2>
 <p>Nothing in Rust prevents a trait from having a method with the same name as
 another trait’s method, nor does Rust prevent you from implementing both traits
-on one type. It’s also possible to implement a method directly on the type with
+on one type. </p>
+<p>It’s also possible to implement a method directly on the type with
 the same name as methods from traits.</p>
+<blockquote>
 <p>When calling methods with the same name, you’ll need to tell Rust which one you
-want to use. Consider the code in Listing 19-16 where we’ve defined two traits,
-<code>Pilot</code> and <code>Wizard</code>, that both have a method called <code>fly</code>. We then implement
+want to use: </p>
+</blockquote>
+<ol>
+<li>
+<p>Consider the code in Listing 19-16 where we’ve defined two traits,
+<code>Pilot</code> and <code>Wizard</code>, that both have a method called <code>fly</code>. </p>
+</li>
+<li>
+<p>We then implement
 both traits on a type <code>Human</code> that already has a method named <code>fly</code> implemented
-on it. Each <code>fly</code> method does something different.</p>
+on it. </p>
+</li>
+<li>
+<p>Each <code>fly</code> method does something different.</p>
+</li>
+</ol>
 <details id="admonition-listing-19-16-two-traits-are-defined-to-have-a-fly-method-and-are-implemented-on-the-human-type-and-a-fly-method-is-implemented-on-human-directly" class="admonition info">
 <summary class="admonition-title">
 <p>Listing 19-16: Two traits are defined to have a <em>fly</em> method and are implemented on the <em>Human</em> type, and a <em>fly</em> method is implemented on <em>Human</em> directly</p>
@@ -460,8 +570,10 @@ impl Human {
 </span></code></pre></pre>
 </div>
 </details>
-<p>When we call <code>fly</code> on an instance of <code>Human</code>, the compiler defaults to calling
-the method that is directly implemented on the type, as shown in Listing 19-17.</p>
+<ol start="4">
+<li>When we call <code>fly</code> on an instance of <code>Human</code>, the compiler defaults to calling
+the method that is directly implemented on the type, as shown in Listing 19-17.</li>
+</ol>
 <details id="admonition-listing-19-17-calling-fly-on-an-instance-of-human" class="admonition info">
 <summary class="admonition-title">
 <p>Listing 19-17: Calling <em>fly</em> on an instance of <em>Human</em></p>
@@ -503,11 +615,15 @@ the method that is directly implemented on the type, as shown in Listing 19-17.<
 </code></pre></pre>
 </div>
 </details>
-<p>Running this code will print <code>*waving arms furiously*</code>, showing that Rust
-called the <code>fly</code> method implemented on <code>Human</code> directly.</p>
+<ol start="5">
+<li>Running this code will print <code>*waving arms furiously*</code>, showing that Rust
+called the <code>fly</code> method implemented on <code>Human</code> directly.</li>
+</ol>
+<blockquote>
 <p>To call the <code>fly</code> methods from either the <code>Pilot</code> trait or the <code>Wizard</code> trait,
-we need to use more explicit syntax to specify which <code>fly</code> method we mean.
-Listing 19-18 demonstrates this syntax.</p>
+we need to use more explicit syntax to specify which <code>fly</code> method we mean.</p>
+</blockquote>
+<p>Listing 19-18 demonstrates this syntax.</p>
 <details id="admonition-listing-19-18-specifying-which-traits-fly-method-we-want-to-call" class="admonition info">
 <summary class="admonition-title">
 <p>Listing 19-18: Specifying which trait’s <em>fly</em> method we want to call</p>
@@ -551,11 +667,18 @@ Listing 19-18 demonstrates this syntax.</p>
 </code></pre></pre>
 </div>
 </details>
+<ul>
+<li>
 <p>Specifying the trait name before the method name clarifies to Rust which
-implementation of <code>fly</code> we want to call. We could also write
+implementation of <code>fly</code> we want to call. </p>
+</li>
+<li>
+<p>We could also write
 <code>Human::fly(&amp;person)</code>, which is equivalent to the <code>person.fly()</code> that we used
 in Listing 19-18, but this is a bit longer to write if we don’t need to
 disambiguate.</p>
+</li>
+</ul>
 <details id="admonition-running-this-code-prints-the-following" class="admonition info">
 <summary class="admonition-title">
 <p>Running this code prints the following:</p>
@@ -575,13 +698,16 @@ Up!
 <p>Because the <code>fly</code> method takes a <code>self</code> parameter, if we had two <em>types</em> that
 both implement one <em>trait</em>, Rust could figure out which implementation of a
 trait to use based on the type of <code>self</code>.</p>
-<p>However, associated functions that are not methods don’t have a <code>self</code>
+<blockquote>
+<p>However, <em>associated functions</em> that are not methods don’t have a <code>self</code>
 parameter. When there are multiple types or traits that define non-method
 functions with the same function name, Rust doesn’t always know which type you
-mean unless you use <em>fully qualified syntax</em>. For example, in Listing 19-19 we
-create a trait for an animal shelter that wants to name all baby dogs <em>Spot</em>.
-We make an <code>Animal</code> trait with an associated non-method function <code>baby_name</code>.
-The <code>Animal</code> trait is implemented for the struct <code>Dog</code>, on which we also
+mean unless you use <em>fully qualified syntax</em>. </p>
+</blockquote>
+<p>For example, in Listing 19-19 we
+create a trait for an animal shelter that wants to name all baby dogs <em>Spot</em>.</p>
+<p>We make an <code>Animal</code> trait with an associated non-method function <code>baby_name</code>.</p>
+<p>The <code>Animal</code> trait is implemented for the struct <code>Dog</code>, on which we also
 provide an associated non-method function <code>baby_name</code> directly.</p>
 <details id="admonition-listing-19-19-a-trait-with-an-associated-function-and-a-type-with-an-associated-function-of-the-same-name-that-also-implements-the-trait" class="admonition info">
 <summary class="admonition-title">
@@ -615,11 +741,21 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
+<ul>
+<li>
 <p>We implement the code for naming all puppies Spot in the <code>baby_name</code> associated
-function that is defined on <code>Dog</code>. The <code>Dog</code> type also implements the trait
-<code>Animal</code>, which describes characteristics that all animals have. Baby dogs are
+function that is defined on <code>Dog</code>.</p>
+</li>
+<li>
+<p>The <code>Dog</code> type also implements the trait
+<code>Animal</code>, which describes characteristics that all animals have. </p>
+</li>
+<li>
+<p>Baby dogs are
 called puppies, and that is expressed in the implementation of the <code>Animal</code>
 trait on <code>Dog</code> in the <code>baby_name</code> function associated with the <code>Animal</code> trait.</p>
+</li>
+</ul>
 <details id="admonition-in-main-we-call-the-dogbaby_name-function-which-calls-the-associated-function-defined-on-dog-directly-this-code-prints-the-following" class="admonition info">
 <summary class="admonition-title">
 <p>In <em>main</em>, we call the <em>Dog::baby_name</em> function, which calls the associated function defined on <em>Dog</em> directly. This code prints the following:</p>
@@ -634,9 +770,11 @@ A baby dog is called a Spot
 </code></pre>
 </div>
 </details>
-<p>This output isn’t what we wanted. We want to call the <code>baby_name</code> function that
+<p>This output isn’t what we wanted. </p>
+<p>We want to call the <code>baby_name</code> function that
 is part of the <code>Animal</code> trait that we implemented on <code>Dog</code> so the code prints
-<code>A baby dog is called a puppy</code>. The technique of specifying the trait name that
+<code>A baby dog is called a puppy</code>. </p>
+<p>The technique of specifying the trait name that
 we used in Listing 19-18 doesn’t help here; if we change <code>main</code> to the code in
 Listing 19-20, we’ll get a compilation error.</p>
 <details id="admonition-listing-19-20-attempting-to-call-the-baby_name-function-from-the-animal-trait-but-rust-doesnt-know-which-implementation-to-use" class="admonition info">
@@ -669,9 +807,11 @@ Listing 19-20, we’ll get a compilation error.</p>
 </code></pre>
 </div>
 </details>
+<blockquote>
 <p>Because <code>Animal::baby_name</code> doesn’t have a <code>self</code> parameter, and there could be
 other types that implement the <code>Animal</code> trait, Rust can’t figure out which
 implementation of <code>Animal::baby_name</code> we want.</p>
+</blockquote>
 <details id="admonition-well-get-this-compiler-error" class="admonition info">
 <summary class="admonition-title">
 <p>We’ll get this compiler error:</p>
@@ -693,9 +833,12 @@ error: could not compile `traits-example` due to previous error
 </code></pre>
 </div>
 </details>
+<blockquote>
 <p>To disambiguate and tell Rust that we want to use the implementation of
 <code>Animal</code> for <code>Dog</code> as opposed to the implementation of <code>Animal</code> for some other
-type, we need to use fully qualified syntax. Listing 19-21 demonstrates how to
+type, we need to use fully qualified syntax.</p>
+</blockquote>
+<p>Listing 19-21 demonstrates how to
 use fully qualified syntax.</p>
 <details id="admonition-listing-19-21-using-fully-qualified-syntax-to-specify-that-we-want-to-call-the-baby_name-function-from-the-animal-trait-as-implemented-on-dog" class="admonition info">
 <summary class="admonition-title">
@@ -727,10 +870,14 @@ use fully qualified syntax.</p>
 </code></pre></pre>
 </div>
 </details>
-<p>We’re providing Rust with a type annotation within the angle brackets, which
+<ul>
+<li>We’re providing Rust with a type annotation within the angle brackets, </li>
+<li>which
 indicates we want to call the <code>baby_name</code> method from the <code>Animal</code> trait as
-implemented on <code>Dog</code> by saying that we want to treat the <code>Dog</code> type as an
-<code>Animal</code> for this function call.</p>
+implemented on <code>Dog</code> </li>
+<li>by saying that we want to treat the <code>Dog</code> type as an
+<code>Animal</code> for this function call.</li>
+</ul>
 <details id="admonition-this-code-will-now-print-what-we-want" class="admonition info">
 <summary class="admonition-title">
 <p>This code will now print what we want:</p>
@@ -750,25 +897,41 @@ A baby dog is called a puppy
 </blockquote>
 <pre><code class="language-rust ignore">&lt;Type as Trait&gt;::function(receiver_if_method, next_arg, ...);
 </code></pre>
-<p>For associated functions that aren’t methods, there would not be a <code>receiver</code>:
-there would only be the list of other arguments. You could use fully qualified
-syntax everywhere that you call functions or methods. However, you’re allowed
+<p>For associated functions that aren’t methods, there would not be a <code>receiver</code>:</p>
+<ul>
+<li>there would only be the list of other arguments.</li>
+<li>You could use fully qualified
+syntax everywhere that you call functions or methods. </li>
+<li>However, you’re allowed
 to omit any part of this syntax that Rust can figure out from other information
-in the program. You only need to use this more verbose syntax in cases where
+in the program. </li>
+</ul>
+<blockquote>
+<p>You only need to use this more verbose syntax in cases where
 there are multiple implementations that use the same name and Rust needs help
 to identify which implementation you want to call.</p>
+</blockquote>
 <h2 id="using-supertraits-to-require-one-traits-functionality-within-another-trait"><a class="header" href="#using-supertraits-to-require-one-traits-functionality-within-another-trait">Using Supertraits to Require One Trait’s Functionality Within Another Trait</a></h2>
-<p>Sometimes, you might write a trait definition that depends on another trait:
-for a type to implement the first trait, you want to require that type to also
-implement the second trait. You would do this so that your trait definition can
-make use of the associated items of the second trait. The trait your trait
+<p>Sometimes, you might write a trait definition that depends on another trait:</p>
+<ol>
+<li>for a type to implement the first trait, you want to require that type to also
+implement the second trait. </li>
+<li>You would do this so that your trait definition can
+make use of the associated items of the second trait. </li>
+</ol>
+<blockquote>
+<p>The trait your trait
 definition is relying on is called a <em>supertrait</em> of your trait.</p>
+</blockquote>
 <p>For example, let’s say we want to make an <code>OutlinePrint</code> trait with an
 <code>outline_print</code> method that will print a given value formatted so that it’s
-framed in asterisks. That is, given a <code>Point</code> struct that implements the
+framed in asterisks. </p>
+<blockquote>
+<p>That is, given a <code>Point</code> struct that implements the
 standard library trait <code>Display</code> to result in <code>(x, y)</code>, when we call
 <code>outline_print</code> on a <code>Point</code> instance that has <code>1</code> for <code>x</code> and <code>3</code> for <code>y</code>, it
 should print the following:</p>
+</blockquote>
 <pre><code class="language-text">**********
 *        *
 * (1, 3) *
@@ -776,11 +939,19 @@ should print the following:</p>
 **********
 </code></pre>
 <p>In the implementation of the <code>outline_print</code> method, we want to use the
-<code>Display</code> trait’s functionality. Therefore, we need to specify that the
+<code>Display</code> trait’s functionality. </p>
+<blockquote>
+<p>Therefore, we need to specify that the
 <code>OutlinePrint</code> trait will work only for types that also implement <code>Display</code> and
-provide the functionality that <code>OutlinePrint</code> needs. We can do that in the
-trait definition by specifying <code>OutlinePrint: Display</code>. This technique is
-similar to adding a trait bound to the trait. Listing 19-22 shows an
+provide the functionality that <code>OutlinePrint</code> needs. </p>
+</blockquote>
+<p>We can do that in the
+trait definition by specifying <code>OutlinePrint: Display</code>. </p>
+<blockquote>
+<p>This technique is
+similar to adding a trait bound to the trait.</p>
+</blockquote>
+<p>Listing 19-22 shows an
 implementation of the <code>OutlinePrint</code> trait.</p>
 <details id="admonition-listing-19-22-implementing-the-outlineprint-trait-that-requires-the-functionality-from-display" class="admonition info">
 <summary class="admonition-title">
@@ -808,10 +979,13 @@ trait OutlinePrint: fmt::Display {
 </details>
 <p>Because we’ve specified that <code>OutlinePrint</code> requires the <code>Display</code> trait, we
 can use the <code>to_string</code> function that is automatically implemented for any type
-that implements <code>Display</code>. If we tried to use <code>to_string</code> without adding a
+that implements <code>Display</code>. </p>
+<blockquote>
+<p>If we tried to use <code>to_string</code> without adding a
 colon and specifying the <code>Display</code> trait after the trait name, we’d get an
 error saying that no method named <code>to_string</code> was found for the type <code>&amp;Self</code> in
 the current scope.</p>
+</blockquote>
 <details id="admonition-lets-see-what-happens-when-we-try-to-implement-outlineprint-on-a-type-that-doesnt-implement-display-such-as-the-point-struct" class="admonition info">
 <summary class="admonition-title">
 <p>Let’s see what happens when we try to implement <em>OutlinePrint</em> on a type that doesn’t implement <em>Display</em>, such as the <em>Point</em> struct:</p>
@@ -919,22 +1093,42 @@ it within an outline of asterisks.</p>
 <h2 id="using-the-newtype-pattern-to-implement-external-traits-on-external-types"><a class="header" href="#using-the-newtype-pattern-to-implement-external-traits-on-external-types">Using the Newtype Pattern to Implement External Traits on External Types</a></h2>
 <p>In Chapter 10 in the <a href="ch10-02-traits.html#implementing-a-trait-on-a-type">“Implementing a Trait on a
 Type”</a><!-- ignore --> section, we mentioned the
-orphan rule that states we’re only allowed to implement a trait on a type if
-either the trait or the type are local to our crate. It’s possible to get
+<em>orphan rule</em> that states we’re only allowed to implement a trait on a type if
+either the trait or the type are local to our crate. </p>
+<blockquote>
+<p>It’s possible to get
 around this restriction using the <em>newtype pattern</em>, which involves creating a
 new type in a tuple struct. (We covered tuple structs in the <a href="ch05-01-defining-structs.html#using-tuple-structs-without-named-fields-to-create-different-types">“Using Tuple
 Structs without Named Fields to Create Different Types”</a><!--
-ignore --> section of Chapter 5.) The tuple struct will have one field and be a
-thin wrapper around the type we want to implement a trait for. Then the wrapper
-type is local to our crate, and we can implement the trait on the wrapper.
-<em>Newtype</em> is a term that originates from the Haskell programming language.
-There is no runtime performance penalty for using this pattern, and the wrapper
+ > ignore --> section of Chapter 5.): </p>
+</blockquote>
+<ul>
+<li>The tuple struct will have one field and be a
+thin wrapper around the type we want to implement a trait for. </li>
+<li>Then the wrapper
+type is local to our crate, and we can implement the trait on the wrapper.</li>
+</ul>
+<blockquote>
+<p><em>Newtype</em> is a term that originates from the Haskell programming language.</p>
+</blockquote>
+<p>There is no runtime performance penalty for using this pattern, and the wrapper
 type is elided at compile time.</p>
-<p>As an example, let’s say we want to implement <code>Display</code> on <code>Vec&lt;T&gt;</code>, which the
+<p>As an example:</p>
+<ol>
+<li>
+<p>let’s say we want to implement <code>Display</code> on <code>Vec&lt;T&gt;</code>, which the
 orphan rule prevents us from doing directly because the <code>Display</code> trait and the
-<code>Vec&lt;T&gt;</code> type are defined outside our crate. We can make a <code>Wrapper</code> struct
-that holds an instance of <code>Vec&lt;T&gt;</code>; then we can implement <code>Display</code> on
+<code>Vec&lt;T&gt;</code> type are defined outside our crate.</p>
+</li>
+<li>
+<p>We can make a <code>Wrapper</code> struct
+that holds an instance of <code>Vec&lt;T&gt;</code>;</p>
+</li>
+<li>
+<p>then we can implement <code>Display</code> on
 <code>Wrapper</code> and use the <code>Vec&lt;T&gt;</code> value, as shown in Listing 19-23.</p>
+</li>
+</ol>
 <details id="admonition-listing-19-23-creating-a-wrapper-type-around-vec-to-implement-display" class="admonition info">
 <summary class="admonition-title">
 <p>Listing 19-23: Creating a <em>Wrapper</em> type around <em>Vec<String></em> to implement <em>Display</em></p>
@@ -958,21 +1152,42 @@ fn main() {
 </code></pre></pre>
 </div>
 </details>
-<p>The implementation of <code>Display</code> uses <code>self.0</code> to access the inner <code>Vec&lt;T&gt;</code>,
-because <code>Wrapper</code> is a tuple struct and <code>Vec&lt;T&gt;</code> is the item at index 0 in the
-tuple. Then we can use the functionality of the <code>Display</code> type on <code>Wrapper</code>.</p>
+<ul>
+<li>
+<p>The implementation of <code>Display</code> uses <code>self.0</code> to access the inner <code>Vec&lt;T&gt;</code></p>
+</li>
+<li>
+<p>because <code>Wrapper</code> is a tuple struct and <code>Vec&lt;T&gt;</code> is the item at index 0 in the
+tuple. </p>
+</li>
+<li>
+<p>Then we can use the functionality of the <code>Display</code> type on <code>Wrapper</code>.</p>
+</li>
+</ul>
+<blockquote>
 <p>The downside of using this technique is that <code>Wrapper</code> is a new type, so it
-doesn’t have the methods of the value it’s holding. We would have to implement
+doesn’t have the methods of the value it’s holding. </p>
+</blockquote>
+<ul>
+<li>We would have to implement
 all the methods of <code>Vec&lt;T&gt;</code> directly on <code>Wrapper</code> such that the methods
 delegate to <code>self.0</code>, which would allow us to treat <code>Wrapper</code> exactly like a
-<code>Vec&lt;T&gt;</code>. If we wanted the new type to have every method the inner type has,
+<code>Vec&lt;T&gt;</code>.</li>
+</ul>
+<blockquote>
+<p>If we wanted the new type to have every method the inner type has,
 implementing the <code>Deref</code> trait (discussed in Chapter 15 in the <a href="ch15-02-deref.html#treating-smart-pointers-like-regular-references-with-the-deref-trait">“Treating Smart
 Pointers Like Regular References with the <code>Deref</code>
 Trait”</a><!-- ignore --> section) on the <code>Wrapper</code> to return
-the inner type would be a solution. If we don’t want the <code>Wrapper</code> type to have
+the inner type would be a solution.</p>
+</blockquote>
+<p>If we don’t want the <code>Wrapper</code> type to have
 all the methods of the inner type—for example, to restrict the <code>Wrapper</code> type’s
 behavior—we would have to implement just the methods we do want manually.</p>
-<p>This newtype pattern is also useful even when traits are not involved. Let’s
+<blockquote>
+<p>This newtype pattern is also useful even when traits are not involved.</p>
+</blockquote>
+<p>Let’s
 switch focus and look at some advanced ways to interact with Rust’s type system.</p>
 
             </main>
