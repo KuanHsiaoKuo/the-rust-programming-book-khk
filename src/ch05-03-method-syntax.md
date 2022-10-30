@@ -1,20 +1,19 @@
 # Method Syntax
 
 <!--ts-->
-
 * [Method Syntax](#method-syntax)
-    * [Similar and Difference](#similar-and-difference)
-    * [Defining Methods](#defining-methods)
-    * [rare self, &amp;self and &amp;mut self](#rare-self-self-and-mut-self)
-    * [Where’s the <em>-&gt;</em> Operator?](#wheres-the---operator)
-    * [Methods with More Parameters](#methods-with-more-parameters)
-    * [Associated Functions Without self: not method, just like static method](#associated-functions-without-self-not-method-just-like-static-method)
-        * [Self keyword used in constructors](#self-keyword-used-in-constructors)
-    * [Multiple impl Blocks: Progressive constraints as needed](#multiple-impl-blocks-progressive-constraints-as-needed)
-    * [Summary](#summary)
+   * [Similar and Difference](#similar-and-difference)
+   * [Defining Methods](#defining-methods)
+   * [rare self, &amp;self, &amp;mut self and Self](#rare-self-self-mut-self-and-self)
+   * [Where’s the <em>-&gt;</em> Operator?](#wheres-the---operator)
+   * [Methods with More Parameters](#methods-with-more-parameters)
+   * [Associated Functions Without self: not method, just like static method](#associated-functions-without-self-not-method-just-like-static-method)
+      * [Self keyword used in constructors](#self-keyword-used-in-constructors)
+   * [Multiple impl Blocks: Progressive constraints as needed](#multiple-impl-blocks-progressive-constraints-as-needed)
+   * [Summary](#summary)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Oct 30 04:20:09 UTC 2022 -->
+<!-- Added by: runner, at: Sun Oct 30 04:23:45 UTC 2022 -->
 
 <!--te-->
 
