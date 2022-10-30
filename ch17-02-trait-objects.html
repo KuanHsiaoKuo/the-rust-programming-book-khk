@@ -183,7 +183,26 @@
 <!--ts-->
 <!--te-->
 <h2 id="compare-implementing-trait-with-trait-bounds-and-trait-objects"><a class="header" href="#compare-implementing-trait-with-trait-bounds-and-trait-objects">Compare implementing trait with trait bounds and trait objects</a></h2>
-<h2 id="one-limitation-of-vectors"><a class="header" href="#one-limitation-of-vectors">one limitation of vectors</a></h2>
+<ol>
+<li>
+<p>The Same Trait definition </p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait Draw {
+    fn draw(&amp;self);
+}
+<span class="boring">}
+</span></code></pre></pre>
+</li>
+<li>
+<p>Different Call:</p>
+<div class="table-wrapper"><table><thead><tr><th>Situation</th><th>Impl</th></tr></thead><tbody>
+<tr><td>Trait Impl</td><td>pub components: Vec&lt;T&gt;</td></tr>
+<tr><td>Trait Objects</td><td>pub components: Vec&lt;Box&lt;dyn Draw&gt;&gt;</td></tr>
+</tbody></table>
+</div></li>
+</ol>
+<h2 id="one-limitation-of-vectors-only-one-type"><a class="header" href="#one-limitation-of-vectors-only-one-type">one limitation of vectors: only one type</a></h2>
 <p>In Chapter 8, we mentioned that <strong>one limitation of vectors</strong> is that they can
 store elements of only one type:</p>
 <ol>

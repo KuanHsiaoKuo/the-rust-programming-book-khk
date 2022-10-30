@@ -2517,7 +2517,7 @@ write readable, safe code that neither panics nor allows invalid memory access.<
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Oct 30 04:23:43 UTC 2022 -->
+<!-- Added by: runner, at: Sun Oct 30 04:32:49 UTC 2022 -->
 <!--te-->
 <p>Functions are prevalent in Rust code. You’ve already seen one of the most
 important functions in the language:</p>
@@ -5429,7 +5429,7 @@ continue to refactor this code by turning the <code>area</code> function into an
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Oct 30 04:23:45 UTC 2022 -->
+<!-- Added by: runner, at: Sun Oct 30 04:32:50 UTC 2022 -->
 <!--te-->
 <h2 id="similar-and-difference"><a class="header" href="#similar-and-difference">Similar and Difference</a></h2>
 <blockquote>
@@ -9063,7 +9063,7 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Oct 30 04:23:50 UTC 2022 -->
+<!-- Added by: runner, at: Sun Oct 30 04:32:53 UTC 2022 -->
 <!--te-->
 <p>Most errors aren’t serious enough to require the program to stop entirely.</p>
 <details id="admonition-sometimes-when-a-function-fails-its-for-a-reason-that-you-can-easily-interpret-and-respond-to" class="admonition tip">
@@ -21800,7 +21800,26 @@ Rust.</p>
 <!--ts-->
 <!--te-->
 <h2 id="compare-implementing-trait-with-trait-bounds-and-trait-objects"><a class="header" href="#compare-implementing-trait-with-trait-bounds-and-trait-objects">Compare implementing trait with trait bounds and trait objects</a></h2>
-<h2 id="one-limitation-of-vectors"><a class="header" href="#one-limitation-of-vectors">one limitation of vectors</a></h2>
+<ol>
+<li>
+<p>The Same Trait definition </p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait Draw {
+    fn draw(&amp;self);
+}
+<span class="boring">}
+</span></code></pre></pre>
+</li>
+<li>
+<p>Different Call:</p>
+<div class="table-wrapper"><table><thead><tr><th>Situation</th><th>Impl</th></tr></thead><tbody>
+<tr><td>Trait Impl</td><td>pub components: Vec&lt;T&gt;</td></tr>
+<tr><td>Trait Objects</td><td>pub components: Vec&lt;Box&lt;dyn Draw&gt;&gt;</td></tr>
+</tbody></table>
+</div></li>
+</ol>
+<h2 id="one-limitation-of-vectors-only-one-type"><a class="header" href="#one-limitation-of-vectors-only-one-type">one limitation of vectors: only one type</a></h2>
 <p>In Chapter 8, we mentioned that <strong>one limitation of vectors</strong> is that they can
 store elements of only one type:</p>
 <ol>
