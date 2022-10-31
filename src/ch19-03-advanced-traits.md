@@ -1,6 +1,7 @@
 # Advanced Traits
 
 <!--ts-->
+
 <!--te-->
 
 We first covered traits in the [“Traits: Defining Shared
