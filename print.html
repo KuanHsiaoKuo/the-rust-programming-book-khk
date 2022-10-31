@@ -2517,7 +2517,7 @@ write readable, safe code that neither panics nor allows invalid memory access.<
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Mon Oct 31 07:08:50 UTC 2022 -->
+<!-- Added by: runner, at: Mon Oct 31 07:13:05 UTC 2022 -->
 <!--te-->
 <p>Functions are prevalent in Rust code. You’ve already seen one of the most
 important functions in the language:</p>
@@ -5429,7 +5429,7 @@ continue to refactor this code by turning the <code>area</code> function into an
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Mon Oct 31 07:08:51 UTC 2022 -->
+<!-- Added by: runner, at: Mon Oct 31 07:13:08 UTC 2022 -->
 <!--te-->
 <h2 id="similar-and-difference"><a class="header" href="#similar-and-difference">Similar and Difference</a></h2>
 <blockquote>
@@ -9063,7 +9063,7 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Mon Oct 31 07:08:54 UTC 2022 -->
+<!-- Added by: runner, at: Mon Oct 31 07:13:12 UTC 2022 -->
 <!--te-->
 <p>Most errors aren’t serious enough to require the program to stop entirely.</p>
 <details id="admonition-sometimes-when-a-function-fails-its-for-a-reason-that-you-can-easily-interpret-and-respond-to" class="admonition tip">
@@ -10477,7 +10477,7 @@ values. How would we eliminate that duplication? Let’s find out!</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Mon Oct 31 07:08:54 UTC 2022 -->
+<!-- Added by: runner, at: Mon Oct 31 07:13:13 UTC 2022 -->
 <!--te-->
 <p>We use generics to create definitions for items like function signatures or
 structs, which we can then use with many different concrete data types. </p>
@@ -11590,7 +11590,29 @@ our code is even able to run. Additionally, we don’t have to write code that
 checks for behavior at runtime because we’ve already checked at compile time.
 Doing so improves performance without having to give up the flexibility of
 generics.</p>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="validating-references-with-lifetimes"><a class="header" href="#validating-references-with-lifetimes">Validating References with Lifetimes</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="lifetime-generics-validating-references-with-lifetimes"><a class="header" href="#lifetime-generics-validating-references-with-lifetimes">Lifetime Generics: Validating References with Lifetimes</a></h1>
+<!--ts-->
+<ul>
+<li><a href="ch10-03-lifetime-syntax.html#lifetime-generics-validating-references-with-lifetimes">Lifetime Generics: Validating References with Lifetimes</a>
+<ul>
+<li><a href="ch10-03-lifetime-syntax.html#preventing-dangling-references-with-lifetimes">Preventing Dangling References with Lifetimes</a></li>
+<li><a href="ch10-03-lifetime-syntax.html#the-borrow-checker">The Borrow Checker</a></li>
+<li><a href="ch10-03-lifetime-syntax.html#generic-lifetimes-in-functions">Generic Lifetimes in Functions</a></li>
+<li><a href="ch10-03-lifetime-syntax.html#lifetime-annotation-syntax">Lifetime Annotation Syntax</a></li>
+<li><a href="ch10-03-lifetime-syntax.html#lifetime-annotations-in-function-signatures">Lifetime Annotations in Function Signatures</a></li>
+<li><a href="ch10-03-lifetime-syntax.html#thinking-in-terms-of-lifetimes">Thinking in Terms of Lifetimes</a></li>
+<li><a href="ch10-03-lifetime-syntax.html#lifetime-annotations-in-struct-definitions">Lifetime Annotations in Struct Definitions</a></li>
+<li><a href="ch10-03-lifetime-syntax.html#lifetime-elision">Lifetime Elision</a></li>
+<li><a href="ch10-03-lifetime-syntax.html#lifetime-annotations-in-method-definitions">Lifetime Annotations in Method Definitions</a></li>
+<li><a href="ch10-03-lifetime-syntax.html#the-static-lifetime">The Static Lifetime</a></li>
+<li><a href="ch10-03-lifetime-syntax.html#generic-type-parameters-trait-bounds-and-lifetimes-together">Generic Type Parameters, Trait Bounds, and Lifetimes Together</a></li>
+<li><a href="ch10-03-lifetime-syntax.html#summary">Summary</a></li>
+</ul>
+</li>
+</ul>
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Mon Oct 31 07:13:13 UTC 2022 -->
+<!--te-->
 <p>Lifetimes are another kind of generic that we’ve already been using. Rather
 than ensuring that a type has the behavior we want, lifetimes ensure that
 references are valid as long as we need them to be.</p>
@@ -11607,7 +11629,7 @@ ensure the actual references used at runtime will definitely be valid.</p>
 have, so this is going to feel unfamiliar. Although we won’t cover lifetimes in
 their entirety in this chapter, we’ll discuss common ways you might encounter
 lifetime syntax so you can get comfortable with the concept.</p>
-<h3 id="preventing-dangling-references-with-lifetimes"><a class="header" href="#preventing-dangling-references-with-lifetimes">Preventing Dangling References with Lifetimes</a></h3>
+<h2 id="preventing-dangling-references-with-lifetimes"><a class="header" href="#preventing-dangling-references-with-lifetimes">Preventing Dangling References with Lifetimes</a></h2>
 <p>The main aim of lifetimes is to prevent <em>dangling references</em>, which cause a
 program to reference data other than the data it’s intended to reference.
 Consider the program in Listing 10-16, which has an outer scope and an inner
@@ -11662,7 +11684,7 @@ Rust allowed this code to work, <code>r</code> would be referencing memory that 
 deallocated when <code>x</code> went out of scope, and anything we tried to do with <code>r</code>
 wouldn’t work correctly. So how does Rust determine that this code is invalid?
 It uses a borrow checker.</p>
-<h3 id="the-borrow-checker"><a class="header" href="#the-borrow-checker">The Borrow Checker</a></h3>
+<h2 id="the-borrow-checker"><a class="header" href="#the-borrow-checker">The Borrow Checker</a></h2>
 <p>The Rust compiler has a <em>borrow checker</em> that compares scopes to determine
 whether all borrows are valid. Listing 10-17 shows the same code as Listing
 10-16 but with annotations showing the lifetimes of the variables.</p>
@@ -11704,7 +11726,7 @@ always be valid while <code>x</code> is valid.</p>
 <p>Now that you know where the lifetimes of references are and how Rust analyzes
 lifetimes to ensure references will always be valid, let’s explore generic
 lifetimes of parameters and return values in the context of functions.</p>
-<h3 id="generic-lifetimes-in-functions"><a class="header" href="#generic-lifetimes-in-functions">Generic Lifetimes in Functions</a></h3>
+<h2 id="generic-lifetimes-in-functions"><a class="header" href="#generic-lifetimes-in-functions">Generic Lifetimes in Functions</a></h2>
 <p>We’ll write a function that returns the longer of two string slices. This
 function will take two string slices and return a single string slice. After
 we’ve implemented the <code>longest</code> function, the code in Listing 10-19 should
@@ -11781,7 +11803,7 @@ doesn’t know how the lifetimes of <code>x</code> and <code>y</code> relate to 
 return value. To fix this error, we’ll add generic lifetime parameters that
 define the relationship between the references so the borrow checker can
 perform its analysis.</p>
-<h3 id="lifetime-annotation-syntax"><a class="header" href="#lifetime-annotation-syntax">Lifetime Annotation Syntax</a></h3>
+<h2 id="lifetime-annotation-syntax"><a class="header" href="#lifetime-annotation-syntax">Lifetime Annotation Syntax</a></h2>
 <p>Lifetime annotations don’t change how long any of the references live. Rather,
 they describe the relationships of the lifetimes of multiple references to each
 other without affecting the lifetimes. Just as functions can accept any type
@@ -11803,7 +11825,7 @@ reference to an <code>i32</code> that also has the lifetime <code>'a</code>.</p>
 annotations are meant to tell Rust how generic lifetime parameters of multiple
 references relate to each other. Let’s examine how the lifetime annotations
 relate to each other in the context of the <code>longest</code> function.</p>
-<h3 id="lifetime-annotations-in-function-signatures"><a class="header" href="#lifetime-annotations-in-function-signatures">Lifetime Annotations in Function Signatures</a></h3>
+<h2 id="lifetime-annotations-in-function-signatures"><a class="header" href="#lifetime-annotations-in-function-signatures">Lifetime Annotations in Function Signatures</a></h2>
 <p>To use lifetime annotations in function signatures, we need to declare the
 generic <em>lifetime</em> parameters inside angle brackets between the function name
 and the parameter list, just as we did with generic <em>type</em> parameters.</p>
@@ -11953,7 +11975,7 @@ disallows the code in Listing 10-23 as possibly having an invalid reference.</p>
 references passed in to the <code>longest</code> function and how the returned reference
 is used. Make hypotheses about whether or not your experiments will pass the
 borrow checker before you compile; then check to see if you’re right!</p>
-<h3 id="thinking-in-terms-of-lifetimes"><a class="header" href="#thinking-in-terms-of-lifetimes">Thinking in Terms of Lifetimes</a></h3>
+<h2 id="thinking-in-terms-of-lifetimes"><a class="header" href="#thinking-in-terms-of-lifetimes">Thinking in Terms of Lifetimes</a></h2>
 <p>The way in which you need to specify lifetime parameters depends on what your
 function is doing. For example, if we changed the implementation of the
 <code>longest</code> function to always return the first parameter rather than the longest
@@ -12022,7 +12044,7 @@ cleaning up the value.</p>
 parameters and return values of functions. Once they’re connected, Rust has
 enough information to allow memory-safe operations and disallow operations that
 would create dangling pointers or otherwise violate memory safety.</p>
-<h3 id="lifetime-annotations-in-struct-definitions"><a class="header" href="#lifetime-annotations-in-struct-definitions">Lifetime Annotations in Struct Definitions</a></h3>
+<h2 id="lifetime-annotations-in-struct-definitions"><a class="header" href="#lifetime-annotations-in-struct-definitions">Lifetime Annotations in Struct Definitions</a></h2>
 <p>So far, the structs we’ve defined all hold owned types. We can define structs to
 hold references, but in that case we would need to add a lifetime annotation on
 every reference in the struct’s definition. Listing 10-24 has a struct named
@@ -12054,7 +12076,7 @@ variable <code>novel</code>. The data in <code>novel</code> exists before the <c
 instance is created. In addition, <code>novel</code> doesn’t go out of scope until after
 the <code>ImportantExcerpt</code> goes out of scope, so the reference in the
 <code>ImportantExcerpt</code> instance is valid.</p>
-<h3 id="lifetime-elision"><a class="header" href="#lifetime-elision">Lifetime Elision</a></h3>
+<h2 id="lifetime-elision"><a class="header" href="#lifetime-elision">Lifetime Elision</a></h2>
 <p>You’ve learned that every reference has a lifetime and that you need to specify
 lifetime parameters for functions or structs that use references. However, in
 Chapter 4 we had a function in Listing 4-9, shown again in Listing 10-25, that
@@ -12170,7 +12192,7 @@ couldn’t figure out all the lifetimes of the references in the signature.</p>
 <p>Because the third rule really only applies in method signatures, we’ll look at
 lifetimes in that context next to see why the third rule means we don’t have to
 annotate lifetimes in method signatures very often.</p>
-<h3 id="lifetime-annotations-in-method-definitions"><a class="header" href="#lifetime-annotations-in-method-definitions">Lifetime Annotations in Method Definitions</a></h3>
+<h2 id="lifetime-annotations-in-method-definitions"><a class="header" href="#lifetime-annotations-in-method-definitions">Lifetime Annotations in Method Definitions</a></h2>
 <p>When we implement methods on a struct with lifetimes, we use the same syntax as
 that of generic type parameters shown in Listing 10-11. Where we declare and
 use the lifetime parameters depends on whether they’re related to the struct
@@ -12243,7 +12265,7 @@ to <code>self</code> because of the first elision rule.</p>
 and gives both <code>&amp;self</code> and <code>announcement</code> their own lifetimes. Then, because
 one of the parameters is <code>&amp;self</code>, the return type gets the lifetime of <code>&amp;self</code>,
 and all lifetimes have been accounted for.</p>
-<h3 id="the-static-lifetime"><a class="header" href="#the-static-lifetime">The Static Lifetime</a></h3>
+<h2 id="the-static-lifetime"><a class="header" href="#the-static-lifetime">The Static Lifetime</a></h2>
 <p>One special lifetime we need to discuss is <code>'static</code>, which denotes that the
 affected reference <em>can</em> live for the entire duration of the program. All
 string literals have the <code>'static</code> lifetime, which we can annotate as follows:</p>
@@ -29835,7 +29857,7 @@ macros and specifying attributes on an item.</p>
 * <a href="appendix-03-derivable-traits.html#copy">Copy</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Mon Oct 31 07:08:48 UTC 2022 -->
+<!-- Added by: runner, at: Mon Oct 31 07:13:02 UTC 2022 -->
 <!--te-->
 <p>In various places in the book, we’ve discussed the <code>derive</code> attribute, which
 you can apply to a struct or enum definition.</p>
