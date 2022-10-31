@@ -458,10 +458,13 @@ cleaning up the value.
 
 ## Lifetime Annotations in Struct Definitions
 
-So far, the structs we’ve defined all hold owned types. We can define structs to
+So far, the structs we’ve defined all hold owned types.
+
+We can define structs to
 hold references, but in that case we would need to add a lifetime annotation on
-every reference in the struct’s definition. Listing 10-24 has a struct named
-`ImportantExcerpt` that holds a string slice.
+every reference in the struct’s definition.
+
+Listing 10-24 has a struct named `ImportantExcerpt` that holds a string slice.
 
 ~~~admonish info title="Listing 10-24: A struct that holds a reference, requiring a lifetime annotation" collapsible=true
 ```rust
@@ -470,25 +473,35 @@ every reference in the struct’s definition. Listing 10-24 has a struct named
 ~~~
 
 This struct has the single field `part` that holds a string slice, which is a
-reference. As with generic data types, we declare the name of the generic
-lifetime parameter inside angle brackets after the name of the struct so we can
-use the lifetime parameter in the body of the struct definition. This
+reference.
+
+> As with generic data types, we declare the name of the generic
+> lifetime parameter inside angle brackets after the name of the struct so we can
+> use the lifetime parameter in the body of the struct definition.
+
+This
 annotation means an instance of `ImportantExcerpt` can’t outlive the reference
 it holds in its `part` field.
 
 The `main` function here creates an instance of the `ImportantExcerpt` struct
 that holds a reference to the first sentence of the `String` owned by the
-variable `novel`. The data in `novel` exists before the `ImportantExcerpt`
-instance is created. In addition, `novel` doesn’t go out of scope until after
+variable `novel`.
+
+The data in `novel` exists before the `ImportantExcerpt`
+instance is created.
+
+In addition, `novel` doesn’t go out of scope until after
 the `ImportantExcerpt` goes out of scope, so the reference in the
 `ImportantExcerpt` instance is valid.
 
-## Lifetime Elision
+## Three Rules of Lifetime Elision
+
+### Why Lifetime Elision
 
 You’ve learned that every reference has a lifetime and that you need to specify
 lifetime parameters for functions or structs that use references. However, in
 Chapter 4 we had a function in Listing 4-9, shown again in Listing 10-25, that
-compiled without lifetime annotations.
+**compiled without lifetime annotations**.
 
 ~~~admonish info title="Listing 10-25: A function we defined in Listing 4-9 that compiled without lifetime annotations, even though the parameter and return type are references" collapsible=true
 ```rust
@@ -497,8 +510,9 @@ compiled without lifetime annotations.
 ~~~
 
 The reason this function compiles without lifetime annotations is historical:
-in early versions (pre-1.0) of Rust, this code wouldn’t have compiled because
-every reference needed an explicit lifetime.
+
+> in early versions (pre-1.0) of Rust, this code wouldn’t have compiled because
+> every reference needed an explicit lifetime.
 
 ~~~admonish info title="At that time, the function signature would have been written like this:" collapsible=true
 ```rust,ignore
@@ -508,41 +522,62 @@ fn first_word<'a>(s: &'a str) -> &'a str {
 
 After writing a lot of Rust code, the Rust team found that Rust programmers
 were entering the same lifetime annotations over and over in particular
-situations. These situations were predictable and followed a few deterministic
-patterns. The developers programmed these patterns into the compiler’s code so
-the borrow checker could infer the lifetimes in these situations and wouldn’t
-need explicit annotations.
+situations.
+
+These situations were predictable and followed a few deterministic
+patterns.
+
+> The developers programmed these patterns into the compiler’s code so
+> the borrow checker could infer the lifetimes in these situations and wouldn’t
+> need explicit annotations.
 
 This piece of Rust history is relevant because it’s possible that more
-deterministic patterns will emerge and be added to the compiler. In the future,
+deterministic patterns will emerge and be added to the compiler.
+
+In the future,
 even fewer lifetime annotations might be required.
 
-The patterns programmed into Rust’s analysis of references are called the
-*lifetime elision rules*. These aren’t rules for programmers to follow; they’re
-a set of particular cases that the compiler will consider, and if your code
-fits these cases, you don’t need to write the lifetimes explicitly.
+### Three Rules is for compiler, not programmer
 
-The elision rules don’t provide full inference. If Rust deterministically
-applies the rules but there is still ambiguity as to what lifetimes the
-references have, the compiler won’t guess what the lifetime of the remaining
-references should be. Instead of guessing, the compiler will give you an error
-that you can resolve by adding the lifetime annotations.
+> The patterns programmed into Rust’s analysis of references are called the
+*lifetime elision rules*:
 
-Lifetimes on function or method parameters are called *input lifetimes*, and
-lifetimes on return values are called *output lifetimes*.
+- These aren’t rules for programmers to follow;
+- they’re a set of particular cases that the compiler will consider, and if your code
+  fits these cases, you don’t need to write the lifetimes explicitly.
 
-The compiler uses three rules to figure out the lifetimes of the references
-when there aren’t explicit annotations. The first rule applies to input
-lifetimes, and the second and third rules apply to output lifetimes. If the
-compiler gets to the end of the three rules and there are still references for
-which it can’t figure out lifetimes, the compiler will stop with an error.
+> The elision rules don’t provide full inference.
+
+- If Rust deterministically
+  applies the rules but there is still ambiguity as to what lifetimes the
+  references have, the compiler won’t guess what the lifetime of the remaining
+  references should be.
+- Instead of guessing, the compiler will give you an error
+  that you can resolve by adding the lifetime annotations.
+- Lifetimes on function or method parameters are called *input lifetimes*, and
+  lifetimes on return values are called *output lifetimes*.
+
+### What the three rules
+
+> The compiler uses three rules to figure out the lifetimes of the references
+> when there aren’t explicit annotations:
+
+1. The first rule applies to input lifetimes,
+2. and the second and third rules apply to output lifetimes.
+
+> If the
+> compiler gets to the end of the three rules and there are still references for
+> which it can’t figure out lifetimes, the compiler will stop with an error.
+
 These rules apply to `fn` definitions as well as `impl` blocks.
 
 The first rule is that the compiler assigns a lifetime parameter to each
-parameter that’s a reference. In other words, a function with one parameter gets
-one lifetime parameter: `fn foo<'a>(x: &'a i32)`; a function with two
-parameters gets two separate lifetime parameters: `fn foo<'a, 'b>(x: &'a i32,
-y: &'b i32)`; and so on.
+parameter that’s a reference.
+
+- In other words, a function with one parameter gets one lifetime parameter: `fn foo<'a>(x: &'a i32)`;
+- a function with two
+  parameters gets two separate lifetime parameters: `fn foo<'a, 'b>(x: &'a i32,
+  y: &'b i32)`; and so on.
 
 The second rule is that, if there is exactly one input lifetime parameter, that
 lifetime is assigned to all output lifetime parameters: `fn foo<'a>(x: &'a i32)
@@ -550,10 +585,14 @@ lifetime is assigned to all output lifetime parameters: `fn foo<'a>(x: &'a i32)
 
 The third rule is that, if there are multiple input lifetime parameters, but
 one of them is `&self` or `&mut self` because this is a method, the lifetime of
-`self` is assigned to all output lifetime parameters. This third rule makes
+`self` is assigned to all output lifetime parameters.
+
+This third rule makes
 methods much nicer to read and write because fewer symbols are necessary.
 
-Let’s pretend we’re the compiler. We’ll apply these rules to figure out the
+> Let’s pretend we’re the compiler.
+
+We’ll apply these rules to figure out the
 lifetimes of the references in the signature of the `first_word` function in
 Listing 10-25.
 
@@ -572,8 +611,9 @@ fn first_word<'a>(s: &'a str) -> &str {
 ```
 ~~~
 
-The second rule applies because there is exactly one input lifetime. The second
-rule specifies that the lifetime of the one input parameter gets assigned to
+The second rule applies because there is exactly one input lifetime.
+
+The second rule specifies that the lifetime of the one input parameter gets assigned to
 the output lifetime, so the signature is now this:
 
 ```rust,ignore
@@ -598,12 +638,20 @@ have two parameters instead of one, so we have two lifetimes:
 fn longest<'a, 'b>(x: &'a str, y: &'b str) -> &str {
 ```
 
-You can see that the second rule doesn’t apply because there is more than one
-input lifetime. The third rule doesn’t apply either, because `longest` is a
-function rather than a method, so none of the parameters are `self`. After
+- You can see that the second rule doesn’t apply because there is more than one
+  input lifetime.
+
+- The third rule doesn’t apply either, because `longest` is a
+  function rather than a method, so none of the parameters are `self`.
+
+After
 working through all three rules, we still haven’t figured out what the return
-type’s lifetime is. This is why we got an error trying to compile the code in
-Listing 10-20: the compiler worked through the lifetime elision rules but still
+type’s lifetime is.
+
+> This is why we got an error trying to compile the code in
+> Listing 10-20:
+
+the compiler worked through the lifetime elision rules but still
 couldn’t figure out all the lifetimes of the references in the signature.
 
 Because the third rule really only applies in method signatures, we’ll look at
@@ -613,7 +661,9 @@ annotate lifetimes in method signatures very often.
 ## Lifetime Annotations in Method Definitions
 
 When we implement methods on a struct with lifetimes, we use the same syntax as
-that of generic type parameters shown in Listing 10-11. Where we declare and
+that of generic type parameters shown in Listing 10-11.
+
+Where we declare and
 use the lifetime parameters depends on whether they’re related to the struct
 fields or the method parameters and return values.
 
@@ -624,7 +674,9 @@ of the struct’s type.
 In method signatures inside the `impl` block, references might be tied to the
 lifetime of references in the struct’s fields, or they might be independent. In
 addition, the lifetime elision rules often make it so that lifetime annotations
-aren’t necessary in method signatures. Let’s look at some examples using the
+aren’t necessary in method signatures.
+
+Let’s look at some examples using the
 struct named `ImportantExcerpt` that we defined in Listing 10-24.
 
 ~~~admonish info title="First, we’ll use a method named *level* whose only parameter is a reference to *self* and whose return value is an *i32*, which is not a reference to anything:" collapsible=true
@@ -643,31 +695,41 @@ to `self` because of the first elision rule.
 ```
 ~~~
 
-There are two input lifetimes, so Rust applies the first lifetime elision rule
-and gives both `&self` and `announcement` their own lifetimes. Then, because
-one of the parameters is `&self`, the return type gets the lifetime of `&self`,
-and all lifetimes have been accounted for.
+1. There are two input lifetimes, so Rust applies the first lifetime elision rule
+   and gives both `&self` and `announcement` their own lifetimes.
+
+2. Then, because
+   one of the parameters is `&self`, the return type gets the lifetime of `&self`,
+   and all lifetimes have been accounted for.
 
 ## The Static Lifetime
 
 One special lifetime we need to discuss is `'static`, which denotes that the
-affected reference *can* live for the entire duration of the program. All
-string literals have the `'static` lifetime, which we can annotate as follows:
+affected reference *can* live for the entire duration of the program.
+
+> All
+> string literals have the `'static` lifetime, which we can annotate as follows:
 
 ```rust
 let s: & 'static str = "I have a static lifetime.";
 ```
 
 The text of this string is stored directly in the program’s binary, which
-is always available. Therefore, the lifetime of all string literals is
+is always available.
+
+Therefore, the lifetime of all string literals is
 `'static`.
 
 You might see suggestions to use the `'static` lifetime in error messages. But
 before specifying `'static` as the lifetime for a reference, think about
 whether the reference you have actually lives the entire lifetime of your
-program or not, and whether you want it to. Most of the time, an error message
+program or not, and whether you want it to.
+
+Most of the time, an error message
 suggesting the `'static` lifetime results from attempting to create a dangling
-reference or a mismatch of the available lifetimes. In such cases, the solution
+reference or a mismatch of the available lifetimes.
+
+In such cases, the solution
 is fixing those problems, not specifying the `'static` lifetime.
 
 ## Generic Type Parameters, Trait Bounds, and Lifetimes Together
@@ -679,31 +741,48 @@ is fixing those problems, not specifying the `'static` lifetime.
 ~~~
 
 This is the `longest` function from Listing 10-21 that returns the longer of
-two string slices. But now it has an extra parameter named `ann` of the generic
-type `T`, which can be filled in by any type that implements the `Display`
-trait as specified by the `where` clause. This extra parameter will be printed
-using `{}`, which is why the `Display` trait bound is necessary. Because
+two string slices.
+
+> But now it has an extra parameter named `ann` of the generic
+> type `T`, which can be filled in by any type that implements the `Display`
+> trait as specified by the `where` clause.
+
+This extra parameter will be printed
+using `{}`, which is why the `Display` trait bound is necessary.
+
+Because
 lifetimes are a type of generic, the declarations of the lifetime parameter
 `'a` and the generic type parameter `T` go in the same list inside the angle
 brackets after the function name.
 
 ## Summary
 
-We covered a lot in this chapter! Now that you know about generic type
+We covered a lot in this chapter!
+
+Now that you know about generic type
 parameters, traits and trait bounds, and generic lifetime parameters, you’re
 ready to write code without repetition that works in many different situations.
-Generic type parameters let you apply the code to different types. Traits and
-trait bounds ensure that even though the types are generic, they’ll have the
-behavior the code needs. You learned how to use lifetime annotations to ensure
-that this flexible code won’t have any dangling references. And all of this
-analysis happens at compile time, which doesn’t affect runtime performance!
+
+Generic type parameters let you apply the code to different types:
+
+- Traits and
+  trait bounds ensure that even though the types are generic, they’ll have the
+  behavior the code needs.
+- You learned how to use lifetime annotations to ensure
+  that this flexible code won’t have any dangling references.
+- And all of this
+  analysis happens at compile time, which doesn’t affect runtime performance!
 
 Believe it or not, there is much more to learn on the topics we discussed in
-this chapter: Chapter 17 discusses trait objects, which are another way to use
-traits. There are also more complex scenarios involving lifetime annotations
-that you will only need in very advanced scenarios; for those, you should read
-the [Rust Reference][reference]. But next, you’ll learn how to write tests in
-Rust so you can make sure your code is working the way it should.
+this chapter:
+
+- Chapter 17 discusses trait objects, which are another way to use
+  traits.
+- There are also more complex scenarios involving lifetime annotations
+  that you will only need in very advanced scenarios;
+- for those, you should read
+  the [Rust Reference][reference]. But next, you’ll learn how to write tests in
+  Rust so you can make sure your code is working the way it should.
 
 [references-and-borrowing]:
 ch04-02-references-and-borrowing.html#references-and-borrowing
