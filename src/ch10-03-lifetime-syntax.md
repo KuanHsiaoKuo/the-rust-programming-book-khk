@@ -1,6 +1,23 @@
 # Lifetime Generics: Validating References with Lifetimes
 
 <!--ts-->
+* [Lifetime Generics: Validating References with Lifetimes](#lifetime-generics-validating-references-with-lifetimes)
+   * [Preventing Dangling References with Lifetimes](#preventing-dangling-references-with-lifetimes)
+   * [The Borrow Checker](#the-borrow-checker)
+   * [Generic Lifetimes in Functions](#generic-lifetimes-in-functions)
+   * [Lifetime Annotation Syntax](#lifetime-annotation-syntax)
+   * [Lifetime Annotations in Function Signatures](#lifetime-annotations-in-function-signatures)
+   * [Thinking in Terms of Lifetimes](#thinking-in-terms-of-lifetimes)
+   * [Lifetime Annotations in Struct Definitions](#lifetime-annotations-in-struct-definitions)
+   * [Lifetime Elision](#lifetime-elision)
+   * [Lifetime Annotations in Method Definitions](#lifetime-annotations-in-method-definitions)
+   * [The Static Lifetime](#the-static-lifetime)
+   * [Generic Type Parameters, Trait Bounds, and Lifetimes Together](#generic-type-parameters-trait-bounds-and-lifetimes-together)
+   * [Summary](#summary)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Mon Oct 31 07:13:13 UTC 2022 -->
+
 <!--te-->
 
 Lifetimes are another kind of generic that we’ve already been using. Rather
