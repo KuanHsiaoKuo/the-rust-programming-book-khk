@@ -1,4 +1,7 @@
-## Validating References with Lifetimes
+# Lifetime Generics: Validating References with Lifetimes
+
+<!--ts-->
+<!--te-->
 
 Lifetimes are another kind of generic that we’ve already been using. Rather
 than ensuring that a type has the behavior we want, lifetimes ensure that
@@ -19,7 +22,7 @@ have, so this is going to feel unfamiliar. Although we won’t cover lifetimes i
 their entirety in this chapter, we’ll discuss common ways you might encounter
 lifetime syntax so you can get comfortable with the concept.
 
-### Preventing Dangling References with Lifetimes
+## Preventing Dangling References with Lifetimes
 
 The main aim of lifetimes is to prevent *dangling references*, which cause a
 program to reference data other than the data it’s intended to reference.
@@ -59,7 +62,7 @@ deallocated when `x` went out of scope, and anything we tried to do with `r`
 wouldn’t work correctly. So how does Rust determine that this code is invalid?
 It uses a borrow checker.
 
-### The Borrow Checker
+## The Borrow Checker
 
 The Rust compiler has a *borrow checker* that compares scopes to determine
 whether all borrows are valid. Listing 10-17 shows the same code as Listing
@@ -97,7 +100,7 @@ Now that you know where the lifetimes of references are and how Rust analyzes
 lifetimes to ensure references will always be valid, let’s explore generic
 lifetimes of parameters and return values in the context of functions.
 
-### Generic Lifetimes in Functions
+## Generic Lifetimes in Functions
 
 We’ll write a function that returns the longer of two string slices. This
 function will take two string slices and return a single string slice. After
@@ -156,7 +159,7 @@ return value. To fix this error, we’ll add generic lifetime parameters that
 define the relationship between the references so the borrow checker can
 perform its analysis.
 
-### Lifetime Annotation Syntax
+## Lifetime Annotation Syntax
 
 Lifetime annotations don’t change how long any of the references live. Rather,
 they describe the relationships of the lifetimes of multiple references to each
@@ -185,7 +188,7 @@ annotations are meant to tell Rust how generic lifetime parameters of multiple
 references relate to each other. Let’s examine how the lifetime annotations
 relate to each other in the context of the `longest` function.
 
-### Lifetime Annotations in Function Signatures
+## Lifetime Annotations in Function Signatures
 
 To use lifetime annotations in function signatures, we need to declare the
 generic *lifetime* parameters inside angle brackets between the function name
@@ -306,7 +309,7 @@ references passed in to the `longest` function and how the returned reference
 is used. Make hypotheses about whether or not your experiments will pass the
 borrow checker before you compile; then check to see if you’re right!
 
-### Thinking in Terms of Lifetimes
+## Thinking in Terms of Lifetimes
 
 The way in which you need to specify lifetime parameters depends on what your
 function is doing. For example, if we changed the implementation of the
@@ -360,7 +363,7 @@ parameters and return values of functions. Once they’re connected, Rust has
 enough information to allow memory-safe operations and disallow operations that
 would create dangling pointers or otherwise violate memory safety.
 
-### Lifetime Annotations in Struct Definitions
+## Lifetime Annotations in Struct Definitions
 
 So far, the structs we’ve defined all hold owned types. We can define structs to
 hold references, but in that case we would need to add a lifetime annotation on
@@ -390,7 +393,7 @@ instance is created. In addition, `novel` doesn’t go out of scope until after
 the `ImportantExcerpt` goes out of scope, so the reference in the
 `ImportantExcerpt` instance is valid.
 
-### Lifetime Elision
+## Lifetime Elision
 
 You’ve learned that every reference has a lifetime and that you need to specify
 lifetime parameters for functions or structs that use references. However, in
@@ -518,7 +521,7 @@ Because the third rule really only applies in method signatures, we’ll look at
 lifetimes in that context next to see why the third rule means we don’t have to
 annotate lifetimes in method signatures very often.
 
-### Lifetime Annotations in Method Definitions
+## Lifetime Annotations in Method Definitions
 
 When we implement methods on a struct with lifetimes, we use the same syntax as
 that of generic type parameters shown in Listing 10-11. Where we declare and
@@ -557,7 +560,7 @@ and gives both `&self` and `announcement` their own lifetimes. Then, because
 one of the parameters is `&self`, the return type gets the lifetime of `&self`,
 and all lifetimes have been accounted for.
 
-### The Static Lifetime
+## The Static Lifetime
 
 One special lifetime we need to discuss is `'static`, which denotes that the
 affected reference *can* live for the entire duration of the program. All
