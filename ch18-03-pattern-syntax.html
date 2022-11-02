@@ -184,6 +184,7 @@
 <!--te-->
 <p>In this section, we gather all the syntax valid in patterns and discuss why and
 when you might want to use each one.</p>
+<h1 id="a-matching-situations"><a class="header" href="#a-matching-situations">A. Matching Situations</a></h1>
 <h2 id="matching-literals"><a class="header" href="#matching-literals">Matching Literals</a></h2>
 <p>As you saw in Chapter 6, you can match patterns against literals directly.</p>
 <details id="admonition-the-following-code-gives-some-examples" class="admonition info">
@@ -192,8 +193,9 @@ when you might want to use each one.</p>
 <p><a class="admonition-anchor-link" href="#admonition-the-following-code-gives-some-examples"></a></p>
 </summary>
 <div>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
-</span>    let x = 1;
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    // ANCHOR: here
+    let x = 1;
 
     match x {
         1 =&gt; println!(&quot;one&quot;),
@@ -201,8 +203,9 @@ when you might want to use each one.</p>
         3 =&gt; println!(&quot;three&quot;),
         _ =&gt; println!(&quot;anything&quot;),
     }
-<span class="boring">}
-</span></code></pre></pre>
+    // ANCHOR_END: here
+}
+</code></pre></pre>
 </div>
 </details>
 <p>This code prints <code>one</code> because the value in <code>x</code> is 1.</p>
@@ -226,7 +229,6 @@ value <code>Some(5)</code> and a variable <code>y</code> with the value <code>10
 <code>println!</code> at the end, and try to figure out what the code will print before
 running this code or reading further.</li>
 </ul>
-<p><span class="filename">Filename: src/main.rs</span></p>
 <details id="admonition-listing-18-11-a-match-expression-with-an-arm-that-introduces-a-shadowed-variable-y" class="admonition info">
 <summary class="admonition-title">
 <p>Listing 18-11: A <em>match</em> expression with an arm that introduces a shadowed variable <em>y</em></p>
@@ -250,688 +252,41 @@ running this code or reading further.</li>
 </details>
 <p>Let’s walk through what happens when the <code>match</code> expression runs:</p>
 <ol>
-<li>
-<p>The pattern in the first match arm doesn’t match the defined value of <code>x</code>, so the code continues.</p>
-</li>
-<li>
-<p>The pattern in the second match arm introduces a new variable named <code>y</code> that will match any value inside a <code>Some</code> value.</p>
-</li>
-<li>
-<p>Because we’re in a new scope inside the <code>match</code> expression, this is a new <code>y</code> variable, not the <code>y</code> we declared at
-the beginning with the value 10.</p>
-</li>
-<li>
-<p>This new <code>y</code> binding will match any value inside a <code>Some</code>, which is what we have in <code>x</code>.</p>
-</li>
-<li>
-<p>Therefore, this new <code>y</code> binds to the inner value of the <code>Some</code> in <code>x</code>.</p>
-</li>
-<li>
-<p>That value is <code>5</code>, so the expression for that arm executes and prints <code>Matched, y = 5</code>.</p>
-</li>
-<li>
-<p>If <code>x</code> had been a <code>None</code> value instead of <code>Some(5)</code>, the patterns in the first
+<li>The pattern in the first match arm doesn’t match the defined value of <code>x</code>, so the code continues.</li>
+<li>The pattern in the second match arm introduces a new variable named <code>y</code> that will match any value inside a <code>Some</code> value.</li>
+</ol>
+<ul>
+<li>Because we’re in a new scope inside the <code>match</code> expression, this is a new <code>y</code> variable, not the <code>y</code> we declared at
+the beginning with the value 10.</li>
+<li>This new <code>y</code> binding will match any value inside a <code>Some</code>, which is what we have in <code>x</code>.</li>
+<li>Therefore, this new <code>y</code> binds to the inner value of the <code>Some</code> in <code>x</code>.</li>
+<li>That value is <code>5</code>, so the expression for that arm executes and prints <code>Matched, y = 5</code>.</li>
+</ul>
+<ol start="3">
+<li>If <code>x</code> had been a <code>None</code> value instead of <code>Some(5)</code>, the patterns in the first
 two arms wouldn’t have matched, so the value would have matched to the
-underscore. We didn’t introduce the <code>x</code> variable in the pattern of the
+underscore.</li>
+</ol>
+<ul>
+<li>
+<p>We didn’t introduce the <code>x</code> variable in the pattern of the
 underscore arm, so the <code>x</code> in the expression is still the outer <code>x</code> that hasn’t
 been shadowed.</p>
 </li>
 <li>
 <p>In this hypothetical case, the <code>match</code> would print <code>Default case, x = None</code>.</p>
 </li>
-<li>
-<p>When the <code>match</code> expression is done, its scope ends, and so does the scope of
-the inner <code>y</code>. The last <code>println!</code> produces <code>at the end: x = Some(5), y = 10</code>.</p>
-</li>
+</ul>
+<ol start="4">
+<li>When the <code>match</code> expression is done, its scope ends, and so does the scope of
+the inner <code>y</code>. The last <code>println!</code> produces <code>at the end: x = Some(5), y = 10</code>.</li>
 </ol>
 <blockquote>
-<p>To create a <code>match</code> expression that compares the values of the outer <code>x</code> and
-<code>y</code>, rather than introducing a shadowed variable, we would need to use a match
-guard conditional instead.</p>
+<p>To create a <code>match</code> expression that compares the values of the outer <code>x</code> and <code>y</code>, rather than introducing a shadowed variable, we would need to use a <strong>match guard conditional</strong> instead.</p>
 </blockquote>
 <p>We’ll talk about match guards later in the <a href="#extra-conditionals-with-match-guards">“Extra
 Conditionals with Match Guards”</a><!--
 ignore --> section.</p>
-<h2 id="multiple-patterns"><a class="header" href="#multiple-patterns">Multiple Patterns</a></h2>
-<p>In <code>match</code> expressions, you can match multiple patterns using the <code>|</code> syntax,
-which is the pattern <em>or</em> operator.</p>
-<p>For example, in the following code we match
-the value of <code>x</code> against the match arms, the first of which has an <em>or</em> option,
-meaning if the value of <code>x</code> matches either of the values in that arm, that
-arm’s code will run:</p>
-<details id="admonition-for-example-in-the-following-code-we-match-the-value-of-x-against-the-match-arms-the-first-of-which-has-an-or-option-meaning-if-the-value-of-x-matches-either-of-the-values-in-that-arm-that-arms-code-will-run" class="admonition info">
-<summary class="admonition-title">
-<p>For example, in the following code we match the value of <em>x</em> against the match arms, the first of which has an <em>or</em> option, meaning if the value of <em>x</em> matches either of the values in that arm, that arm’s code will run:</p>
-<p><a class="admonition-anchor-link" href="#admonition-for-example-in-the-following-code-we-match-the-value-of-x-against-the-match-arms-the-first-of-which-has-an-or-option-meaning-if-the-value-of-x-matches-either-of-the-values-in-that-arm-that-arms-code-will-run"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
-</span>    let x = 1;
-
-    match x {
-        1 | 2 =&gt; println!(&quot;one or two&quot;),
-        3 =&gt; println!(&quot;three&quot;),
-        _ =&gt; println!(&quot;anything&quot;),
-    }
-<span class="boring">}
-</span></code></pre></pre>
-</div>
-</details>
-<p>This code prints <code>one or two</code>.</p>
-<h2 id="matching-ranges-of-values-with-"><a class="header" href="#matching-ranges-of-values-with-">Matching Ranges of Values with <code>..=</code></a></h2>
-<p>The <code>..=</code> syntax allows us to match to an inclusive range of values.</p>
-<details id="admonition-in-the-following-code-when-a-pattern-matches-any-of-the-values-within-the-given-range-that-arm-will-execute" class="admonition info">
-<summary class="admonition-title">
-<p>In the following code, when a pattern matches any of the values within the given range, that arm will execute:</p>
-<p><a class="admonition-anchor-link" href="#admonition-in-the-following-code-when-a-pattern-matches-any-of-the-values-within-the-given-range-that-arm-will-execute"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
-</span>    let x = 5;
-
-    match x {
-        1..=5 =&gt; println!(&quot;one through five&quot;),
-        _ =&gt; println!(&quot;something else&quot;),
-    }
-<span class="boring">}
-</span></code></pre></pre>
-</div>
-</details>
-<p>If <code>x</code> is 1, 2, 3, 4, or 5, the first arm will match.</p>
-<p>This syntax is more
-convenient for multiple match values than using the <code>|</code> operator to express the
-same idea;</p>
-<p>if we were to use <code>|</code> we would have to specify <code>1 | 2 | 3 | 4 | 5</code>.</p>
-<p>Specifying a range is much shorter, especially if we want to match, say, any
-number between 1 and 1,000!</p>
-<p>The compiler checks that the range isn’t empty at compile time, and because the
-only types for which Rust can tell if a range is empty or not are <code>char</code> and
-numeric values, ranges are only allowed with numeric or <code>char</code> values.</p>
-<details id="admonition-here-is-an-example-using-ranges-of-char-values" class="admonition info">
-<summary class="admonition-title">
-<p>Here is an example using ranges of <em>char</em> values:</p>
-<p><a class="admonition-anchor-link" href="#admonition-here-is-an-example-using-ranges-of-char-values"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
-</span>    let x = 'c';
-
-    match x {
-        'a'..='j' =&gt; println!(&quot;early ASCII letter&quot;),
-        'k'..='z' =&gt; println!(&quot;late ASCII letter&quot;),
-        _ =&gt; println!(&quot;something else&quot;),
-    }
-<span class="boring">}
-</span></code></pre></pre>
-</div>
-</details>
-<p>Rust can tell that <code>'c'</code> is within the first pattern’s range and prints <code>early ASCII letter</code>.</p>
-<h2 id="destructuring-to-break-apart-values"><a class="header" href="#destructuring-to-break-apart-values">Destructuring to Break Apart Values</a></h2>
-<p>We can also use patterns to destructure structs, enums, and tuples to use
-different parts of these values. Let’s walk through each value.</p>
-<h3 id="destructuring-structs"><a class="header" href="#destructuring-structs">Destructuring Structs</a></h3>
-<p>Listing 18-12 shows a <code>Point</code> struct with two fields, <code>x</code> and <code>y</code>, that we can
-break apart using a pattern with a <code>let</code> statement.</p>
-<details id="admonition-the-following-code-gives-some-examples-1" class="admonition info">
-<summary class="admonition-title">
-<p>The following code gives some examples:</p>
-<p><a class="admonition-anchor-link" href="#admonition-the-following-code-gives-some-examples-1"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust">struct Point {
-    x: i32,
-    y: i32,
-}
-
-fn main() {
-    let p = Point { x: 0, y: 7 };
-
-    let Point { x: a, y: b } = p;
-    assert_eq!(0, a);
-    assert_eq!(7, b);
-}
-</code></pre></pre>
-</div>
-</details>
-<p>This code creates the variables <code>a</code> and <code>b</code> that match the values of the <code>x</code>
-and <code>y</code> fields of the <code>p</code> struct.</p>
-<p>This example shows that the names of the
-variables in the pattern don’t have to match the field names of the struct.</p>
-<blockquote>
-<p>However, it’s common to match the variable names to the field names to make it
-easier to remember which variables came from which fields.</p>
-</blockquote>
-<p>Because of this common usage, and because writing <code>let Point { x: x, y: y } = p;</code> contains a
-lot of duplication, Rust has a shorthand for patterns that match struct fields:</p>
-<blockquote>
-<p>you only need to list the name of the struct field, and the variables created
-from the pattern will have the same names.</p>
-</blockquote>
-<p>Listing 18-13 behaves in the same
-way as the code in Listing 18-12, but the variables created in the <code>let</code>
-pattern are <code>x</code> and <code>y</code> instead of <code>a</code> and <code>b</code>.</p>
-<details id="admonition-listing-18-13-destructuring-struct-fields-using-struct-field-shorthand" class="admonition info">
-<summary class="admonition-title">
-<p>Listing 18-13: Destructuring struct fields using struct field shorthand</p>
-<p><a class="admonition-anchor-link" href="#admonition-listing-18-13-destructuring-struct-fields-using-struct-field-shorthand"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust">struct Point {
-    x: i32,
-    y: i32,
-}
-
-fn main() {
-    let p = Point { x: 0, y: 7 };
-
-    let Point { x, y } = p;
-    assert_eq!(0, x);
-    assert_eq!(7, y);
-}
-</code></pre></pre>
-</div>
-</details>
-<p>This code creates the variables <code>x</code> and <code>y</code> that match the <code>x</code> and <code>y</code> fields
-of the <code>p</code> variable.</p>
-<p>The outcome is that the variables <code>x</code> and <code>y</code> contain the values from the <code>p</code> struct.</p>
-<p>We can also destructure with literal values as part of the struct pattern
-rather than creating variables for all the fields.</p>
-<p>Doing so allows us to test
-some of the fields for particular values while creating variables to
-destructure the other fields.</p>
-<p>In Listing 18-14, we have a <code>match</code> expression that separates <code>Point</code> values
-into three cases: points that lie directly on the <code>x</code> axis (which is true when
-<code>y = 0</code>), on the <code>y</code> axis (<code>x = 0</code>), or neither.</p>
-<details id="admonition-listing-18-14-destructuring-and-matching-literal-values-in-one-pattern" class="admonition info">
-<summary class="admonition-title">
-<p>Listing 18-14: Destructuring and matching literal values in one pattern</p>
-<p><a class="admonition-anchor-link" href="#admonition-listing-18-14-destructuring-and-matching-literal-values-in-one-pattern"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">struct Point {
-</span><span class="boring">    x: i32,
-</span><span class="boring">    y: i32,
-</span><span class="boring">}
-</span><span class="boring">
-</span>fn main() {
-    let p = Point { x: 0, y: 7 };
-
-    match p {
-        Point { x, y: 0 } =&gt; println!(&quot;On the x axis at {x}&quot;),
-        Point { x: 0, y } =&gt; println!(&quot;On the y axis at {y}&quot;),
-        Point { x, y } =&gt; {
-            println!(&quot;On neither axis: ({x}, {y})&quot;);
-        }
-    }
-}
-</code></pre></pre>
-</div>
-</details>
-<ol>
-<li>The first arm will match any point that lies on the <code>x</code> axis by specifying that
-the <code>y</code> field matches if its value matches the literal <code>0</code>.</li>
-</ol>
-<p>The pattern still
-creates an <code>x</code> variable that we can use in the code for this arm.</p>
-<ol start="2">
-<li>Similarly, the second arm matches any point on the <code>y</code> axis by specifying that
-the <code>x</code> field matches if its value is <code>0</code> and creates a variable <code>y</code> for the
-value of the <code>y</code> field.</li>
-<li>The third arm doesn’t specify any literals, so it
-matches any other <code>Point</code> and creates variables for both the <code>x</code> and <code>y</code> fields.</li>
-</ol>
-<p>In this example, the value <code>p</code> matches the second arm by virtue of <code>x</code>
-containing a 0, so this code will print <code>On the y axis at 7</code>.</p>
-<blockquote>
-<p>Remember that a <code>match</code> expression stops checking arms once it has found the
-first matching pattern</p>
-</blockquote>
-<p>so even though <code>Point { x: 0, y: 0}</code> is on the <code>x</code> axis
-and the <code>y</code> axis, this code would only print <code>On the x axis at 0</code>.</p>
-<h3 id="destructuring-enums"><a class="header" href="#destructuring-enums">Destructuring Enums</a></h3>
-<p>We’ve destructured enums in this book (for example, Listing 6-5 in Chapter 6),
-but haven’t yet explicitly discussed that the pattern to destructure an enum
-corresponds to the way the data stored within the enum is defined.</p>
-<p>As an example, in Listing 18-15 we use the <code>Message</code> enum from Listing 6-2 and write
-a <code>match</code> with patterns that will destructure each inner value.</p>
-<details id="admonition-listing-18-15-destructuring-enum-variants-that-hold-different-kinds-of-values" class="admonition info">
-<summary class="admonition-title">
-<p>Listing 18-15: Destructuring enum variants that hold different kinds of values</p>
-<p><a class="admonition-anchor-link" href="#admonition-listing-18-15-destructuring-enum-variants-that-hold-different-kinds-of-values"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust">enum Message {
-    Quit,
-    Move { x: i32, y: i32 },
-    Write(String),
-    ChangeColor(i32, i32, i32),
-}
-
-fn main() {
-    let msg = Message::ChangeColor(0, 160, 255);
-
-    match msg {
-        Message::Quit =&gt; {
-            println!(&quot;The Quit variant has no data to destructure.&quot;);
-        }
-        Message::Move { x, y } =&gt; {
-            println!(
-                &quot;Move in the x direction {x} and in the y direction {y}&quot;
-            );
-        }
-        Message::Write(text) =&gt; {
-            println!(&quot;Text message: {text}&quot;);
-        }
-        Message::ChangeColor(r, g, b) =&gt; println!(
-            &quot;Change the color to red {r}, green {g}, and blue {b}&quot;,
-        ),
-    }
-}
-</code></pre></pre>
-</div>
-</details>
-<p>This code will print <code>Change the color to red 0, green 160, and blue 255</code>.</p>
-<p>Try changing the value of <code>msg</code> to see the code from the other arms run.</p>
-<p>For enum variants without any data, like <code>Message::Quit</code>, we can’t destructure
-the value any further.</p>
-<p>We can only match on the literal <code>Message::Quit</code> value, and no variables are in that pattern.</p>
-<p>For struct-like enum variants, such as <code>Message::Move</code>, we can use a pattern
-similar to the pattern we specify to match structs.</p>
-<p>After the variant name, we place curly brackets and then list the fields with variables so we break apart
-the pieces to use in the code for this arm.</p>
-<p>Here we use the shorthand form as we did in Listing 18-13.</p>
-<p>For tuple-like enum variants, like <code>Message::Write</code> that holds a tuple with one
-element and <code>Message::ChangeColor</code> that holds a tuple with three elements, the
-pattern is similar to the pattern we specify to match tuples.</p>
-<p>The number of variables in the pattern must match the number of elements in the variant we’re matching.</p>
-<h3 id="destructuring-nested-structs-and-enums"><a class="header" href="#destructuring-nested-structs-and-enums">Destructuring <strong>Nested</strong> Structs and Enums</a></h3>
-<blockquote>
-<p>So far, our examples have all been matching structs or enums one level deep,
-but matching can work on nested items too!</p>
-</blockquote>
-<p>For example, we can refactor the code in Listing 18-15 to support RGB and HSV colors in the <code>ChangeColor</code>
-message, as shown in Listing 18-16.</p>
-<details id="admonition-listing-18-16-matching-on-nested-enums" class="admonition info">
-<summary class="admonition-title">
-<p>Listing 18-16: Matching on nested enums</p>
-<p><a class="admonition-anchor-link" href="#admonition-listing-18-16-matching-on-nested-enums"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust">enum Color {
-    Rgb(i32, i32, i32),
-    Hsv(i32, i32, i32),
-}
-
-enum Message {
-    Quit,
-    Move { x: i32, y: i32 },
-    Write(String),
-    ChangeColor(Color),
-}
-
-fn main() {
-    let msg = Message::ChangeColor(Color::Hsv(0, 160, 255));
-
-    match msg {
-        Message::ChangeColor(Color::Rgb(r, g, b)) =&gt; {
-            println!(&quot;Change color to red {r}, green {g}, and blue {b}&quot;);
-        }
-        Message::ChangeColor(Color::Hsv(h, s, v)) =&gt; println!(
-            &quot;Change color to hue {h}, saturation {s}, value {v}&quot;
-        ),
-        _ =&gt; (),
-    }
-}
-</code></pre></pre>
-</div>
-</details>
-<ul>
-<li>The pattern of the first arm in the <code>match</code> expression matches a
-<code>Message::ChangeColor</code> enum variant that contains a <code>Color::Rgb</code> variant;</li>
-<li>then the pattern binds to the three inner <code>i32</code> values.</li>
-<li>The pattern of the second arm also matches a <code>Message::ChangeColor</code> enum variant, but the inner enum
-matches <code>Color::Hsv</code> instead.</li>
-<li>We can specify these complex conditions in one <code>match</code> expression, even though two enums are involved.</li>
-</ul>
-<h3 id="destructuring-structs-and-tuples"><a class="header" href="#destructuring-structs-and-tuples">Destructuring Structs and Tuples</a></h3>
-<blockquote>
-<p>We can mix, match, and nest destructuring patterns in even more complex ways.</p>
-</blockquote>
-<details id="admonition-the-following-example-shows-a-complicated-destructure-where-we-nest-structs-and-tuples-inside-a-tuple-and-destructure-all-the-primitive-values-out" class="admonition info">
-<summary class="admonition-title">
-<p>The following example shows a complicated destructure where we nest structs and tuples inside a tuple and destructure all the primitive values out:</p>
-<p><a class="admonition-anchor-link" href="#admonition-the-following-example-shows-a-complicated-destructure-where-we-nest-structs-and-tuples-inside-a-tuple-and-destructure-all-the-primitive-values-out"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
-</span><span class="boring">    struct Point {
-</span><span class="boring">        x: i32,
-</span><span class="boring">        y: i32,
-</span><span class="boring">    }
-</span><span class="boring">
-</span>    let ((feet, inches), Point { x, y }) = ((3, 10), Point { x: 3, y: -10 });
-<span class="boring">}
-</span></code></pre></pre>
-</div>
-</details>
-<p>This code lets us break complex types into their component parts so we can use
-the values we’re interested in separately.</p>
-<p>Destructuring with patterns is a convenient way to use pieces of values, such
-as the value from each field in a struct, separately from each other.</p>
-<h2 id="ignoring-values-in-a-pattern"><a class="header" href="#ignoring-values-in-a-pattern">Ignoring Values in a Pattern</a></h2>
-<p>You’ve seen that it’s sometimes useful to ignore values in a pattern, such as
-in the last arm of a <code>match</code>, to get a catchall that doesn’t actually do
-anything but does account for all remaining possible values.</p>
-<blockquote>
-<p>There are a few ways to ignore entire values or parts of values in a pattern:</p>
-</blockquote>
-<ul>
-<li>using the <code>_</code> pattern (which you’ve seen)</li>
-<li>using the <code>_</code> pattern within another pattern,</li>
-<li>using a name that starts with an underscore,</li>
-<li>or using <code>..</code> to ignore remaining parts of a value.</li>
-</ul>
-<p>Let’s explore how and why to use each of these patterns.</p>
-<h3 id="1-ignoring-an-entire-value-with-_"><a class="header" href="#1-ignoring-an-entire-value-with-_">1. Ignoring an Entire Value with <code>_</code></a></h3>
-<p>We’ve used the underscore as a wildcard pattern that will match any value but
-not bind to the value.</p>
-<p>This is especially useful as the last arm in a <code>match</code> expression, but we can also use it in any pattern, including function
-parameters, as shown in Listing 18-17.</p>
-<details id="admonition-listing-18-17-using-_-in-a-function-signature" class="admonition info">
-<summary class="admonition-title">
-<p>Listing 18-17: Using <em>_</em> in a function signature</p>
-<p><a class="admonition-anchor-link" href="#admonition-listing-18-17-using-_-in-a-function-signature"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust">fn foo(_: i32, y: i32) {
-    println!(&quot;This code only uses the y parameter: {}&quot;, y);
-}
-
-fn main() {
-    foo(3, 4);
-}
-</code></pre></pre>
-</div>
-</details>
-<p>This code will completely ignore the value <code>3</code> passed as the first argument,
-and will print <code>This code only uses the y parameter: 4</code>.</p>
-<p>In most cases when you no longer need a particular function parameter, you
-would change the signature so it doesn’t include the unused parameter.</p>
-<blockquote>
-<p>Ignoring a function parameter can be especially useful in cases when, for example,
-you’re implementing a trait when you need a certain type signature but the
-function body in your implementation doesn’t need one of the parameters.</p>
-</blockquote>
-<p>You then avoid getting a compiler warning about unused function parameters, as you
-would if you used a name instead.</p>
-<h3 id="2-ignoring-parts-of-a-value-with-a-nested-_"><a class="header" href="#2-ignoring-parts-of-a-value-with-a-nested-_">2. Ignoring Parts of a Value with a Nested <code>_</code></a></h3>
-<p>We can also use <code>_</code> <strong>inside another pattern</strong> to ignore just part of a value, for
-example, when we want to test for only part of a value but have no use for the
-other parts in the corresponding code we want to run.</p>
-<p>Listing 18-18 shows code responsible for managing a setting’s value.</p>
-<p>The business requirements are that
-the user should not be allowed to overwrite an existing customization of a
-setting but can unset the setting and give it a value if it is currently unset.</p>
-<details id="admonition-listing-18-18-using-an-underscore-within-patterns-that-match-some-variants-when-we-dont-need-to-use-the-value-inside-the-some" class="admonition info">
-<summary class="admonition-title">
-<p>Listing 18-18: Using an underscore within patterns that match <em>Some</em> variants when we don’t need to use the value inside the <em>Some</em></p>
-<p><a class="admonition-anchor-link" href="#admonition-listing-18-18-using-an-underscore-within-patterns-that-match-some-variants-when-we-dont-need-to-use-the-value-inside-the-some"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
-</span>    let mut setting_value = Some(5);
-    let new_setting_value = Some(10);
-
-    match (setting_value, new_setting_value) {
-        (Some(_), Some(_)) =&gt; {
-            println!(&quot;Can't overwrite an existing customized value&quot;);
-        }
-        _ =&gt; {
-            setting_value = new_setting_value;
-        }
-    }
-
-    println!(&quot;setting is {:?}&quot;, setting_value);
-<span class="boring">}
-</span></code></pre></pre>
-</div>
-</details>
-<p>This code will print <code>Can't overwrite an existing customized value</code> and then
-<code>setting is Some(5)</code>.</p>
-<ul>
-<li>In the first match arm, we don’t need to match on or use
-the values inside either <code>Some</code> variant, but we do need to test for the case
-when <code>setting_value</code> and <code>new_setting_value</code> are the <code>Some</code> variant.</li>
-</ul>
-<p>In that
-case, we print the reason for not changing <code>setting_value</code>, and it doesn’t get
-changed.</p>
-<ul>
-<li>In all other cases (if either <code>setting_value</code> or <code>new_setting_value</code> are
-<code>None</code>) expressed by the <code>_</code> pattern in the second arm, we want to allow
-<code>new_setting_value</code> to become <code>setting_value</code>.</li>
-</ul>
-<blockquote>
-<p>We can also use underscores in multiple places within one pattern to ignore
-particular values.</p>
-</blockquote>
-<p>Listing 18-19 shows an example of ignoring the second and fourth values in a tuple of five items.</p>
-<details id="admonition-listing-18-19-ignoring-multiple-parts-of-a-tuple" class="admonition info">
-<summary class="admonition-title">
-<p>Listing 18-19: Ignoring multiple parts of a tuple</p>
-<p><a class="admonition-anchor-link" href="#admonition-listing-18-19-ignoring-multiple-parts-of-a-tuple"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
-</span>    let numbers = (2, 4, 8, 16, 32);
-
-    match numbers {
-        (first, _, third, _, fifth) =&gt; {
-            println!(&quot;Some numbers: {first}, {third}, {fifth}&quot;)
-        }
-    }
-<span class="boring">}
-</span></code></pre></pre>
-</div>
-</details>
-<p>This code will print <code>Some numbers: 2, 8, 32</code>, and the values 4 and 16 will be ignored.</p>
-<h3 id="3-ignoring-an-unused-variable-by-starting-its-name-with-_"><a class="header" href="#3-ignoring-an-unused-variable-by-starting-its-name-with-_">3. Ignoring an Unused Variable by Starting Its Name with <code>_</code></a></h3>
-<p>If you create a variable but don’t use it anywhere, Rust will usually issue a
-warning because an unused variable could be a bug.</p>
-<blockquote>
-<p>However, sometimes it’s
-useful to be able to create a variable you won’t use yet, such as when you’re
-prototyping or just starting a project.</p>
-</blockquote>
-<p>In this situation, you can tell Rust not to warn you about the unused variable by starting the name of the variable
-with an underscore.</p>
-<p>In Listing 18-20, we create two unused variables, but when
-we compile this code, we should only get a warning about one of them.</p>
-<details id="admonition-listing-18-20-starting-a-variable-name-with-an-underscore-to-avoid-getting-unused-variable-warnings" class="admonition info">
-<summary class="admonition-title">
-<p>Listing 18-20: Starting a variable name with an underscore to avoid getting unused variable warnings</p>
-<p><a class="admonition-anchor-link" href="#admonition-listing-18-20-starting-a-variable-name-with-an-underscore-to-avoid-getting-unused-variable-warnings"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust">fn main() {
-    let _x = 5;
-    let y = 10;
-}
-</code></pre></pre>
-</div>
-</details>
-<p>Here we get a warning about not using the variable <code>y</code>, but we don’t get a
-warning about not using <code>_x</code>.</p>
-<blockquote>
-<p>Note that there is a subtle difference between using only <code>_</code> and using a name
-that starts with an underscore:</p>
-</blockquote>
-<ul>
-<li>
-<p>The syntax <code>_x</code> still binds the value to the
-variable, whereas <code>_</code> doesn’t bind at all.</p>
-</li>
-<li>
-<p>To show a case where this
-distinction matters, Listing 18-21 will provide us with an error.</p>
-</li>
-</ul>
-<details id="admonition-listing-18-21-an-unused-variable-starting-with-an-underscore-still-binds-the-value-which-might-take-ownership-of-the-value" class="admonition info">
-<summary class="admonition-title">
-<p>Listing 18-21: An unused variable starting with an underscore still binds the value, which might take ownership of the value</p>
-<p><a class="admonition-anchor-link" href="#admonition-listing-18-21-an-unused-variable-starting-with-an-underscore-still-binds-the-value-which-might-take-ownership-of-the-value"></a></p>
-</summary>
-<div>
-<pre><code class="language-rust ignore does_not_compile"><span class="boring">fn main() {
-</span>    let s = Some(String::from(&quot;Hello!&quot;));
-
-    if let Some(_s) = s {
-        println!(&quot;found a string&quot;);
-    }
-
-    println!(&quot;{:?}&quot;, s);
-<span class="boring">}
-</span></code></pre>
-</div>
-</details>
-<p>We’ll receive an error because the <code>s</code> value will still be moved into <code>_s</code>,
-which prevents us from using <code>s</code> again. However, using the underscore by itself
-doesn’t ever bind to the value.</p>
-<p>Listing 18-22 will compile without any errors because <code>s</code> doesn’t get moved into <code>_</code>.</p>
-<details id="admonition-listing-18-22-using-an-underscore-does-not-bind-the-value" class="admonition info">
-<summary class="admonition-title">
-<p>Listing 18-22: Using an underscore does not bind the value</p>
-<p><a class="admonition-anchor-link" href="#admonition-listing-18-22-using-an-underscore-does-not-bind-the-value"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
-</span>    let s = Some(String::from(&quot;Hello!&quot;));
-
-    if let Some(_) = s {
-        println!(&quot;found a string&quot;);
-    }
-
-    println!(&quot;{:?}&quot;, s);
-<span class="boring">}
-</span></code></pre></pre>
-</div>
-</details>
-<p>This code works just fine because we never bind <code>s</code> to anything; it isn’t moved.</p>
-<h3 id="4-ignoring-remaining-parts-of-a-value-with-"><a class="header" href="#4-ignoring-remaining-parts-of-a-value-with-">4. Ignoring Remaining Parts of a Value with <code>..</code></a></h3>
-<p>With values that have many parts, we can use the <code>..</code> syntax to use specific
-parts and ignore the rest, avoiding the need to list underscores for each
-ignored value.</p>
-<p>The <code>..</code> pattern ignores any parts of a value that we haven’t
-explicitly matched in the rest of the pattern.</p>
-<p>In Listing 18-23, we have a
-<code>Point</code> struct that holds a coordinate in three-dimensional space.</p>
-<p>In the
-<code>match</code> expression, we want to operate only on the <code>x</code> coordinate and ignore
-the values in the <code>y</code> and <code>z</code> fields.</p>
-<details id="admonition-listing-18-23-ignoring-all-fields-of-a-point-except-for-x-by-using-" class="admonition info">
-<summary class="admonition-title">
-<p>Listing 18-23: Ignoring all fields of a <em>Point</em> except for <em>x</em> by using *..</p>
-<p><a class="admonition-anchor-link" href="#admonition-listing-18-23-ignoring-all-fields-of-a-point-except-for-x-by-using-"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
-</span>    struct Point {
-        x: i32,
-        y: i32,
-        z: i32,
-    }
-
-    let origin = Point { x: 0, y: 0, z: 0 };
-
-    match origin {
-        Point { x, .. } =&gt; println!(&quot;x is {}&quot;, x),
-    }
-<span class="boring">}
-</span></code></pre></pre>
-</div>
-</details>
-<p>We list the <code>x</code> value and then just include the <code>..</code> pattern.</p>
-<blockquote>
-<p>This is quicker
-than having to list <code>y: _</code> and <code>z: _</code>, particularly when we’re working with
-structs that have lots of fields in situations where only one or two fields are
-relevant.</p>
-</blockquote>
-<p>The syntax <code>..</code> will expand to as many values as it needs to be.</p>
-<p>Listing 18-24 shows how to use <code>..</code> with a tuple.</p>
-<details id="admonition-listing-18-24-matching-only-the-first-and-last-values-in-a-tuple-and-ignoring-all-other-values" class="admonition info">
-<summary class="admonition-title">
-<p>Listing 18-24: Matching only the first and last values in a tuple and ignoring all other values</p>
-<p><a class="admonition-anchor-link" href="#admonition-listing-18-24-matching-only-the-first-and-last-values-in-a-tuple-and-ignoring-all-other-values"></a></p>
-</summary>
-<div>
-<pre><pre class="playground"><code class="language-rust">fn main() {
-    let numbers = (2, 4, 8, 16, 32);
-
-    match numbers {
-        (first, .., last) =&gt; {
-            println!(&quot;Some numbers: {first}, {last}&quot;);
-        }
-    }
-}
-</code></pre></pre>
-</div>
-</details>
-<p>In this code, the first and last value are matched with <code>first</code> and <code>last</code>.</p>
-<p>The <code>..</code> will match and ignore everything in the middle.</p>
-<blockquote>
-<p>However, using <code>..</code> must be unambiguous.</p>
-</blockquote>
-<p>If it is unclear which values are
-intended for matching and which should be ignored, Rust will give us an error.</p>
-<p>Listing 18-25 shows an example of using <code>..</code> ambiguously, so it will not
-compile.</p>
-<details id="admonition-listing-18-25-an-attempt-to-use--in-an-ambiguous-way" class="admonition info">
-<summary class="admonition-title">
-<p>Listing 18-25: An attempt to use <em>..</em> in an ambiguous way</p>
-<p><a class="admonition-anchor-link" href="#admonition-listing-18-25-an-attempt-to-use--in-an-ambiguous-way"></a></p>
-</summary>
-<div>
-<pre><code class="language-rust ignore does_not_compile">fn main() {
-    let numbers = (2, 4, 8, 16, 32);
-
-    match numbers {
-        (.., second, ..) =&gt; {
-            println!(&quot;Some numbers: {}&quot;, second)
-        },
-    }
-}
-</code></pre>
-</div>
-</details>
-<details id="admonition-when-we-compile-this-example-we-get-this-error" class="admonition info">
-<summary class="admonition-title">
-<p>When we compile this example, we get this error:</p>
-<p><a class="admonition-anchor-link" href="#admonition-when-we-compile-this-example-we-get-this-error"></a></p>
-</summary>
-<div>
-<pre><code class="language-console">$ cargo run
-   Compiling patterns v0.1.0 (file:///projects/patterns)
-error: `..` can only be used once per tuple pattern
- --&gt; src/main.rs:5:22
-  |
-5 |         (.., second, ..) =&gt; {
-  |          --          ^^ can only be used once per tuple pattern
-  |          |
-  |          previously used here
-
-error: could not compile `patterns` due to previous error
-</code></pre>
-</div>
-</details>
-<p>It’s impossible for Rust to determine how many values in the tuple to ignore
-before matching a value with <code>second</code> and then how many further values to
-ignore thereafter.</p>
-<p>This code could mean that we want to ignore <code>2</code>, bind <code>second</code> to <code>4</code>, and then ignore <code>8</code>, <code>16</code>, and <code>32</code>;</p>
-<p>or that we want to ignore <code>2</code> and <code>4</code>, bind <code>second</code> to <code>8</code>, and then ignore <code>16</code> and <code>32</code>;</p>
-<p>and so forth.</p>
-<p>The variable name <code>second</code> doesn’t mean anything special to Rust, so we get a
-compiler error because using <code>..</code> in two places like this is ambiguous.</p>
 <h2 id="extra-conditionals-with-match-guards"><a class="header" href="#extra-conditionals-with-match-guards">Extra Conditionals with Match Guards</a></h2>
 <p>A <em>match guard</em> is an additional <code>if</code> condition, specified after the pattern in
 a <code>match</code> arm, that must also match for that arm to be chosen.</p>
@@ -1085,7 +440,81 @@ were applied only to the final value in the list of values specified using the
 <code>|</code> operator, the arm would have matched and the program would have printed
 <code>yes</code>.</li>
 </ul>
-<h2 id="-bindings"><a class="header" href="#-bindings"><code>@</code> Bindings</a></h2>
+<h2 id="multiple-patterns"><a class="header" href="#multiple-patterns">Multiple Patterns</a></h2>
+<p>In <code>match</code> expressions, you can match multiple patterns using the <code>|</code> syntax,
+which is the pattern <em>or</em> operator.</p>
+<p>For example, in the following code we match
+the value of <code>x</code> against the match arms, the first of which has an <em>or</em> option,
+meaning if the value of <code>x</code> matches either of the values in that arm, that
+arm’s code will run:</p>
+<details id="admonition-for-example-in-the-following-code-we-match-the-value-of-x-against-the-match-arms-the-first-of-which-has-an-or-option-meaning-if-the-value-of-x-matches-either-of-the-values-in-that-arm-that-arms-code-will-run" class="admonition info">
+<summary class="admonition-title">
+<p>For example, in the following code we match the value of <em>x</em> against the match arms, the first of which has an <em>or</em> option, meaning if the value of <em>x</em> matches either of the values in that arm, that arm’s code will run:</p>
+<p><a class="admonition-anchor-link" href="#admonition-for-example-in-the-following-code-we-match-the-value-of-x-against-the-match-arms-the-first-of-which-has-an-or-option-meaning-if-the-value-of-x-matches-either-of-the-values-in-that-arm-that-arms-code-will-run"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>    let x = 1;
+
+    match x {
+        1 | 2 =&gt; println!(&quot;one or two&quot;),
+        3 =&gt; println!(&quot;three&quot;),
+        _ =&gt; println!(&quot;anything&quot;),
+    }
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
+<p>This code prints <code>one or two</code>.</p>
+<h2 id="matching-ranges-of-values-with-"><a class="header" href="#matching-ranges-of-values-with-">Matching Ranges of Values with <code>..=</code></a></h2>
+<p>The <code>..=</code> syntax allows us to match to an inclusive range of values.</p>
+<details id="admonition-in-the-following-code-when-a-pattern-matches-any-of-the-values-within-the-given-range-that-arm-will-execute" class="admonition info">
+<summary class="admonition-title">
+<p>In the following code, when a pattern matches any of the values within the given range, that arm will execute:</p>
+<p><a class="admonition-anchor-link" href="#admonition-in-the-following-code-when-a-pattern-matches-any-of-the-values-within-the-given-range-that-arm-will-execute"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>    let x = 5;
+
+    match x {
+        1..=5 =&gt; println!(&quot;one through five&quot;),
+        _ =&gt; println!(&quot;something else&quot;),
+    }
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
+<p>If <code>x</code> is 1, 2, 3, 4, or 5, the first arm will match.</p>
+<p>This syntax is more
+convenient for multiple match values than using the <code>|</code> operator to express the
+same idea;</p>
+<p>if we were to use <code>|</code> we would have to specify <code>1 | 2 | 3 | 4 | 5</code>.</p>
+<p>Specifying a range is much shorter, especially if we want to match, say, any
+number between 1 and 1,000!</p>
+<p>The compiler checks that the range isn’t empty at compile time, and because the
+only types for which Rust can tell if a range is empty or not are <code>char</code> and
+numeric values, ranges are only allowed with numeric or <code>char</code> values.</p>
+<details id="admonition-here-is-an-example-using-ranges-of-char-values" class="admonition info">
+<summary class="admonition-title">
+<p>Here is an example using ranges of <em>char</em> values:</p>
+<p><a class="admonition-anchor-link" href="#admonition-here-is-an-example-using-ranges-of-char-values"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>    let x = 'c';
+
+    match x {
+        'a'..='j' =&gt; println!(&quot;early ASCII letter&quot;),
+        'k'..='z' =&gt; println!(&quot;late ASCII letter&quot;),
+        _ =&gt; println!(&quot;something else&quot;),
+    }
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
+<p>Rust can tell that <code>'c'</code> is within the first pattern’s range and prints <code>early ASCII letter</code>.</p>
+<h2 id="-bindings-test-a-value-and-save-it-in-a-variable-within-one-pattern"><a class="header" href="#-bindings-test-a-value-and-save-it-in-a-variable-within-one-pattern"><code>@</code> Bindings: test a value and save it in a variable within one pattern</a></h2>
 <p>The <em>at</em> operator <code>@</code> lets us create a variable that holds a value at the same
 time as we’re testing that value for a pattern match.</p>
 <p>In Listing 18-29, we want
@@ -1149,7 +578,573 @@ first two arms: any value would match this pattern.</li>
 <blockquote>
 <p>Using <code>@</code> lets us test a value and save it in a variable within one pattern.</p>
 </blockquote>
-<h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
+<h1 id="b-destructuring-to-break-apart-values"><a class="header" href="#b-destructuring-to-break-apart-values">B. Destructuring to Break Apart Values</a></h1>
+<p>We can also use patterns to destructure structs, enums, and tuples to use
+different parts of these values. Let’s walk through each value.</p>
+<h2 id="destructuring-structs"><a class="header" href="#destructuring-structs">Destructuring Structs</a></h2>
+<p>Listing 18-12 shows a <code>Point</code> struct with two fields, <code>x</code> and <code>y</code>, that we can
+break apart using a pattern with a <code>let</code> statement.</p>
+<details id="admonition-the-following-code-gives-some-examples-1" class="admonition info">
+<summary class="admonition-title">
+<p>The following code gives some examples:</p>
+<p><a class="admonition-anchor-link" href="#admonition-the-following-code-gives-some-examples-1"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">struct Point {
+    x: i32,
+    y: i32,
+}
+
+fn main() {
+    let p = Point { x: 0, y: 7 };
+
+    let Point { x: a, y: b } = p;
+    assert_eq!(0, a);
+    assert_eq!(7, b);
+}
+</code></pre></pre>
+</div>
+</details>
+<p>This code creates the variables <code>a</code> and <code>b</code> that match the values of the <code>x</code>
+and <code>y</code> fields of the <code>p</code> struct.</p>
+<p>This example shows that the names of the
+variables in the pattern don’t have to match the field names of the struct.</p>
+<blockquote>
+<p>However, it’s common to match the variable names to the field names to make it
+easier to remember which variables came from which fields.</p>
+</blockquote>
+<p>Because of this common usage, and because writing <code>let Point { x: x, y: y } = p;</code> contains a
+lot of duplication, Rust has a shorthand for patterns that match struct fields:</p>
+<blockquote>
+<p>you only need to list the name of the struct field, and the variables created
+from the pattern will have the same names.</p>
+</blockquote>
+<p>Listing 18-13 behaves in the same
+way as the code in Listing 18-12, but the variables created in the <code>let</code>
+pattern are <code>x</code> and <code>y</code> instead of <code>a</code> and <code>b</code>.</p>
+<details id="admonition-listing-18-13-destructuring-struct-fields-using-struct-field-shorthand" class="admonition info">
+<summary class="admonition-title">
+<p>Listing 18-13: Destructuring struct fields using struct field shorthand</p>
+<p><a class="admonition-anchor-link" href="#admonition-listing-18-13-destructuring-struct-fields-using-struct-field-shorthand"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">struct Point {
+    x: i32,
+    y: i32,
+}
+
+fn main() {
+    let p = Point { x: 0, y: 7 };
+
+    let Point { x, y } = p;
+    assert_eq!(0, x);
+    assert_eq!(7, y);
+}
+</code></pre></pre>
+</div>
+</details>
+<p>This code creates the variables <code>x</code> and <code>y</code> that match the <code>x</code> and <code>y</code> fields
+of the <code>p</code> variable.</p>
+<p>The outcome is that the variables <code>x</code> and <code>y</code> contain the values from the <code>p</code> struct.</p>
+<p>We can also destructure with literal values as part of the struct pattern
+rather than creating variables for all the fields.</p>
+<p>Doing so allows us to test
+some of the fields for particular values while creating variables to
+destructure the other fields.</p>
+<p>In Listing 18-14, we have a <code>match</code> expression that separates <code>Point</code> values
+into three cases: points that lie directly on the <code>x</code> axis (which is true when
+<code>y = 0</code>), on the <code>y</code> axis (<code>x = 0</code>), or neither.</p>
+<details id="admonition-listing-18-14-destructuring-and-matching-literal-values-in-one-pattern" class="admonition info">
+<summary class="admonition-title">
+<p>Listing 18-14: Destructuring and matching literal values in one pattern</p>
+<p><a class="admonition-anchor-link" href="#admonition-listing-18-14-destructuring-and-matching-literal-values-in-one-pattern"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">struct Point {
+</span><span class="boring">    x: i32,
+</span><span class="boring">    y: i32,
+</span><span class="boring">}
+</span><span class="boring">
+</span>fn main() {
+    let p = Point { x: 0, y: 7 };
+
+    match p {
+        Point { x, y: 0 } =&gt; println!(&quot;On the x axis at {x}&quot;),
+        Point { x: 0, y } =&gt; println!(&quot;On the y axis at {y}&quot;),
+        Point { x, y } =&gt; {
+            println!(&quot;On neither axis: ({x}, {y})&quot;);
+        }
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<ol>
+<li>The first arm will match any point that lies on the <code>x</code> axis by specifying that
+the <code>y</code> field matches if its value matches the literal <code>0</code>.</li>
+</ol>
+<p>The pattern still
+creates an <code>x</code> variable that we can use in the code for this arm.</p>
+<ol start="2">
+<li>Similarly, the second arm matches any point on the <code>y</code> axis by specifying that
+the <code>x</code> field matches if its value is <code>0</code> and creates a variable <code>y</code> for the
+value of the <code>y</code> field.</li>
+<li>The third arm doesn’t specify any literals, so it
+matches any other <code>Point</code> and creates variables for both the <code>x</code> and <code>y</code> fields.</li>
+</ol>
+<p>In this example, the value <code>p</code> matches the second arm by virtue of <code>x</code>
+containing a 0, so this code will print <code>On the y axis at 7</code>.</p>
+<blockquote>
+<p>Remember that a <code>match</code> expression stops checking arms once it has found the
+first matching pattern</p>
+</blockquote>
+<p>so even though <code>Point { x: 0, y: 0}</code> is on the <code>x</code> axis
+and the <code>y</code> axis, this code would only print <code>On the x axis at 0</code>.</p>
+<h2 id="destructuring-enums"><a class="header" href="#destructuring-enums">Destructuring Enums</a></h2>
+<p>We’ve destructured enums in this book (for example, Listing 6-5 in Chapter 6),
+but haven’t yet explicitly discussed that the pattern to destructure an enum
+corresponds to the way the data stored within the enum is defined.</p>
+<p>As an example, in Listing 18-15 we use the <code>Message</code> enum from Listing 6-2 and write
+a <code>match</code> with patterns that will destructure each inner value.</p>
+<details id="admonition-listing-18-15-destructuring-enum-variants-that-hold-different-kinds-of-values" class="admonition info">
+<summary class="admonition-title">
+<p>Listing 18-15: Destructuring enum variants that hold different kinds of values</p>
+<p><a class="admonition-anchor-link" href="#admonition-listing-18-15-destructuring-enum-variants-that-hold-different-kinds-of-values"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">enum Message {
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(i32, i32, i32),
+}
+
+fn main() {
+    let msg = Message::ChangeColor(0, 160, 255);
+
+    match msg {
+        Message::Quit =&gt; {
+            println!(&quot;The Quit variant has no data to destructure.&quot;);
+        }
+        Message::Move { x, y } =&gt; {
+            println!(
+                &quot;Move in the x direction {x} and in the y direction {y}&quot;
+            );
+        }
+        Message::Write(text) =&gt; {
+            println!(&quot;Text message: {text}&quot;);
+        }
+        Message::ChangeColor(r, g, b) =&gt; println!(
+            &quot;Change the color to red {r}, green {g}, and blue {b}&quot;,
+        ),
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<p>This code will print <code>Change the color to red 0, green 160, and blue 255</code>.</p>
+<p>Try changing the value of <code>msg</code> to see the code from the other arms run.</p>
+<p>For enum variants without any data, like <code>Message::Quit</code>, we can’t destructure
+the value any further.</p>
+<p>We can only match on the literal <code>Message::Quit</code> value, and no variables are in that pattern.</p>
+<p>For struct-like enum variants, such as <code>Message::Move</code>, we can use a pattern
+similar to the pattern we specify to match structs.</p>
+<p>After the variant name, we place curly brackets and then list the fields with variables so we break apart
+the pieces to use in the code for this arm.</p>
+<p>Here we use the shorthand form as we did in Listing 18-13.</p>
+<p>For tuple-like enum variants, like <code>Message::Write</code> that holds a tuple with one
+element and <code>Message::ChangeColor</code> that holds a tuple with three elements, the
+pattern is similar to the pattern we specify to match tuples.</p>
+<p>The number of variables in the pattern must match the number of elements in the variant we’re matching.</p>
+<h2 id="destructuring-nested-structs-and-enums"><a class="header" href="#destructuring-nested-structs-and-enums">Destructuring <strong>Nested</strong> Structs and Enums</a></h2>
+<blockquote>
+<p>So far, our examples have all been matching structs or enums one level deep,
+but matching can work on nested items too!</p>
+</blockquote>
+<p>For example, we can refactor the code in Listing 18-15 to support RGB and HSV colors in the <code>ChangeColor</code>
+message, as shown in Listing 18-16.</p>
+<details id="admonition-listing-18-16-matching-on-nested-enums" class="admonition info">
+<summary class="admonition-title">
+<p>Listing 18-16: Matching on nested enums</p>
+<p><a class="admonition-anchor-link" href="#admonition-listing-18-16-matching-on-nested-enums"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">enum Color {
+    Rgb(i32, i32, i32),
+    Hsv(i32, i32, i32),
+}
+
+enum Message {
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(Color),
+}
+
+fn main() {
+    let msg = Message::ChangeColor(Color::Hsv(0, 160, 255));
+
+    match msg {
+        Message::ChangeColor(Color::Rgb(r, g, b)) =&gt; {
+            println!(&quot;Change color to red {r}, green {g}, and blue {b}&quot;);
+        }
+        Message::ChangeColor(Color::Hsv(h, s, v)) =&gt; println!(
+            &quot;Change color to hue {h}, saturation {s}, value {v}&quot;
+        ),
+        _ =&gt; (),
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<ul>
+<li>The pattern of the first arm in the <code>match</code> expression matches a
+<code>Message::ChangeColor</code> enum variant that contains a <code>Color::Rgb</code> variant;</li>
+<li>then the pattern binds to the three inner <code>i32</code> values.</li>
+<li>The pattern of the second arm also matches a <code>Message::ChangeColor</code> enum variant, but the inner enum
+matches <code>Color::Hsv</code> instead.</li>
+<li>We can specify these complex conditions in one <code>match</code> expression, even though two enums are involved.</li>
+</ul>
+<h2 id="destructuring-structs-and-tuples"><a class="header" href="#destructuring-structs-and-tuples">Destructuring Structs and Tuples</a></h2>
+<blockquote>
+<p>We can mix, match, and nest destructuring patterns in even more complex ways.</p>
+</blockquote>
+<details id="admonition-the-following-example-shows-a-complicated-destructure-where-we-nest-structs-and-tuples-inside-a-tuple-and-destructure-all-the-primitive-values-out" class="admonition info">
+<summary class="admonition-title">
+<p>The following example shows a complicated destructure where we nest structs and tuples inside a tuple and destructure all the primitive values out:</p>
+<p><a class="admonition-anchor-link" href="#admonition-the-following-example-shows-a-complicated-destructure-where-we-nest-structs-and-tuples-inside-a-tuple-and-destructure-all-the-primitive-values-out"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span><span class="boring">    struct Point {
+</span><span class="boring">        x: i32,
+</span><span class="boring">        y: i32,
+</span><span class="boring">    }
+</span><span class="boring">
+</span>    let ((feet, inches), Point { x, y }) = ((3, 10), Point { x: 3, y: -10 });
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
+<p>This code lets us break complex types into their component parts so we can use
+the values we’re interested in separately.</p>
+<p>Destructuring with patterns is a convenient way to use pieces of values, such
+as the value from each field in a struct, separately from each other.</p>
+<h1 id="c-ignoring-values-in-a-pattern"><a class="header" href="#c-ignoring-values-in-a-pattern">C. Ignoring Values in a Pattern</a></h1>
+<p>You’ve seen that it’s sometimes useful to ignore values in a pattern, such as
+in the last arm of a <code>match</code>, to get a catchall that doesn’t actually do
+anything but does account for all remaining possible values.</p>
+<blockquote>
+<p>There are a few ways to ignore entire values or parts of values in a pattern:</p>
+</blockquote>
+<ul>
+<li>using the <code>_</code> pattern (which you’ve seen)</li>
+<li>using the <code>_</code> pattern within another pattern,</li>
+<li>using a name that starts with an underscore,</li>
+<li>or using <code>..</code> to ignore remaining parts of a value.</li>
+</ul>
+<p>Let’s explore how and why to use each of these patterns.</p>
+<h2 id="1-ignoring-an-entire-value-with-_"><a class="header" href="#1-ignoring-an-entire-value-with-_">1. Ignoring an Entire Value with <code>_</code></a></h2>
+<p>We’ve used the underscore as a wildcard pattern that will match any value but
+not bind to the value.</p>
+<p>This is especially useful as the last arm in a <code>match</code> expression, but we can also use it in any pattern, including function
+parameters, as shown in Listing 18-17.</p>
+<details id="admonition-listing-18-17-using-_-in-a-function-signature" class="admonition info">
+<summary class="admonition-title">
+<p>Listing 18-17: Using <em>_</em> in a function signature</p>
+<p><a class="admonition-anchor-link" href="#admonition-listing-18-17-using-_-in-a-function-signature"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">fn foo(_: i32, y: i32) {
+    println!(&quot;This code only uses the y parameter: {}&quot;, y);
+}
+
+fn main() {
+    foo(3, 4);
+}
+</code></pre></pre>
+</div>
+</details>
+<p>This code will completely ignore the value <code>3</code> passed as the first argument,
+and will print <code>This code only uses the y parameter: 4</code>.</p>
+<p>In most cases when you no longer need a particular function parameter, you
+would change the signature so it doesn’t include the unused parameter.</p>
+<blockquote>
+<p>Ignoring a function parameter can be especially useful in cases when, for example,
+you’re implementing a trait when you need a certain type signature but the
+function body in your implementation doesn’t need one of the parameters.</p>
+</blockquote>
+<p>You then avoid getting a compiler warning about unused function parameters, as you
+would if you used a name instead.</p>
+<h2 id="2-ignoring-parts-of-a-value-with-a-nested-_"><a class="header" href="#2-ignoring-parts-of-a-value-with-a-nested-_">2. Ignoring Parts of a Value with a Nested <code>_</code></a></h2>
+<p>We can also use <code>_</code> <strong>inside another pattern</strong> to ignore just part of a value, for
+example, when we want to test for only part of a value but have no use for the
+other parts in the corresponding code we want to run.</p>
+<p>Listing 18-18 shows code responsible for managing a setting’s value.</p>
+<p>The business requirements are that
+the user should not be allowed to overwrite an existing customization of a
+setting but can unset the setting and give it a value if it is currently unset.</p>
+<details id="admonition-listing-18-18-using-an-underscore-within-patterns-that-match-some-variants-when-we-dont-need-to-use-the-value-inside-the-some" class="admonition info">
+<summary class="admonition-title">
+<p>Listing 18-18: Using an underscore within patterns that match <em>Some</em> variants when we don’t need to use the value inside the <em>Some</em></p>
+<p><a class="admonition-anchor-link" href="#admonition-listing-18-18-using-an-underscore-within-patterns-that-match-some-variants-when-we-dont-need-to-use-the-value-inside-the-some"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>    let mut setting_value = Some(5);
+    let new_setting_value = Some(10);
+
+    match (setting_value, new_setting_value) {
+        (Some(_), Some(_)) =&gt; {
+            println!(&quot;Can't overwrite an existing customized value&quot;);
+        }
+        _ =&gt; {
+            setting_value = new_setting_value;
+        }
+    }
+
+    println!(&quot;setting is {:?}&quot;, setting_value);
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
+<p>This code will print <code>Can't overwrite an existing customized value</code> and then
+<code>setting is Some(5)</code>.</p>
+<ul>
+<li>In the first match arm, we don’t need to match on or use
+the values inside either <code>Some</code> variant, but we do need to test for the case
+when <code>setting_value</code> and <code>new_setting_value</code> are the <code>Some</code> variant.</li>
+</ul>
+<p>In that
+case, we print the reason for not changing <code>setting_value</code>, and it doesn’t get
+changed.</p>
+<ul>
+<li>In all other cases (if either <code>setting_value</code> or <code>new_setting_value</code> are
+<code>None</code>) expressed by the <code>_</code> pattern in the second arm, we want to allow
+<code>new_setting_value</code> to become <code>setting_value</code>.</li>
+</ul>
+<blockquote>
+<p>We can also use underscores in multiple places within one pattern to ignore
+particular values.</p>
+</blockquote>
+<p>Listing 18-19 shows an example of ignoring the second and fourth values in a tuple of five items.</p>
+<details id="admonition-listing-18-19-ignoring-multiple-parts-of-a-tuple" class="admonition info">
+<summary class="admonition-title">
+<p>Listing 18-19: Ignoring multiple parts of a tuple</p>
+<p><a class="admonition-anchor-link" href="#admonition-listing-18-19-ignoring-multiple-parts-of-a-tuple"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>    let numbers = (2, 4, 8, 16, 32);
+
+    match numbers {
+        (first, _, third, _, fifth) =&gt; {
+            println!(&quot;Some numbers: {first}, {third}, {fifth}&quot;)
+        }
+    }
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
+<p>This code will print <code>Some numbers: 2, 8, 32</code>, and the values 4 and 16 will be ignored.</p>
+<h2 id="3-ignoring-an-unused-variable-by-starting-its-name-with-_"><a class="header" href="#3-ignoring-an-unused-variable-by-starting-its-name-with-_">3. Ignoring an Unused Variable by Starting Its Name with <code>_</code></a></h2>
+<p>If you create a variable but don’t use it anywhere, Rust will usually issue a
+warning because an unused variable could be a bug.</p>
+<blockquote>
+<p>However, sometimes it’s
+useful to be able to create a variable you won’t use yet, such as when you’re
+prototyping or just starting a project.</p>
+</blockquote>
+<p>In this situation, you can tell Rust not to warn you about the unused variable by starting the name of the variable
+with an underscore.</p>
+<p>In Listing 18-20, we create two unused variables, but when
+we compile this code, we should only get a warning about one of them.</p>
+<details id="admonition-listing-18-20-starting-a-variable-name-with-an-underscore-to-avoid-getting-unused-variable-warnings" class="admonition info">
+<summary class="admonition-title">
+<p>Listing 18-20: Starting a variable name with an underscore to avoid getting unused variable warnings</p>
+<p><a class="admonition-anchor-link" href="#admonition-listing-18-20-starting-a-variable-name-with-an-underscore-to-avoid-getting-unused-variable-warnings"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let _x = 5;
+    let y = 10;
+}
+</code></pre></pre>
+</div>
+</details>
+<p>Here we get a warning about not using the variable <code>y</code>, but we don’t get a
+warning about not using <code>_x</code>.</p>
+<blockquote>
+<p>Note that there is a subtle difference between using only <code>_</code> and using a name
+that starts with an underscore:</p>
+</blockquote>
+<ul>
+<li>
+<p>The syntax <code>_x</code> still binds the value to the
+variable, whereas <code>_</code> doesn’t bind at all.</p>
+</li>
+<li>
+<p>To show a case where this
+distinction matters, Listing 18-21 will provide us with an error.</p>
+</li>
+</ul>
+<details id="admonition-listing-18-21-an-unused-variable-starting-with-an-underscore-still-binds-the-value-which-might-take-ownership-of-the-value" class="admonition info">
+<summary class="admonition-title">
+<p>Listing 18-21: An unused variable starting with an underscore still binds the value, which might take ownership of the value</p>
+<p><a class="admonition-anchor-link" href="#admonition-listing-18-21-an-unused-variable-starting-with-an-underscore-still-binds-the-value-which-might-take-ownership-of-the-value"></a></p>
+</summary>
+<div>
+<pre><code class="language-rust ignore does_not_compile"><span class="boring">fn main() {
+</span>    let s = Some(String::from(&quot;Hello!&quot;));
+
+    if let Some(_s) = s {
+        println!(&quot;found a string&quot;);
+    }
+
+    println!(&quot;{:?}&quot;, s);
+<span class="boring">}
+</span></code></pre>
+</div>
+</details>
+<p>We’ll receive an error because the <code>s</code> value will still be moved into <code>_s</code>,
+which prevents us from using <code>s</code> again. However, using the underscore by itself
+doesn’t ever bind to the value.</p>
+<p>Listing 18-22 will compile without any errors because <code>s</code> doesn’t get moved into <code>_</code>.</p>
+<details id="admonition-listing-18-22-using-an-underscore-does-not-bind-the-value" class="admonition info">
+<summary class="admonition-title">
+<p>Listing 18-22: Using an underscore does not bind the value</p>
+<p><a class="admonition-anchor-link" href="#admonition-listing-18-22-using-an-underscore-does-not-bind-the-value"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>    let s = Some(String::from(&quot;Hello!&quot;));
+
+    if let Some(_) = s {
+        println!(&quot;found a string&quot;);
+    }
+
+    println!(&quot;{:?}&quot;, s);
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
+<p>This code works just fine because we never bind <code>s</code> to anything; it isn’t moved.</p>
+<h2 id="4-ignoring-remaining-parts-of-a-value-with-"><a class="header" href="#4-ignoring-remaining-parts-of-a-value-with-">4. Ignoring Remaining Parts of a Value with <code>..</code></a></h2>
+<p>With values that have many parts, we can use the <code>..</code> syntax to use specific
+parts and ignore the rest, avoiding the need to list underscores for each
+ignored value.</p>
+<p>The <code>..</code> pattern ignores any parts of a value that we haven’t
+explicitly matched in the rest of the pattern.</p>
+<p>In Listing 18-23, we have a
+<code>Point</code> struct that holds a coordinate in three-dimensional space.</p>
+<p>In the
+<code>match</code> expression, we want to operate only on the <code>x</code> coordinate and ignore
+the values in the <code>y</code> and <code>z</code> fields.</p>
+<details id="admonition-listing-18-23-ignoring-all-fields-of-a-point-except-for-x-by-using-" class="admonition info">
+<summary class="admonition-title">
+<p>Listing 18-23: Ignoring all fields of a <em>Point</em> except for <em>x</em> by using *..</p>
+<p><a class="admonition-anchor-link" href="#admonition-listing-18-23-ignoring-all-fields-of-a-point-except-for-x-by-using-"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
+</span>    struct Point {
+        x: i32,
+        y: i32,
+        z: i32,
+    }
+
+    let origin = Point { x: 0, y: 0, z: 0 };
+
+    match origin {
+        Point { x, .. } =&gt; println!(&quot;x is {}&quot;, x),
+    }
+<span class="boring">}
+</span></code></pre></pre>
+</div>
+</details>
+<p>We list the <code>x</code> value and then just include the <code>..</code> pattern.</p>
+<blockquote>
+<p>This is quicker
+than having to list <code>y: _</code> and <code>z: _</code>, particularly when we’re working with
+structs that have lots of fields in situations where only one or two fields are
+relevant.</p>
+</blockquote>
+<p>The syntax <code>..</code> will expand to as many values as it needs to be.</p>
+<p>Listing 18-24 shows how to use <code>..</code> with a tuple.</p>
+<details id="admonition-listing-18-24-matching-only-the-first-and-last-values-in-a-tuple-and-ignoring-all-other-values" class="admonition info">
+<summary class="admonition-title">
+<p>Listing 18-24: Matching only the first and last values in a tuple and ignoring all other values</p>
+<p><a class="admonition-anchor-link" href="#admonition-listing-18-24-matching-only-the-first-and-last-values-in-a-tuple-and-ignoring-all-other-values"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let numbers = (2, 4, 8, 16, 32);
+
+    match numbers {
+        (first, .., last) =&gt; {
+            println!(&quot;Some numbers: {first}, {last}&quot;);
+        }
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<p>In this code, the first and last value are matched with <code>first</code> and <code>last</code>.</p>
+<p>The <code>..</code> will match and ignore everything in the middle.</p>
+<blockquote>
+<p>However, using <code>..</code> must be unambiguous.</p>
+</blockquote>
+<p>If it is unclear which values are
+intended for matching and which should be ignored, Rust will give us an error.</p>
+<p>Listing 18-25 shows an example of using <code>..</code> ambiguously, so it will not
+compile.</p>
+<details id="admonition-listing-18-25-an-attempt-to-use--in-an-ambiguous-way" class="admonition info">
+<summary class="admonition-title">
+<p>Listing 18-25: An attempt to use <em>..</em> in an ambiguous way</p>
+<p><a class="admonition-anchor-link" href="#admonition-listing-18-25-an-attempt-to-use--in-an-ambiguous-way"></a></p>
+</summary>
+<div>
+<pre><code class="language-rust ignore does_not_compile">fn main() {
+    let numbers = (2, 4, 8, 16, 32);
+
+    match numbers {
+        (.., second, ..) =&gt; {
+            println!(&quot;Some numbers: {}&quot;, second)
+        },
+    }
+}
+</code></pre>
+</div>
+</details>
+<details id="admonition-when-we-compile-this-example-we-get-this-error" class="admonition info">
+<summary class="admonition-title">
+<p>When we compile this example, we get this error:</p>
+<p><a class="admonition-anchor-link" href="#admonition-when-we-compile-this-example-we-get-this-error"></a></p>
+</summary>
+<div>
+<pre><code class="language-console">$ cargo run
+   Compiling patterns v0.1.0 (file:///projects/patterns)
+error: `..` can only be used once per tuple pattern
+ --&gt; src/main.rs:5:22
+  |
+5 |         (.., second, ..) =&gt; {
+  |          --          ^^ can only be used once per tuple pattern
+  |          |
+  |          previously used here
+
+error: could not compile `patterns` due to previous error
+</code></pre>
+</div>
+</details>
+<p>It’s impossible for Rust to determine how many values in the tuple to ignore
+before matching a value with <code>second</code> and then how many further values to
+ignore thereafter.</p>
+<p>This code could mean that we want to ignore <code>2</code>, bind <code>second</code> to <code>4</code>, and then ignore <code>8</code>, <code>16</code>, and <code>32</code>;</p>
+<p>or that we want to ignore <code>2</code> and <code>4</code>, bind <code>second</code> to <code>8</code>, and then ignore <code>16</code> and <code>32</code>;</p>
+<p>and so forth.</p>
+<p>The variable name <code>second</code> doesn’t mean anything special to Rust, so we get a
+compiler error because using <code>..</code> in two places like this is ambiguous.</p>
+<h1 id="summary"><a class="header" href="#summary">Summary</a></h1>
 <p>Rust’s patterns are very useful in distinguishing between different kinds of
 data:</p>
 <ul>
