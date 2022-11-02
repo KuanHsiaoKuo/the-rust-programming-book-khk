@@ -2517,7 +2517,7 @@ write readable, safe code that neither panics nor allows invalid memory access.<
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Wed Nov  2 03:32:39 UTC 2022 -->
+<!-- Added by: runner, at: Wed Nov  2 03:57:01 UTC 2022 -->
 <!--te-->
 <p>Functions are prevalent in Rust code. You’ve already seen one of the most
 important functions in the language:</p>
@@ -5429,7 +5429,7 @@ continue to refactor this code by turning the <code>area</code> function into an
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Wed Nov  2 03:32:41 UTC 2022 -->
+<!-- Added by: runner, at: Wed Nov  2 03:57:03 UTC 2022 -->
 <!--te-->
 <h2 id="similar-and-difference"><a class="header" href="#similar-and-difference">Similar and Difference</a></h2>
 <blockquote>
@@ -9063,7 +9063,7 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Wed Nov  2 03:32:44 UTC 2022 -->
+<!-- Added by: runner, at: Wed Nov  2 03:57:05 UTC 2022 -->
 <!--te-->
 <p>Most errors aren’t serious enough to require the program to stop entirely.</p>
 <details id="admonition-sometimes-when-a-function-fails-its-for-a-reason-that-you-can-easily-interpret-and-respond-to" class="admonition tip">
@@ -10477,7 +10477,7 @@ values. How would we eliminate that duplication? Let’s find out!</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Wed Nov  2 03:32:44 UTC 2022 -->
+<!-- Added by: runner, at: Wed Nov  2 03:57:06 UTC 2022 -->
 <!--te-->
 <p>We use generics to create definitions for items like function signatures or
 structs, which we can then use with many different concrete data types. </p>
@@ -11617,7 +11617,7 @@ generics.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Wed Nov  2 03:32:44 UTC 2022 -->
+<!-- Added by: runner, at: Wed Nov  2 03:57:06 UTC 2022 -->
 <!--te-->
 <blockquote>
 <p>Lifetimes are <strong>another kind of generic</strong> that we’ve already been using.</p>
@@ -22325,6 +22325,27 @@ instead of inheritance. Let’s look at how trait objects enable polymorphism in
 Rust.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="using-trait-objects-that-allow-for-values-of-different-types"><a class="header" href="#using-trait-objects-that-allow-for-values-of-different-types">Using Trait Objects That Allow for Values of Different Types</a></h1>
 <!--ts-->
+<ul>
+<li><a href="ch17-02-trait-objects.html#using-trait-objects-that-allow-for-values-of-different-types">Using Trait Objects That Allow for Values of Different Types</a>
+<ul>
+<li><a href="ch17-02-trait-objects.html#compare-implementing-trait-with-trait-bounds-and-trait-objects">Compare implementing trait with trait bounds and trait objects</a></li>
+<li><a href="ch17-02-trait-objects.html#one-limitation-of-vectors-only-one-type">one limitation of vectors: only one type</a></li>
+<li><a href="ch17-02-trait-objects.html#how-we-achieve-to-extend-the-set-of-types">How we achieve to extend the set of types</a></li>
+<li><a href="ch17-02-trait-objects.html#how-a-language-with-inheritance-do">How a language with inheritance do</a></li>
+<li><a href="ch17-02-trait-objects.html#how-a-language-without-inheritance-do">How a language without inheritance do</a>
+<ul>
+<li><a href="ch17-02-trait-objects.html#defining-a-trait-for-common-behavior">Defining a Trait for Common Behavior</a></li>
+<li><a href="ch17-02-trait-objects.html#trait-object-works-differently-from-trait-bounds">Trait Object works differently from Trait Bounds</a></li>
+<li><a href="ch17-02-trait-objects.html#implementing-the-trait">Implementing the Trait</a></li>
+<li><a href="ch17-02-trait-objects.html#the-advantace-of-using-trait-objects-just-like-duck-typing">The advantace of using trait objects: just like duck typing</a></li>
+</ul>
+</li>
+<li><a href="ch17-02-trait-objects.html#trait-objects-perform-dynamic-dispatch">Trait Objects Perform Dynamic Dispatch</a></li>
+</ul>
+</li>
+</ul>
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Wed Nov  2 03:57:12 UTC 2022 -->
 <!--te-->
 <h2 id="compare-implementing-trait-with-trait-bounds-and-trait-objects"><a class="header" href="#compare-implementing-trait-with-trait-bounds-and-trait-objects">Compare implementing trait with trait bounds and trait objects</a></h2>
 <ol>
@@ -24057,6 +24078,37 @@ and irrefutable patterns, let’s cover all the syntax we can use to create
 patterns.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="pattern-syntax"><a class="header" href="#pattern-syntax">Pattern Syntax</a></h1>
 <!--ts-->
+<ul>
+<li><a href="ch18-03-pattern-syntax.html#pattern-syntax">Pattern Syntax</a></li>
+<li><a href="ch18-03-pattern-syntax.html#a-matching-situations">A. Matching Situations</a>
+<ul>
+<li><a href="ch18-03-pattern-syntax.html#matching-literals">Matching Literals</a></li>
+<li><a href="ch18-03-pattern-syntax.html#matching-named-variables">Matching Named Variables</a></li>
+<li><a href="ch18-03-pattern-syntax.html#extra-conditionals-with-match-guards">Extra Conditionals with Match Guards</a></li>
+<li><a href="ch18-03-pattern-syntax.html#multiple-patterns">Multiple Patterns</a></li>
+<li><a href="ch18-03-pattern-syntax.html#matching-ranges-of-values-with-">Matching Ranges of Values with ..=</a></li>
+</ul>
+</li>
+<li><a href="ch18-03-pattern-syntax.html#b-destructuring-to-break-apart-values">B. Destructuring to Break Apart Values</a>
+<ul>
+<li><a href="ch18-03-pattern-syntax.html#destructuring-structs">Destructuring Structs</a></li>
+<li><a href="ch18-03-pattern-syntax.html#destructuring-enums">Destructuring Enums</a></li>
+<li><a href="ch18-03-pattern-syntax.html#destructuring-nested-structs-and-enums">Destructuring <strong>Nested</strong> Structs and Enums</a></li>
+<li><a href="ch18-03-pattern-syntax.html#destructuring-structs-and-tuples">Destructuring Structs and Tuples</a></li>
+</ul>
+</li>
+<li><a href="ch18-03-pattern-syntax.html#c-ignoring-values-in-a-pattern">C. Ignoring Values in a Pattern</a>
+<ul>
+<li><a href="ch18-03-pattern-syntax.html#1-ignoring-an-entire-value-with-_">1. Ignoring an Entire Value with _</a></li>
+<li><a href="ch18-03-pattern-syntax.html#2-ignoring-parts-of-a-value-with-a-nested-_">2. Ignoring Parts of a Value with a Nested _</a></li>
+<li><a href="ch18-03-pattern-syntax.html#3-ignoring-an-unused-variable-by-starting-its-name-with-_">3. Ignoring an Unused Variable by Starting Its Name with _</a></li>
+<li><a href="ch18-03-pattern-syntax.html#4-ignoring-remaining-parts-of-a-value-with-">4. Ignoring Remaining Parts of a Value with ..</a></li>
+</ul>
+</li>
+<li><a href="ch18-03-pattern-syntax.html#summary">Summary</a></li>
+</ul>
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Wed Nov  2 03:57:13 UTC 2022 -->
 <!--te-->
 <p>In this section, we gather all the syntax valid in patterns and discuss why and
 when you might want to use each one.</p>
@@ -25536,6 +25588,20 @@ reason to use <code>unsafe</code> code, you can do so, and having the explicit <
 annotation makes it easier to track down the source of problems when they occur.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="advanced-traits"><a class="header" href="#advanced-traits">Advanced Traits</a></h1>
 <!--ts-->
+<ul>
+<li><a href="ch19-03-advanced-traits.html#advanced-traits">Advanced Traits</a>
+<ul>
+<li><a href="ch19-03-advanced-traits.html#associated-types-specifying-placeholder-types-in-trait-definitions">Associated Types: Specifying Placeholder Types in Trait Definitions</a></li>
+<li><a href="ch19-03-advanced-traits.html#difference-between-associated-types-and-generics">Difference between associated types and generics</a></li>
+<li><a href="ch19-03-advanced-traits.html#default-generic-type-parameters-and-operator-overloading">Default Generic Type Parameters and Operator Overloading</a></li>
+<li><a href="ch19-03-advanced-traits.html#fully-qualified-syntax-for-disambiguation-calling-methods-with-the-same-name">Fully Qualified Syntax for Disambiguation: Calling Methods with the Same Name</a></li>
+<li><a href="ch19-03-advanced-traits.html#using-supertraits-to-require-one-traits-functionality-within-another-trait">Using Supertraits to Require One Trait’s Functionality Within Another Trait</a></li>
+<li><a href="ch19-03-advanced-traits.html#using-the-newtype-pattern-to-implement-external-traits-on-external-types">Using the Newtype Pattern to Implement External Traits on External Types</a></li>
+</ul>
+</li>
+</ul>
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Wed Nov  2 03:57:13 UTC 2022 -->
 <!--te-->
 <p>We first covered traits in the <a href="ch10-02-traits.html#traits-defining-shared-behavior">“Traits: Defining Shared
 Behavior”</a><!-- ignore --> section of Chapter
@@ -30511,7 +30577,7 @@ macros and specifying attributes on an item.</p>
 * <a href="appendix-03-derivable-traits.html#copy">Copy</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Wed Nov  2 03:32:37 UTC 2022 -->
+<!-- Added by: runner, at: Wed Nov  2 03:56:58 UTC 2022 -->
 <!--te-->
 <p>In various places in the book, we’ve discussed the <code>derive</code> attribute, which
 you can apply to a struct or enum definition.</p>
