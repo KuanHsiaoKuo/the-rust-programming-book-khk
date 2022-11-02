@@ -1,6 +1,21 @@
 # Using Trait Objects That Allow for Values of Different Types
 
 <!--ts-->
+* [Using Trait Objects That Allow for Values of Different Types](#using-trait-objects-that-allow-for-values-of-different-types)
+   * [Compare implementing trait with trait bounds and trait objects](#compare-implementing-trait-with-trait-bounds-and-trait-objects)
+   * [one limitation of vectors: only one type](#one-limitation-of-vectors-only-one-type)
+   * [How we achieve to extend the set of types](#how-we-achieve-to-extend-the-set-of-types)
+   * [How a language with inheritance do](#how-a-language-with-inheritance-do)
+   * [How a language without inheritance do](#how-a-language-without-inheritance-do)
+      * [Defining a Trait for Common Behavior](#defining-a-trait-for-common-behavior)
+      * [Trait Object works differently from Trait Bounds](#trait-object-works-differently-from-trait-bounds)
+      * [Implementing the Trait](#implementing-the-trait)
+      * [The advantace of using trait objects: just like duck typing](#the-advantace-of-using-trait-objects-just-like-duck-typing)
+   * [Trait Objects Perform Dynamic Dispatch](#trait-objects-perform-dynamic-dispatch)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Wed Nov  2 03:57:12 UTC 2022 -->
+
 <!--te-->
 
 ## Compare implementing trait with trait bounds and trait objects

@@ -1,6 +1,27 @@
 # Pattern Syntax
 
 <!--ts-->
+* [Pattern Syntax](#pattern-syntax)
+* [A. Matching Situations](#a-matching-situations)
+   * [Matching Literals](#matching-literals)
+   * [Matching Named Variables](#matching-named-variables)
+   * [Extra Conditionals with Match Guards](#extra-conditionals-with-match-guards)
+   * [Multiple Patterns](#multiple-patterns)
+   * [Matching Ranges of Values with ..=](#matching-ranges-of-values-with-)
+* [B. Destructuring to Break Apart Values](#b-destructuring-to-break-apart-values)
+   * [Destructuring Structs](#destructuring-structs)
+   * [Destructuring Enums](#destructuring-enums)
+   * [Destructuring <strong>Nested</strong> Structs and Enums](#destructuring-nested-structs-and-enums)
+   * [Destructuring Structs and Tuples](#destructuring-structs-and-tuples)
+* [C. Ignoring Values in a Pattern](#c-ignoring-values-in-a-pattern)
+   * [1. Ignoring an Entire Value with _](#1-ignoring-an-entire-value-with-_)
+   * [2. Ignoring Parts of a Value with a Nested _](#2-ignoring-parts-of-a-value-with-a-nested-_)
+   * [3. Ignoring an Unused Variable by Starting Its Name with _](#3-ignoring-an-unused-variable-by-starting-its-name-with-_)
+   * [4. Ignoring Remaining Parts of a Value with ..](#4-ignoring-remaining-parts-of-a-value-with-)
+* [Summary](#summary)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Wed Nov  2 03:57:13 UTC 2022 -->
 
 <!--te-->
 

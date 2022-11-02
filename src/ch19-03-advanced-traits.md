@@ -1,6 +1,16 @@
 # Advanced Traits
 
 <!--ts-->
+* [Advanced Traits](#advanced-traits)
+   * [Associated Types: Specifying Placeholder Types in Trait Definitions](#associated-types-specifying-placeholder-types-in-trait-definitions)
+   * [Difference between associated types and generics](#difference-between-associated-types-and-generics)
+   * [Default Generic Type Parameters and Operator Overloading](#default-generic-type-parameters-and-operator-overloading)
+   * [Fully Qualified Syntax for Disambiguation: Calling Methods with the Same Name](#fully-qualified-syntax-for-disambiguation-calling-methods-with-the-same-name)
+   * [Using Supertraits to Require One Trait’s Functionality Within Another Trait](#using-supertraits-to-require-one-traits-functionality-within-another-trait)
+   * [Using the Newtype Pattern to Implement External Traits on External Types](#using-the-newtype-pattern-to-implement-external-traits-on-external-types)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Wed Nov  2 03:57:13 UTC 2022 -->
 
 <!--te-->
 
