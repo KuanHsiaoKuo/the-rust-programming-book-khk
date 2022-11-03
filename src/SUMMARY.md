@@ -1,5 +1,5 @@
 # The Rust Programming Language
-
+- [Not Involved Resources](not_involved_resources.md)
 - [The Rust Programming Language](title-page.md)
     - [Foreword](foreword.md)
     - [Introduction](ch00-00-introduction.md)
