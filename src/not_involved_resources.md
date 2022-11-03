@@ -3,6 +3,21 @@
 ![unicorn](https://raw.githubusercontent.com/KuanHsiaoKuo/writing_materials/main/imgs/unicorn.png)
 
 <!--ts-->
+* [Resources](#resources)
+   * [Rust Lang Home](#rust-lang-home)
+   * [This Week in Rust](#this-week-in-rust)
+   * [Rustup Components History](#rustup-components-history)
+   * [Crates.io](#cratesio)
+   * [Rust Blog](#rust-blog)
+   * [RustC Dev Guide](#rustc-dev-guide)
+   * [Rust Vim](#rust-vim)
+   * [Module Arch](#module-arch)
+   * [Rust Lang - Compiler Team](#rust-lang---compiler-team)
+   * [Standard Library Developers Guide](#standard-library-developers-guide)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Thu Nov  3 06:40:37 UTC 2022 -->
+
 <!--te-->
 
 ## Rust Lang Home
