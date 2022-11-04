@@ -187,6 +187,12 @@ instead of calling <code>panic!</code>; this can be accomplished using the <code
 <li><code>None</code>, to indicate failure or lack of value, and</li>
 <li><code>Some(value)</code>, a tuple struct that wraps a <code>value</code> with type <code>T</code>.</li>
 </ul>
+<details id="admonition-option使用要点match匹配无有情况println的写法" class="admonition info">
+<summary class="admonition-title">
+<p>Option使用要点：match匹配无/有情况；println的写法</p>
+<p><a class="admonition-anchor-link" href="#admonition-option使用要点match匹配无有情况println的写法"></a></p>
+</summary>
+<div>
 <pre><pre class="playground"><code class="language-rust editable ignore mdbook-runnable">// An integer division that doesn't `panic!`
 fn checked_division(dividend: i32, divisor: i32) -&gt; Option&lt;i32&gt; {
     if divisor == 0 {
@@ -226,6 +232,8 @@ fn main() {
     println!(&quot;{:?} unwraps to {:?}&quot;, none, none.unwrap());
 }
 </code></pre></pre>
+</div>
+</details>
 
             </main>
 

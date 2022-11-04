@@ -214,7 +214,7 @@
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Nov  3 06:49:00 UTC 2022 -->
+<!-- Added by: runner, at: Fri Nov  4 07:16:00 UTC 2022 -->
 <!--te-->
 <h2 id="rust-official"><a class="header" href="#rust-official">Rust Official</a></h2>
 <h3 id="rust-lang-home"><a class="header" href="#rust-lang-home">Rust Lang Home</a></h3>
@@ -2628,7 +2628,7 @@ write readable, safe code that neither panics nor allows invalid memory access.<
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Nov  3 06:48:13 UTC 2022 -->
+<!-- Added by: runner, at: Fri Nov  4 07:15:10 UTC 2022 -->
 <!--te-->
 <p>Functions are prevalent in Rust code. You’ve already seen one of the most
 important functions in the language:</p>
@@ -5540,7 +5540,7 @@ continue to refactor this code by turning the <code>area</code> function into an
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Nov  3 06:48:16 UTC 2022 -->
+<!-- Added by: runner, at: Fri Nov  4 07:15:13 UTC 2022 -->
 <!--te-->
 <h2 id="similar-and-difference"><a class="header" href="#similar-and-difference">Similar and Difference</a></h2>
 <blockquote>
@@ -9174,7 +9174,7 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Nov  3 06:48:21 UTC 2022 -->
+<!-- Added by: runner, at: Fri Nov  4 07:15:18 UTC 2022 -->
 <!--te-->
 <p>Most errors aren’t serious enough to require the program to stop entirely.</p>
 <details id="admonition-sometimes-when-a-function-fails-its-for-a-reason-that-you-can-easily-interpret-and-respond-to" class="admonition tip">
@@ -10588,7 +10588,7 @@ values. How would we eliminate that duplication? Let’s find out!</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Nov  3 06:48:21 UTC 2022 -->
+<!-- Added by: runner, at: Fri Nov  4 07:15:19 UTC 2022 -->
 <!--te-->
 <p>We use generics to create definitions for items like function signatures or
 structs, which we can then use with many different concrete data types. </p>
@@ -11728,7 +11728,7 @@ generics.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Nov  3 06:48:22 UTC 2022 -->
+<!-- Added by: runner, at: Fri Nov  4 07:15:20 UTC 2022 -->
 <!--te-->
 <blockquote>
 <p>Lifetimes are <strong>another kind of generic</strong> that we’ve already been using.</p>
@@ -22456,7 +22456,7 @@ Rust.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Nov  3 06:48:32 UTC 2022 -->
+<!-- Added by: runner, at: Fri Nov  4 07:15:31 UTC 2022 -->
 <!--te-->
 <h2 id="compare-implementing-trait-with-trait-bounds-and-trait-objects"><a class="header" href="#compare-implementing-trait-with-trait-bounds-and-trait-objects">Compare implementing trait with trait bounds and trait objects</a></h2>
 <ol>
@@ -24219,7 +24219,7 @@ patterns.</p>
 <li><a href="ch18-03-pattern-syntax.html#summary">Summary</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Nov  3 06:48:34 UTC 2022 -->
+<!-- Added by: runner, at: Fri Nov  4 07:15:32 UTC 2022 -->
 <!--te-->
 <p>In this section, we gather all the syntax valid in patterns and discuss why and
 when you might want to use each one.</p>
@@ -25712,7 +25712,7 @@ annotation makes it easier to track down the source of problems when they occur.
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Nov  3 06:48:34 UTC 2022 -->
+<!-- Added by: runner, at: Fri Nov  4 07:15:33 UTC 2022 -->
 <!--te-->
 <p>We first covered traits in the <a href="ch10-02-traits.html#traits-defining-shared-behavior">“Traits: Defining Shared
 Behavior”</a><!-- ignore --> section of Chapter
@@ -30688,7 +30688,7 @@ macros and specifying attributes on an item.</p>
 * <a href="appendix-03-derivable-traits.html#copy">Copy</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Nov  3 06:48:07 UTC 2022 -->
+<!-- Added by: runner, at: Fri Nov  4 07:15:04 UTC 2022 -->
 <!--te-->
 <p>In various places in the book, we’ve discussed the <code>derive</code> attribute, which
 you can apply to a struct or enum definition.</p>
@@ -39073,6 +39073,12 @@ instead of calling <code>panic!</code>; this can be accomplished using the <code
 <li><code>None</code>, to indicate failure or lack of value, and</li>
 <li><code>Some(value)</code>, a tuple struct that wraps a <code>value</code> with type <code>T</code>.</li>
 </ul>
+<details id="admonition-option使用要点match匹配无有情况println的写法" class="admonition info">
+<summary class="admonition-title">
+<p>Option使用要点：match匹配无/有情况；println的写法</p>
+<p><a class="admonition-anchor-link" href="rust_by_example_src/std/option.html#admonition-option使用要点match匹配无有情况println的写法"></a></p>
+</summary>
+<div>
 <pre><pre class="playground"><code class="language-rust editable ignore mdbook-runnable">// An integer division that doesn't `panic!`
 fn checked_division(dividend: i32, divisor: i32) -&gt; Option&lt;i32&gt; {
     if divisor == 0 {
@@ -39112,6 +39118,8 @@ fn main() {
     println!(&quot;{:?} unwraps to {:?}&quot;, none, none.unwrap());
 }
 </code></pre></pre>
+</div>
+</details>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="result-2"><a class="header" href="#result-2"><code>Result</code></a></h1>
 <p>We’ve seen that the <code>Option</code> enum can be used as a return value from functions
 that may fail, where <code>None</code> can be returned to indicate failure. However,
