@@ -8,6 +8,7 @@ The `Option<T>` enum has two variants:
 * `None`, to indicate failure or lack of value, and
 * `Some(value)`, a tuple struct that wraps a `value` with type `T`.
 
+~~~admonish info title="Option使用要点：match匹配无/有情况；println的写法" collapsible=true
 ```rust,editable,ignore,mdbook-runnable
 // An integer division that doesn't `panic!`
 fn checked_division(dividend: i32, divisor: i32) -> Option<i32> {
@@ -48,3 +49,4 @@ fn main() {
     println!("{:?} unwraps to {:?}", none, none.unwrap());
 }
 ```
+~~~
