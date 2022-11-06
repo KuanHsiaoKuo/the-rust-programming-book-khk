@@ -1,6 +1,20 @@
 # Calling Python in Rust code
 
 <!--ts-->
+* [Calling Python in Rust code](#calling-python-in-rust-code)
+   * [Calling Python functions](#calling-python-functions)
+      * [Creating keyword arguments](#creating-keyword-arguments)
+   * [Executing existing Python code](#executing-existing-python-code)
+      * [Want to access Python APIs? Then use PyModule::import.](#want-to-access-python-apis-then-use-pymoduleimport)
+      * [Want to run just an expression? Then use eval.](#want-to-run-just-an-expression-then-use-eval)
+      * [Want to run statements? Then use run.](#want-to-run-statements-then-use-run)
+   * [You have a Python file or code snippet? Then use PyModule::from_code.](#you-have-a-python-file-or-code-snippet-then-use-pymodulefrom_code)
+      * [Include multiple Python files](#include-multiple-python-files)
+   * [Need to use a context manager from Rust?](#need-to-use-a-context-manager-from-rust)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Sun Nov  6 12:46:58 UTC 2022 -->
+
 <!--te-->
 
 This chapter of the guide documents some ways to interact with Python code from Rust:
