@@ -374,7 +374,7 @@
     - [Features reference](PyO3_guides/src/features.md)
     - [Memory management](PyO3_guides/src/memory.md)
     - [Advanced topics](PyO3_guides/src/advanced.md)
-    - [Building and distribution](PyO3_guides/src/building_and_distribution.md)
+    - [⭐️Building and distribution](PyO3_guides/src/building_and_distribution.md)
         - [Supporting multiple Python versions](PyO3_guides/src/building_and_distribution/multiple_python_versions.md)
     - [Useful crates](PyO3_guides/src/ecosystem.md)
         - [Logging](PyO3_guides/src/ecosystem/logging.md)

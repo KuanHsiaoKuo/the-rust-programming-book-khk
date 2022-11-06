@@ -1,5 +1,8 @@
 # Building and distribution
 
+<!--ts-->
+<!--te-->
+
 This chapter of the guide goes into detail on how to build and distribute projects using PyO3. The way to achieve this is very different depending on whether the project is a Python module implemented in Rust, or a Rust binary embedding Python. For both types of project there are also common problems such as the Python version to build for and the [linker](https://en.wikipedia.org/wiki/Linker_(computing)) arguments to use.
 
 The material in this chapter is intended for users who have already read the PyO3 [README](#index.md). It covers in turn the choices that can be made for Python modules and for Rust binaries. There is also a section at the end about cross-compiling projects using PyO3.
