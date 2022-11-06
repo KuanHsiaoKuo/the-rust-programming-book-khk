@@ -1,6 +1,27 @@
 # Building and distribution
 
 <!--ts-->
+* [Building and distribution](#building-and-distribution)
+   * [Configuring the Python version](#configuring-the-python-version)
+      * [Advanced: config files](#advanced-config-files)
+   * [Building Python extension modules](#building-python-extension-modules)
+      * [Packaging tools](#packaging-tools)
+      * [Manual builds](#manual-builds)
+         * [Platform tags](#platform-tags)
+         * [macOS](#macos)
+      * [The extension-module feature](#the-extension-module-feature)
+         * [Minimum Python version for abi3](#minimum-python-version-for-abi3)
+         * [Building abi3 extensions without a Python interpreter](#building-abi3-extensions-without-a-python-interpreter)
+         * [Missing features](#missing-features)
+   * [Embedding Python in Rust](#embedding-python-in-rust)
+      * [Dynamically embedding the Python interpreter](#dynamically-embedding-the-python-interpreter)
+      * [Statically embedding the Python interpreter](#statically-embedding-the-python-interpreter)
+      * [Import your module when embedding the Python interpreter](#import-your-module-when-embedding-the-python-interpreter)
+   * [Cross Compiling](#cross-compiling)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Sun Nov  6 13:40:27 UTC 2022 -->
+
 <!--te-->
 
 This chapter of the guide goes into detail on how to build and distribute projects using PyO3. The way to achieve this is very different depending on whether the project is a Python module implemented in Rust, or a Rust binary embedding Python. For both types of project there are also common problems such as the Python version to build for and the [linker](https://en.wikipedia.org/wiki/Linker_(computing)) arguments to use.
