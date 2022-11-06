@@ -3,6 +3,7 @@
 <!--ts-->
 * [Building and distribution](#building-and-distribution)
    * [Configuring the Python version](#configuring-the-python-version)
+      * [Basic Info](#basic-info)
       * [Advanced: config files](#advanced-config-files)
    * [Building Python extension modules](#building-python-extension-modules)
       * [Packaging tools](#packaging-tools)
@@ -20,7 +21,7 @@
    * [Cross Compiling](#cross-compiling)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Nov  6 13:40:27 UTC 2022 -->
+<!-- Added by: runner, at: Sun Nov  6 14:47:46 UTC 2022 -->
 
 <!--te-->
 
