@@ -4,4 +4,4 @@ Welcome to the PyO3 user guide! This book is a companion to [PyO3's API docs](ht
 
 Please choose from the chapters on the left to jump to individual topics, or continue below to start with PyO3's README.
 
-{{#include ../../README.md}}
+{{#include README.md}}
