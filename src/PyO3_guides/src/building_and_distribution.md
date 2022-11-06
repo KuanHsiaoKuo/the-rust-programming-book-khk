@@ -24,25 +24,41 @@
 
 <!--te-->
 
-This chapter of the guide goes into detail on how to build and distribute projects using PyO3. The way to achieve this is very different depending on whether the project is a Python module implemented in Rust, or a Rust binary embedding Python. For both types of project there are also common problems such as the Python version to build for and the [linker](https://en.wikipedia.org/wiki/Linker_(computing)) arguments to use.
+This chapter of the guide goes into detail on how to build and distribute projects using PyO3. 
 
-The material in this chapter is intended for users who have already read the PyO3 [README](#index.md). It covers in turn the choices that can be made for Python modules and for Rust binaries. There is also a section at the end about cross-compiling projects using PyO3.
+1. The way to achieve this is very different depending on whether:
+- the project is a Python module implemented in Rust
+- or a Rust binary embedding Python. 
 
-There is an additional sub-chapter dedicated to [supporting multiple Python versions](./building_and_distribution/multiple_python_versions.html).
+2. For both types of project there are also common problems such as the Python version to build for and the [linker](https://en.wikipedia.org/wiki/Linker_(computing)) arguments to use.
+
+3. The material in this chapter is intended for users who have already read the PyO3 [README](#index.md). 
+
+4. It covers in turn the choices that can be made for Python modules and for Rust binaries. 
+
+5. There is also a section at the end about cross-compiling projects using PyO3.
+
+6. There is an additional sub-chapter dedicated to [supporting multiple Python versions](./building_and_distribution/multiple_python_versions.html).
 
 ## Configuring the Python version
+### Basic Info
+PyO3 uses a build script (backed by the [`pyo3-build-config`] crate) to determine the Python version and set the correct linker arguments. 
 
-PyO3 uses a build script (backed by the [`pyo3-build-config`] crate) to determine the Python version and set the correct linker arguments. By default it will attempt to use the following in order:
- - Any active Python virtualenv.
- - The `python` executable (if it's a Python 3 interpreter).
- - The `python3` executable.
+1. Order
+By default it will attempt to use the following in order:
+- Any active **Python virtualenv**.
+- The `python` executable (if it's a Python 3 interpreter).
+- The `python3` executable.
 
+2. Override
 You can override the Python interpreter by setting the `PYO3_PYTHON` environment variable, e.g. `PYO3_PYTHON=python3.7`, `PYO3_PYTHON=/usr/bin/python3.9`, or even a PyPy interpreter `PYO3_PYTHON=pypy3`.
 
-Once the Python interpreter is located, `pyo3-build-config` executes it to query the information in the `sysconfig` module which is needed to configure the rest of the compilation.
+3. Build
+Once the Python interpreter is located, `pyo3-build-config` executes it to query the information in the `sysconfig` module, which is needed to configure the rest of the compilation.
 
-To validate the configuration which PyO3 will use, you can run a compilation with the environment variable `PYO3_PRINT_CONFIG=1` set. An example output of doing this is shown below:
+To validate the configuration which PyO3 will use, you can run a compilation with the environment variable `PYO3_PRINT_CONFIG=1` set. 
 
+~~~admonish info title=" An example output of doing this is shown below:" collapsible=true
 ```console
 $ PYO3_PRINT_CONFIG=1 cargo build
    Compiling pyo3 v0.14.1 (/home/david/dev/pyo3)
@@ -68,34 +84,53 @@ Caused by:
   build_flags=
   suppress_build_script_link_lines=false
 ```
+~~~
 
 ### Advanced: config files
 
 If you save the above output config from `PYO3_PRINT_CONFIG` to a file, it is possible to manually override the contents and feed it back into PyO3 using the `PYO3_CONFIG_FILE` env var.
 
-If your build environment is unusual enough that PyO3's regular configuration detection doesn't work, using a config file like this will give you the flexibility to make PyO3 work for you. To see the full set of options supported, see the documentation for the [`InterpreterConfig` struct](https://docs.rs/pyo3-build-config/{{#PYO3_DOCS_VERSION}}/pyo3_build_config/struct.InterpreterConfig.html).
+If your build environment is unusual enough that PyO3's regular configuration detection doesn't work, using a config file like this will give you the flexibility to make PyO3 work for you. 
+
+> To see the full set of options supported, see the documentation for the [`InterpreterConfig` struct](https://docs.rs/pyo3-build-config/{{#PYO3_DOCS_VERSION}}/pyo3_build_config/struct.InterpreterConfig.html).
 
 ## Building Python extension modules
 
-Python extension modules need to be compiled differently depending on the OS (and architecture) that they are being compiled for. As well as multiple OSes (and architectures), there are also many different Python versions which are actively supported. Packages uploaded to [PyPI](https://pypi.org/) usually want to upload prebuilt "wheels" covering many OS/arch/version combinations so that users on all these different platforms don't have to compile the package themselves. Package vendors can opt-in to the "abi3" limited Python API which allows their wheels to be used on multiple Python versions, reducing the number of wheels they need to compile, but restricts the functionality they can use.
+Python extension modules need to be compiled differently depending on the OS (and architecture) that they are being compiled for. 
+As well as multiple OSes (and architectures), there are also many different Python versions which are actively supported. 
+Packages uploaded to [PyPI](https://pypi.org/) usually want to upload prebuilt "wheels" covering many OS/arch/version combinations so that users on all these different platforms don't have to compile the package themselves. 
+Package vendors can opt-in to the "abi3" limited Python API which allows their wheels to be used on multiple Python versions, reducing the number of wheels they need to compile, but restricts the functionality they can use.
 
-There are many ways to go about this: it is possible to use `cargo` to build the extension module (along with some manual work, which varies with OS). The PyO3 ecosystem has two packaging tools, [`maturin`] and [`setuptools-rust`], which abstract over the OS difference and also support building wheels for PyPI upload.
+> There are many ways to go about this: 
 
-PyO3 has some Cargo features to configure projects for building Python extension modules:
+- it is possible to use `cargo` to build the extension module (along with some manual work, which varies with OS). 
+- The PyO3 ecosystem has **two packaging tools**, [`maturin`] and [`setuptools-rust`], which abstract over the OS difference and also support building wheels for PyPI upload.
+
+> PyO3 has some Cargo features to configure projects for building Python extension modules:
  - The `extension-module` feature, which must be enabled when building Python extension modules.
  - The `abi3` feature and its version-specific `abi3-pyXY` companions, which are used to opt-in to the limited Python API in order to support multiple Python versions in a single wheel.
 
-This section describes each of these packaging tools before describiing how to build manually without them. It then proceeds with an explanation of the `extension-module` feature. Finally, there is a section describing PyO3's `abi3` features.
+1. This section describes each of these packaging tools before describing how to build manually without them. 
+
+2. It then proceeds with an explanation of the `extension-module` feature. 
+
+3. Finally, there is a section describing PyO3's `abi3` features.
 
 ### Packaging tools
 
 The PyO3 ecosystem has two main choices to abstract the process of developing Python extension modules:
-- [`maturin`] is a command-line tool to build, package and upload Python modules. It makes opinionated choices about project layout meaning it needs very little configuration. This makes it a great choice for users who are building a Python extension from scratch and don't need flexibility.
-- [`setuptools-rust`] is an add-on for `setuptools` which adds extra keyword arguments to the `setup.py` configuration file. It requires more configuration than `maturin`, however this gives additional flexibility for users adding Rust to an existing Python package that can't satisfy `maturin`'s constraints.
+1. [`maturin`]
+- maturin is a command-line tool to build, package and upload Python modules.
+- It makes opinionated choices about project layout meaning it needs very little configuration.
+- This makes it a great choice for users who are building a Python extension from scratch and don't need flexibility.
+
+2. [`setuptools-rust`] 
+- setuptools-rust is an add-on for `setuptools` which adds extra keyword arguments to the `setup.py` configuration file. 
+- It requires more configuration than `maturin`, however this gives additional flexibility for users adding Rust to an existing Python package that can't satisfy `maturin`'s constraints.
 
 Consult each project's documentation for full details on how to get started using them and how to upload wheels to PyPI.
 
-There are also [`maturin-starter`] and [`setuptools-rust-starter`] examples in the PyO3 repository.
+> There are also [`maturin-starter`] and [`setuptools-rust-starter`] examples in the PyO3 repository.
 
 ### Manual builds
 
@@ -108,9 +143,12 @@ Once built, symlink (or copy) and rename the shared library from Cargo's `target
 
 You can then open a Python shell in the output directory and you'll be able to run `import your_module`.
 
-If you're packaging your library for redistribution, you should indicated the Python interpreter your library is compiled for by including the [platform tag](#platform-tags) in its name. This prevents incompatible interpreters from trying to import your library. If you're compiling for PyPy you *must* include the platform tag, or PyPy will ignore the module.
+If you're packaging your library for redistribution, you should indicated the Python interpreter your library is compiled for by including the [platform tag](#platform-tags) in its name. 
 
-See, as an example, Bazel rules to build PyO3 on Linux at https://github.com/TheButlah/rules_pyo3.
+>This prevents incompatible interpreters from trying to import your library. 
+> If you're compiling for PyPy you *must* include the platform tag, or PyPy will ignore the module.
+
+>See, as an example, Bazel rules to build PyO3 on Linux at https://github.com/TheButlah/rules_pyo3.
 
 #### Platform tags
 
