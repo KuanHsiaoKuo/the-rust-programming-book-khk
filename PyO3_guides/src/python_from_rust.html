@@ -180,6 +180,34 @@
                     <nav class="pagetoc"></nav>
                 </div>
                 <h1 id="calling-python-in-rust-code"><a class="header" href="#calling-python-in-rust-code">Calling Python in Rust code</a></h1>
+<!--ts-->
+<ul>
+<li><a href="#calling-python-in-rust-code">Calling Python in Rust code</a>
+<ul>
+<li><a href="#calling-python-functions">Calling Python functions</a>
+<ul>
+<li><a href="#creating-keyword-arguments">Creating keyword arguments</a></li>
+</ul>
+</li>
+<li><a href="#executing-existing-python-code">Executing existing Python code</a>
+<ul>
+<li><a href="#want-to-access-python-apis-then-use-pymoduleimport">Want to access Python APIs? Then use PyModule::import.</a></li>
+<li><a href="#want-to-run-just-an-expression-then-use-eval">Want to run just an expression? Then use eval.</a></li>
+<li><a href="#want-to-run-statements-then-use-run">Want to run statements? Then use run.</a></li>
+</ul>
+</li>
+<li><a href="#you-have-a-python-file-or-code-snippet-then-use-pymodulefrom_code">You have a Python file or code snippet? Then use PyModule::from_code.</a>
+<ul>
+<li><a href="#include-multiple-python-files">Include multiple Python files</a></li>
+</ul>
+</li>
+<li><a href="#need-to-use-a-context-manager-from-rust">Need to use a context manager from Rust?</a></li>
+</ul>
+</li>
+</ul>
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Sun Nov  6 12:46:58 UTC 2022 -->
+<!--te-->
 <p>This chapter of the guide documents some ways to interact with Python code from Rust:</p>
 <ul>
 <li>How to call Python functions</li>
