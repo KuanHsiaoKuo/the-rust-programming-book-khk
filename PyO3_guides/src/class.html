@@ -1,0 +1,1235 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js navy">
+<head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <title>Python classes - The Rust Programming Language</title>
+
+
+    <!-- Custom HTML head -->
+    
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff"/>
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../md-favicon.png">
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/general.css">
+    <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../../highlight.css">
+    <link rel="stylesheet" href="../../tomorrow-night.css">
+    <link rel="stylesheet" href="../../ayu-highlight.css">
+
+    <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../assets/ferris/ferris.css">
+        <link rel="stylesheet" href="../../theme/2018-edition.css">
+        <link rel="stylesheet" href="../../assets/pagetoc/pagetoc_style.css">
+        <link rel="stylesheet" href="../../assets/css/mdbook-admonish.css">
+
+</head>
+<body>
+<!-- Provide site root to javascript -->
+<script type="text/javascript">
+    var path_to_root = "../../";
+    var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+</script>
+
+<!-- Work around some values being stored in localStorage wrapped in quotes -->
+<script type="text/javascript">
+    try {
+        var theme = localStorage.getItem('mdbook-theme');
+        var sidebar = localStorage.getItem('mdbook-sidebar');
+
+        if (theme.startsWith('"') && theme.endsWith('"')) {
+            localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+        }
+
+        if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+            localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+        }
+    } catch (e) {
+    }
+</script>
+
+<!-- Set the theme before any content is loaded, prevents flash -->
+<script type="text/javascript">
+    var theme;
+    try {
+        theme = localStorage.getItem('mdbook-theme');
+    } catch (e) {
+    }
+    if (theme === null || theme === undefined) {
+        theme = default_theme;
+    }
+    var html = document.querySelector('html');
+    html.classList.remove('no-js')
+    html.classList.remove('navy')
+    html.classList.add(theme);
+    html.classList.add('js');
+</script>
+
+<!-- Hide / unhide sidebar before it is displayed -->
+<script type="text/javascript">
+    var html = document.querySelector('html');
+    var sidebar = 'hidden';
+    if (document.body.clientWidth >= 1080) {
+        try {
+            sidebar = localStorage.getItem('mdbook-sidebar');
+        } catch (e) {
+        }
+        sidebar = sidebar || 'visible';
+    }
+    html.classList.remove('sidebar-visible');
+    html.classList.add("sidebar-" + sidebar);
+</script>
+
+<nav id="sidebar" class="sidebar" aria-label="Table of contents">
+    <div class="sidebar-scrollbox">
+        <ol class="chapter"><li class="chapter-item expanded "><a href="../../not_involved_resources.html"><strong aria-hidden="true">1.</strong> Not Involved Resources</a></li><li class="chapter-item expanded "><a href="../../title-page.html"><strong aria-hidden="true">2.</strong> The Rust Programming Language</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../foreword.html"><strong aria-hidden="true">2.1.</strong> Foreword</a></li><li class="chapter-item "><a href="../../ch00-00-introduction.html"><strong aria-hidden="true">2.2.</strong> Introduction</a></li><li class="chapter-item "><a href="../../ch01-00-getting-started.html"><strong aria-hidden="true">2.3.</strong> Getting Started</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch01-01-installation.html"><strong aria-hidden="true">2.3.1.</strong> Installation</a></li><li class="chapter-item "><a href="../../ch01-02-hello-world.html"><strong aria-hidden="true">2.3.2.</strong> Hello, World!</a></li><li class="chapter-item "><a href="../../ch01-03-hello-cargo.html"><strong aria-hidden="true">2.3.3.</strong> Hello, Cargo!</a></li><li class="chapter-item "><a href="../../ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">2.3.4.</strong> Programming a Guessing Game</a></li><li class="chapter-item "><a href="../../ch03-00-common-programming-concepts.html"><strong aria-hidden="true">2.3.5.</strong> Common Programming Concepts</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch03-01-variables-and-mutability.html"><strong aria-hidden="true">2.3.5.1.</strong> Variables and Mutability</a></li><li class="chapter-item "><a href="../../ch03-02-data-types.html"><strong aria-hidden="true">2.3.5.2.</strong> Data Types</a></li><li class="chapter-item "><a href="../../ch03-03-how-functions-work.html"><strong aria-hidden="true">2.3.5.3.</strong> ✨Functions</a></li><li class="chapter-item "><a href="../../ch03-04-comments.html"><strong aria-hidden="true">2.3.5.4.</strong> Comments</a></li><li class="chapter-item "><a href="../../ch03-05-control-flow.html"><strong aria-hidden="true">2.3.5.5.</strong> Control Flow</a></li></ol></li><li class="chapter-item "><a href="../../ch04-00-understanding-ownership.html"><strong aria-hidden="true">2.3.6.</strong> Understanding Ownership</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch04-01-what-is-ownership.html"><strong aria-hidden="true">2.3.6.1.</strong> What is Ownership?</a></li><li class="chapter-item "><a href="../../ch04-02-references-and-borrowing.html"><strong aria-hidden="true">2.3.6.2.</strong> References and Borrowing</a></li><li class="chapter-item "><a href="../../ch04-03-slices.html"><strong aria-hidden="true">2.3.6.3.</strong> The Slice Type</a></li></ol></li><li class="chapter-item "><a href="../../ch05-00-structs.html"><strong aria-hidden="true">2.3.7.</strong> Using Structs to Structure Related Data</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch05-01-defining-structs.html"><strong aria-hidden="true">2.3.7.1.</strong> Defining and Instantiating Structs</a></li><li class="chapter-item "><a href="../../ch05-02-example-structs.html"><strong aria-hidden="true">2.3.7.2.</strong> An Example Program Using Structs</a></li><li class="chapter-item "><a href="../../ch05-03-method-syntax.html"><strong aria-hidden="true">2.3.7.3.</strong> ✨Method Syntax</a></li></ol></li><li class="chapter-item "><a href="../../ch06-00-enums.html"><strong aria-hidden="true">2.3.8.</strong> Enums and Pattern Matching</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch06-01-defining-an-enum.html"><strong aria-hidden="true">2.3.8.1.</strong> Defining an Enum</a></li><li class="chapter-item "><a href="../../ch06-02-match.html"><strong aria-hidden="true">2.3.8.2.</strong> The match Control Flow Construct</a></li><li class="chapter-item "><a href="../../ch06-03-if-let.html"><strong aria-hidden="true">2.3.8.3.</strong> Concise Control Flow with if let</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">2.4.</strong> Basic Rust Literacy</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch07-00-managing-growing-projects-with-packages-crates-and-modules.html"><strong aria-hidden="true">2.4.1.</strong> Managing Growing Projects with Packages, Crates, and Modules</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch07-01-packages-and-crates.html"><strong aria-hidden="true">2.4.1.1.</strong> Packages and Crates</a></li><li class="chapter-item "><a href="../../ch07-02-defining-modules-to-control-scope-and-privacy.html"><strong aria-hidden="true">2.4.1.2.</strong> Defining Modules to Control Scope and Privacy</a></li><li class="chapter-item "><a href="../../ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html"><strong aria-hidden="true">2.4.1.3.</strong> Paths for Referring to an Item in the Module Tree</a></li><li class="chapter-item "><a href="../../ch07-04-bringing-paths-into-scope-with-the-use-keyword.html"><strong aria-hidden="true">2.4.1.4.</strong> Bringing Paths Into Scope with the use Keyword</a></li><li class="chapter-item "><a href="../../ch07-05-separating-modules-into-different-files.html"><strong aria-hidden="true">2.4.1.5.</strong> Separating Modules into Different Files</a></li></ol></li><li class="chapter-item "><a href="../../ch08-00-common-collections.html"><strong aria-hidden="true">2.4.2.</strong> Common Collections</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch08-01-vectors.html"><strong aria-hidden="true">2.4.2.1.</strong> Storing Lists of Values with Vectors</a></li><li class="chapter-item "><a href="../../ch08-02-strings.html"><strong aria-hidden="true">2.4.2.2.</strong> Storing UTF-8 Encoded Text with Strings</a></li><li class="chapter-item "><a href="../../ch08-03-hash-maps.html"><strong aria-hidden="true">2.4.2.3.</strong> Storing Keys with Associated Values in Hash Maps</a></li></ol></li><li class="chapter-item "><a href="../../ch09-00-error-handling.html"><strong aria-hidden="true">2.4.3.</strong> Error Handling</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">2.4.3.1.</strong> Unrecoverable Errors with panic!</a></li><li class="chapter-item "><a href="../../ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">2.4.3.2.</strong> ⭐️Recoverable Errors with Result</a></li><li class="chapter-item "><a href="../../ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">2.4.3.3.</strong> To panic! or Not to panic!</a></li></ol></li><li class="chapter-item "><a href="../../ch10-00-generics.html"><strong aria-hidden="true">2.4.4.</strong> Generic Types, Traits, and Lifetimes</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch10-01-syntax.html"><strong aria-hidden="true">2.4.4.1.</strong> ✨Generic Data Types</a></li><li class="chapter-item "><a href="../../ch10-02-traits.html"><strong aria-hidden="true">2.4.4.2.</strong> 🪐Traits: Defining Shared Behavior</a></li><li class="chapter-item "><a href="../../ch10-03-lifetime-syntax.html"><strong aria-hidden="true">2.4.4.3.</strong> ⭐️Validating References with Lifetimes</a></li></ol></li><li class="chapter-item "><a href="../../ch11-00-testing.html"><strong aria-hidden="true">2.4.5.</strong> Writing Automated Tests</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch11-01-writing-tests.html"><strong aria-hidden="true">2.4.5.1.</strong> How to Write Tests</a></li><li class="chapter-item "><a href="../../ch11-02-running-tests.html"><strong aria-hidden="true">2.4.5.2.</strong> Controlling How Tests Are Run</a></li><li class="chapter-item "><a href="../../ch11-03-test-organization.html"><strong aria-hidden="true">2.4.5.3.</strong> Test Organization</a></li></ol></li><li class="chapter-item "><a href="../../ch12-00-an-io-project.html"><strong aria-hidden="true">2.4.6.</strong> An I/O Project: Building a Command Line Program</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">2.4.6.1.</strong> Accepting Command Line Arguments</a></li><li class="chapter-item "><a href="../../ch12-02-reading-a-file.html"><strong aria-hidden="true">2.4.6.2.</strong> Reading a File</a></li><li class="chapter-item "><a href="../../ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">2.4.6.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li class="chapter-item "><a href="../../ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">2.4.6.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li class="chapter-item "><a href="../../ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">2.4.6.5.</strong> Working with Environment Variables</a></li><li class="chapter-item "><a href="../../ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">2.4.6.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">2.5.</strong> Thinking in Rust</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch13-00-functional-features.html"><strong aria-hidden="true">2.5.1.</strong> Functional Language Features: Iterators and Closures</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch13-01-closures.html"><strong aria-hidden="true">2.5.1.1.</strong> Closures: Anonymous Functions that Capture Their Environment</a></li><li class="chapter-item "><a href="../../ch13-02-iterators.html"><strong aria-hidden="true">2.5.1.2.</strong> Processing a Series of Items with Iterators</a></li><li class="chapter-item "><a href="../../ch13-03-improving-our-io-project.html"><strong aria-hidden="true">2.5.1.3.</strong> Improving Our I/O Project</a></li><li class="chapter-item "><a href="../../ch13-04-performance.html"><strong aria-hidden="true">2.5.1.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li class="chapter-item "><a href="../../ch14-00-more-about-cargo.html"><strong aria-hidden="true">2.5.2.</strong> More about Cargo and Crates.io</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch14-01-release-profiles.html"><strong aria-hidden="true">2.5.2.1.</strong> Customizing Builds with Release Profiles</a></li><li class="chapter-item "><a href="../../ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">2.5.2.2.</strong> Publishing a Crate to Crates.io</a></li><li class="chapter-item "><a href="../../ch14-03-cargo-workspaces.html"><strong aria-hidden="true">2.5.2.3.</strong> Cargo Workspaces</a></li><li class="chapter-item "><a href="../../ch14-04-installing-binaries.html"><strong aria-hidden="true">2.5.2.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item "><a href="../../ch14-05-extending-cargo.html"><strong aria-hidden="true">2.5.2.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li class="chapter-item "><a href="../../ch15-00-smart-pointers.html"><strong aria-hidden="true">2.5.3.</strong> Smart Pointers</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch15-01-box.html"><strong aria-hidden="true">2.5.3.1.</strong> Using Box&lt;T&gt; to Point to Data on the Heap</a></li><li class="chapter-item "><a href="../../ch15-02-deref.html"><strong aria-hidden="true">2.5.3.2.</strong> Treating Smart Pointers Like Regular References with the Deref Trait</a></li><li class="chapter-item "><a href="../../ch15-03-drop.html"><strong aria-hidden="true">2.5.3.3.</strong> Running Code on Cleanup with the Drop Trait</a></li><li class="chapter-item "><a href="../../ch15-04-rc.html"><strong aria-hidden="true">2.5.3.4.</strong> Rc&lt;T&gt;, the Reference Counted Smart Pointer</a></li><li class="chapter-item "><a href="../../ch15-05-interior-mutability.html"><strong aria-hidden="true">2.5.3.5.</strong> RefCell&lt;T&gt; and the Interior Mutability Pattern</a></li><li class="chapter-item "><a href="../../ch15-06-reference-cycles.html"><strong aria-hidden="true">2.5.3.6.</strong> Reference Cycles Can Leak Memory</a></li></ol></li><li class="chapter-item "><a href="../../ch16-00-concurrency.html"><strong aria-hidden="true">2.5.4.</strong> Fearless Concurrency</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch16-01-threads.html"><strong aria-hidden="true">2.5.4.1.</strong> Using Threads to Run Code Simultaneously</a></li><li class="chapter-item "><a href="../../ch16-02-message-passing.html"><strong aria-hidden="true">2.5.4.2.</strong> Using Message Passing to Transfer Data Between Threads</a></li><li class="chapter-item "><a href="../../ch16-03-shared-state.html"><strong aria-hidden="true">2.5.4.3.</strong> Shared-State Concurrency</a></li><li class="chapter-item "><a href="../../ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">2.5.4.4.</strong> Extensible Concurrency with the Sync and Send Traits</a></li></ol></li><li class="chapter-item "><a href="../../ch17-00-oop.html"><strong aria-hidden="true">2.5.5.</strong> Object Oriented Programming Features of Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch17-01-what-is-oo.html"><strong aria-hidden="true">2.5.5.1.</strong> Characteristics of Object-Oriented Languages</a></li><li class="chapter-item "><a href="../../ch17-02-trait-objects.html"><strong aria-hidden="true">2.5.5.2.</strong> 🌛️Using Trait Objects That Allow for Values of Different Types</a></li><li class="chapter-item "><a href="../../ch17-03-oo-design-patterns.html"><strong aria-hidden="true">2.5.5.3.</strong> Implementing an Object-Oriented Design Pattern</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">2.6.</strong> Advanced Topics</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch18-00-patterns.html"><strong aria-hidden="true">2.6.1.</strong> Patterns and Matching</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">2.6.1.1.</strong> All the Places Patterns Can Be Used</a></li><li class="chapter-item "><a href="../../ch18-02-refutability.html"><strong aria-hidden="true">2.6.1.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li class="chapter-item "><a href="../../ch18-03-pattern-syntax.html"><strong aria-hidden="true">2.6.1.3.</strong> ⭐️Pattern Syntax</a></li></ol></li><li class="chapter-item "><a href="../../ch19-00-advanced-features.html"><strong aria-hidden="true">2.6.2.</strong> Advanced Features</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch19-01-unsafe-rust.html"><strong aria-hidden="true">2.6.2.1.</strong> Unsafe Rust</a></li><li class="chapter-item "><a href="../../ch19-03-advanced-traits.html"><strong aria-hidden="true">2.6.2.2.</strong> ⭐️Advanced Traits</a></li><li class="chapter-item "><a href="../../ch19-04-advanced-types.html"><strong aria-hidden="true">2.6.2.3.</strong> ✨Advanced Types</a></li><li class="chapter-item "><a href="../../ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">2.6.2.4.</strong> Advanced Functions and Closures</a></li><li class="chapter-item "><a href="../../ch19-06-macros.html"><strong aria-hidden="true">2.6.2.5.</strong> Macros</a></li></ol></li><li class="chapter-item "><a href="../../ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">2.6.3.</strong> Final Project: Building a Multithreaded Web Server</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch20-01-single-threaded.html"><strong aria-hidden="true">2.6.3.1.</strong> Building a Single-Threaded Web Server</a></li><li class="chapter-item "><a href="../../ch20-02-multithreaded.html"><strong aria-hidden="true">2.6.3.2.</strong> Turning Our Single-Threaded Server into a Multithreaded Server</a></li><li class="chapter-item "><a href="../../ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">2.6.3.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li class="chapter-item "><a href="../../appendix-00.html"><strong aria-hidden="true">2.6.4.</strong> Appendix</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../appendix-01-keywords.html"><strong aria-hidden="true">2.6.4.1.</strong> A - Keywords</a></li><li class="chapter-item "><a href="../../appendix-02-operators.html"><strong aria-hidden="true">2.6.4.2.</strong> B - Operators and Symbols</a></li><li class="chapter-item "><a href="../../appendix-03-derivable-traits.html"><strong aria-hidden="true">2.6.4.3.</strong> ✨️C - Derivable Traits</a></li><li class="chapter-item "><a href="../../appendix-04-useful-development-tools.html"><strong aria-hidden="true">2.6.4.4.</strong> D - Useful Development Tools</a></li><li class="chapter-item "><a href="../../appendix-05-editions.html"><strong aria-hidden="true">2.6.4.5.</strong> E - Editions</a></li><li class="chapter-item "><a href="../../appendix-06-translation.html"><strong aria-hidden="true">2.6.4.6.</strong> F - Translations of the Book</a></li><li class="chapter-item "><a href="../../appendix-07-nightly-rust.html"><strong aria-hidden="true">2.6.4.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../rust_by_example_src/index.html"><strong aria-hidden="true">3.</strong> Rust By Examples</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/hello.html"><strong aria-hidden="true">3.1.</strong> Hello World</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/hello/comment.html"><strong aria-hidden="true">3.1.1.</strong> Comments</a></li><li class="chapter-item "><a href="../../rust_by_example_src/hello/print.html"><strong aria-hidden="true">3.1.2.</strong> Formatted print</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/hello/print/print_debug.html"><strong aria-hidden="true">3.1.2.1.</strong> Debug</a></li><li class="chapter-item "><a href="../../rust_by_example_src/hello/print/print_display.html"><strong aria-hidden="true">3.1.2.2.</strong> Display</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/hello/print/print_display/testcase_list.html"><strong aria-hidden="true">3.1.2.2.1.</strong> Testcase: List</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/hello/print/fmt.html"><strong aria-hidden="true">3.1.2.3.</strong> Formatting</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/primitives.html"><strong aria-hidden="true">3.2.</strong> Primitives</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/primitives/literals.html"><strong aria-hidden="true">3.2.1.</strong> Literals and operators</a></li><li class="chapter-item "><a href="../../rust_by_example_src/primitives/tuples.html"><strong aria-hidden="true">3.2.2.</strong> Tuples</a></li><li class="chapter-item "><a href="../../rust_by_example_src/primitives/array.html"><strong aria-hidden="true">3.2.3.</strong> Arrays and Slices</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/custom_types.html"><strong aria-hidden="true">3.3.</strong> Custom Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/custom_types/structs.html"><strong aria-hidden="true">3.3.1.</strong> Structures</a></li><li class="chapter-item "><a href="../../rust_by_example_src/custom_types/enum.html"><strong aria-hidden="true">3.3.2.</strong> Enums</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/custom_types/enum/enum_use.html"><strong aria-hidden="true">3.3.2.1.</strong> use</a></li><li class="chapter-item "><a href="../../rust_by_example_src/custom_types/enum/c_like.html"><strong aria-hidden="true">3.3.2.2.</strong> C-like</a></li><li class="chapter-item "><a href="../../rust_by_example_src/custom_types/enum/testcase_linked_list.html"><strong aria-hidden="true">3.3.2.3.</strong> Testcase: linked-list</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/custom_types/constants.html"><strong aria-hidden="true">3.3.3.</strong> constants</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/variable_bindings.html"><strong aria-hidden="true">3.4.</strong> Variable Bindings</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/variable_bindings/mut.html"><strong aria-hidden="true">3.4.1.</strong> Mutability</a></li><li class="chapter-item "><a href="../../rust_by_example_src/variable_bindings/scope.html"><strong aria-hidden="true">3.4.2.</strong> Scope and Shadowing</a></li><li class="chapter-item "><a href="../../rust_by_example_src/variable_bindings/declare.html"><strong aria-hidden="true">3.4.3.</strong> Declare first</a></li><li class="chapter-item "><a href="../../rust_by_example_src/variable_bindings/freeze.html"><strong aria-hidden="true">3.4.4.</strong> Freezing</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/types.html"><strong aria-hidden="true">3.5.</strong> Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/types/cast.html"><strong aria-hidden="true">3.5.1.</strong> Casting</a></li><li class="chapter-item "><a href="../../rust_by_example_src/types/literals.html"><strong aria-hidden="true">3.5.2.</strong> Literals</a></li><li class="chapter-item "><a href="../../rust_by_example_src/types/inference.html"><strong aria-hidden="true">3.5.3.</strong> Inference</a></li><li class="chapter-item "><a href="../../rust_by_example_src/types/alias.html"><strong aria-hidden="true">3.5.4.</strong> Aliasing</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/conversion.html"><strong aria-hidden="true">3.6.</strong> Conversion</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/conversion/from_into.html"><strong aria-hidden="true">3.6.1.</strong> From and Into</a></li><li class="chapter-item "><a href="../../rust_by_example_src/conversion/try_from_try_into.html"><strong aria-hidden="true">3.6.2.</strong> TryFrom and TryInto</a></li><li class="chapter-item "><a href="../../rust_by_example_src/conversion/string.html"><strong aria-hidden="true">3.6.3.</strong> To and from Strings</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/expression.html"><strong aria-hidden="true">3.7.</strong> Expressions</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control.html"><strong aria-hidden="true">3.8.</strong> Flow of Control</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/if_else.html"><strong aria-hidden="true">3.8.1.</strong> if/else</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/loop.html"><strong aria-hidden="true">3.8.2.</strong> loop</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/loop/nested.html"><strong aria-hidden="true">3.8.2.1.</strong> Nesting and labels</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/loop/return.html"><strong aria-hidden="true">3.8.2.2.</strong> Returning from loops</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/while.html"><strong aria-hidden="true">3.8.3.</strong> while</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/for.html"><strong aria-hidden="true">3.8.4.</strong> for and range</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/match.html"><strong aria-hidden="true">3.8.5.</strong> match</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/match/destructuring.html"><strong aria-hidden="true">3.8.5.1.</strong> Destructuring</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/match/destructuring/destructure_tuple.html"><strong aria-hidden="true">3.8.5.1.1.</strong> tuples</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/match/destructuring/destructure_slice.html"><strong aria-hidden="true">3.8.5.1.2.</strong> arrays/slices</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/match/destructuring/destructure_enum.html"><strong aria-hidden="true">3.8.5.1.3.</strong> enums</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/match/destructuring/destructure_pointers.html"><strong aria-hidden="true">3.8.5.1.4.</strong> pointers/ref</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/match/destructuring/destructure_structures.html"><strong aria-hidden="true">3.8.5.1.5.</strong> structs</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/match/guard.html"><strong aria-hidden="true">3.8.5.2.</strong> Guards</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/match/binding.html"><strong aria-hidden="true">3.8.5.3.</strong> Binding</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/if_let.html"><strong aria-hidden="true">3.8.6.</strong> if let</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/while_let.html"><strong aria-hidden="true">3.8.7.</strong> while let</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/fn.html"><strong aria-hidden="true">3.9.</strong> Functions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/fn/methods.html"><strong aria-hidden="true">3.9.1.</strong> Methods</a></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures.html"><strong aria-hidden="true">3.9.2.</strong> Closures</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/capture.html"><strong aria-hidden="true">3.9.2.1.</strong> Capturing</a></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/input_parameters.html"><strong aria-hidden="true">3.9.2.2.</strong> As input parameters</a></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/anonymity.html"><strong aria-hidden="true">3.9.2.3.</strong> Type anonymity</a></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/input_functions.html"><strong aria-hidden="true">3.9.2.4.</strong> Input functions</a></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/output_parameters.html"><strong aria-hidden="true">3.9.2.5.</strong> As output parameters</a></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/closure_examples.html"><strong aria-hidden="true">3.9.2.6.</strong> Examples in std</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/closure_examples/iter_any.html"><strong aria-hidden="true">3.9.2.6.1.</strong> Iterator::any</a></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/closure_examples/iter_find.html"><strong aria-hidden="true">3.9.2.6.2.</strong> Searching through iterators</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/hof.html"><strong aria-hidden="true">3.9.3.</strong> Higher Order Functions</a></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/diverging.html"><strong aria-hidden="true">3.9.4.</strong> Diverging functions</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/mod.html"><strong aria-hidden="true">3.10.</strong> Modules</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/mod/visibility.html"><strong aria-hidden="true">3.10.1.</strong> Visibility</a></li><li class="chapter-item "><a href="../../rust_by_example_src/mod/struct_visibility.html"><strong aria-hidden="true">3.10.2.</strong> Struct visibility</a></li><li class="chapter-item "><a href="../../rust_by_example_src/mod/use.html"><strong aria-hidden="true">3.10.3.</strong> The use declaration</a></li><li class="chapter-item "><a href="../../rust_by_example_src/mod/super.html"><strong aria-hidden="true">3.10.4.</strong> super and self</a></li><li class="chapter-item "><a href="../../rust_by_example_src/mod/split.html"><strong aria-hidden="true">3.10.5.</strong> File hierarchy</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/crates.html"><strong aria-hidden="true">3.11.</strong> Crates</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/crates/lib.html"><strong aria-hidden="true">3.11.1.</strong> Creating a Library</a></li><li class="chapter-item "><a href="../../rust_by_example_src/crates/using_lib.html"><strong aria-hidden="true">3.11.2.</strong> Using a Library</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/cargo.html"><strong aria-hidden="true">3.12.</strong> Cargo</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/cargo/deps.html"><strong aria-hidden="true">3.12.1.</strong> Dependencies</a></li><li class="chapter-item "><a href="../../rust_by_example_src/cargo/conventions.html"><strong aria-hidden="true">3.12.2.</strong> Conventions</a></li><li class="chapter-item "><a href="../../rust_by_example_src/cargo/test.html"><strong aria-hidden="true">3.12.3.</strong> Tests</a></li><li class="chapter-item "><a href="../../rust_by_example_src/cargo/build_scripts.html"><strong aria-hidden="true">3.12.4.</strong> Build Scripts</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/attribute.html"><strong aria-hidden="true">3.13.</strong> Attributes</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/attribute/unused.html"><strong aria-hidden="true">3.13.1.</strong> dead_code</a></li><li class="chapter-item "><a href="../../rust_by_example_src/attribute/crate.html"><strong aria-hidden="true">3.13.2.</strong> Crates</a></li><li class="chapter-item "><a href="../../rust_by_example_src/attribute/cfg.html"><strong aria-hidden="true">3.13.3.</strong> cfg</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/attribute/cfg/custom.html"><strong aria-hidden="true">3.13.3.1.</strong> Custom</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/generics.html"><strong aria-hidden="true">3.14.</strong> Generics</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/generics/gen_fn.html"><strong aria-hidden="true">3.14.1.</strong> Functions</a></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/impl.html"><strong aria-hidden="true">3.14.2.</strong> Implementation</a></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/gen_trait.html"><strong aria-hidden="true">3.14.3.</strong> Traits</a></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/bounds.html"><strong aria-hidden="true">3.14.4.</strong> Bounds</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/generics/bounds/testcase_empty.html"><strong aria-hidden="true">3.14.4.1.</strong> Testcase: empty bounds</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/multi_bounds.html"><strong aria-hidden="true">3.14.5.</strong> Multiple bounds</a></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/where.html"><strong aria-hidden="true">3.14.6.</strong> Where clauses</a></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/new_types.html"><strong aria-hidden="true">3.14.7.</strong> New Type Idiom</a></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/assoc_items.html"><strong aria-hidden="true">3.14.8.</strong> Associated items</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/generics/assoc_items/the_problem.html"><strong aria-hidden="true">3.14.8.1.</strong> The Problem</a></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/assoc_items/types.html"><strong aria-hidden="true">3.14.8.2.</strong> Associated types</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/phantom.html"><strong aria-hidden="true">3.14.9.</strong> Phantom type parameters</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/generics/phantom/testcase_units.html"><strong aria-hidden="true">3.14.9.1.</strong> Testcase: unit clarification</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/scope.html"><strong aria-hidden="true">3.15.</strong> Scoping rules</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/scope/raii.html"><strong aria-hidden="true">3.15.1.</strong> RAII</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/move.html"><strong aria-hidden="true">3.15.2.</strong> Ownership and moves</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/scope/move/mut.html"><strong aria-hidden="true">3.15.2.1.</strong> Mutability</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/move/partial_move.html"><strong aria-hidden="true">3.15.2.2.</strong> Partial moves</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/borrow.html"><strong aria-hidden="true">3.15.3.</strong> Borrowing</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/scope/borrow/mut.html"><strong aria-hidden="true">3.15.3.1.</strong> Mutability</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/borrow/alias.html"><strong aria-hidden="true">3.15.3.2.</strong> Aliasing</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/borrow/ref.html"><strong aria-hidden="true">3.15.3.3.</strong> The ref pattern</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime.html"><strong aria-hidden="true">3.15.4.</strong> Lifetimes</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime/explicit.html"><strong aria-hidden="true">3.15.4.1.</strong> Explicit annotation</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime/fn.html"><strong aria-hidden="true">3.15.4.2.</strong> Functions</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime/methods.html"><strong aria-hidden="true">3.15.4.3.</strong> Methods</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime/struct.html"><strong aria-hidden="true">3.15.4.4.</strong> Structs</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime/trait.html"><strong aria-hidden="true">3.15.4.5.</strong> Traits</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime/lifetime_bounds.html"><strong aria-hidden="true">3.15.4.6.</strong> Bounds</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime/lifetime_coercion.html"><strong aria-hidden="true">3.15.4.7.</strong> Coercion</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime/static_lifetime.html"><strong aria-hidden="true">3.15.4.8.</strong> Static</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime/elision.html"><strong aria-hidden="true">3.15.4.9.</strong> Elision</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/trait.html"><strong aria-hidden="true">3.16.</strong> Traits</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/trait/derive.html"><strong aria-hidden="true">3.16.1.</strong> Derive</a></li><li class="chapter-item "><a href="../../rust_by_example_src/trait/dyn.html"><strong aria-hidden="true">3.16.2.</strong> Returning Traits with dyn</a></li><li class="chapter-item "><a href="../../rust_by_example_src/trait/ops.html"><strong aria-hidden="true">3.16.3.</strong> Operator Overloading</a></li><li class="chapter-item "><a href="../../rust_by_example_src/trait/drop.html"><strong aria-hidden="true">3.16.4.</strong> Drop</a></li><li class="chapter-item "><a href="../../rust_by_example_src/trait/iter.html"><strong aria-hidden="true">3.16.5.</strong> Iterators</a></li><li class="chapter-item "><a href="../../rust_by_example_src/trait/impl_trait.html"><strong aria-hidden="true">3.16.6.</strong> impl Trait</a></li><li class="chapter-item "><a href="../../rust_by_example_src/trait/clone.html"><strong aria-hidden="true">3.16.7.</strong> Clone</a></li><li class="chapter-item "><a href="../../rust_by_example_src/trait/supertraits.html"><strong aria-hidden="true">3.16.8.</strong> Supertraits</a></li><li class="chapter-item "><a href="../../rust_by_example_src/trait/disambiguating.html"><strong aria-hidden="true">3.16.9.</strong> Disambiguating overlapping traits</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/macros.html"><strong aria-hidden="true">3.17.</strong> macro_rules!</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/macros/syntax.html"><strong aria-hidden="true">3.17.1.</strong> Syntax</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/macros/designators.html"><strong aria-hidden="true">3.17.1.1.</strong> Designators</a></li><li class="chapter-item "><a href="../../rust_by_example_src/macros/overload.html"><strong aria-hidden="true">3.17.1.2.</strong> Overload</a></li><li class="chapter-item "><a href="../../rust_by_example_src/macros/repeat.html"><strong aria-hidden="true">3.17.1.3.</strong> Repeat</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/macros/dry.html"><strong aria-hidden="true">3.17.2.</strong> DRY (rust_by_example_src/Don't Repeat Yourself)</a></li><li class="chapter-item "><a href="../../rust_by_example_src/macros/dsl.html"><strong aria-hidden="true">3.17.3.</strong> DSL (rust_by_example_src/Domain Specific Languages)</a></li><li class="chapter-item "><a href="../../rust_by_example_src/macros/variadics.html"><strong aria-hidden="true">3.17.4.</strong> Variadics</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/error.html"><strong aria-hidden="true">3.18.</strong> Error handling</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/error/panic.html"><strong aria-hidden="true">3.18.1.</strong> panic</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/abort_unwind.html"><strong aria-hidden="true">3.18.2.</strong> abort & unwind</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/option_unwrap.html"><strong aria-hidden="true">3.18.3.</strong> Option & unwrap</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/error/option_unwrap/question_mark.html"><strong aria-hidden="true">3.18.3.1.</strong> Unpacking options with ?</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/option_unwrap/map.html"><strong aria-hidden="true">3.18.3.2.</strong> Combinators: map</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/option_unwrap/and_then.html"><strong aria-hidden="true">3.18.3.3.</strong> Combinators: and_then</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/option_unwrap/defaults.html"><strong aria-hidden="true">3.18.3.4.</strong> Defaults: or, or_else, get_or_insert, 'get_or_insert_with`</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/error/result.html"><strong aria-hidden="true">3.18.4.</strong> Result</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/error/result/result_map.html"><strong aria-hidden="true">3.18.4.1.</strong> map for Result</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/result/result_alias.html"><strong aria-hidden="true">3.18.4.2.</strong> aliases for Result</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/result/early_returns.html"><strong aria-hidden="true">3.18.4.3.</strong> Early returns</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/result/enter_question_mark.html"><strong aria-hidden="true">3.18.4.4.</strong> Introducing ?</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/error/multiple_error_types.html"><strong aria-hidden="true">3.18.5.</strong> Multiple error types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/error/multiple_error_types/option_result.html"><strong aria-hidden="true">3.18.5.1.</strong> Pulling Results out of Options</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/multiple_error_types/define_error_type.html"><strong aria-hidden="true">3.18.5.2.</strong> Defining an error type</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/multiple_error_types/boxing_errors.html"><strong aria-hidden="true">3.18.5.3.</strong> Boxing errors</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/multiple_error_types/reenter_question_mark.html"><strong aria-hidden="true">3.18.5.4.</strong> Other uses of ?</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/multiple_error_types/wrap_error.html"><strong aria-hidden="true">3.18.5.5.</strong> Wrapping errors</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/error/iter_result.html"><strong aria-hidden="true">3.18.6.</strong> Iterating over Results</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/std.html"><strong aria-hidden="true">3.19.</strong> Std library types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/std/box.html"><strong aria-hidden="true">3.19.1.</strong> Box, stack and heap</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/vec.html"><strong aria-hidden="true">3.19.2.</strong> Vectors</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/str.html"><strong aria-hidden="true">3.19.3.</strong> Strings</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/option.html"><strong aria-hidden="true">3.19.4.</strong> Option</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/result.html"><strong aria-hidden="true">3.19.5.</strong> Result</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/std/result/question_mark.html"><strong aria-hidden="true">3.19.5.1.</strong> ?</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/std/panic.html"><strong aria-hidden="true">3.19.6.</strong> panic!</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/hash.html"><strong aria-hidden="true">3.19.7.</strong> HashMap</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/std/hash/alt_key_types.html"><strong aria-hidden="true">3.19.7.1.</strong> Alternate/custom key types</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/hash/hashset.html"><strong aria-hidden="true">3.19.7.2.</strong> HashSet</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/std/rc.html"><strong aria-hidden="true">3.19.8.</strong> Rc</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/arc.html"><strong aria-hidden="true">3.19.9.</strong> Arc</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc.html"><strong aria-hidden="true">3.20.</strong> Std misc</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/threads.html"><strong aria-hidden="true">3.20.1.</strong> Threads</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/threads/testcase_mapreduce.html"><strong aria-hidden="true">3.20.1.1.</strong> Testcase: map-reduce</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/channels.html"><strong aria-hidden="true">3.20.2.</strong> Channels</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/path.html"><strong aria-hidden="true">3.20.3.</strong> Path</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/file.html"><strong aria-hidden="true">3.20.4.</strong> File I/O</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/file/open.html"><strong aria-hidden="true">3.20.4.1.</strong> open</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/file/create.html"><strong aria-hidden="true">3.20.4.2.</strong> create</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/file/read_lines.html"><strong aria-hidden="true">3.20.4.3.</strong> read lines</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/process.html"><strong aria-hidden="true">3.20.5.</strong> Child processes</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/process/pipe.html"><strong aria-hidden="true">3.20.5.1.</strong> Pipes</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/process/wait.html"><strong aria-hidden="true">3.20.5.2.</strong> Wait</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/fs.html"><strong aria-hidden="true">3.20.6.</strong> Filesystem Operations</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/arg.html"><strong aria-hidden="true">3.20.7.</strong> Program arguments</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/arg/matching.html"><strong aria-hidden="true">3.20.7.1.</strong> Argument parsing</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/ffi.html"><strong aria-hidden="true">3.20.8.</strong> Foreign Function Interface</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/testing.html"><strong aria-hidden="true">3.21.</strong> Testing</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/testing/unit_testing.html"><strong aria-hidden="true">3.21.1.</strong> Unit testing</a></li><li class="chapter-item "><a href="../../rust_by_example_src/testing/doc_testing.html"><strong aria-hidden="true">3.21.2.</strong> Documentation testing</a></li><li class="chapter-item "><a href="../../rust_by_example_src/testing/integration_testing.html"><strong aria-hidden="true">3.21.3.</strong> Integration testing</a></li><li class="chapter-item "><a href="../../rust_by_example_src/testing/dev_dependencies.html"><strong aria-hidden="true">3.21.4.</strong> Dev-dependencies</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/unsafe.html"><strong aria-hidden="true">3.22.</strong> Unsafe Operations</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/unsafe/asm.html"><strong aria-hidden="true">3.22.1.</strong> Inline assembly</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/compatibility.html"><strong aria-hidden="true">3.23.</strong> Compatibility</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/compatibility/raw_identifiers.html"><strong aria-hidden="true">3.23.1.</strong> Raw identifiers</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/meta.html"><strong aria-hidden="true">3.24.</strong> Meta</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/meta/doc.html"><strong aria-hidden="true">3.24.1.</strong> Documentation</a></li><li class="chapter-item "><a href="../../rust_by_example_src/meta/playground.html"><strong aria-hidden="true">3.24.2.</strong> Playground</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../PyO3_guides/src/index.html"><strong aria-hidden="true">4.</strong> The PyO3 Guide</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../PyO3_guides/src/getting_started.html"><strong aria-hidden="true">4.1.</strong> Getting started</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/module.html"><strong aria-hidden="true">4.2.</strong> Python modules</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/function.html"><strong aria-hidden="true">4.3.</strong> Python functions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../PyO3_guides/src/function/signature.html"><strong aria-hidden="true">4.3.1.</strong> Function signatures</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/function/error_handling.html"><strong aria-hidden="true">4.3.2.</strong> Error handling</a></li></ol></li><li class="chapter-item expanded "><a href="../../PyO3_guides/src/class.html" class="active"><strong aria-hidden="true">4.4.</strong> Python classes</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../PyO3_guides/src/class/protocols.html"><strong aria-hidden="true">4.4.1.</strong> Class customizations</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../PyO3_guides/src/class/object.html"><strong aria-hidden="true">4.4.1.1.</strong> Basic object customization</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/class/numeric.html"><strong aria-hidden="true">4.4.1.2.</strong> Emulating numeric types</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/class/call.html"><strong aria-hidden="true">4.4.1.3.</strong> Emulating callable objects</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../PyO3_guides/src/conversions.html"><strong aria-hidden="true">4.5.</strong> Type conversions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../PyO3_guides/src/conversions/tables.html"><strong aria-hidden="true">4.5.1.</strong> Mapping of Rust types to Python types</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/conversions/traits.html"><strong aria-hidden="true">4.5.2.</strong> Conversion traits</a></li></ol></li><li class="chapter-item "><a href="../../PyO3_guides/src/exception.html"><strong aria-hidden="true">4.6.</strong> Python exceptions</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/python_from_rust.html"><strong aria-hidden="true">4.7.</strong> Calling Python from Rust</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/types.html"><strong aria-hidden="true">4.8.</strong> GIL, mutability and object types</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/parallelism.html"><strong aria-hidden="true">4.9.</strong> Parallelism</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/debugging.html"><strong aria-hidden="true">4.10.</strong> Debugging</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/features.html"><strong aria-hidden="true">4.11.</strong> Features reference</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/memory.html"><strong aria-hidden="true">4.12.</strong> Memory management</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/advanced.html"><strong aria-hidden="true">4.13.</strong> Advanced topics</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/building_and_distribution.html"><strong aria-hidden="true">4.14.</strong> Building and distribution</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../PyO3_guides/src/building_and_distribution/multiple_python_versions.html"><strong aria-hidden="true">4.14.1.</strong> Supporting multiple Python versions</a></li></ol></li><li class="chapter-item "><a href="../../PyO3_guides/src/ecosystem.html"><strong aria-hidden="true">4.15.</strong> Useful crates</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../PyO3_guides/src/ecosystem/logging.html"><strong aria-hidden="true">4.15.1.</strong> Logging</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/ecosystem/async-await.html"><strong aria-hidden="true">4.15.2.</strong> Using async and await</a></li></ol></li><li class="chapter-item "><a href="../../PyO3_guides/src/faq.html"><strong aria-hidden="true">4.16.</strong> FAQ and troubleshooting</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/migration.html"><strong aria-hidden="true">4.17.</strong> Appendix A: Migration guide</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/rust_cpython.html"><strong aria-hidden="true">4.18.</strong> Appendix B: PyO3 and rust-cpython</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/trait_bounds.html"><strong aria-hidden="true">4.19.</strong> Appendix C: Trait bounds</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/python_typing_hints.html"><strong aria-hidden="true">4.20.</strong> Appendix D: Python typing hints</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/changelog.html"><strong aria-hidden="true">4.21.</strong> CHANGELOG</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/contributing.html"><strong aria-hidden="true">4.22.</strong> Contributing</a></li></ol></li><li class="chapter-item expanded "><a href="../../checklist.html">Checklist</a></li></ol>
+    </div>
+    <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+</nav>
+
+<div id="page-wrapper" class="page-wrapper">
+
+    <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+        <div id="menu-bar" class="menu-bar sticky bordered">
+            <div class="left-buttons">
+                <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
+                        aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                        aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                    <i class="fa fa-paint-brush"></i>
+                </button>
+                <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="light">Light</button>
+                    </li>
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="rust">Rust</button>
+                    </li>
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="coal">Coal</button>
+                    </li>
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="navy">Navy (default)</button>
+                    </li>
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="ayu">Ayu</button>
+                    </li>
+                </ul>
+                    <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                            aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                            aria-controls="searchbar">
+                        <i class="fa fa-search"></i>
+                    </button>
+            </div>
+
+            <h1 class="menu-title">The Rust Programming Language</h1>
+            <h4 class="menu-bar"><a href="https://kuanhsiaokuo.github.io/think-tool-kit/">保持批判，有所取舍，知行合一, 方见真我</a> -- 练武不练功
+                到头一场空 -- 《赛博英雄传》 </h4>
+            <div class="right-buttons">
+                    <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                        <i id="print-button" class="fa fa-print"></i>
+                    </a>
+                    <a href="https://github.com/rust-lang/book" title="Git repository" aria-label="Git repository">
+                        <i id="git-repository-button" class="fa fa-github"></i>
+                    </a>
+            </div>
+        </div>
+
+            <div id="search-wrapper" class="hidden">
+                <form id="searchbar-outer" class="searchbar-outer">
+                    <input type="search" name="search" id="searchbar" name="searchbar"
+                           placeholder="Search this book ..." aria-controls="searchresults-outer"
+                           aria-describedby="searchresults-header">
+                </form>
+                <div id="searchresults-outer" class="searchresults-outer hidden">
+                    <div id="searchresults-header" class="searchresults-header"></div>
+                    <ul id="searchresults">
+                    </ul>
+                </div>
+            </div>
+
+        <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+        <script type="text/javascript">
+            document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+            document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+            Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
+                link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+            });
+        </script>
+
+        <div id="content" class="content">
+            <main>
+
+                <!-- Page table of contents -->
+                <div class="sidetoc">
+                    <nav class="pagetoc"></nav>
+                </div>
+                <h1 id="python-classes"><a class="header" href="#python-classes">Python classes</a></h1>
+<p>PyO3 exposes a group of attributes powered by Rust’s proc macro system for defining Python classes as Rust structs.</p>
+<p>The main attribute is <code>#[pyclass]</code>, which is placed upon a Rust <code>struct</code> or a fieldless <code>enum</code> (a.k.a. C-like enum) to generate a Python type for it. They will usually also have <em>one</em> <code>#[pymethods]</code>-annotated <code>impl</code> block for the struct, which is used to define Python methods and constants for the generated Python type. (If the <a href="features.html#multiple-pymethods"><code>multiple-pymethods</code></a> feature is enabled each <code>#[pyclass]</code> is allowed to have multiple <code>#[pymethods]</code> blocks.) <code>#[pymethods]</code> may also have implementations for Python magic methods such as <code>__str__</code>.</p>
+<p>This chapter will discuss the functionality and configuration these attributes offer. Below is a list of links to the relevant section of this chapter for each:</p>
+<ul>
+<li><a href="#defining-a-new-class"><code>#[pyclass]</code></a>
+<ul>
+<li><a href="#object-properties-using-pyo3get-set"><code>#[pyo3(get, set)]</code></a></li>
+</ul>
+</li>
+<li><a href="#instance-methods"><code>#[pymethods]</code></a>
+<ul>
+<li><a href="#constructor"><code>#[new]</code></a></li>
+<li><a href="#object-properties-using-getter-and-setter"><code>#[getter]</code></a></li>
+<li><a href="#object-properties-using-getter-and-setter"><code>#[setter]</code></a></li>
+<li><a href="#static-methods"><code>#[staticmethod]</code></a></li>
+<li><a href="#class-methods"><code>#[classmethod]</code></a></li>
+<li><a href="#class-attributes"><code>#[classattr]</code></a></li>
+<li><a href="#method-arguments"><code>#[args]</code></a></li>
+</ul>
+</li>
+<li><a href="class/protocols.html">Magic methods and slots</a></li>
+</ul>
+<h2 id="defining-a-new-class"><a class="header" href="#defining-a-new-class">Defining a new class</a></h2>
+<p>To define a custom Python class, add the <code>#[pyclass]</code> attribute to a Rust struct or a fieldless enum.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">#![allow(dead_code)]
+</span>use pyo3::prelude::*;
+
+#[pyclass]
+struct Integer{
+    inner: i32
+}
+
+// A &quot;tuple&quot; struct
+#[pyclass]
+struct Number(i32);
+
+// PyO3 supports custom discriminants in enums
+#[pyclass]
+enum HttpResponse {
+    Ok = 200,
+    NotFound = 404,
+    Teapot = 418,
+    // ...
+}
+
+#[pyclass]
+enum MyEnum {
+    Variant,
+    OtherVariant = 30, // PyO3 supports custom discriminants.
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>The above example generates implementations for <a href="%7B%7B#PYO3_DOCS_URL%7D%7D/pyo3/type_object/trait.PyTypeInfo.html"><code>PyTypeInfo</code></a> and <a href="%7B%7B#PYO3_DOCS_URL%7D%7D/pyo3/pyclass/trait.PyClass.html"><code>PyClass</code></a> for <code>MyClass</code> and <code>MyEnum</code>. To see these generated implementations, refer to the <a href="#implementation-details">implementation details</a> at the end of this chapter.</p>
+<h3 id="restrictions"><a class="header" href="#restrictions">Restrictions</a></h3>
+<p>To integrate Rust types with Python, PyO3 needs to place some restrictions on the types which can be annotated with <code>#[pyclass]</code>. In particular, they must have no lifetime parameters, no generic parameters, and must implement <code>Send</code>. The reason for each of these is explained below.</p>
+<h4 id="no-lifetime-parameters"><a class="header" href="#no-lifetime-parameters">No lifetime parameters</a></h4>
+<p>Rust lifetimes are used by the Rust compiler to reason about a program’s memory safety. They are a compile-time only concept; there is no way to access Rust lifetimes at runtime from a dynamic language like Python.</p>
+<p>As soon as Rust data is exposed to Python, there is no guarantee which the Rust compiler can make on how long the data will live. Python is a reference-counted language and those references can be held for an arbitrarily long time which is untraceable by the Rust compiler. The only possible way to express this correctly is to require that any <code>#[pyclass]</code> does not borrow data for any lifetime shorter than the <code>'static</code> lifetime, i.e. the <code>#[pyclass]</code> cannot have any lifetime parameters.</p>
+<p>When you need to share ownership of data between Python and Rust, instead of using borrowed references with lifetimes consider using reference-counted smart pointers such as <a href="https://doc.rust-lang.org/std/sync/struct.Arc.html"><code>Arc</code></a> or <a href="%7B%7B#PYO3_DOCS_URL%7D%7D/pyo3/struct.Py.html"><code>Py</code></a>.</p>
+<h4 id="no-generic-parameters"><a class="header" href="#no-generic-parameters">No generic parameters</a></h4>
+<p>A Rust <code>struct Foo&lt;T&gt;</code> with a generic parameter <code>T</code> generates new compiled implementations each time it is used with a different concrete type for <code>T</code>. These new implementations are generated by the compiler at each usage site. This is incompatible with wrapping <code>Foo</code> in Python, where there needs to be a single compiled implementation of <code>Foo</code> which is integrated with the Python interpreter.</p>
+<h4 id="must-be-send"><a class="header" href="#must-be-send">Must be send</a></h4>
+<p>Because Python objects are freely shared between threads by the Python interpreter, there is no guarantee which thread will eventually drop the object. Therefore all types annotated with <code>#[pyclass]</code> must implement <code>Send</code> (unless annotated with <a href="#customizing-the-class"><code>#[pyclass(unsendable)]</code></a>).</p>
+<h2 id="constructor"><a class="header" href="#constructor">Constructor</a></h2>
+<p>By default it is not possible to create an instance of a custom class from Python code.
+To declare a constructor, you need to define a method and annotate it with the <code>#[new]</code>
+attribute. Only Python’s <code>__new__</code> method can be specified, <code>__init__</code> is not available.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span><span class="boring">#[pyclass]
+</span><span class="boring">struct Number(i32);
+</span><span class="boring">
+</span>#[pymethods]
+impl Number {
+    #[new]
+    fn new(value: i32) -&gt; Self {
+        Number(value)
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Alternatively, if your <code>new</code> method may fail you can return <code>PyResult&lt;Self&gt;</code>.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span><span class="boring">use pyo3::exceptions::PyValueError;
+</span><span class="boring">#[pyclass]
+</span><span class="boring">struct Nonzero(i32);
+</span><span class="boring">
+</span>#[pymethods]
+impl Nonzero {
+    #[new]
+    fn py_new(value: i32) -&gt; PyResult&lt;Self&gt; {
+        if value == 0 {
+            Err(PyValueError::new_err(&quot;cannot be zero&quot;))
+        } else {
+            Ok(Nonzero(value))
+        }
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>As you can see, the Rust method name is not important here; this way you can
+still use <code>new()</code> for a Rust-level constructor.</p>
+<p>If no method marked with <code>#[new]</code> is declared, object instances can only be
+created from Rust, but not from Python.</p>
+<p>For arguments, see the <code>Method arguments</code> section below.</p>
+<h2 id="adding-the-class-to-a-module"><a class="header" href="#adding-the-class-to-a-module">Adding the class to a module</a></h2>
+<p>The next step is to create the module initializer and add our class to it</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span><span class="boring">#[pyclass]
+</span><span class="boring">struct Number(i32);
+</span><span class="boring">
+</span>#[pymodule]
+fn my_module(_py: Python&lt;'_&gt;, m: &amp;PyModule) -&gt; PyResult&lt;()&gt; {
+    m.add_class::&lt;Number&gt;()?;
+    Ok(())
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="pycell-and-interior-mutability"><a class="header" href="#pycell-and-interior-mutability">PyCell and interior mutability</a></h2>
+<p>You sometimes need to convert your <code>pyclass</code> into a Python object and access it
+from Rust code (e.g., for testing it).
+<a href="%7B%7B#PYO3_DOCS_URL%7D%7D/pyo3/pycell/struct.PyCell.html"><code>PyCell</code></a> is the primary interface for that.</p>
+<p><code>PyCell&lt;T: PyClass&gt;</code> is always allocated in the Python heap, so Rust doesn’t have ownership of it.
+In other words, Rust code can only extract a <code>&amp;PyCell&lt;T&gt;</code>, not a <code>PyCell&lt;T&gt;</code>.</p>
+<p>Thus, to mutate data behind <code>&amp;PyCell</code> safely, PyO3 employs the
+<a href="https://doc.rust-lang.org/book/ch15-05-interior-mutability.html">Interior Mutability Pattern</a>
+like <a href="https://doc.rust-lang.org/std/cell/struct.RefCell.html"><code>RefCell</code></a>.</p>
+<p>Users who are familiar with <code>RefCell</code> can use <code>PyCell</code> just like <code>RefCell</code>.</p>
+<p>For users who are not very familiar with <code>RefCell</code>, here is a reminder of Rust’s rules of borrowing:</p>
+<ul>
+<li>At any given time, you can have either (but not both of) one mutable reference or any number of immutable references.</li>
+<li>References must always be valid.</li>
+</ul>
+<p><code>PyCell</code>, like <code>RefCell</code>, ensures these borrowing rules by tracking references at runtime.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span>#[pyclass]
+struct MyClass {
+    #[pyo3(get)]
+    num: i32,
+}
+Python::with_gil(|py| {
+    let obj = PyCell::new(py, MyClass { num: 3}).unwrap();
+    {
+        let obj_ref = obj.borrow(); // Get PyRef
+        assert_eq!(obj_ref.num, 3);
+        // You cannot get PyRefMut unless all PyRefs are dropped
+        assert!(obj.try_borrow_mut().is_err());
+    }
+    {
+        let mut obj_mut = obj.borrow_mut(); // Get PyRefMut
+        obj_mut.num = 5;
+        // You cannot get any other refs until the PyRefMut is dropped
+        assert!(obj.try_borrow().is_err());
+        assert!(obj.try_borrow_mut().is_err());
+    }
+
+    // You can convert `&amp;PyCell` to a Python object
+    pyo3::py_run!(py, obj, &quot;assert obj.num == 5&quot;);
+});
+<span class="boring">}
+</span></code></pre></pre>
+<p><code>&amp;PyCell&lt;T&gt;</code> is bounded by the same lifetime as a <a href="%7B%7B#PYO3_DOCS_URL%7D%7D/pyo3/struct.GILGuard.html"><code>GILGuard</code></a>.
+To make the object longer lived (for example, to store it in a struct on the
+Rust side), you can use <code>Py&lt;T&gt;</code>, which stores an object longer than the GIL
+lifetime, and therefore needs a <code>Python&lt;'_&gt;</code> token to access.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span>#[pyclass]
+struct MyClass {
+    num: i32,
+}
+
+fn return_myclass() -&gt; Py&lt;MyClass&gt; {
+    Python::with_gil(|py| Py::new(py, MyClass { num: 1 }).unwrap())
+}
+
+let obj = return_myclass();
+
+Python::with_gil(|py|{
+    let cell = obj.as_ref(py); // Py&lt;MyClass&gt;::as_ref returns &amp;PyCell&lt;MyClass&gt;
+    let obj_ref = cell.borrow(); // Get PyRef&lt;T&gt;
+    assert_eq!(obj_ref.num, 1);
+});
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="customizing-the-class"><a class="header" href="#customizing-the-class">Customizing the class</a></h2>
+<p><code>#[pyclass]</code> can be used with the following parameters:</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Parameter</th><th style="text-align: left">Description</th></tr></thead><tbody>
+<tr><td style="text-align: left"><span style="white-space: pre"><code>crate = &quot;some::path&quot;</code></span></td><td style="text-align: left">Path to import the <code>pyo3</code> crate, if it's not accessible at <code>::pyo3</code>.</td></tr>
+<tr><td style="text-align: left"><code>dict</code></td><td style="text-align: left">Gives instances of this class an empty <code>__dict__</code> to store custom attributes.</td></tr>
+<tr><td style="text-align: left"><span style="white-space: pre"><code>extends = BaseType</code></span></td><td style="text-align: left">Use a custom baseclass. Defaults to <a href="https://docs.rs/pyo3/latest/pyo3/struct.PyAny.html"><code>PyAny</code></a></td></tr>
+<tr><td style="text-align: left"><span style="white-space: pre"><code>freelist = N</code></span></td><td style="text-align: left">Implements a <a href="https://en.wikipedia.org/wiki/Free_list">free list</a> of size N. This can improve performance for types that are often created and deleted in quick succession. Profile your code to see whether <code>freelist</code> is right for you.</td></tr>
+<tr><td style="text-align: left"><span style="white-space: pre"><code>frozen</code></span></td><td style="text-align: left">Declares that your pyclass is immutable. It removes the borrowchecker overhead when retrieving a shared reference to the Rust struct, but disables the ability to get a mutable reference.</td></tr>
+<tr><td style="text-align: left"><code>get_all</code></td><td style="text-align: left">Generates getters for all fields of the pyclass.</td></tr>
+<tr><td style="text-align: left"><code>mapping</code></td><td style="text-align: left">Inform PyO3 that this class is a <a href="https://pyo3.rs/latest/class/protocols.html#mapping--sequence-types"><code>Mapping</code></a>, and so leave its implementation of sequence C-API slots empty.</td></tr>
+<tr><td style="text-align: left"><span style="white-space: pre"><code>module = &quot;module_name&quot;</code></span></td><td style="text-align: left">Python code will see the class as being defined in this module. Defaults to <code>builtins</code>.</td></tr>
+<tr><td style="text-align: left"><span style="white-space: pre"><code>name = &quot;python_name&quot;</code></span></td><td style="text-align: left">Sets the name that Python sees this class as. Defaults to the name of the Rust struct.</td></tr>
+<tr><td style="text-align: left"><code>sequence</code></td><td style="text-align: left">Inform PyO3 that this class is a <a href="https://pyo3.rs/latest/class/protocols.html#mapping--sequence-types"><code>Sequence</code></a>, and so leave its C-API mapping length slot empty.</td></tr>
+<tr><td style="text-align: left"><code>set_all</code></td><td style="text-align: left">Generates setters for all fields of the pyclass.</td></tr>
+<tr><td style="text-align: left"><code>subclass</code></td><td style="text-align: left">Allows other Python classes and <code>#[pyclass]</code> to inherit from this class. Enums cannot be subclassed.</td></tr>
+<tr><td style="text-align: left"><span style="white-space: pre"><code>text_signature = &quot;(arg1, arg2, ...)&quot;</code></span></td><td style="text-align: left">Sets the text signature for the Python class' <code>__new__</code> method.</td></tr>
+<tr><td style="text-align: left"><code>unsendable</code></td><td style="text-align: left">Required if your struct is not <a href="https://doc.rust-lang.org/std/marker/trait.Send.html"><code>Send</code></a>. Rather than using <code>unsendable</code>, consider implementing your struct in a threadsafe way by e.g. substituting <a href="https://doc.rust-lang.org/std/rc/struct.Rc.html"><code>Rc</code></a> with <a href="https://doc.rust-lang.org/std/sync/struct.Arc.html"><code>Arc</code></a>. By using <code>unsendable</code>, your class will panic when accessed by another thread.</td></tr>
+<tr><td style="text-align: left"><code>weakref</code></td><td style="text-align: left">Allows this class to be <a href="https://docs.python.org/3/library/weakref.html">weakly referenceable</a>.</td></tr>
+</tbody></table>
+</div>
+<p>All of these parameters can either be passed directly on the <code>#[pyclass(...)]</code> annotation, or as one or
+more accompanying <code>#[pyo3(...)]</code> annotations, e.g.:</p>
+<pre><code class="language-rust ignore">// Argument supplied directly to the `#[pyclass]` annotation.
+#[pyclass(name = &quot;SomeName&quot;, subclass)]
+struct MyClass { }
+
+// Argument supplied as a separate annotation.
+#[pyclass]
+#[pyo3(name = &quot;SomeName&quot;, subclass)]
+struct MyClass { }
+</code></pre>
+<p>These parameters are covered in various sections of this guide.</p>
+<h3 id="return-type"><a class="header" href="#return-type">Return type</a></h3>
+<p>Generally, <code>#[new]</code> method have to return <code>T: Into&lt;PyClassInitializer&lt;Self&gt;&gt;</code> or
+<code>PyResult&lt;T&gt; where T: Into&lt;PyClassInitializer&lt;Self&gt;&gt;</code>.</p>
+<p>For constructors that may fail, you should wrap the return type in a PyResult as well.
+Consult the table below to determine which type your constructor should return:</p>
+<div class="table-wrapper"><table><thead><tr><th></th><th><strong>Cannot fail</strong></th><th><strong>May fail</strong></th></tr></thead><tbody>
+<tr><td><strong>No inheritance</strong></td><td><code>T</code></td><td><code>PyResult&lt;T&gt;</code></td></tr>
+<tr><td><strong>Inheritance(T Inherits U)</strong></td><td><code>(T, U)</code></td><td><code>PyResult&lt;(T, U)&gt;</code></td></tr>
+<tr><td><strong>Inheritance(General Case)</strong></td><td><a href="%7B%7B#PYO3_DOCS_URL%7D%7D/pyo3/pyclass_init/struct.PyClassInitializer.html"><code>PyClassInitializer&lt;T&gt;</code></a></td><td><code>PyResult&lt;PyClassInitializer&lt;T&gt;&gt;</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="inheritance"><a class="header" href="#inheritance">Inheritance</a></h2>
+<p>By default, <code>PyAny</code> is used as the base class. To override this default,
+use the <code>extends</code> parameter for <code>pyclass</code> with the full path to the base class.</p>
+<p>For convenience, <code>(T, U)</code> implements <code>Into&lt;PyClassInitializer&lt;T&gt;&gt;</code> where <code>U</code> is the
+baseclass of <code>T</code>.
+But for more deeply nested inheritance, you have to return <code>PyClassInitializer&lt;T&gt;</code>
+explicitly.</p>
+<p>To get a parent class from a child, use <a href="%7B%7B#PYO3_DOCS_URL%7D%7D/pyo3/pycell/struct.PyRef.html"><code>PyRef</code></a> instead of <code>&amp;self</code> for methods,
+or <a href="%7B%7B#PYO3_DOCS_URL%7D%7D/pyo3/pycell/struct.PyRefMut.html"><code>PyRefMut</code></a> instead of <code>&amp;mut self</code>.
+Then you can access a parent class by <code>self_.as_ref()</code> as <code>&amp;Self::BaseClass</code>,
+or by <code>self_.into_super()</code> as <code>PyRef&lt;Self::BaseClass&gt;</code>.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span>
+#[pyclass(subclass)]
+struct BaseClass {
+    val1: usize,
+}
+
+#[pymethods]
+impl BaseClass {
+    #[new]
+    fn new() -&gt; Self {
+        BaseClass { val1: 10 }
+    }
+
+    pub fn method(&amp;self) -&gt; PyResult&lt;usize&gt; {
+        Ok(self.val1)
+    }
+}
+
+#[pyclass(extends=BaseClass, subclass)]
+struct SubClass {
+    val2: usize,
+}
+
+#[pymethods]
+impl SubClass {
+    #[new]
+    fn new() -&gt; (Self, BaseClass) {
+        (SubClass { val2: 15 }, BaseClass::new())
+    }
+
+    fn method2(self_: PyRef&lt;'_, Self&gt;) -&gt; PyResult&lt;usize&gt; {
+        let super_ = self_.as_ref();  // Get &amp;BaseClass
+        super_.method().map(|x| x * self_.val2)
+    }
+}
+
+#[pyclass(extends=SubClass)]
+struct SubSubClass {
+    val3: usize,
+}
+
+#[pymethods]
+impl SubSubClass {
+    #[new]
+    fn new() -&gt; PyClassInitializer&lt;Self&gt; {
+        PyClassInitializer::from(SubClass::new())
+            .add_subclass(SubSubClass{val3: 20})
+    }
+
+    fn method3(self_: PyRef&lt;'_, Self&gt;) -&gt; PyResult&lt;usize&gt; {
+        let v = self_.val3;
+        let super_ = self_.into_super();  // Get PyRef&lt;'_, SubClass&gt;
+        SubClass::method2(super_).map(|x| x * v)
+    }
+}
+<span class="boring">Python::with_gil(|py| {
+</span><span class="boring">    let subsub = pyo3::PyCell::new(py, SubSubClass::new()).unwrap();
+</span><span class="boring">    pyo3::py_run!(py, subsub, &quot;assert subsub.method3() == 3000&quot;)
+</span><span class="boring">});
+</span><span class="boring">}
+</span></code></pre></pre>
+<p>You can also inherit native types such as <code>PyDict</code>, if they implement
+<a href="%7B%7B#PYO3_DOCS_URL%7D%7D/pyo3/type_object/trait.PySizedLayout.html"><code>PySizedLayout</code></a>. However, this is not supported when building for the Python limited API (aka the <code>abi3</code> feature of PyO3).</p>
+<p>However, because of some technical problems, we don’t currently provide safe upcasting methods for types
+that inherit native types. Even in such cases, you can unsafely get a base class by raw pointer conversion.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">#[cfg(not(Py_LIMITED_API))] {
+</span><span class="boring">use pyo3::prelude::*;
+</span>use pyo3::types::PyDict;
+use pyo3::AsPyPointer;
+use std::collections::HashMap;
+
+#[pyclass(extends=PyDict)]
+#[derive(Default)]
+struct DictWithCounter {
+    counter: HashMap&lt;String, usize&gt;,
+}
+
+#[pymethods]
+impl DictWithCounter {
+    #[new]
+    fn new() -&gt; Self {
+        Self::default()
+    }
+    fn set(mut self_: PyRefMut&lt;'_, Self&gt;, key: String, value: &amp;PyAny) -&gt; PyResult&lt;()&gt; {
+        self_.counter.entry(key.clone()).or_insert(0);
+        let py = self_.py();
+        let dict: &amp;PyDict = unsafe { py.from_borrowed_ptr_or_err(self_.as_ptr())? };
+        dict.set_item(key, value)
+    }
+}
+<span class="boring">Python::with_gil(|py| {
+</span><span class="boring">    let cnt = pyo3::PyCell::new(py, DictWithCounter::new()).unwrap();
+</span><span class="boring">    pyo3::py_run!(py, cnt, &quot;cnt.set('abc', 10); assert cnt['abc'] == 10&quot;)
+</span><span class="boring">});
+</span><span class="boring">}
+</span><span class="boring">}
+</span></code></pre></pre>
+<p>If <code>SubClass</code> does not provide a baseclass initialization, the compilation fails.</p>
+<pre><pre class="playground"><code class="language-rust compile_fail"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span>
+#[pyclass]
+struct BaseClass {
+    val1: usize,
+}
+
+#[pyclass(extends=BaseClass)]
+struct SubClass {
+    val2: usize,
+}
+
+#[pymethods]
+impl SubClass {
+    #[new]
+    fn new() -&gt; Self {
+        SubClass { val2: 15 }
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="object-properties"><a class="header" href="#object-properties">Object properties</a></h2>
+<p>PyO3 supports two ways to add properties to your <code>#[pyclass]</code>:</p>
+<ul>
+<li>For simple struct fields with no side effects, a <code>#[pyo3(get, set)]</code> attribute can be added directly to the field definition in the <code>#[pyclass]</code>.</li>
+<li>For properties which require computation you can define <code>#[getter]</code> and <code>#[setter]</code> functions in the <a href="#instance-methods"><code>#[pymethods]</code></a> block.</li>
+</ul>
+<p>We’ll cover each of these in the following sections.</p>
+<h3 id="object-properties-using-pyo3get-set"><a class="header" href="#object-properties-using-pyo3get-set">Object properties using <code>#[pyo3(get, set)]</code></a></h3>
+<p>For simple cases where a member variable is just read and written with no side effects, you can declare getters and setters in your <code>#[pyclass]</code> field definition using the <code>pyo3</code> attribute, like in the example below:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span>#[pyclass]
+struct MyClass {
+    #[pyo3(get, set)]
+    num: i32
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>The above would make the <code>num</code> field available for reading and writing as a <code>self.num</code> Python property. To expose the property with a different name to the field, specify this alongside the rest of the options, e.g. <code>#[pyo3(get, set, name = &quot;custom_name&quot;)]</code>.</p>
+<p>Properties can be readonly or writeonly by using just <code>#[pyo3(get)]</code> or <code>#[pyo3(set)]</code> respectively.</p>
+<p>To use these annotations, your field type must implement some conversion traits:</p>
+<ul>
+<li>For <code>get</code> the field type must implement both <code>IntoPy&lt;PyObject&gt;</code> and <code>Clone</code>.</li>
+<li>For <code>set</code> the field type must implement <code>FromPyObject</code>.</li>
+</ul>
+<h3 id="object-properties-using-getter-and-setter"><a class="header" href="#object-properties-using-getter-and-setter">Object properties using <code>#[getter]</code> and <code>#[setter]</code></a></h3>
+<p>For cases which don’t satisfy the <code>#[pyo3(get, set)]</code> trait requirements, or need side effects, descriptor methods can be defined in a <code>#[pymethods]</code> <code>impl</code> block.</p>
+<p>This is done using the <code>#[getter]</code> and <code>#[setter]</code> attributes, like in the example below:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span>#[pyclass]
+struct MyClass {
+    num: i32,
+}
+
+#[pymethods]
+impl MyClass {
+    #[getter]
+    fn num(&amp;self) -&gt; PyResult&lt;i32&gt; {
+        Ok(self.num)
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>A getter or setter’s function name is used as the property name by default. There are several
+ways how to override the name.</p>
+<p>If a function name starts with <code>get_</code> or <code>set_</code> for getter or setter respectively,
+the descriptor name becomes the function name with this prefix removed. This is also useful in case of
+Rust keywords like <code>type</code>
+(<a href="https://doc.rust-lang.org/edition-guide/rust-2018/module-system/raw-identifiers.html">raw identifiers</a>
+can be used since Rust 2018).</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span><span class="boring">#[pyclass]
+</span><span class="boring">struct MyClass {
+</span><span class="boring">    num: i32,
+</span><span class="boring">}
+</span>#[pymethods]
+impl MyClass {
+    #[getter]
+    fn get_num(&amp;self) -&gt; PyResult&lt;i32&gt; {
+        Ok(self.num)
+    }
+
+    #[setter]
+    fn set_num(&amp;mut self, value: i32) -&gt; PyResult&lt;()&gt; {
+        self.num = value;
+        Ok(())
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>In this case, a property <code>num</code> is defined and available from Python code as <code>self.num</code>.</p>
+<p>Both the <code>#[getter]</code> and <code>#[setter]</code> attributes accept one parameter.
+If this parameter is specified, it is used as the property name, i.e.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span><span class="boring">#[pyclass]
+</span><span class="boring">struct MyClass {
+</span><span class="boring">   num: i32,
+</span><span class="boring">}
+</span>#[pymethods]
+impl MyClass {
+    #[getter(number)]
+    fn num(&amp;self) -&gt; PyResult&lt;i32&gt; {
+        Ok(self.num)
+    }
+
+    #[setter(number)]
+    fn set_num(&amp;mut self, value: i32) -&gt; PyResult&lt;()&gt; {
+        self.num = value;
+        Ok(())
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>In this case, the property <code>number</code> is defined and available from Python code as <code>self.number</code>.</p>
+<p>Attributes defined by <code>#[setter]</code> or <code>#[pyo3(set)]</code> will always raise <code>AttributeError</code> on <code>del</code>
+operations. Support for defining custom <code>del</code> behavior is tracked in
+<a href="https://github.com/PyO3/pyo3/issues/1778">#1778</a>.</p>
+<h2 id="instance-methods"><a class="header" href="#instance-methods">Instance methods</a></h2>
+<p>To define a Python compatible method, an <code>impl</code> block for your struct has to be annotated with the
+<code>#[pymethods]</code> attribute. PyO3 generates Python compatible wrappers for all functions in this
+block with some variations, like descriptors, class method static methods, etc.</p>
+<p>Since Rust allows any number of <code>impl</code> blocks, you can easily split methods
+between those accessible to Python (and Rust) and those accessible only to Rust. However to have multiple
+<code>#[pymethods]</code>-annotated <code>impl</code> blocks for the same struct you must enable the <a href="features.html#multiple-pymethods"><code>multiple-pymethods</code></a> feature of PyO3.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span><span class="boring">#[pyclass]
+</span><span class="boring">struct MyClass {
+</span><span class="boring">    num: i32,
+</span><span class="boring">}
+</span>#[pymethods]
+impl MyClass {
+    fn method1(&amp;self) -&gt; PyResult&lt;i32&gt; {
+        Ok(10)
+    }
+
+    fn set_method(&amp;mut self, value: i32) -&gt; PyResult&lt;()&gt; {
+        self.num = value;
+        Ok(())
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Calls to these methods are protected by the GIL, so both <code>&amp;self</code> and <code>&amp;mut self</code> can be used.
+The return type must be <code>PyResult&lt;T&gt;</code> or <code>T</code> for some <code>T</code> that implements <code>IntoPy&lt;PyObject&gt;</code>;
+the latter is allowed if the method cannot raise Python exceptions.</p>
+<p>A <code>Python</code> parameter can be specified as part of method signature, in this case the <code>py</code> argument
+gets injected by the method wrapper, e.g.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span><span class="boring">#[pyclass]
+</span><span class="boring">struct MyClass {
+</span><span class="boring">#[allow(dead_code)]
+</span><span class="boring">    num: i32,
+</span><span class="boring">}
+</span>#[pymethods]
+impl MyClass {
+    fn method2(&amp;self, py: Python&lt;'_&gt;) -&gt; PyResult&lt;i32&gt; {
+        Ok(10)
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>From the Python perspective, the <code>method2</code> in this example does not accept any arguments.</p>
+<h2 id="class-methods"><a class="header" href="#class-methods">Class methods</a></h2>
+<p>To create a class method for a custom class, the method needs to be annotated
+with the <code>#[classmethod]</code> attribute.
+This is the equivalent of the Python decorator <code>@classmethod</code>.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span><span class="boring">use pyo3::types::PyType;
+</span><span class="boring">#[pyclass]
+</span><span class="boring">struct MyClass {
+</span><span class="boring">    #[allow(dead_code)]
+</span><span class="boring">    num: i32,
+</span><span class="boring">}
+</span>#[pymethods]
+impl MyClass {
+    #[classmethod]
+    fn cls_method(cls: &amp;PyType) -&gt; PyResult&lt;i32&gt; {
+        Ok(10)
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Declares a class method callable from Python.</p>
+<ul>
+<li>The first parameter is the type object of the class on which the method is called.
+This may be the type object of a derived class.</li>
+<li>The first parameter implicitly has type <code>&amp;PyType</code>.</li>
+<li>For details on <code>parameter-list</code>, see the documentation of <code>Method arguments</code> section.</li>
+<li>The return type must be <code>PyResult&lt;T&gt;</code> or <code>T</code> for some <code>T</code> that implements <code>IntoPy&lt;PyObject&gt;</code>.</li>
+</ul>
+<h2 id="static-methods"><a class="header" href="#static-methods">Static methods</a></h2>
+<p>To create a static method for a custom class, the method needs to be annotated with the
+<code>#[staticmethod]</code> attribute. The return type must be <code>T</code> or <code>PyResult&lt;T&gt;</code> for some <code>T</code> that implements
+<code>IntoPy&lt;PyObject&gt;</code>.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span><span class="boring">#[pyclass]
+</span><span class="boring">struct MyClass {
+</span><span class="boring">    #[allow(dead_code)]
+</span><span class="boring">    num: i32,
+</span><span class="boring">}
+</span>#[pymethods]
+impl MyClass {
+    #[staticmethod]
+    fn static_method(param1: i32, param2: &amp;str) -&gt; PyResult&lt;i32&gt; {
+        Ok(10)
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="class-attributes"><a class="header" href="#class-attributes">Class attributes</a></h2>
+<p>To create a class attribute (also called <a href="https://docs.python.org/3/tutorial/classes.html#class-and-instance-variables">class variable</a>), a method without
+any arguments can be annotated with the <code>#[classattr]</code> attribute.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span><span class="boring">#[pyclass]
+</span><span class="boring">struct MyClass {}
+</span>#[pymethods]
+impl MyClass {
+    #[classattr]
+    fn my_attribute() -&gt; String {
+        &quot;hello&quot;.to_string()
+    }
+}
+
+Python::with_gil(|py| {
+    let my_class = py.get_type::&lt;MyClass&gt;();
+    pyo3::py_run!(py, my_class, &quot;assert my_class.my_attribute == 'hello'&quot;)
+});
+<span class="boring">}
+</span></code></pre></pre>
+<blockquote>
+<p>Note: if the method has a <code>Result</code> return type and returns an <code>Err</code>, PyO3 will panic during
+class creation.</p>
+</blockquote>
+<p>If the class attribute is defined with <code>const</code> code only, one can also annotate associated
+constants:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span><span class="boring">#[pyclass]
+</span><span class="boring">struct MyClass {}
+</span>#[pymethods]
+impl MyClass {
+    #[classattr]
+    const MY_CONST_ATTRIBUTE: &amp;'static str = &quot;foobar&quot;;
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="method-arguments"><a class="header" href="#method-arguments">Method arguments</a></h2>
+<p>Similar to <code>#[pyfunction]</code>, the <code>#[pyo3(signature = (...))]</code> attribute can be used to specify the way that <code>#[pymethods]</code> accept arguments. Consult the documentation for <a href="./function/signature.html"><code>function signatures</code></a> to see the parameters this attribute accepts.</p>
+<p>The following example defines a class <code>MyClass</code> with a method <code>method</code>. This method has a signature which sets default values for <code>num</code> and <code>name</code>, and indicates that <code>py_args</code> should collect all extra positional arguments and <code>py_kwargs</code> all extra keyword arguments:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span>use pyo3::types::{PyDict, PyTuple};
+<span class="boring">
+</span><span class="boring">#[pyclass]
+</span><span class="boring">struct MyClass {
+</span><span class="boring">    num: i32,
+</span><span class="boring">}
+</span>#[pymethods]
+impl MyClass {
+    #[new]
+    #[pyo3(signature = (num=-1))]
+    fn new(num: i32) -&gt; Self {
+        MyClass { num }
+    }
+
+    #[pyo3(signature = (num=10, *py_args, name=&quot;Hello&quot;, **py_kwargs))]
+    fn method(
+        &amp;mut self,
+        num: i32,
+        py_args: &amp;PyTuple,
+        name: &amp;str,
+        py_kwargs: Option&lt;&amp;PyDict&gt;,
+    ) -&gt; String {
+        let num_before = self.num;
+        self.num = num;
+        format!(
+            &quot;num={} (was previously={}), py_args={:?}, name={}, py_kwargs={:?} &quot;,
+            num, num_before, py_args, name, py_kwargs,
+        )
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>In Python this might be used like:</p>
+<pre><code class="language-python">&gt;&gt;&gt; import mymodule
+&gt;&gt;&gt; mc = mymodule.MyClass()
+&gt;&gt;&gt; print(mc.method(44, False, &quot;World&quot;, 666, x=44, y=55))
+py_args=('World', 666), py_kwargs=Some({'x': 44, 'y': 55}), name=Hello, num=44, num_before=-1
+&gt;&gt;&gt; print(mc.method(num=-1, name=&quot;World&quot;))
+py_args=(), py_kwargs=None, name=World, num=-1, num_before=44
+</code></pre>
+<h2 id="making-class-method-signatures-available-to-python"><a class="header" href="#making-class-method-signatures-available-to-python">Making class method signatures available to Python</a></h2>
+<p>The <a href="./function.html#text_signature"><code>text_signature = &quot;...&quot;</code></a> option for <code>#[pyfunction]</code> also works for classes and methods:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(dead_code)]
+</span>use pyo3::prelude::*;
+use pyo3::types::PyType;
+
+// it works even if the item is not documented:
+#[pyclass(text_signature = &quot;(c, d, /)&quot;)]
+struct MyClass {}
+
+#[pymethods]
+impl MyClass {
+    // the signature for the constructor is attached
+    // to the struct definition instead.
+    #[new]
+    fn new(c: i32, d: &amp;str) -&gt; Self {
+        Self {}
+    }
+    // the self argument should be written $self
+    #[pyo3(text_signature = &quot;($self, e, f)&quot;)]
+    fn my_method(&amp;self, e: i32, f: i32) -&gt; i32 {
+        e + f
+    }
+    #[classmethod]
+    #[pyo3(text_signature = &quot;(cls, e, f)&quot;)]
+    fn my_class_method(cls: &amp;PyType, e: i32, f: i32) -&gt; i32 {
+        e + f
+    }
+    #[staticmethod]
+    #[pyo3(text_signature = &quot;(e, f)&quot;)]
+    fn my_static_method(e: i32, f: i32) -&gt; i32 {
+        e + f
+    }
+}
+<span class="boring">
+</span><span class="boring">fn main() -&gt; PyResult&lt;()&gt; {
+</span><span class="boring">    Python::with_gil(|py| {
+</span><span class="boring">        let inspect = PyModule::import(py, &quot;inspect&quot;)?.getattr(&quot;signature&quot;)?;
+</span><span class="boring">        let module = PyModule::new(py, &quot;my_module&quot;)?;
+</span><span class="boring">        module.add_class::&lt;MyClass&gt;()?;
+</span><span class="boring">        let class = module.getattr(&quot;MyClass&quot;)?;
+</span><span class="boring">
+</span><span class="boring">        if cfg!(not(Py_LIMITED_API)) || py.version_info() &gt;= (3, 10)  {
+</span><span class="boring">            let doc: String = class.getattr(&quot;__doc__&quot;)?.extract()?;
+</span><span class="boring">            assert_eq!(doc, &quot;&quot;);
+</span><span class="boring">
+</span><span class="boring">            let sig: String = inspect
+</span><span class="boring">                .call1((class,))?
+</span><span class="boring">                .call_method0(&quot;__str__&quot;)?
+</span><span class="boring">                .extract()?;
+</span><span class="boring">            assert_eq!(sig, &quot;(c, d, /)&quot;);
+</span><span class="boring">        } else {
+</span><span class="boring">            let doc: String = class.getattr(&quot;__doc__&quot;)?.extract()?;
+</span><span class="boring">            assert_eq!(doc, &quot;&quot;);
+</span><span class="boring">
+</span><span class="boring">            inspect.call1((class,)).expect_err(&quot;`text_signature` on classes is not compatible with compilation in `abi3` mode until Python 3.10 or greater&quot;);
+</span><span class="boring">         }
+</span><span class="boring">
+</span><span class="boring">        {
+</span><span class="boring">            let method = class.getattr(&quot;my_method&quot;)?;
+</span><span class="boring">
+</span><span class="boring">            assert!(method.getattr(&quot;__doc__&quot;)?.is_none());
+</span><span class="boring">
+</span><span class="boring">            let sig: String = inspect
+</span><span class="boring">                .call1((method,))?
+</span><span class="boring">                .call_method0(&quot;__str__&quot;)?
+</span><span class="boring">                .extract()?;
+</span><span class="boring">            assert_eq!(sig, &quot;(self, /, e, f)&quot;);
+</span><span class="boring">        }
+</span><span class="boring">
+</span><span class="boring">        {
+</span><span class="boring">            let method = class.getattr(&quot;my_class_method&quot;)?;
+</span><span class="boring">
+</span><span class="boring">            assert!(method.getattr(&quot;__doc__&quot;)?.is_none());
+</span><span class="boring">
+</span><span class="boring">            let sig: String = inspect
+</span><span class="boring">                .call1((method,))?
+</span><span class="boring">                .call_method0(&quot;__str__&quot;)?
+</span><span class="boring">                .extract()?;
+</span><span class="boring">            assert_eq!(sig, &quot;(cls, e, f)&quot;);
+</span><span class="boring">        }
+</span><span class="boring">
+</span><span class="boring">        {
+</span><span class="boring">            let method = class.getattr(&quot;my_static_method&quot;)?;
+</span><span class="boring">
+</span><span class="boring">            assert!(method.getattr(&quot;__doc__&quot;)?.is_none());
+</span><span class="boring">
+</span><span class="boring">            let sig: String = inspect
+</span><span class="boring">                .call1((method,))?
+</span><span class="boring">                .call_method0(&quot;__str__&quot;)?
+</span><span class="boring">                .extract()?;
+</span><span class="boring">            assert_eq!(sig, &quot;(e, f)&quot;);
+</span><span class="boring">        }
+</span><span class="boring">
+</span><span class="boring">        Ok(())
+</span><span class="boring">    })
+</span><span class="boring">}
+</span></code></pre></pre>
+<p>Note that <code>text_signature</code> on classes is not compatible with compilation in
+<code>abi3</code> mode until Python 3.10 or greater.</p>
+<h2 id="pyclass-enums"><a class="header" href="#pyclass-enums">#[pyclass] enums</a></h2>
+<p>Currently PyO3 only supports fieldless enums. PyO3 adds a class attribute for each variant, so you can access them in Python without defining <code>#[new]</code>. PyO3 also provides default implementations of <code>__richcmp__</code> and <code>__int__</code>, so they can be compared using <code>==</code>:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span>#[pyclass]
+enum MyEnum {
+    Variant,
+    OtherVariant,
+}
+
+Python::with_gil(|py| {
+    let x = Py::new(py, MyEnum::Variant).unwrap();
+    let y = Py::new(py, MyEnum::OtherVariant).unwrap();
+    let cls = py.get_type::&lt;MyEnum&gt;();
+    pyo3::py_run!(py, x y cls, r#&quot;
+        assert x == cls.Variant
+        assert y == cls.OtherVariant
+        assert x != y
+    &quot;#)
+})
+<span class="boring">}
+</span></code></pre></pre>
+<p>You can also convert your enums into <code>int</code>:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span>#[pyclass]
+enum MyEnum {
+    Variant,
+    OtherVariant = 10,
+}
+
+Python::with_gil(|py| {
+    let cls = py.get_type::&lt;MyEnum&gt;();
+    let x = MyEnum::Variant as i32; // The exact value is assigned by the compiler.
+    pyo3::py_run!(py, cls x, r#&quot;
+        assert int(cls.Variant) == x
+        assert int(cls.OtherVariant) == 10
+        assert cls.OtherVariant == 10  # You can also compare against int.
+        assert 10 == cls.OtherVariant
+    &quot;#)
+})
+<span class="boring">}
+</span></code></pre></pre>
+<p>PyO3 also provides <code>__repr__</code> for enums:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span>#[pyclass]
+enum MyEnum{
+    Variant,
+    OtherVariant,
+}
+
+Python::with_gil(|py| {
+    let cls = py.get_type::&lt;MyEnum&gt;();
+    let x = Py::new(py, MyEnum::Variant).unwrap();
+    pyo3::py_run!(py, cls x, r#&quot;
+        assert repr(x) == 'MyEnum.Variant'
+        assert repr(cls.OtherVariant) == 'MyEnum.OtherVariant'
+    &quot;#)
+})
+<span class="boring">}
+</span></code></pre></pre>
+<p>All methods defined by PyO3 can be overridden. For example here’s how you override <code>__repr__</code>:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span>#[pyclass]
+enum MyEnum {
+    Answer = 42,
+}
+
+#[pymethods]
+impl MyEnum {
+    fn __repr__(&amp;self) -&gt; &amp;'static str {
+        &quot;42&quot;
+    }
+}
+
+Python::with_gil(|py| {
+    let cls = py.get_type::&lt;MyEnum&gt;();
+    pyo3::py_run!(py, cls, &quot;assert repr(cls.Answer) == '42'&quot;)
+})
+<span class="boring">}
+</span></code></pre></pre>
+<p>Enums and their variants can also be renamed using <code>#[pyo3(name)]</code>.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span>#[pyclass(name = &quot;RenamedEnum&quot;)]
+enum MyEnum {
+    #[pyo3(name = &quot;UPPERCASE&quot;)]
+    Variant,
+}
+
+Python::with_gil(|py| {
+    let x = Py::new(py, MyEnum::Variant).unwrap();
+    let cls = py.get_type::&lt;MyEnum&gt;();
+    pyo3::py_run!(py, x cls, r#&quot;
+        assert repr(x) == 'RenamedEnum.UPPERCASE'
+        assert x == cls.UPPERCASE
+    &quot;#)
+})
+<span class="boring">}
+</span></code></pre></pre>
+<p>You may not use enums as a base class or let enums inherit from other classes.</p>
+<pre><pre class="playground"><code class="language-rust compile_fail"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span>#[pyclass(subclass)]
+enum BadBase{
+    Var1,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<pre><pre class="playground"><code class="language-rust compile_fail"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use pyo3::prelude::*;
+</span>
+#[pyclass(subclass)]
+struct Base;
+
+#[pyclass(extends=Base)]
+enum BadSubclass{
+    Var1,
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><code>#[pyclass]</code> enums are currently not interoperable with <code>IntEnum</code> in Python.</p>
+<h2 id="implementation-details"><a class="header" href="#implementation-details">Implementation details</a></h2>
+<p>The <code>#[pyclass]</code> macros rely on a lot of conditional code generation: each <code>#[pyclass]</code> can optionally have a <code>#[pymethods]</code> block.</p>
+<p>To support this flexibility the <code>#[pyclass]</code> macro expands to a blob of boilerplate code which sets up the structure for <a href="https://github.com/dtolnay/case-studies/blob/master/autoref-specialization/README.md">“dtolnay specialization”</a>. This implementation pattern enables the Rust compiler to use <code>#[pymethods]</code> implementations when they are present, and fall back to default (empty) definitions when they are not.</p>
+<p>This simple technique works for the case when there is zero or one implementations. To support multiple <code>#[pymethods]</code> for a <code>#[pyclass]</code> (in the <a href="features.html#multiple-pymethods"><code>multiple-pymethods</code></a> feature), a registry mechanism provided by the <a href="https://github.com/dtolnay/inventory"><code>inventory</code></a> crate is used instead. This collects <code>impl</code>s at library load time, but isn’t supported on all platforms. See <a href="https://github.com/dtolnay/inventory#how-it-works">inventory: how it works</a> for more details.</p>
+<p>The <code>#[pyclass]</code> macro expands to roughly the code seen below. The <code>PyClassImplCollector</code> is the type used internally by PyO3 for dtolnay specialization:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">#[cfg(not(feature = &quot;multiple-pymethods&quot;))] {
+</span><span class="boring">use pyo3::prelude::*;
+</span>// Note: the implementation differs slightly with the `multiple-pymethods` feature enabled.
+struct MyClass {
+<span class="boring">    #[allow(dead_code)]
+</span>    num: i32,
+}
+unsafe impl pyo3::type_object::PyTypeInfo for MyClass {
+    type AsRefTarget = pyo3::PyCell&lt;Self&gt;;
+    const NAME: &amp;'static str = &quot;MyClass&quot;;
+    const MODULE: ::std::option::Option&lt;&amp;'static str&gt; = ::std::option::Option::None;
+    #[inline]
+    fn type_object_raw(py: pyo3::Python&lt;'_&gt;) -&gt; *mut pyo3::ffi::PyTypeObject {
+        use pyo3::type_object::LazyStaticType;
+        static TYPE_OBJECT: LazyStaticType = LazyStaticType::new();
+        TYPE_OBJECT.get_or_init::&lt;Self&gt;(py)
+    }
+}
+
+impl pyo3::PyClass for MyClass {
+    type Frozen = pyo3::pyclass::boolean_struct::False;
+}
+
+impl&lt;'a, 'py&gt; pyo3::impl_::extract_argument::PyFunctionArgument&lt;'a, 'py&gt; for &amp;'a MyClass
+{
+    type Holder = ::std::option::Option&lt;pyo3::PyRef&lt;'py, MyClass&gt;&gt;;
+
+    #[inline]
+    fn extract(obj: &amp;'py pyo3::PyAny, holder: &amp;'a mut Self::Holder) -&gt; pyo3::PyResult&lt;Self&gt; {
+        pyo3::impl_::extract_argument::extract_pyclass_ref(obj, holder)
+    }
+}
+
+impl&lt;'a, 'py&gt; pyo3::impl_::extract_argument::PyFunctionArgument&lt;'a, 'py&gt; for &amp;'a mut MyClass
+{
+    type Holder = ::std::option::Option&lt;pyo3::PyRefMut&lt;'py, MyClass&gt;&gt;;
+
+    #[inline]
+    fn extract(obj: &amp;'py pyo3::PyAny, holder: &amp;'a mut Self::Holder) -&gt; pyo3::PyResult&lt;Self&gt; {
+        pyo3::impl_::extract_argument::extract_pyclass_ref_mut(obj, holder)
+    }
+}
+
+impl pyo3::IntoPy&lt;PyObject&gt; for MyClass {
+    fn into_py(self, py: pyo3::Python&lt;'_&gt;) -&gt; pyo3::PyObject {
+        pyo3::IntoPy::into_py(pyo3::Py::new(py, self).unwrap(), py)
+    }
+}
+
+impl pyo3::impl_::pyclass::PyClassImpl for MyClass {
+    const DOC: &amp;'static str = &quot;Class for demonstration\u{0}&quot;;
+    const IS_BASETYPE: bool = false;
+    const IS_SUBCLASS: bool = false;
+    type Layout = PyCell&lt;MyClass&gt;;
+    type BaseType = PyAny;
+    type ThreadChecker = pyo3::impl_::pyclass::ThreadCheckerStub&lt;MyClass&gt;;
+    type PyClassMutability = &lt;&lt;pyo3::PyAny as pyo3::impl_::pyclass::PyClassBaseType&gt;::PyClassMutability as pyo3::impl_::pycell::PyClassMutability&gt;::MutableChild;
+    type Dict = pyo3::impl_::pyclass::PyClassDummySlot;
+    type WeakRef = pyo3::impl_::pyclass::PyClassDummySlot;
+    type BaseNativeType = pyo3::PyAny;
+
+    fn items_iter() -&gt; pyo3::impl_::pyclass::PyClassItemsIter {
+        use pyo3::impl_::pyclass::*;
+        let collector = PyClassImplCollector::&lt;MyClass&gt;::new();
+        static INTRINSIC_ITEMS: PyClassItems = PyClassItems { slots: &amp;[], methods: &amp;[] };
+        PyClassItemsIter::new(&amp;INTRINSIC_ITEMS, collector.py_methods())
+    }
+}
+
+<span class="boring">Python::with_gil(|py| {
+</span><span class="boring">    let cls = py.get_type::&lt;MyClass&gt;();
+</span><span class="boring">    pyo3::py_run!(py, cls, &quot;assert cls.__name__ == 'MyClass'&quot;)
+</span><span class="boring">});
+</span><span class="boring">}
+</span><span class="boring">}
+</span></code></pre></pre>
+
+            </main>
+
+            <!--            <script src="https://utteranc.es/client.js"-->
+            <!--                    repo="RustMagazine/rust_magazine_2022"-->
+            <!--                    issue-term="title"-->
+            <!--                    theme="github-light"-->
+            <!--                    crossorigin="anonymous"-->
+            <!--                    async></script>-->
+
+            <nav class="nav-wrapper" aria-label="Page navigation">
+                <!-- Mobile navigation buttons -->
+                    <a rel="prev" href="../../PyO3_guides/src/function/error_handling.html" class="mobile-nav-chapters previous"
+                       title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../PyO3_guides/src/class/protocols.html" class="mobile-nav-chapters next"
+                       title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+
+                <div style="clear: both"></div>
+            </nav>
+        </div>
+    </div>
+
+    <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            <a rel="prev" href="../../PyO3_guides/src/function/error_handling.html" class="nav-chapters previous" title="Previous chapter"
+               aria-label="Previous chapter" aria-keyshortcuts="Left">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <a rel="next" href="../../PyO3_guides/src/class/protocols.html" class="nav-chapters next" title="Next chapter"
+               aria-label="Next chapter" aria-keyshortcuts="Right">
+                <i class="fa fa-angle-right"></i>
+            </a>
+    </nav>
+
+</div>
+
+
+
+    <script type="text/javascript">
+        window.playground_line_numbers = true;
+    </script>
+
+    <script type="text/javascript">
+        window.playground_copyable = true;
+    </script>
+
+    <script src="../../ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../editor.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JS scripts -->
+    <script type="text/javascript" src="../../assets/ferris/ferris.js"></script>
+    <script type="text/javascript" src="../../assets/mermaid/mermaid.min.js"></script>
+    <script type="text/javascript" src="../../assets/mermaid/mermaid-init.js"></script>
+    <script type="text/javascript" src="../../assets/smart-anchor.js"></script>
+    <script type="text/javascript" src="../../assets/pagetoc/sidebar.js"></script>
+
+</body>
+</html>
