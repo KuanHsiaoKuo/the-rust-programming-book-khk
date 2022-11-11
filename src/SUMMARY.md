@@ -192,7 +192,7 @@
         - [if let](rust_by_example_src/flow_control/if_let.md)
         - [while let](rust_by_example_src/flow_control/while_let.md)
 
-    - [Functions](rust_by_example_src/fn.md)
+    - [✨Functions](rust_by_example_src/fn.md)
         - [Methods](rust_by_example_src/fn/methods.md)
         - [Closures](rust_by_example_src/fn/closures.md)
             - [Capturing](rust_by_example_src/fn/closures/capture.md)
@@ -229,7 +229,7 @@
         - [`cfg`](rust_by_example_src/attribute/cfg.md)
             - [Custom](rust_by_example_src/attribute/cfg/custom.md)
 
-    - [Generics](rust_by_example_src/generics.md)
+    - [✨✨Generics](rust_by_example_src/generics.md)
         - [Functions](rust_by_example_src/generics/gen_fn.md)
         - [Implementation](rust_by_example_src/generics/impl.md)
         - [Traits](rust_by_example_src/generics/gen_trait.md)
@@ -244,7 +244,7 @@
         - [Phantom type parameters](rust_by_example_src/generics/phantom.md)
             - [Testcase: unit clarification](rust_by_example_src/generics/phantom/testcase_units.md)
 
-    - [Scoping rules](rust_by_example_src/scope.md)
+    - [🪐Scoping rules](rust_by_example_src/scope.md)
         - [RAII](rust_by_example_src/scope/raii.md)
         - [Ownership and moves](rust_by_example_src/scope/move.md)
             - [Mutability](rust_by_example_src/scope/move/mut.md)
@@ -264,7 +264,7 @@
             - [Static](rust_by_example_src/scope/lifetime/static_lifetime.md)
             - [Elision](rust_by_example_src/scope/lifetime/elision.md)
 
-    - [Traits](rust_by_example_src/trait.md)
+    - [🪐Traits](rust_by_example_src/trait.md)
         - [Derive](rust_by_example_src/trait/derive.md)
         - [Returning Traits with `dyn`](rust_by_example_src/trait/dyn.md)
         - [Operator Overloading](rust_by_example_src/trait/ops.md)
@@ -284,7 +284,7 @@
         - [DSL (rust_by_example_src/Domain Specific Languages)](rust_by_example_src/macros/dsl.md)
         - [Variadics](rust_by_example_src/macros/variadics.md)
 
-    - [Error handling](rust_by_example_src/error.md)
+    - [⭐️Error handling](rust_by_example_src/error.md)
         - [`panic`](rust_by_example_src/error/panic.md)
         - [`abort` & `unwind`](rust_by_example_src/error/abort_unwind.md)
         - [`Option` & `unwrap`](rust_by_example_src/error/option_unwrap.md)
@@ -305,7 +305,7 @@
             - [Wrapping errors](rust_by_example_src/error/multiple_error_types/wrap_error.md)
         - [Iterating over `Result`s](rust_by_example_src/error/iter_result.md)
 
-    - [Std library types](rust_by_example_src/std.md)
+    - [⭐️Std library types](rust_by_example_src/std.md)
         - [Box, stack and heap](rust_by_example_src/std/box.md)
         - [Vectors](rust_by_example_src/std/vec.md)
         - [Strings](rust_by_example_src/std/str.md)
@@ -319,7 +319,7 @@
         - [`Rc`](rust_by_example_src/std/rc.md)
         - [`Arc`](rust_by_example_src/std/arc.md)
 
-    - [Std misc](rust_by_example_src/std_misc.md)
+    - [✨Std misc](rust_by_example_src/std_misc.md)
         - [Threads](rust_by_example_src/std_misc/threads.md)
             - [Testcase: map-reduce](rust_by_example_src/std_misc/threads/testcase_mapreduce.md)
         - [Channels](rust_by_example_src/std_misc/channels.md)
