@@ -1,8 +1,10 @@
 # Searching through iterators
 
-`Iterator::find` is a function which iterates over an iterator and searches for the 
-first value which satisfies some condition. If none of the values satisfy the 
-condition, it returns `None`. Its signature:
+`Iterator::find` is a function which iterates over an iterator and searches for the
+first value which satisfies some condition. If none of the values satisfy the
+condition, it returns `None`.
+
+~~~admonish info title="Its signature:" collapsible=true
 
 ```rust,ignore
 pub trait Iterator {
@@ -18,7 +20,9 @@ pub trait Iterator {
         P: FnMut(&Self::Item) -> bool;
 }
 ```
+~~~
 
+~~~admonish info title="Usage" collapsible=true
 ```rust,editable
 fn main() {
     let vec1 = vec![1, 2, 3];
@@ -45,9 +49,10 @@ fn main() {
     println!("Find 2 in array2: {:?}", array2.into_iter().find(|&x| x == 2));
 }
 ```
+~~~
 
-`Iterator::find` gives you a reference to the item. But if you want the _index_ of the
-item, use `Iterator::position`.
+~~~admonish info title="*Iterator::find* gives you a reference to the item. But if you want the _index_ of the item, use *Iterator::position*." collapsible=true
+
 
 ```rust,editable
 fn main() {
@@ -64,6 +69,7 @@ fn main() {
     assert_eq!(index_of_first_negative_number, None);
 }
 ```
+~~~
 
 ### See also:
 
@@ -76,6 +82,9 @@ fn main() {
 [`std::iter::Iterator::rposition`][rposition]
 
 [find]: https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.find
+
 [find_map]: https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.find_map
+
 [position]: https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.position
+
 [rposition]: https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.rposition

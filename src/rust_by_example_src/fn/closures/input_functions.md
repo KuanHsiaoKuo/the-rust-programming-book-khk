@@ -1,9 +1,10 @@
 # Input functions
 
 Since closures may be used as arguments, you might wonder if the same can be said
-about functions. And indeed they can! If you declare a function that takes a
-closure as parameter, then any function that satisfies the trait bound of that
-closure can be passed as a parameter.
+about functions. 
+
+And indeed they can! 
+~~~admonish info title="If you declare a function that takes a closure as parameter, then any function that satisfies the trait bound of that closure can be passed as a parameter." collapsible=true
 
 ```rust,editable
 // Define a function which takes a generic `F` argument
@@ -25,9 +26,10 @@ fn main() {
     call_me(function);
 }
 ```
+~~~
 
-As an additional note, the `Fn`, `FnMut`, and `FnOnce` `traits` dictate how
-a closure captures variables from the enclosing scope.
+> As an additional note, the `Fn`, `FnMut`, and `FnOnce` `traits` dictate **how
+a closure captures variables from the enclosing scope.**
 
 ### See also:
 

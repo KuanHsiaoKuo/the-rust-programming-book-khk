@@ -1,7 +1,16 @@
-# Type anonymity
+# Type anonymity need Generics
 
-Closures succinctly capture variables from enclosing scopes. Does this have
-any consequences? It surely does. Observe how using a closure as a function
+1. A closure is essentially an anonymous struct
+2. A function that accepts a closure parameter only needs to restrict the parameter to implement the following traits:
+
+- Fn
+- FnMut
+- FnOnce
+
+~~~admonish question title="Closures succinctly capture variables from enclosing scopes. Does this have any consequences? " collapsible=true
+It surely does. 
+
+Observe how using a closure as a function
 parameter requires [generics], which is necessary because of how they are
 defined:
 
@@ -16,14 +25,19 @@ fn apply<F>(f: F) where
 When a closure is defined, the compiler implicitly creates a new
 anonymous structure to store the captured variables inside, meanwhile
 implementing the functionality via one of the `traits`: `Fn`, `FnMut`, or
-`FnOnce` for this unknown type. This type is assigned to the variable which
+`FnOnce` for this unknown type. 
+
+This type is assigned to the variable which
 is stored until calling.
+~~~
 
 Since this new type is of unknown type, any usage in a function will require
-generics. However, an unbounded type parameter `<T>` would still be ambiguous
-and not be allowed. Thus, bounding by one of the `traits`: `Fn`, `FnMut`, or
-`FnOnce` (which it implements) is sufficient to specify its type.
+generics.
 
+> However, an unbounded type parameter `<T>` would still be ambiguous
+> and not be allowed.
+
+~~~admonish question title="Thus, bounding by one of the *traits*: *Fn*, *FnMut*, or *FnOnce* (which it implements) is sufficient to specify its type." collapsible=true
 ```rust,editable
 // `F` must implement `Fn` for a closure which takes no
 // inputs and returns nothing - exactly what is required
@@ -43,6 +57,9 @@ fn main() {
     apply(print);
 }
 ```
+~~~
+
+> This example could be compared with the decrator mode
 
 ### See also:
 
@@ -50,7 +67,11 @@ fn main() {
 and [`FnOnce`][fn_once]
 
 [generics]: ../../generics.md
+
 [fn]: https://doc.rust-lang.org/std/ops/trait.Fn.html
+
 [fn_mut]: https://doc.rust-lang.org/std/ops/trait.FnMut.html
+
 [fn_once]: https://doc.rust-lang.org/std/ops/trait.FnOnce.html
+
 [thorough_analysis]: https://huonw.github.io/blog/2015/05/finding-closure-in-rust/

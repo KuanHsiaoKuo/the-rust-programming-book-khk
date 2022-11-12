@@ -1,10 +1,15 @@
 # Associated functions & Methods
 
-Some functions are connected to a particular type. These come in two forms:
-associated functions, and methods. Associated functions are functions that
-are defined on a type generally, while methods are associated functions that are
-called on a particular instance of a type.
+Some functions are connected to a particular type.
 
+> These come in two forms:associated functions, and methods.
+
+1. Associated functions are functions that
+   are defined on a type generally
+2. while methods are associated functions that are
+   called on a particular instance of a type.
+
+~~~admonish info title="Associated Functions & Method" collapsible=true
 ```rust,editable
 struct Point {
     x: f64,
@@ -116,3 +121,4 @@ fn main() {
     // TODO ^ Try uncommenting this line
 }
 ```
+~~~

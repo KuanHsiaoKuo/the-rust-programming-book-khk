@@ -1,9 +1,12 @@
 # Capturing
 
 Closures are inherently flexible and will do what the functionality requires
-to make the closure work without annotation. This allows capturing to
+to make the closure work without annotation. 
+
+This allows capturing to
 flexibly adapt to the use case, sometimes moving and sometimes borrowing.
-Closures can capture variables:
+
+> Closures can capture variables:
 
 * by reference: `&T`
 * by mutable reference: `&mut T`
@@ -12,6 +15,7 @@ Closures can capture variables:
 They preferentially capture variables by reference and only go lower when
 required.
 
+~~~admonish info title="Usage Example" collapsible=true
 ```rust,editable
 fn main() {
     use std::mem;
@@ -82,10 +86,9 @@ fn main() {
     // ^ TODO: Try uncommenting this line.
 }
 ```
+~~~
 
-Using `move` before vertical pipes forces closure
-to take ownership of captured variables:
-
+~~~admonish info title="Using *move* before vertical pipes forces closure to **take ownership of captured variables**:" collapsible=true
 ```rust,editable
 fn main() {
     // `Vec` has non-copy semantics.
@@ -106,6 +109,7 @@ fn main() {
     // available and uncommenting above line will not cause an error.
 }
 ```
+~~~
 
 ### See also:
 

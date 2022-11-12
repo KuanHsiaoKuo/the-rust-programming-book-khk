@@ -1,9 +1,9 @@
 # Iterator::any
 
 `Iterator::any` is a function which when passed an iterator, will return
-`true` if any element satisfies the predicate. Otherwise `false`. Its
-signature:
+`true` if any element satisfies the predicate. Otherwise `false`. 
 
+~~~admonish info title="Its signature:" collapsible=true
 ```rust,ignore
 pub trait Iterator {
     // The type being iterated over.
@@ -18,6 +18,9 @@ pub trait Iterator {
         F: FnMut(Self::Item) -> bool;
 }
 ```
+~~~
+
+~~~admonish info title="Usage" collapsible=true
 
 ```rust,editable
 fn main() {
@@ -46,6 +49,7 @@ fn main() {
     println!("2 in array2: {}", array2.into_iter().any(|x| x == 2));
 }
 ```
+~~~
 
 ### See also:
 

@@ -1,8 +1,9 @@
-# Higher Order Functions
+# HOF: Higher Order Functions
 
 Rust provides Higher Order Functions (HOF). These are functions that
-take one or more functions and/or produce a more useful function. HOFs
-and lazy iterators give Rust its functional flavor.
+take one or more functions and/or produce a more useful function.
+
+~~~admonish info title="HOFs and lazy iterators give Rust its functional flavor." collapsible=true
 
 ```rust,editable
 fn is_odd(n: u32) -> bool {
@@ -40,6 +41,7 @@ fn main() {
     println!("functional style: {}", sum_of_squared_odd_numbers);
 }
 ```
+~~~
 
 [Option][option]
 and
@@ -47,4 +49,5 @@ and
 implement their fair share of HOFs.
 
 [option]: https://doc.rust-lang.org/core/option/enum.Option.html
+
 [iter]: https://doc.rust-lang.org/core/iter/trait.Iterator.html

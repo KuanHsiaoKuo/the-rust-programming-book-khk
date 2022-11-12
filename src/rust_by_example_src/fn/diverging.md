@@ -1,20 +1,22 @@
-# Diverging functions
+# Diverging functions: return !, different from ()
 
-Diverging functions never return. They are marked using `!`, which is an empty type.
+Diverging functions never return.
 
+~~~admonish info title="They are marked using *!*, which is an empty type." collapsible=true
 ```rust
 fn foo() -> ! {
     panic!("This call never returns.");
 }
 ```
+~~~
 
 As opposed to all the other types, this one cannot be instantiated, because the
-set of all possible values this type can have is empty. Note that, it is
-different from the `()` type, which has exactly one possible value.
+set of all possible values this type can have is empty.
 
-For example, this function returns as usual, although there is no information
-in the return value.
+> Note that, it is
+> different from the `()` type, which has exactly one possible value.
 
+~~~admonish info title="For example, this function returns as usual, although there is no information in the return value." collapsible=true
 ```rust
 fn some_fn() {
     ()
@@ -25,9 +27,9 @@ fn main() {
     println!("This function returns and you can see this line.")
 }
 ```
+~~~
 
-As opposed to this function, which will never return the control back to the caller.
-
+~~~admonish info title="As opposed to this function, which will never return the control back to the caller." collapsible=true
 ```rust,ignore
 #![feature(never_type)]
 
@@ -36,12 +38,16 @@ fn main() {
     println!("You will never see this line!");
 }
 ```
+~~~
 
 Although this might seem like an abstract concept, it is in fact very useful and
-often handy. The main advantage of this type is that it can be cast to any other
-one and therefore used at places where an exact type is required, for instance
-in `match` branches. This allows us to write code like this:
+often handy.
 
+> The main advantage of this type is that it can be cast to any other
+> one and therefore used at places where an exact type is required, for instance
+> in `match` branches.
+
+~~~admonish info title="This allows us to write code like this:" collapsible=true
 ```rust
 fn main() {
     fn sum_odd_numbers(up_to: u32) -> u32 {
@@ -64,6 +70,7 @@ fn main() {
     println!("Sum of odd numbers up to 9 (excluding): {}", sum_odd_numbers(9));
 }
 ```
+~~~
 
 It is also the return type of functions that loop forever (e.g. `loop {}`) like
 network servers or functions that terminate the process (e.g. `exit()`).
