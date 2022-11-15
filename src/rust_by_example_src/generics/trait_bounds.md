@@ -1,30 +1,30 @@
-# Bounds
+# Trait Bounds
 
 When working with generics, the type parameters often must use traits as *bounds* to
-stipulate what functionality a type implements. For example, the following
-example uses the trait `Display` to print and so it requires `T` to be bound
-by `Display`; that is, `T` *must* implement `Display`.
+stipulate what functionality a type implements.
 
-```rust,ignore
+~~~admonish tip title="For example, the following example uses the trait *Display* to print and so it requires *T* to be bound by *Display*; that is, *T* *must* implement *Display*." collapsible=true
+
+```rust,editable
 // Define a function `printer` that takes a generic type `T` which
 // must implement trait `Display`.
 fn printer<T: Display>(t: T) {
     println!("{}", t);
 }
 ```
+~~~
 
-Bounding restricts the generic to types that conform to the bounds. That is:
-
-```rust,ignore
+~~~admonish tip title="Bounding restricts the generic to types that conform to the bounds. That is:" collapsible=true
+```rust,editable
 struct S<T: Display>(T);
 
 // Error! `Vec<T>` does not implement `Display`. This
 // specialization will fail.
 let s = S(vec![1]);
 ```
+~~~
 
-Another effect of bounding is that generic instances are allowed to access the 
-[methods] of traits specified in the bounds. For example:
+~~~admonish tip title="Another effect of bounding is that generic instances are allowed to access the [methods] of traits specified in the bounds. For example:" collapsible=true
 
 ```rust,editable
 // A trait which implements the print marker: `{:?}`.
@@ -66,8 +66,9 @@ fn main() {
     // | Error: Does not implement either `Debug` or `HasArea`. 
 }
 ```
+~~~
 
-As an additional note, [`where`][where] clauses can also be used to apply bounds in
+> As an additional note, [`where`][where] clauses can also be used to apply bounds in
 some cases to be more expressive.
 
 ### See also:
@@ -75,7 +76,11 @@ some cases to be more expressive.
 [`std::fmt`][fmt], [`struct`s][structs], and [`trait`s][traits]
 
 [fmt]: ../hello/print.md
+
 [methods]: ../fn/methods.md
+
 [structs]: ../custom_types/structs.md
+
 [traits]: ../trait.md
+
 [where]: ../generics/where.md

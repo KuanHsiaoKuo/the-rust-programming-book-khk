@@ -1,9 +1,9 @@
 # Testcase: empty bounds
 
 A consequence of how bounds work is that even if a `trait` doesn't
-include any functionality, you can still use it as a bound. `Eq` and
-`Copy` are examples of such `trait`s from the `std` library.
+include any functionality, you can still use it as a bound.
 
+~~~admonish tip title="*Eq* and *Copy* are examples of such *traits* from the *std* library." collapsible=true
 ```rust,editable
 struct Cardinal;
 struct BlueJay;
@@ -33,11 +33,14 @@ fn main() {
     // ^ TODO: Try uncommenting this line.
 }
 ```
+~~~
 
 ### See also:
 
 [`std::cmp::Eq`][eq], [`std::marker::Copy`][copy], and [`trait`s][traits]
 
 [eq]: https://doc.rust-lang.org/std/cmp/trait.Eq.html
+
 [copy]: https://doc.rust-lang.org/std/marker/trait.Copy.html
+
 [traits]: ../../trait.md

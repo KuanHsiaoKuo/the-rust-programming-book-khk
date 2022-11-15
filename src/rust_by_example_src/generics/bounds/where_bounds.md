@@ -1,14 +1,13 @@
 # Where clauses
 
-A bound can also be expressed using a `where` clause immediately
-before the opening `{`, rather than at the type's first mention. 
-Additionally, `where` clauses can apply bounds to arbitrary types, 
-rather than just to type parameters.
+- A bound can also be expressed using a `where` clause immediately
+  before the opening `{`, rather than at the type's first mention.
+- Additionally, `where` clauses can apply bounds to arbitrary types,
+  rather than just to type parameters.
 
-Some cases that a `where` clause is useful:
+> Some cases that a `where` clause is useful:
 
-* When specifying generic types and bounds separately is clearer:
-
+~~~admonish tip title="* When specifying generic types and bounds separately is clearer:" collapsible=true
 ```rust,ignore
 impl <A: TraitB + TraitC, D: TraitE + TraitF> MyTrait<A, D> for YourType {}
 
@@ -17,8 +16,9 @@ impl <A, D> MyTrait<A, D> for YourType where
     A: TraitB + TraitC,
     D: TraitE + TraitF {}
 ```
+~~~
 
-* When using a `where` clause is more expressive than using normal syntax. 
+~~~admonish tip title="* When using a *where* clause is more expressive than using normal syntax. " collapsible=true
 The `impl` in this example cannot be directly expressed without a `where` clause:
 
 ```rust,editable
@@ -45,11 +45,14 @@ fn main() {
     vec.print_in_option();
 }
 ```
+~~~
 
 ### See also:
 
 [RFC][where], [`struct`][struct], and [`trait`][trait]
 
 [struct]: ../custom_types/structs.md
+
 [trait]: ../trait.md
+
 [where]: https://github.com/rust-lang/rfcs/blob/master/text/0135-where.md

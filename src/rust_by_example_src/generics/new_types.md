@@ -3,9 +3,7 @@
 The `newtype` idiom gives compile time guarantees that the right type of value is supplied
 to a program.
 
-For example, an age verification function that checks age in years, *must* be given
-a value of type `Years`.
-
+~~~admonish tip title="For example, an age verification function that checks age in years, *must* be given a value of type *Years*." collapsible=true
 ```rust, editable
 struct Years(i64);
 
@@ -37,10 +35,11 @@ fn main() {
     // println!("Old enough {}", old_enough(&age_days));
 }
 ```
+~~~
 
-Uncomment the last print statement to observe that the type supplied must be `Years`.
+> Uncomment the last print statement to observe that the type supplied must be `Years`.
 
-To obtain the `newtype`'s value as the base type, you may use the tuple or destructuring syntax like so:
+~~~admonish tip title="To obtain the *newtype*'s value as the base type, you may use the tuple or destructuring syntax like so:" collapsible=true
 ```rust, editable
 struct Years(i64);
 
@@ -48,8 +47,11 @@ fn main() {
     let years = Years(42);
     let years_as_primitive_1: i64 = years.0; // Tuple
     let Years(years_as_primitive_2) = years; // Destructuring
+    println!("{}", years_as_primitive_1);
+    println!("{}", years_as_primitive_2);
 }
 ```
+~~~
 
 ### See also:
 

@@ -1,8 +1,6 @@
-# Multiple bounds
+# Multiple trait bounds
 
-Multiple bounds for a single type can be applied with a `+`. Like normal, different types are
-separated with `,`.
-
+~~~admonish tip title="Multiple bounds for a single type can be applied with a *+*. Like normal, different types are separated with *,*." collapsible=true
 ```rust,editable
 use std::fmt::{Debug, Display};
 
@@ -28,10 +26,12 @@ fn main() {
     compare_types(&array, &vec);
 }
 ```
+~~~
 
 ### See also:
 
 [`std::fmt`][fmt] and [`trait`s][traits]
 
 [fmt]: ../hello/print.md
+
 [traits]: ../trait.md
