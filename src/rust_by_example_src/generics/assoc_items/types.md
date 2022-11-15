@@ -1,8 +1,9 @@
 # Associated types
 
-The use of "Associated types" improves the overall readability of code 
-by moving inner types locally into a trait as *output* types. Syntax
-for the `trait` definition is as follows:
+The use of "Associated types" improves the overall readability of code
+by moving inner types locally into a trait as *output* types.
+
+~~~admonish tip title="Syntax for the *trait* definition is as follows:" collapsible=true
 
 ```rust
 // `A` and `B` are defined in the trait via the `type` keyword.
@@ -16,9 +17,9 @@ trait Contains {
     fn contains(&self, _: &Self::A, _: &Self::B) -> bool;
 }
 ```
+~~~
 
-Note that functions that use the `trait` `Contains` are no longer required
-to express `A` or `B` at all:
+~~~admonish tip title="Note that functions that use the *trait* *Contains* are no longer required to express *A* or *B* at all:" collapsible=true
 
 ```rust,ignore
 // Without using associated types
@@ -28,9 +29,9 @@ fn difference<A, B, C>(container: &C) -> i32 where
 // Using associated types
 fn difference<C: Contains>(container: &C) -> i32 { ... }
 ```
+~~~
 
-Let's rewrite the example from the previous section using associated types:
-
+~~~admonish tip title="Let's rewrite the example from the [previous section](/rust_by_example_src/generics/assoc_items/the_problem.html) using associated types:" collapsible=true
 ```rust,editable
 struct Container(i32, i32);
 
@@ -45,7 +46,9 @@ trait Contains {
     fn first(&self) -> i32;
     fn last(&self) -> i32;
 }
-
+// the previous section:
+// impl Contains<i32, i32> for Container {
+// and here no need of `<i32, i32>`
 impl Contains for Container {
     // Specify what types `A` and `B` are. If the `input` type
     // is `Container(i32, i32)`, the `output` types are determined
@@ -83,3 +86,4 @@ fn main() {
     println!("The difference is: {}", difference(&container));
 }
 ```
+~~~

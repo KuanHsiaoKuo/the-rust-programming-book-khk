@@ -1,8 +1,6 @@
 # Testcase: unit clarification
 
-A useful method of unit conversions can be examined by implementing `Add`
-with a phantom type parameter. The `Add` `trait` is examined below:
-
+~~~admonish tip title="A useful method of unit conversions can be examined by implementing *Add* with a phantom type parameter. The *Add* *trait* is examined below:" collapsible=true
 ```rust,ignore
 // This construction would impose: `Self + RHS = Output`
 // where RHS defaults to Self if not specified in the implementation.
@@ -18,9 +16,9 @@ impl<U> Add for T<U> {
     ...
 }
 ```
+~~~
 
-The whole implementation:
-
+~~~admonish tip title="The whole implementation:" collapsible=true
 ```rust,editable
 use std::ops::Add;
 use std::marker::PhantomData;
@@ -71,6 +69,7 @@ fn main() {
     //let one_feter = one_foot + one_meter;
 }
 ```
+~~~
 
 ### See also:
 
@@ -78,11 +77,19 @@ fn main() {
 [Overloading], [ref], [Traits (`X for Y`)], and [TupleStructs].
 
 [Borrowing (`&`)]: ../../scope/borrow.md
+
 [Bounds (`X: Y`)]: ../../generics/bounds.md
+
 [enum]: ../../custom_types/enum.md
+
 [impl & self]: ../../fn/methods.md
+
 [Overloading]: ../../trait/ops.md
+
 [ref]: ../../scope/borrow/ref.md
+
 [Traits (`X for Y`)]: ../../trait.md
+
 [TupleStructs]: ../../custom_types/structs.md
+
 [std::marker::PhantomData]: https://doc.rust-lang.org/std/marker/struct.PhantomData.html

@@ -1,16 +1,14 @@
 # Phantom type parameters
 
-A phantom type parameter is one that doesn't show up at runtime,
-but is checked statically (and only) at compile time.
+> A phantom type parameter is one that doesn't show up at runtime,
+> but is checked statically (and only) at compile time.
 
-Data types can use extra generic type parameters to act as markers
-or to perform type checking at compile time. These extra parameters
-hold no storage values, and have no runtime behavior.
+Data types can use extra generic type parameters to **act as markers**
+or **to perform type checking** at compile time.
 
-In the following example, we combine [std::marker::PhantomData]
-with the phantom type parameter concept to create tuples containing
-different data types.
+> These extra parameters hold no storage values, and have no runtime behavior.
 
+~~~admonish tip title="In the following example, we combine [std::marker::PhantomData] with the phantom type parameter concept to create tuples containing different data types." collapsible=true
 ```rust,editable
 use std::marker::PhantomData;
 
@@ -52,12 +50,16 @@ fn main() {
     //           _struct1 == _struct2);
 }
 ```
+~~~
 
 ### See also:
 
 [Derive], [struct], and [TupleStructs]
 
 [Derive]: ../trait/derive.md
+
 [struct]: ../custom_types/structs.md
+
 [TupleStructs]: ../custom_types/structs.md
+
 [std::marker::PhantomData]: https://doc.rust-lang.org/std/marker/struct.PhantomData.html

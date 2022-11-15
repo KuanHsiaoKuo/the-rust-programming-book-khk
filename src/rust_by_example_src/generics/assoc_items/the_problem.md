@@ -1,17 +1,22 @@
 # The Problem
 
 A `trait` that is generic over its container type has type specification
-requirements - users of the `trait` *must* specify all of its generic types.
+requirements:
 
-In the example below, the `Contains` `trait` allows the use of the generic 
-types `A` and `B`. The trait is then implemented for the `Container` type, 
-specifying `i32` for `A` and `B` so that it can be used with `fn difference()`.
+> users of the `trait` *must* specify all of its generic types.
 
-Because `Contains` is generic, we are forced to explicitly state *all* of the 
-generic types for `fn difference()`. In practice, we want a way to express that 
-`A` and `B` are determined by the *input* `C`. As you will see in the next 
-section, associated types provide exactly that capability.
+In the example below:
 
+1. the `Contains` `trait` allows the use of the generic
+   types `A` and `B`.
+2. The trait is then implemented for the `Container` type,
+   specifying `i32` for `A` and `B` so that it can be used with `fn difference()`.
+3. Because `Contains` is generic, we are forced to explicitly state *all* of the
+   generic types for `fn difference()`.
+4. In practice, we want a way to express that
+   `A` and `B` are determined by the *input* `C`.
+
+~~~admonish tip title="5. As you will see in the next section, associated types provide exactly that capability." collapsible=true
 ```rust,editable
 struct Container(i32, i32);
 
@@ -58,10 +63,25 @@ fn main() {
     println!("The difference is: {}", difference(&container));
 }
 ```
+~~~
+
+### Expand
+
+~~~admonish tip title="The Executive Crate of Substrate" collapsible=true
+[link](https://github.com/paritytech/substrate/blob/master/frame/executive/src/lib.rs#L139-L141)
+```rust, ignore
+pub type CheckedOf<E, C> = <E as Checkable<C>>::Checked;
+pub type CallOf<E, C> = <CheckedOf<E, C> as Applyable>::Call;
+pub type OriginOf<E, C> = <CallOf<E, C> as Dispatchable>::RuntimeOrigin;
+...
+```
+~~~
 
 ### See also:
 
 [`struct`s][structs], and [`trait`s][traits]
 
 [structs]: ../../custom_types/structs.md
+
 [traits]: ../../trait.md
+
