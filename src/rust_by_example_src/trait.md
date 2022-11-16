@@ -1,13 +1,15 @@
-# Traits
+# Traits: methods + `Self` + access
 
-A `trait` is a collection of methods defined for an unknown type:
-`Self`. They can access other methods declared in the same trait.
+~~~admonish tip title="Four 'trait' point of a trait" collapsible=true
+A `trait` is:
 
-Traits can be implemented for any data type. In the example below,
-we define `Animal`, a group of methods. The `Animal` `trait` is 
-then implemented for the `Sheep` data type, allowing the use of 
-methods from `Animal` with a `Sheep`.
+- **a collection of methods**
+- defined for **an unknown type**:`Self`
+- They can access other methods declared in the same trait.
+- Traits can be implemented for any data type.
+~~~
 
+~~~admonish tip title="In the example below, we define *Animal*, a group of methods. The *Animal* *trait* is then implemented for the *Sheep* data type, allowing the use of methods from *Animal* with a *Sheep*." collapsible=true
 ```rust,editable
 struct Sheep { naked: bool, name: &'static str }
 
@@ -77,4 +79,43 @@ fn main() {
     dolly.shear();
     dolly.talk();
 }
+```
+~~~
+
+1. Differentiate between definition and implementation
+
+```rust, ignore
+trait Animal {
+    // Associated function signature; `Self` refers to the implementor type.
+    fn new(name: &'static str) -> Self;
+    }
+impl Animal for Sheep {
+    // `Self` is the implementor type: `Sheep`.
+    fn new(name: &'static str) -> Sheep {
+        Sheep { name: name, naked: false }
+    }
+}
+```
+
+2. Default trait methods can be overridden
+3. Type annotation is necessary here
+
+```shell
+   Compiling playground v0.0.1 (/playground)
+error[E0282]: type annotations needed
+  --> src/main.rs:62:9
+   |
+62 |     let mut dolly = Animal::new("Dolly");
+   |         ^^^^^^^^^
+...
+65 |     dolly.talk();
+   |     ----- type must be known at this point
+   |
+help: consider giving `dolly` an explicit type
+   |
+62 |     let mut dolly: _ = Animal::new("Dolly");
+   |                  +++
+
+For more information about this error, try `rustc --explain E0282`.
+error: could not compile `playground` due to previous error
 ```

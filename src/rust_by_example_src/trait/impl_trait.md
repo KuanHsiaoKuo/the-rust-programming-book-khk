@@ -1,16 +1,15 @@
 # `impl Trait`
 
-`impl Trait` can be used in two locations:
+> `impl Trait` can be used in two locations:
 
 1. as an argument type
 2. as a return type
 
 ## As an argument type
 
-If your function is generic over a trait but you don't mind the specific type, you can simplify the function declaration using `impl Trait` as the type of the argument.
+> If your function is **generic over a trait** but you **don't mind the specific type**, you can simplify the function declaration using `impl Trait` as the type of the argument.
 
-For example, consider the following code:
-
+~~~admonish tip title="For example, consider the following code:" collapsible=true 
 ```rust,editable
 fn parse_csv_document<R: std::io::BufRead>(src: R) -> std::io::Result<Vec<Vec<String>>> {
     src.lines()
@@ -26,10 +25,13 @@ fn parse_csv_document<R: std::io::BufRead>(src: R) -> std::io::Result<Vec<Vec<St
         .collect() // Collect all lines into a Vec<Vec<String>>
 }
 ```
+~~~
 
-`parse_csv_document` is generic, allowing it to take any type which implements BufRead, such as `BufReader<File>` or `[u8]`,
-but it's not important what type `R` is, and `R` is only used to declare the type of `src`, so the function can also be written as:
+1. `parse_csv_document` is generic
+2. allowing it to take any type which implements BufRead, such as `BufReader<File>` or `[u8]`
+3. but it's not important what type `R` is, and `R` is only used to declare the type of `src`
 
+~~~admonish tip title="4. so the function can also be written as:" collapsible=true 
 ```rust,editable
 fn parse_csv_document(src: impl std::io::BufRead) -> std::io::Result<Vec<Vec<String>>> {
     src.lines()
@@ -45,15 +47,20 @@ fn parse_csv_document(src: impl std::io::BufRead) -> std::io::Result<Vec<Vec<Str
         .collect() // Collect all lines into a Vec<Vec<String>>
 }
 ```
+~~~
 
-Note that using `impl Trait` as an argument type means that you cannot explicitly state what form of the function you use, i.e. `parse_csv_document::<std::io::Empty>(std::io::empty())` will not work with the second example.
+- Note that using `impl Trait` as an argument type
+- means that you cannot explicitly state what form of the function you use
+- i.e.`parse_csv_document::<std::io::Empty>(std::io::empty())` will not work with the second example.
 
+```rust,ignore
+fn parse_csv_document<R: std::io::BufRead>(src: R) -> std::io::Result<Vec<Vec<String>>> {
+fn parse_csv_document(src: impl std::io::BufRead) -> std::io::Result<Vec<Vec<String>>> {
+```
 
 ## As a return type
 
-If your function returns a type that implements `MyTrait`, you can write its
-return type as `-> impl MyTrait`. This can help simplify your type signatures quite a lot!
-
+~~~admonish tip title="If your function returns a type that implements *MyTrait*, you can write its return type as *-> impl MyTrait*. This can help simplify your type signatures quite a lot!" collapsible=true 
 ```rust,editable
 use std::iter;
 use std::vec::IntoIter;
@@ -88,12 +95,16 @@ fn main() {
     println!("all done");
 }
 ```
+~~~
 
-More importantly, some Rust types can't be written out. For example, every
-closure has its own unnamed concrete type. Before `impl Trait` syntax, you had
-to allocate on the heap in order to return a closure. But now you can do it all
-statically, like this:
+> More importantly, some Rust types can't be written out.
 
+For example, every closure has its own unnamed concrete type.
+
+Before `impl Trait` syntax, you had
+to allocate on the heap in order to return a closure.
+
+~~~admonish tip title="But now you can do it all statically, like this:" collapsible=true 
 ```rust,editable
 // Returns a function that adds `y` to its input
 fn make_adder_function(y: i32) -> impl Fn(i32) -> i32 {
@@ -106,12 +117,18 @@ fn main() {
     assert_eq!(plus_one(2), 3);
 }
 ```
+~~~
 
 You can also use `impl Trait` to return an iterator that uses `map` or `filter`
-closures! This makes using `map` and `filter` easier. Because closure types don't
-have names, you can't write out an explicit return type if your function returns
-iterators with closures. But with `impl Trait` you can do this easily:
+closures!
 
+This makes using `map` and `filter` easier:
+
+Because closure types don't
+have names, you can't write out an explicit return type if your function returns
+iterators with closures.
+
+~~~admonish tip title="But with *impl Trait* you can do this easily:" collapsible=true 
 ```rust,editable
 fn double_positives<'a>(numbers: &'a Vec<i32>) -> impl Iterator<Item = i32> + 'a {
     numbers
@@ -126,3 +143,4 @@ fn main() {
     assert_eq!(doubles.collect::<Vec<i32>>(), vec![4, 6]);
 }
 ```
+~~~

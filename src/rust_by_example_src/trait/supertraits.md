@@ -1,8 +1,6 @@
-# Supertraits
+# Supertraits: the `inheritance` in rust
 
-Rust doesn't have "inheritance", but you can define a trait as being a superset
-of another trait. For example:
-
+~~~admonish tip title="Rust doesn't have 'inheritance', but you can define a trait as being a superset of another trait. For example:" collapsible=true 
 ```rust,editable
 trait Person {
     fn name(&self) -> String;
@@ -36,6 +34,12 @@ fn comp_sci_student_greeting(student: &dyn CompSciStudent) -> String {
 
 fn main() {}
 ```
+~~~
+
+1. Person is a supertrait of Student.
+2. Implementing Student requires you to also impl Person.
+3. CompSciStudent (computer science student) is a subtrait of both Programmer and Student.
+4. Implementing CompSciStudent requires you to impl both supertraits.
 
 ### See also:
 

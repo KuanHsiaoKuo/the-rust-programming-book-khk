@@ -1,15 +1,16 @@
-# Iterators
+# Iterator Trait
 
 The [`Iterator`][iter] trait is used to implement iterators over collections
 such as arrays.
 
-The trait requires only a method to be defined for the `next` element,
-which may be manually defined in an `impl` block or automatically
-defined (as in arrays and ranges).
+> The trait requires only a method to be defined for the `next` element,
+> which may be manually defined in an `impl` block or automatically
+> defined (as in arrays and ranges).
 
 As a point of convenience for common situations, the `for` construct
 turns some collections into iterators using the [`.into_iter()`][intoiter] method.
 
+~~~admonish tip title="As a point of convenience for common situations, the *for* construct turns some collections into iterators using the [*.into_iter()*][intoiter] method." collapsible=true 
 ```rust,editable
 struct Fibonacci {
     curr: u32,
@@ -83,6 +84,34 @@ fn main() {
     }
 }
 ```
+~~~
+
+```rust, ignore
+// Implement `Iterator` for `Fibonacci`.
+// The `Iterator` trait only requires a method to be defined for the `next` element.
+impl Iterator for Fibonacci {
+    // We can refer to this type using Self::Item
+    type Item = u32;
+
+    // Here, we define the sequence using `.curr` and `.next`.
+    // The return type is `Option<T>`:
+    //     * When the `Iterator` is finished, `None` is returned.
+    //     * Otherwise, the next value is wrapped in `Some` and returned.
+    // We use Self::Item in the return type, so we can change
+    // the type without having to update the function signatures.
+    fn next(&mut self) -> Option<Self::Item> {
+        let current = self.curr;
+
+        self.curr = self.next;
+        self.next = current + self.next;
+
+        // Since there's no endpoint to a Fibonacci sequence, the `Iterator` 
+        // will never return `None`, and `Some` is always returned.
+        Some(current)
+    }
+}
+```
 
 [intoiter]: https://doc.rust-lang.org/std/iter/trait.IntoIterator.html
+
 [iter]: https://doc.rust-lang.org/core/iter/trait.Iterator.html
