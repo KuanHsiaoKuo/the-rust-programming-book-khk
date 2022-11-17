@@ -1,13 +1,18 @@
 # RAII
 
 Variables in Rust do more than just hold data in the stack: they also *own*
-resources, e.g. `Box<T>` owns memory in the heap. Rust enforces [RAII][raii]
+resources, e.g. `Box<T>` owns memory in the heap.
+
+> Rust enforces [RAII][raii]
 (Resource Acquisition Is Initialization), so whenever an object goes out of
-scope, its destructor is called and its owned resources are freed.
+> scope, its destructor is called and its owned resources are freed.
+
+## Destroyer
 
 This behavior shields against *resource leak* bugs, so you'll never have to
-manually free memory or worry about memory leaks again! Here's a quick showcase:
+manually free memory or worry about memory leaks again!
 
+~~~admonish tip title="Here's a quick showcase:" collapsible=true 
 ```rust,editable
 // raii.rs
 fn create_box() {
@@ -38,9 +43,9 @@ fn main() {
     // `_box2` is destroyed here, and memory gets freed
 }
 ```
+~~~
 
-Of course, we can double check for memory errors using [`valgrind`][valgrind]:
-
+~~~admonish tip title="Of course, we can double check for memory errors using [*valgrind*][valgrind]:" collapsible=true 
 ```shell
 $ rustc raii.rs && valgrind ./raii
 ==26873== Memcheck, a memory error detector
@@ -58,19 +63,22 @@ $ rustc raii.rs && valgrind ./raii
 ==26873== For counts of detected and suppressed errors, rerun with: -v
 ==26873== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)
 ```
+~~~
 
 No leaks here!
 
 ## Destructor
 
-The notion of a destructor in Rust is provided through the [`Drop`] trait. The
-destructor is called when the resource goes out of scope. This trait is not
-required to be implemented for every type, only implement it for your type if
-you require its own destructor logic.
+The notion of a destructor in Rust is provided through the [`Drop`] trait.
 
-Run the below example to see how the [`Drop`] trait works. When the variable in
-the `main` function goes out of scope the custom destructor will be invoked.
+- The destructor is called when the resource goes out of scope.
 
+- This trait is not required to be implemented for every type, only implement it for your type if
+  you require its own destructor logic.
+
+Run the below example to see how the [`Drop`] trait works.
+
+~~~admonish tip title="When the variable in the *main* function goes out of scope the custom destructor will be invoked." collapsible=true 
 ```rust,editable
 struct ToDrop;
 
@@ -85,12 +93,16 @@ fn main() {
     println!("Made a ToDrop!");
 }
 ```
+~~~
 
 ### See also:
 
 [Box][box]
 
 [raii]: https://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization
+
 [box]: ../std/box.md
+
 [valgrind]: http://valgrind.org/info/
+
 [`Drop`]: https://doc.rust-lang.org/std/ops/trait.Drop.html

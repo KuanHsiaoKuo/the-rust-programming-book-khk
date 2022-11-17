@@ -1,9 +1,9 @@
 # The ref pattern
 
 When doing pattern matching or destructuring via the `let` binding, the `ref`
-keyword can be used to take references to the fields of a struct/tuple. The 
-example below shows a few instances where this can be useful:
+keyword can be used to take references to the fields of a struct/tuple.
 
+~~~admonish tip title="The example below shows a few instances where this can be useful:" collapsible=true
 ```rust,editable
 #[derive(Clone, Copy)]
 struct Point { x: i32, y: i32 }
@@ -55,3 +55,7 @@ fn main() {
     println!("tuple is {:?}", mutable_tuple);
 }
 ```
+~~~
+
+1. A `ref` borrow on the left side of an assignment is equivalent to an `&` borrow on the right side.
+2. `ref` can be paired with `mut` to take mutable references.

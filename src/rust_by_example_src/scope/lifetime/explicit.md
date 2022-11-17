@@ -1,20 +1,24 @@
-# Explicit annotation
+# Explicit lifetime annotation: another Generic
+
+> Similar to [closures][anonymity], using lifetimes requires generics.
 
 The borrow checker uses explicit lifetime annotations to determine
-how long references should be valid. In cases where lifetimes are not
-elided[^1], Rust requires explicit annotations to determine what the 
-lifetime of a reference should be. The syntax for explicitly annotating 
-a lifetime uses an apostrophe character as follows: 
+how long references should be valid.
+
+> In cases where lifetimes are not elided[^1], Rust requires explicit annotations to determine what the
+> lifetime of a reference should be.
+
+The syntax for explicitly annotating
+a lifetime uses an apostrophe character as follows:
 
 ```rust,ignore
 foo<'a>
 // `foo` has a lifetime parameter `'a`
 ```
 
-Similar to [closures][anonymity], using lifetimes requires generics. 
-Additionally, this lifetime syntax indicates that the lifetime of `foo` 
-may not exceed that of `'a`. Explicit annotation of a type has the form 
-`&'a T` where `'a` has already been introduced.
+- Additionally, this lifetime syntax indicates that the lifetime of `foo`
+  may not exceed that of `'a`.
+- Explicit annotation of a type has the form `&'a T` where `'a` has already been introduced.
 
 In cases with multiple lifetimes, the syntax is similar:
 
@@ -23,10 +27,9 @@ foo<'a, 'b>
 // `foo` has lifetime parameters `'a` and `'b`
 ```
 
-In this case, the lifetime of `foo` cannot exceed that of either `'a` *or* `'b`.
+- In this case, the lifetime of `foo` cannot exceed that of either `'a` *or* `'b`.
 
-See the following example for explicit lifetime annotation in use:
-
+~~~admonish tip title="See the following example for explicit lifetime annotation in use:" collapsible=true 
 ```rust,editable,ignore,mdbook-runnable
 // `print_refs` takes two references to `i32` which have different
 // lifetimes `'a` and `'b`. These two lifetimes must both be at
@@ -62,6 +65,7 @@ fn main() {
     // Because the lifetime is never constrained, it defaults to `'static`.
 }
 ```
+~~~
 
 [^1]: [elision] implicitly annotates lifetimes and so is different.
 
@@ -70,6 +74,9 @@ fn main() {
 [generics][generics] and [closures][closures]
 
 [anonymity]: ../../fn/closures/anonymity.md
+
 [closures]: ../../fn/closures.md
+
 [elision]: elision.md
+
 [generics]: ../../generics.md

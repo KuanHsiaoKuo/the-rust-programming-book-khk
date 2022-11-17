@@ -1,15 +1,16 @@
-# Bounds
+# Lifetime Bounds for generics
 
 Just like generic types can be bounded, lifetimes (themselves generic)
-use bounds as well. The `:` character has a slightly different meaning here, 
-but `+` is the same. Note how the following read:
+use bounds as well.
+
+> The `:` character has a slightly different meaning here,
+> but `+` is the same. Note how the following read:
 
 1. `T: 'a`: *All* references in `T` must outlive lifetime `'a`.
 2. `T: Trait + 'a`: Type `T` must implement trait `Trait` and *all* references
-in `T` must outlive `'a`.
+   in `T` must outlive `'a`.
 
-The example below shows the above syntax in action used after keyword `where`:
-
+~~~admonish tip title="The example below shows the above syntax in action used after keyword *where*:" collapsible=true
 ```rust,editable
 use std::fmt::Debug; // Trait to bound with.
 
@@ -42,12 +43,15 @@ fn main() {
     print(ref_x);
 }
 ```
+~~~
 
 ### See also:
 
-[generics][generics], [bounds in generics][bounds], and 
+[generics][generics], [bounds in generics][bounds], and
 [multiple bounds in generics][multibounds]
 
 [generics]: ../../generics.md
+
 [bounds]: ../../generics/bounds.md
+
 [multibounds]: ../../generics/multi_bounds.md

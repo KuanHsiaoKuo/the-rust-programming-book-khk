@@ -1,6 +1,4 @@
-# Mutability
-
-Mutability of data can be changed when ownership is transferred.
+# Mutability of data can be changed when ownership is transferred.
 
 ```rust,editable
 fn main() {

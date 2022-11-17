@@ -1,8 +1,14 @@
 # Static
 
-Rust has a few reserved lifetime names. One of those is `'static`. You
-might encounter it in two situations:
+<!--ts-->
+<!--te-->
+Rust has a few reserved lifetime names.
 
+One of those is `'static`.
+
+## Two situations
+
+~~~admonish tip title="You might encounter it in two situations:" collapsible=true
 ```rust, editable
 // A reference with 'static lifetime:
 let s: &'static str = "hello world";
@@ -10,15 +16,19 @@ let s: &'static str = "hello world";
 // 'static as part of a trait bound:
 fn generic<T>(x: T) where T: 'static {}
 ```
+~~~
 
 Both are related but subtly different and this is a common source for
-confusion when learning Rust. Here are some examples for each situation:
+confusion when learning Rust.
 
-## Reference lifetime
+## some examples for each situation:
+
+### Reference lifetime
 
 As a reference lifetime `'static` indicates that the data pointed to by
 the reference lives for the entire lifetime of the running program.
-It can still be coerced to a shorter lifetime.
+
+> It can still be coerced to a shorter lifetime.
 
 There are two ways to make a variable with `'static` lifetime, and both
 are stored in the read-only memory of the binary:
@@ -26,8 +36,7 @@ are stored in the read-only memory of the binary:
 * Make a constant with the `static` declaration.
 * Make a `string` literal which has type: `&'static str`.
 
-See the following example for a display of each method:
-
+~~~admonish tip title="See the following example for a display of each method:" collapsible=true
 ```rust,editable
 // Make a constant with `'static` lifetime.
 static NUM: i32 = 18;
@@ -61,17 +70,19 @@ fn main() {
     println!("NUM: {} stays accessible!", NUM);
 }
 ```
+~~~
 
-## Trait bound
+1. When `static_string` goes out of scope, the reference can no longer be used, but the data remains in the binary.
+
+### Trait bound
 
 As a trait bound, it means the type does not contain any non-static
-references. Eg. the receiver can hold on to the type for as long as
+references.
+
+Eg. the receiver can hold on to the type for as long as
 they want and it will never become invalid until they drop it.
 
-It's important to understand this means that any owned data always passes
-a `'static` lifetime bound, but a reference to that owned data generally
-does not:
-
+~~~admonish tip title="It's important to understand this means that any owned data always passes a *'static* lifetime bound, but a reference to that owned data generally does not:" collapsible=true
 ```rust,editable,compile_fail
 use std::fmt::Debug;
 
@@ -89,7 +100,10 @@ fn main() {
     print_it(&i);
 }
 ```
+~~~
+
 The compiler will tell you:
+
 ```ignore
 error[E0597]: `i` does not live long enough
   --> src/lib.rs:15:15

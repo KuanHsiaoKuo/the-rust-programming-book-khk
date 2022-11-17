@@ -1,13 +1,14 @@
-# Borrowing
+# Borrowing: `T` is Ownership, `&T` is borrowing
 
-Most of the time, we'd like to access data without taking ownership over
-it. To accomplish this, Rust uses a *borrowing* mechanism. Instead of
-passing objects by value (`T`), objects can be passed by reference (`&T`).
+> Most of the time, we'd like to access data without taking ownership over it.
 
-The compiler statically guarantees (via its borrow checker) that references 
-*always* point to valid objects. That is, while references to an object
-exist, the object cannot be destroyed.
+- To accomplish this, Rust uses a *borrowing* mechanism.
+- Instead of passing objects by value (`T`), objects can be passed by reference (`&T`).
 
+The compiler statically guarantees (via its borrow checker) that references
+*always* point to valid objects.
+
+~~~admonish tip title="That is, while references to an object exist, the object cannot be destroyed." collapsible=true 
 ```rust,editable,ignore,mdbook-runnable
 // This function takes ownership of a box and destroys it
 fn eat_box_i32(boxed_i32: Box<i32>) {
@@ -24,8 +25,8 @@ fn main() {
     let boxed_i32 = Box::new(5_i32);
     let stacked_i32 = 6_i32;
 
-    // Borrow the contents of the box. Ownership is not taken,
-    // so the contents can be borrowed again.
+    // Borrow the contents of the box. 
+    // Ownership is not taken, so the contents can be borrowed again.
     borrow_i32(&boxed_i32);
     borrow_i32(&stacked_i32);
 
@@ -47,3 +48,4 @@ fn main() {
     eat_box_i32(boxed_i32);
 }
 ```
+~~~
