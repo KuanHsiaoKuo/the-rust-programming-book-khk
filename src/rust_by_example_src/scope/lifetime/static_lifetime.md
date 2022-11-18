@@ -9,7 +9,7 @@
       * [See also:](#see-also)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Nov 17 15:27:04 UTC 2022 -->
+<!-- Added by: runner, at: Fri Nov 18 15:58:23 UTC 2022 -->
 
 <!--te-->
 Rust has a few reserved lifetime names.
