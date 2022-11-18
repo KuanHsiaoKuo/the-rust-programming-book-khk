@@ -1,9 +1,10 @@
-# Unpacking options with `?`
+# Unpacking options with `?` to return the underlying `some` value or terminate
 
-You can unpack `Option`s by using `match` statements, but it's often easier to
-use the `?` operator. If `x` is an `Option`, then evaluating `x?` will return
-the underlying value if `x` is `Some`, otherwise it will terminate whatever
-function is being executed and return `None`.
+> You can unpack `Option`s by using `match` statements, but it's often easier to
+> use the `?` operator:
+
+- If `x` is an `Option`, then evaluating `x?` will return the underlying value if `x` is `Some`
+- otherwise it will terminate whatever function is being executed and return `None`.
 
 ```rust,editable
 fn next_birthday(current_age: Option<u8>) -> Option<String> {
@@ -14,7 +15,10 @@ fn next_birthday(current_age: Option<u8>) -> Option<String> {
 }
 ```
 
-You can chain many `?`s together to make your code much more readable.
+1. If `current_age` is `None`, this returns `None`.
+2. If `current_age` is `Some`, the inner `u8` gets assigned to `next_age`
+
+~~~admonish tip title="You can chain many *?*s together to make your code much more readable." collapsible=true
 
 ```rust,editable
 struct Person {
@@ -56,3 +60,5 @@ fn main() {
     assert_eq!(p.work_phone_area_code(), Some(61));
 }
 ```
+
+~~~

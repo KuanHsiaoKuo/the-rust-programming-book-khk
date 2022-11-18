@@ -1,12 +1,15 @@
-# Unpacking options and defaults
+# Unpacking options and defaults: `or()`, `or_else()`, `get_or_insert()`, `get_or_insert_with()`
 
-There is more than one way to unpack an `Option` and fall back on a default if it is `None`. To choose the one that meets our needs, we need to consider the following:
+There is more than one way to unpack an `Option` and fall back on a default if it is `None`.
+
+> To choose the one that meets our needs, we need to consider the following:
+
 * do we need eager or lazy evaluation?
 * do we need to keep the original empty value intact, or modify it in place?
 
-##  `or()` is chainable, evaluates eagerly, keeps empty value intact
+## `or()` is chainable, evaluates eagerly, keeps empty value intact
 
-`or()`is chainable and eagerly evaluates its argument, as is shown in the following example. Note that because `or`'s arguments are evaluated eagerly, the variable passed to `or` is moved.
+~~~admonish tip title=" *or()* is chainable and eagerly evaluates its argument, as is shown in the following example. " collapsible=true
 
 ```rust,editable
 #[derive(Debug)] 
@@ -28,11 +31,13 @@ fn main() {
     // TODO: uncomment the line above to see the compiler error
  }
 ```
+~~~
 
-##  `or_else()` is chainable, evaluates lazily, keeps empty value intact
+Note that because `or`'s arguments are evaluated eagerly, the variable passed to `or` is moved.
 
-Another alternative is to use `or_else`, which is also chainable, and evaluates lazily, as is shown in the following example:
+## `or_else()` is chainable, evaluates lazily, keeps empty value intact
 
+~~~admonish tip title="Another alternative is to use *or_else*, which is also chainable, and evaluates lazily, as is shown in the following example:" collapsible=true
 ```rust,editable
 #[derive(Debug)] 
 enum Fruit { Apple, Orange, Banana, Kiwi, Lemon }
@@ -57,11 +62,11 @@ fn main() {
     // first_available_fruit: Some(Kiwi)
 }
 ```
+~~~
 
-##  `get_or_insert()` evaluates eagerly, modifies empty value in place
+## `get_or_insert()` evaluates eagerly, modifies empty value in place
 
-To make sure that an `Option` contains a value, we can use `get_or_insert` to modify it in place with a fallback value, as is shown in the following example. Note that `get_or_insert` eagerly evaluates its parameter, so variable `apple` is moved:
-
+~~~admonish tip title="To make sure that an *Option* contains a value, we can use *get_or_insert* to **modify it in place** with a fallback value, as is shown in the following example. " collapsible=true
 ```rust,editable
 #[derive(Debug)] 
 enum Fruit { Apple, Orange, Banana, Kiwi, Lemon }
@@ -78,10 +83,13 @@ fn main() {
     // TODO: uncomment the line above to see the compiler error
 }
 ```
+~~~
 
-##  `get_or_insert_with()` evaluates lazily, modifies empty value in place
+> Note that `get_or_insert` eagerly evaluates its parameter, so variable `apple` is moved:
 
-Instead of explicitly providing a value to fall back on, we can pass a closure to `get_or_insert_with`, as follows:
+## `get_or_insert_with()` evaluates lazily, modifies empty value in place
+
+~~~admonish tip title="Instead of explicitly providing a value to fall back on, we can pass a closure to *get_or_insert_with*, as follows:" collapsible=true
 ```rust,editable
 #[derive(Debug)] 
 enum Fruit { Apple, Orange, Banana, Kiwi, Lemon }
@@ -110,14 +118,20 @@ fn main() {
     // my_apple is unchanged: Some(Apple)
 }
 ```
+~~~
 
-### See also:
+## See also:
 
 [`closures`][closures], [`get_or_insert`][get_or_insert], [`get_or_insert_with`][get_or_insert_with], ,[`moved variables`][moved], [`or`][or], [`or_else`][or_else]
 
 [closures]: https://doc.rust-lang.org/book/ch13-01-closures.html
+
 [get_or_insert]: https://doc.rust-lang.org/core/option/enum.Option.html#method.get_or_insert
+
 [get_or_insert_with]: https://doc.rust-lang.org/core/option/enum.Option.html#method.get_or_insert_with
+
 [moved]: https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html
+
 [or]: https://doc.rust-lang.org/core/option/enum.Option.html#method.or
+
 [or_else]: https://doc.rust-lang.org/core/option/enum.Option.html#method.or_else

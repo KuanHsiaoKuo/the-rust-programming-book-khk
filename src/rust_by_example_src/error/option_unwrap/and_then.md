@@ -1,17 +1,19 @@
 # Combinators: `and_then`
 
-`map()` was described as a chainable way to simplify `match` statements. 
-However, using `map()` on a function that returns an `Option<T>` results 
-in the nested `Option<Option<T>>`. Chaining multiple calls together can 
-then become confusing. That's where another combinator called `and_then()`, 
-known in some languages as flatmap, comes in.
+`map()` was described as a chainable way to simplify `match` statements.
+However, using `map()` on a function that returns an `Option<T>` results
+in the nested `Option<Option<T>>`.
 
-`and_then()` calls its function input with the wrapped value and returns the result. If the `Option` is `None`, then it returns `None` instead.
+> Chaining multiple calls together can then become confusing.
+> That's where another combinator called `and_then()`, known in some languages as flatmap, comes in.
 
-In the following example, `cookable_v2()` results in an `Option<Food>`. 
-Using `map()` instead of `and_then()` would have given an 
-`Option<Option<Food>>`, which is an invalid type for `eat()`.
+`and_then()` calls its function input with the wrapped value and returns the result:
 
+- If the `Option` is `None`, then it returns `None` instead.
+
+In the following example, `cookable_v2()` results in an `Option<Food>`.
+
+~~~admonish tip title="Using *map()* instead of *and_then()* would have given an *Option<Option<Food>>*, which is an invalid type for *eat()*." collapsible=true
 ```rust,editable
 #![allow(dead_code)]
 
@@ -66,11 +68,32 @@ fn main() {
     eat(sushi, Day::Wednesday);
 }
 ```
+~~~
+
+> a chain of `match`es can conveniently be rewritten more compactly with `and_then()`
+
+```rust, ignore
+fn cookable_v1(food: Food) -> Option<Food> {
+    match have_recipe(food) {
+        None       => None,
+        Some(food) => match have_ingredients(food) {
+            None       => None,
+            Some(food) => Some(food),
+        },
+    }
+}
+
+fn cookable_v2(food: Food) -> Option<Food> {
+    have_recipe(food).and_then(have_ingredients)
+}
+```
 
 ### See also:
 
 [closures][closures], [`Option`][option], and [`Option::and_then()`][and_then]
 
 [closures]: ../../fn/closures.md
+
 [option]: https://doc.rust-lang.org/std/option/enum.Option.html
+
 [and_then]: https://doc.rust-lang.org/std/option/enum.Option.html#method.and_then

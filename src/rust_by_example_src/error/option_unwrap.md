@@ -1,28 +1,35 @@
 # `Option` & `unwrap`
 
-In the last example, we showed that we can induce program failure at will.
+In the last example, we showed that we can induce program failure at will:
+
 We told our program to `panic` if we drink a sugary lemonade.
-But what if we expect _some_ drink but don't receive one?
+
+> But what if we expect _some_ drink but don't receive one?
+
 That case would be just as bad, so it needs to be handled!
 
 We *could* test this against the null string (`""`) as we do with a lemonade.
+
 Since we're using Rust, let's instead have the compiler point out cases
 where there's no drink.
 
-An `enum` called `Option<T>` in the `std` library is used when absence is a
-possibility. It manifests itself as one of two "options":
+> An `enum` called `Option<T>` in the `std` library is used when absence is a
+> possibility.
+
+It manifests itself as one of two "options":
 
 * `Some(T)`: An element of type `T` was found
 * `None`: No element was found
 
-These cases can either be explicitly handled via `match` or implicitly with
-`unwrap`. Implicit handling will either return the inner element or `panic`.
+> These cases can either be explicitly handled via `match` or implicitly with
+`unwrap`.
+> Implicit handling will either return the inner element or `panic`.
 
 Note that it's possible to manually customize `panic` with [expect][expect],
 but `unwrap` otherwise leaves us with a less meaningful output than explicit
-handling. In the following example, explicit handling yields a more
-controlled result while retaining the option to `panic` if desired.
+handling.
 
+~~~admonish tip title="In the following example, explicit handling yields a more controlled result while retaining the option to *panic* if desired." collapsible=true 
 ```rust,editable,ignore,mdbook-runnable
 // The adult has seen it all, and can handle any drink well.
 // All drinks are handled explicitly using `match`.
@@ -61,5 +68,8 @@ fn main() {
     drink(nothing);
 }
 ```
+~~~
+
+1. `unwrap` returns a `panic` when it receives a `None`.
 
 [expect]: https://doc.rust-lang.org/std/option/enum.Option.html#method.expect
