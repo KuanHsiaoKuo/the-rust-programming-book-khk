@@ -1,9 +1,11 @@
 # Defining an error type
 
 Sometimes it simplifies the code to mask all of the different errors with a
-single type of error.  We'll show this with a custom error.
+single type of error.
 
-Rust allows us to define our own error types. In general, a "good" error type:
+
+
+> Rust allows us to define our own error types. In general, a "good" error type:
 
 * Represents different errors with the same type
 * Presents nice error messages to the user
@@ -15,6 +17,7 @@ Rust allows us to define our own error types. In general, a "good" error type:
     - Bad: `Err("+ cannot be used here".to_owned())`
 * Composes well with other errors
 
+~~~admonish tip title="> We'll show this with a custom error." collapsible=true
 ```rust,editable
 use std::fmt;
 
@@ -66,3 +69,4 @@ fn main() {
     print(double_first(strings));
 }
 ```
+~~~

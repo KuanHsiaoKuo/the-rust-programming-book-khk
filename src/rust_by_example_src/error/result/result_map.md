@@ -1,17 +1,18 @@
-# `map` for `Result`
+# `map` for `Result`: catch explicit Exception and Continue
 
 Panicking in the previous example's `multiply` does not make for robust code.
-Generally, we want to return the error to the caller so it can decide what is
-the right way to respond to errors.
 
-We first need to know what kind of error type we are dealing with. To determine
-the `Err` type, we look to [`parse()`][parse], which is implemented with the
-[`FromStr`][from_str] trait for [`i32`][i32]. As a result, the `Err` type is
-specified as [`ParseIntError`][parse_int_error].
+> Generally, we want to return the error to the caller so it can decide what is
+> the right way to respond to errors.
 
-In the example below, the straightforward `match` statement leads to code
-that is overall more cumbersome.
+- This just like the explicit exception caught in Python: except <Specific Exception> ...
 
+- We first need to know what kind of error type we are dealing with.
+- To determine the `Err` type, we look to [`parse()`][parse], which is implemented with the
+  [`FromStr`][from_str] trait for [`i32`][i32].
+- As a result, the `Err` type is specified as [`ParseIntError`][parse_int_error].
+
+~~~admonish tip title="In the example below, the straightforward *match* statement leads to code that is overall more cumbersome." collapsible=true
 ```rust,editable
 use std::num::ParseIntError;
 
@@ -47,10 +48,11 @@ fn main() {
     print(tt);
 }
 ```
+~~~
 
-Luckily, `Option`'s `map`, `and_then`, and many other combinators are also
-implemented for `Result`. [`Result`][result] contains a complete listing.
+1. With the return type rewritten, we use pattern matching without `unwrap()`.
 
+~~~admonish tip title="Luckily, *Option*'s *map*, *and_then*, and many other combinators are also implemented for *Result*. [*Result*][result] contains a complete listing." collapsible=true
 ```rust,editable
 use std::num::ParseIntError;
 
@@ -80,9 +82,14 @@ fn main() {
     print(tt);
 }
 ```
+~~~
 
 [parse]: https://doc.rust-lang.org/std/primitive.str.html#method.parse
+
 [from_str]: https://doc.rust-lang.org/std/str/trait.FromStr.html
+
 [i32]: https://doc.rust-lang.org/std/primitive.i32.html
+
 [parse_int_error]: https://doc.rust-lang.org/std/num/struct.ParseIntError.html
+
 [result]: https://doc.rust-lang.org/std/result/enum.Result.html

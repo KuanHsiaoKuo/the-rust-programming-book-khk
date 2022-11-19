@@ -10,18 +10,16 @@ error:
 ```
 
 Since this is a simple and common operation, it would be convenient if it
-could be elided. Alas, because `and_then` is not sufficiently flexible, it
-cannot. However, we can instead use `?`.
+could be elided.
 
-`?` was previously explained as either `unwrap` or `return Err(err)`.
-This is only mostly true. It actually means `unwrap` or
-`return Err(From::from(err))`. Since `From::from` is a conversion utility
-between different types, this means that if you `?` where the error is
-convertible to the return type, it will convert automatically.
+> Alas, because `and_then` is not sufficiently flexible, it
+> cannot. However, we can instead use `?`.
 
-Here, we rewrite the previous example using `?`. As a result, the
-`map_err` will go away when `From::from` is implemented for our error type:
+1. `?` was previously explained as either `unwrap` or `return Err(err)`. This is only mostly true.
+2. It actually means `unwrap` or `return Err(From::from(err))`.
+3. Since `From::from` is a conversion utility between different types, this means that if you `?` where the error is convertible to the return type, it will convert automatically.
 
+~~~admonish tip title="Here, we rewrite the previous example using *?*. As a result, the *map_err* will go away when *From::from* is implemented for our error type:" collapsible=true
 ```rust,editable
 use std::error;
 use std::fmt;
@@ -65,15 +63,18 @@ fn main() {
     print(double_first(strings));
 }
 ```
+~~~
 
-This is actually fairly clean now. Compared with the original `panic`, it
-is very similar to replacing the `unwrap` calls with `?` except that the
-return types are `Result`. As a result, they must be destructured at the
-top level.
+This is actually fairly clean now:
+
+1. Compared with the original `panic`, it is very similar to replacing the `unwrap` calls with `?` except that the
+   return types are `Result`.
+2. As a result, they must be destructured at the top level.
 
 ### See also:
 
 [`From::from`][from] and [`?`][q_mark]
 
 [from]: https://doc.rust-lang.org/std/convert/trait.From.html
+
 [q_mark]: https://doc.rust-lang.org/reference/expressions/operator-expr.html#the-question-mark-operator

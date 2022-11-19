@@ -1,13 +1,12 @@
 # `Box`ing errors
 
-A way to write simple code while preserving the original errors is to [`Box`][box]
-them.  The drawback is that the underlying error type is only known at runtime and not
+A way to write simple code while `preserving the original errors` is to [`Box`][box]
+them.
+
+> The drawback is that the underlying error type is only known at runtime and not
 [statically determined][dynamic_dispatch].
 
-The stdlib helps in boxing our errors by having `Box` implement conversion from
-any type that implements the `Error` trait into the trait object `Box<Error>`,
-via [`From`][from].
-
+~~~admonish tip title="The stdlib helps in boxing our errors by having *Box* implement conversion from any type that implements the *Error* trait into the trait object *Box<Error>*, via [*From*][from]." collapsible=true
 ```rust,editable
 use std::error;
 use std::fmt;
@@ -53,12 +52,16 @@ fn main() {
     print(double_first(strings));
 }
 ```
+~~~
 
 ### See also:
 
 [Dynamic dispatch][dynamic_dispatch] and [`Error` trait][error]
 
 [box]: https://doc.rust-lang.org/std/boxed/struct.Box.html
+
 [dynamic_dispatch]: https://doc.rust-lang.org/book/ch17-02-trait-objects.html#trait-objects-perform-dynamic-dispatch
+
 [error]: https://doc.rust-lang.org/std/error/trait.Error.html
+
 [from]: https://doc.rust-lang.org/std/convert/trait.From.html

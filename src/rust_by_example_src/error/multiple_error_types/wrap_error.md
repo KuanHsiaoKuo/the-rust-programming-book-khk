@@ -1,7 +1,6 @@
 # Wrapping errors
 
-An alternative to boxing errors is to wrap them in your own error type.
-
+~~~admonish tip title="An alternative to boxing errors is to wrap them in your own error type." collapsible=true
 ```rust,editable
 use std::error;
 use std::error::Error;
@@ -83,6 +82,7 @@ fn main() {
     print(double_first(strings));
 }
 ```
+~~~
 
 This adds a bit more boilerplate for handling errors and might not be needed in
 all applications. There are some libraries that can take care of the boilerplate
@@ -93,4 +93,5 @@ for you.
 [`From::from`][from] and [`Enums`][enums]
 
 [from]: https://doc.rust-lang.org/std/convert/trait.From.html
+
 [enums]: ../../custom_types/enum.md

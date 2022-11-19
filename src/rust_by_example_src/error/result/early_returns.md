@@ -1,13 +1,15 @@
-# Early returns
+# Early returns: Catch Exception and raise
 
-In the previous example, we explicitly handled the errors using combinators.
-Another way to deal with this case analysis is to use a combination of
+1. In the previous example, we explicitly handled the errors using combinators. 
+2. Another way to deal with this case analysis is to use a combination of
 `match` statements and *early returns*.
 
-That is, we can simply stop executing the function and return the error if
-one occurs. For some, this form of code can be easier to both read and
-write. Consider this version of the previous example, rewritten using early returns:
+> That is, we can simply stop executing the function and return the error if
+one occurs. 
 
+For some, this form of code can be easier to both read and
+write. 
+~~~admonish tip title="Consider this version of the previous example, rewritten using early returns:" collapsible=tru
 ```rust,editable
 use std::num::ParseIntError;
 
@@ -37,9 +39,11 @@ fn main() {
     print(multiply("t", "2"));
 }
 ```
+~~~
 
-At this point, we've learned to explicitly handle errors using combinators
-and early returns. While we generally want to avoid panicking, explicitly
+- At this point, we've learned to explicitly handle errors using combinators
+and early returns. 
+- While we generally want to avoid panicking, explicitly
 handling all of our errors is cumbersome.
 
 In the next section, we'll introduce `?` for the cases where we simply

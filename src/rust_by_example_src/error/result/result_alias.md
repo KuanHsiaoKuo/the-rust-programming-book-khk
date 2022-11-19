@@ -1,16 +1,17 @@
-# aliases for `Result`
+# aliases for `Result`: Custome Exception
 
 How about when we want to reuse a specific `Result` type many times?
-Recall that Rust allows us to create [aliases][typealias]. Conveniently,
-we can define one for the specific `Result` in question.
 
-At a module level, creating aliases can be particularly helpful. Errors
-found in a specific module often have the same `Err` type, so a single alias
-can succinctly define *all* associated `Results`. This is so useful that the
-`std` library even supplies one: [`io::Result`][io_result]!
+> Recall that Rust allows us to create [aliases][typealias]. Conveniently,
+> we can define one for the specific `Result` in question.
 
-Here's a quick example to show off the syntax:
+At a module level, creating aliases can be particularly helpful:
 
+- Errors found in a specific module often have the same `Err` type, so a single alias
+  can succinctly define *all* associated `Results`.
+- This is so useful that the `std` library even supplies one: [`io::Result`][io_result]!
+
+~~~admonish tip title="Here's a quick example to show off the syntax:" collapsible=true
 ```rust,editable
 use std::num::ParseIntError;
 
@@ -37,10 +38,16 @@ fn main() {
     print(multiply("t", "2"));
 }
 ```
+~~~
+
+1. Define a generic alias for a `Result` with the error type `ParseIntError`.
+2. Use the above alias to refer to our specific `Result` type.
+3. Here, the alias again allows us to save some space.
 
 ### See also:
 
 [`io::Result`][io_result]
 
 [typealias]: ../../types/alias.md
+
 [io_result]: https://doc.rust-lang.org/std/io/type.Result.html
