@@ -10,7 +10,7 @@
    * [Using the Newtype Pattern to Implement External Traits on External Types](#using-the-newtype-pattern-to-implement-external-traits-on-external-types)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Nov 19 06:03:04 UTC 2022 -->
+<!-- Added by: runner, at: Sun Nov 20 14:36:47 UTC 2022 -->
 
 <!--te-->
 
