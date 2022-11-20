@@ -1,31 +1,31 @@
-# Alternate/custom key types
+# Alternate/custom key types: implements the `Eq` and `Hash` traits
 
-Any type that implements the `Eq` and `Hash` traits can be a key in `HashMap`. 
-This includes:
+Any type that implements the `Eq` and `Hash` traits can be a key in `HashMap`.
+
+> This includes: like IntEnum\StrEnum in Python
 
 * `bool` (though not very useful since there is only two possible keys)
 * `int`, `uint`, and all variations thereof
 * `String` and `&str` (protip: you can have a `HashMap` keyed by `String`
-and call `.get()` with an `&str`)
+  and call `.get()` with an `&str`)
 
-Note that `f32` and `f64` do *not* implement `Hash`,
-likely because [floating-point precision errors][floating]
-would make using them as hashmap keys horribly error-prone.
+> Note that `f32` and `f64` do *not* implement `Hash`,
+> likely because [floating-point precision errors][floating]
+> would make using them as hashmap keys horribly error-prone.
 
-All collection classes implement `Eq` and `Hash` 
-if their contained type also respectively implements `Eq` and `Hash`. 
-For example, `Vec<T>` will implement `Hash` if `T` implements `Hash`.
+All collection classes implement `Eq` and `Hash`
+if their contained type also respectively implements `Eq` and `Hash`.
 
-You can easily implement `Eq` and `Hash` for a custom type with just one line: 
+> For example, `Vec<T>` will implement `Hash` if `T` implements `Hash`.
+
+> You can easily implement `Eq` and `Hash` for a custom type with just one line:
 `#[derive(PartialEq, Eq, Hash)]`
 
-The compiler will do the rest. If you want more control over the details, 
-you can implement `Eq` and/or `Hash` yourself. 
-This guide will not cover the specifics of implementing `Hash`. 
+- The compiler will do the rest.
+- If you want more control over the details, you can implement `Eq` and/or `Hash` yourself.
+- This guide will not cover the specifics of implementing `Hash`.
 
-To play around with using a `struct` in `HashMap`, 
-let's try making a very simple user logon system:
-
+~~~admonish tip title="To play around with using a *struct* in *HashMap*, let's try making a very simple user logon system:" collapsible=true
 ```rust,editable
 use std::collections::HashMap;
 
@@ -84,6 +84,10 @@ fn main(){
     try_logon(&accounts, "j.everyman", "password123");
 }
 ```
+~~~
+
+1. Eq requires that you derive PartialEq on the type.
 
 [hash]: https://en.wikipedia.org/wiki/Hash_function
+
 [floating]: https://en.wikipedia.org/wiki/Floating_point#Accuracy_problems

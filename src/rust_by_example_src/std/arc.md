@@ -1,11 +1,16 @@
-# Arc
+# Arc: shared ownership between threads
 
 When shared ownership between threads is needed, `Arc`(Atomically Reference
-Counted) can be used. This struct, via the `Clone` implementation can create
-a reference pointer for the location of a value in the memory heap while
-increasing the reference counter. As it shares ownership between threads, when
-the last reference pointer to a value is out of scope, the variable is dropped.
+Counted) can be used.
 
+This struct, via the `Clone` implementation can create
+a reference pointer for the location of a value in the memory heap while
+increasing the reference counter.
+
+> As it shares ownership between threads, when
+> the last reference pointer to a value is out of scope, the variable is dropped.
+
+~~~admonish tip title="Shared ownership between threads example" collapsible=true
 ```rust,editable
 use std::time::Duration;
 use std::sync::Arc;
@@ -31,3 +36,4 @@ fn main() {
     thread::sleep(Duration::from_secs(1));
 }
 ```
+~~~

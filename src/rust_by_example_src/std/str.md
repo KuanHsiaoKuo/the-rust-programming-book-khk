@@ -1,14 +1,21 @@
-# Strings
+# Strings: String and &str
 
-There are two types of strings in Rust: `String` and `&str`.
+## String and &str
 
-A `String` is stored as a vector of bytes (`Vec<u8>`), but guaranteed to
-always be a valid UTF-8 sequence. `String` is heap allocated, growable and not
-null terminated.
+> There are two types of strings in Rust: `String` and `&str`.
 
-`&str` is a slice (`&[u8]`) that always points to a valid UTF-8 sequence, and
-can be used to view into a `String`, just like `&[T]` is a view into `Vec<T>`.
+1. String:
 
+- A `String` is stored as **a vector of bytes** (`Vec<u8>`)
+- but guaranteed to always be a valid UTF-8 sequence.
+- `String` is heap allocated, growable and not null terminated.
+
+2. &str:
+
+- `&str` is a slice (`&[u8]`) that always points to a valid UTF-8 sequence,
+- and can be used to view into a `String`, just like `&[T]` is a view into `Vec<T>`.
+
+~~~admonish tip title="String and &str usages" collapsible=true
 ```rust,editable
 fn main() {
     // (all the type annotations are superfluous)
@@ -51,6 +58,9 @@ fn main() {
     println!("Bob says: {}", bob);
 }
 ```
+~~~
+
+1. &'static str: A reference to a string allocated in read only memory
 
 More `str`/`String` methods can be found under the
 [std::str][str] and
@@ -60,17 +70,25 @@ modules
 ## Literals and escapes
 
 There are multiple ways to write string literals with special characters in them.
+
 All result in a similar `&str` so it's best to use the form that is the most
-convenient to write. Similarly there are multiple ways to write byte string literals,
+convenient to write.
+
+Similarly there are multiple ways to write byte string literals,
 which all result in `&[u8; N]`.
 
+### backslash to escape
+
 Generally special characters are escaped with a backslash character: `\`.
+
 This way you can add any character to your string, even unprintable ones
-and ones that you don't know how to type. If you want a literal backslash,
-escape it with another one: `\\`
+and ones that you don't know how to type.
+
+If you want a literal backslash, escape it with another one: `\\`
 
 String or character literal delimiters occurring within a literal must be escaped: `"\""`, `'\''`.
 
+~~~admonish tip title="escaped characters example" collapsible=true
 ```rust,editable
 fn main() {
     // You can use escapes to write bytes by their hexadecimal values...
@@ -92,10 +110,14 @@ fn main() {
     println!("{}", long_string);
 }
 ```
+~~~
+
+### raw string
 
 Sometimes there are just too many characters that need to be escaped or it's just
-much more convenient to write a string out as-is. This is where raw string literals come into play.
+much more convenient to write a string out as-is.
 
+~~~admonish tip title="This is where raw string literals come into play." collapsible=true
 ```rust, editable
 fn main() {
     let raw_str = r"Escapes don't work here: \x3F \u{211D}";
@@ -111,10 +133,14 @@ fn main() {
     println!("{}", longer_delimiter);
 }
 ```
+~~~
+
+### Byte strings
 
 Want a string that's not UTF-8? (Remember, `str` and `String` must be valid UTF-8).
-Or maybe you want an array of bytes that's mostly text? Byte strings to the rescue!
+Or maybe you want an array of bytes that's mostly text?
 
+~~~admonish tip title="Byte strings to the rescue!" collapsible=true
 ```rust, editable
 use std::str;
 
@@ -154,6 +180,9 @@ fn main() {
     };
 }
 ```
+~~~
+
+### More
 
 For conversions between character encodings check out the [encoding][encoding-crate] crate.
 
@@ -161,6 +190,9 @@ A more detailed listing of the ways to write string literals and escape characte
 is given in the ['Tokens' chapter][tokens] of the Rust Reference.
 
 [str]: https://doc.rust-lang.org/std/str/
+
 [string]: https://doc.rust-lang.org/std/string/
+
 [tokens]: https://doc.rust-lang.org/reference/tokens.html
+
 [encoding-crate]: https://crates.io/crates/encoding

@@ -1,7 +1,9 @@
 # Std library types
 
 The `std` library provides many custom types which expands drastically on
-the `primitives`. Some of these include:
+the `primitives`.
+
+> Some of these include:
 
 * growable `String`s like: `"hello world"`
 * growable vectors: `[1, 2, 3]`
@@ -14,4 +16,5 @@ the `primitives`. Some of these include:
 [primitives] and [the std library][std]
 
 [primitives]: primitives.md
+
 [std]: https://doc.rust-lang.org/std/

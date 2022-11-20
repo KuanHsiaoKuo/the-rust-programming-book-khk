@@ -1,13 +1,14 @@
 # Box, stack and heap
 
-All values in Rust are stack allocated by default. Values can be *boxed*
-(allocated on the heap) by creating a `Box<T>`. A box is a smart pointer to a
-heap allocated value of type `T`. When a box goes out of scope, its destructor
-is called, the inner object is destroyed, and the memory on the heap is freed.
+All values in Rust are stack allocated by default.
 
-Boxed values can be dereferenced using the `*` operator; this removes one layer
-of indirection. 
+> Values can be *boxed* (allocated on the heap) by creating a `Box<T>`:
 
+- Smart Pointer: A box is a smart pointer to a heap allocated value of type `T`.
+- Destructor: When a box goes out of scope, its destructor is called, the inner object is destroyed, and the memory on the heap is freed.
+- Deferenced: Boxed values can be dereferenced using the `*` operator; this removes one layer of indirection.
+
+~~~admonish tip title="Box Usage Example" collapsible=true
 ```rust,editable
 use std::mem;
 
@@ -75,3 +76,6 @@ fn main() {
              mem::size_of_val(&unboxed_point));
 }
 ```
+~~~
+
+- Box:new(): Allocate this point on the heap, and return a pointer to it

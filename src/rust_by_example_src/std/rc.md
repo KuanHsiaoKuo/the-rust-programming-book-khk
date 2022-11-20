@@ -1,11 +1,15 @@
-# `Rc`
+# `Rc`: for mutiple ownership, just like what python have done
 
-When multiple ownership is needed, `Rc`(Reference Counting) can be used. `Rc` keeps track of the number of the references which means the number of owners of the value wrapped inside an `Rc`. 
+When multiple ownership is needed, `Rc`(Reference Counting) can be used:
 
-Reference count of an `Rc` increases by 1 whenever an `Rc` is cloned, and decreases by 1 whenever one cloned `Rc` is dropped out of the scope. When an `Rc`'s reference count becomes zero (which means there are no remaining owners), both the `Rc` and the value are all dropped. 
+- `Rc` keeps track of the number of the references which means the number of owners of the value wrapped inside an `Rc`.
+- Reference count of an `Rc` increases by 1 whenever an `Rc` is cloned
+- and decreases by 1 whenever one cloned `Rc` is dropped out of the scope.
+- When an `Rc`'s reference count becomes zero (which means there are no remaining owners), both the `Rc` and the value are all dropped.
+- Cloning an `Rc` never performs a deep copy.
+- Cloning creates just another pointer to the wrapped value, and increments the count.
 
-Cloning an `Rc` never performs a deep copy. Cloning creates just another pointer to the wrapped value, and increments the count.
-
+~~~admonish tip title="Rc Example: Just like what Python have done" collapsible=true
 ```rust,editable
 use std::rc::Rc;
 
@@ -45,10 +49,12 @@ fn main() {
     // TODO ^ Try uncommenting this line
 }
 ```
+~~~
 
 ### See also:
 
 [std::rc][1] and [std::sync::arc][2].
 
 [1]: https://doc.rust-lang.org/std/rc/index.html
+
 [2]: https://doc.rust-lang.org/std/sync/struct.Arc.html

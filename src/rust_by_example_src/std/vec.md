@@ -1,16 +1,14 @@
-# Vectors
+# Vectors: re-sizable arrays
 
-Vectors are re-sizable arrays. Like slices, their size is not known at compile
-time, but they can grow or shrink at any time. A vector is represented using
-3 parameters: 
+> Like slices, their size is not known at compile time, but they can grow or shrink at any time.
+
+A vector is represented using 3 parameters:
+
 - pointer to the data
 - length
-- capacity 
+- capacity: The capacity indicates how much memory is reserved for the vector.
 
-The capacity indicates how much memory is reserved for the vector. The vector 
-can grow as long as the length is smaller than the capacity. When this threshold 
-needs to be surpassed, the vector is reallocated with a larger capacity.
-
+~~~admonish tip title="The vector can grow as long as the length is smaller than the capacity. When this threshold needs to be surpassed, the vector is reallocated with a larger capacity." collapsible=true
 ```rust,editable,ignore,mdbook-runnable
 fn main() {
     // Iterators can be collected into vectors
@@ -63,6 +61,19 @@ fn main() {
     println!("Updated vector: {:?}", xs);
 }
 ```
+~~~
+
+1. Iterators can be collected into vectors
+2. The `vec!` macro can be used to initialize a vector
+3. push to Insert new element at the end of the vector
+4. `pop` removes the last element from the vector and returns it
+5. Immutable vectors can't grow
+6. The `len` method yields the number of elements currently stored in a vector
+7. Indexing is done using the square brackets (indexing starts at 0)
+8. Out of bounds indexing yields a panic
+9. `Vector`s can be easily iterated over
+10. Enumerate: A `Vector` can also be iterated over while the iteration count is enumerated in a separate variable (`i`)
+11. Thanks to `iter_mut`, mutable `Vector`s can also be iterated over in a way that allows modifying each value
 
 More `Vec` methods can be found under the
 [std::vec][vec] module
