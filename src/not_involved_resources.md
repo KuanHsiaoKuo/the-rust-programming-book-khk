@@ -3,10 +3,28 @@
 ![unicorn](https://raw.githubusercontent.com/KuanHsiaoKuo/writing_materials/main/imgs/unicorn.png)
 
 <!--ts-->
-
+* [Resources](#resources)
+   * [Rust Official](#rust-official)
+      * [Rust Lang Home](#rust-lang-home)
+      * [This Week in Rust](#this-week-in-rust)
+      * [Rustup Components History](#rustup-components-history)
+      * [Crates.io](#cratesio)
+      * [Rust Blog](#rust-blog)
+      * [RustC Dev Guide](#rustc-dev-guide)
+      * [Rust Vim](#rust-vim)
+      * [Module Arch](#module-arch)
+      * [Rust Lang - Compiler Team](#rust-lang---compiler-team)
+      * [Standard Library Developers Guide](#standard-library-developers-guide)
+   * [awesome series](#awesome-series)
+      * [rust-unofficial/awesome-rust](#rust-unofficialawesome-rust)
+      * [rust-embedded/asesome-embedded-rust](#rust-embeddedasesome-embedded-rust)
+      * [rust-in-blockchain/awesome-blockchain-rust](#rust-in-blockchainawesome-blockchain-rust)
+      * [TaKO8Ki/awesome-alternatives-in-rust](#tako8kiawesome-alternatives-in-rust)
+      * [RustBegginers/awesome-rust-mentors](#rustbegginersawesome-rust-mentors)
+      * [awesome-rust-com/awesome-rust](#awesome-rust-comawesome-rust)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Nov 20 14:36:56 UTC 2022 -->
+<!-- Added by: runner, at: Mon Nov 21 04:37:56 UTC 2022 -->
 
 <!--te-->
 
