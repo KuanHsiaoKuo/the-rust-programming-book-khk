@@ -168,8 +168,8 @@
 
     - [💃Conversion](rust_by_example_src/conversion.md)
         - [`From` and `Into`](rust_by_example_src/conversion/from_into.md)
-        - [`TryFrom` and `TryInto`](rust_by_example_src/conversion/try_from_try_into.md)
-        - [To and from `String`s](rust_by_example_src/conversion/string.md)
+        - [`TryFrom` and `TryInto`: used for fallible conversions, return Result](rust_by_example_src/conversion/try_from_try_into.md)
+        - [`ToString` and `FromStr` trait: To and from `String`s](rust_by_example_src/conversion/string.md)
 
     - [Expressions](rust_by_example_src/expression.md)
 

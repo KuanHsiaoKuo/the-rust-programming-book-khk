@@ -1,15 +1,21 @@
-# `TryFrom` and `TryInto`
+# `TryFrom` and `TryInto`: used for fallible conversions, return Result
 
 Similar to [`From` and `Into`][from-into], [`TryFrom`] and [`TryInto`] are
-generic traits for converting between types. Unlike `From`/`Into`, the
+generic traits for converting between types.
+
+> Unlike `From`/`Into`, the
 `TryFrom`/`TryInto` traits are used for fallible conversions, and as such,
-return [`Result`]s.
+> return [`Result`]s.
 
 [from-into]: from_into.html
+
 [`TryFrom`]: https://doc.rust-lang.org/std/convert/trait.TryFrom.html
+
 [`TryInto`]: https://doc.rust-lang.org/std/convert/trait.TryInto.html
+
 [`Result`]: https://doc.rust-lang.org/std/result/enum.Result.html
 
+~~~admonish info title="TryFrom & TryInto Example" collapsible=true
 ```rust,editable
 use std::convert::TryFrom;
 use std::convert::TryInto;
@@ -43,3 +49,4 @@ fn main() {
     assert_eq!(result, Err(()));
 }
 ```
+~~~

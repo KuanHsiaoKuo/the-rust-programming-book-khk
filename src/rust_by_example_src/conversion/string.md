@@ -1,12 +1,15 @@
-# To and from Strings
+# ToString and FromStr trait: To and from Strings
 
-## Converting to String
+## ToString from Display: Converting to String
 
 To convert any type to a `String` is as simple as implementing the [`ToString`]
-trait for the type. Rather than doing so directly, you should implement the
-[`fmt::Display`][Display] trait which automagically provides [`ToString`] and
-also allows printing the type as discussed in the section on [`print!`][print].
+trait for the type.
 
+> Rather than doing so directly, you should implement the
+[`fmt::Display`][Display] trait which automagically provides [`ToString`] and
+> also allows printing the type as discussed in the section on [`print!`][print].
+
+~~~admonish info title="ToString from Display Trait" collapsible=true
 ```rust,editable
 use std::fmt;
 
@@ -25,19 +28,18 @@ fn main() {
     println!("{}", circle.to_string());
 }
 ```
+~~~
 
-## Parsing a String
+## FromStr: Parsing a String
 
-One of the more common types to convert a string into is a number. The idiomatic
-approach to this is to use the [`parse`] function and either to arrange for
-type inference or to specify the type to parse using the 'turbofish' syntax.
-Both alternatives are shown in the following example.
+One of the more common types to convert a string into is a number.
 
-This will convert the string into the type specified as long as the [`FromStr`]
-trait is implemented for that type. This is implemented for numerous types
-within the standard library. To obtain this functionality on a user defined type
-simply implement the [`FromStr`] trait for that type.
+- The idiomatic
+  approach to this is to use the [`parse`] function
+- and either to arrange for
+  type inference or to specify the type to parse using the 'turbofish' syntax.
 
+~~~admonish info title="Both alternatives are shown in the following example." collapsible=true
 ```rust,editable
 fn main() {
     let parsed: i32 = "5".parse().unwrap();
@@ -47,9 +49,21 @@ fn main() {
     println!("Sum: {:?}", sum);
 }
 ```
+~~~
+
+- This will convert the string into the type specified as long as the [`FromStr`]
+  trait is implemented for that type.
+- This is implemented for numerous types
+  within the standard library.
+- To obtain this functionality on a user defined type
+  simply implement the [`FromStr`] trait for that type.
 
 [`ToString`]: https://doc.rust-lang.org/std/string/trait.ToString.html
+
 [Display]: https://doc.rust-lang.org/std/fmt/trait.Display.html
+
 [print]: ../hello/print.md
+
 [`parse`]: https://doc.rust-lang.org/std/primitive.str.html#method.parse
+
 [`FromStr`]: https://doc.rust-lang.org/std/str/trait.FromStr.html
