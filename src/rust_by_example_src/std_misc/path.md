@@ -1,22 +1,33 @@
 # Path
 
-The `Path` struct represents file paths in the underlying filesystem. There are
-two flavors of `Path`: `posix::Path`, for UNIX-like systems, and
-`windows::Path`, for Windows. The prelude exports the appropriate
-platform-specific `Path` variant.
+The `Path` struct represents file paths in the underlying filesystem.
 
-A `Path` can be created from an `OsStr`, and provides several methods to get
-information from the file/directory the path points to.
+There are two flavors of `Path`:
 
-A `Path` is immutable. The owned version of `Path` is `PathBuf`. The relation 
-between `Path` and `PathBuf` is similar to that of `str` and `String`: 
-a `PathBuf` can be mutated in-place, and can be dereferenced to a `Path`.
+1. `posix::Path`, for UNIX-like systems
+2. and `windows::Path`, for Windows.
 
-Note that a `Path` is *not* internally represented as an UTF-8 string, but
-instead is stored as an `OsString`. Therefore, converting a `Path` to a `&str`
-is *not* free and may fail (an `Option` is returned). However, a `Path` can be 
-freely converted to an `OsString` or `&OsStr` using `into_os_string` and
-`as_os_str`, respectively.
+> The prelude exports the appropriate platform-specific `Path` variant.
+
+- A `Path` can be created from an `OsStr`, and provides several methods to get
+  information from the file/directory the path points to.
+
+- A `Path` is immutable.
+- The owned version of `Path` is `PathBuf`.
+
+> The relation between `Path` and `PathBuf` is similar to that of `str` and `String`:
+
+- a `PathBuf` can be mutated in-place,
+- and can be dereferenced to a `Path`.
+
+> Note that a `Path` is *not* internally represented as an UTF-8 string, but
+> instead is stored as an `OsString`.
+
+- Therefore, converting a `Path` to a `&str` is *not* free and may fail (an `Option` is returned).
+- However, a `Path` can be
+  freely converted to an `OsString` or `&OsStr` using `into_os_string` and `as_os_str`, respectively.
+
+~~~admonish info title="Path Usage Examples" collapsible=true
 
 ```rust,editable
 use std::path::Path;
@@ -47,6 +58,13 @@ fn main() {
 }
 
 ```
+~~~
+
+1. Create a `Path` from an `&'static str`
+2. The `display` method returns a `Display`able structure
+3. `join` merges a path with a byte container using the OS specific separator, and returns a `PathBuf`
+4. `push` extends the `PathBuf` with a `&Path`
+5. `set_file_name` updates the file name of the `PathBuf`
 
 Be sure to check at other `Path` methods (`posix::Path` or `windows::Path`) and
 the `Metadata` struct.
@@ -56,4 +74,5 @@ the `Metadata` struct.
 [OsStr][1] and [Metadata][2].
 
 [1]: https://doc.rust-lang.org/std/ffi/struct.OsStr.html
+
 [2]: https://doc.rust-lang.org/std/fs/struct.Metadata.html

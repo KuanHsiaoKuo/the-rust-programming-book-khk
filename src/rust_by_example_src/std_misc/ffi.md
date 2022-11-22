@@ -1,9 +1,11 @@
-# Foreign Function Interface
+# FFI: Foreign Function Interface
 
-Rust provides a Foreign Function Interface (FFI) to C libraries. Foreign
-functions must be declared inside an `extern` block annotated with a `#[link]`
-attribute containing the name of the foreign library.
+Rust provides a Foreign Function Interface (FFI) to C libraries:
 
+- Foreign functions must be declared inside an `extern` block annotated
+- with a `#[link]` attribute containing the name of the foreign library.
+
+~~~admonish info title="FFI Example" collapsible=true
 ```rust,ignore
 use std::fmt;
 
@@ -54,3 +56,4 @@ impl fmt::Debug for Complex {
     }
 }
 ```
+~~~

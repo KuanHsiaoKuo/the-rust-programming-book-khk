@@ -1,7 +1,6 @@
 # Argument parsing
 
-Matching can be used to parse simple arguments:
-
+~~~admonish info title="Matching can be used to parse simple arguments:" collapsible=true
 ```rust,editable
 use std::env;
 
@@ -92,3 +91,4 @@ match_args {increase|decrease} <integer>
 $ ./match_args increase 42
 43
 ```
+~~~

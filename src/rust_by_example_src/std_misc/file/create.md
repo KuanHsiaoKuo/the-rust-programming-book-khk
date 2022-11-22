@@ -1,9 +1,10 @@
-# `create`
+# `create`: write-only
 
-The `create` function opens a file in write-only mode. If the file
-already existed, the old content is destroyed. Otherwise, a new file is
-created.
+- The `create` function opens a file in `write-only mode`.
+- If the file already existed, the old content is destroyed.
+- Otherwise, a new file is created.
 
+~~~admonish info title="Create Usage" collapsible=true
 ```rust,ignore
 static LOREM_IPSUM: &str =
     "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -35,9 +36,9 @@ fn main() {
     }
 }
 ```
+~~~
 
-Here's the expected successful output:
-
+~~~admonish info title="Here's the expected successful output:" collapsible=true
 ```shell
 $ rustc create.rs && ./create
 successfully wrote to lorem_ipsum.txt
@@ -49,6 +50,7 @@ consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 ```
+~~~
 
 (As in the previous example, you are encouraged to test this example under
 failure conditions.)

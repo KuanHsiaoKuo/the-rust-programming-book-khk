@@ -1,10 +1,8 @@
-# `open`
+# `open`: read-only
 
-The `open` function can be used to open a file in read-only mode.
+The `open` function can be used to open a file `in read-only mode`.
 
-A `File` owns a resource, the file descriptor and takes care of closing the
-file when it is `drop`ed.
-
+~~~admonish info title="A *File* owns a resource, the file descriptor and takes care of closing the file when it is *drop*ed." collapsible=true
 ```rust,editable,ignore
 use std::fs::File;
 use std::io::prelude::*;
@@ -31,15 +29,20 @@ fn main() {
     // `file` goes out of scope, and the "hello.txt" file gets closed
 }
 ```
+~~~
 
-Here's the expected successful output:
+1. Create a path to the desired file
+2. Open the path in read-only mode, returns `io::Result<File>`
+3. Read the file contents into a string, returns `io::Result<usize>`
 
+~~~admonish info title="Here's the expected successful output:" collapsible=true
 ```shell
 $ echo "Hello World!" > hello.txt
 $ rustc open.rs && ./open
 hello.txt contains:
 Hello World!
 ```
+~~~
 
 (You are encouraged to test the previous example under different failure
 conditions: `hello.txt` doesn't exist, or `hello.txt` is not readable,

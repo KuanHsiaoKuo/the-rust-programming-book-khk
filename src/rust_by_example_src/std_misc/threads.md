@@ -1,8 +1,6 @@
 # Threads
 
-Rust provides a mechanism for spawning native OS threads via the `spawn`
-function, the argument of this function is a moving closure.
-
+~~~admonish info title="Rust provides a mechanism for spawning native OS threads via the *spawn* function, the argument of this function is a moving closure." collapsible=true
 ```rust,editable
 use std::thread;
 
@@ -26,5 +24,6 @@ fn main() {
     }
 }
 ```
+~~~
 
-These threads will be scheduled by the OS.
+> These threads will be scheduled by the OS.

@@ -1,9 +1,8 @@
-# Channels
+# Channels: Asynchronous comunication between threads
 
-Rust provides asynchronous `channels` for communication between threads. Channels
-allow a unidirectional flow of information between two end-points: the
-`Sender` and the `Receiver`.
+Rust provides asynchronous `channels` for communication between threads.
 
+~~~admonish info title="Channels allow a unidirectional flow of information between two end-points: the *Sender* and the *Receiver*." collapsible=true
 ```rust,editable
 use std::sync::mpsc::{Sender, Receiver};
 use std::sync::mpsc;
@@ -53,3 +52,11 @@ fn main() {
     println!("{:?}", ids);
 }
 ```
+~~~
+
+1. Channels have two endpoints: the `Sender<T>` and the `Receiver<T>`, where `T` is the type of the message to be transferred
+2. The sender endpoint can be copied
+3. Each thread will send its id via the channel
+4. The thread takes ownership over `thread_tx` Each thread queues a message in the channel
+5. The `recv` method picks a message from the channel
+6. `recv` will block the current thread if there are no messages available

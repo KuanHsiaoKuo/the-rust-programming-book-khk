@@ -1,8 +1,6 @@
 # Wait
 
-If you'd like to wait for a `process::Child` to finish, you must call
-`Child::wait`, which will return a `process::ExitStatus`.
-
+~~~admonish info title="If you'd like to wait for a *process::Child* to finish, you must call *Child::wait*, which will return a *process::ExitStatus*." collapsible=true
 ```rust,ignore
 use std::process::Command;
 
@@ -19,3 +17,4 @@ $ rustc wait.rs && ./wait
 # `wait` keeps running for 5 seconds until the `sleep 5` command finishes
 reached end of main
 ```
+~~~

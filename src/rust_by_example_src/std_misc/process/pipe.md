@@ -1,9 +1,6 @@
-# Pipes
+# Pipes: interaction with the unserlying process
 
-The `std::Child` struct represents a running child process, and exposes the
-`stdin`, `stdout` and `stderr` handles for interaction with the underlying
-process via pipes.
-
+~~~admonish info title="The *std::Child* struct represents a running child process, and exposes the *stdin*, *stdout* and *stderr* handles for interaction with the underlying process via pipes." collapsible=true
 ```rust,ignore
 use std::io::prelude::*;
 use std::process::{Command, Stdio};
@@ -44,3 +41,6 @@ fn main() {
     }
 }
 ```
+~~~
+
+1. `stdin` has type `Option<ChildStdin>`, but since we know this instance must have one, we can directly `unwrap` it.

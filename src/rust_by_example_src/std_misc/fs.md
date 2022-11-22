@@ -1,7 +1,6 @@
-# Filesystem Operations
+# `std::fs`: Filesystem Operations
 
-The `std::fs` module contains several functions that deal with the filesystem.
-
+~~~admonish info title="The *std::fs* module contains several functions that deal with the filesystem." collapsible=true
 ```rust,ignore
 use std::fs;
 use std::fs::{File, OpenOptions};
@@ -97,9 +96,9 @@ fn main() {
 }
 
 ```
+~~~
 
-Here's the expected successful output:
-
+~~~admonish info title="Here's the expected successful output:" collapsible=true
 ```shell
 $ rustc fs.rs && ./fs
 `mkdir a`
@@ -115,9 +114,9 @@ $ rustc fs.rs && ./fs
 `rm a/c/e.txt`
 `rmdir a/c/d`
 ```
+~~~
 
-And the final state of the `a` directory is:
-
+~~~admonish info title="And the final state of the *a* directory is:" collapsible=true
 ```shell
 $ tree a
 a
@@ -127,9 +126,9 @@ a
 
 1 directory, 2 files
 ```
+~~~
 
-An alternative way to define the function `cat` is with `?` notation:
-
+~~~admonish info title="An alternative way to define the function *cat* is with *?* notation:" collapsible=true
 ```rust,ignore
 fn cat(path: &Path) -> io::Result<String> {
     let mut f = File::open(path)?;
@@ -138,6 +137,7 @@ fn cat(path: &Path) -> io::Result<String> {
     Ok(s)
 }
 ```
+~~~
 
 ### See also:
 

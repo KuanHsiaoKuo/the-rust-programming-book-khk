@@ -1,11 +1,9 @@
-# `read_lines`
+# `read_lines`: returns an iterator
 
 The method `lines()` returns an iterator over the lines
 of a file.
 
-`File::open` expects a generic, `AsRef<Path>`.  That's what
-`read_lines()` expects as input.
-
+~~~admonish info title="*File::open* expects a generic, *AsRef<Path>*: that's what *read_lines()* expects as input." collapsible=true
 ```rust,no_run
 use std::fs::File;
 use std::io::{self, BufRead};
@@ -31,14 +29,16 @@ where P: AsRef<Path>, {
     Ok(io::BufReader::new(file).lines())
 }
 ```
+~~~
 
-Running this program simply prints the lines individually.
+~~~admonish info title="Running this program simply prints the lines individually." collapsible=true
 ```shell
 $ echo -e "127.0.0.1\n192.168.0.1\n" > hosts
 $ rustc read_lines.rs && ./read_lines
 127.0.0.1
 192.168.0.1
 ```
+~~~
 
 This process is more efficient than creating a `String` in memory
 especially working with larger files.
