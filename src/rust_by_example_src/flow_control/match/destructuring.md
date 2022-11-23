@@ -1,6 +1,11 @@
 # Destructuring
 
 <!--ts-->
+
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Wed Nov 23 15:41:25 UTC 2022 -->
+
 <!--te-->
 
 A `match` block can destructure items in a variety of ways.
