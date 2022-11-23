@@ -1,9 +1,9 @@
-# Binding
+# @ Binding
 
 Indirectly accessing a variable makes it impossible to branch and use that
-variable without re-binding. `match` provides the `@` sigil for binding values to
-names:
+variable without re-binding.
 
+~~~admonish info title="*match* provides the *@* sigil for binding values to names:" collapsible=true
 ```rust,editable
 // A function `age` which returns a `u32`.
 fn age() -> u32 {
@@ -25,8 +25,9 @@ fn main() {
     }
 }
 ```
+~~~
 
-You can also use binding to "destructure" `enum` variants, such as `Option`:
+~~~admonish info title="You can also use binding to destructure *enum* variants, such as *Option*:" collapsible=true
 
 ```rust,editable
 fn some_number() -> Option<u32> {
@@ -45,10 +46,14 @@ fn main() {
     }
 }
 ```
+~~~
 
-### See also:
+## See also:
+
 [`functions`][functions], [`enums`][enums] and [`Option`][option]
 
 [functions]: ../../fn.md
+
 [enums]: ../../custom_types/enum.md
+
 [option]: ../../std/option.md

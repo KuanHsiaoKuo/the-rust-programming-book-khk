@@ -1,9 +1,8 @@
 # match
 
-Rust provides pattern matching via the `match` keyword, which can be used like
-a C `switch`. The first matching arm is evaluated and all possible values must be
-covered.
+Rust provides pattern matching via the `match` keyword, which can be used like a C `switch`.
 
+~~~admonish info title="The first matching arm is evaluated and all possible values must be covered." collapsible=true
 ```rust,editable
 fn main() {
     let number = 13;
@@ -35,3 +34,4 @@ fn main() {
     println!("{} -> {}", boolean, binary);
 }
 ```
+~~~

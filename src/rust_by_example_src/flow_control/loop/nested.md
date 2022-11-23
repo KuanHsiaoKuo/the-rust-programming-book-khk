@@ -1,9 +1,12 @@
-# Nesting and labels
+# Nesting and labels: a little like lifetime annotations
 
 It's possible to `break` or `continue` outer loops when dealing with nested
-loops. In these cases, the loops must be annotated with some `'label`, and the
-label must be passed to the `break`/`continue` statement.
+loops.
 
+> In these cases, the loops must be annotated with some `'label`, and the
+> label must be passed to the `break`/`continue` statement.
+
+~~~admonish info title="a little like lifetime annotations" collapsible=true
 ```rust,editable
 #![allow(unreachable_code)]
 
@@ -27,3 +30,4 @@ fn main() {
     println!("Exited the outer loop");
 }
 ```
+~~~

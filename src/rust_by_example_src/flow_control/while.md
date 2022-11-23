@@ -2,8 +2,7 @@
 
 The `while` keyword can be used to run a loop while a condition is true.
 
-Let's write the infamous [FizzBuzz][fizzbuzz] using a `while` loop.
-
+~~~admonish info title="Let's write the infamous [FizzBuzz][fizzbuzz] using a *while* loop." collapsible=true
 ```rust,editable
 fn main() {
     // A counter variable
@@ -26,5 +25,6 @@ fn main() {
     }
 }
 ```
+~~~
 
 [fizzbuzz]: https://en.wikipedia.org/wiki/Fizz_buzz

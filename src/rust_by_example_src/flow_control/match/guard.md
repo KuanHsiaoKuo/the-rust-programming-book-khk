@@ -1,7 +1,6 @@
-# Guards
+# Guards: to filter the arm
 
-A `match` *guard* can be added to filter the arm.
-
+~~~admonish info title="A *match* *guard* can be added to filter the arm." collapsible=true
 ```rust,editable
 enum Temperature {
     Celsius(i32),
@@ -22,10 +21,9 @@ fn main() {
     }
 }
 ```
+~~~
 
-Note that the compiler won't take guard conditions into account when checking
-if all patterns are covered by the match expression.
-
+~~~admonish info title="Note that the compiler won't take guard conditions into account when checking if all patterns are covered by the match expression." collapsible=true
 ```rust,editable,ignore,mdbook-runnable
 fn main() {
     let number: u8 = 4;
@@ -38,6 +36,7 @@ fn main() {
     }
 }
 ```
+~~~
 
 ### See also:
 

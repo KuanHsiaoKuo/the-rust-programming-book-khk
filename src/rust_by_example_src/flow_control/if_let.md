@@ -1,7 +1,6 @@
 # if let
 
-For some use cases, when matching enums, `match` is awkward. For example:
-
+~~~admonish info title="For some use cases, when matching enums, *match* is awkward. For example:" collapsible=true
 ```rust
 // Make `optional` of type `Option<i32>`
 let optional = Some(7);
@@ -18,10 +17,9 @@ match optional {
 };
 
 ```
+~~~
 
-`if let` is cleaner for this use case and in addition allows various
-failure options to be specified:
-
+~~~admonish info title="*if let* is cleaner for this use case and in addition allows various failure options to be specified:" collapsible=true
 ```rust,editable
 fn main() {
     // All have type `Option<i32>`
@@ -58,9 +56,12 @@ fn main() {
     }
 }
 ```
+~~~
 
-In the same way, `if let` can be used to match any enum value:
+1. The `if let` construct reads: "if `let` destructures `number` into `Some(i)`, evaluate the block (`{}`).
+2. If you need to specify a failure, use an else
 
+~~~admonish info title="In the same way, *if let* can be used to match any enum value:" collapsible=true
 ```rust,editable
 // Our example enum
 enum Foo {
@@ -98,11 +99,13 @@ fn main() {
     }
 }
 ```
+~~~
 
-Another benefit is that `if let` allows us to match non-parameterized enum variants. This is true even in cases where the enum doesn't implement or derive `PartialEq`. In such cases `if Foo::Bar == a` would fail to compile, because instances of the enum cannot be equated, however `if let` will continue to work.
+1. Another benefit is that `if let` allows us to match non-parameterized enum variants.
+2. This is true even in cases where the enum doesn't implement or derive `PartialEq`.
+3. In such cases `if Foo::Bar == a` would fail to compile, because instances of the enum cannot be equated, however `if let` will continue to work.
 
-Would you like a challenge? Fix the following example to use `if let`:
-
+~~~admonish info title="Would you like a challenge? Fix the following example to use *if let*:" collapsible=true
 ```rust,editable,ignore,mdbook-runnable
 // This enum purposely neither implements nor derives PartialEq.
 // That is why comparing Foo::Bar == a fails below.
@@ -118,11 +121,14 @@ fn main() {
     }
 }
 ```
+~~~
 
-### See also:
+## See also:
 
 [`enum`][enum], [`Option`][option], and the [RFC][if_let_rfc]
 
 [enum]: ../custom_types/enum.md
+
 [if_let_rfc]: https://github.com/rust-lang/rfcs/pull/160
+
 [option]: ../std/option.md

@@ -1,8 +1,9 @@
 # while let
 
 Similar to `if let`, `while let` can make awkward `match` sequences
-more tolerable. Consider the following sequence that increments `i`:
+more tolerable.
 
+~~~admonish info title="Consider the following sequence that increments *i*:" collapsible=true
 ```rust
 // Make `optional` of type `Option<i32>`
 let mut optional = Some(0);
@@ -27,9 +28,9 @@ loop {
     }
 }
 ```
+~~~
 
-Using `while let` makes this sequence much nicer:
-
+~~~admonish info title="Using *while let* makes this sequence much nicer:" collapsible=true
 ```rust,editable
 fn main() {
     // Make `optional` of type `Option<i32>`
@@ -52,11 +53,14 @@ fn main() {
     // clauses. `while let` does not have these.
 }
 ```
+~~~
 
 ### See also:
 
 [`enum`][enum], [`Option`][option], and the [RFC][while_let_rfc]
 
 [enum]: ../custom_types/enum.md
+
 [option]: ../std/option.md
+
 [while_let_rfc]: https://github.com/rust-lang/rfcs/pull/214
