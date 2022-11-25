@@ -1,6 +1,14 @@
 # Primitives
 
 <!--ts-->
+* [Primitives](#primitives)
+   * [Scalar Types](#scalar-types)
+   * [Compound Types](#compound-types)
+      * [See also:](#see-also)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Fri Nov 25 14:47:00 UTC 2022 -->
+
 <!--te-->
 
 Rust provides access to a wide variety of `primitives`. A sample includes:
