@@ -1,7 +1,7 @@
-# Scope and Shadowing
+# Scope ({}) and Shadowing
 
-Variable bindings have a scope, and are constrained to live in a *block*. A
-block is a collection of statements enclosed by braces `{}`. 
+~~~admonish tip title="Variable bindings have a scope, and are constrained to live in a *block*. A block is a collection of statements enclosed by braces *{}*. " collapsible=true
+
 ```rust,editable,ignore,mdbook-runnable
 fn main() {
     // This binding lives in the main function
@@ -23,7 +23,9 @@ fn main() {
     println!("outer long: {}", long_lived_binding);
 }
 ```
-Also, [variable shadowing][variable-shadow] is allowed.
+~~~
+
+~~~admonish tip title="Also, [variable shadowing][variable-shadow] is allowed." collapsible=true
 ```rust,editable,ignore,mdbook-runnable
 fn main() {
     let shadowed_binding = 1;
@@ -43,4 +45,6 @@ fn main() {
     println!("shadowed in outer block: {}", shadowed_binding);
 }
 ```
+~~~
+
 [variable-shadow]: https://en.wikipedia.org/wiki/Variable_shadowing

@@ -1,16 +1,20 @@
-# Arrays and Slices
+# Arrays and Slices: a collection of objects of the same type `T`
 
-An array is a collection of objects of the same type `T`, stored in contiguous
-memory. Arrays are created using brackets `[]`, and their length, which is known
-at compile time, is part of their type signature `[T; length]`.
+1. An array is a collection of objects of the same type `T`, stored in contiguous
+   memory.
 
-Slices are similar to arrays, but their length is not known at compile time.
-Instead, a slice is a two-word object, the first word is a pointer to the data,
-and the second word is the length of the slice. The word size is the same as
-usize, determined by the processor architecture e.g. 64 bits on an x86-64.
-Slices can be used to borrow a section of an array, and have the type signature
-`&[T]`.
+- Arrays are created using brackets `[]`
+- and their length, which is known at compile time, is part of their type signature `[T; length]`.
 
+2. Slices are similar to arrays, but their length is not known at compile time.
+
+- Instead, a slice is a two-word object
+- the first word is a pointer to the data
+- and the second word is the length of the slice.
+- The word size is the same as usize, determined by the processor architecture e.g. 64 bits on an x86-64.
+- Slices can be used to borrow a section of an array, and have the type signature `&[T]`.
+
+~~~admonish tip title="Array compares to slice" collapsible=true
 ```rust,editable,ignore,mdbook-runnable
 use std::mem;
 
@@ -68,3 +72,15 @@ fn main() {
     //println!("{}", xs[5]);
 }
 ```
+~~~
+
+1. Fixed-size array (type signature is superfluous)
+2. All elements can be initialized to the same value
+3. Indexing starts at 0
+4. `len` returns the count of elements in the array
+5. Arrays are stack allocated
+6. Arrays can be automatically borrowed as slices
+7. Slices can point to a section of an array
+8. They are of the form [starting_index..ending_index]
+9. starting_index is the first position in the slice
+10. ending_index is one more than the last position in the slice

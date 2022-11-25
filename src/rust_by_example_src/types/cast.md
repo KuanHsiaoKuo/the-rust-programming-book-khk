@@ -1,12 +1,13 @@
-# Casting
+# Casting using as keyword
 
-Rust provides no implicit type conversion (coercion) between primitive types.
-But, explicit type conversion (casting) can be performed using the `as` keyword.
+Rust provides no implicit type conversion (`coercion`) between primitive types.
+
+> But, explicit type conversion (casting) can be performed using the `as` keyword.
 
 Rules for converting between integral types follow C conventions generally,
-except in cases where C has undefined behavior. The behavior of all casts
-between integral types is well defined in Rust.
+except in cases where C has undefined behavior.
 
+~~~admonish tip title="The behavior of all casts between integral types is well defined in Rust." collapsible=true
 ```rust,editable,ignore,mdbook-runnable
 // Suppress all warnings from casts which overflow.
 #![allow(overflowing_literals)]
@@ -87,3 +88,14 @@ fn main() {
     }
 }
 ```
+~~~
+
+1. #![allow(overflowing_literals)]: Suppress all warnings from casts which overflow.
+2. when casting any value to an unsigned type, T, T::MAX + 1 is added or subtracted until the value fits into the new type
+3. Under the hood, the first 8 least significant bits (LSB) are kept, while the rest towards the most significant bit (MSB) get truncated.
+4. When casting to a signed type, the (bitwise) result is the same as first casting to the corresponding unsigned type.
+5. If the most significant bit of that value is 1, then the value is negative. Unless it already fits, of course.
+6. Since Rust 1.45, the `as` keyword performs a *saturating cast* when casting from float to int.
+7. If the floating point value exceeds the upper bound or is less than the lower bound, the returned value will be equal to the bound crossed.
+8. This behavior incurs a small runtime cost and can be avoided with unsafe methods
+9. however the results might overflow and return **unsound values**. Use these methods wisely:

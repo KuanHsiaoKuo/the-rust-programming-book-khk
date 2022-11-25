@@ -1,7 +1,6 @@
 # C-like
 
-`enum` can also be used as C-like enums.
-
+~~~admonish tip title="*enum* can also be used as C-like enums." collapsible=true
 ```rust,editable
 // An attribute to hide warnings for unused code.
 #![allow(dead_code)]
@@ -29,6 +28,10 @@ fn main() {
     println!("violets are #{:06x}", Color::Blue as i32);
 }
 ```
+~~~
+
+1. enum with implicit discriminator (starts at 0 without =)
+2. `enums` can be cast as integers.
 
 ### See also:
 

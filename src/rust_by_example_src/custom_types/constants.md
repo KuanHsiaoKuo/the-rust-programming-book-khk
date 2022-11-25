@@ -1,13 +1,17 @@
-# constants
+# constants: const and static
 
 Rust has two different types of constants which can be declared in any scope
-including global. Both require explicit type annotation:
+including global.
+
+> Both require explicit type annotation:
 
 * `const`: An unchangeable value (the common case).
 * `static`: A possibly `mut`able variable with [`'static`][static] lifetime.
-  The static lifetime is inferred and does not have to be specified.
-  Accessing or modifying a mutable static variable is [`unsafe`][unsafe].
 
+> The static lifetime is inferred and does not have to be specified.
+> Accessing or modifying a mutable static variable is [`unsafe`][unsafe].
+
+~~~admonish tip title="Constants Examples" collapsible=true
 ```rust,editable,ignore,mdbook-runnable
 // Globals are declared outside all other scopes.
 static LANGUAGE: &str = "Rust";
@@ -31,12 +35,14 @@ fn main() {
     // FIXME ^ Comment out this line
 }
 ```
+~~~
 
-### See also:
+## See also:
 
 [The `const`/`static` RFC](
 https://github.com/rust-lang/rfcs/blob/master/text/0246-const-vs-static.md),
 [`'static` lifetime][static]
 
 [static]: ../scope/lifetime/static_lifetime.md
+
 [unsafe]: ../unsafe.md

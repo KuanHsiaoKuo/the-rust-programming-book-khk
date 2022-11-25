@@ -1,8 +1,8 @@
 # Freezing
 
-When data is bound by the same name immutably, it also *freezes*. *Frozen* data can't be 
-modified until the immutable binding goes out of scope:
+When data is bound by the same name immutably, it also *freezes*.
 
+~~~admonish tip title="*Frozen* data can't be modified until the immutable binding goes out of scope:" collapsible=true
 ```rust,editable,ignore,mdbook-runnable
 fn main() {
     let mut _mutable_integer = 7i32;
@@ -22,3 +22,4 @@ fn main() {
     _mutable_integer = 3;
 }
 ```
+~~~

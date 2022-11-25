@@ -1,8 +1,11 @@
 # Declare first
 
 It's possible to declare variable bindings first, and initialize them later.
-However, this form is seldom used, as it may lead to the use of uninitialized
-variables.
+
+> However, this form is seldom used, as it may lead to the use of uninitialized
+> variables.
+
+~~~admonish tip title="Declare first example" collapsible=true
 
 ```rust,editable,ignore,mdbook-runnable
 fn main() {
@@ -29,6 +32,7 @@ fn main() {
     println!("another binding: {}", another_binding);
 }
 ```
+~~~
 
 The compiler forbids use of uninitialized variables, as this would lead to
 undefined behavior.

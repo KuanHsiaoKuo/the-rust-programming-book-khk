@@ -1,12 +1,12 @@
-# Structures
+# Structures: Tuple, C structs and Unit structs
 
-There are three types of structures ("structs") that can be created using the
-`struct` keyword:
-
+~~~admonish tip title="There are three types of structures (*structs*) that can be created using the *struct* keyword:" collapsible=true
 * Tuple structs, which are, basically, named tuples.
 * The classic [C structs][c_struct]
 * Unit structs, which are field-less, are useful for generics.
+~~~
 
+~~~admonish tip title="Three types of structures" collapsible=true
 ```rust,editable
 // An attribute to hide warnings for unused code.
 #![allow(dead_code)]
@@ -84,8 +84,16 @@ fn main() {
     println!("pair contains {:?} and {:?}", integer, decimal);
 }
 ```
+~~~
 
-### Activity
+1. #![allow(dead_code)]: An attribute to hide warnings for unused code.
+2. Structs can be reused as fields of another struct
+3. Print debug struct
+4. Make a new point by using struct update syntax to use the fields of our other one
+5. Destructure the point using a `let` binding
+6. struct instantiation is an expression too
+
+## Activity
 
 1. Add a function `rect_area` which calculates the area of a `Rectangle` (try
    using nested destructuring).
@@ -98,5 +106,7 @@ fn main() {
 [`attributes`][attributes], and [destructuring][destructuring]
 
 [attributes]: ../attribute.md
+
 [c_struct]: https://en.wikipedia.org/wiki/Struct_(C_programming_language)
+
 [destructuring]: ../flow_control/match/destructuring.md

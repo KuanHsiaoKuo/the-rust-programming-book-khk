@@ -1,12 +1,13 @@
 # Variable Bindings
 
-Rust provides type safety via static typing. Variable bindings can be type
-annotated when declared. However, in most cases, the compiler will be able
-to infer the type of the variable from the context, heavily reducing the
-annotation burden.
+- Rust provides type safety via static typing.
+- Variable bindings can be type annotated when declared.
 
-Values (like literals) can be bound to variables, using the `let` binding.
+> However, in most cases, the compiler will be able
+> to infer the type of the variable from the context, heavily reducing the
+> annotation burden.
 
+~~~admonish tip title="Values (like literals) can be bound to variables, using the *let* binding." collapsible=true
 ```rust,editable
 fn main() {
     let an_integer = 1u32;
@@ -29,3 +30,7 @@ fn main() {
     // Please note that warnings may not be shown in a browser
 }
 ```
+~~~
+
+1. The compiler warns about unused variable bindings;
+2. these warnings can be silenced by prefixing the variable name with an underscore

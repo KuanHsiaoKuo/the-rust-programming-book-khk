@@ -1,8 +1,6 @@
 # Mutability
 
-Variable bindings are immutable by default, but this can be overridden using
-the `mut` modifier.
-
+~~~admonish tip title="Variable bindings are immutable by default, but this can be overridden using the *mut* modifier." collapsible=true
 ```rust,editable,ignore,mdbook-runnable
 fn main() {
     let _immutable_binding = 1;
@@ -20,5 +18,6 @@ fn main() {
     // FIXME ^ Comment out this line
 }
 ```
+~~~
 
 The compiler will throw a detailed diagnostic about mutability errors.

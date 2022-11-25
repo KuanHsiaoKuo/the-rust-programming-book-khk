@@ -1,10 +1,10 @@
-# Tuples
+# Tuples: a collection of values of `different types`
 
-A tuple is a collection of values of different types. Tuples are constructed
-using parentheses `()`, and each tuple itself is a value with type signature
-`(T1, T2, ...)`, where `T1`, `T2` are the types of its members. Functions can
-use tuples to return multiple values, as tuples can hold any number of values.
+- Tuples are constructed using parentheses `()`
+- and each tuple itself is a value with type signature `(T1, T2, ...)`, where `T1`, `T2` are the types of its members.
+- Functions can use tuples to return multiple values, as tuples can hold any number of values.
 
+~~~admonish tip title="Tuples Examples" collapsible=true
 ```rust,editable
 // Tuples can be used as function arguments and as return values
 fn reverse(pair: (i32, bool)) -> (bool, i32) {
@@ -61,29 +61,36 @@ fn main() {
 
 }
 ```
+~~~
 
-### Activity
-
- 1. *Recap*: Add the `fmt::Display` trait to the `Matrix` struct in the above example,
-    so that if you switch from printing the debug format `{:?}` to the display
-    format `{}`, you see the following output:
+1. Tuples can be used as function arguments and as return values
+2. `let` can be used to bind the members of a tuple to variables
+3. Values can be extracted from the tuple using tuple indexing
+4. Tuples are printable, but long Tuples (more than 12 elements) cannot be printed
+5. To create one element tuples, the comma is required to tell them apart from a literal surrounded by parentheses
+6. tuples can be destructured to create bindings
+7. *Recap*:
+   Add the `fmt::Display` trait to the `Matrix` struct in the above example,
+   so that if you switch from printing the debug format `{:?}` to the display
+   format `{}`, you see the following output:
 
     ```text
     ( 1.1 1.2 )
     ( 2.1 2.2 )
     ```
 
-    You may want to refer back to the example for [print display][print_display].
- 2. Add a `transpose` function using the `reverse` function as a template, which
-    accepts a matrix as an argument, and returns a matrix in which two elements
-    have been swapped. For example:
+   You may want to refer back to the example for [print display][print_display].
+
+8. Add a `transpose` function using the `reverse` function as a template, which
+   accepts a matrix as an argument, and returns a matrix in which two elements
+   have been swapped. For example:
 
     ```rust,ignore
     println!("Matrix:\n{}", matrix);
     println!("Transpose:\n{}", transpose(matrix));
     ```
 
-    results in the output:
+   results in the output:
 
     ```text
     Matrix:

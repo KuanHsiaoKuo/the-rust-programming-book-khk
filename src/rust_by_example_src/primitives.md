@@ -1,9 +1,14 @@
 # Primitives
 
+<!--ts-->
+<!--te-->
+
 Rust provides access to a wide variety of `primitives`. A sample includes:
 
+1. Scalar Types
+2. Compound Types
 
-### Scalar Types
+## Scalar Types
 
 * signed integers: `i8`, `i16`, `i32`, `i64`, `i128` and `isize` (pointer size)
 * unsigned integers: `u8`, `u16`, `u32`, `u64`, `u128` and `usize` (pointer
@@ -13,18 +18,22 @@ Rust provides access to a wide variety of `primitives`. A sample includes:
 * `bool` either `true` or `false`
 * and the unit type `()`, whose only possible value is an empty tuple: `()`
 
-Despite the value of a unit type being a tuple, it is not considered a
-compound type because it does not contain multiple values. 
+> Despite the value of a unit type being a tuple, it is not considered a
+> compound type because it does not contain multiple values.
 
-### Compound Types
+## Compound Types
 
 * arrays like `[1, 2, 3]`
 * tuples like `(1, true)`
 
-Variables can always be *type annotated*. Numbers may additionally be
-annotated via a *suffix* or *by default*. Integers default to `i32` and
-floats to `f64`. Note that Rust can also infer types from context.
+Variables can always be *type annotated*:
 
+- Numbers may additionally be annotated via a *suffix* or *by default*.
+- Integers default to `i32` and floats to `f64`.
+
+> Note that Rust can also infer types from context.
+
+~~~admonish tip title="Variables can be type annotated or inferre from context" collapsible=true 
 ```rust,editable,ignore,mdbook-runnable
 fn main() {
     // Variables can be type annotated.
@@ -52,12 +61,22 @@ fn main() {
     let mutable = true;
 }
 ```
+~~~
+
+1. Variables can be type annotated, or a default will be used.
+2. A type can also be inferred from context
+3. A mutable variable's value can be changed.
+4. The type of a variable can't be changed.
+5. Variables can be overwritten with shadowing.
 
 ### See also:
 
 [the `std` library][std], [`mut`][mut], [`inference`][inference], and [`shadowing`][shadowing]
 
 [std]: https://doc.rust-lang.org/std/
+
 [mut]: variable_bindings/mut.md
+
 [inference]: types/inference.md
+
 [shadowing]: variable_bindings/scope.md

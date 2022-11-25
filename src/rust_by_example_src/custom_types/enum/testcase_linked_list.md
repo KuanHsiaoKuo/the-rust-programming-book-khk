@@ -1,7 +1,6 @@
 # Testcase: linked-list
 
-A common way to implement a linked-list is via `enums`:
-
+~~~admonish tip title="A common way to implement a linked-list is via *enums*:" collapsible=true
 ```rust,editable
 use crate::List::*;
 
@@ -73,10 +72,22 @@ fn main() {
     println!("{}", list.stringify());
 }
 ```
+~~~
+
+1. Cons: Tuple struct that wraps an element and a pointer to the next node
+2. Nil: A node that signifies the end of the linked list
+3. Methods can be attached to an enum
+4. `self` has to be matched, because the behavior of this method depends on the variant of `self`
+5. `self` has type `&List`, and `*self` has type `List`
+6. matching on a concrete type `T` is preferred over a match on a reference `&T`
+7. after Rust 2018 you can use self here and tail (with no ref) below as well,
+8. rust will infer &s and ref tail.
+9. See https://doc.rust-lang.org/edition-guide/rust-2018/ownership-and-lifetimes/default-match-bindings.html
 
 ### See also:
 
 [`Box`][box] and [methods][methods]
 
 [box]: ../../std/box.md
+
 [methods]: ../../fn/methods.md

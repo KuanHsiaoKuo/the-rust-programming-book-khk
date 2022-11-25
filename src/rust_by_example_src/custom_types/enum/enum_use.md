@@ -1,7 +1,6 @@
 # use
 
-The `use` declaration can be used so manual scoping isn't needed:
-
+~~~admonish tip title="The *use* declaration can be used so manual scoping isn't needed:" collapsible=true
 ```rust,editable
 // An attribute to hide warnings for unused code.
 #![allow(dead_code)]
@@ -41,10 +40,15 @@ fn main() {
     }
 }
 ```
+~~~
+
+1. Explicitly `use` each name so they are available without manual scoping.
+2. Note the lack of scoping because of the explicit `use` above.
 
 ### See also:
 
-[`match`][match] and [`use`][use] 
+[`match`][match] and [`use`][use]
 
 [use]: ../../mod/use.md
+
 [match]: ../../flow_control/match.md

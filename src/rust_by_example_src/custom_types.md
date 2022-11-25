@@ -1,4 +1,4 @@
-# Custom Types
+# Custom Types: struct and enum
 
 Rust custom data types are formed mainly through the two keywords:
 
