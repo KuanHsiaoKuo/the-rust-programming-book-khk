@@ -141,7 +141,7 @@
                 - [Testcase: List](rust_by_example_src/hello/print/print_display/testcase_list.md)
             - [Formatting](rust_by_example_src/hello/print/fmt.md)
 
-    - [Types About]()
+    - [Types: Primitives, custom Types, Bindings and Change/Define/Advanced Conversion]()
         - [Primitives](rust_by_example_src/primitives.md)
             - [Literals and operators](rust_by_example_src/primitives/literals.md)
             - [Tuples: a collection of values of `different types`](rust_by_example_src/primitives/tuples.md)
@@ -167,12 +167,12 @@
             - [Inference](rust_by_example_src/types/inference.md)
             - [✨Type Aliasing: give a new name to an existing type](rust_by_example_src/types/alias.md)
 
-        - [💃Conversion](rust_by_example_src/conversion.md)
+        - [💃Advanced Conversion](rust_by_example_src/conversion.md)
             - [`From` and `Into`](rust_by_example_src/conversion/from_into.md)
             - [`TryFrom` and `TryInto`: used for fallible conversions, return Result](rust_by_example_src/conversion/try_from_try_into.md)
             - [`ToString` and `FromStr` trait: To and from `String`s](rust_by_example_src/conversion/string.md)
 
-    - [Control About]()
+    - [Control: Statements, Functions and Error handling]()
         - [✨Expressions: statements end with `;`](rust_by_example_src/expression.md)
 
         - [🧮 Flow of Control](rust_by_example_src/flow_control.md)
@@ -226,7 +226,7 @@
                 - [Wrapping errors](rust_by_example_src/error/multiple_error_types/wrap_error.md)
             - [Iterating over `Result`s](rust_by_example_src/error/iter_result.md)
 
-    - [Encapsulation About]()
+    - [Encapsulation: Modules, Crates and Cargo]()
         - [Modules](rust_by_example_src/mod.md)
             - [Visibility](rust_by_example_src/mod/visibility.md)
             - [Struct visibility](rust_by_example_src/mod/struct_visibility.md)
@@ -244,8 +244,7 @@
             - [Tests](rust_by_example_src/cargo/test.md)
             - [Build Scripts](rust_by_example_src/cargo/build_scripts.md)
 
-
-    - [Rust Core]()
+    - [Rust Core: Generics, Traits and Scoping]()
         - [🪐Generics](rust_by_example_src/generics.md)
             - [Used as Parameter](rust_by_example_src/generics/used_as_parameter.md)
                 - [Functions: Identify whether a generic function](rust_by_example_src/generics/gen_fn.md)
@@ -289,7 +288,7 @@
                 - [Coercion](rust_by_example_src/scope/lifetime/lifetime_coercion.md)
                 - [Static](rust_by_example_src/scope/lifetime/static_lifetime.md)
 
-    - [Macros]()
+    - [Macros: rules! and Attributes]()
         - [macro_rules!](rust_by_example_src/macros.md)
             - [Syntax](rust_by_example_src/macros/syntax.md)
                 - [Designators](rust_by_example_src/macros/designators.md)
@@ -305,7 +304,7 @@
             - [`cfg`: Configuration conditional checks](rust_by_example_src/attribute/cfg.md)
             - [Custom: Custom conditionals](rust_by_example_src/attribute/cfg/custom.md)
 
-    - [Std]()
+    - [Std: Library types and Misc]()
         - [⭐️Std library types](rust_by_example_src/std.md)
             - [✨Box, stack and heap](rust_by_example_src/std/box.md)
             - [✨Vectors: re-sizable arrays](rust_by_example_src/std/vec.md)
@@ -337,7 +336,7 @@
                 - [Match to Argument parsing](rust_by_example_src/std_misc/arg/matching.md)
             - [FFI: Foreign Function Interface](rust_by_example_src/std_misc/ffi.md)
 
-    - [Misc.]()
+    - [Misc: Testing, Unsafe, Compatibility and Meta]()
         - [Testing](rust_by_example_src/testing.md)
             - [Unit testing](rust_by_example_src/testing/unit_testing.md)
             - [Documentation testing](rust_by_example_src/testing/doc_testing.md)
