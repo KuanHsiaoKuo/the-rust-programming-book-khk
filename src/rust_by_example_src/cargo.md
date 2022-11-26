@@ -1,7 +1,11 @@
 # Cargo
 
-`cargo` is the official Rust package management tool. It has lots of really
-useful features to improve code quality and developer velocity! These include
+`cargo` is the official Rust package management tool.
+
+It has lots of really
+useful features to improve code quality and developer velocity!
+
+> These include
 
 - Dependency management and integration with [crates.io](https://crates.io) (the
   official Rust package registry)

@@ -1,9 +1,11 @@
 # Visibility
 
-By default, the items in a module have private visibility, but this can be
-overridden with the `pub` modifier. Only the public items of a module can be
-accessed from outside the module scope.
+By default, the items in a module have `private visibility`, but this can be
+overridden with the `pub` modifier.
 
+> Only the public items of a module can be accessed from outside the module scope.
+
+~~~admonish tip title="visibility example" collapsible=true
 ```rust,editable
 // A module named `my_mod`
 mod my_mod {
@@ -126,3 +128,24 @@ fn main() {
     // TODO ^ Try uncommenting this line
 }
 ```
+~~~
+
+1. Items in modules default to private visibility.
+2. Use the `pub` modifier to override default visibility.
+3. Items can access other items in the same module, even when private.
+4. Modules can also be nested
+5. Functions declared using `pub(in path)` syntax are only visible within the given path.
+
+- `path` must be a parent or ancestor module
+
+6. Functions declared using `pub(in path)` syntax are only visible within the given path.
+
+- `path` must be a parent or ancestor module
+
+7. pub(crate) makes functions visible only within the current crate
+8. Private parent items will still restrict the visibility of a child item, even if it is declared as visible within a bigger scope.
+9. Modules allow disambiguation between items that have the same name.
+10. Public items, including those inside nested modules, can be accessed from outside the parent module.
+11. pub(crate) items can be called from anywhere in the same crate
+12. pub(in path) items can only be called from within the module specified
+13. Private items of a module cannot be directly accessed, even if nested in a public module:

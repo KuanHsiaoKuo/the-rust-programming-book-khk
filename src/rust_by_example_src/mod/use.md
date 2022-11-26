@@ -1,8 +1,9 @@
-# The `use` declaration
+# The `use` declaration: bind a full path to a new name
 
 The `use` declaration can be used to bind a full path to a new name, for easier
-access. It is often used like this:
+access.
 
+~~~admonish tip title="It is often used like this:" collapsible=true
 ```rust,editable,ignore
 use crate::deeply::nested::{
     my_first_function,
@@ -14,8 +15,9 @@ fn main() {
     my_first_function();
 }
 ```
+~~~
 
-You can use the `as` keyword to bind imports to a different name:
+~~~admonish tip title="You can use the *as* keyword to bind imports to a different name:" collapsible=true
 
 ```rust,editable
 // Bind the `deeply::nested::function` path to `other_function`.
@@ -53,3 +55,7 @@ fn main() {
     function();
 }
 ```
+~~~
+
+1. use .. as .. : Bind the `deeply::nested::function` path to `other_function`.
+2. `use` bindings have a local scope. In this case, the shadowing of `function()` is only in this block.

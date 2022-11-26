@@ -1,8 +1,6 @@
-# `super` and `self`
+# `super` and `self`: remove ambiguity
 
-The `super` and `self` keywords can be used in the path to remove ambiguity
-when accessing items and to prevent unnecessary hardcoding of paths.
-
+~~~admonish tip title="The *super* and *self* keywords can be used in the path to remove ambiguity when accessing items and to prevent unnecessary hardcoding of paths." collapsible=true
 ```rust,editable
 fn function() {
     println!("called `function()`");
@@ -54,3 +52,14 @@ fn main() {
     my::indirect_call();
 }
 ```
+~~~
+
+1. self:
+
+- The `self` keyword refers to the current module scope - in this case `my`.
+- Calling `self::function()` and calling `function()` directly both give the same result, because they refer to the same function.
+- We can also use `self` to access another module inside `my`:
+
+2. super:
+
+- The `super` keyword refers to the parent scope (outside the `my` module).

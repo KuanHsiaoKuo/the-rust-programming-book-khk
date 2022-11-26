@@ -1,7 +1,6 @@
-# Creating a Library
+# Creating a Library: --crate-type=lib
 
-Let's create a library, and then see how to link it to another crate.
-
+~~~admonish tip title="Let's create a library, and then see how to link it to another crate." collapsible=true
 ```rust,ignore
 pub fn public_function() {
     println!("called rary's `public_function()`");
@@ -23,10 +22,10 @@ $ rustc --crate-type=lib rary.rs
 $ ls lib*
 library.rlib
 ```
+~~~
 
-Libraries get prefixed with "lib", and by default they get named after their
-crate file, but this default name can be overridden by passing
-the `--crate-name` option to `rustc` or by using the [`crate_name`
-attribute][crate-name].
+1. Libraries get prefixed with "lib", and by default they get named after their
+   crate file
+2. but this default name can be overridden by passing the `--crate-name` option to `rustc` or by using the [`crate_name` attribute][crate-name].
 
 [crate-name]: ../attribute/crate.md
