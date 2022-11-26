@@ -173,7 +173,7 @@
             - [`ToString` and `FromStr` trait: To and from `String`s](rust_by_example_src/conversion/string.md)
 
     - [Control About]()
-        - [Expressions](rust_by_example_src/expression.md)
+        - [✨Expressions: statements end with `;`](rust_by_example_src/expression.md)
 
         - [🧮 Flow of Control](rust_by_example_src/flow_control.md)
             - [if/else](rust_by_example_src/flow_control/if_else.md)
@@ -223,11 +223,11 @@
             - [Tests](rust_by_example_src/cargo/test.md)
             - [Build Scripts](rust_by_example_src/cargo/build_scripts.md)
 
-    - [Attributes](rust_by_example_src/attribute.md)
-        - [`dead_code`](rust_by_example_src/attribute/unused.md)
-        - [Crates](rust_by_example_src/attribute/crate.md)
-        - [`cfg`](rust_by_example_src/attribute/cfg.md)
-            - [Custom](rust_by_example_src/attribute/cfg/custom.md)
+    - [🧐 Attributes: metadata applied to some module, crate or item](rust_by_example_src/attribute.md)
+        - [`dead_code`: disable the unused lint](rust_by_example_src/attribute/unused.md)
+        - [Crates: : `crate_type` and `crate_name`](rust_by_example_src/attribute/crate.md)
+        - [`cfg`: Configuration conditional checks](rust_by_example_src/attribute/cfg.md)
+        - [Custom: Custom conditionals](rust_by_example_src/attribute/cfg/custom.md)
 
     - [Rust Core]()
         - [🪐Generics](rust_by_example_src/generics.md)

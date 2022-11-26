@@ -1,14 +1,17 @@
-# Crates
+# Crates: `crate_type` and `crate_name`
 
-The `crate_type` attribute can be used to tell the compiler whether a crate is
-a binary or a library (and even which type of library), and the `crate_name`
-attribute can be used to set the name of the crate.
+1. The `crate_type` attribute can be used to tell the compiler whether a crate is
+   a binary or a library (and even which type of library)
+2. and the `crate_name` attribute can be used to set the name of the crate.
 
-However, it is important to note that both the `crate_type` and `crate_name`
-attributes have **no** effect whatsoever when using Cargo, the Rust package
-manager. Since Cargo is used for the majority of Rust projects, this means
+> However, it is important to note that both the `crate_type` and `crate_name`
+> attributes have **no** effect whatsoever when using Cargo, the Rust package
+> manager.
+
+Since Cargo is used for the majority of Rust projects, this means
 real-world uses of `crate_type` and `crate_name` are relatively limited.
 
+~~~admonish tip title="uses of *crate_type* and *crate_name*" collapsible=true
 ```rust,editable
 // This crate is a library
 #![crate_type = "lib"]
@@ -29,8 +32,9 @@ pub fn indirect_access() {
     private_function();
 }
 ```
+~~~
 
-When the `crate_type` attribute is used, we no longer need to pass the
+> When the `crate_type` attribute is used, we no longer need to pass the
 `--crate-type` flag to `rustc`.
 
 ```shell

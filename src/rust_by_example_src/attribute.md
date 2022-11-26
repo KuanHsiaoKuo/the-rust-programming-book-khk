@@ -1,7 +1,8 @@
-# Attributes
+# Attributes: metadata applied to some module, crate or item
 
-An attribute is metadata applied to some module, crate or item. This metadata
-can be used to/for:
+An attribute is metadata applied to some module, crate or item.
+
+> This metadata can be used to/for:
 
 <!-- TODO: Link these to their respective examples -->
 
@@ -14,27 +15,31 @@ can be used to/for:
 * mark functions that will be part of a benchmark
 * [attribute like macros][macros]
 
-When attributes apply to a whole crate, their syntax is `#![crate_attribute]`,
-and when they apply to a module or item, the syntax is `#[item_attribute]`
-(notice the missing bang `!`).
+> When attributes apply to a whole crate, their syntax is `#![crate_attribute]`,
 
-Attributes can take arguments with different syntaxes:
+> when they apply to a module or item, the syntax is `#[item_attribute]` (notice the missing bang `!`).
+
+> Attributes can take arguments with different syntaxes:
 
 * `#[attribute = "value"]`
 * `#[attribute(key = "value")]`
 * `#[attribute(value)]`
 
-Attributes can have multiple values and can be separated over multiple lines, too:
-
+~~~admonish tip title="Attributes can have multiple values and can be separated over multiple lines, too:" collapsible=true
 ```rust,ignore
 #[attribute(value, value2)]
 
 
-#[attribute(value, value2, value3,
+#[attribute(value,
+            value2, value3,
             value4, value5)]
 ```
+~~~
 
 [cfg]: attribute/cfg.md
+
 [crate]: attribute/crate.md
+
 [lint]: https://en.wikipedia.org/wiki/Lint_%28software%29
+
 [macros]: https://doc.rust-lang.org/book/ch19-06-macros.html#attribute-like-macros
