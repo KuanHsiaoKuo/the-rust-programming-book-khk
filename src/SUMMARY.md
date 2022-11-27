@@ -344,7 +344,7 @@
             - [Dev-dependencies](rust_by_example_src/testing/dev_dependencies.md)
 
         - [Unsafe Operations](rust_by_example_src/unsafe.md)
-            - [Inline assembly](rust_by_example_src/unsafe/asm.md)
+        - [🤔️asm!: Inline assembly in Unsafe](rust_by_example_src/unsafe/asm.md)
 
         - [Compatibility](rust_by_example_src/compatibility.md)
             - [Raw identifiers](rust_by_example_src/compatibility/raw_identifiers.md)
