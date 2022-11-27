@@ -1,5 +1,7 @@
-# Documentation
+# Documentation: cargo doc
 
+<!--ts-->
+<!--te-->
 Use `cargo doc` to build documentation in `target/doc`.
 
 Use `cargo test` to run all tests (including documentation tests), and `cargo test --doc` to only run documentation tests.
@@ -10,8 +12,9 @@ These commands will appropriately invoke `rustdoc` (and `rustc`) as required.
 
 Doc comments are very useful for big projects that require documentation. When
 running `rustdoc`, these are the comments that get compiled into
-documentation. They are denoted by a `///`, and support [Markdown].
+documentation.
 
+~~~admonish tip title="They are denoted by a *///*, and support [Markdown]." collapsible=true
 ````rust,editable,ignore
 #![crate_name = "doc"]
 
@@ -56,14 +59,14 @@ fn main() {
     john.hello();
 }
 ````
+~~~
 
-To run the tests, first build the code as a library, then tell `rustdoc` where
-to find the library so it can link it into each doctest program:
-
+~~~admonish tip title="To run the tests, first build the code as a library, then tell *rustdoc* where to find the library so it can link it into each doctest program:" collapsible=true
 ```shell
 $ rustc doc.rs --crate-type lib
 $ rustdoc --test --extern doc="libdoc.rlib" doc.rs
 ```
+~~~
 
 ## Doc attributes
 
@@ -71,8 +74,7 @@ Below are a few examples of the most common `#[doc]` attributes used with `rustd
 
 ### `inline`
 
-Used to inline docs, instead of linking out to separate page.
-
+~~~admonish tip title="Used to inline docs, instead of linking out to separate page." collapsible=true
 ```rust,ignore
 #[doc(inline)]
 pub use bar::Bar;
@@ -83,26 +85,27 @@ mod bar {
     pub struct Bar;
 }
 ```
+~~~
 
 ### `no_inline`
 
-Used to prevent linking out to separate page or anywhere.
-
+~~~admonish tip title="Used to prevent linking out to separate page or anywhere." collapsible=true
 ```rust,ignore
 // Example from libcore/prelude
 #[doc(no_inline)]
 pub use crate::mem::drop;
 ```
+~~~
 
 ### `hidden`
 
-Using this tells `rustdoc` not to include this in documentation:
-
+~~~admonish tip title="Using this tells *rustdoc* not to include this in documentation:" collapsible=true
 ```rust,editable,ignore
 // Example from the futures-rs library
 #[doc(hidden)]
 pub use self::async_await::*;
 ```
+~~~
 
 For documentation, `rustdoc` is widely used by the community. It's what is used to generate the [std library docs](https://doc.rust-lang.org/std/).
 
@@ -116,9 +119,15 @@ For documentation, `rustdoc` is widely used by the community. It's what is used 
 - [Is there any documentation style guide for comments? (reddit)][reddit]
 
 [markdown]: https://en.wikipedia.org/wiki/Markdown
+
 [book]: https://doc.rust-lang.org/book/ch14-02-publishing-to-crates-io.html#making-useful-documentation-comments
+
 [ref-comments]: https://doc.rust-lang.org/stable/reference/comments.html#doc-comments
+
 [rustdoc-book]: https://doc.rust-lang.org/rustdoc/index.html
+
 [api-conv]: https://rust-lang.github.io/rfcs/1574-more-api-documentation-conventions.html#appendix-a-full-conventions-text
+
 [intra-links]: https://rust-lang.github.io/rfcs/1946-intra-rustdoc-links.html
+
 [reddit]: https://www.reddit.com/r/rust/comments/ahb50s/is_there_any_documentation_style_guide_for/
