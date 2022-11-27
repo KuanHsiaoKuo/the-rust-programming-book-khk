@@ -1,11 +1,14 @@
 # Documentation testing
 
 The primary way of documenting a Rust project is through annotating the source
-code. Documentation comments are written in 
-[CommonMark Markdown specification][commonmark] and support code blocks in them.
-Rust takes care about correctness, so these code blocks are compiled and used 
+code.
+
+> Documentation comments are written in [CommonMark Markdown specification][commonmark] and support code blocks in them.
+
+Rust takes care about correctness, so these code blocks are compiled and used
 as documentation tests.
 
+~~~admonish tip title="Doc testing example" collapsible=true
 ```rust,ignore
 /// First line is a short summary describing function.
 ///
@@ -48,10 +51,14 @@ pub fn div(a: i32, b: i32) -> i32 {
     a / b
 }
 ```
+~~~
 
-Code blocks in documentation are automatically tested
-when running the regular `cargo test` command:
+1. First line is a short summary describing function.
+2. The next lines present detailed documentation.
+3. Code blocks start with triple backquotes and have implicit `fn main()` inside and `extern crate <cratename>`. Assume we're testing `doccomments` crate:
+4. Usually doc comments may include sections "Examples", "Panics" and "Failures".
 
+~~~admonish tip title="Code blocks in documentation are automatically tested when running the regular *cargo test* command:" collapsible=true
 ```shell
 $ cargo test
 running 0 tests
@@ -67,17 +74,20 @@ test src/lib.rs - div (line 31) ... ok
 
 test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 ```
+~~~
 
 ## Motivation behind documentation tests
 
-The main purpose of documentation tests is to serve as examples that exercise
-the functionality, which is one of the most important
-[guidelines][question-instead-of-unwrap]. It allows using examples from docs as
-complete code snippets. But using `?` makes compilation fail since `main`
-returns `unit`. The ability to hide some source lines from documentation comes
-to the rescue: one may write `fn try_main() -> Result<(), ErrorType>`, hide it
-and `unwrap` it in hidden `main`. Sounds complicated? Here's an example:
+> The main purpose of documentation tests is to serve as examples that exercise
+> the functionality, which is one of the most important
+[guidelines][question-instead-of-unwrap]:
 
+1. It allows using examples from docs as complete code snippets.
+2. But using `?` makes compilation fail since `main` returns `unit`.
+3. The ability to hide some source lines from documentation comes to the rescue: one may write `fn try_main() -> Result<(), ErrorType>`, hide it
+   and `unwrap` it in hidden `main`.
+
+~~~admonish tip title="Sounds complicated? Here's an example:" collapsible=true
 ```rust,ignore
 /// Using hidden `try_main` in doc tests.
 ///
@@ -100,6 +110,9 @@ pub fn try_div(a: i32, b: i32) -> Result<i32, String> {
     }
 }
 ```
+~~~
+
+1. Using hidden `try_main` in doc tests: hidden lines start with `#` symbol, but they're still compilable!
 
 ## See Also
 
@@ -107,6 +120,9 @@ pub fn try_div(a: i32, b: i32) -> Result<i32, String> {
 * [API Guidelines][doc-nursery] on documentation guidelines
 
 [doc-nursery]: https://rust-lang-nursery.github.io/api-guidelines/documentation.html
+
 [commonmark]: https://commonmark.org/
+
 [RFC505]: https://github.com/rust-lang/rfcs/blob/master/text/0505-api-comment-conventions.md
+
 [question-instead-of-unwrap]: https://rust-lang-nursery.github.io/api-guidelines/documentation.html#examples-use--not-try-not-unwrap-c-question-mark

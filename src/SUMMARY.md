@@ -338,8 +338,8 @@
 
     - [Misc: Testing, Unsafe, Compatibility and Meta]()
         - [Testing](rust_by_example_src/testing.md)
-            - [Unit testing](rust_by_example_src/testing/unit_testing.md)
-            - [Documentation testing](rust_by_example_src/testing/doc_testing.md)
+            - [✨Unit testing for panic: `#[cfg(test)]`, `#[test]`, `#[should_panic]`, `#[ignore]`](rust_by_example_src/testing/unit_testing.md)
+            - [⭐️Documentation testing](rust_by_example_src/testing/doc_testing.md)
             - [Integration testing](rust_by_example_src/testing/integration_testing.md)
             - [Dev-dependencies](rust_by_example_src/testing/dev_dependencies.md)
 
