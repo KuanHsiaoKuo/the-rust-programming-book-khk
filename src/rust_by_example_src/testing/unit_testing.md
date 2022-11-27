@@ -1,6 +1,11 @@
 # Unit testing for panic: `#[cfg(test)]`, `#[test]`, `#[should_panic]`, `#[ignore]`
 
 <!--ts-->
+
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Sun Nov 27 08:14:34 UTC 2022 -->
+
 <!--te-->
 
 - Tests are Rust functions that verify that the non-test code is functioning in the expected manner.
