@@ -1,0 +1,2121 @@
+[
+  {
+    "id": 1,
+    "layers": 1,
+    "name": "WEB3",
+    "child_count": 7,
+    "node_count": 117,
+    "tool_tip": {
+      "title": "WEB3"
+    }
+  },
+  {
+    "id": 2,
+    "layers": 2,
+    "name": "web3\u8d44\u6599",
+    "parent": 1,
+    "child_count": 1,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "web3\u8d44\u6599"
+    }
+  },
+  {
+    "id": 4,
+    "layers": 2,
+    "name": "cryptocurrenc\ny jobs",
+    "parent": 1,
+    "child_count": 4,
+    "node_count": 4,
+    "tool_tip": {
+      "title": "cryptocurrenc\ny jobs"
+    }
+  },
+  {
+    "id": 9,
+    "layers": 2,
+    "name": "Hackathons",
+    "parent": 1,
+    "note": "\n\u9ed1\u5ba2\u677e\u662f\u5b66\u4e60\uff0c\u7ec4\u961f\uff0c\u521b\u9020\u7684\u6700\u597d\u5e73\u53f0\u3002\n",
+    "child_count": 4,
+    "node_count": 6,
+    "tool_tip": {
+      "title": "Hackathons",
+      "note": "\n\u9ed1\u5ba2\u677e\u662f\u5b66\u4e60\uff0c\u7ec4\u961f\uff0c\u521b\u9020\u7684\u6700\u597d\u5e73\u53f0\u3002\n"
+    }
+  },
+  {
+    "id": 17,
+    "layers": 2,
+    "name": "\u5206\u5c42",
+    "parent": 1,
+    "note": "\n\u8fd9\u91cc\u7684\u5206\u5c42\u53ea\u662f\u4e3a\u4e86\u66f4\u597d\u5730\u89e3\u5256web3\u5185\u5bb9\uff0c\n\u5176\u5b9e\u5f88\u591a\u5185\u5bb9\u4f1a\u8de8\u51e0\u4e2a\u5c42\u3002\n\u6bd4\u5982\u533a\u5757\u94fe\u5c31\u8de8\u4e86\u524d4\u5c42\n",
+    "child_count": 3,
+    "node_count": 7,
+    "tool_tip": {
+      "title": "\u5206\u5c42",
+      "note": "\n\u8fd9\u91cc\u7684\u5206\u5c42\u53ea\u662f\u4e3a\u4e86\u66f4\u597d\u5730\u89e3\u5256web3\u5185\u5bb9\uff0c\n\u5176\u5b9e\u5f88\u591a\u5185\u5bb9\u4f1a\u8de8\u51e0\u4e2a\u5c42\u3002\n\u6bd4\u5982\u533a\u5757\u94fe\u5c31\u8de8\u4e86\u524d4\u5c42\n"
+    }
+  },
+  {
+    "id": 27,
+    "layers": 2,
+    "name": "\u5206\u5e03\u5f0f\u7cfb\u7edf",
+    "parent": 1,
+    "child_count": 2,
+    "node_count": 20,
+    "tool_tip": {
+      "title": "\u5206\u5e03\u5f0f\u7cfb\u7edf"
+    }
+  },
+  {
+    "id": 62,
+    "layers": 2,
+    "name": "Dapp",
+    "parent": 1,
+    "child_count": 5,
+    "node_count": 22,
+    "tool_tip": {
+      "title": "Dapp"
+    }
+  },
+  {
+    "id": 90,
+    "layers": 2,
+    "name": "\u5f00\u53d1\u6307\u5357",
+    "parent": 1,
+    "child_count": 2,
+    "node_count": 57,
+    "tool_tip": {
+      "title": "\u5f00\u53d1\u6307\u5357"
+    }
+  },
+  {
+    "id": 3,
+    "layers": 3,
+    "name": "The Architecture of a Web 3.0 application",
+    "parent": 2,
+    "link": "https://www.preethikasireddy.com/post/the-architecture-of-a-web-3-0-application",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "The Architecture of a Web 3.0 application",
+      "link": "https://www.preethikasireddy.com/post/the-architecture-of-a-web-3-0-application"
+    }
+  },
+  {
+    "id": 5,
+    "layers": 3,
+    "name": "\u7535\u9e2d - \u8fdc\u7a0b\u5de5\u4f5c\u3001\u81ea\u7531\u804c\u4e1a\u3001\u517c\u804c\u5916\u5305\uff0c\u81ea\u7531\u4ece\u8fd9\u5f00\u59cb",
+    "parent": 4,
+    "link": "https://eleduck.com/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "\u7535\u9e2d - \u8fdc\u7a0b\u5de5\u4f5c\u3001\u81ea\u7531\u804c\u4e1a\u3001\u517c\u804c\u5916\u5305\uff0c\u81ea\u7531\u4ece\u8fd9\u5f00\u59cb",
+      "link": "https://eleduck.com/"
+    }
+  },
+  {
+    "id": 6,
+    "layers": 3,
+    "name": "Cryptocurrency Jobs and Blockchain Jobs - Cryptocurrency Jobs",
+    "parent": 4,
+    "link": "https://cryptocurrencyjobs.co/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Cryptocurrency Jobs and Blockchain Jobs - Cryptocurrency Jobs",
+      "link": "https://cryptocurrencyjobs.co/"
+    }
+  },
+  {
+    "id": 7,
+    "layers": 3,
+    "name": "Find Startup Jobs Near You and Remote Jobs | AngelList Talent",
+    "parent": 4,
+    "link": "https://angel.co/jobs",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Find Startup Jobs Near You and Remote Jobs | AngelList Talent",
+      "link": "https://angel.co/jobs"
+    }
+  },
+  {
+    "id": 8,
+    "layers": 3,
+    "name": "Opportunities - Paradigm",
+    "parent": 4,
+    "link": "https://www.paradigm.xyz/opportunities",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Opportunities - Paradigm",
+      "link": "https://www.paradigm.xyz/opportunities"
+    }
+  },
+  {
+    "id": 10,
+    "layers": 3,
+    "name": "Hackathons | Gitcoin",
+    "parent": 9,
+    "link": "https://gitcoin.co/hackathon/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Hackathons | Gitcoin",
+      "link": "https://gitcoin.co/hackathon/"
+    }
+  },
+  {
+    "id": 11,
+    "layers": 3,
+    "name": "DoraHacks: Bu\nild and Cont\nribute to The Future of Web3",
+    "parent": 9,
+    "link": "https://dorahacks.io/zh",
+    "child_count": 3,
+    "node_count": 3,
+    "tool_tip": {
+      "title": "DoraHacks: Bu\nild and Cont\nribute to The Future of Web3",
+      "link": "https://dorahacks.io/zh"
+    }
+  },
+  {
+    "id": 15,
+    "layers": 3,
+    "name": "ethereum-boilerplate/ethereum-boilerplate",
+    "parent": 9,
+    "link": "https://github.com/ethereum-boilerplate/ethereum-boilerplate",
+    "note": "\nThe ultimate full-stack Ethereum Dapp Boilerplate which gives you maximum flexibility and speed. Feel free to fork and contribute. Although this repo is called \"Ethereum Boilerplate\" it works with any EVM system and even Solana support is coming soon! Happy BUIDL!\ud83d\udc77\u200d\u2642\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "ethereum-boilerplate/ethereum-boilerplate",
+      "note": "\nThe ultimate full-stack Ethereum Dapp Boilerplate which gives you maximum flexibility and speed. Feel free to fork and contribute. Although this repo is called \"Ethereum Boilerplate\" it works with any EVM system and even Solana support is coming soon! Happy BUIDL!\ud83d\udc77\u200d\u2642\n",
+      "link": "https://github.com/ethereum-boilerplate/ethereum-boilerplate"
+    }
+  },
+  {
+    "id": 16,
+    "layers": 3,
+    "name": "Immunefi",
+    "parent": 9,
+    "link": "https://immunefi.com/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Immunefi",
+      "link": "https://immunefi.com/"
+    }
+  },
+  {
+    "id": 18,
+    "layers": 3,
+    "name": "Layer(s)0:\u901a\u4fe1\u5c42(RPC/WS)",
+    "parent": 17,
+    "note": "\n\u533a\u5757\u94fe\u6570\u636e\u5b89\u5168\u5730\u5b58\u50a8\u5728\u6570\u636e\u670d\u52a1\u5668\u4e2d\u3002\n\u5f53\u6211\u4eec\u6d4f\u89c8\u7f51\u9875\u6216\u4f7f\u7528\u4efb\u4f55\u533a\u5757\u94fe\u5e94\u7528\u7a0b\u5e8f\u65f6\uff0c\n\u6211\u4eec\u7684\u673a\u5668\u4f1a\u8bf7\u6c42\u4ece\u670d\u52a1\u5668\u8bbf\u95ee\u8fd9\u4e9b\u6570\u636e\u3002\n\u4fc3\u8fdb\u8fd9\u79cd\u6570\u636e\u4ea4\u6362\u7684\u6846\u67b6\u79f0\u4e3a\u5ba2\u6237\u7aef-\u670d\u52a1\u5668\u67b6\u6784\u3002\n\n\u533a\u5757\u94fe\u662f\u70b9\u5bf9\u70b9 (P2P) \u7f51\u7edc\uff0c\u5141\u8bb8\u5ba2\u6237\u7aef\u4e0e\n\u201c\u70b9\u5bf9\u70b9\u201d\u8fde\u63a5\uff0c\u4ece\u800c\u66f4\u5feb\u3001\u66f4\u8f7b\u677e\u5730\u5171\u4eab\u6570\u636e\u3002\n\u5b83\u53ea\u4e0d\u8fc7\u662f\u4e00\u4e2a\u5e9e\u5927\u7684\u8bbe\u5907\u7f51\u7edc\uff0c\u5b83\u4eec\u76f8\u4e92\u901a\u4fe1\n\u5e76\u76f8\u4e92\u8bf7\u6c42\u6570\u636e\u3002\u8fd9\u5c31\u662f\u5206\u5e03\u5f0f\u8d26\u672c\u7684\u521b\u5efa\u65b9\u5f0f\u3002\n\u4e0e\u7f51\u7edc\u4e0a\u7684\u53e6\u4e00\u4e2a\u8bbe\u5907\u901a\u4fe1\u7684\u6bcf\u4e2a\u8bbe\u5907\u90fd\u662f\u4e00\u4e2a\u8282\u70b9\u3002\n\u6bcf\u4e2a\u8282\u70b9\u968f\u673a\u9a8c\u8bc1\u4ea4\u6613\u6570\u636e\u3002\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Layer(s)0:\u901a\u4fe1\u5c42(RPC/WS)",
+      "note": "\n\u533a\u5757\u94fe\u6570\u636e\u5b89\u5168\u5730\u5b58\u50a8\u5728\u6570\u636e\u670d\u52a1\u5668\u4e2d\u3002\n\u5f53\u6211\u4eec\u6d4f\u89c8\u7f51\u9875\u6216\u4f7f\u7528\u4efb\u4f55\u533a\u5757\u94fe\u5e94\u7528\u7a0b\u5e8f\u65f6\uff0c\n\u6211\u4eec\u7684\u673a\u5668\u4f1a\u8bf7\u6c42\u4ece\u670d\u52a1\u5668\u8bbf\u95ee\u8fd9\u4e9b\u6570\u636e\u3002\n\u4fc3\u8fdb\u8fd9\u79cd\u6570\u636e\u4ea4\u6362\u7684\u6846\u67b6\u79f0\u4e3a\u5ba2\u6237\u7aef-\u670d\u52a1\u5668\u67b6\u6784\u3002\n\n\u533a\u5757\u94fe\u662f\u70b9\u5bf9\u70b9 (P2P) \u7f51\u7edc\uff0c\u5141\u8bb8\u5ba2\u6237\u7aef\u4e0e\n\u201c\u70b9\u5bf9\u70b9\u201d\u8fde\u63a5\uff0c\u4ece\u800c\u66f4\u5feb\u3001\u66f4\u8f7b\u677e\u5730\u5171\u4eab\u6570\u636e\u3002\n\u5b83\u53ea\u4e0d\u8fc7\u662f\u4e00\u4e2a\u5e9e\u5927\u7684\u8bbe\u5907\u7f51\u7edc\uff0c\u5b83\u4eec\u76f8\u4e92\u901a\u4fe1\n\u5e76\u76f8\u4e92\u8bf7\u6c42\u6570\u636e\u3002\u8fd9\u5c31\u662f\u5206\u5e03\u5f0f\u8d26\u672c\u7684\u521b\u5efa\u65b9\u5f0f\u3002\n\u4e0e\u7f51\u7edc\u4e0a\u7684\u53e6\u4e00\u4e2a\u8bbe\u5907\u901a\u4fe1\u7684\u6bcf\u4e2a\u8bbe\u5907\u90fd\u662f\u4e00\u4e2a\u8282\u70b9\u3002\n\u6bcf\u4e2a\u8282\u70b9\u968f\u673a\u9a8c\u8bc1\u4ea4\u6613\u6570\u636e\u3002\n"
+    }
+  },
+  {
+    "id": 19,
+    "layers": 3,
+    "name": "Layers I: Blo\nckchain",
+    "parent": 17,
+    "note": "\n\u6b64\u5904\u662f\u6307\u7b2c\u4e00\u4e2a\u8303\u56f4\uff0c\u533a\u5757\u94fe\u5c31\u5c5e\u4e8e\u8fd9\u4e2a\u8303\u56f4\n",
+    "child_count": 5,
+    "node_count": 5,
+    "tool_tip": {
+      "title": "Layers I: Blo\nckchain",
+      "note": "\n\u6b64\u5904\u662f\u6307\u7b2c\u4e00\u4e2a\u8303\u56f4\uff0c\u533a\u5757\u94fe\u5c31\u5c5e\u4e8e\u8fd9\u4e2a\u8303\u56f4\n"
+    }
+  },
+  {
+    "id": 25,
+    "layers": 3,
+    "name": "Layers II: Dapp",
+    "parent": 17,
+    "child_count": 1,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Layers II: Dapp"
+    }
+  },
+  {
+    "id": 28,
+    "layers": 3,
+    "name": "Blockchain",
+    "parent": 27,
+    "child_count": 3,
+    "node_count": 12,
+    "tool_tip": {
+      "title": "Blockchain"
+    }
+  },
+  {
+    "id": 50,
+    "layers": 3,
+    "name": "\u5171\u8bc6\u7b97\u6cd5(Consensu\ns)",
+    "parent": 27,
+    "note": "This repository contains proposals, standards and documentations related to Nervos Network.\n\n\u5e38\u89c1\u4e8e\u533a\u5757\u94fe\u9886\u57df\uff0c\u5373\u8fbe\u6210\u5171\u8bc6\u7684\u673a\u5236\u3002\u5728\u5206\u5e03\u5f0f\u7cfb\u7edf\u4e2d\uff0c\n\u4f9d\u636e\u7cfb\u7edf\u5bf9\u6545\u969c\u7ec4\u4ef6\u7684\u5bb9\u9519\u80fd\u529b\u5206\u4e3a\u5d29\u6e83\u5bb9\u9519\u534f\u8bae(crash fault tolerant,CFT)\n\u548c\u62dc\u5360\u5ead\u5bb9\u9519\u534f\u8bae\uff08Byzantine fault tolerant,BFT)\n",
+    "child_count": 8,
+    "node_count": 8,
+    "tool_tip": {
+      "title": "\u5171\u8bc6\u7b97\u6cd5(Consensu\ns)",
+      "note": "This repository contains proposals, standards and documentations related to Nervos Network.\n\n\u5e38\u89c1\u4e8e\u533a\u5757\u94fe\u9886\u57df\uff0c\u5373\u8fbe\u6210\u5171\u8bc6\u7684\u673a\u5236\u3002\u5728\u5206\u5e03\u5f0f\u7cfb\u7edf\u4e2d\uff0c\n\u4f9d\u636e\u7cfb\u7edf\u5bf9\u6545\u969c\u7ec4\u4ef6\u7684\u5bb9\u9519\u80fd\u529b\u5206\u4e3a\u5d29\u6e83\u5bb9\u9519\u534f\u8bae(crash fault tolerant,CFT)\n\u548c\u62dc\u5360\u5ead\u5bb9\u9519\u534f\u8bae\uff08Byzantine fault tolerant,BFT)\n"
+    }
+  },
+  {
+    "id": 63,
+    "layers": 3,
+    "name": "\u5b66\u4e60\u8d44\u6e90",
+    "parent": 62,
+    "child_count": 6,
+    "node_count": 18,
+    "tool_tip": {
+      "title": "\u5b66\u4e60\u8d44\u6e90"
+    }
+  },
+  {
+    "id": 86,
+    "layers": 3,
+    "name": "Defi",
+    "parent": 62,
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Defi"
+    }
+  },
+  {
+    "id": 87,
+    "layers": 3,
+    "name": "NFT",
+    "parent": 62,
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "NFT"
+    }
+  },
+  {
+    "id": 88,
+    "layers": 3,
+    "name": "DAO",
+    "parent": 62,
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "DAO"
+    }
+  },
+  {
+    "id": 89,
+    "layers": 3,
+    "name": "CRYPTO",
+    "parent": 62,
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "CRYPTO"
+    }
+  },
+  {
+    "id": 91,
+    "layers": 3,
+    "name": "intro",
+    "parent": 90,
+    "child_count": 1,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "intro"
+    }
+  },
+  {
+    "id": 93,
+    "layers": 3,
+    "name": "Ethereum",
+    "parent": 90,
+    "child_count": 3,
+    "node_count": 56,
+    "tool_tip": {
+      "title": "Ethereum"
+    }
+  },
+  {
+    "id": 12,
+    "layers": 4,
+    "name": "DoraHacks\u7684\u4e2a\u4eba\u7a7a\u95f4_\u54d4\u54e9\u54d4\u54e9_bilibili",
+    "parent": 11,
+    "link": "https://space.bilibili.com/445312136",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "DoraHacks\u7684\u4e2a\u4eba\u7a7a\u95f4_\u54d4\u54e9\u54d4\u54e9_bilibili",
+      "link": "https://space.bilibili.com/445312136"
+    }
+  },
+  {
+    "id": 13,
+    "layers": 4,
+    "name": "DoraHacks Hackathon",
+    "parent": 11,
+    "link": "https://dorahacks.io/zh/hackathon",
+    "note": "\n\u9ed1\u5ba2\u677e\u662f\u5b66\u4e60\uff0c\u7ec4\u961f\uff0c\u521b\u9020\u7684\u6700\u597d\u5e73\u53f0\u3002\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "DoraHacks Hackathon",
+      "note": "\n\u9ed1\u5ba2\u677e\u662f\u5b66\u4e60\uff0c\u7ec4\u961f\uff0c\u521b\u9020\u7684\u6700\u597d\u5e73\u53f0\u3002\n",
+      "link": "https://dorahacks.io/zh/hackathon"
+    }
+  },
+  {
+    "id": 14,
+    "layers": 4,
+    "name": "DoraHacks Buidl",
+    "parent": 11,
+    "link": "https://dorahacks.io/zh/buidl",
+    "note": "\n\u63d0\u4ea4\u4f60\u7684\u9879\u76ee\u5230 DoraHacks\uff0c\u5c06\u4f60\u7684\u60f3\u6cd5\u5c55\u793a\u7ed9\u5176\u4ed6\u9ed1\u5ba2\u3001\u8d44\u52a9\u8005\u548c\u6295\u8d44\u8005\u3002\u8ba9\u6211\u4eec\u7528\u4ee3\u7801\u6539\u53d8\u4e16\u754c\u3002\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "DoraHacks Buidl",
+      "note": "\n\u63d0\u4ea4\u4f60\u7684\u9879\u76ee\u5230 DoraHacks\uff0c\u5c06\u4f60\u7684\u60f3\u6cd5\u5c55\u793a\u7ed9\u5176\u4ed6\u9ed1\u5ba2\u3001\u8d44\u52a9\u8005\u548c\u6295\u8d44\u8005\u3002\u8ba9\u6211\u4eec\u7528\u4ee3\u7801\u6539\u53d8\u4e16\u754c\u3002\n",
+      "link": "https://dorahacks.io/zh/buidl"
+    }
+  },
+  {
+    "id": 20,
+    "layers": 4,
+    "name": "Layer1:\u6570\u636e\u5c42",
+    "parent": 19,
+    "note": "\n\u533a\u5757\u94fe\u53ea\u4e0d\u8fc7\u662f\u4e00\u957f\u4e32\u5305\u542b\u4ea4\u6613\u6570\u636e\u7684\u201c\u5757\u201d\u3002\n\u5f53\u8282\u70b9\u9a8c\u8bc1\u4e00\u5b9a\u6570\u91cf\u7684\u4ea4\u6613\u65f6\uff0c\u6570\u636e\u88ab\u6346\u7ed1\u5230\n\u4e00\u4e2a\u201c\u5757\u201d\u4e2d\uff0c\u6dfb\u52a0\u5230\u533a\u5757\u94fe\u4e2d\uff0c\u5e76\u4e0e\u524d\u4e00\u4e2a\u6570\u636e\u5757\u94fe\u63a5\u3002\n\n\u201c\u521b\u4e16\u5757\u201d\u662f\u94fe\u4e2d\u7684\u7b2c\u4e00\u4e2a\u5757\uff0c\n\u56e0\u6b64\u4e0d\u9700\u8981\u4e0e\u4efb\u4f55\u5148\u524d\u7684\u5757\u94fe\u63a5\u3002\n\u76f8\u53cd\uff0c\u540e\u7eed\u5757\u4e0e\u521b\u4e16\u5757\u94fe\u63a5\uff0c\u5e76\u4e14\u6bcf\u6b21\u6dfb\u52a0\n\u65b0\u5757\u65f6\u90fd\u4f1a\u91cd\u590d\u8be5\u8fc7\u7a0b\u3002\u8fd9\u5c31\u662f\u533a\u5757\u94fe\u7684\u5f62\u6210\n\u548c\u4e0d\u65ad\u53d1\u5c55\u7684\u65b9\u5f0f\u3002\n\n\u6bcf\u7b14\u4ea4\u6613\u90fd\u4f7f\u7528\u53d1\u4ef6\u4eba\u94b1\u5305\u7684\u79c1\u94a5\u8fdb\u884c\u201c\u6570\u5b57\u7b7e\u540d\u201d\u3002\n\u53ea\u6709\u53d1\u9001\u8005\u624d\u80fd\u8bbf\u95ee\u6b64\u5bc6\u94a5\uff0c\u4ece\u800c\u786e\u4fdd\u6570\u636e\u4e0d\u4f1a\u88ab\n\u5176\u4ed6\u4efb\u4f55\u4eba\u8bbf\u95ee\u6216\u7be1\u6539\u3002\n\u8fd9\u5728\u533a\u5757\u94fe\u672f\u8bed\u4e2d\u79f0\u4e3a\u201c\u6700\u7ec8\u6027\u201d\u3002\n\n\u6570\u5b57\u7b7e\u540d\u8fd8\u53ef\u4ee5\u4fdd\u62a4\u6240\u6709\u8005\u7684\u8eab\u4efd\uff0c\n\u8be5\u8eab\u4efd\u672c\u8eab\u662f\u52a0\u5bc6\u7684\uff0c\u4ece\u800c\u786e\u4fdd\u4e86\u6700\u5927\u7684\u5b89\u5168\u6027\u3002\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Layer1:\u6570\u636e\u5c42",
+      "note": "\n\u533a\u5757\u94fe\u53ea\u4e0d\u8fc7\u662f\u4e00\u957f\u4e32\u5305\u542b\u4ea4\u6613\u6570\u636e\u7684\u201c\u5757\u201d\u3002\n\u5f53\u8282\u70b9\u9a8c\u8bc1\u4e00\u5b9a\u6570\u91cf\u7684\u4ea4\u6613\u65f6\uff0c\u6570\u636e\u88ab\u6346\u7ed1\u5230\n\u4e00\u4e2a\u201c\u5757\u201d\u4e2d\uff0c\u6dfb\u52a0\u5230\u533a\u5757\u94fe\u4e2d\uff0c\u5e76\u4e0e\u524d\u4e00\u4e2a\u6570\u636e\u5757\u94fe\u63a5\u3002\n\n\u201c\u521b\u4e16\u5757\u201d\u662f\u94fe\u4e2d\u7684\u7b2c\u4e00\u4e2a\u5757\uff0c\n\u56e0\u6b64\u4e0d\u9700\u8981\u4e0e\u4efb\u4f55\u5148\u524d\u7684\u5757\u94fe\u63a5\u3002\n\u76f8\u53cd\uff0c\u540e\u7eed\u5757\u4e0e\u521b\u4e16\u5757\u94fe\u63a5\uff0c\u5e76\u4e14\u6bcf\u6b21\u6dfb\u52a0\n\u65b0\u5757\u65f6\u90fd\u4f1a\u91cd\u590d\u8be5\u8fc7\u7a0b\u3002\u8fd9\u5c31\u662f\u533a\u5757\u94fe\u7684\u5f62\u6210\n\u548c\u4e0d\u65ad\u53d1\u5c55\u7684\u65b9\u5f0f\u3002\n\n\u6bcf\u7b14\u4ea4\u6613\u90fd\u4f7f\u7528\u53d1\u4ef6\u4eba\u94b1\u5305\u7684\u79c1\u94a5\u8fdb\u884c\u201c\u6570\u5b57\u7b7e\u540d\u201d\u3002\n\u53ea\u6709\u53d1\u9001\u8005\u624d\u80fd\u8bbf\u95ee\u6b64\u5bc6\u94a5\uff0c\u4ece\u800c\u786e\u4fdd\u6570\u636e\u4e0d\u4f1a\u88ab\n\u5176\u4ed6\u4efb\u4f55\u4eba\u8bbf\u95ee\u6216\u7be1\u6539\u3002\n\u8fd9\u5728\u533a\u5757\u94fe\u672f\u8bed\u4e2d\u79f0\u4e3a\u201c\u6700\u7ec8\u6027\u201d\u3002\n\n\u6570\u5b57\u7b7e\u540d\u8fd8\u53ef\u4ee5\u4fdd\u62a4\u6240\u6709\u8005\u7684\u8eab\u4efd\uff0c\n\u8be5\u8eab\u4efd\u672c\u8eab\u662f\u52a0\u5bc6\u7684\uff0c\u4ece\u800c\u786e\u4fdd\u4e86\u6700\u5927\u7684\u5b89\u5168\u6027\u3002\n"
+    }
+  },
+  {
+    "id": 21,
+    "layers": 4,
+    "name": "Layer2:\u7f51\u7edc\u5c42",
+    "parent": 19,
+    "note": "\nP2P \u6846\u67b6\u4f7f\u5404\u4e2a\u8282\u70b9\u80fd\u591f\u4ea4\u6362\u4ea4\u6613\u6570\u636e\u4ee5\u5c31\n\u4ea4\u6613\u7684\u6709\u6548\u6027\u8fbe\u6210\u5171\u8bc6\u3002\u8fd9\u610f\u5473\u7740\u6bcf\u4e2a\u8282\u70b9\u90fd\n\u5fc5\u987b\u80fd\u591f\u53d1\u73b0\u7f51\u7edc\u4e0a\u7684\u5176\u4ed6\u8282\u70b9\u4ee5\u8fdb\u884c\u5feb\u901f\u901a\u4fe1\u3002\n\n\u6b63\u662f\u7f51\u7edc\u5c42\u4fc3\u8fdb\u4e86\u8fd9\u79cd\u201c\u8282\u70b9\u95f4\u901a\u4fe1\u201d\u3002\n\u7531\u4e8e\u8282\u70b9\u53d1\u73b0\u3001\u5757\u521b\u5efa\u548c\u5757\u6dfb\u52a0\u4e5f\u7531\u8be5\n\u5c42\u7ba1\u7406\uff0c\u56e0\u6b64\u4e5f\u79f0\u4e3a\u201c\u4f20\u64ad\u5c42\u201d\u3002\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Layer2:\u7f51\u7edc\u5c42",
+      "note": "\nP2P \u6846\u67b6\u4f7f\u5404\u4e2a\u8282\u70b9\u80fd\u591f\u4ea4\u6362\u4ea4\u6613\u6570\u636e\u4ee5\u5c31\n\u4ea4\u6613\u7684\u6709\u6548\u6027\u8fbe\u6210\u5171\u8bc6\u3002\u8fd9\u610f\u5473\u7740\u6bcf\u4e2a\u8282\u70b9\u90fd\n\u5fc5\u987b\u80fd\u591f\u53d1\u73b0\u7f51\u7edc\u4e0a\u7684\u5176\u4ed6\u8282\u70b9\u4ee5\u8fdb\u884c\u5feb\u901f\u901a\u4fe1\u3002\n\n\u6b63\u662f\u7f51\u7edc\u5c42\u4fc3\u8fdb\u4e86\u8fd9\u79cd\u201c\u8282\u70b9\u95f4\u901a\u4fe1\u201d\u3002\n\u7531\u4e8e\u8282\u70b9\u53d1\u73b0\u3001\u5757\u521b\u5efa\u548c\u5757\u6dfb\u52a0\u4e5f\u7531\u8be5\n\u5c42\u7ba1\u7406\uff0c\u56e0\u6b64\u4e5f\u79f0\u4e3a\u201c\u4f20\u64ad\u5c42\u201d\u3002\n"
+    }
+  },
+  {
+    "id": 22,
+    "layers": 4,
+    "name": "Layer3:\u5171\u8bc6\u5c42",
+    "parent": 19,
+    "note": "\n\u8fd9\u662f\u533a\u5757\u94fe\u64cd\u4f5c\u4e2d\u6700\u5173\u952e\u7684\u5c42\u3002\n\u8fd9\u4e00\u5c42\u8d1f\u8d23\u9a8c\u8bc1\u4ea4\u6613\uff0c\u6ca1\u6709\u5b83\uff0c\u6574\u4e2a\u7cfb\u7edf\u90fd\u4f1a\u5931\u8d25\u3002\n\n\u8be5\u5c42\u8fd0\u884c\u9700\u8981\u4e00\u5b9a\u6570\u91cf\u7684\u8282\u70b9\u6765\u9a8c\u8bc1\u4e00\u7b14\u4ea4\u6613\u7684\u534f\u8bae\u3002\n\n\u56e0\u6b64\uff0c\u6bcf\u7b14\u4ea4\u6613\u90fd\u7531\u591a\u4e2a\u8282\u70b9\u5904\u7406\uff0c\u7136\u540e\u8fd9\u4e9b\u8282\u70b9\u5fc5\u987b\n\u8fbe\u5230\u76f8\u540c\u7684\u7ed3\u679c\u5e76\u5c31\u5176\u6709\u6548\u6027\u8fbe\u6210\u4e00\u81f4\u3002\n\n\u8be5\u6846\u67b6\u4fdd\u6301\u4e86\u533a\u5757\u94fe\u7684\u53bb\u4e2d\u5fc3\u5316\u6027\u8d28\uff0c\u56e0\u4e3a\u6ca1\u6709\u8282\u70b9\u53ef\n\u4ee5\u5355\u72ec\u63a7\u5236\u4efb\u4f55\u4ea4\u6613\u6570\u636e\uff0c\u5e76\u4e14\u89d2\u8272\u662f\u5206\u5e03\u5f0f\u7684\u3002\n\u8fd9\u79f0\u4e3a\u5171\u8bc6\u673a\u5236\u3002\n\n\u7531\u4e8e\u6709\u5982\u6b64\u591a\u7684\u8282\u70b9\u5904\u7406\u4ea4\u6613\uff0c\u5c06\u5b83\u4eec\u6346\u7ed1\u8d77\u6765\u5e76\u5c06\u5b83\u4eec\n\u6dfb\u52a0\u5230\u533a\u5757\u94fe\u4e2d\uff0c\u56e0\u6b64\u53ef\u80fd\u4f1a\u540c\u65f6\u521b\u5efa\u591a\u4e2a\u5757\uff0c\u4ece\u800c\u5728\u533a\n\u5757\u94fe\u4e2d\u5f62\u6210\u4e00\u4e2a\u5206\u652f\u3002\n\n\u4f46\u662f\uff0c\u5fc5\u987b\u59cb\u7ec8\u5b58\u5728\u5355\u4e2a\u94fe\u5757\u6dfb\u52a0\uff0c\u5e76\u4e14\u5171\u8bc6\u5c42\u4e5f\u786e\u4fdd\u89e3\u51b3\u6b64\u51b2\u7a81\u3002\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Layer3:\u5171\u8bc6\u5c42",
+      "note": "\n\u8fd9\u662f\u533a\u5757\u94fe\u64cd\u4f5c\u4e2d\u6700\u5173\u952e\u7684\u5c42\u3002\n\u8fd9\u4e00\u5c42\u8d1f\u8d23\u9a8c\u8bc1\u4ea4\u6613\uff0c\u6ca1\u6709\u5b83\uff0c\u6574\u4e2a\u7cfb\u7edf\u90fd\u4f1a\u5931\u8d25\u3002\n\n\u8be5\u5c42\u8fd0\u884c\u9700\u8981\u4e00\u5b9a\u6570\u91cf\u7684\u8282\u70b9\u6765\u9a8c\u8bc1\u4e00\u7b14\u4ea4\u6613\u7684\u534f\u8bae\u3002\n\n\u56e0\u6b64\uff0c\u6bcf\u7b14\u4ea4\u6613\u90fd\u7531\u591a\u4e2a\u8282\u70b9\u5904\u7406\uff0c\u7136\u540e\u8fd9\u4e9b\u8282\u70b9\u5fc5\u987b\n\u8fbe\u5230\u76f8\u540c\u7684\u7ed3\u679c\u5e76\u5c31\u5176\u6709\u6548\u6027\u8fbe\u6210\u4e00\u81f4\u3002\n\n\u8be5\u6846\u67b6\u4fdd\u6301\u4e86\u533a\u5757\u94fe\u7684\u53bb\u4e2d\u5fc3\u5316\u6027\u8d28\uff0c\u56e0\u4e3a\u6ca1\u6709\u8282\u70b9\u53ef\n\u4ee5\u5355\u72ec\u63a7\u5236\u4efb\u4f55\u4ea4\u6613\u6570\u636e\uff0c\u5e76\u4e14\u89d2\u8272\u662f\u5206\u5e03\u5f0f\u7684\u3002\n\u8fd9\u79f0\u4e3a\u5171\u8bc6\u673a\u5236\u3002\n\n\u7531\u4e8e\u6709\u5982\u6b64\u591a\u7684\u8282\u70b9\u5904\u7406\u4ea4\u6613\uff0c\u5c06\u5b83\u4eec\u6346\u7ed1\u8d77\u6765\u5e76\u5c06\u5b83\u4eec\n\u6dfb\u52a0\u5230\u533a\u5757\u94fe\u4e2d\uff0c\u56e0\u6b64\u53ef\u80fd\u4f1a\u540c\u65f6\u521b\u5efa\u591a\u4e2a\u5757\uff0c\u4ece\u800c\u5728\u533a\n\u5757\u94fe\u4e2d\u5f62\u6210\u4e00\u4e2a\u5206\u652f\u3002\n\n\u4f46\u662f\uff0c\u5fc5\u987b\u59cb\u7ec8\u5b58\u5728\u5355\u4e2a\u94fe\u5757\u6dfb\u52a0\uff0c\u5e76\u4e14\u5171\u8bc6\u5c42\u4e5f\u786e\u4fdd\u89e3\u51b3\u6b64\u51b2\u7a81\u3002\n"
+    }
+  },
+  {
+    "id": 23,
+    "layers": 4,
+    "name": "Layer4:\u6fc0\u52b1\u5c42",
+    "parent": 19,
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Layer4:\u6fc0\u52b1\u5c42"
+    }
+  },
+  {
+    "id": 24,
+    "layers": 4,
+    "name": "Layer5:\u5408\u7ea6\u5c42",
+    "parent": 19,
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Layer5:\u5408\u7ea6\u5c42"
+    }
+  },
+  {
+    "id": 26,
+    "layers": 4,
+    "name": "Layer6:\u5e94\u7528\u5c42(dApp)",
+    "parent": 25,
+    "note": "\n\u8fd9\u662f\u8fd0\u884c\u667a\u80fd\u5408\u7ea6\u548c\u53bb\u4e2d\u5fc3\u5316\u5e94\u7528\u7a0b\u5e8f (dApp) \u7684\u5c42\u3002\n\u667a\u80fd\u5408\u7ea6\u6839\u636e\u67d0\u4e9b\u89e6\u53d1\u56e0\u7d20\u505a\u51fa\u51b3\u7b56\uff0c\u4f8b\u5982\u5408\u7ea6\u5230\u671f\u65e5\u3001\n\u73b0\u8d27\u4ef7\u683c\u7684\u5b9e\u73b0\u7b49\u3002\u9075\u5faa\u8fd9\u4e9b\u51b3\u7b56\u7684\u884c\u52a8\u7531 dApp \u6267\u884c\uff0c\n\u800c\u8fd9\u4e00\u5207\u90fd\u53d1\u751f\u5728\u5e94\u7528\u5c42\u3002\n\ndApp\u8fd8\u4fc3\u8fdb\u4e86\u7528\u6237\u8bbe\u5907\u548c\u533a\u5757\u94fe\u4e4b\u95f4\u7684\u901a\u4fe1\u3002\n\u56e0\u6b64\uff0c\u5e94\u7528\u7a0b\u5e8f\u5c31\u50cf\u9762\u5411\u7528\u6237\u7684\u524d\u7aef\uff0c\u800c\u4e3b\u533a\u5757\u94fe\u662f\u540e\u7aef\uff0c\n\u6570\u636e\u5b89\u5168\u5730\u5b58\u50a8\u5728\u5176\u4e2d\u3002\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Layer6:\u5e94\u7528\u5c42(dApp)",
+      "note": "\n\u8fd9\u662f\u8fd0\u884c\u667a\u80fd\u5408\u7ea6\u548c\u53bb\u4e2d\u5fc3\u5316\u5e94\u7528\u7a0b\u5e8f (dApp) \u7684\u5c42\u3002\n\u667a\u80fd\u5408\u7ea6\u6839\u636e\u67d0\u4e9b\u89e6\u53d1\u56e0\u7d20\u505a\u51fa\u51b3\u7b56\uff0c\u4f8b\u5982\u5408\u7ea6\u5230\u671f\u65e5\u3001\n\u73b0\u8d27\u4ef7\u683c\u7684\u5b9e\u73b0\u7b49\u3002\u9075\u5faa\u8fd9\u4e9b\u51b3\u7b56\u7684\u884c\u52a8\u7531 dApp \u6267\u884c\uff0c\n\u800c\u8fd9\u4e00\u5207\u90fd\u53d1\u751f\u5728\u5e94\u7528\u5c42\u3002\n\ndApp\u8fd8\u4fc3\u8fdb\u4e86\u7528\u6237\u8bbe\u5907\u548c\u533a\u5757\u94fe\u4e4b\u95f4\u7684\u901a\u4fe1\u3002\n\u56e0\u6b64\uff0c\u5e94\u7528\u7a0b\u5e8f\u5c31\u50cf\u9762\u5411\u7528\u6237\u7684\u524d\u7aef\uff0c\u800c\u4e3b\u533a\u5757\u94fe\u662f\u540e\u7aef\uff0c\n\u6570\u636e\u5b89\u5168\u5730\u5b58\u50a8\u5728\u5176\u4e2d\u3002\n"
+    }
+  },
+  {
+    "id": 29,
+    "layers": 4,
+    "name": "why split by EVM",
+    "parent": 28,
+    "link": "https://www.devpill.me/docs/introduction/foreword/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "why split by EVM",
+      "link": "https://www.devpill.me/docs/introduction/foreword/"
+    }
+  },
+  {
+    "id": 30,
+    "layers": 4,
+    "name": "ETH(EVM)",
+    "parent": 28,
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "ETH(EVM)"
+    }
+  },
+  {
+    "id": 31,
+    "layers": 4,
+    "name": "non-EVM",
+    "parent": 28,
+    "note": "\n Examples of other non-EVM compatible blockchains that are\n popular are Solana (Rust/Anchor), Polkadot (Rust/Substrate),\n Cosmos , Terra , and others. Most of these blockchains do or\n will support the EVM stack through various initiatives like\n Neon EVM (Solana), Moonbeam/Moonriver (Polkadot/Kusama),\n EVMOS ( Cosmos ), etc.\n",
+    "child_count": 4,
+    "node_count": 10,
+    "tool_tip": {
+      "title": "non-EVM",
+      "note": "\n Examples of other non-EVM compatible blockchains that are\n popular are Solana (Rust/Anchor), Polkadot (Rust/Substrate),\n Cosmos , Terra , and others. Most of these blockchains do or\n will support the EVM stack through various initiatives like\n Neon EVM (Solana), Moonbeam/Moonriver (Polkadot/Kusama),\n EVMOS ( Cosmos ), etc.\n"
+    }
+  },
+  {
+    "id": 51,
+    "layers": 4,
+    "name": "\u5206\u5e03\u5f0f\u8ba1\u7b97 [\ud83d\udd17wiki]",
+    "parent": 50,
+    "link": "https://zh.m.wikipedia.org/wiki/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "\u5206\u5e03\u5f0f\u8ba1\u7b97 [\ud83d\udd17wiki]",
+      "link": "https://zh.m.wikipedia.org/wiki/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97"
+    }
+  },
+  {
+    "id": 52,
+    "layers": 4,
+    "name": "\u62dc\u5360\u5ead\u5c06\u519b\u95ee\u9898 [\ud83d\udd17wiki]",
+    "parent": 50,
+    "link": "https://zh.m.wikipedia.org/wiki/%E6%8B%9C%E5%8D%A0%E5%BA%AD%E5%B0%86%E5%86%9B%E9%97%AE%E9%A2%98",
+    "child_count": 1,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "\u62dc\u5360\u5ead\u5c06\u519b\u95ee\u9898 [\ud83d\udd17wiki]",
+      "link": "https://zh.m.wikipedia.org/wiki/%E6%8B%9C%E5%8D%A0%E5%BA%AD%E5%B0%86%E5%86%9B%E9%97%AE%E9%A2%98"
+    }
+  },
+  {
+    "id": 54,
+    "layers": 4,
+    "name": "\u6301\u6709\u91cf\u8bc1\u660e(PoS|Proof-of-Stake) [\ud83d\udd17wiki]",
+    "parent": 50,
+    "link": "https://zh.m.wikipedia.org/zh-hans/%E6%8C%81%E6%9C%89%E9%87%8F%E8%AD%89%E6%98%8E",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "\u6301\u6709\u91cf\u8bc1\u660e(PoS|Proof-of-Stake) [\ud83d\udd17wiki]",
+      "link": "https://zh.m.wikipedia.org/zh-hans/%E6%8C%81%E6%9C%89%E9%87%8F%E8%AD%89%E6%98%8E"
+    }
+  },
+  {
+    "id": 55,
+    "layers": 4,
+    "name": "\u5de5\u4f5c\u91cf\u8bc1\u660e(PoW|Proof-of-Work) [\ud83d\udd17wiki]",
+    "parent": 50,
+    "link": "https://zh.m.wikipedia.org/zh-hans/%E5%B7%A5%E4%BD%9C%E9%87%8F%E8%AD%89%E6%98%8E",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "\u5de5\u4f5c\u91cf\u8bc1\u660e(PoW|Proof-of-Work) [\ud83d\udd17wiki]",
+      "link": "https://zh.m.wikipedia.org/zh-hans/%E5%B7%A5%E4%BD%9C%E9%87%8F%E8%AD%89%E6%98%8E"
+    }
+  },
+  {
+    "id": 56,
+    "layers": 4,
+    "name": "PoSpace|Proof-of-space",
+    "parent": 50,
+    "child_count": 1,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "PoSpace|Proof-of-space"
+    }
+  },
+  {
+    "id": 58,
+    "layers": 4,
+    "name": "DPoS: Delegated-Proof-of-Stake",
+    "parent": 50,
+    "child_count": 1,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "DPoS: Delegated-Proof-of-Stake"
+    }
+  },
+  {
+    "id": 60,
+    "layers": 4,
+    "name": "Paxos\u7b97\u6cd5 [\ud83d\udd17wiki]",
+    "parent": 50,
+    "link": "https://zh.m.wikipedia.org/zh-hans/Paxos%E7%AE%97%E6%B3%95",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Paxos\u7b97\u6cd5 [\ud83d\udd17wiki]",
+      "link": "https://zh.m.wikipedia.org/zh-hans/Paxos%E7%AE%97%E6%B3%95"
+    }
+  },
+  {
+    "id": 61,
+    "layers": 4,
+    "name": "Raft [\ud83d\udd17wiki]",
+    "parent": 50,
+    "link": "https://zh.m.wikipedia.org/zh-hans/Raft",
+    "note": "\nRaft\u662f\u4e00\u79cd\u7528\u4e8e\u66ff\u4ee3Paxos\u7684\u5171\u8bc6\u7b97\u6cd5\u3002\u76f8\u6bd4\u4e8ePaxos\uff0c\nRaft\u7684\u76ee\u6807\u662f\u63d0\u4f9b\u66f4\u6e05\u6670\u7684\u903b\u8f91\u5206\u5de5\u4f7f\u5f97\u7b97\u6cd5\u672c\u8eab\u80fd\u88ab\u66f4\u597d\u5730\u7406\u89e3\uff0c\n\u540c\u65f6\u5b83\u5b89\u5168\u6027\u66f4\u9ad8\uff0c\u5e76\u80fd\u63d0\u4f9b\u4e00\u4e9b\u989d\u5916\u7684\u7279\u6027\nRaft\u80fd\u4e3a\u5728\u8ba1\u7b97\u673a\u96c6\u7fa4\u4e4b\u95f4\u90e8\u7f72\u6709\u9650\u72b6\u6001\u673a\u63d0\u4f9b\u4e00\u79cd\u901a\u7528\u65b9\u6cd5\uff0c\n\u5e76\u786e\u4fdd\u96c6\u7fa4\u5185\u7684\u4efb\u610f\u8282\u70b9\u5728\u67d0\u79cd\u72b6\u6001\u8f6c\u6362\u4e0a\u4fdd\u6301\u4e00\u81f4\u3002\nRaft\u7b97\u6cd5\u7684\u5f00\u6e90\u5b9e\u73b0\u4f17\u591a\uff0c\u5728Go\u3001C++\u3001Java\u4ee5\u53caScala\u4e2d\u90fd\u6709\n\u5b8c\u6574\u7684\u4ee3\u7801\u5b9e\u73b0\u3002\nRaft\u8fd9\u4e00\u540d\u5b57\u6765\u6e90\u4e8e\"Reliable,Replicated,Redundant And Fault-Tolerant\"\uff08\u201c\u53ef\u9760\u3001\u53ef\u590d\u5236\u3001\u53ef\u5197\u4f59\u3001\u53ef\u5bb9\u9519\u201d\uff09\u7684\u9996\u5b57\u6bcd\u7f29\u5199\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Raft [\ud83d\udd17wiki]",
+      "note": "\nRaft\u662f\u4e00\u79cd\u7528\u4e8e\u66ff\u4ee3Paxos\u7684\u5171\u8bc6\u7b97\u6cd5\u3002\u76f8\u6bd4\u4e8ePaxos\uff0c\nRaft\u7684\u76ee\u6807\u662f\u63d0\u4f9b\u66f4\u6e05\u6670\u7684\u903b\u8f91\u5206\u5de5\u4f7f\u5f97\u7b97\u6cd5\u672c\u8eab\u80fd\u88ab\u66f4\u597d\u5730\u7406\u89e3\uff0c\n\u540c\u65f6\u5b83\u5b89\u5168\u6027\u66f4\u9ad8\uff0c\u5e76\u80fd\u63d0\u4f9b\u4e00\u4e9b\u989d\u5916\u7684\u7279\u6027\nRaft\u80fd\u4e3a\u5728\u8ba1\u7b97\u673a\u96c6\u7fa4\u4e4b\u95f4\u90e8\u7f72\u6709\u9650\u72b6\u6001\u673a\u63d0\u4f9b\u4e00\u79cd\u901a\u7528\u65b9\u6cd5\uff0c\n\u5e76\u786e\u4fdd\u96c6\u7fa4\u5185\u7684\u4efb\u610f\u8282\u70b9\u5728\u67d0\u79cd\u72b6\u6001\u8f6c\u6362\u4e0a\u4fdd\u6301\u4e00\u81f4\u3002\nRaft\u7b97\u6cd5\u7684\u5f00\u6e90\u5b9e\u73b0\u4f17\u591a\uff0c\u5728Go\u3001C++\u3001Java\u4ee5\u53caScala\u4e2d\u90fd\u6709\n\u5b8c\u6574\u7684\u4ee3\u7801\u5b9e\u73b0\u3002\nRaft\u8fd9\u4e00\u540d\u5b57\u6765\u6e90\u4e8e\"Reliable,Replicated,Redundant And Fault-Tolerant\"\uff08\u201c\u53ef\u9760\u3001\u53ef\u590d\u5236\u3001\u53ef\u5197\u4f59\u3001\u53ef\u5bb9\u9519\u201d\uff09\u7684\u9996\u5b57\u6bcd\u7f29\u5199\n",
+      "link": "https://zh.m.wikipedia.org/zh-hans/Raft"
+    }
+  },
+  {
+    "id": 64,
+    "layers": 4,
+    "name": "Dapp-Learning",
+    "parent": 63,
+    "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/README-CN.md",
+    "note": "\n\u672c\u9879\u76ee\u9002\u5408\u6709\u4e00\u5b9a\u8bed\u8a00\u57fa\u7840\u7684\u5f00\u53d1\u8005\u5165\u95e8\u533a\u5757\u94fe DAPP \u5f00\u53d1\uff0c\u7531\u6d45\u5230\u6df1\u4e86\u89e3\u548c\u5f00\u53d1 DeFi, NFT, DAO, CRYPTO \u9879\u76ee\u3002\n\n\u9879\u76ee\u613f\u666f\u662f\u7ed9\u521d\u7ea7\u5f00\u53d1\u8005\u4e00\u4e2a\u53ef\u6267\u884c\u4e14\u6700\u7b80\u7684\u533a\u5757\u94fe Dapp \u5b66\u4e60\u8def\u7ebf\u56fe\uff0c\u7ed9\u8fdb\u9636\u5f00\u53d1\u8005\u4e00\u4e2a\u53ef\u4ee5\u4ea4\u6d41\u548c\u534f\u4f5c\u7684\u5e73\u53f0\u3002\n\n\u672c\u9879\u76ee\u4f1a\u6210\u7acb\u5b66\u4e60\u5c0f\u7ec4\u8fdb\u884c\u4efb\u52a1\u5206\u5de5\uff0c\u7136\u540e\u4e00\u8d77\u7814\u7a76\u4e3b\u6d41dapp\u9879\u76ee\uff0c\u6bcf\u5468\u8fdb\u884c\u6280\u672f\u5206\u4eab\uff0c\u8f93\u51fa\u6210\u679c\u4f1a\u4f5c\u4e3a\u89c6\u9891\u4e0a\u4f20Youtube\u3002\n\n\u9879\u76ee\u79c9\u6301 \u5f00\u6e90\u5927\u5b66 \u7684\u7406\u5ff5\uff0c\u4f1a\u4ee5DAO\u6cbb\u7406\u5f62\u5f0f\u7ba1\u7406\u6b64\u5f00\u6e90\u9879\u76ee\u3002\u672c\u9879\u76ee\u53d7\u4ee5\u592a\u574a\u57fa\u91d1\u4f1a\u8d5e\u52a9\uff0c\u6211\u4eec\u4f1a\u5c06\u8d44\u91d1\u5956\u52b1\u7ed9\u9879\u76ee\u7684\u4f18\u79c0\u8d21\u732e\u8005\u3002\u5f00\u6e90\u9879\u76ee\u7ef4\u62a4\u4e0d\u6613\uff0c\u6b22\u8fcegitcoin\u6350\u8d60\u3002\u60f3\u8ddf\u8e2a\u9879\u76ee\u6700\u65b0\u8fdb\u5c55\uff0c\u6b22\u8fce\u5173\u6ce8\u6211\u4eec\u7684\u63a8\u7279\u548cYoutube\u3002 \u9879\u76ee\u7531\u6765\u53ef\u4ee5\u9605\u8bfb\u300aDapp-Learning \u6b22\u8fce\u60a8\u7684\u52a0\u5165\u300b\u3002\n\n\u6b64\u9879\u76ee\u4ecd\u5728\u5f00\u53d1\u4e2d\uff0c\u9002\u5408\u5404\u9636\u6bb5\u7684\u5f00\u53d1\u8005\u52a0\u5165\uff0c\u6b22\u8fce\u63d0 PR \u6765\u521b\u5efa\u66f4\u591a\u7684\u6559\u7a0b\u9879\u76ee\u6216\u5b8c\u5584\u5df2\u6709\u7684\u6559\u7a0b\u9879\u76ee\ud83e\udd17\u3002\u9879\u76ee\u4ea4\u6d41\u53ef\u52a0\u5165\u6211\u4eec\u7684 discord \u3002\u63d0\u4ea4\u4e09\u6b21PR\u6216\u8005\u5b89\u6392\u4e00\u6b21\u5206\u4eab\u5373\u53ef\u52a0\u5165\u6211\u4eec\u5f00\u53d1\u8005\u7fa4\uff0c\u6301\u7eed\u8d21\u732e\u9ad8\u8d28\u91cfPR\u53ef\u6210\u4e3aPR\u5ba1\u6838\u8005\uff0c\u5e76\u53c2\u4e0e\u51b3\u8bae\u9879\u76ee\u8d70\u5411\u3002\u9879\u76ee\u7ba1\u7406\u7ec6\u5219\u8bf7\u53c2\u770b\u65b0\u4eba\u5982\u4f55\u53c2\u4e0e\u4ee5\u53ca\u9879\u76ee\u6cbb\u7406\u89c4\u5219\uff0c\u6b22\u8fce\u7406\u5ff5\u76f8\u540c\u7684\u5c0f\u4f19\u4f34\u52a0\u5165\u3002\n",
+    "child_count": 4,
+    "node_count": 13,
+    "tool_tip": {
+      "title": "Dapp-Learning",
+      "note": "\n\u672c\u9879\u76ee\u9002\u5408\u6709\u4e00\u5b9a\u8bed\u8a00\u57fa\u7840\u7684\u5f00\u53d1\u8005\u5165\u95e8\u533a\u5757\u94fe DAPP \u5f00\u53d1\uff0c\u7531\u6d45\u5230\u6df1\u4e86\u89e3\u548c\u5f00\u53d1 DeFi, NFT, DAO, CRYPTO \u9879\u76ee\u3002\n\n\u9879\u76ee\u613f\u666f\u662f\u7ed9\u521d\u7ea7\u5f00\u53d1\u8005\u4e00\u4e2a\u53ef\u6267\u884c\u4e14\u6700\u7b80\u7684\u533a\u5757\u94fe Dapp \u5b66\u4e60\u8def\u7ebf\u56fe\uff0c\u7ed9\u8fdb\u9636\u5f00\u53d1\u8005\u4e00\u4e2a\u53ef\u4ee5\u4ea4\u6d41\u548c\u534f\u4f5c\u7684\u5e73\u53f0\u3002\n\n\u672c\u9879\u76ee\u4f1a\u6210\u7acb\u5b66\u4e60\u5c0f\u7ec4\u8fdb\u884c\u4efb\u52a1\u5206\u5de5\uff0c\u7136\u540e\u4e00\u8d77\u7814\u7a76\u4e3b\u6d41dapp\u9879\u76ee\uff0c\u6bcf\u5468\u8fdb\u884c\u6280\u672f\u5206\u4eab\uff0c\u8f93\u51fa\u6210\u679c\u4f1a\u4f5c\u4e3a\u89c6\u9891\u4e0a\u4f20Youtube\u3002\n\n\u9879\u76ee\u79c9\u6301 \u5f00\u6e90\u5927\u5b66 \u7684\u7406\u5ff5\uff0c\u4f1a\u4ee5DAO\u6cbb\u7406\u5f62\u5f0f\u7ba1\u7406\u6b64\u5f00\u6e90\u9879\u76ee\u3002\u672c\u9879\u76ee\u53d7\u4ee5\u592a\u574a\u57fa\u91d1\u4f1a\u8d5e\u52a9\uff0c\u6211\u4eec\u4f1a\u5c06\u8d44\u91d1\u5956\u52b1\u7ed9\u9879\u76ee\u7684\u4f18\u79c0\u8d21\u732e\u8005\u3002\u5f00\u6e90\u9879\u76ee\u7ef4\u62a4\u4e0d\u6613\uff0c\u6b22\u8fcegitcoin\u6350\u8d60\u3002\u60f3\u8ddf\u8e2a\u9879\u76ee\u6700\u65b0\u8fdb\u5c55\uff0c\u6b22\u8fce\u5173\u6ce8\u6211\u4eec\u7684\u63a8\u7279\u548cYoutube\u3002 \u9879\u76ee\u7531\u6765\u53ef\u4ee5\u9605\u8bfb\u300aDapp-Learning \u6b22\u8fce\u60a8\u7684\u52a0\u5165\u300b\u3002\n\n\u6b64\u9879\u76ee\u4ecd\u5728\u5f00\u53d1\u4e2d\uff0c\u9002\u5408\u5404\u9636\u6bb5\u7684\u5f00\u53d1\u8005\u52a0\u5165\uff0c\u6b22\u8fce\u63d0 PR \u6765\u521b\u5efa\u66f4\u591a\u7684\u6559\u7a0b\u9879\u76ee\u6216\u5b8c\u5584\u5df2\u6709\u7684\u6559\u7a0b\u9879\u76ee\ud83e\udd17\u3002\u9879\u76ee\u4ea4\u6d41\u53ef\u52a0\u5165\u6211\u4eec\u7684 discord \u3002\u63d0\u4ea4\u4e09\u6b21PR\u6216\u8005\u5b89\u6392\u4e00\u6b21\u5206\u4eab\u5373\u53ef\u52a0\u5165\u6211\u4eec\u5f00\u53d1\u8005\u7fa4\uff0c\u6301\u7eed\u8d21\u732e\u9ad8\u8d28\u91cfPR\u53ef\u6210\u4e3aPR\u5ba1\u6838\u8005\uff0c\u5e76\u53c2\u4e0e\u51b3\u8bae\u9879\u76ee\u8d70\u5411\u3002\u9879\u76ee\u7ba1\u7406\u7ec6\u5219\u8bf7\u53c2\u770b\u65b0\u4eba\u5982\u4f55\u53c2\u4e0e\u4ee5\u53ca\u9879\u76ee\u6cbb\u7406\u89c4\u5219\uff0c\u6b22\u8fce\u7406\u5ff5\u76f8\u540c\u7684\u5c0f\u4f19\u4f34\u52a0\u5165\u3002\n",
+      "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/README-CN.md"
+    }
+  },
+  {
+    "id": 81,
+    "layers": 4,
+    "name": "Dapp-Learning (@Dapp_Learning) / Twitter",
+    "parent": 63,
+    "link": "https://twitter.com/Dapp_Learning",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Dapp-Learning (@Dapp_Learning) / Twitter",
+      "link": "https://twitter.com/Dapp_Learning"
+    }
+  },
+  {
+    "id": 82,
+    "layers": 4,
+    "name": "Dapp Learning - YouTube",
+    "parent": 63,
+    "link": "https://www.youtube.com/c/DappLearning/videos",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Dapp Learning - YouTube",
+      "link": "https://www.youtube.com/c/DappLearning/videos"
+    }
+  },
+  {
+    "id": 83,
+    "layers": 4,
+    "name": "Dapp-Learning\u5f00\u6e90\u5927\u5b66\u5206\u4eab\u5217\u8868",
+    "parent": 63,
+    "link": "https://docs.qq.com/doc/DQ3hWeVVXQ3JPbXFS",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Dapp-Learning\u5f00\u6e90\u5927\u5b66\u5206\u4eab\u5217\u8868",
+      "link": "https://docs.qq.com/doc/DQ3hWeVVXQ3JPbXFS"
+    }
+  },
+  {
+    "id": 84,
+    "layers": 4,
+    "name": "\u5f00\u53d1\u5de5\u5177\u63a8\u8350",
+    "parent": 63,
+    "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/docs/develop-tools.md",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "\u5f00\u53d1\u5de5\u5177\u63a8\u8350",
+      "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/docs/develop-tools.md"
+    }
+  },
+  {
+    "id": 85,
+    "layers": 4,
+    "name": "Discord Room-Dapp Learning",
+    "parent": 63,
+    "link": "https://discord.com/invite/cRYNYXqPeR",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Discord Room-Dapp Learning",
+      "link": "https://discord.com/invite/cRYNYXqPeR"
+    }
+  },
+  {
+    "id": 92,
+    "layers": 4,
+    "name": "What is blockchain development?",
+    "parent": 91,
+    "link": "https://www.devpill.me/docs/introduction/blockchain-development/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "What is blockchain development?",
+      "link": "https://www.devpill.me/docs/introduction/blockchain-development/"
+    }
+  },
+  {
+    "id": 94,
+    "layers": 4,
+    "name": "web3\u6280\u80fd\u5927\u5168",
+    "parent": 93,
+    "link": "https://www.devpill.me/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "web3\u6280\u80fd\u5927\u5168",
+      "link": "https://www.devpill.me/"
+    }
+  },
+  {
+    "id": 95,
+    "layers": 4,
+    "name": "Skill-based s\npecializatio\nns",
+    "parent": 93,
+    "link": "https://www.devpill.me/docs/introduction/skill-based/",
+    "child_count": 9,
+    "node_count": 47,
+    "tool_tip": {
+      "title": "Skill-based s\npecializatio\nns",
+      "link": "https://www.devpill.me/docs/introduction/skill-based/"
+    }
+  },
+  {
+    "id": 158,
+    "layers": 4,
+    "name": "Application-b\nased special\nizations",
+    "parent": 93,
+    "link": "https://www.devpill.me/docs/introduction/application-based/",
+    "child_count": 8,
+    "node_count": 8,
+    "tool_tip": {
+      "title": "Application-b\nased special\nizations",
+      "link": "https://www.devpill.me/docs/introduction/application-based/"
+    }
+  },
+  {
+    "id": 32,
+    "layers": 5,
+    "name": "Solona(Rust)",
+    "parent": 31,
+    "child_count": 2,
+    "node_count": 2,
+    "tool_tip": {
+      "title": "Solona(Rust)"
+    }
+  },
+  {
+    "id": 35,
+    "layers": 5,
+    "name": "Polkadot(Rust)",
+    "parent": 31,
+    "link": "https://polkadot.network/",
+    "child_count": 1,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Polkadot(Rust)",
+      "link": "https://polkadot.network/"
+    }
+  },
+  {
+    "id": 37,
+    "layers": 5,
+    "name": "Cosmos-C++: T\nhe Internet of Blockchains",
+    "parent": 31,
+    "link": "https://cosmos.network/",
+    "note": "\nCosmos\u4e00\u4e2a\u6700\u6df1\u5165\u4eba\u5fc3\u7684\u63cf\u8ff0\u662f\u201c\u533a\u5757\u94fe\u7684\u4e92\u8054\u7f51\u201d\uff0c\u4ed6\u60f3\u8ba9\u533a\u5757\u94fe\u5177\u6709\u4e92\u64cd\u4f5c\u6027\u7684\u7f51\u7edc\u6846\u67b6\uff0c\u80fd\u4f5c\u4e3a\u4e00\u4e2a\u6865\u6881\u6765\u8fde\u63a5\u4e00\u4e2a\u4e2a\u72ec\u7acb\u7684\u52a0\u5bc6\u8d27\u5e01\u533a\u5757\u94fe\uff0c\u89e3\u51b3\u533a\u5757\u94fe\u4e4b\u95f4\u7684\u201c\u5b64\u5c9b\u6548\u5e94\u201d\u3002\nCosmos\u6709\u4e00\u4e2a\u5f88\u72ec\u7279\u7684\u5b87\u5b99\u89c2\uff08Cosmos\u8fd9\u4e2a\u5355\u8bcd\u7684\u7ffb\u8bd1\u5c31\u662f\u5b87\u5b99\uff09\uff1a\u8fd9\u4e2a\u4e16\u754c\u4e0d\u53ef\u80fd\u7531\u4e00\u4e2a\u533a\u5757\u94fe\u4e3b\u5bfc\uff0c\u4e00\u5b9a\u662f\u591a\u94fe\u5e76\u5b58\uff0c\u591a\u5e01\u5e76\u884c\u7684\u4e16\u754c\u3002\u628a\u6574\u4e2a\u201c\u5404\u81ea\u4e3a\u653f\u201d\u7684\u533a\u5757\u94fe\u4e16\u754c\uff0c\u6574\u5408\u6210\u4e00\u4e2a\u5b8c\u6574\u7684\u751f\u6001\u7cfb\u7edf\uff0c\u5c31\u662f\u5b83\u7684\u7ec8\u6781\u7406\u60f3\u3002\u5e76\u4e14\u5728Cosmos\u7684\u89c2\u5ff5\u4e2d\uff0c\u8ba4\u4e3a\"\u5e01\"\u662f\u53ef\u4ee5\u8131\u79bb\u201c\u94fe\u201d\u7684\u3002\u5728Cosmos\u91cc\u6709\u4e2a\u6838\u5fc3\u6280\u672f\uff0c\u4f7f\u5f97\u4ee3\u5e01\u53ef\u4ee5\u8de8\u533a\u5757\u94fe\u8fdb\u884c\u8f6c\u79fb\uff0c\u8fd9\u4e2a\u6838\u5fc3\u6280\u672f\u5c31\u662fTendermint\u3002Tendermint\u662f\u533a\u5757\u94fe\u9886\u57df\u8f83\u65e9\u7684\u57fa\u4e8e\u62dc\u5360\u5ef7\u5bb9\u9519\u534f\u8bae\u7684PoS\u5171\u8bc6\u5f15\u64ce\u3002\u5176\u5b9e\u6240\u6709\u4eba\u90fd\u77e5\u9053\uff0c\u672a\u6765\u7684\u533a\u5757\u94fe\u4e00\u5b9a\u662f\u4e92\u8054\u4e92\u901a\u7684\uff0c\u6b63\u5982\u6240\u6709\u4eba\u5728\u8ba1\u7b97\u673a\u8bde\u751f\u7684\u65f6\u5019\u5c31\u60f3\u5230\u8ba1\u7b97\u673a\u4e4b\u95f4\u4e00\u5b9a\u662f\u4e92\u8054\u4e92\u901a\u7684\u4e00\u6837\uff0c\u7545\u60f3\u90fd\u7545\u60f3\u5b8c\u4e86\uff0c\u8c01\u80fd\u628a\u6280\u672f\u6700\u65e9\u5f80\u524d\u63a8\u8fdb\u4e00\u6b65\uff0c\u8c01\u5c31\u662f\u660e\u65e5\u4e4b\u661f\u3002\u800c\u76ee\u524d\u8de8\u94fe\u6280\u672f\u91cc\u6700\u597d\u7684\u9879\u76ee\uff0c\u4e00\u4e2a\u53ebPolkadot\uff08\u6ce2\u5361\uff09\uff0c\u4e5f\u662f\u4eca\u5e74\u7edd\u5bf9\u7684\u660e\u661f\u9879\u76ee\uff1b\u53e6\u5916\u4e00\u4e2a\uff0c\u5c31\u662f\u672c\u6587\u7684\u4e3b\u89d2Cosmos\u4e86\u3002\n",
+    "child_count": 2,
+    "node_count": 4,
+    "tool_tip": {
+      "title": "Cosmos-C++: T\nhe Internet of Blockchains",
+      "note": "\nCosmos\u4e00\u4e2a\u6700\u6df1\u5165\u4eba\u5fc3\u7684\u63cf\u8ff0\u662f\u201c\u533a\u5757\u94fe\u7684\u4e92\u8054\u7f51\u201d\uff0c\u4ed6\u60f3\u8ba9\u533a\u5757\u94fe\u5177\u6709\u4e92\u64cd\u4f5c\u6027\u7684\u7f51\u7edc\u6846\u67b6\uff0c\u80fd\u4f5c\u4e3a\u4e00\u4e2a\u6865\u6881\u6765\u8fde\u63a5\u4e00\u4e2a\u4e2a\u72ec\u7acb\u7684\u52a0\u5bc6\u8d27\u5e01\u533a\u5757\u94fe\uff0c\u89e3\u51b3\u533a\u5757\u94fe\u4e4b\u95f4\u7684\u201c\u5b64\u5c9b\u6548\u5e94\u201d\u3002\nCosmos\u6709\u4e00\u4e2a\u5f88\u72ec\u7279\u7684\u5b87\u5b99\u89c2\uff08Cosmos\u8fd9\u4e2a\u5355\u8bcd\u7684\u7ffb\u8bd1\u5c31\u662f\u5b87\u5b99\uff09\uff1a\u8fd9\u4e2a\u4e16\u754c\u4e0d\u53ef\u80fd\u7531\u4e00\u4e2a\u533a\u5757\u94fe\u4e3b\u5bfc\uff0c\u4e00\u5b9a\u662f\u591a\u94fe\u5e76\u5b58\uff0c\u591a\u5e01\u5e76\u884c\u7684\u4e16\u754c\u3002\u628a\u6574\u4e2a\u201c\u5404\u81ea\u4e3a\u653f\u201d\u7684\u533a\u5757\u94fe\u4e16\u754c\uff0c\u6574\u5408\u6210\u4e00\u4e2a\u5b8c\u6574\u7684\u751f\u6001\u7cfb\u7edf\uff0c\u5c31\u662f\u5b83\u7684\u7ec8\u6781\u7406\u60f3\u3002\u5e76\u4e14\u5728Cosmos\u7684\u89c2\u5ff5\u4e2d\uff0c\u8ba4\u4e3a\"\u5e01\"\u662f\u53ef\u4ee5\u8131\u79bb\u201c\u94fe\u201d\u7684\u3002\u5728Cosmos\u91cc\u6709\u4e2a\u6838\u5fc3\u6280\u672f\uff0c\u4f7f\u5f97\u4ee3\u5e01\u53ef\u4ee5\u8de8\u533a\u5757\u94fe\u8fdb\u884c\u8f6c\u79fb\uff0c\u8fd9\u4e2a\u6838\u5fc3\u6280\u672f\u5c31\u662fTendermint\u3002Tendermint\u662f\u533a\u5757\u94fe\u9886\u57df\u8f83\u65e9\u7684\u57fa\u4e8e\u62dc\u5360\u5ef7\u5bb9\u9519\u534f\u8bae\u7684PoS\u5171\u8bc6\u5f15\u64ce\u3002\u5176\u5b9e\u6240\u6709\u4eba\u90fd\u77e5\u9053\uff0c\u672a\u6765\u7684\u533a\u5757\u94fe\u4e00\u5b9a\u662f\u4e92\u8054\u4e92\u901a\u7684\uff0c\u6b63\u5982\u6240\u6709\u4eba\u5728\u8ba1\u7b97\u673a\u8bde\u751f\u7684\u65f6\u5019\u5c31\u60f3\u5230\u8ba1\u7b97\u673a\u4e4b\u95f4\u4e00\u5b9a\u662f\u4e92\u8054\u4e92\u901a\u7684\u4e00\u6837\uff0c\u7545\u60f3\u90fd\u7545\u60f3\u5b8c\u4e86\uff0c\u8c01\u80fd\u628a\u6280\u672f\u6700\u65e9\u5f80\u524d\u63a8\u8fdb\u4e00\u6b65\uff0c\u8c01\u5c31\u662f\u660e\u65e5\u4e4b\u661f\u3002\u800c\u76ee\u524d\u8de8\u94fe\u6280\u672f\u91cc\u6700\u597d\u7684\u9879\u76ee\uff0c\u4e00\u4e2a\u53ebPolkadot\uff08\u6ce2\u5361\uff09\uff0c\u4e5f\u662f\u4eca\u5e74\u7edd\u5bf9\u7684\u660e\u661f\u9879\u76ee\uff1b\u53e6\u5916\u4e00\u4e2a\uff0c\u5c31\u662f\u672c\u6587\u7684\u4e3b\u89d2Cosmos\u4e86\u3002\n",
+      "link": "https://cosmos.network/"
+    }
+  },
+  {
+    "id": 44,
+    "layers": 5,
+    "name": "Home | Nervos\n Network",
+    "parent": 31,
+    "link": "https://www.nervos.org/",
+    "note": "\nThe Nervos Network is a layered blockchain network for\ntomorrow\u2019s crypto economy.\n\nCKB is the layer 1 of Nervos Network, a public permissionless blockchain.\n\nCKB uses Proof of Work and improved Nakamoto consensus to achieve maximized\nperformance on average hardware and internet condition, without sacrificing\ndecentralization and security which are the core value of blockchain.\n\nCKB supports scripting in any programming language with its own CKB-VM,\na virtual machine fully compatible with RISC-V ISA. CKB is a General\nVerification Network, its programming model focuses on state verification,\nleaves state generation to layer 2 applications/protocols.\n\nThe Nervos CKB mainnet launched in 2019. It\u2019s processing thousands of\ntransactions and keeping assets worth hundreds of millions secure every day.\nWe are working hard to make it better, focusing mainly on two directions.\n1. The first is to optimize the Rust implementation, make it more secure,\nrunning more faster and more friendly to use.\n2. The second is to evolve the protocol to extend the system capabilities.\n\nIf you love solving challenging problems, system programming, Rust, enjoy\nlearning, want to make the world better with your talents, and believe in\nblockchain, please join us to invent the new internet of trust and value.\n\n",
+    "child_count": 3,
+    "node_count": 3,
+    "tool_tip": {
+      "title": "Home | Nervos\n Network",
+      "note": "\nThe Nervos Network is a layered blockchain network for\ntomorrow\u2019s crypto economy.\n\nCKB is the layer 1 of Nervos Network, a public permissionless blockchain.\n\nCKB uses Proof of Work and improved Nakamoto consensus to achieve maximized\nperformance on average hardware and internet condition, without sacrificing\ndecentralization and security which are the core value of blockchain.\n\nCKB supports scripting in any programming language with its own CKB-VM,\na virtual machine fully compatible with RISC-V ISA. CKB is a General\nVerification Network, its programming model focuses on state verification,\nleaves state generation to layer 2 applications/protocols.\n\nThe Nervos CKB mainnet launched in 2019. It\u2019s processing thousands of\ntransactions and keeping assets worth hundreds of millions secure every day.\nWe are working hard to make it better, focusing mainly on two directions.\n1. The first is to optimize the Rust implementation, make it more secure,\nrunning more faster and more friendly to use.\n2. The second is to evolve the protocol to extend the system capabilities.\n\nIf you love solving challenging problems, system programming, Rust, enjoy\nlearning, want to make the world better with your talents, and believe in\nblockchain, please join us to invent the new internet of trust and value.\n\n",
+      "link": "https://www.nervos.org/"
+    }
+  },
+  {
+    "id": 53,
+    "layers": 5,
+    "name": "ACM Transactions on Computer Systems 2002-11: Vol 20 Iss 4 : Free Download, Borrow, and Streaming : Internet Archive",
+    "parent": 52,
+    "link": "https://archive.org/details/sim_acm-transactions-on-computer-systems_2002-11_20_4/page/398/mode/2up",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "ACM Transactions on Computer Systems 2002-11: Vol 20 Iss 4 : Free Download, Borrow, and Streaming : Internet Archive",
+      "link": "https://archive.org/details/sim_acm-transactions-on-computer-systems_2002-11_20_4/page/398/mode/2up"
+    }
+  },
+  {
+    "id": 57,
+    "layers": 5,
+    "name": "\u6587\u4ef6\u5e01 [\ud83d\udd17wiki]",
+    "parent": 56,
+    "link": "https://zh.m.wikipedia.org/zh-hans/%E6%96%87%E4%BB%B6%E5%B8%81",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "\u6587\u4ef6\u5e01 [\ud83d\udd17wiki]",
+      "link": "https://zh.m.wikipedia.org/zh-hans/%E6%96%87%E4%BB%B6%E5%B8%81"
+    }
+  },
+  {
+    "id": 59,
+    "layers": 5,
+    "name": "EOS.IO [\ud83d\udd17wiki]",
+    "parent": 58,
+    "link": "https://zh.m.wikipedia.org/zh-hans/EOS.IO",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "EOS.IO [\ud83d\udd17wiki]",
+      "link": "https://zh.m.wikipedia.org/zh-hans/EOS.IO"
+    }
+  },
+  {
+    "id": 65,
+    "layers": 5,
+    "name": "web3js",
+    "parent": 64,
+    "child_count": 4,
+    "node_count": 4,
+    "tool_tip": {
+      "title": "web3js"
+    }
+  },
+  {
+    "id": 70,
+    "layers": 5,
+    "name": "ethersjs",
+    "parent": 64,
+    "child_count": 3,
+    "node_count": 3,
+    "tool_tip": {
+      "title": "ethersjs"
+    }
+  },
+  {
+    "id": 74,
+    "layers": 5,
+    "name": "Hardhat",
+    "parent": 64,
+    "child_count": 5,
+    "node_count": 5,
+    "tool_tip": {
+      "title": "Hardhat"
+    }
+  },
+  {
+    "id": 80,
+    "layers": 5,
+    "name": "12-token-crowdfund/README-CN.md",
+    "parent": 64,
+    "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/12-token-crowdfund/README-CN.md",
+    "note": "\n\u672c\u6837\u4f8b\u6f14\u793a\u4f17\u7b79\u5408\u7ea6\u7684\u57fa\u672c\u6d41\u7a0b\uff0c\u5305\u62ec\u90e8\u7f72\u5408\u7ea6\u3001\u5408\u7ea6\u4ee5\u53ca\u542f\u52a8\u4f17\u7b79\u9879\u76ee\u3002\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "12-token-crowdfund/README-CN.md",
+      "note": "\n\u672c\u6837\u4f8b\u6f14\u793a\u4f17\u7b79\u5408\u7ea6\u7684\u57fa\u672c\u6d41\u7a0b\uff0c\u5305\u62ec\u90e8\u7f72\u5408\u7ea6\u3001\u5408\u7ea6\u4ee5\u53ca\u542f\u52a8\u4f17\u7b79\u9879\u76ee\u3002\n",
+      "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/12-token-crowdfund/README-CN.md"
+    }
+  },
+  {
+    "id": 96,
+    "layers": 5,
+    "name": "Front End Dev\nelopment",
+    "parent": 95,
+    "link": "https://www.devpill.me/docs/front-end-development/introduction/",
+    "child_count": 6,
+    "node_count": 10,
+    "tool_tip": {
+      "title": "Front End Dev\nelopment",
+      "link": "https://www.devpill.me/docs/front-end-development/introduction/"
+    }
+  },
+  {
+    "id": 109,
+    "layers": 5,
+    "name": "Backend Devel\nopment",
+    "parent": 95,
+    "link": "https://www.devpill.me/docs/back-end-development/introduction/",
+    "child_count": 4,
+    "node_count": 6,
+    "tool_tip": {
+      "title": "Backend Devel\nopment",
+      "link": "https://www.devpill.me/docs/back-end-development/introduction/"
+    }
+  },
+  {
+    "id": 120,
+    "layers": 5,
+    "name": "Smart Contrac\nt Developmen\nt",
+    "parent": 95,
+    "link": "https://www.devpill.me/docs/smart-contract-development/introduction/",
+    "child_count": 6,
+    "node_count": 16,
+    "tool_tip": {
+      "title": "Smart Contrac\nt Developmen\nt",
+      "link": "https://www.devpill.me/docs/smart-contract-development/introduction/"
+    }
+  },
+  {
+    "id": 141,
+    "layers": 5,
+    "name": "Full Stack De\nvelopment",
+    "parent": 95,
+    "link": "https://www.devpill.me/docs/full-stack-development/introduction/",
+    "note": "\nSince rewriting the front end, back end and smart contract sections\nwould be pointless, I\u2019ll dedicate this section just to list a bunch\nof full-stack guides, tips and tricks, deployment guidelines, project\nmanagement, and other relevant information.\n",
+    "child_count": 8,
+    "node_count": 8,
+    "tool_tip": {
+      "title": "Full Stack De\nvelopment",
+      "note": "\nSince rewriting the front end, back end and smart contract sections\nwould be pointless, I\u2019ll dedicate this section just to list a bunch\nof full-stack guides, tips and tricks, deployment guidelines, project\nmanagement, and other relevant information.\n",
+      "link": "https://www.devpill.me/docs/full-stack-development/introduction/"
+    }
+  },
+  {
+    "id": 150,
+    "layers": 5,
+    "name": "Core Developm\nent",
+    "parent": 95,
+    "link": "https://www.devpill.me/docs/core-development/introduction/",
+    "child_count": 3,
+    "node_count": 3,
+    "tool_tip": {
+      "title": "Core Developm\nent",
+      "link": "https://www.devpill.me/docs/core-development/introduction/"
+    }
+  },
+  {
+    "id": 154,
+    "layers": 5,
+    "name": "Security engineer",
+    "parent": 95,
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Security engineer"
+    }
+  },
+  {
+    "id": 155,
+    "layers": 5,
+    "name": "Protocol development",
+    "parent": 95,
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Protocol development"
+    }
+  },
+  {
+    "id": 156,
+    "layers": 5,
+    "name": "Cryptographer",
+    "parent": 95,
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Cryptographer"
+    }
+  },
+  {
+    "id": 157,
+    "layers": 5,
+    "name": "Blockchain data analytics",
+    "parent": 95,
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Blockchain data analytics"
+    }
+  },
+  {
+    "id": 159,
+    "layers": 5,
+    "name": "DeFi",
+    "parent": 158,
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "DeFi"
+    }
+  },
+  {
+    "id": 160,
+    "layers": 5,
+    "name": "Creator Economy",
+    "parent": 158,
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Creator Economy"
+    }
+  },
+  {
+    "id": 161,
+    "layers": 5,
+    "name": "MEV",
+    "parent": 158,
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "MEV"
+    }
+  },
+  {
+    "id": 162,
+    "layers": 5,
+    "name": "L2s",
+    "parent": 158,
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "L2s"
+    }
+  },
+  {
+    "id": 163,
+    "layers": 5,
+    "name": "Infrastructure",
+    "parent": 158,
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Infrastructure"
+    }
+  },
+  {
+    "id": 164,
+    "layers": 5,
+    "name": "Gaming",
+    "parent": 158,
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Gaming"
+    }
+  },
+  {
+    "id": 165,
+    "layers": 5,
+    "name": "Privacy",
+    "parent": 158,
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Privacy"
+    }
+  },
+  {
+    "id": 166,
+    "layers": 5,
+    "name": "Coordination / Public goods",
+    "parent": 158,
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Coordination / Public goods"
+    }
+  },
+  {
+    "id": 33,
+    "layers": 6,
+    "name": "Anchor - Introduction",
+    "parent": 32,
+    "link": "https://www.anchor-lang.com/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Anchor - Introduction",
+      "link": "https://www.anchor-lang.com/"
+    }
+  },
+  {
+    "id": 34,
+    "layers": 6,
+    "name": "coral-xyz/anchor",
+    "parent": 32,
+    "link": "https://github.com/coral-xyz/anchor",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "coral-xyz/anchor",
+      "link": "https://github.com/coral-xyz/anchor"
+    }
+  },
+  {
+    "id": 36,
+    "layers": 6,
+    "name": "Substrate \u5b98\u7f51",
+    "parent": 35,
+    "link": "https://kuanhsiaokuo.github.io/programming_anatomy_in_rust/layer5_ecosystem/7_business/blockchain/substrate/substrate_intro.html",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Substrate \u5b98\u7f51",
+      "link": "https://kuanhsiaokuo.github.io/programming_anatomy_in_rust/layer5_ecosystem/7_business/blockchain/substrate/substrate_intro.html"
+    }
+  },
+  {
+    "id": 38,
+    "layers": 6,
+    "name": "Cosmos SDK(Go\nlang)",
+    "parent": 37,
+    "child_count": 3,
+    "node_count": 3,
+    "tool_tip": {
+      "title": "Cosmos SDK(Go\nlang)"
+    }
+  },
+  {
+    "id": 42,
+    "layers": 6,
+    "name": "Cosmos WASM(Rust)",
+    "parent": 37,
+    "child_count": 1,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Cosmos WASM(Rust)"
+    }
+  },
+  {
+    "id": 45,
+    "layers": 6,
+    "name": "nervosnetwork/ckb",
+    "parent": 44,
+    "link": "https://github.com/nervosnetwork/ckb",
+    "child_count": 1,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "nervosnetwork/ckb",
+      "link": "https://github.com/nervosnetwork/ckb"
+    }
+  },
+  {
+    "id": 48,
+    "layers": 6,
+    "name": "ckb-vm/",
+    "parent": 44,
+    "link": "https://github.com/nervosnetwork/ckb-vm/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "ckb-vm/",
+      "link": "https://github.com/nervosnetwork/ckb-vm/"
+    }
+  },
+  {
+    "id": 49,
+    "layers": 6,
+    "name": "nervosnetwork/rfcs",
+    "parent": 44,
+    "link": "https://github.com/nervosnetwork/rfcs",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "nervosnetwork/rfcs",
+      "link": "https://github.com/nervosnetwork/rfcs"
+    }
+  },
+  {
+    "id": 66,
+    "layers": 6,
+    "name": "01-web3js-deploy/README-cn.md",
+    "parent": 65,
+    "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/01-web3js-deploy/README-cn.md",
+    "note": "\n\u901a\u8fc7\u672c\u6837\u4f8b\u4ee3\u7801\uff0c\u4f7f\u5f00\u53d1\u8005\u4e86\u89e3\u5408\u7ea6\u7f16\u8bd1\uff0c\u90e8\u7f72\u7684\u57fa\u672c\u6d41\u7a0b\uff0c\u5e76\u638c\u63e1\u57fa\u672c\u7684 web3js \u63a5\u53e3\u4f7f\u7528\u65b9\u6cd5\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "01-web3js-deploy/README-cn.md",
+      "note": "\n\u901a\u8fc7\u672c\u6837\u4f8b\u4ee3\u7801\uff0c\u4f7f\u5f00\u53d1\u8005\u4e86\u89e3\u5408\u7ea6\u7f16\u8bd1\uff0c\u90e8\u7f72\u7684\u57fa\u672c\u6d41\u7a0b\uff0c\u5e76\u638c\u63e1\u57fa\u672c\u7684 web3js \u63a5\u53e3\u4f7f\u7528\u65b9\u6cd5\n",
+      "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/01-web3js-deploy/README-cn.md"
+    }
+  },
+  {
+    "id": 67,
+    "layers": 6,
+    "name": "02-web3js-transaction/README-cn.md",
+    "parent": 65,
+    "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/02-web3js-transaction/README-cn.md",
+    "note": "\n\u901a\u8fc7\u672c\u6837\u4f8b\u4ee3\u7801\uff0c\u5f00\u53d1\u8005\u4e86\u89e3\u5230\u5982\u4f55\u5bf9\u4ea4\u6613\u8fdb\u884c\u7b7e\u540d\uff0c\u53d1\u9001\uff0c\u63a5\u6536\u4ea4\u6613\u56de\u6267\uff0c\u9a8c\u8bc1\u4ea4\u6613\u6267\u884c\u7ed3\u679c\u3002\u540c\u65f6\uff0c\u6837\u4f8b\u4e5f\u63d0\u4f9b\u4e86\u4e8b\u4ef6\u76d1\u542c\u7684\u903b\u8f91\u4ee3\u7801\uff0c\u5f00\u53d1\u8005\u53ef\u4ee5\u4e86\u89e3\u5982\u4f55\u5bf9\u4e00\u4e2a\u4e8b\u4ef6\u8fdb\u884c\u4e00\u6b21\u6216\u591a\u6b21\u76d1\u542c\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "02-web3js-transaction/README-cn.md",
+      "note": "\n\u901a\u8fc7\u672c\u6837\u4f8b\u4ee3\u7801\uff0c\u5f00\u53d1\u8005\u4e86\u89e3\u5230\u5982\u4f55\u5bf9\u4ea4\u6613\u8fdb\u884c\u7b7e\u540d\uff0c\u53d1\u9001\uff0c\u63a5\u6536\u4ea4\u6613\u56de\u6267\uff0c\u9a8c\u8bc1\u4ea4\u6613\u6267\u884c\u7ed3\u679c\u3002\u540c\u65f6\uff0c\u6837\u4f8b\u4e5f\u63d0\u4f9b\u4e86\u4e8b\u4ef6\u76d1\u542c\u7684\u903b\u8f91\u4ee3\u7801\uff0c\u5f00\u53d1\u8005\u53ef\u4ee5\u4e86\u89e3\u5982\u4f55\u5bf9\u4e00\u4e2a\u4e8b\u4ef6\u8fdb\u884c\u4e00\u6b21\u6216\u591a\u6b21\u76d1\u542c\n",
+      "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/02-web3js-transaction/README-cn.md"
+    }
+  },
+  {
+    "id": 68,
+    "layers": 6,
+    "name": "03-web3js-erc20/README-cn.md",
+    "parent": 65,
+    "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/03-web3js-erc20/README-cn.md",
+    "note": "\n\u672c\u6837\u4f8b\u6f14\u793a\u4e86 ERC20 \u5408\u7ea6\u7684\u57fa\u672c\u8c03\u7528, \u8ba9\u5f00\u53d1\u8005\u4e86\u89e3 ERC20 \u5408\u7ea6\u7684\u57fa\u672c\u63a5\u53e3\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "03-web3js-erc20/README-cn.md",
+      "note": "\n\u672c\u6837\u4f8b\u6f14\u793a\u4e86 ERC20 \u5408\u7ea6\u7684\u57fa\u672c\u8c03\u7528, \u8ba9\u5f00\u53d1\u8005\u4e86\u89e3 ERC20 \u5408\u7ea6\u7684\u57fa\u672c\u63a5\u53e3\n",
+      "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/03-web3js-erc20/README-cn.md"
+    }
+  },
+  {
+    "id": 69,
+    "layers": 6,
+    "name": "04-web3js-truffle/README-CN.md",
+    "parent": 65,
+    "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/04-web3js-truffle/README-CN.md",
+    "note": "\nruffle \u662f\u57fa\u4e8e Solidity \u8bed\u8a00\u7684\u4e00\u5957\u5f00\u53d1\u6846\u67b6\uff0c\u5b83\u7b80\u5316\u4e86\u53bb\u4e2d\u5fc3\u5316\u5e94\u7528\uff08Dapp\uff09\u7684\u6784\u5efa\u548c\u7ba1\u7406\u6d41\u7a0b\u3002\u672c\u8eab\u662f\u91c7\u7528 Javascript \u7f16\u5199\uff0c\u652f\u6301\u667a\u80fd\u5408\u7ea6\u7684\u7f16\u8bd1\u3001\u90e8\u7f72\u548c\u6d4b\u8bd5\u3002\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "04-web3js-truffle/README-CN.md",
+      "note": "\nruffle \u662f\u57fa\u4e8e Solidity \u8bed\u8a00\u7684\u4e00\u5957\u5f00\u53d1\u6846\u67b6\uff0c\u5b83\u7b80\u5316\u4e86\u53bb\u4e2d\u5fc3\u5316\u5e94\u7528\uff08Dapp\uff09\u7684\u6784\u5efa\u548c\u7ba1\u7406\u6d41\u7a0b\u3002\u672c\u8eab\u662f\u91c7\u7528 Javascript \u7f16\u5199\uff0c\u652f\u6301\u667a\u80fd\u5408\u7ea6\u7684\u7f16\u8bd1\u3001\u90e8\u7f72\u548c\u6d4b\u8bd5\u3002\n",
+      "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/04-web3js-truffle/README-CN.md"
+    }
+  },
+  {
+    "id": 71,
+    "layers": 6,
+    "name": "web3-vs-ethers/README-cn.md",
+    "parent": 70,
+    "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/05-ethersjs-erc20/web3-vs-ethers/README-cn.md",
+    "note": "\n\u901a\u8fc7\u672c\u6837\u4f8b\u4ee3\u7801\uff0c\u5f00\u53d1\u8005\u4e86\u89e3\u5230 web3.js\u548c ehters.js\u7684\u533a\u522b\n\u9879\u76ee\u91cc\u4e3b\u8981\u9488\u5bf9 \u8fde\u63a5\u5230etherum \uff0c\u83b7\u53d6\u8d26\u6237\uff0c\u90e8\u7f72\u5408\u7ea6\uff0c\u8c03\u7528\u5408\u7ea6\u65b9\u6cd5\u8fd9\u4e9b\u4e1a\u52a1\u505a\u4e86\u793a\u4f8b\u6f14\u793a\u3002\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "web3-vs-ethers/README-cn.md",
+      "note": "\n\u901a\u8fc7\u672c\u6837\u4f8b\u4ee3\u7801\uff0c\u5f00\u53d1\u8005\u4e86\u89e3\u5230 web3.js\u548c ehters.js\u7684\u533a\u522b\n\u9879\u76ee\u91cc\u4e3b\u8981\u9488\u5bf9 \u8fde\u63a5\u5230etherum \uff0c\u83b7\u53d6\u8d26\u6237\uff0c\u90e8\u7f72\u5408\u7ea6\uff0c\u8c03\u7528\u5408\u7ea6\u65b9\u6cd5\u8fd9\u4e9b\u4e1a\u52a1\u505a\u4e86\u793a\u4f8b\u6f14\u793a\u3002\n",
+      "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/05-ethersjs-erc20/web3-vs-ethers/README-cn.md"
+    }
+  },
+  {
+    "id": 72,
+    "layers": 6,
+    "name": "05-ethersjs-erc20/README-CN.md",
+    "parent": 70,
+    "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/05-ethersjs-erc20/README-CN.md",
+    "note": "\n\u672c\u6837\u4f8b\u6f14\u793a\u4e86\u4f7f\u7528 ethers.js \u8c03\u7528 ERC20 \u5408\u7ea6\u7684\u5f00\u53d1\u6d41\u7a0b\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "05-ethersjs-erc20/README-CN.md",
+      "note": "\n\u672c\u6837\u4f8b\u6f14\u793a\u4e86\u4f7f\u7528 ethers.js \u8c03\u7528 ERC20 \u5408\u7ea6\u7684\u5f00\u53d1\u6d41\u7a0b\n",
+      "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/05-ethersjs-erc20/README-CN.md"
+    }
+  },
+  {
+    "id": 73,
+    "layers": 6,
+    "name": "06-ethersjs-waffle/README-cn.md",
+    "parent": 70,
+    "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/06-ethersjs-waffle/README-cn.md",
+    "note": "\nWaffle \u662f\u4e00\u6b3e\u9002\u914d ehter.js \u7684\u667a\u80fd\u5408\u7ea6\u6d4b\u8bd5\u5e93\u3002\u672c\u6837\u4f8b\u6f14\u793a\u4e86\u4f7f\u7528 Waffle \u8fdb\u884c\u6d4b\u8bd5\u7684\u57fa\u672c\u6d41\u7a0b\u53ca\u4f7f\u7528\u65b9\u6cd5.\nWaffle \u8be6\u7ec6\u4f7f\u7528\u65b9\u6cd5\u53ef\u4ee5\u53c2\u8003 Waffle \u5b98\u7f51 , \u5bf9\u4e8e\u4e0d\u719f\u6089 Waffle \u6d4b\u8bd5\u6846\u67b6\u7684\u5f00\u53d1\u8005, \u53ef\u4ee5\u6839\u636e\u672c\u6837\u4f8b\u8fdb\u884c\u57fa\u7840\u7684\u64cd\u4f5c, \u9605\u8bfb\u6837\u4f8b\u4ee3\u7801, \u5f62\u6210\u521d\u6b65\u7684\u6d41\u7a0b\u6982\u5ff5, \u4e4b\u540e\u518d\u53c2\u8003\u5b98\u7f51\u8fdb\u884c\u66f4\u52a0\u6df1\u5165\u7684\u4e86\u89e3.\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "06-ethersjs-waffle/README-cn.md",
+      "note": "\nWaffle \u662f\u4e00\u6b3e\u9002\u914d ehter.js \u7684\u667a\u80fd\u5408\u7ea6\u6d4b\u8bd5\u5e93\u3002\u672c\u6837\u4f8b\u6f14\u793a\u4e86\u4f7f\u7528 Waffle \u8fdb\u884c\u6d4b\u8bd5\u7684\u57fa\u672c\u6d41\u7a0b\u53ca\u4f7f\u7528\u65b9\u6cd5.\nWaffle \u8be6\u7ec6\u4f7f\u7528\u65b9\u6cd5\u53ef\u4ee5\u53c2\u8003 Waffle \u5b98\u7f51 , \u5bf9\u4e8e\u4e0d\u719f\u6089 Waffle \u6d4b\u8bd5\u6846\u67b6\u7684\u5f00\u53d1\u8005, \u53ef\u4ee5\u6839\u636e\u672c\u6837\u4f8b\u8fdb\u884c\u57fa\u7840\u7684\u64cd\u4f5c, \u9605\u8bfb\u6837\u4f8b\u4ee3\u7801, \u5f62\u6210\u521d\u6b65\u7684\u6d41\u7a0b\u6982\u5ff5, \u4e4b\u540e\u518d\u53c2\u8003\u5b98\u7f51\u8fdb\u884c\u66f4\u52a0\u6df1\u5165\u7684\u4e86\u89e3.\n",
+      "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/06-ethersjs-waffle/README-cn.md"
+    }
+  },
+  {
+    "id": 75,
+    "layers": 6,
+    "name": "07-hardhat/README-cn.md",
+    "parent": 74,
+    "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/07-hardhat/README-cn.md",
+    "note": "\nHardhat \u662f\u4e00\u4e2a\u7f16\u8bd1\u3001\u90e8\u7f72\u3001\u6d4b\u8bd5\u548c\u8c03\u8bd5\u4ee5\u592a\u574a\u5e94\u7528\u7684\u5f00\u53d1\u73af\u5883\u3002\n\n\u5b83\u53ef\u4ee5\u5e2e\u52a9\u5f00\u53d1\u4eba\u5458\u7ba1\u7406\u548c\u81ea\u52a8\u5316\u6784\u5efa\u667a\u80fd\u5408\u7ea6\u548c dApps \u8fc7\u7a0b\u4e2d\u56fa\u6709\u7684\u91cd\u590d\u6027\u4efb\u52a1\uff0c\u5e76\u56f4\u7ed5\u8fd9\u4e00\u5de5\u4f5c\u6d41\u7a0b\u8f7b\u677e\u5f15\u5165\u66f4\u591a\u529f\u80fd\u3002\u8fd9\u610f\u5473\u7740 hardhat \u5728\u6700\u6838\u5fc3\u7684\u5730\u65b9\u662f\u7f16\u8bd1\u3001\u8fd0\u884c\u548c\u6d4b\u8bd5\u667a\u80fd\u5408\u7ea6\u3002 Hardhat \u5185\u7f6e\u4e86 Hardhat \u7f51\u7edc\uff0c\u8fd9\u662f\u4e00\u4e2a\u4e13\u4e3a\u5f00\u53d1\u8bbe\u8ba1\u7684\u672c\u5730\u4ee5\u592a\u574a\u7f51\u7edc\u3002\u4e3b\u8981\u529f\u80fd\u6709 Solidity \u8c03\u8bd5\uff0c\u8ddf\u8e2a\u8c03\u7528\u5806\u6808\u3001console.log()\u548c\u4ea4\u6613\u5931\u8d25\u65f6\u7684\u660e\u786e\u9519\u8bef\u4fe1\u606f\u63d0\u793a\u7b49\u3002\n\nHardhat Runner \u662f\u4e0e Hardhat \u4ea4\u4e92\u7684 CLI \u547d\u4ee4\uff0c\u662f\u4e00\u4e2a\u53ef\u6269\u5c55\u7684\u4efb\u52a1\u8fd0\u884c\u5668\u3002\u5b83\u662f\u56f4\u7ed5\u4efb\u52a1\u548c\u63d2\u4ef6\u7684\u6982\u5ff5\u8bbe\u8ba1\u7684\u3002\u6bcf\u6b21\u4f60\u4ece CLI \u8fd0\u884c Hardhat \u65f6\uff0c\u4f60\u90fd\u5728\u8fd0\u884c\u4e00\u4e2a\u4efb\u52a1\u3002\u4f8b\u5982\uff0cnpx hardhat compile \u8fd0\u884c\u7684\u662f\u5185\u7f6e\u7684 compile \u4efb\u52a1\u3002\u4efb\u52a1\u53ef\u4ee5\u8c03\u7528\u5176\u4ed6\u4efb\u52a1\uff0c\u5141\u8bb8\u5b9a\u4e49\u590d\u6742\u7684\u5de5\u4f5c\u6d41\u7a0b\u3002\u7528\u6237\u548c\u63d2\u4ef6\u53ef\u4ee5\u8986\u76d6\u73b0\u6709\u7684\u4efb\u52a1\uff0c\u4ece\u800c\u5b9a\u5236\u548c\u6269\u5c55\u5de5\u4f5c\u6d41\u7a0b\u3002\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "07-hardhat/README-cn.md",
+      "note": "\nHardhat \u662f\u4e00\u4e2a\u7f16\u8bd1\u3001\u90e8\u7f72\u3001\u6d4b\u8bd5\u548c\u8c03\u8bd5\u4ee5\u592a\u574a\u5e94\u7528\u7684\u5f00\u53d1\u73af\u5883\u3002\n\n\u5b83\u53ef\u4ee5\u5e2e\u52a9\u5f00\u53d1\u4eba\u5458\u7ba1\u7406\u548c\u81ea\u52a8\u5316\u6784\u5efa\u667a\u80fd\u5408\u7ea6\u548c dApps \u8fc7\u7a0b\u4e2d\u56fa\u6709\u7684\u91cd\u590d\u6027\u4efb\u52a1\uff0c\u5e76\u56f4\u7ed5\u8fd9\u4e00\u5de5\u4f5c\u6d41\u7a0b\u8f7b\u677e\u5f15\u5165\u66f4\u591a\u529f\u80fd\u3002\u8fd9\u610f\u5473\u7740 hardhat \u5728\u6700\u6838\u5fc3\u7684\u5730\u65b9\u662f\u7f16\u8bd1\u3001\u8fd0\u884c\u548c\u6d4b\u8bd5\u667a\u80fd\u5408\u7ea6\u3002 Hardhat \u5185\u7f6e\u4e86 Hardhat \u7f51\u7edc\uff0c\u8fd9\u662f\u4e00\u4e2a\u4e13\u4e3a\u5f00\u53d1\u8bbe\u8ba1\u7684\u672c\u5730\u4ee5\u592a\u574a\u7f51\u7edc\u3002\u4e3b\u8981\u529f\u80fd\u6709 Solidity \u8c03\u8bd5\uff0c\u8ddf\u8e2a\u8c03\u7528\u5806\u6808\u3001console.log()\u548c\u4ea4\u6613\u5931\u8d25\u65f6\u7684\u660e\u786e\u9519\u8bef\u4fe1\u606f\u63d0\u793a\u7b49\u3002\n\nHardhat Runner \u662f\u4e0e Hardhat \u4ea4\u4e92\u7684 CLI \u547d\u4ee4\uff0c\u662f\u4e00\u4e2a\u53ef\u6269\u5c55\u7684\u4efb\u52a1\u8fd0\u884c\u5668\u3002\u5b83\u662f\u56f4\u7ed5\u4efb\u52a1\u548c\u63d2\u4ef6\u7684\u6982\u5ff5\u8bbe\u8ba1\u7684\u3002\u6bcf\u6b21\u4f60\u4ece CLI \u8fd0\u884c Hardhat \u65f6\uff0c\u4f60\u90fd\u5728\u8fd0\u884c\u4e00\u4e2a\u4efb\u52a1\u3002\u4f8b\u5982\uff0cnpx hardhat compile \u8fd0\u884c\u7684\u662f\u5185\u7f6e\u7684 compile \u4efb\u52a1\u3002\u4efb\u52a1\u53ef\u4ee5\u8c03\u7528\u5176\u4ed6\u4efb\u52a1\uff0c\u5141\u8bb8\u5b9a\u4e49\u590d\u6742\u7684\u5de5\u4f5c\u6d41\u7a0b\u3002\u7528\u6237\u548c\u63d2\u4ef6\u53ef\u4ee5\u8986\u76d6\u73b0\u6709\u7684\u4efb\u52a1\uff0c\u4ece\u800c\u5b9a\u5236\u548c\u6269\u5c55\u5de5\u4f5c\u6d41\u7a0b\u3002\n",
+      "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/07-hardhat/README-cn.md"
+    }
+  },
+  {
+    "id": 76,
+    "layers": 6,
+    "name": "08-hardhat-graph/README-CN.md",
+    "parent": 74,
+    "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/08-hardhat-graph/README-CN.md",
+    "note": "\n\u7f16\u5199\u667a\u80fd\u5408\u7ea6\u65f6\uff0c\u901a\u5e38\u72b6\u6001\u7684\u53d8\u5316\u662f\u901a\u8fc7\u89e6\u53d1\u4e00\u4e2a\u4e8b\u4ef6\u6765\u8868\u8fbe\uff0cThe Graph \u5219\u662f\u6355\u6349\u533a\u5757\u94fe\u4e8b\u4ef6\u5e76\u63d0\u4f9b\u4e00\u4e2a\u67e5\u8be2\u4e8b\u4ef6\u7684 GraphQL \u63a5\u53e3\uff0c\u8ba9\u6211\u4eec\u53ef\u4ee5\u65b9\u4fbf\u7684\u8ddf\u8e2a\u6570\u636e\u7684\u53d8\u5316\u3002\u5b9e\u9645\u4e0a\u5f88\u591a defi \u534f\u8bae\u90fd\u662f The Graph \u6765\u57fa\u4e8e\u67e5\u8be2\u6570\u636e\u3002\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "08-hardhat-graph/README-CN.md",
+      "note": "\n\u7f16\u5199\u667a\u80fd\u5408\u7ea6\u65f6\uff0c\u901a\u5e38\u72b6\u6001\u7684\u53d8\u5316\u662f\u901a\u8fc7\u89e6\u53d1\u4e00\u4e2a\u4e8b\u4ef6\u6765\u8868\u8fbe\uff0cThe Graph \u5219\u662f\u6355\u6349\u533a\u5757\u94fe\u4e8b\u4ef6\u5e76\u63d0\u4f9b\u4e00\u4e2a\u67e5\u8be2\u4e8b\u4ef6\u7684 GraphQL \u63a5\u53e3\uff0c\u8ba9\u6211\u4eec\u53ef\u4ee5\u65b9\u4fbf\u7684\u8ddf\u8e2a\u6570\u636e\u7684\u53d8\u5316\u3002\u5b9e\u9645\u4e0a\u5f88\u591a defi \u534f\u8bae\u90fd\u662f The Graph \u6765\u57fa\u4e8e\u67e5\u8be2\u6570\u636e\u3002\n",
+      "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/08-hardhat-graph/README-CN.md"
+    }
+  },
+  {
+    "id": 77,
+    "layers": 6,
+    "name": "09-hardhat-react/README-CN.md",
+    "parent": 74,
+    "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/09-hardhat-react/README-CN.md",
+    "note": "\napp \u5f00\u53d1\u4e2d\u5f88\u91cd\u8981\u7684\u90e8\u5206\u4fbf\u662f\u524d\u7aef\u5c55\u793a\uff0c\u672c\u6837\u4f8b\u4ee3\u7801\u4f7f\u7528 hardhat \u7ed3\u5408 react \u548c MetaMask\uff0c\u6f14\u793a\u5982\u4f55\u5f00\u53d1 Dapp \u524d\u7aef\u9875\u9762\uff0c\u4ee5\u53ca\u5f00\u53d1\u7684\u57fa\u672c\u6d41\u7a0b\u53ca\u63a5\u53e3\u8c03\u7528\u3002\u5f00\u53d1\u8005\u9700\u8981\u5177\u5907 react \u6846\u67b6\u5f00\u53d1\u80fd\u529b\u624d\u80fd\u5f88\u597d\u7684\u7406\u89e3\u6837\u4f8b\u4ee3\u7801.\n\n\u4e3a\u65b9\u4fbf\u83b7\u53d6\uff0c\u5728 .env \u4e2d\u653e\u5165\u7684\u79c1\u94a5\uff0c\u683c\u5f0f\u4e3a \"PRIVATE_KEY=xxxx\", \u7136\u540e\u4ee3\u7801\u81ea\u52a8\u4ece\u4e2d\u8bfb\u53d6\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "09-hardhat-react/README-CN.md",
+      "note": "\napp \u5f00\u53d1\u4e2d\u5f88\u91cd\u8981\u7684\u90e8\u5206\u4fbf\u662f\u524d\u7aef\u5c55\u793a\uff0c\u672c\u6837\u4f8b\u4ee3\u7801\u4f7f\u7528 hardhat \u7ed3\u5408 react \u548c MetaMask\uff0c\u6f14\u793a\u5982\u4f55\u5f00\u53d1 Dapp \u524d\u7aef\u9875\u9762\uff0c\u4ee5\u53ca\u5f00\u53d1\u7684\u57fa\u672c\u6d41\u7a0b\u53ca\u63a5\u53e3\u8c03\u7528\u3002\u5f00\u53d1\u8005\u9700\u8981\u5177\u5907 react \u6846\u67b6\u5f00\u53d1\u80fd\u529b\u624d\u80fd\u5f88\u597d\u7684\u7406\u89e3\u6837\u4f8b\u4ee3\u7801.\n\n\u4e3a\u65b9\u4fbf\u83b7\u53d6\uff0c\u5728 .env \u4e2d\u653e\u5165\u7684\u79c1\u94a5\uff0c\u683c\u5f0f\u4e3a \"PRIVATE_KEY=xxxx\", \u7136\u540e\u4ee3\u7801\u81ea\u52a8\u4ece\u4e2d\u8bfb\u53d6\n",
+      "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/09-hardhat-react/README-CN.md"
+    }
+  },
+  {
+    "id": 78,
+    "layers": 6,
+    "name": "hardhat-ipfs-erc721",
+    "parent": 74,
+    "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/10-hardhat-ipfs-erc721/README-CN.md",
+    "note": "\n\u662f\u4e00\u4e2a\u65e8\u5728\u521b\u5efa\u6301\u4e45\u4e14\u5206\u5e03\u5f0f\u5b58\u50a8\u548c\u5171\u4eab\u6587\u4ef6\u7684\u7f51\u7edc\u4f20\u8f93\u534f\u8bae\u3002\u5b83\u662f\u4e00\u79cd\u5185\u5bb9\u53ef\u5bfb\u5740\u7684\u5bf9\u7b49\u8d85\u5a92\u4f53\u5206\u53d1\u534f\u8bae\u3002\n\n\u5728 IPFS \u7f51\u7edc\u4e2d\u7684\u8282\u70b9\u5c06\u6784\u6210\u4e00\u4e2a\u5206\u5e03\u5f0f\u6587\u4ef6\u7cfb\u7edf\u3002\u5b83\u662f\u4e00\u4e2a\u5f00\u653e\u6e90\u4ee3\u7801\u9879\u76ee\uff0c\u81ea 2014 \u5e74\u5f00\u59cb\u7531\u534f\u8bae\u5b9e\u9a8c\u5ba4\u5728\u5f00\u6e90\u793e\u533a\u7684\u5e2e\u52a9\u4e0b\u53d1\u5c55\u3002\u5176\u6700\u521d\u7531 Juan Benet \u8bbe\u8ba1\nIPFS \u662f\u4e00\u4e2a\u5bf9\u7b49\u7684\u5206\u5e03\u5f0f\u6587\u4ef6\u7cfb\u7edf\uff0c\u5b83\u5c1d\u8bd5\u4e3a\u6240\u6709\u8ba1\u7b97\u8bbe\u5907\u8fde\u63a5\u540c\u4e00\u4e2a\u6587\u4ef6\u7cfb\u7edf\u3002\u5728\u67d0\u4e9b\u65b9\u9762\uff0cIPFS \u7c7b\u4f3c\u4e8e\u4e07\u7ef4\u7f51\uff0c\u4e5f\u53ef\u4ee5\u88ab\u89c6\u4f5c\u4e00\u4e2a\u72ec\u7acb\u7684 BitTorrent \u7fa4\u3001\u5728\u540c\u4e00\u4e2a Git \u4ed3\u5e93\u4e2d\u4ea4\u6362\u5bf9\u8c61\u3002 \u6362\u79cd\u8bf4\u6cd5\uff0cIPFS \u63d0\u4f9b\u4e86\u4e00\u4e2a\u9ad8\u541e\u5410\u91cf\u3001\u6309\u5185\u5bb9\u5bfb\u5740\u7684\u5757\u5b58\u50a8\u6a21\u578b\uff0c\u53ca\u4e0e\u5185\u5bb9\u76f8\u5173\u8d85\u94fe\u63a5\u3002\u8fd9\u5f62\u6210\u4e86\u4e00\u4e2a\u5e7f\u4e49\u7684 Merkle \u6709\u5411\u65e0\u73af\u56fe\uff08DAG\uff09\u3002\n\nIPFS \u7ed3\u5408\u4e86\u5206\u5e03\u5f0f\u6563\u5217\u8868\u3001\u9f13\u52b1\u5757\u4ea4\u6362\u548c\u4e00\u4e2a\u81ea\u6211\u8ba4\u8bc1\u7684\u540d\u5b57\u7a7a\u95f4\u3002IPFS \u6ca1\u6709\u5355\u70b9\u6545\u969c\uff0c\u5e76\u4e14\u8282\u70b9\u4e0d\u9700\u8981\u76f8\u4e92\u4fe1\u4efb\u3002\u5206\u5e03\u5f0f\u5185\u5bb9\u4f20\u9012\u53ef\u4ee5\u8282\u7ea6\u5e26\u5bbd\uff0c\u548c\u9632\u6b62 HTTP \u65b9\u6848\u53ef\u80fd\u9047\u5230\u7684 DDoS \u653b\u51fb\u3002\n\n\u8be5\u6587\u4ef6\u7cfb\u7edf\u53ef\u4ee5\u901a\u8fc7\u591a\u79cd\u65b9\u5f0f\u8bbf\u95ee\uff0c\u5305\u62ec FUSE \u4e0e HTTP\u3002\u5c06\u672c\u5730\u6587\u4ef6\u6dfb\u52a0\u5230 IPFS \u6587\u4ef6\u7cfb\u7edf\u53ef\u4f7f\u5176\u9762\u5411\u5168\u4e16\u754c\u53ef\u7528\u3002\u6587\u4ef6\u8868\u793a\u57fa\u4e8e\u5176\u54c8\u5e0c\uff0c\u56e0\u6b64\u6709\u5229\u4e8e\u7f13\u5b58\u3002\u6587\u4ef6\u7684\u5206\u53d1\u91c7\u7528\u4e00\u4e2a\u57fa\u4e8e BitTorrent \u7684\u534f\u8bae\u3002\u5176\u4ed6\u67e5\u770b\u5185\u5bb9\u7684\u7528\u6237\u4e5f\u6709\u52a9\u4e8e\u5c06\u5185\u5bb9\u63d0\u4f9b\u7ed9\u7f51\u7edc\u4e0a\u7684\u5176\u4ed6\u4eba\u3002\nIPFS \u6709\u4e00\u4e2a\u79f0\u4e3a IPNS \u7684\u540d\u79f0\u670d\u52a1\uff0c\u5b83\u662f\u4e00\u4e2a\u57fa\u4e8e PKI \u7684\u5168\u5c40\u540d\u5b57\u7a7a\u95f4\uff0c\u7528\u4e8e\u6784\u7b51\u4fe1\u4efb\u94fe\uff0c\u8fd9\u4e0e\u5176\u4ed6 NS \u517c\u5bb9\uff0c\u5e76\u53ef\u4ee5\u6620\u5c04 DNS\u3001.onion\u3001.bit \u7b49\u5230 IPNS\u3002\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "hardhat-ipfs-erc721",
+      "note": "\n\u662f\u4e00\u4e2a\u65e8\u5728\u521b\u5efa\u6301\u4e45\u4e14\u5206\u5e03\u5f0f\u5b58\u50a8\u548c\u5171\u4eab\u6587\u4ef6\u7684\u7f51\u7edc\u4f20\u8f93\u534f\u8bae\u3002\u5b83\u662f\u4e00\u79cd\u5185\u5bb9\u53ef\u5bfb\u5740\u7684\u5bf9\u7b49\u8d85\u5a92\u4f53\u5206\u53d1\u534f\u8bae\u3002\n\n\u5728 IPFS \u7f51\u7edc\u4e2d\u7684\u8282\u70b9\u5c06\u6784\u6210\u4e00\u4e2a\u5206\u5e03\u5f0f\u6587\u4ef6\u7cfb\u7edf\u3002\u5b83\u662f\u4e00\u4e2a\u5f00\u653e\u6e90\u4ee3\u7801\u9879\u76ee\uff0c\u81ea 2014 \u5e74\u5f00\u59cb\u7531\u534f\u8bae\u5b9e\u9a8c\u5ba4\u5728\u5f00\u6e90\u793e\u533a\u7684\u5e2e\u52a9\u4e0b\u53d1\u5c55\u3002\u5176\u6700\u521d\u7531 Juan Benet \u8bbe\u8ba1\nIPFS \u662f\u4e00\u4e2a\u5bf9\u7b49\u7684\u5206\u5e03\u5f0f\u6587\u4ef6\u7cfb\u7edf\uff0c\u5b83\u5c1d\u8bd5\u4e3a\u6240\u6709\u8ba1\u7b97\u8bbe\u5907\u8fde\u63a5\u540c\u4e00\u4e2a\u6587\u4ef6\u7cfb\u7edf\u3002\u5728\u67d0\u4e9b\u65b9\u9762\uff0cIPFS \u7c7b\u4f3c\u4e8e\u4e07\u7ef4\u7f51\uff0c\u4e5f\u53ef\u4ee5\u88ab\u89c6\u4f5c\u4e00\u4e2a\u72ec\u7acb\u7684 BitTorrent \u7fa4\u3001\u5728\u540c\u4e00\u4e2a Git \u4ed3\u5e93\u4e2d\u4ea4\u6362\u5bf9\u8c61\u3002 \u6362\u79cd\u8bf4\u6cd5\uff0cIPFS \u63d0\u4f9b\u4e86\u4e00\u4e2a\u9ad8\u541e\u5410\u91cf\u3001\u6309\u5185\u5bb9\u5bfb\u5740\u7684\u5757\u5b58\u50a8\u6a21\u578b\uff0c\u53ca\u4e0e\u5185\u5bb9\u76f8\u5173\u8d85\u94fe\u63a5\u3002\u8fd9\u5f62\u6210\u4e86\u4e00\u4e2a\u5e7f\u4e49\u7684 Merkle \u6709\u5411\u65e0\u73af\u56fe\uff08DAG\uff09\u3002\n\nIPFS \u7ed3\u5408\u4e86\u5206\u5e03\u5f0f\u6563\u5217\u8868\u3001\u9f13\u52b1\u5757\u4ea4\u6362\u548c\u4e00\u4e2a\u81ea\u6211\u8ba4\u8bc1\u7684\u540d\u5b57\u7a7a\u95f4\u3002IPFS \u6ca1\u6709\u5355\u70b9\u6545\u969c\uff0c\u5e76\u4e14\u8282\u70b9\u4e0d\u9700\u8981\u76f8\u4e92\u4fe1\u4efb\u3002\u5206\u5e03\u5f0f\u5185\u5bb9\u4f20\u9012\u53ef\u4ee5\u8282\u7ea6\u5e26\u5bbd\uff0c\u548c\u9632\u6b62 HTTP \u65b9\u6848\u53ef\u80fd\u9047\u5230\u7684 DDoS \u653b\u51fb\u3002\n\n\u8be5\u6587\u4ef6\u7cfb\u7edf\u53ef\u4ee5\u901a\u8fc7\u591a\u79cd\u65b9\u5f0f\u8bbf\u95ee\uff0c\u5305\u62ec FUSE \u4e0e HTTP\u3002\u5c06\u672c\u5730\u6587\u4ef6\u6dfb\u52a0\u5230 IPFS \u6587\u4ef6\u7cfb\u7edf\u53ef\u4f7f\u5176\u9762\u5411\u5168\u4e16\u754c\u53ef\u7528\u3002\u6587\u4ef6\u8868\u793a\u57fa\u4e8e\u5176\u54c8\u5e0c\uff0c\u56e0\u6b64\u6709\u5229\u4e8e\u7f13\u5b58\u3002\u6587\u4ef6\u7684\u5206\u53d1\u91c7\u7528\u4e00\u4e2a\u57fa\u4e8e BitTorrent \u7684\u534f\u8bae\u3002\u5176\u4ed6\u67e5\u770b\u5185\u5bb9\u7684\u7528\u6237\u4e5f\u6709\u52a9\u4e8e\u5c06\u5185\u5bb9\u63d0\u4f9b\u7ed9\u7f51\u7edc\u4e0a\u7684\u5176\u4ed6\u4eba\u3002\nIPFS \u6709\u4e00\u4e2a\u79f0\u4e3a IPNS \u7684\u540d\u79f0\u670d\u52a1\uff0c\u5b83\u662f\u4e00\u4e2a\u57fa\u4e8e PKI \u7684\u5168\u5c40\u540d\u5b57\u7a7a\u95f4\uff0c\u7528\u4e8e\u6784\u7b51\u4fe1\u4efb\u94fe\uff0c\u8fd9\u4e0e\u5176\u4ed6 NS \u517c\u5bb9\uff0c\u5e76\u53ef\u4ee5\u6620\u5c04 DNS\u3001.onion\u3001.bit \u7b49\u5230 IPNS\u3002\n",
+      "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/10-hardhat-ipfs-erc721/README-CN.md"
+    }
+  },
+  {
+    "id": 79,
+    "layers": 6,
+    "name": "Express\u7ed3\u5408hardhat",
+    "parent": 74,
+    "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/11-react-express-hardhat/README-CN.md",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Express\u7ed3\u5408hardhat",
+      "link": "https://github.com/Dapp-Learning-DAO/Dapp-Learning/blob/main/basic/11-react-express-hardhat/README-CN.md"
+    }
+  },
+  {
+    "id": 97,
+    "layers": 6,
+    "name": "React",
+    "parent": 96,
+    "link": "https://www.devpill.me/docs/front-end-development/react/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "React",
+      "link": "https://www.devpill.me/docs/front-end-development/react/"
+    }
+  },
+  {
+    "id": 98,
+    "layers": 6,
+    "name": "Typescript",
+    "parent": 96,
+    "link": "https://www.devpill.me/docs/front-end-development/typescript/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Typescript",
+      "link": "https://www.devpill.me/docs/front-end-development/typescript/"
+    }
+  },
+  {
+    "id": 99,
+    "layers": 6,
+    "name": "NextJS",
+    "parent": 96,
+    "link": "https://www.devpill.me/docs/front-end-development/nextjs/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "NextJS",
+      "link": "https://www.devpill.me/docs/front-end-development/nextjs/"
+    }
+  },
+  {
+    "id": 100,
+    "layers": 6,
+    "name": "Indexing/Quer\ning",
+    "parent": 96,
+    "child_count": 3,
+    "node_count": 3,
+    "tool_tip": {
+      "title": "Indexing/Quer\ning"
+    }
+  },
+  {
+    "id": 104,
+    "layers": 6,
+    "name": "Web3 libraries(Ether.js)",
+    "parent": 96,
+    "link": "https://www.devpill.me/docs/front-end-development/web3-libraries/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Web3 libraries(Ether.js)",
+      "link": "https://www.devpill.me/docs/front-end-development/web3-libraries/"
+    }
+  },
+  {
+    "id": 105,
+    "layers": 6,
+    "name": "Web3 template\ns",
+    "parent": 96,
+    "link": "https://www.devpill.me/docs/front-end-development/web3-templates/",
+    "child_count": 3,
+    "node_count": 3,
+    "tool_tip": {
+      "title": "Web3 template\ns",
+      "link": "https://www.devpill.me/docs/front-end-development/web3-templates/"
+    }
+  },
+  {
+    "id": 110,
+    "layers": 6,
+    "name": "Decentralized\n file storage",
+    "parent": 109,
+    "link": "https://www.devpill.me/docs/back-end-development/file-storage/",
+    "child_count": 2,
+    "node_count": 2,
+    "tool_tip": {
+      "title": "Decentralized\n file storage",
+      "link": "https://www.devpill.me/docs/back-end-development/file-storage/"
+    }
+  },
+  {
+    "id": 113,
+    "layers": 6,
+    "name": "DID",
+    "parent": 109,
+    "link": "https://www.devpill.me/docs/back-end-development/did/",
+    "child_count": 2,
+    "node_count": 2,
+    "tool_tip": {
+      "title": "DID",
+      "link": "https://www.devpill.me/docs/back-end-development/did/"
+    }
+  },
+  {
+    "id": 116,
+    "layers": 6,
+    "name": "Automation",
+    "parent": 109,
+    "link": "https://www.devpill.me/docs/back-end-development/automation/",
+    "child_count": 1,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Automation",
+      "link": "https://www.devpill.me/docs/back-end-development/automation/"
+    }
+  },
+  {
+    "id": 118,
+    "layers": 6,
+    "name": "Miscellaneous APIs",
+    "parent": 109,
+    "link": "https://www.devpill.me/docs/back-end-development/apis/",
+    "child_count": 1,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Miscellaneous APIs",
+      "link": "https://www.devpill.me/docs/back-end-development/apis/"
+    }
+  },
+  {
+    "id": 121,
+    "layers": 6,
+    "name": "Solidity",
+    "parent": 120,
+    "link": "https://www.devpill.me/docs/smart-contract-development/solidity/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Solidity",
+      "link": "https://www.devpill.me/docs/smart-contract-development/solidity/"
+    }
+  },
+  {
+    "id": 122,
+    "layers": 6,
+    "name": "Oracles",
+    "parent": 120,
+    "link": "https://www.devpill.me/docs/smart-contract-development/oracles/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Oracles",
+      "link": "https://www.devpill.me/docs/smart-contract-development/oracles/"
+    }
+  },
+  {
+    "id": 123,
+    "layers": 6,
+    "name": "Testing",
+    "parent": 120,
+    "link": "https://www.devpill.me/docs/smart-contract-development/testing/",
+    "child_count": 4,
+    "node_count": 4,
+    "tool_tip": {
+      "title": "Testing",
+      "link": "https://www.devpill.me/docs/smart-contract-development/testing/"
+    }
+  },
+  {
+    "id": 128,
+    "layers": 6,
+    "name": "Design patter\nns",
+    "parent": 120,
+    "link": "https://www.devpill.me/docs/smart-contract-development/design-patterns/",
+    "child_count": 2,
+    "node_count": 2,
+    "tool_tip": {
+      "title": "Design patter\nns",
+      "link": "https://www.devpill.me/docs/smart-contract-development/design-patterns/"
+    }
+  },
+  {
+    "id": 131,
+    "layers": 6,
+    "name": "Specialized l\nanguages",
+    "parent": 120,
+    "link": "https://www.devpill.me/docs/smart-contract-development/specialized-languages/",
+    "child_count": 3,
+    "node_count": 3,
+    "tool_tip": {
+      "title": "Specialized l\nanguages",
+      "link": "https://www.devpill.me/docs/smart-contract-development/specialized-languages/"
+    }
+  },
+  {
+    "id": 135,
+    "layers": 6,
+    "name": "EVM deep dive",
+    "parent": 120,
+    "link": "https://www.devpill.me/docs/smart-contract-development/evm-deep-dive/",
+    "child_count": 5,
+    "node_count": 5,
+    "tool_tip": {
+      "title": "EVM deep dive",
+      "link": "https://www.devpill.me/docs/smart-contract-development/evm-deep-dive/"
+    }
+  },
+  {
+    "id": 142,
+    "layers": 6,
+    "name": "ossu/computer-science",
+    "parent": 141,
+    "link": "https://github.com/ossu/computer-science",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "ossu/computer-science",
+      "link": "https://github.com/ossu/computer-science"
+    }
+  },
+  {
+    "id": 143,
+    "layers": 6,
+    "name": "\ud83d\udc68\u200d\ud83c\udfeb Introduction to Ethereum development - YouTube",
+    "parent": 141,
+    "link": "https://www.youtube.com/watch?v=MlJPjJQZtC8",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "\ud83d\udc68\u200d\ud83c\udfeb Introduction to Ethereum development - YouTube",
+      "link": "https://www.youtube.com/watch?v=MlJPjJQZtC8"
+    }
+  },
+  {
+    "id": 144,
+    "layers": 6,
+    "name": "The Complete Guide to Full Stack Web3 Development - DEV Community",
+    "parent": 141,
+    "link": "https://twitter.com/dabit3",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "The Complete Guide to Full Stack Web3 Development - DEV Community",
+      "link": "https://twitter.com/dabit3"
+    }
+  },
+  {
+    "id": 145,
+    "layers": 6,
+    "name": "Speed Run Ethereum",
+    "parent": 141,
+    "link": "https://twitter.com/austingriffith",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Speed Run Ethereum",
+      "link": "https://twitter.com/austingriffith"
+    }
+  },
+  {
+    "id": 146,
+    "layers": 6,
+    "name": "Solidity, Blockchain, and Smart Contract Course \u2013 Beginner to Expert Python Tutorial - YouTube",
+    "parent": 141,
+    "link": "https://www.youtube.com/watch?v=M576WGiDBdQ",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Solidity, Blockchain, and Smart Contract Course \u2013 Beginner to Expert Python Tutorial - YouTube",
+      "link": "https://www.youtube.com/watch?v=M576WGiDBdQ"
+    }
+  },
+  {
+    "id": 147,
+    "layers": 6,
+    "name": "smartcontractkit/full-blockchain-solidity-course-py",
+    "parent": 141,
+    "link": "https://twitter.com/PatrickAlphaC",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "smartcontractkit/full-blockchain-solidity-course-py",
+      "link": "https://twitter.com/PatrickAlphaC"
+    }
+  },
+  {
+    "id": 148,
+    "layers": 6,
+    "name": "OffcierCia/DeFi-Developer-Road-Map",
+    "parent": 141,
+    "link": "https://github.com/OffcierCia/DeFi-Developer-Road-Map",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "OffcierCia/DeFi-Developer-Road-Map",
+      "link": "https://github.com/OffcierCia/DeFi-Developer-Road-Map"
+    }
+  },
+  {
+    "id": 149,
+    "layers": 6,
+    "name": "Build Uniswap Blockchain Web 3.0 App with Solidity | Next.js | Sanity.io ($100 Crypto Giveaway) - YouTube",
+    "parent": 141,
+    "link": "https://www.youtube.com/watch?v=xXxjRzdYIss",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Build Uniswap Blockchain Web 3.0 App with Solidity | Next.js | Sanity.io ($100 Crypto Giveaway) - YouTube",
+      "link": "https://www.youtube.com/watch?v=xXxjRzdYIss"
+    }
+  },
+  {
+    "id": 151,
+    "layers": 6,
+    "name": "General learning",
+    "parent": 150,
+    "link": "https://www.devpill.me/docs/core-development/general-learning/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "General learning",
+      "link": "https://www.devpill.me/docs/core-development/general-learning/"
+    }
+  },
+  {
+    "id": 152,
+    "layers": 6,
+    "name": "Eth1 / execution layer",
+    "parent": 150,
+    "link": "https://www.devpill.me/docs/core-development/l1/",
+    "note": "\nNetworking: devp2p\nEVM\nTx pool\nSync methods (Fast, Snap, Archive, Beam, Light)\nState DB\nUser-facing (JSON RPC, tx tracing, etc.)\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Eth1 / execution layer",
+      "note": "\nNetworking: devp2p\nEVM\nTx pool\nSync methods (Fast, Snap, Archive, Beam, Light)\nState DB\nUser-facing (JSON RPC, tx tracing, etc.)\n",
+      "link": "https://www.devpill.me/docs/core-development/l1/"
+    }
+  },
+  {
+    "id": 153,
+    "layers": 6,
+    "name": "Eth2 / consensus layer",
+    "parent": 150,
+    "link": "https://www.devpill.me/docs/core-development/l2/",
+    "note": "\nNetworking: libp2p\nFork-choice\nAttestations / BLS aggregation\nStaking / Validator clients\nSlashings\nSharding\n",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Eth2 / consensus layer",
+      "note": "\nNetworking: libp2p\nFork-choice\nAttestations / BLS aggregation\nStaking / Validator clients\nSlashings\nSharding\n",
+      "link": "https://www.devpill.me/docs/core-development/l2/"
+    }
+  },
+  {
+    "id": 39,
+    "layers": 7,
+    "name": "Cosmos SDK:Golang - Cosmos Network",
+    "parent": 38,
+    "link": "https://v1.cosmos.network/sdk",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Cosmos SDK:Golang - Cosmos Network",
+      "link": "https://v1.cosmos.network/sdk"
+    }
+  },
+  {
+    "id": 40,
+    "layers": 7,
+    "name": "Cosmos SDK Documentation | Cosmos SDK",
+    "parent": 38,
+    "link": "https://docs.cosmos.network/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Cosmos SDK Documentation | Cosmos SDK",
+      "link": "https://docs.cosmos.network/"
+    }
+  },
+  {
+    "id": 41,
+    "layers": 7,
+    "name": "cosmos/cosmos-sdk",
+    "parent": 38,
+    "link": "https://github.com/cosmos/cosmos-sdk",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "cosmos/cosmos-sdk",
+      "link": "https://github.com/cosmos/cosmos-sdk"
+    }
+  },
+  {
+    "id": 43,
+    "layers": 7,
+    "name": "CosmWasm/cosmwasm",
+    "parent": 42,
+    "link": "https://github.com/CosmWasm/cosmwasm",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "CosmWasm/cosmwasm",
+      "link": "https://github.com/CosmWasm/cosmwasm"
+    }
+  },
+  {
+    "id": 46,
+    "layers": 7,
+    "name": "\u9884\u8a00\u673a",
+    "parent": 45,
+    "child_count": 1,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "\u9884\u8a00\u673a"
+    }
+  },
+  {
+    "id": 101,
+    "layers": 7,
+    "name": "TheGraph",
+    "parent": 100,
+    "link": "https://www.devpill.me/docs/front-end-development/indexing-querying/#thegraph",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "TheGraph",
+      "link": "https://www.devpill.me/docs/front-end-development/indexing-querying/#thegraph"
+    }
+  },
+  {
+    "id": 102,
+    "layers": 7,
+    "name": "Nodes",
+    "parent": 100,
+    "link": "https://www.devpill.me/docs/front-end-development/indexing-querying/#nodes",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Nodes",
+      "link": "https://www.devpill.me/docs/front-end-development/indexing-querying/#nodes"
+    }
+  },
+  {
+    "id": 103,
+    "layers": 7,
+    "name": "Moralis",
+    "parent": 100,
+    "link": "https://www.devpill.me/docs/front-end-development/indexing-querying/#moralis",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Moralis",
+      "link": "https://www.devpill.me/docs/front-end-development/indexing-querying/#moralis"
+    }
+  },
+  {
+    "id": 106,
+    "layers": 7,
+    "name": "Moralis Starter-Boilerplate Projects - Moralis",
+    "parent": 105,
+    "link": "https://docs.moralis.io/moralis-dapp/connect-the-sdk/boilerplate-projects",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Moralis Starter-Boilerplate Projects - Moralis",
+      "link": "https://docs.moralis.io/moralis-dapp/connect-the-sdk/boilerplate-projects"
+    }
+  },
+  {
+    "id": 107,
+    "layers": 7,
+    "name": "scaffold-eth/scaffold-eth",
+    "parent": 105,
+    "link": "https://github.com/scaffold-eth/scaffold-eth",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "scaffold-eth/scaffold-eth",
+      "link": "https://github.com/scaffold-eth/scaffold-eth"
+    }
+  },
+  {
+    "id": 108,
+    "layers": 7,
+    "name": "paulrberg/create-eth-app",
+    "parent": 105,
+    "link": "https://github.com/paulrberg/create-eth-app",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "paulrberg/create-eth-app",
+      "link": "https://github.com/paulrberg/create-eth-app"
+    }
+  },
+  {
+    "id": 111,
+    "layers": 7,
+    "name": "IPFS Powers the Distributed Web",
+    "parent": 110,
+    "link": "https://ipfs.tech/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "IPFS Powers the Distributed Web",
+      "link": "https://ipfs.tech/"
+    }
+  },
+  {
+    "id": 112,
+    "layers": 7,
+    "name": "arweave",
+    "parent": 110,
+    "link": "https://www.arweave.org/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "arweave",
+      "link": "https://www.arweave.org/"
+    }
+  },
+  {
+    "id": 114,
+    "layers": 7,
+    "name": "Spruce - Decentralized Identity and Data",
+    "parent": 113,
+    "link": "https://www.spruceid.com/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Spruce - Decentralized Identity and Data",
+      "link": "https://www.spruceid.com/"
+    }
+  },
+  {
+    "id": 115,
+    "layers": 7,
+    "name": "Sign-In with Ethereum",
+    "parent": 113,
+    "link": "https://login.xyz/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Sign-In with Ethereum",
+      "link": "https://login.xyz/"
+    }
+  },
+  {
+    "id": 117,
+    "layers": 7,
+    "name": "Gelato - Automated smart contract executions on Ethereum",
+    "parent": 116,
+    "link": "https://www.gelato.network/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Gelato - Automated smart contract executions on Ethereum",
+      "link": "https://www.gelato.network/"
+    }
+  },
+  {
+    "id": 119,
+    "layers": 7,
+    "name": "Opensea API Overview",
+    "parent": 118,
+    "link": "https://docs.opensea.io/reference/api-overview",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Opensea API Overview",
+      "link": "https://docs.opensea.io/reference/api-overview"
+    }
+  },
+  {
+    "id": 124,
+    "layers": 7,
+    "name": "foundry-rs/foundry",
+    "parent": 123,
+    "link": "https://github.com/foundry-rs/foundry",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "foundry-rs/foundry",
+      "link": "https://github.com/foundry-rs/foundry"
+    }
+  },
+  {
+    "id": 125,
+    "layers": 7,
+    "name": "Hardhat | Ethereum development environment for professionals by Nomic Foundation",
+    "parent": 123,
+    "link": "https://hardhat.org/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Hardhat | Ethereum development environment for professionals by Nomic Foundation",
+      "link": "https://hardhat.org/"
+    }
+  },
+  {
+    "id": 126,
+    "layers": 7,
+    "name": "dapphub/dapptools",
+    "parent": 123,
+    "link": "https://github.com/dapphub/dapptools",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "dapphub/dapptools",
+      "link": "https://github.com/dapphub/dapptools"
+    }
+  },
+  {
+    "id": 127,
+    "layers": 7,
+    "name": "Home - Truffle Suite",
+    "parent": 123,
+    "link": "https://trufflesuite.com/",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Home - Truffle Suite",
+      "link": "https://trufflesuite.com/"
+    }
+  },
+  {
+    "id": 129,
+    "layers": 7,
+    "name": "Resolving Names On-chain - ENS Documentation",
+    "parent": 128,
+    "link": "https://docs.ens.domains/contract-developer-guide/resolving-names-on-chain",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Resolving Names On-chain - ENS Documentation",
+      "link": "https://docs.ens.domains/contract-developer-guide/resolving-names-on-chain"
+    }
+  },
+  {
+    "id": 130,
+    "layers": 7,
+    "name": "Writing a Resolver - ENS Documentation",
+    "parent": 128,
+    "link": "https://docs.ens.domains/contract-developer-guide/writing-a-resolver",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Writing a Resolver - ENS Documentation",
+      "link": "https://docs.ens.domains/contract-developer-guide/writing-a-resolver"
+    }
+  },
+  {
+    "id": 132,
+    "layers": 7,
+    "name": "Yul \u2014 Solidity 0.8.12 documentation",
+    "parent": 131,
+    "link": "https://docs.soliditylang.org/en/v0.8.12/yul.html",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Yul \u2014 Solidity 0.8.12 documentation",
+      "link": "https://docs.soliditylang.org/en/v0.8.12/yul.html"
+    }
+  },
+  {
+    "id": 133,
+    "layers": 7,
+    "name": "fuelLabs/yulp",
+    "parent": 131,
+    "link": "https://github.com/fuelLabs/yulp",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "fuelLabs/yulp",
+      "link": "https://github.com/fuelLabs/yulp"
+    }
+  },
+  {
+    "id": 134,
+    "layers": 7,
+    "name": "Inline Assembly \u2014 Solidity 0.8.12 documentation",
+    "parent": 131,
+    "link": "https://docs.soliditylang.org/en/v0.8.12/assembly.html",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Inline Assembly \u2014 Solidity 0.8.12 documentation",
+      "link": "https://docs.soliditylang.org/en/v0.8.12/assembly.html"
+    }
+  },
+  {
+    "id": 136,
+    "layers": 7,
+    "name": "The EVM Handbook",
+    "parent": 135,
+    "link": "https://noxx3xxon.notion.site/noxx3xxon/The-EVM-Handbook-bb38e175cc404111a391907c4975426d",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "The EVM Handbook",
+      "link": "https://noxx3xxon.notion.site/noxx3xxon/The-EVM-Handbook-bb38e175cc404111a391907c4975426d"
+    }
+  },
+  {
+    "id": 137,
+    "layers": 7,
+    "name": "EVM development Starter Kit. Note: This blog post is divided into\u2026 | by FreddyCoen | Medium",
+    "parent": 135,
+    "link": "https://freddycoen.medium.com/evm-starter-kit-1790bcc992ef",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "EVM development Starter Kit. Note: This blog post is divided into\u2026 | by FreddyCoen | Medium",
+      "link": "https://freddycoen.medium.com/evm-starter-kit-1790bcc992ef"
+    }
+  },
+  {
+    "id": 138,
+    "layers": 7,
+    "name": "develop/13evm.asciidoc",
+    "parent": 135,
+    "link": "https://github.com/ethereumbook/ethereumbook/blob/develop/13evm.asciidoc",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "develop/13evm.asciidoc",
+      "link": "https://github.com/ethereumbook/ethereumbook/blob/develop/13evm.asciidoc"
+    }
+  },
+  {
+    "id": 139,
+    "layers": 7,
+    "name": "A Playdate with the EVM - femboy capital",
+    "parent": 135,
+    "link": "https://femboy.capital/evm-pt1",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "A Playdate with the EVM - femboy capital",
+      "link": "https://femboy.capital/evm-pt1"
+    }
+  },
+  {
+    "id": 140,
+    "layers": 7,
+    "name": "and more",
+    "parent": 135,
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "and more"
+    }
+  },
+  {
+    "id": 47,
+    "layers": 8,
+    "name": "Nervos CKB \u9884\u8a00\u673a\u7684\u521d\u6b65\u63a2\u7d22 - \u77e5\u4e4e",
+    "parent": 46,
+    "link": "https://zhuanlan.zhihu.com/p/243033594",
+    "child_count": 0,
+    "node_count": 1,
+    "tool_tip": {
+      "title": "Nervos CKB \u9884\u8a00\u673a\u7684\u521d\u6b65\u63a2\u7d22 - \u77e5\u4e4e",
+      "link": "https://zhuanlan.zhihu.com/p/243033594"
+    }
+  }
+]

@@ -1,6 +1,8 @@
 # The Rust Programming Language
 
 - [Not Involved Resources](not_involved_resources.md)
+- [Overviews](overviews.md)
+    - [Rust By Examples](overviews/rbe_radial_tree_embed.html)
 - [The Rust Programming Language](title-page.md)
     - [Foreword](foreword.md)
     - [Introduction](ch00-00-introduction.md)
