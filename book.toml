@@ -18,6 +18,17 @@ line-numbers = true
 enable = true
 level = 1
 
+# cargo install mdbook-epub --vers 0.4.15-beta
+# https://crates.io/crates/mdbook-epub/0.4.15-beta
+# mdbook-epub --standalone ./path/to/book/dir
+#[output.epub]
+#additional-css = ["assets/ferris/ferris.css", "theme/2018-edition.css", "assets/pagetoc/pagetoc_style.css", "assets/css/mdbook-admonish.css"]
+#use-default-css = true
+#cover-image = "ebook-cover.png"
+#additional-resources = ["./assets/Open-Sans-Regular.ttf"]
+#no-section-label = true
+#curly-quotes = true
+
 # 添加表格支持
 # ```extended-markdown-table
 # ```
