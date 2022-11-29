@@ -324,7 +324,7 @@
         - [🌌 Std misc](rust_by_example_src/std_misc.md)
             - [Threads](rust_by_example_src/std_misc/threads.md)
             - [✨Testcase: map-reduce](rust_by_example_src/std_misc/threads/testcase_mapreduce.md)
-            - [Channels: Asynchronous comunication between threads](rust_by_example_src/std_misc/channels.md)
+            - [Channels: Asynchronous communication between threads](rust_by_example_src/std_misc/channels.md)
             - [Path](rust_by_example_src/std_misc/path.md)
             - [File I/O](rust_by_example_src/std_misc/file.md)
                 - [`open`: read-only](rust_by_example_src/std_misc/file/open.md)

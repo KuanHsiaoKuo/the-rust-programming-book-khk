@@ -1,10 +1,10 @@
 """
 主要将plantuml的mindmap写法转为vega可用的json文件
 """
-import sys
+import json
 import os
 import re
-import json
+import sys
 
 
 def converter(puml_path: str):
@@ -181,17 +181,17 @@ def write_knowledge_graph_json(parse_results: list[dict], target_directory: str)
 def write_tree_json(parse_results: list[dict], target_directory: str):
     filename = f"{re.split('[/|.]', puml_path)[-2]}"
     # file_path = '../src/overview/vega/'
-    with open(f"{target_directory}{filename}.json", 'w') as f:
+    with open(f"{target_directory}/{filename}.json", 'w') as f:
         f.write(json.dumps(parse_results))
-    with open("../src/layer5_source_code_anatomy/substrate_anatomy/vega/radial_tree_template.vg.json", "r") as f:
-        template = f.readlines()
-    for index, line in enumerate(template):
-        if 'url' in line:
-            raw_data_url = re.findall('"(.*?)"', line)[1]
-            template[index] = template[index].replace(raw_data_url, f'vega/{filename}.json')
-            print(line)
-    with open(f"{target_directory}{filename}_radial_tree.vg.json", "w") as f:
-        f.writelines(template)
+    # with open("../src/layer5_source_code_anatomy/substrate_anatomy/vega/radial_tree_template.vg.json", "r") as f:
+    #     template = f.readlines()
+    # for index, line in enumerate(template):
+    #     if 'url' in line:
+    #         raw_data_url = re.findall('"(.*?)"', line)[1]
+    #         template[index] = template[index].replace(raw_data_url, f'vega/{filename}.json')
+    #         print(line)
+    # with open(f"{target_directory}{filename}_radial_tree.vg.json", "w") as f:
+    #     f.writelines(template)
 
 
 def extract_stars_name_links_color(line=''):
@@ -333,25 +333,34 @@ def preprocess_title(puml_path: str):
 
 
 if __name__ == "__main__":
-    puml_dir = '../materials/anatomy/substrate'
+    mod = os.getenv('PUML_CONVERT_MOD')
+    if not mod:
+        print("请设置环境变量PUML_CONVERT_MOD")
+
+    if len(sys.argv) < 3 and mod == 'transform':
+        print('转化json模式，请在执行时依次加入：puml文件夹，同名json文件导出目录')
+        sys.exit()
+    elif mod == 'transform':
+        puml_dir, target_dir = sys.argv[1], sys.argv[2]
+        if target_dir.endswith('/'):
+            target_dir = target_dir[:-1]
+        print(f'转化json模式：\npuml文件夹:{puml_dir}\n同名json文件导出目录:{target_dir}')
+    elif len(sys.argv) < 2 and mod == 'modify':
+        print('转化puml标题模式，请在执行时依次加入：puml文件夹')
+        sys.exit()
+    elif mod == 'modify':
+        puml_dir = sys.argv[1]
+
     target_pumls = []
     for dirpath, dirnames, filenames in os.walk(puml_dir):
         print(dirpath, dirnames, filenames)
         for filename in filenames:
             target_pumls.append(f"{dirpath}/{filename}")
-    mod = os.getenv('PUML_CONVERT_MOD')
     for puml_path in target_pumls:
         if mod == 'transform':
-            if len(sys.argv) < 3:
-                print("请传入puml文件路径和转化保存路径")
-                sys.exit()
-            else:
-                target_dir = sys.argv[2]
             converted_results = converter(puml_path)
             write_tree_json(converted_results, target_dir)
             # write_bubble_json(converted_results, target_dir)
             # write_knowledge_graph_json(converted_results, target_dir)
         elif mod == 'modify':
             preprocess_title(puml_path)
-        else:
-            print("请设置环境变量PUML_CONVERT_MOD")

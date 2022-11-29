@@ -1,0 +1,192 @@
+@startmindmap
+* Rust By Examples
+** Hello World
+*** Comments
+*** Formatted print
+**** Debug
+**** Display
+**** Formatting
+** Types
+*** Primitives
+**** Literals and operators
+**** Tuples: A collection of values of different types
+**** Arrays and Slices: a collection of objects of the same type T
+*** Custom Types: struct and enum
+**** Structures: Tuple, C structs and Unit structs
+**** Enums and Type alias
+***** use
+***** C-like
+***** Testcase: linked-list
+**** Constants: const and static
+*** Variable Bindings
+**** Mutability
+**** Scope({}) and Shadowing
+**** Declare first
+**** freezing
+*** Types: Change or Define
+**** Casting using as keyword
+**** Literals
+**** Inference
+**** Type Aliasing: give a new to an existing type
+*** Advanced Conversion
+**** From and Intro
+**** TryFrom and TryInto: used for fallible conversions, return Result
+**** ToString and FromStr trait: To and from Strings
+** Control: Statements, Functions and Error handling
+*** Expressions: statements end with;
+*** Flow of Control
+**** if/else
+**** loop
+***** Nesting and labels: a little like lifetime annotations
+***** Returning from loops
+***** while
+***** while_let
+***** for and range
+***** match
+****** Destructuring
+****** Guargs: to filter the arm
+****** @ Binding
+***** if let
+***** while let
+**** Functions
+***** Methods
+***** Closures
+****** Capturing
+****** Fn/FnMut/FnOnce
+******* Type anonymity
+******* As input parameters
+******* As Output Parameters
+******* Input Functions
+****** Examples in std
+******* Iterator::any
+******* Searching through iterators
+***** Higher Order Functions
+***** Diverging functions: return !, different from ()
+**** Error handling
+***** Panic: try-exception
+***** Abort & Unwind
+***** Option & Unwrap
+****** Unpacking options with ? to return the Some or terminate
+****** Combinators of Option: map
+****** Combinators of Option: and_then
+****** Defaults: or, or_else, get_or_insert, get_or_insert_with
+***** Result: A Richer Version Of Option
+****** map for Result: catch explicit Exception and Continue
+****** Custom Exception: Aliases for Result
+****** Early returns: Catch Exception and Return
+****** Introducing ?
+***** Multiple error types to interact
+****** Pulling Results out of Options
+****** Defining an error type
+****** Boxing errors
+****** Other uses of ?
+****** Wrapping errors
+***** iterating over Results
+** Encapsulation: Modules, Crates and Cargo
+*** Modules: hierarchically split and manage visibility
+**** Visibility
+**** Struct Visibitily: an extra level of visibility with their fields
+**** The use declaration: bind a full path to a new name
+**** super and self: remove ambiguity
+**** File/Directory hierarchy
+*** Crates: compilation split and manage visibility
+**** Creating a Library: --crate-type=lib
+**** Using a Library: --extern
+*** Cargo: package management tool
+**** Dependencies
+**** Two Binaries Conventions
+**** Tests
+**** Build Scripts
+** Rust Core: Generics, Traits and Scoping
+*** Generics
+**** Used as Parameters
+***** Functions: Identify whether a generic function
+***** Impl Type fn: Identify whether a generic method
+***** Impl Traits fn: Identify whether a generic method
+**** Bounded by Trait
+**** New Type Idiom
+**** Associated items
+**** Phantom type parameters
+*** Traits
+**** Derive Macro Traits
+**** Returning Traits with dyn
+**** Operator Overloading
+**** Drop
+**** Iterators: Iterator Trait
+**** Impl Trait
+**** Supertraits
+**** Full Qualified Syntax: Disambiguating overlapping traits
+*** Scoping rules
+**** RAII
+**** Ownership and moves
+***** Mutability
+***** Partial moves
+**** Borrowing
+***** Mutability
+***** Mutable or Immutable, Only One
+**** Lifetimes
+***** Elision
+***** Explicit lifetime annotation: another Generic
+***** Functions、methods、struct、trait
+***** Lifetime Bounds for generics
+***** Coercion
+***** Static
+** Macros: rules! and attributes
+*** macro_rules!
+**** Syntax
+***** Designators
+***** Overload
+***** Repeat
+**** DRY: Don't repeat yourself
+**** DSL: Domain Specific Languages
+**** Variadics
+*** Attributes: metadata applied to some module, crate or item
+**** dead_code: disable the unused lint
+**** Crates: crate_type and crate_name
+**** cfg: Configuration conditional checks
+**** Custom: Custom conditionals
+** Std: Library types adn Misc
+*** Std Library Types
+**** Box, stack and heap
+**** Vectors: re-sizable arrays
+**** Strings: String and &str
+**** panic!: Raise Exception, no Catch
+**** Option: catching failure instead of calling panic!
+**** Result: express why an operation failed
+**** ?: Chaining Results only match Ok(ok)
+**** HashMap
+***** Alternate/custom key types
+***** HashSet
+**** Rc: for mutiple ownership, just like what python have done
+**** Arc: shared ownership between threads
+*** std misc
+**** Threads
+**** Testcase: map-reduce
+**** Channels: Asynchronous communication between threads
+**** Path
+**** File I/O
+***** open: read-only
+***** create: write-only
+***** read lines: returns an iterator
+**** Child processes
+***** Pipes: interaction with the underlying process
+***** Wait
+**** std::fs: Filesystem Operations
+**** Program arguments
+***** Match to Argument parsing
+**** FFI: Foreign Function Interface
+** Misc: Testing, Unsafe, Compatibility and Meta
+*** Testing
+**** Unit testing for panic: #[cfg(test)], #[should_panic], #[ignore]
+**** Documentation: cargo doc
+**** Documentation testing
+**** Integration testing
+**** Dev-dependencies
+*** Unsafe Operations
+*** asm!: Inline assembly in Unsafe
+*** Compatibility
+*** Raw identifilers: r#
+
+
+
+@endmindmap

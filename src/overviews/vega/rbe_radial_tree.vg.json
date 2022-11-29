@@ -155,7 +155,7 @@
   "data": [
     {
       "name": "tree",
-      "url": "data/rbe_tree_data.json",
+      "url": "data/rust_by_examples.json",
       "transform": [
         {
           "type": "stratify",
