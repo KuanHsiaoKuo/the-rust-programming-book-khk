@@ -203,6 +203,10 @@
 </code></pre>
 </div>
 </details>
+<ol>
+<li><code>any</code> takes <code>&amp;mut self</code> meaning the caller may be borrowed</li>
+<li><code>FnMut</code> meaning any captured variable may at most be modified, not consumed. <code>Self::Item</code> states it takes arguments to the closure by value.</li>
+</ol>
 <details id="admonition-usage" class="admonition info">
 <summary class="admonition-title">
 <p>Usage</p>
@@ -237,6 +241,9 @@
 </code></pre></pre>
 </div>
 </details>
+1. `iter()` for vecs yields `&i32`. Destructure to `i32`.
+2. `into_iter()` for vecs yields `i32`. No destructuring required.
+3.  `iter()` only borrows `vec1` and its elements, so they can be used again 
 <h3 id="see-also"><a class="header" href="#see-also">See also:</a></h3>
 <p><a href="https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.any"><code>std::iter::Iterator::any</code></a></p>
 

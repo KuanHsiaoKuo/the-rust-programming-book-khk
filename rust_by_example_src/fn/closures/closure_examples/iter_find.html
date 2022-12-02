@@ -204,6 +204,8 @@ condition, it returns <code>None</code>.</p>
 </code></pre>
 </div>
 </details>
+1. `find` takes `&mut self` meaning the caller may be borrowed and modified, but not consumed. 
+2. `FnMut` meaning any captured variable may at most be modified, not consumed. `&Self::Item` states it takes arguments to the closure by reference.
 <details id="admonition-usage" class="admonition info">
 <summary class="admonition-title">
 <p>Usage</p>
