@@ -21,6 +21,8 @@ pub trait Iterator {
 }
 ```
 ~~~
+1. `find` takes `&mut self` meaning the caller may be borrowed and modified, but not consumed. 
+2. `FnMut` meaning any captured variable may at most be modified, not consumed. `&Self::Item` states it takes arguments to the closure by reference.
 
 ~~~admonish info title="Usage" collapsible=true
 ```rust,editable

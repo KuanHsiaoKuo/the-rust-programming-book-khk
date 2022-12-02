@@ -20,6 +20,9 @@ pub trait Iterator {
 ```
 ~~~
 
+1. `any` takes `&mut self` meaning the caller may be borrowed
+2. `FnMut` meaning any captured variable may at most be modified, not consumed. `Self::Item` states it takes arguments to the closure by value.
+
 ~~~admonish info title="Usage" collapsible=true
 
 ```rust,editable
@@ -50,6 +53,9 @@ fn main() {
 }
 ```
 ~~~
+1. `iter()` for vecs yields `&i32`. Destructure to `i32`.
+2. `into_iter()` for vecs yields `i32`. No destructuring required.
+3.  `iter()` only borrows `vec1` and its elements, so they can be used again 
 
 ### See also:
 
