@@ -1,5 +1,7 @@
 # Managing Growing Projects with Packages, Crates, and Modules
 
+- [rust-include-files-example/README.md at master · superjose/rust-include-files-example](https://github.com/superjose/rust-include-files-example/blob/master/README.md)
+
 As you write large programs, organizing your code will become increasingly
 important. By grouping related functionality and separating code with distinct
 features, you’ll clarify where to find code that implements a particular
