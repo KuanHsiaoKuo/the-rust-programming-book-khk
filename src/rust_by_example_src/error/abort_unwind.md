@@ -6,9 +6,25 @@ Different code paths can be conditionally compiled based on the panic setting.
 
 The current values available are `abort` and `unwind`.
 
+## Implementation mechanism of panic
+
+> In Rust, there are two ways to implement panic: unwind and abort
+
+1. In the unwind mode, when a panic occurs, the function calls will be exited layer by layer.
+   During the process, the local variables in the current stack can be destructed normally.
+2. The abort method will directly exit the entire program when a panic occurs.
+3. Generally speaking, by default, the compiler uses the unwind mode.
+
+> How to make it yourself:
+
+```shell
+rustc -C panic=unwind test.rs
+rustc -C panic=abort test.rs
+```
+
 ## abort
 
-~~~admonish tip title="Building on the prior lemonade example, we explicitly use the panic strategy to exercise different lines of code. " collapsible=true 
+~~~admonish tip title="cfg!(panic='abort'): Building on the prior lemonade example, we explicitly use the panic strategy to exercise different lines of code. " collapsible=true 
 ```rust,editable,mdbook-runnable
 
 fn drink(beverage: &str) {
