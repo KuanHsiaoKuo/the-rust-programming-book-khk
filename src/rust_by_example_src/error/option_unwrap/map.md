@@ -78,6 +78,7 @@ fn main() {
 ~~~
 1. Here, we showcase `map()` instead of `match` for case handling.
 2. We chain multiple uses of `map()` to simplify the code.
+
 ### See also:
 
 [closures][closures], [`Option`][option], [`Option::map()`][map]
