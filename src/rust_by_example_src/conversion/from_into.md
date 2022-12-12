@@ -80,6 +80,12 @@ fn main() {
 ```
 ~~~
 
+## Compare with as keyword
+
+- [read as keyword in the pre chapter](https://kuanhsiaokuo.github.io/the-rust-programming-book-khk/rust_by_example_src/types/cast.html)
+
+
+
 [`From`]: https://doc.rust-lang.org/std/convert/trait.From.html
 
 [`Into`]: https://doc.rust-lang.org/std/convert/trait.Into.html

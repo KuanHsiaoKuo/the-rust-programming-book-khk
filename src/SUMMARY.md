@@ -163,13 +163,13 @@
             - [Declare first](rust_by_example_src/variable_bindings/declare.md)
             - [Freezing](rust_by_example_src/variable_bindings/freeze.md)
 
-        - [Types: Change or Define](rust_by_example_src/types.md)
-            - [Casting using as keyword](rust_by_example_src/types/cast.md)
+        - [🚶Basic Conversion: Change or Define Types](rust_by_example_src/types.md)
+            - [`as`: Casting using as keyword](rust_by_example_src/types/cast.md)
             - [Literals](rust_by_example_src/types/literals.md)
             - [Inference](rust_by_example_src/types/inference.md)
             - [✨Type Aliasing: give a new name to an existing type](rust_by_example_src/types/alias.md)
 
-        - [💃Advanced Conversion](rust_by_example_src/conversion.md)
+        - [💃Advanced Conversion: From/Into trait](rust_by_example_src/conversion.md)
             - [`From` and `Into`](rust_by_example_src/conversion/from_into.md)
             - [`TryFrom` and `TryInto`: used for fallible conversions, return Result](rust_by_example_src/conversion/try_from_try_into.md)
             - [`ToString` and `FromStr` trait: To and from `String`s](rust_by_example_src/conversion/string.md)

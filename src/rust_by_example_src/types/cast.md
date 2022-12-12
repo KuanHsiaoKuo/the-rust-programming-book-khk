@@ -98,4 +98,10 @@ fn main() {
 6. Since Rust 1.45, the `as` keyword performs a *saturating cast* when casting from float to int.
 7. If the floating point value exceeds the upper bound or is less than the lower bound, the returned value will be equal to the bound crossed.
 8. This behavior incurs a small runtime cost and can be avoided with unsafe methods
-9. however the results might overflow and return **unsound values**. Use these methods wisely:
+9. however the results might overflow and return **unsound values**. Use these methods wisely
+
+## Compare with From/Into
+
+- [What is the difference between From::from and as in Rust?](https://stackoverflow.com/questions/48795329/what-is-the-difference-between-fromfrom-and-as-in-rust)
+
+- [from and into in following part](/the-rust-programming-book-khk/rust_by_example_src/conversion/from_into.html)
