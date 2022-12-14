@@ -228,6 +228,7 @@
                 - [`Box`ing errors](rust_by_example_src/error/multiple_error_types/boxing_errors.md)
                 - [Wrapping errors](rust_by_example_src/error/multiple_error_types/wrap_error.md)
             - [Iterating over `Result`s](rust_by_example_src/error/iter_result.md)
+            - [📒Error Handling Practices -- ChatGPT](rust_by_example_src/encapsulation_modules_crates_cargo.md)
 
     - [Encapsulation: Modules, Crates and Cargo](rust_by_example_src/encapsulation_modules_crates_cargo.md)
         - [Modules: hierarchically split and manage visibility](rust_by_example_src/mod.md)
