@@ -180,10 +180,10 @@
                     <nav class="pagetoc"></nav>
                 </div>
                 <h1 id="basic-practice"><a class="header" href="#basic-practice">Basic Practice</a></h1>
-<details id="admonition-read-a-file" class="admonition tip">
+<details id="admonition-read-a-file-resultunwrap_or_else" class="admonition tip">
 <summary class="admonition-title">
-<p>Read a file</p>
-<p><a class="admonition-anchor-link" href="#admonition-read-a-file"></a></p>
+<p>Read a file: Result、?、unwrap_or_else</p>
+<p><a class="admonition-anchor-link" href="#admonition-read-a-file-resultunwrap_or_else"></a></p>
 </summary>
 <div>
 <pre><pre class="playground"><code class="language-rust">use std::fs;
@@ -221,6 +221,77 @@ fn main() {
 <p>In the main function, the unwrap_or_else method is used to handle any errors that may have occurred while reading the file. If read_file returns an Err, the closure passed to unwrap_or_else will be executed, which prints an error message and exits the program. If read_file returns an Ok, the String value inside the Ok will be extracted and stored in the contents variable.</p>
 </li>
 </ol>
+</div>
+</details>
+<blockquote>
+<p>Error handling in Rust is typically done using the Result type, which is an enum that can either be Ok if the operation was successful, or Err if it failed.</p>
+</blockquote>
+<details id="admonition-read-a-file-match-to-take-different-actions" class="admonition tip">
+<summary class="admonition-title">
+<p>Read a file: match to take different actions</p>
+<p><a class="admonition-anchor-link" href="#admonition-read-a-file-match-to-take-different-actions"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">use std::fs::File;
+use std::io::Read;
+
+fn read_file(filename: &amp;str) -&gt; Result&lt;String, std::io::Error&gt; {
+    let mut file = File::open(filename)?; // open the file
+    let mut contents = String::new();
+    file.read_to_string(&amp;mut contents)?; // read the contents into a string
+    Ok(contents) // return the contents as a Result
+}
+
+fn main() {
+    match read_file(&quot;my_file.txt&quot;) {
+        Ok(contents) =&gt; println!(&quot;The file contents are: {}&quot;, contents),
+        Err(error) =&gt; println!(&quot;Error: {}&quot;, error),
+    }
+}
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-read-a-file-match-specific-error" class="admonition tip">
+<summary class="admonition-title">
+<p>Read a file: match specific error</p>
+<p><a class="admonition-anchor-link" href="#admonition-read-a-file-match-specific-error"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">use std::fs::File;
+use std::io::ErrorKind;
+
+fn main() {
+    let f = File::open(&quot;my_file.txt&quot;);
+
+    let f = match f {
+        Ok(file) =&gt; file,
+        Err(error) =&gt; match error.kind() {
+            ErrorKind::NotFound =&gt; {
+                // handle the error here
+                // for example, create a new file
+                File::create(&quot;my_file.txt&quot;).unwrap_or_else(|error| {
+                    panic!(&quot;Failed to create file: {:?}&quot;, error);
+                })
+            },
+            other_error =&gt; {
+                panic!(&quot;Failed to open file: {:?}&quot;, other_error);
+            }
+        },
+    };
+}
+</code></pre></pre>
+<ol>
+<li>In the code above, we first try to open a file called my_file.txt using the File::open method. </li>
+<li>This method returns a Result instance, which we then match on to handle the possible outcomes. 
+<ul>
+<li>If the Result is Ok, then it means that the file was successfully opened and we can use it. </li>
+<li>If the Result is Err, then we match on the error.kind() to handle the specific error. </li>
+<li>In this case, we are only handling the ErrorKind::NotFound case, where the file does not exist and we need to create it. </li>
+<li>For all other errors, we panic! with a message.</li>
+</ul>
+</li>
+</ol>
+<p>This is just a simple example, but it should give you an idea of how to use Result to handle errors in Rust.</p>
 </div>
 </details>
 
