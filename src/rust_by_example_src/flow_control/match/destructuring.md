@@ -1,10 +1,16 @@
 # Destructuring
 
 <!--ts-->
-
+* [Destructuring](#destructuring)
+   * [Destructuring Tuples](#destructuring-tuples)
+   * [Destructuring Arrays and Slices](#destructuring-arrays-and-slices)
+   * [Destructuring Enums](#destructuring-enums)
+   * [Destructuring Pointers/ref](#destructuring-pointersref)
+   * [Destructuring Structures](#destructuring-structures)
+   * [See also:](#see-also)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Dec 16 15:43:48 UTC 2022 -->
+<!-- Added by: runner, at: Tue Dec 20 13:42:17 UTC 2022 -->
 
 <!--te-->
 
