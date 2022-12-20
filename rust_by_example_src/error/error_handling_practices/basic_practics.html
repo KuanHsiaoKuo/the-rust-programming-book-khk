@@ -294,6 +294,313 @@ fn main() {
 <p>This is just a simple example, but it should give you an idea of how to use Result to handle errors in Rust.</p>
 </div>
 </details>
+<details id="admonition-using-the-result-type-to-handle-a-potential-error" class="admonition tip">
+<summary class="admonition-title">
+<p>Using the Result type to handle a potential error</p>
+<p><a class="admonition-anchor-link" href="#admonition-using-the-result-type-to-handle-a-potential-error"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">use std::fs::File;
+use std::io::ErrorKind;
+
+fn main() {
+    let f = File::open(&quot;hello.txt&quot;);
+
+    let f = match f {
+        Ok(file) =&gt; file,
+        Err(error) =&gt; match error.kind() {
+            ErrorKind::NotFound =&gt; {
+                println!(&quot;File not found&quot;);
+                File::create(&quot;hello.txt&quot;).unwrap_or_else(|error| {
+                    panic!(&quot;Error creating file: {:?}&quot;, error)
+                })
+            },
+            other_error =&gt; {
+                panic!(&quot;Error opening file: {:?}&quot;, other_error)
+            }
+        },
+    };
+}
+</code></pre></pre>
+<ol>
+<li>In this example, we try to open a file called “hello.txt”. </li>
+<li>If the file is found, the Ok variant of the Result is returned and the file is assigned to the f variable. </li>
+<li>If the file is not found, the Err variant is returned and we match on the error to handle the specific case of a file not being found. </li>
+<li>In this case, we create a new file called “hello.txt”. </li>
+<li>If there is any other error, we panic.</li>
+</ol>
+</div>
+</details>
+<details id="admonition-use-the--operator-to-simplify-error-handling-when-you-want-to-return-an-error-if-one-occurs" class="admonition tip">
+<summary class="admonition-title">
+<p>use the ? operator to simplify error handling when you want to return an error if one occurs</p>
+<p><a class="admonition-anchor-link" href="#admonition-use-the--operator-to-simplify-error-handling-when-you-want-to-return-an-error-if-one-occurs"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">use std::fs::File;
+
+fn main() -&gt; Result&lt;(), std::io::Error&gt; {
+    let f = File::open(&quot;hello.txt&quot;)?;
+
+    // Do something with the file
+    Ok(())
+}
+
+</code></pre></pre>
+<ol>
+<li>The ? operator returns the error value if there is one, or else it continues execution and returns the value of the expression on the right side of the ?. </li>
+<li>If you use the ? operator, you need to return a Result type or propagate the error up the call stack using the ? operator.</li>
+</ol>
+</div>
+</details>
+<details id="admonition-using-unwrap_or-to-provide-a-default-value-on-error" class="admonition tip">
+<summary class="admonition-title">
+<p>Using unwrap_or to provide a default value on error</p>
+<p><a class="admonition-anchor-link" href="#admonition-using-unwrap_or-to-provide-a-default-value-on-error"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">use std::num::ParseIntError;
+
+fn string_to_number(s: &amp;str) -&gt; Result&lt;i32, ParseIntError&gt; {
+    s.parse::&lt;i32&gt;().map_err(|e| e.into())
+}
+
+fn main() {
+    let n = string_to_number(&quot;10&quot;).unwrap_or(-1);
+    println!(&quot;n = {}&quot;, n);
+
+    let m = string_to_number(&quot;foo&quot;).unwrap_or(-1);
+    println!(&quot;m = {}&quot;, m);
+}
+
+</code></pre></pre>
+<ol>
+<li>In this example, we have a function string_to_number that converts a string to an i32. </li>
+<li>If the string can’t be parsed as an i32, the Err variant of the Result is returned. </li>
+<li>In main, we use unwrap_or to provide a default value of -1 if an error occurs.</li>
+</ol>
+</div>
+</details>
+<details id="admonition-using-expect-to-provide-a-custom-error-message-on-error" class="admonition tip">
+<summary class="admonition-title">
+<p>Using expect to provide a custom error message on error</p>
+<p><a class="admonition-anchor-link" href="#admonition-using-expect-to-provide-a-custom-error-message-on-error"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">use std::num::ParseIntError;
+
+fn string_to_number(s: &amp;str) -&gt; Result&lt;i32, ParseIntError&gt; {
+    s.parse::&lt;i32&gt;().map_err(|e| e.into())
+}
+
+fn main() {
+    let n = string_to_number(&quot;10&quot;).expect(&quot;Unable to parse string as number&quot;);
+    println!(&quot;n = {}&quot;, n);
+
+    let m = string_to_number(&quot;foo&quot;).expect(&quot;Unable to parse string as number&quot;);
+    println!(&quot;m = {}&quot;, m);
+}
+
+</code></pre></pre>
+<ol>
+<li>In this example, we have the same string_to_number function as in the previous example. </li>
+<li>In main, we use expect to provide a custom error message if an error occurs. </li>
+<li>If the Result is Ok, the value is unwrapped and returned. </li>
+<li>If the Result is Err, the custom error message is printed and the program panics.</li>
+</ol>
+</div>
+</details>
+<details id="admonition-propagating-an-error-using-the--operator-and-expect-to-capture" class="admonition tip">
+<summary class="admonition-title">
+<p>Propagating an error using the ? operator and expect to capture</p>
+<p><a class="admonition-anchor-link" href="#admonition-propagating-an-error-using-the--operator-and-expect-to-capture"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">use std::fs::File;
+
+fn create_file(name: &amp;str) -&gt; std::io::Result&lt;()&gt; {
+    let f = File::create(name)?;
+    Ok(())
+}
+
+fn main() {
+    create_file(&quot;foo.txt&quot;).expect(&quot;Error creating file&quot;);
+}
+</code></pre></pre>
+<ol>
+<li>In this example, we have a function create_file that creates a file with the given name. </li>
+<li>If there is an error creating the file, the Err variant of the Result is returned. </li>
+<li>In main, we use the ? operator to propagate the error up the call stack and pass it to expect to handle.</li>
+</ol>
+</div>
+</details>
+<details id="admonition-using-unwrap_or_else-to-provide-a-custom-error-handling-function" class="admonition tip">
+<summary class="admonition-title">
+<p>Using unwrap_or_else to provide a custom error handling function</p>
+<p><a class="admonition-anchor-link" href="#admonition-using-unwrap_or_else-to-provide-a-custom-error-handling-function"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">use std::num::ParseIntError;
+
+fn string_to_number(s: &amp;str) -&gt; Result&lt;i32, ParseIntError&gt; {
+    s.parse::&lt;i32&gt;().map_err(|e| e.into())
+}
+
+fn main() {
+    let n = string_to_number(&quot;10&quot;).unwrap_or_else(|error| {
+        println!(&quot;Error parsing string: {:?}&quot;, error);
+        -1
+    });
+    println!(&quot;n = {}&quot;, n);
+
+    let m = string_to_number(&quot;foo&quot;).unwrap_or_else(|error| {
+        println!(&quot;Error parsing string: {:?}&quot;, error);
+        -1
+    });
+    println!(&quot;m = {}&quot;, m);
+}
+</code></pre></pre>
+<ol>
+<li>In this example, we have the same string_to_number function as in previous examples. </li>
+<li>In main, we use unwrap_or_else to provide a custom error handling function that is called if an error occurs. </li>
+<li>The error handling function takes the error as an argument and returns a default value.</li>
+</ol>
+</div>
+</details>
+<details id="admonition-using-try_into-to-convert-between-types" class="admonition tip">
+<summary class="admonition-title">
+<p>Using try_into to convert between types:</p>
+<p><a class="admonition-anchor-link" href="#admonition-using-try_into-to-convert-between-types"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">use std::convert::TryInto;
+
+fn main() {
+    let x: Result&lt;i32, _&gt; = &quot;10&quot;.try_into();
+    println!(&quot;x = {:?}&quot;, x);
+
+    let y: Result&lt;i32, _&gt; = &quot;foo&quot;.try_into();
+    println!(&quot;y = {:?}&quot;, y);
+}
+
+</code></pre></pre>
+<ol>
+<li>In this example, we use the try_into function to try to convert a string to an i32. </li>
+<li>If the conversion is successful, the Ok variant of the Result is returned. </li>
+<li>If the conversion fails, the Err variant is returned.</li>
+</ol>
+</div>
+</details>
+<details id="admonition-using-iteratortry_fold-to-perform-a-fold-operation-with-error-handling" class="admonition tip">
+<summary class="admonition-title">
+<p>Using Iterator::try_fold to perform a fold operation with error handling:</p>
+<p><a class="admonition-anchor-link" href="#admonition-using-iteratortry_fold-to-perform-a-fold-operation-with-error-handling"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">use std::num::ParseIntError;
+
+fn parse_int(s: &amp;str) -&gt; Result&lt;i32, ParseIntError&gt; {
+    s.parse::&lt;i32&gt;().map_err(|e| e.into())
+}
+
+fn main() {
+    let numbers = vec![&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;];
+    let sum = numbers.iter()
+        .try_fold(0, |acc, x| -&gt; Result&lt;i32, ParseIntError&gt; {
+            let y = parse_int(x)?;
+            Ok(acc + y)
+        });
+    println!(&quot;sum = {:?}&quot;, sum);
+
+    let numbers = vec![&quot;1&quot;, &quot;foo&quot;, &quot;3&quot;, &quot;4&quot;];
+    let sum = numbers.iter()
+        .try_fold(0, |acc, x| -&gt; Result&lt;i32, ParseIntError&gt; {
+            let y = parse_int(x)?;
+            Ok(acc + y)
+        });
+    println!(&quot;sum = {:?}&quot;, sum);
+}
+
+</code></pre></pre>
+</div>
+</details>
+<details id="admonition-using-resultunwrap_or_default-to-provide-a-default-value-on-error" class="admonition tip">
+<summary class="admonition-title">
+<p>Using Result::unwrap_or_default to provide a default value on error:</p>
+<p><a class="admonition-anchor-link" href="#admonition-using-resultunwrap_or_default-to-provide-a-default-value-on-error"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">use std::num::ParseIntError;
+
+fn string_to_number(s: &amp;str) -&gt; Result&lt;i32, ParseIntError&gt; {
+    s.parse::&lt;i32&gt;().map_err(|e| e.into())
+}
+
+fn main() {
+    let n = string_to_number(&quot;10&quot;).unwrap_or_default();
+    println!(&quot;n = {}&quot;, n);
+
+    let m = string_to_number(&quot;foo&quot;).unwrap_or_default();
+    println!(&quot;m = {}&quot;, m);
+}
+
+</code></pre></pre>
+<ol>
+<li>In this example, we have the same string_to_number function as in previous examples. </li>
+<li>In main, we use unwrap_or_default to provide a default value of 0 if an error occurs. </li>
+<li>The default value is determined by the type of the value being returned.</li>
+</ol>
+</div>
+</details>
+<details id="admonition-using-resulttranspose-to-convert-a-result-inside-an-option" class="admonition tip">
+<summary class="admonition-title">
+<p>Using Result::transpose to convert a Result inside an Option:</p>
+<p><a class="admonition-anchor-link" href="#admonition-using-resulttranspose-to-convert-a-result-inside-an-option"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">use std::num::ParseIntError;
+
+fn string_to_number(s: &amp;str) -&gt; Result&lt;i32, ParseIntError&gt; {
+    s.parse::&lt;i32&gt;().map_err(|e| e.into())
+}
+
+fn main() {
+    let maybe_number = Some(&quot;10&quot;);
+    let number = maybe_number.map(string_to_number)
+        .transpose()
+        .unwrap_or_else(|| Err(ParseIntError {
+            kind: std::num::ParseIntErrorKind::InvalidDigit,
+        }));
+    println!(&quot;number = {:?}&quot;, number);
+
+    let maybe_number = Some(&quot;foo&quot;);
+    let number = maybe_number.map(string_to_number)
+        .transpose()
+        .unwrap_or_else(|| Err(ParseIntError {
+            kind: std::num::ParseIntErrorKind::InvalidDigit,
+        }));
+    println!(&quot;number = {:?}&quot;, number);
+
+    let maybe_number = None;
+    let number = maybe_number.map(string_to_number)
+        .transpose()
+        .unwrap_or_else(|| Err(ParseIntError {
+            kind: std::num::ParseIntErrorKind::InvalidDigit,
+        }));
+    println!(&quot;number = {:?}&quot;, number);
+}
+
+</code></pre></pre>
+<ol>
+<li>In this example, we have the same string_to_number function as in previous examples. </li>
+<li>We also have a variable maybe_number of type Option&lt;&amp;str&gt; that may or may not contain a string.</li>
+<li>We use map to apply the string_to_number function to the value inside the Option, if it exists. </li>
+<li>This results in an Option&lt;Result&lt;i32, ParseIntError&gt;&gt;.</li>
+<li>We then use transpose to convert the Result inside the Option to an Option inside the Result.</li>
+<li>This allows us to use the unwrap_or_else method on the Result to provide a default error value</li>
+</ol>
+</div>
+</details>
 
             </main>
 
