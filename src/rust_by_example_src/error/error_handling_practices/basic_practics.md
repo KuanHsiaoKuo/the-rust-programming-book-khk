@@ -223,6 +223,7 @@ fn main() {
 2. In main, we use unwrap_or_else to provide a custom error handling function that is called if an error occurs. 
 3. The error handling function takes the error as an argument and returns a default value.
 ~~~
+
 ~~~admonish tip title="Using try_into to convert between types:" collapsible=true
 ```rust
 use std::convert::TryInto;
@@ -240,6 +241,7 @@ fn main() {
 2. If the conversion is successful, the Ok variant of the Result is returned. 
 3. If the conversion fails, the Err variant is returned.
 ~~~
+
 ~~~admonish tip title="Using Iterator::try_fold to perform a fold operation with error handling:" collapsible=true
 ```rust
 use std::num::ParseIntError;
@@ -290,6 +292,7 @@ fn main() {
 2. In main, we use unwrap_or_default to provide a default value of 0 if an error occurs. 
 3. The default value is determined by the type of the value being returned.
 ~~~
+
 ~~~admonish tip title="Using Result::transpose to convert a Result inside an Option:" collapsible=true
 ```rust
 use std::num::ParseIntError;
@@ -333,3 +336,96 @@ fn main() {
 6. This allows us to use the unwrap_or_else method on the Result to provide a default error value
 ~~~
 
+~~~admonish tip title="Handling multiple types of errors" collapsible=true
+```rust
+use std::fs::File;
+use std::io::ErrorKind;
+
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let file = match File::open("my_file.txt") {
+        Ok(file) => file,
+        Err(error) => match error.kind() {
+            ErrorKind::NotFound => match File::create("my_file.txt") {
+                Ok(file) => file,
+                Err(error) => return Err(error.into()),
+            },
+            other_error => return Err(other_error.into()),
+        },
+    };
+
+    Ok(())
+}
+```
+In this example, we are trying to open a file called "my_file.txt":
+- If the file doesn't exist, we attempt to create it. 
+- If either of these operations fails, we return an error.
+~~~
+
+~~~admonish tip title="Propagating errors up the call stack:" collapsible=true
+```rust
+use std::error::Error;
+use std::fs::File;
+use std::io::Read;
+
+fn read_file() -> Result<String, Box<dyn Error>> {
+    let mut file = File::open("my_file.txt")?;
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
+    Ok(contents)
+}
+
+fn main() -> Result<(), Box<dyn Error>> {
+    let contents = read_file()?;
+    println!("File contents: {}", contents);
+    Ok(())
+}
+```
+In this example, the read_file function attempts to open a file and read its contents:
+- If any of these operations fails, it returns an error. 
+- The main function then calls read_file, and if it returns an error, it propagates it up the call stack using the ? operator.
+~~~
+
+~~~admonish tip title="Using custom error types:" collapsible=true
+```rust
+use std::error::Error;
+use std::fmt;
+
+#[derive(Debug)]
+struct MyError {
+    message: String,
+}
+
+impl MyError {
+    fn new(msg: &str) -> MyError {
+        MyError {
+            message: msg.to_string(),
+        }
+    }
+}
+
+impl fmt::Display for MyError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "MyError: {}", self.message)
+    }
+}
+
+impl Error for MyError {}
+
+fn do_something() -> Result<(), MyError> {
+    // Do something that could potentially fail
+    if false {
+        Ok(())
+    } else {
+        Err(MyError::new("Something went wrong"))
+    }
+}
+
+fn main() -> Result<(), Box<dyn Error>> {
+    do_something()?;
+    Ok(())
+}
+
+```
+1. In this example, we define a custom error type called MyError, which implements the Error and Display traits. 
+2. We then use this custom error type in the do_something function, which returns a Result with MyError as the error type.
+~~~
