@@ -601,6 +601,118 @@ fn main() {
 </ol>
 </div>
 </details>
+<details id="admonition-handling-multiple-types-of-errors" class="admonition tip">
+<summary class="admonition-title">
+<p>Handling multiple types of errors</p>
+<p><a class="admonition-anchor-link" href="#admonition-handling-multiple-types-of-errors"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">use std::fs::File;
+use std::io::ErrorKind;
+
+fn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+    let file = match File::open(&quot;my_file.txt&quot;) {
+        Ok(file) =&gt; file,
+        Err(error) =&gt; match error.kind() {
+            ErrorKind::NotFound =&gt; match File::create(&quot;my_file.txt&quot;) {
+                Ok(file) =&gt; file,
+                Err(error) =&gt; return Err(error.into()),
+            },
+            other_error =&gt; return Err(other_error.into()),
+        },
+    };
+
+    Ok(())
+}
+</code></pre></pre>
+<p>In this example, we are trying to open a file called “my_file.txt”:</p>
+<ul>
+<li>If the file doesn’t exist, we attempt to create it. </li>
+<li>If either of these operations fails, we return an error.</li>
+</ul>
+</div>
+</details>
+<details id="admonition-propagating-errors-up-the-call-stack" class="admonition tip">
+<summary class="admonition-title">
+<p>Propagating errors up the call stack:</p>
+<p><a class="admonition-anchor-link" href="#admonition-propagating-errors-up-the-call-stack"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">use std::error::Error;
+use std::fs::File;
+use std::io::Read;
+
+fn read_file() -&gt; Result&lt;String, Box&lt;dyn Error&gt;&gt; {
+    let mut file = File::open(&quot;my_file.txt&quot;)?;
+    let mut contents = String::new();
+    file.read_to_string(&amp;mut contents)?;
+    Ok(contents)
+}
+
+fn main() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
+    let contents = read_file()?;
+    println!(&quot;File contents: {}&quot;, contents);
+    Ok(())
+}
+</code></pre></pre>
+<p>In this example, the read_file function attempts to open a file and read its contents:</p>
+<ul>
+<li>If any of these operations fails, it returns an error. </li>
+<li>The main function then calls read_file, and if it returns an error, it propagates it up the call stack using the ? operator.</li>
+</ul>
+</div>
+</details>
+<details id="admonition-using-custom-error-types" class="admonition tip">
+<summary class="admonition-title">
+<p>Using custom error types:</p>
+<p><a class="admonition-anchor-link" href="#admonition-using-custom-error-types"></a></p>
+</summary>
+<div>
+<pre><pre class="playground"><code class="language-rust">use std::error::Error;
+use std::fmt;
+
+#[derive(Debug)]
+struct MyError {
+    message: String,
+}
+
+impl MyError {
+    fn new(msg: &amp;str) -&gt; MyError {
+        MyError {
+            message: msg.to_string(),
+        }
+    }
+}
+
+impl fmt::Display for MyError {
+    fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {
+        write!(f, &quot;MyError: {}&quot;, self.message)
+    }
+}
+
+impl Error for MyError {}
+
+fn do_something() -&gt; Result&lt;(), MyError&gt; {
+    // Do something that could potentially fail
+    if false {
+        Ok(())
+    } else {
+        Err(MyError::new(&quot;Something went wrong&quot;))
+    }
+}
+
+fn main() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
+    do_something()?;
+    Ok(())
+}
+
+</code></pre></pre>
+<ol>
+<li>In this example, we define a custom error type called MyError, which implements the Error and Display traits. </li>
+<li>We then use this custom error type in the do_something function, which returns a Result with MyError as the error type.</li>
+</ol>
+</div>
+</details>
 
             </main>
 
