@@ -1,4 +1,6 @@
-## Unrecoverable Errors with `panic!`
+# Unrecoverable Errors with `panic!`
+<!--ts-->
+<!--te-->
 
 Sometimes, bad things happen in your code, and there’s nothing you can do about
 it. In these cases, Rust has the `panic!` macro. There are two ways to cause a
@@ -9,8 +11,8 @@ print a failure message, unwind, clean up the stack, and quit. Via an
 environment variable, you can also have Rust display the call stack when a
 panic occurs to make it easier to track down the source of the panic.
 
-> ### Unwinding the Stack or Aborting in Response to a Panic
->
+## Unwinding the Stack or Aborting in Response to a Panic
+
 > By default, when a panic occurs, the program starts *unwinding*, which
 > means Rust walks back up the stack and cleans up the data from each function
 > it encounters. However, this walking back and cleanup is a lot of work. Rust,
@@ -57,7 +59,7 @@ can use the backtrace of the functions the `panic!` call came from to figure
 out the part of our code that is causing the problem. We’ll discuss backtraces
 in more detail next.
 
-### Using a `panic!` Backtrace
+## Using a `panic!` Backtrace
 
 Let’s look at another example to see what it’s like when a `panic!` call comes
 from a library because of a bug in our code instead of from our code calling

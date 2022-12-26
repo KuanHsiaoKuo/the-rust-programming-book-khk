@@ -1,4 +1,7 @@
-## To `panic!` or Not to `panic!`
+# To `panic!` or Not to `panic!`
+
+<!--ts-->
+<!--te-->
 
 So how do you decide when you should call `panic!` and when you should return
 `Result`? When code panics, there’s no way to recover. You could call `panic!`
@@ -17,7 +20,7 @@ explore why, then discuss situations in which the compiler can’t tell that
 failure is impossible, but you as a human can. The chapter will conclude with
 some general guidelines on how to decide whether to panic in library code.
 
-### Examples, Prototype Code, and Tests
+## Examples, Prototype Code, and Tests
 
 When you’re writing an example to illustrate some concept, also including robust
 error-handling code can make the example less clear. In
@@ -34,7 +37,7 @@ that method isn’t the functionality under test. Because `panic!` is how a test
 is marked as a failure, calling `unwrap` or `expect` is exactly what should
 happen.
 
-### Cases in Which You Have More Information Than the Compiler
+## Cases in Which You Have More Information Than the Compiler
 
 It would also be appropriate to call `unwrap` or `expect` when you have some
 other logic that ensures the `Result` will have an `Ok` value, but the logic
@@ -47,7 +50,7 @@ that you’ll never have an `Err` variant, it’s perfectly acceptable to call
 `Err` variant in the `expect` text. Here’s an example:
 
 ```rust
-{{#rustdoc_include ../listings/ch09-error-handling/no-listing-08-unwrap-that-cant-fail/src/main.rs:here}}
+{{# rustdoc_include../ listings / ch09 - error -handling / no - listing - 08 - unwrap -that - cant - fail / src / main.rs: here}}
 ```
 
 We’re creating an `IpAddr` instance by parsing a hardcoded string. We can see
@@ -63,7 +66,7 @@ Mentioning the assumption that this IP address is hardcoded will prompt us to
 change `expect` to better error handling code if in the future, we need to get
 the IP address from some other source instead.
 
-### Guidelines for Error Handling
+## Guidelines for Error Handling
 
 It’s advisable to have your code panic when it’s possible that your code
 could end up in a bad state. In this context, a *bad state* is when some
@@ -123,7 +126,7 @@ even compile, so your function doesn’t have to check for that case at runtime.
 Another example is using an unsigned integer type such as `u32`, which ensures
 the parameter is never negative.
 
-### Creating Custom Types for Validation
+## Creating Custom Types for Validation
 
 Let’s take the idea of using Rust’s type system to ensure we have a valid value
 one step further and look at creating a custom type for validation. Recall the
@@ -168,7 +171,7 @@ experimentation purposes, but don't want to include it for rustdoc testing
 purposes. -->
 
 ```rust
-{{#include ../listings/ch09-error-handling/listing-09-13/src/main.rs:here}}
+{{# include../ listings / ch09 - error -handling / listing - 09 - 13 / src /main.rs: here}}
 ```
 
 <span class="caption">Listing 9-13: A `Guess` type that will only continue with
