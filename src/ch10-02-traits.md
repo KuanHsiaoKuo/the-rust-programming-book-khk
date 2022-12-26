@@ -1,4 +1,7 @@
-## Traits: Defining Shared Behavior
+# Traits: Defining Shared Behavior
+
+<!--ts-->
+<!--te-->
 
 A *trait* defines functionality a particular type has and can share with other
 types. We can use traits to define shared behavior in an abstract way. We can
@@ -8,7 +11,7 @@ certain behavior.
 > Note: Traits are similar to a feature often called *interfaces* in other
 > languages, although with some differences.
 
-### Defining a Trait
+## Defining a Trait
 
 A type’s behavior consists of the methods we can call on that type. Different
 types share the same behavior if we can call the same methods on all of those
@@ -52,7 +55,7 @@ defined with this signature exactly.
 A trait can have multiple methods in its body: the method signatures are listed
 one per line and each line ends in a semicolon.
 
-### Implementing a Trait on a Type
+## Implementing a Trait on a Type
 
 Now that we’ve defined the desired signatures of the `Summary` trait’s methods,
 we can implement it on the types in our media aggregator. Listing 10-13 shows
@@ -113,7 +116,7 @@ can’t break your code and vice versa. Without the rule, two crates could
 implement the same trait for the same type, and Rust wouldn’t know which
 implementation to use.
 
-### Default Implementations
+## Default Implementations
 
 Sometimes it’s useful to have default behavior for some or all of the methods
 in a trait instead of requiring implementations for all methods on every type.
@@ -186,7 +189,7 @@ This code prints `1 new tweet: (Read more from @horse_ebooks...)`.
 Note that it isn’t possible to call the default implementation from an
 overriding implementation of that same method.
 
-### Traits as Parameters
+## Traits as Parameters
 
 Now that you know how to define and implement traits, we can explore how to use
 traits to define functions that accept many different types. We'll use the
@@ -210,7 +213,7 @@ because those types don’t implement `Summary`.
 <!-- Old headings. Do not remove or links may break. -->
 <a id="fixing-the-largest-function-with-trait-bounds"></a>
 
-#### Trait Bound Syntax
+### Trait Bound Syntax
 
 The `impl Trait` syntax works for straightforward cases but is actually syntax
 sugar for a longer form known as a *trait bound*; it looks like this:
@@ -247,7 +250,7 @@ The generic type `T` specified as the type of the `item1` and `item2`
 parameters constrains the function such that the concrete type of the value
 passed as an argument for `item1` and `item2` must be the same.
 
-#### Specifying Multiple Trait Bounds with the `+` Syntax
+### Specifying Multiple Trait Bounds with the `+` Syntax
 
 We can also specify more than one trait bound. Say we wanted `notify` to use
 display formatting as well as `summarize` on `item`: we specify in the `notify`
@@ -267,7 +270,7 @@ pub fn notify<T: Summary + Display>(item: &T) {
 With the two trait bounds specified, the body of `notify` can call `summarize`
 and use `{}` to format `item`.
 
-#### Clearer Trait Bounds with `where` Clauses
+### Clearer Trait Bounds with `where` Clauses
 
 Using too many trait bounds has its downsides. Each generic has its own trait
 bounds, so functions with multiple generic type parameters can contain lots of
@@ -290,7 +293,7 @@ This function’s signature is less cluttered: the function name, parameter list
 and return type are close together, similar to a function without lots of trait
 bounds.
 
-### Returning Types that Implement Traits
+## Returning Types that Implement Traits
 
 We can also use the `impl Trait` syntax in the return position to return a
 value of some type that implements a trait, as shown here:
@@ -326,7 +329,7 @@ Allow for Values of Different
 Types”][using-trait-objects-that-allow-for-values-of-different-types]<!--
 ignore --> section of Chapter 17.
 
-### Using Trait Bounds to Conditionally Implement Methods
+## Using Trait Bounds to Conditionally Implement Methods
 
 By using a trait bound with an `impl` block that uses generic type parameters,
 we can implement methods conditionally for types that implement the specified
@@ -385,4 +388,5 @@ Doing so improves performance without having to give up the flexibility of
 generics.
 
 [using-trait-objects-that-allow-for-values-of-different-types]: ch17-02-trait-objects.html#using-trait-objects-that-allow-for-values-of-different-types
+
 [methods]: ch05-03-method-syntax.html#defining-methods
