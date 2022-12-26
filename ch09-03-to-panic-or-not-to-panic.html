@@ -179,7 +179,22 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                <h2 id="to-panic-or-not-to-panic"><a class="header" href="#to-panic-or-not-to-panic">To <code>panic!</code> or Not to <code>panic!</code></a></h2>
+                <h1 id="to-panic-or-not-to-panic"><a class="header" href="#to-panic-or-not-to-panic">To <code>panic!</code> or Not to <code>panic!</code></a></h1>
+<!--ts-->
+<ul>
+<li><a href="#to-panic-or-not-to-panic">To panic! or Not to panic!</a>
+<ul>
+<li><a href="#examples-prototype-code-and-tests">Examples, Prototype Code, and Tests</a></li>
+<li><a href="#cases-in-which-you-have-more-information-than-the-compiler">Cases in Which You Have More Information Than the Compiler</a></li>
+<li><a href="#guidelines-for-error-handling">Guidelines for Error Handling</a></li>
+<li><a href="#creating-custom-types-for-validation">Creating Custom Types for Validation</a></li>
+<li><a href="#summary">Summary</a></li>
+</ul>
+</li>
+</ul>
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Mon Dec 26 13:49:05 UTC 2022 -->
+<!--te-->
 <p>So how do you decide when you should call <code>panic!</code> and when you should return
 <code>Result</code>? When code panics, there’s no way to recover. You could call <code>panic!</code>
 for any error situation, whether there’s a possible way to recover or not, but
@@ -195,7 +210,7 @@ appropriate to write code that panics instead of returning a <code>Result</code>
 explore why, then discuss situations in which the compiler can’t tell that
 failure is impossible, but you as a human can. The chapter will conclude with
 some general guidelines on how to decide whether to panic in library code.</p>
-<h3 id="examples-prototype-code-and-tests"><a class="header" href="#examples-prototype-code-and-tests">Examples, Prototype Code, and Tests</a></h3>
+<h2 id="examples-prototype-code-and-tests"><a class="header" href="#examples-prototype-code-and-tests">Examples, Prototype Code, and Tests</a></h2>
 <p>When you’re writing an example to illustrate some concept, also including robust
 error-handling code can make the example less clear. In
 examples, it’s understood that a call to a method like <code>unwrap</code> that could
@@ -208,7 +223,7 @@ your code for when you’re ready to make your program more robust.</p>
 that method isn’t the functionality under test. Because <code>panic!</code> is how a test
 is marked as a failure, calling <code>unwrap</code> or <code>expect</code> is exactly what should
 happen.</p>
-<h3 id="cases-in-which-you-have-more-information-than-the-compiler"><a class="header" href="#cases-in-which-you-have-more-information-than-the-compiler">Cases in Which You Have More Information Than the Compiler</a></h3>
+<h2 id="cases-in-which-you-have-more-information-than-the-compiler"><a class="header" href="#cases-in-which-you-have-more-information-than-the-compiler">Cases in Which You Have More Information Than the Compiler</a></h2>
 <p>It would also be appropriate to call <code>unwrap</code> or <code>expect</code> when you have some
 other logic that ensures the <code>Result</code> will have an <code>Ok</code> value, but the logic
 isn’t something the compiler understands. You’ll still have a <code>Result</code> value
@@ -218,12 +233,9 @@ your particular situation. If you can ensure by manually inspecting the code
 that you’ll never have an <code>Err</code> variant, it’s perfectly acceptable to call
 <code>unwrap</code>, and even better to document the reason you think you’ll never have an
 <code>Err</code> variant in the <code>expect</code> text. Here’s an example:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
-</span>    use std::net::IpAddr;
-
-    let home: IpAddr = &quot;127.0.0.1&quot;
-        .parse()
-        .expect(&quot;Hardcoded IP address should be valid&quot;);
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>{{# rustdoc_include../ listings / ch09 - error -handling / no - listing - 08 - unwrap -that - cant - fail / src / main.rs: here}}
 <span class="boring">}
 </span></code></pre></pre>
 <p>We’re creating an <code>IpAddr</code> instance by parsing a hardcoded string. We can see
@@ -238,7 +250,7 @@ we’d definitely want to handle the <code>Result</code> in a more robust way in
 Mentioning the assumption that this IP address is hardcoded will prompt us to
 change <code>expect</code> to better error handling code if in the future, we need to get
 the IP address from some other source instead.</p>
-<h3 id="guidelines-for-error-handling"><a class="header" href="#guidelines-for-error-handling">Guidelines for Error Handling</a></h3>
+<h2 id="guidelines-for-error-handling"><a class="header" href="#guidelines-for-error-handling">Guidelines for Error Handling</a></h2>
 <p>It’s advisable to have your code panic when it’s possible that your code
 could end up in a bad state. In this context, a <em>bad state</em> is when some
 assumption, guarantee, contract, or invariant has been broken, such as when
@@ -293,7 +305,7 @@ definitely having a value. Code trying to pass nothing to your function won’t
 even compile, so your function doesn’t have to check for that case at runtime.
 Another example is using an unsigned integer type such as <code>u32</code>, which ensures
 the parameter is never negative.</p>
-<h3 id="creating-custom-types-for-validation"><a class="header" href="#creating-custom-types-for-validation">Creating Custom Types for Validation</a></h3>
+<h2 id="creating-custom-types-for-validation"><a class="header" href="#creating-custom-types-for-validation">Creating Custom Types for Validation</a></h2>
 <p>Let’s take the idea of using Rust’s type system to ensure we have a valid value
 one step further and look at creating a custom type for validation. Recall the
 guessing game in Chapter 2 in which our code asked the user to guess a number
@@ -370,23 +382,7 @@ experimentation purposes, but don't want to include it for rustdoc testing
 purposes. -->
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>pub struct Guess {
-    value: i32,
-}
-
-impl Guess {
-    pub fn new(value: i32) -&gt; Guess {
-        if value &lt; 1 || value &gt; 100 {
-            panic!(&quot;Guess value must be between 1 and 100, got {}.&quot;, value);
-        }
-
-        Guess { value }
-    }
-
-    pub fn value(&amp;self) -&gt; i32 {
-        self.value
-    }
-}
+</span>{{# include../ listings / ch09 - error -handling / listing - 09 - 13 / src /main.rs: here}}
 <span class="boring">}
 </span></code></pre></pre>
 <p><span class="caption">Listing 9-13: A <code>Guess</code> type that will only continue with

@@ -179,7 +179,29 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                <h2 id="traits-defining-shared-behavior"><a class="header" href="#traits-defining-shared-behavior">Traits: Defining Shared Behavior</a></h2>
+                <h1 id="traits-defining-shared-behavior"><a class="header" href="#traits-defining-shared-behavior">Traits: Defining Shared Behavior</a></h1>
+<!--ts-->
+<ul>
+<li><a href="#traits-defining-shared-behavior">Traits: Defining Shared Behavior</a>
+<ul>
+<li><a href="#defining-a-trait">Defining a Trait</a></li>
+<li><a href="#implementing-a-trait-on-a-type">Implementing a Trait on a Type</a></li>
+<li><a href="#default-implementations">Default Implementations</a></li>
+<li><a href="#traits-as-parameters">Traits as Parameters</a>
+<ul>
+<li><a href="#trait-bound-syntax">Trait Bound Syntax</a></li>
+<li><a href="#specifying-multiple-trait-bounds-with-the--syntax">Specifying Multiple Trait Bounds with the + Syntax</a></li>
+<li><a href="#clearer-trait-bounds-with-where-clauses">Clearer Trait Bounds with where Clauses</a></li>
+</ul>
+</li>
+<li><a href="#returning-types-that-implement-traits">Returning Types that Implement Traits</a></li>
+<li><a href="#using-trait-bounds-to-conditionally-implement-methods">Using Trait Bounds to Conditionally Implement Methods</a></li>
+</ul>
+</li>
+</ul>
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Mon Dec 26 13:49:06 UTC 2022 -->
+<!--te-->
 <p>A <em>trait</em> defines functionality a particular type has and can share with other
 types. We can use traits to define shared behavior in an abstract way. We can
 use <em>trait bounds</em> to specify that a generic type can be any type that has
@@ -188,7 +210,7 @@ certain behavior.</p>
 <p>Note: Traits are similar to a feature often called <em>interfaces</em> in other
 languages, although with some differences.</p>
 </blockquote>
-<h3 id="defining-a-trait"><a class="header" href="#defining-a-trait">Defining a Trait</a></h3>
+<h2 id="defining-a-trait"><a class="header" href="#defining-a-trait">Defining a Trait</a></h2>
 <p>A type’s behavior consists of the methods we can call on that type. Different
 types share the same behavior if we can call the same methods on all of those
 types. Trait definitions are a way to group method signatures together to
@@ -223,7 +245,7 @@ that any type that has the <code>Summary</code> trait will have the method <code
 defined with this signature exactly.</p>
 <p>A trait can have multiple methods in its body: the method signatures are listed
 one per line and each line ends in a semicolon.</p>
-<h3 id="implementing-a-trait-on-a-type"><a class="header" href="#implementing-a-trait-on-a-type">Implementing a Trait on a Type</a></h3>
+<h2 id="implementing-a-trait-on-a-type"><a class="header" href="#implementing-a-trait-on-a-type">Implementing a Trait on a Type</a></h2>
 <p>Now that we’ve defined the desired signatures of the <code>Summary</code> trait’s methods,
 we can implement it on the types in our media aggregator. Listing 10-13 shows
 an implementation of the <code>Summary</code> trait on the <code>NewsArticle</code> struct that uses
@@ -311,7 +333,7 @@ the parent type is not present. This rule ensures that other people’s code
 can’t break your code and vice versa. Without the rule, two crates could
 implement the same trait for the same type, and Rust wouldn’t know which
 implementation to use.</p>
-<h3 id="default-implementations"><a class="header" href="#default-implementations">Default Implementations</a></h3>
+<h2 id="default-implementations"><a class="header" href="#default-implementations">Default Implementations</a></h2>
 <p>Sometimes it’s useful to have default behavior for some or all of the methods
 in a trait instead of requiring implementations for all methods on every type.
 Then, as we implement the trait on a particular type, we can keep or override
@@ -451,7 +473,7 @@ definition of <code>summarize_author</code> that we’ve provided. Because we’
 <p>This code prints <code>1 new tweet: (Read more from @horse_ebooks...)</code>.</p>
 <p>Note that it isn’t possible to call the default implementation from an
 overriding implementation of that same method.</p>
-<h3 id="traits-as-parameters"><a class="header" href="#traits-as-parameters">Traits as Parameters</a></h3>
+<h2 id="traits-as-parameters"><a class="header" href="#traits-as-parameters">Traits as Parameters</a></h2>
 <p>Now that you know how to define and implement traits, we can explore how to use
 traits to define functions that accept many different types. We’ll use the
 <code>Summary</code> trait we implemented on the <code>NewsArticle</code> and <code>Tweet</code> types in
@@ -501,7 +523,7 @@ function with any other type, such as a <code>String</code> or an <code>i32</cod
 because those types don’t implement <code>Summary</code>.</p>
 <!-- Old headings. Do not remove or links may break. -->
 <p><a id="fixing-the-largest-function-with-trait-bounds"></a></p>
-<h4 id="trait-bound-syntax"><a class="header" href="#trait-bound-syntax">Trait Bound Syntax</a></h4>
+<h3 id="trait-bound-syntax"><a class="header" href="#trait-bound-syntax">Trait Bound Syntax</a></h3>
 <p>The <code>impl Trait</code> syntax works for straightforward cases but is actually syntax
 sugar for a longer form known as a <em>trait bound</em>; it looks like this:</p>
 <pre><code class="language-rust ignore">pub fn notify&lt;T: Summary&gt;(item: &amp;T) {
@@ -526,7 +548,7 @@ trait bound, like this:</p>
 <p>The generic type <code>T</code> specified as the type of the <code>item1</code> and <code>item2</code>
 parameters constrains the function such that the concrete type of the value
 passed as an argument for <code>item1</code> and <code>item2</code> must be the same.</p>
-<h4 id="specifying-multiple-trait-bounds-with-the--syntax"><a class="header" href="#specifying-multiple-trait-bounds-with-the--syntax">Specifying Multiple Trait Bounds with the <code>+</code> Syntax</a></h4>
+<h3 id="specifying-multiple-trait-bounds-with-the--syntax"><a class="header" href="#specifying-multiple-trait-bounds-with-the--syntax">Specifying Multiple Trait Bounds with the <code>+</code> Syntax</a></h3>
 <p>We can also specify more than one trait bound. Say we wanted <code>notify</code> to use
 display formatting as well as <code>summarize</code> on <code>item</code>: we specify in the <code>notify</code>
 definition that <code>item</code> must implement both <code>Display</code> and <code>Summary</code>. We can do
@@ -538,7 +560,7 @@ so using the <code>+</code> syntax:</p>
 </code></pre>
 <p>With the two trait bounds specified, the body of <code>notify</code> can call <code>summarize</code>
 and use <code>{}</code> to format <code>item</code>.</p>
-<h4 id="clearer-trait-bounds-with-where-clauses"><a class="header" href="#clearer-trait-bounds-with-where-clauses">Clearer Trait Bounds with <code>where</code> Clauses</a></h4>
+<h3 id="clearer-trait-bounds-with-where-clauses"><a class="header" href="#clearer-trait-bounds-with-where-clauses">Clearer Trait Bounds with <code>where</code> Clauses</a></h3>
 <p>Using too many trait bounds has its downsides. Each generic has its own trait
 bounds, so functions with multiple generic type parameters can contain lots of
 trait bound information between the function’s name and its parameter list,
@@ -559,7 +581,7 @@ where
 <p>This function’s signature is less cluttered: the function name, parameter list,
 and return type are close together, similar to a function without lots of trait
 bounds.</p>
-<h3 id="returning-types-that-implement-traits"><a class="header" href="#returning-types-that-implement-traits">Returning Types that Implement Traits</a></h3>
+<h2 id="returning-types-that-implement-traits"><a class="header" href="#returning-types-that-implement-traits">Returning Types that Implement Traits</a></h2>
 <p>We can also use the <code>impl Trait</code> syntax in the return position to return a
 value of some type that implements a trait, as shown here:</p>
 <pre><code class="language-rust ignore"><span class="boring">pub trait Summary {
@@ -677,7 +699,7 @@ how to write a function with this behavior in the <a href="ch17-02-trait-objects
 Allow for Values of Different
 Types”</a><!--
 ignore --> section of Chapter 17.</p>
-<h3 id="using-trait-bounds-to-conditionally-implement-methods"><a class="header" href="#using-trait-bounds-to-conditionally-implement-methods">Using Trait Bounds to Conditionally Implement Methods</a></h3>
+<h2 id="using-trait-bounds-to-conditionally-implement-methods"><a class="header" href="#using-trait-bounds-to-conditionally-implement-methods">Using Trait Bounds to Conditionally Implement Methods</a></h2>
 <p>By using a trait bound with an <code>impl</code> block that uses generic type parameters,
 we can implement methods conditionally for types that implement the specified
 traits. For example, the type <code>Pair&lt;T&gt;</code> in Listing 10-15 always implements the

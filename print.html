@@ -214,7 +214,7 @@
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Dec 25 15:33:20 UTC 2022 -->
+<!-- Added by: runner, at: Mon Dec 26 13:49:46 UTC 2022 -->
 <!--te-->
 <h2 id="rust-official"><a class="header" href="#rust-official">Rust Official</a></h2>
 <h3 id="rust-lang-home"><a class="header" href="#rust-lang-home">Rust Lang Home</a></h3>
@@ -2641,7 +2641,7 @@ write readable, safe code that neither panics nor allows invalid memory access.<
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Dec 25 15:32:21 UTC 2022 -->
+<!-- Added by: runner, at: Mon Dec 26 13:48:57 UTC 2022 -->
 <!--te-->
 <p>Functions are prevalent in Rust code. You’ve already seen one of the most
 important functions in the language:</p>
@@ -5553,7 +5553,7 @@ continue to refactor this code by turning the <code>area</code> function into an
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Dec 25 15:32:25 UTC 2022 -->
+<!-- Added by: runner, at: Mon Dec 26 13:49:00 UTC 2022 -->
 <!--te-->
 <h2 id="similar-and-difference"><a class="header" href="#similar-and-difference">Similar and Difference</a></h2>
 <blockquote>
@@ -8998,7 +8998,19 @@ unrecoverable error. This chapter covers calling <code>panic!</code> first and t
 about returning <code>Result&lt;T, E&gt;</code> values. Additionally, we’ll explore
 considerations when deciding whether to try to recover from an error or to stop
 execution.</p>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="unrecoverable-errors-with-panic"><a class="header" href="#unrecoverable-errors-with-panic">Unrecoverable Errors with <code>panic!</code></a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="unrecoverable-errors-with-panic"><a class="header" href="#unrecoverable-errors-with-panic">Unrecoverable Errors with <code>panic!</code></a></h1>
+<!--ts-->
+<ul>
+<li><a href="ch09-01-unrecoverable-errors-with-panic.html#unrecoverable-errors-with-panic">Unrecoverable Errors with panic!</a>
+<ul>
+<li><a href="ch09-01-unrecoverable-errors-with-panic.html#unwinding-the-stack-or-aborting-in-response-to-a-panic">Unwinding the Stack or Aborting in Response to a Panic</a></li>
+<li><a href="ch09-01-unrecoverable-errors-with-panic.html#using-a-panic-backtrace">Using a panic! Backtrace</a></li>
+</ul>
+</li>
+</ul>
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Mon Dec 26 13:49:04 UTC 2022 -->
+<!--te-->
 <p>Sometimes, bad things happen in your code, and there’s nothing you can do about
 it. In these cases, Rust has the <code>panic!</code> macro. There are two ways to cause a
 panic in practice: by taking an action that causes our code to panic (such as
@@ -9007,8 +9019,8 @@ In both cases, we cause a panic in our program. By default, these panics will
 print a failure message, unwind, clean up the stack, and quit. Via an
 environment variable, you can also have Rust display the call stack when a
 panic occurs to make it easier to track down the source of the panic.</p>
+<h2 id="unwinding-the-stack-or-aborting-in-response-to-a-panic"><a class="header" href="#unwinding-the-stack-or-aborting-in-response-to-a-panic">Unwinding the Stack or Aborting in Response to a Panic</a></h2>
 <blockquote>
-<h3 id="unwinding-the-stack-or-aborting-in-response-to-a-panic"><a class="header" href="#unwinding-the-stack-or-aborting-in-response-to-a-panic">Unwinding the Stack or Aborting in Response to a Panic</a></h3>
 <p>By default, when a panic occurs, the program starts <em>unwinding</em>, which
 means Rust walks back up the stack and cleans up the data from each function
 it encounters. However, this walking back and cleanup is a lot of work. Rust,
@@ -9050,7 +9062,7 @@ called, not the line of our code that eventually led to the <code>panic!</code> 
 can use the backtrace of the functions the <code>panic!</code> call came from to figure
 out the part of our code that is causing the problem. We’ll discuss backtraces
 in more detail next.</p>
-<h3 id="using-a-panic-backtrace"><a class="header" href="#using-a-panic-backtrace">Using a <code>panic!</code> Backtrace</a></h3>
+<h2 id="using-a-panic-backtrace"><a class="header" href="#using-a-panic-backtrace">Using a <code>panic!</code> Backtrace</a></h2>
 <p>Let’s look at another example to see what it’s like when a <code>panic!</code> call comes
 from a library because of a bug in our code instead of from our code calling
 the macro directly. Listing 9-1 has some code that attempts to access an
@@ -9190,7 +9202,7 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Dec 25 15:32:30 UTC 2022 -->
+<!-- Added by: runner, at: Mon Dec 26 13:49:05 UTC 2022 -->
 <!--te-->
 <p>Most errors aren’t serious enough to require the program to stop entirely.</p>
 <details id="admonition-sometimes-when-a-function-fails-its-for-a-reason-that-you-can-easily-interpret-and-respond-to" class="admonition tip">
@@ -10183,7 +10195,22 @@ your own types.</p>
 let’s return to the topic of how to decide which is appropriate to use in which
 cases.</p>
 </blockquote>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="to-panic-or-not-to-panic"><a class="header" href="#to-panic-or-not-to-panic">To <code>panic!</code> or Not to <code>panic!</code></a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="to-panic-or-not-to-panic"><a class="header" href="#to-panic-or-not-to-panic">To <code>panic!</code> or Not to <code>panic!</code></a></h1>
+<!--ts-->
+<ul>
+<li><a href="ch09-03-to-panic-or-not-to-panic.html#to-panic-or-not-to-panic">To panic! or Not to panic!</a>
+<ul>
+<li><a href="ch09-03-to-panic-or-not-to-panic.html#examples-prototype-code-and-tests">Examples, Prototype Code, and Tests</a></li>
+<li><a href="ch09-03-to-panic-or-not-to-panic.html#cases-in-which-you-have-more-information-than-the-compiler">Cases in Which You Have More Information Than the Compiler</a></li>
+<li><a href="ch09-03-to-panic-or-not-to-panic.html#guidelines-for-error-handling">Guidelines for Error Handling</a></li>
+<li><a href="ch09-03-to-panic-or-not-to-panic.html#creating-custom-types-for-validation">Creating Custom Types for Validation</a></li>
+<li><a href="ch09-03-to-panic-or-not-to-panic.html#summary">Summary</a></li>
+</ul>
+</li>
+</ul>
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Mon Dec 26 13:49:05 UTC 2022 -->
+<!--te-->
 <p>So how do you decide when you should call <code>panic!</code> and when you should return
 <code>Result</code>? When code panics, there’s no way to recover. You could call <code>panic!</code>
 for any error situation, whether there’s a possible way to recover or not, but
@@ -10199,7 +10226,7 @@ appropriate to write code that panics instead of returning a <code>Result</code>
 explore why, then discuss situations in which the compiler can’t tell that
 failure is impossible, but you as a human can. The chapter will conclude with
 some general guidelines on how to decide whether to panic in library code.</p>
-<h3 id="examples-prototype-code-and-tests"><a class="header" href="#examples-prototype-code-and-tests">Examples, Prototype Code, and Tests</a></h3>
+<h2 id="examples-prototype-code-and-tests"><a class="header" href="#examples-prototype-code-and-tests">Examples, Prototype Code, and Tests</a></h2>
 <p>When you’re writing an example to illustrate some concept, also including robust
 error-handling code can make the example less clear. In
 examples, it’s understood that a call to a method like <code>unwrap</code> that could
@@ -10212,7 +10239,7 @@ your code for when you’re ready to make your program more robust.</p>
 that method isn’t the functionality under test. Because <code>panic!</code> is how a test
 is marked as a failure, calling <code>unwrap</code> or <code>expect</code> is exactly what should
 happen.</p>
-<h3 id="cases-in-which-you-have-more-information-than-the-compiler"><a class="header" href="#cases-in-which-you-have-more-information-than-the-compiler">Cases in Which You Have More Information Than the Compiler</a></h3>
+<h2 id="cases-in-which-you-have-more-information-than-the-compiler"><a class="header" href="#cases-in-which-you-have-more-information-than-the-compiler">Cases in Which You Have More Information Than the Compiler</a></h2>
 <p>It would also be appropriate to call <code>unwrap</code> or <code>expect</code> when you have some
 other logic that ensures the <code>Result</code> will have an <code>Ok</code> value, but the logic
 isn’t something the compiler understands. You’ll still have a <code>Result</code> value
@@ -10222,12 +10249,9 @@ your particular situation. If you can ensure by manually inspecting the code
 that you’ll never have an <code>Err</code> variant, it’s perfectly acceptable to call
 <code>unwrap</code>, and even better to document the reason you think you’ll never have an
 <code>Err</code> variant in the <code>expect</code> text. Here’s an example:</p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main() {
-</span>    use std::net::IpAddr;
-
-    let home: IpAddr = &quot;127.0.0.1&quot;
-        .parse()
-        .expect(&quot;Hardcoded IP address should be valid&quot;);
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>{{# rustdoc_include../ listings / ch09 - error -handling / no - listing - 08 - unwrap -that - cant - fail / src / main.rs: here}}
 <span class="boring">}
 </span></code></pre></pre>
 <p>We’re creating an <code>IpAddr</code> instance by parsing a hardcoded string. We can see
@@ -10242,7 +10266,7 @@ we’d definitely want to handle the <code>Result</code> in a more robust way in
 Mentioning the assumption that this IP address is hardcoded will prompt us to
 change <code>expect</code> to better error handling code if in the future, we need to get
 the IP address from some other source instead.</p>
-<h3 id="guidelines-for-error-handling"><a class="header" href="#guidelines-for-error-handling">Guidelines for Error Handling</a></h3>
+<h2 id="guidelines-for-error-handling"><a class="header" href="#guidelines-for-error-handling">Guidelines for Error Handling</a></h2>
 <p>It’s advisable to have your code panic when it’s possible that your code
 could end up in a bad state. In this context, a <em>bad state</em> is when some
 assumption, guarantee, contract, or invariant has been broken, such as when
@@ -10297,7 +10321,7 @@ definitely having a value. Code trying to pass nothing to your function won’t
 even compile, so your function doesn’t have to check for that case at runtime.
 Another example is using an unsigned integer type such as <code>u32</code>, which ensures
 the parameter is never negative.</p>
-<h3 id="creating-custom-types-for-validation"><a class="header" href="#creating-custom-types-for-validation">Creating Custom Types for Validation</a></h3>
+<h2 id="creating-custom-types-for-validation"><a class="header" href="#creating-custom-types-for-validation">Creating Custom Types for Validation</a></h2>
 <p>Let’s take the idea of using Rust’s type system to ensure we have a valid value
 one step further and look at creating a custom type for validation. Recall the
 guessing game in Chapter 2 in which our code asked the user to guess a number
@@ -10374,23 +10398,7 @@ experimentation purposes, but don't want to include it for rustdoc testing
 purposes. -->
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>pub struct Guess {
-    value: i32,
-}
-
-impl Guess {
-    pub fn new(value: i32) -&gt; Guess {
-        if value &lt; 1 || value &gt; 100 {
-            panic!(&quot;Guess value must be between 1 and 100, got {}.&quot;, value);
-        }
-
-        Guess { value }
-    }
-
-    pub fn value(&amp;self) -&gt; i32 {
-        self.value
-    }
-}
+</span>{{# include../ listings / ch09 - error -handling / listing - 09 - 13 / src /main.rs: here}}
 <span class="boring">}
 </span></code></pre></pre>
 <p><span class="caption">Listing 9-13: A <code>Guess</code> type that will only continue with
@@ -10604,7 +10612,7 @@ values. How would we eliminate that duplication? Let’s find out!</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Dec 25 15:32:31 UTC 2022 -->
+<!-- Added by: runner, at: Mon Dec 26 13:49:06 UTC 2022 -->
 <!--te-->
 <p>We use generics to create definitions for items like function signatures or
 structs, which we can then use with many different concrete data types. </p>
@@ -11151,7 +11159,29 @@ hand. </p>
 at runtime.</p>
 </li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="traits-defining-shared-behavior"><a class="header" href="#traits-defining-shared-behavior">Traits: Defining Shared Behavior</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="traits-defining-shared-behavior"><a class="header" href="#traits-defining-shared-behavior">Traits: Defining Shared Behavior</a></h1>
+<!--ts-->
+<ul>
+<li><a href="ch10-02-traits.html#traits-defining-shared-behavior">Traits: Defining Shared Behavior</a>
+<ul>
+<li><a href="ch10-02-traits.html#defining-a-trait">Defining a Trait</a></li>
+<li><a href="ch10-02-traits.html#implementing-a-trait-on-a-type">Implementing a Trait on a Type</a></li>
+<li><a href="ch10-02-traits.html#default-implementations">Default Implementations</a></li>
+<li><a href="ch10-02-traits.html#traits-as-parameters">Traits as Parameters</a>
+<ul>
+<li><a href="ch10-02-traits.html#trait-bound-syntax">Trait Bound Syntax</a></li>
+<li><a href="ch10-02-traits.html#specifying-multiple-trait-bounds-with-the--syntax">Specifying Multiple Trait Bounds with the + Syntax</a></li>
+<li><a href="ch10-02-traits.html#clearer-trait-bounds-with-where-clauses">Clearer Trait Bounds with where Clauses</a></li>
+</ul>
+</li>
+<li><a href="ch10-02-traits.html#returning-types-that-implement-traits">Returning Types that Implement Traits</a></li>
+<li><a href="ch10-02-traits.html#using-trait-bounds-to-conditionally-implement-methods">Using Trait Bounds to Conditionally Implement Methods</a></li>
+</ul>
+</li>
+</ul>
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Mon Dec 26 13:49:06 UTC 2022 -->
+<!--te-->
 <p>A <em>trait</em> defines functionality a particular type has and can share with other
 types. We can use traits to define shared behavior in an abstract way. We can
 use <em>trait bounds</em> to specify that a generic type can be any type that has
@@ -11160,7 +11190,7 @@ certain behavior.</p>
 <p>Note: Traits are similar to a feature often called <em>interfaces</em> in other
 languages, although with some differences.</p>
 </blockquote>
-<h3 id="defining-a-trait"><a class="header" href="#defining-a-trait">Defining a Trait</a></h3>
+<h2 id="defining-a-trait"><a class="header" href="#defining-a-trait">Defining a Trait</a></h2>
 <p>A type’s behavior consists of the methods we can call on that type. Different
 types share the same behavior if we can call the same methods on all of those
 types. Trait definitions are a way to group method signatures together to
@@ -11195,7 +11225,7 @@ that any type that has the <code>Summary</code> trait will have the method <code
 defined with this signature exactly.</p>
 <p>A trait can have multiple methods in its body: the method signatures are listed
 one per line and each line ends in a semicolon.</p>
-<h3 id="implementing-a-trait-on-a-type"><a class="header" href="#implementing-a-trait-on-a-type">Implementing a Trait on a Type</a></h3>
+<h2 id="implementing-a-trait-on-a-type"><a class="header" href="#implementing-a-trait-on-a-type">Implementing a Trait on a Type</a></h2>
 <p>Now that we’ve defined the desired signatures of the <code>Summary</code> trait’s methods,
 we can implement it on the types in our media aggregator. Listing 10-13 shows
 an implementation of the <code>Summary</code> trait on the <code>NewsArticle</code> struct that uses
@@ -11283,7 +11313,7 @@ the parent type is not present. This rule ensures that other people’s code
 can’t break your code and vice versa. Without the rule, two crates could
 implement the same trait for the same type, and Rust wouldn’t know which
 implementation to use.</p>
-<h3 id="default-implementations"><a class="header" href="#default-implementations">Default Implementations</a></h3>
+<h2 id="default-implementations"><a class="header" href="#default-implementations">Default Implementations</a></h2>
 <p>Sometimes it’s useful to have default behavior for some or all of the methods
 in a trait instead of requiring implementations for all methods on every type.
 Then, as we implement the trait on a particular type, we can keep or override
@@ -11423,7 +11453,7 @@ definition of <code>summarize_author</code> that we’ve provided. Because we’
 <p>This code prints <code>1 new tweet: (Read more from @horse_ebooks...)</code>.</p>
 <p>Note that it isn’t possible to call the default implementation from an
 overriding implementation of that same method.</p>
-<h3 id="traits-as-parameters"><a class="header" href="#traits-as-parameters">Traits as Parameters</a></h3>
+<h2 id="traits-as-parameters"><a class="header" href="#traits-as-parameters">Traits as Parameters</a></h2>
 <p>Now that you know how to define and implement traits, we can explore how to use
 traits to define functions that accept many different types. We’ll use the
 <code>Summary</code> trait we implemented on the <code>NewsArticle</code> and <code>Tweet</code> types in
@@ -11473,7 +11503,7 @@ function with any other type, such as a <code>String</code> or an <code>i32</cod
 because those types don’t implement <code>Summary</code>.</p>
 <!-- Old headings. Do not remove or links may break. -->
 <p><a id="fixing-the-largest-function-with-trait-bounds"></a></p>
-<h4 id="trait-bound-syntax"><a class="header" href="#trait-bound-syntax">Trait Bound Syntax</a></h4>
+<h3 id="trait-bound-syntax"><a class="header" href="#trait-bound-syntax">Trait Bound Syntax</a></h3>
 <p>The <code>impl Trait</code> syntax works for straightforward cases but is actually syntax
 sugar for a longer form known as a <em>trait bound</em>; it looks like this:</p>
 <pre><code class="language-rust ignore">pub fn notify&lt;T: Summary&gt;(item: &amp;T) {
@@ -11498,7 +11528,7 @@ trait bound, like this:</p>
 <p>The generic type <code>T</code> specified as the type of the <code>item1</code> and <code>item2</code>
 parameters constrains the function such that the concrete type of the value
 passed as an argument for <code>item1</code> and <code>item2</code> must be the same.</p>
-<h4 id="specifying-multiple-trait-bounds-with-the--syntax"><a class="header" href="#specifying-multiple-trait-bounds-with-the--syntax">Specifying Multiple Trait Bounds with the <code>+</code> Syntax</a></h4>
+<h3 id="specifying-multiple-trait-bounds-with-the--syntax"><a class="header" href="#specifying-multiple-trait-bounds-with-the--syntax">Specifying Multiple Trait Bounds with the <code>+</code> Syntax</a></h3>
 <p>We can also specify more than one trait bound. Say we wanted <code>notify</code> to use
 display formatting as well as <code>summarize</code> on <code>item</code>: we specify in the <code>notify</code>
 definition that <code>item</code> must implement both <code>Display</code> and <code>Summary</code>. We can do
@@ -11510,7 +11540,7 @@ so using the <code>+</code> syntax:</p>
 </code></pre>
 <p>With the two trait bounds specified, the body of <code>notify</code> can call <code>summarize</code>
 and use <code>{}</code> to format <code>item</code>.</p>
-<h4 id="clearer-trait-bounds-with-where-clauses"><a class="header" href="#clearer-trait-bounds-with-where-clauses">Clearer Trait Bounds with <code>where</code> Clauses</a></h4>
+<h3 id="clearer-trait-bounds-with-where-clauses"><a class="header" href="#clearer-trait-bounds-with-where-clauses">Clearer Trait Bounds with <code>where</code> Clauses</a></h3>
 <p>Using too many trait bounds has its downsides. Each generic has its own trait
 bounds, so functions with multiple generic type parameters can contain lots of
 trait bound information between the function’s name and its parameter list,
@@ -11531,7 +11561,7 @@ where
 <p>This function’s signature is less cluttered: the function name, parameter list,
 and return type are close together, similar to a function without lots of trait
 bounds.</p>
-<h3 id="returning-types-that-implement-traits"><a class="header" href="#returning-types-that-implement-traits">Returning Types that Implement Traits</a></h3>
+<h2 id="returning-types-that-implement-traits"><a class="header" href="#returning-types-that-implement-traits">Returning Types that Implement Traits</a></h2>
 <p>We can also use the <code>impl Trait</code> syntax in the return position to return a
 value of some type that implements a trait, as shown here:</p>
 <pre><code class="language-rust ignore"><span class="boring">pub trait Summary {
@@ -11649,7 +11679,7 @@ how to write a function with this behavior in the <a href="ch17-02-trait-objects
 Allow for Values of Different
 Types”</a><!--
 ignore --> section of Chapter 17.</p>
-<h3 id="using-trait-bounds-to-conditionally-implement-methods"><a class="header" href="#using-trait-bounds-to-conditionally-implement-methods">Using Trait Bounds to Conditionally Implement Methods</a></h3>
+<h2 id="using-trait-bounds-to-conditionally-implement-methods"><a class="header" href="#using-trait-bounds-to-conditionally-implement-methods">Using Trait Bounds to Conditionally Implement Methods</a></h2>
 <p>By using a trait bound with an <code>impl</code> block that uses generic type parameters,
 we can implement methods conditionally for types that implement the specified
 traits. For example, the type <code>Pair&lt;T&gt;</code> in Listing 10-15 always implements the
@@ -11744,7 +11774,7 @@ generics.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Dec 25 15:32:32 UTC 2022 -->
+<!-- Added by: runner, at: Mon Dec 26 13:49:07 UTC 2022 -->
 <!--te-->
 <blockquote>
 <p>Lifetimes are <strong>another kind of generic</strong> that we’ve already been using.</p>
@@ -22472,7 +22502,7 @@ Rust.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Dec 25 15:32:44 UTC 2022 -->
+<!-- Added by: runner, at: Mon Dec 26 13:49:17 UTC 2022 -->
 <!--te-->
 <h2 id="compare-implementing-trait-with-trait-bounds-and-trait-objects"><a class="header" href="#compare-implementing-trait-with-trait-bounds-and-trait-objects">Compare implementing trait with trait bounds and trait objects</a></h2>
 <ol>
@@ -24235,7 +24265,7 @@ patterns.</p>
 <li><a href="ch18-03-pattern-syntax.html#summary">Summary</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Dec 25 15:32:46 UTC 2022 -->
+<!-- Added by: runner, at: Mon Dec 26 13:49:19 UTC 2022 -->
 <!--te-->
 <p>In this section, we gather all the syntax valid in patterns and discuss why and
 when you might want to use each one.</p>
@@ -25728,7 +25758,7 @@ annotation makes it easier to track down the source of problems when they occur.
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Dec 25 15:32:47 UTC 2022 -->
+<!-- Added by: runner, at: Mon Dec 26 13:49:20 UTC 2022 -->
 <!--te-->
 <p>We first covered traits in the <a href="ch10-02-traits.html#traits-defining-shared-behavior">“Traits: Defining Shared
 Behavior”</a><!-- ignore --> section of Chapter
@@ -30704,7 +30734,7 @@ macros and specifying attributes on an item.</p>
 * <a href="appendix-03-derivable-traits.html#copy">Copy</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Dec 25 15:32:14 UTC 2022 -->
+<!-- Added by: runner, at: Mon Dec 26 13:48:51 UTC 2022 -->
 <!--te-->
 <p>In various places in the book, we’ve discussed the <code>derive</code> attribute, which
 you can apply to a struct or enum definition.</p>
@@ -31895,7 +31925,7 @@ RGB (0, 0, 0) 0x000000
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Dec 25 15:33:56 UTC 2022 -->
+<!-- Added by: runner, at: Mon Dec 26 13:50:17 UTC 2022 -->
 <!--te-->
 <p>Rust provides access to a wide variety of <code>primitives</code>. A sample includes:</p>
 <ol>
@@ -33928,7 +33958,7 @@ difference in the types of iteration.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Dec 25 15:33:38 UTC 2022 -->
+<!-- Added by: runner, at: Mon Dec 26 13:50:02 UTC 2022 -->
 <!--te-->
 <p>A <code>match</code> block can destructure items in a variety of ways.</p>
 <h2 id="destructuring-tuples"><a class="header" href="#destructuring-tuples">Destructuring Tuples</a></h2>
@@ -41106,7 +41136,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Dec 25 15:34:01 UTC 2022 -->
+<!-- Added by: runner, at: Mon Dec 26 13:50:21 UTC 2022 -->
 <!--te-->
 <p>Rust has a few reserved lifetime names.</p>
 <p>One of those is <code>'static</code>.</p>
@@ -43758,7 +43788,7 @@ includes support for writing software tests within the language itself.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Dec 25 15:34:11 UTC 2022 -->
+<!-- Added by: runner, at: Mon Dec 26 13:50:29 UTC 2022 -->
 <!--te-->
 <ul>
 <li>Tests are Rust functions that verify that the non-test code is functioning in the expected manner.</li>
@@ -44084,7 +44114,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Dec 25 15:33:54 UTC 2022 -->
+<!-- Added by: runner, at: Mon Dec 26 13:50:15 UTC 2022 -->
 <!--te-->
 <p>Use <code>cargo doc</code> to build documentation in <code>target/doc</code>.</p>
 <p>Use <code>cargo test</code> to run all tests (including documentation tests), and <code>cargo test --doc</code> to only run documentation tests.</p>
@@ -44503,7 +44533,7 @@ mod tests {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Dec 25 15:34:16 UTC 2022 -->
+<!-- Added by: runner, at: Mon Dec 26 13:50:33 UTC 2022 -->
 <!--te-->
 <p>As an introduction to this section, to borrow from <a href="https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html">the official docs</a>:</p>
 <blockquote>
@@ -44590,7 +44620,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Dec 25 15:34:16 UTC 2022 -->
+<!-- Added by: runner, at: Mon Dec 26 13:50:33 UTC 2022 -->
 <!--te-->
 <p>Rust provides support for <code>inline assembly</code> via the <code>asm!</code> macro.</p>
 <blockquote>
@@ -49219,7 +49249,7 @@ defines exceptions for several standard library modules.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Dec 25 15:32:10 UTC 2022 -->
+<!-- Added by: runner, at: Mon Dec 26 13:48:48 UTC 2022 -->
 <!--te-->
 <p>This chapter of the guide documents some ways to interact with Python code from Rust:</p>
 <ul>
@@ -50296,7 +50326,7 @@ the chapter on <a href="PyO3_guides/src/./memory.html">memory management</a> for
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Dec 25 15:32:01 UTC 2022 -->
+<!-- Added by: runner, at: Mon Dec 26 13:48:39 UTC 2022 -->
 <!--te-->
 <p>This chapter of the guide goes into detail on how to build and distribute projects using PyO3. </p>
 <ol>
