@@ -1,5 +1,12 @@
 # Unrecoverable Errors with `panic!`
 <!--ts-->
+* [Unrecoverable Errors with panic!](#unrecoverable-errors-with-panic)
+   * [Unwinding the Stack or Aborting in Response to a Panic](#unwinding-the-stack-or-aborting-in-response-to-a-panic)
+   * [Using a panic! Backtrace](#using-a-panic-backtrace)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Mon Dec 26 13:49:04 UTC 2022 -->
+
 <!--te-->
 
 Sometimes, bad things happen in your code, and there’s nothing you can do about

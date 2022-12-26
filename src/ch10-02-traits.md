@@ -1,6 +1,20 @@
 # Traits: Defining Shared Behavior
 
 <!--ts-->
+* [Traits: Defining Shared Behavior](#traits-defining-shared-behavior)
+   * [Defining a Trait](#defining-a-trait)
+   * [Implementing a Trait on a Type](#implementing-a-trait-on-a-type)
+   * [Default Implementations](#default-implementations)
+   * [Traits as Parameters](#traits-as-parameters)
+      * [Trait Bound Syntax](#trait-bound-syntax)
+      * [Specifying Multiple Trait Bounds with the + Syntax](#specifying-multiple-trait-bounds-with-the--syntax)
+      * [Clearer Trait Bounds with where Clauses](#clearer-trait-bounds-with-where-clauses)
+   * [Returning Types that Implement Traits](#returning-types-that-implement-traits)
+   * [Using Trait Bounds to Conditionally Implement Methods](#using-trait-bounds-to-conditionally-implement-methods)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Mon Dec 26 13:49:06 UTC 2022 -->
+
 <!--te-->
 
 A *trait* defines functionality a particular type has and can share with other

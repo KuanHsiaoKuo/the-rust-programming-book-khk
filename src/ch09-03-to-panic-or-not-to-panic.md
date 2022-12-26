@@ -1,6 +1,16 @@
 # To `panic!` or Not to `panic!`
 
 <!--ts-->
+* [To panic! or Not to panic!](#to-panic-or-not-to-panic)
+   * [Examples, Prototype Code, and Tests](#examples-prototype-code-and-tests)
+   * [Cases in Which You Have More Information Than the Compiler](#cases-in-which-you-have-more-information-than-the-compiler)
+   * [Guidelines for Error Handling](#guidelines-for-error-handling)
+   * [Creating Custom Types for Validation](#creating-custom-types-for-validation)
+   * [Summary](#summary)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Mon Dec 26 13:49:05 UTC 2022 -->
+
 <!--te-->
 
 So how do you decide when you should call `panic!` and when you should return
