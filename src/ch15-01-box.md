@@ -1,6 +1,16 @@
 ## Using `Box<T>` to Point to Data on the Heap
 
 <!--ts-->
+   * [Using Box&lt;T&gt; to Point to Data on the Heap](#using-boxt-to-point-to-data-on-the-heap)
+   * [Using a Box&lt;T&gt; to Store Data on the Heap](#using-a-boxt-to-store-data-on-the-heap)
+   * [Enabling Recursive Types with Boxes](#enabling-recursive-types-with-boxes)
+      * [More Information About the Cons List](#more-information-about-the-cons-list)
+      * [Computing the Size of a Non-Recursive Type](#computing-the-size-of-a-non-recursive-type)
+      * [Using Box&lt;T&gt; to Get a Recursive Type with a Known Size](#using-boxt-to-get-a-recursive-type-with-a-known-size)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Tue Dec 27 14:23:23 UTC 2022 -->
+
 <!--te-->
 
 The most straightforward smart pointer is a *box*, whose type is written
