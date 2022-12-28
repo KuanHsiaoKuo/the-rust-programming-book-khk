@@ -72,7 +72,7 @@
             - [Working with Environment Variables](ch12-05-working-with-environment-variables.md)
             - [Writing Error Messages to Standard Error Instead of Standard Output](ch12-06-writing-to-stderr-instead-of-stdout.md)
 
-    - [Thinking in Rust]()
+    - [Thinking in Rust](thinking_in_rust.md)
 
         - [Functional Language Features: Iterators and Closures](ch13-00-functional-features.md)
             - [Closures: Anonymous Functions that Capture Their Environment](ch13-01-closures.md)
@@ -87,7 +87,7 @@
             - [Installing Binaries from Crates.io with `cargo install`](ch14-04-installing-binaries.md)
             - [Extending Cargo with Custom Commands](ch14-05-extending-cargo.md)
 
-        - [Smart Pointers](ch15-00-smart-pointers.md)
+        - [✨Smart Pointers](ch15-00-smart-pointers.md)
             - [Using `Box<T>` to Point to Data on the Heap](ch15-01-box.md)
             - [Treating Smart Pointers Like Regular References with the `Deref` Trait](ch15-02-deref.md)
             - [Running Code on Cleanup with the `Drop` Trait](ch15-03-drop.md)
