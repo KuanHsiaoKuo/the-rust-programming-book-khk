@@ -72,7 +72,7 @@
             - [Working with Environment Variables](ch12-05-working-with-environment-variables.md)
             - [Writing Error Messages to Standard Error Instead of Standard Output](ch12-06-writing-to-stderr-instead-of-stdout.md)
 
-    - [Thinking in Rust](thinking_in_rust.md)
+    - [🤔Thinking in Rust](thinking_in_rust.md)
 
         - [Functional Language Features: Iterators and Closures](ch13-00-functional-features.md)
             - [Closures: Anonymous Functions that Capture Their Environment](ch13-01-closures.md)
