@@ -1,6 +1,17 @@
 # Treating Smart Pointers Like Regular References with the `Deref` Trait
 
 <!--ts-->
+* [Treating Smart Pointers Like Regular References with the Deref Trait](#treating-smart-pointers-like-regular-references-with-the-deref-trait)
+   * [Following the Pointer to the Value](#following-the-pointer-to-the-value)
+   * [Using Box&lt;T&gt; Like a Reference](#using-boxt-like-a-reference)
+   * [Defining Our Own Smart Pointer](#defining-our-own-smart-pointer)
+   * [Treating a Type Like a Reference by Implementing the Deref Trait](#treating-a-type-like-a-reference-by-implementing-the-deref-trait)
+   * [Implicit Deref Coercions with Functions and Methods](#implicit-deref-coercions-with-functions-and-methods)
+   * [DerefMut: How Deref Coercion Interacts with Mutability](#derefmut-how-deref-coercion-interacts-with-mutability)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Thu Dec 29 07:51:49 UTC 2022 -->
+
 <!--te-->
 
 Implementing the `Deref` trait allows you to customize the behavior of the
