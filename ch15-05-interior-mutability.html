@@ -197,7 +197,7 @@
 <li><a href="#having-multiple-owners-of-mutable-data-by-combining-rct-and-refcellt">Having Multiple Owners of Mutable Data by Combining Rc&lt;T&gt; and RefCell&lt;T&gt;</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Dec 30 08:56:53 UTC 2022 -->
+<!-- Added by: runner, at: Fri Dec 30 09:10:22 UTC 2022 -->
 <!--te-->
 <h2 id="interior-mutability"><a class="header" href="#interior-mutability">Interior Mutability</a></h2>
 <p><em>Interior mutability</em> is a design pattern in Rust that allows you to mutate
@@ -856,11 +856,31 @@ change the values in the lists.</li>
 <code>RefCell&lt;T&gt;</code> in the <code>Cons</code> definition, we can modify the value stored in all
 the lists:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>{{# rustdoc_include../ listings / ch15 - smart -pointers / listing - 15 - 24 / src /main.rs}}
-<span class="boring">}
-</span></code></pre></pre>
+<pre><code class="language-rust  ignore">#[derive(Debug)]
+enum List {
+    Cons(Rc&lt;RefCell&lt;i32&gt;&gt;, Rc&lt;List&gt;),
+    Nil,
+}
+
+use crate::List::{Cons, Nil};
+use std::cell::RefCell;
+use std::rc::Rc;
+
+fn main() {
+    let value = Rc::new(RefCell::new(5));
+
+    let a = Rc::new(Cons(Rc::clone(&amp;value), Rc::new(Nil)));
+
+    let b = Cons(Rc::new(RefCell::new(3)), Rc::clone(&amp;a));
+    let c = Cons(Rc::new(RefCell::new(4)), Rc::clone(&amp;a));
+
+    *value.borrow_mut() += 10;
+
+    println!(&quot;a after = {:?}&quot;, a);
+    println!(&quot;b after = {:?}&quot;, b);
+    println!(&quot;c after = {:?}&quot;, c);
+}
+</code></pre>
 <p><span class="caption">Listing 15-24: Using <code>Rc&lt;RefCell&lt;i32&gt;&gt;</code> to create a
 <code>List</code> that we can mutate</span></p>
 <ul>
