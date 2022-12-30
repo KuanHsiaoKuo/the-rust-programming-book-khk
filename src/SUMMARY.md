@@ -91,7 +91,7 @@
             - [Heap: Using `Box<T>` to Point to Data on the Heap](ch15-01-box.md)
             - [Deref: Treating Smart Pointers Like Regular References with the `Deref` Trait](ch15-02-deref.md)
             - [Drop: Running Code on Cleanup with the `Drop` Trait](ch15-03-drop.md)
-            - [`Rc<T>`: the Reference Counted Smart Pointer](ch15-04-rc.md)
+            - [`Rc<T>`: immutable references of multiple owners, the Reference Counted Smart Pointer](ch15-04-rc.md)
             - [`RefCell<T>` and the Interior Mutability Pattern](ch15-05-interior-mutability.md)
             - [Reference Cycles Can Leak Memory](ch15-06-reference-cycles.md)
 
