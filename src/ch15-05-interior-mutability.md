@@ -1,6 +1,17 @@
 # `RefCell<T>` and the Interior Mutability Pattern
 
 <!--ts-->
+   * [Interior Mutability](#interior-mutability)
+   * [Enforcing Borrowing Rules at Runtime with RefCell&lt;T&gt;](#enforcing-borrowing-rules-at-runtime-with-refcellt)
+      * [the reasons to choose Box&lt;T&gt;, Rc&lt;T&gt;, or RefCell&lt;T&gt;](#the-reasons-to-choose-boxt-rct-or-refcellt)
+   * [Interior Mutability: A Mutable Borrow to an Immutable Value](#interior-mutability-a-mutable-borrow-to-an-immutable-value)
+      * [A Use Case for Interior Mutability: Mock Objects](#a-use-case-for-interior-mutability-mock-objects)
+      * [Keeping Track of Borrows at Runtime with RefCell&lt;T&gt;](#keeping-track-of-borrows-at-runtime-with-refcellt)
+   * [Having Multiple Owners of Mutable Data by Combining Rc&lt;T&gt; and RefCell&lt;T&gt;](#having-multiple-owners-of-mutable-data-by-combining-rct-and-refcellt)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Fri Dec 30 08:56:53 UTC 2022 -->
+
 <!--te-->
 
 ## Interior Mutability
