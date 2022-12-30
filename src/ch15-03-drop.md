@@ -1,6 +1,13 @@
 # Running Code on Cleanup with the `Drop` Trait
 
 <!--ts-->
+* [Running Code on Cleanup with the Drop Trait](#running-code-on-cleanup-with-the-drop-trait)
+   * [Just like Context Manager in Python](#just-like-context-manager-in-python)
+   * [Dropping a Value Early with std::mem::drop](#dropping-a-value-early-with-stdmemdrop)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Fri Dec 30 03:18:32 UTC 2022 -->
+
 <!--te-->
 The second trait important to the smart pointer pattern is `Drop`, which lets
 you customize what happens when a value is about to go out of scope.
