@@ -9,7 +9,7 @@
       * [Using Box&lt;T&gt; to Get a Recursive Type with a Known Size](#using-boxt-to-get-a-recursive-type-with-a-known-size)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Dec 30 08:56:51 UTC 2022 -->
+<!-- Added by: runner, at: Fri Dec 30 09:10:21 UTC 2022 -->
 
 <!--te-->
 

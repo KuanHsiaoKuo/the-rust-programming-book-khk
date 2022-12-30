@@ -1,15 +1,10 @@
 # Unit testing for panic: `#[cfg(test)]`, `#[test]`, `#[should_panic]`, `#[ignore]`
 
 <!--ts-->
-* [Unit testing for panic: #[cfg(test)], #[test], #[should_panic], #[ignore]](#unit-testing-for-panic-cfgtest-test-should_panic-ignore)
-   * [Unit tests basic](#unit-tests-basic)
-   * [Tests and ?](#tests-and-)
-   * [Testing panics: #[should_panic]](#testing-panics-should_panic)
-   * [Running specific tests](#running-specific-tests)
-   * [Ignoring tests: #[ignore]](#ignoring-tests-ignore)
+
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Dec 30 08:58:25 UTC 2022 -->
+<!-- Added by: runner, at: Fri Dec 30 09:11:11 UTC 2022 -->
 
 <!--te-->
 
