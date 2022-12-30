@@ -393,8 +393,8 @@ the lists:
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust
-{{# rustdoc_include../ listings / ch15 - smart -pointers / listing - 15 - 24 / src /main.rs}}
+```rust, ignore
+{{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-24/src/main.rs}}
 ```
 
 <span class="caption">Listing 15-24: Using `Rc<RefCell<i32>>` to create a
