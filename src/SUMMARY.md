@@ -87,7 +87,7 @@
             - [Installing Binaries from Crates.io with `cargo install`](ch14-04-installing-binaries.md)
             - [Extending Cargo with Custom Commands](ch14-05-extending-cargo.md)
 
-        - [✨Smart Pointers](ch15-00-smart-pointers.md)
+        - [✨Smart Pointers: Heap、Deref、Drop、Rc<T>、RefCell<T>、Reference Cycle](ch15-00-smart-pointers.md)
             - [Heap: Using `Box<T>` to Point to Data on the Heap](ch15-01-box.md)
             - [Deref: Treating Smart Pointers Like Regular References with the `Deref` Trait](ch15-02-deref.md)
             - [Drop: Running Code on Cleanup with the `Drop` Trait](ch15-03-drop.md)
