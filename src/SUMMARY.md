@@ -117,7 +117,7 @@
             - [Unsafe Rust](ch19-01-unsafe-rust.md)
             - [⭐️Advanced Traits](ch19-03-advanced-traits.md)
             - [✨Advanced Types](ch19-04-advanced-types.md)
-            - [Advanced Functions and Closures](ch19-05-advanced-functions-and-closures.md)
+            - [📦Advanced Functions and Closures](ch19-05-advanced-functions-and-closures.md)
             - [Macros](ch19-06-macros.md)
 
         - [Final Project: Building a Multithreaded Web Server](ch20-00-final-project-a-web-server.md)
