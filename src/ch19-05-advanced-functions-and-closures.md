@@ -1,6 +1,13 @@
 # Advanced Functions and Closures
 
 <!--ts-->
+* [Advanced Functions and Closures](#advanced-functions-and-closures)
+   * [Function Pointers](#function-pointers)
+   * [Returning Closures](#returning-closures)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Sat Dec 31 13:00:13 UTC 2022 -->
+
 <!--te-->
 
 This section explores some advanced features related to functions and closures,
