@@ -1,5 +1,12 @@
 # All the Places Patterns Can Be Used
 <!--ts-->
+* [All the Places Patterns Can Be Used](#all-the-places-patterns-can-be-used)
+   * [Conditional if let Expressions](#conditional-if-let-expressions)
+   * [Function Parameters](#function-parameters)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Sat Dec 31 13:10:24 UTC 2022 -->
+
 <!--te-->
 
 Patterns pop up in a number of places in Rust, and you’ve been using them a lot
