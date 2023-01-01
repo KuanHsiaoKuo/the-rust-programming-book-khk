@@ -4,6 +4,15 @@
 # Closures: Anonymous Functions that Capture Their Environment
 
 <!--ts-->
+* [Closures: Anonymous Functions that Capture Their Environment](#closures-anonymous-functions-that-capture-their-environment)
+   * [Capturing the Environment with Closures](#capturing-the-environment-with-closures)
+   * [Closure Type Inference and Annotation](#closure-type-inference-and-annotation)
+   * [Capturing References or Moving Ownership](#capturing-references-or-moving-ownership)
+   * [Moving Captured Values Out of Closures and the Fn Traits](#moving-captured-values-out-of-closures-and-the-fn-traits)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Sun Jan  1 13:29:51 UTC 2023 -->
+
 <!--te-->
 
 Rust’s closures are anonymous functions you can save in a variable or pass as

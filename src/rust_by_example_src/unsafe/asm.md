@@ -14,7 +14,7 @@
    * [Options](#options)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Dec 31 13:11:17 UTC 2022 -->
+<!-- Added by: runner, at: Sun Jan  1 13:31:14 UTC 2023 -->
 
 <!--te-->
 Rust provides support for `inline assembly` via the `asm!` macro.
