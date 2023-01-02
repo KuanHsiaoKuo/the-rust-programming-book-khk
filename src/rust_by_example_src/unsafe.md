@@ -1,12 +1,10 @@
 # Unsafe Operations
 
 <!--ts-->
-* [Unsafe Operations](#unsafe-operations)
-   * [Raw Pointers](#raw-pointers)
-   * [Calling Unsafe Functions](#calling-unsafe-functions)
+
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Jan  1 13:31:14 UTC 2023 -->
+<!-- Added by: runner, at: Mon Jan  2 08:17:32 UTC 2023 -->
 
 <!--te-->
 As an introduction to this section, to borrow from [the official docs][unsafe]:

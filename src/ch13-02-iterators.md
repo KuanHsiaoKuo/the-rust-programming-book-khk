@@ -1,6 +1,15 @@
 # Processing a Series of Items with Iterators
 
 <!--ts-->
+* [Processing a Series of Items with Iterators](#processing-a-series-of-items-with-iterators)
+   * [The Iterator Trait and the next Method](#the-iterator-trait-and-the-next-method)
+   * [Methods that Consume the Iterator](#methods-that-consume-the-iterator)
+   * [Methods that Produce Other Iterators](#methods-that-produce-other-iterators)
+   * [Using Closures that Capture Their Environment](#using-closures-that-capture-their-environment)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Mon Jan  2 08:16:37 UTC 2023 -->
+
 <!--te-->
 
 The iterator pattern allows you to perform some task on a sequence of items in
