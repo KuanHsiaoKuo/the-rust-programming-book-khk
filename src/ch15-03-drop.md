@@ -6,7 +6,7 @@
    * [Dropping a Value Early with std::mem::drop](#dropping-a-value-early-with-stdmemdrop)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Mon Jan  2 08:16:39 UTC 2023 -->
+<!-- Added by: runner, at: Tue Jan  3 15:30:21 UTC 2023 -->
 
 <!--te-->
 The second trait important to the smart pointer pattern is `Drop`, which lets
