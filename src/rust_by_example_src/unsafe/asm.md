@@ -1,10 +1,20 @@
 # Inline assembly in Unsafe: asm!
 
 <!--ts-->
-
+* [Inline assembly in Unsafe: asm!](#inline-assembly-in-unsafe-asm)
+   * [Basic usage](#basic-usage)
+   * [Inputs and outputs](#inputs-and-outputs)
+   * [Late output operands](#late-output-operands)
+   * [Explicit register operands](#explicit-register-operands)
+   * [Clobbered registers](#clobbered-registers)
+   * [Symbol operands and ABI clobbers](#symbol-operands-and-abi-clobbers)
+   * [Register template modifiers](#register-template-modifiers)
+   * [Memory address operands](#memory-address-operands)
+   * [Labels](#labels)
+   * [Options](#options)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Jan  3 15:31:16 UTC 2023 -->
+<!-- Added by: runner, at: Wed Jan  4 14:32:27 UTC 2023 -->
 
 <!--te-->
 Rust provides support for `inline assembly` via the `asm!` macro.

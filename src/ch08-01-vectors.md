@@ -10,6 +10,17 @@ The first collection type we’ll look at is `Vec<T>`, also known as a *vector*.
   lines of text in a file or the prices of items in a shopping cart.
 
 <!--ts-->
+* [Storing Lists of The Same Type of Values with Vectors](#storing-lists-of-the-same-type-of-values-with-vectors)
+   * [Creating a New Vector](#creating-a-new-vector)
+   * [Updating a Vector](#updating-a-vector)
+   * [Reading Elements of Vectors](#reading-elements-of-vectors)
+   * [Iterating over the Values in a Vector](#iterating-over-the-values-in-a-vector)
+   * [Using an Enum to Store Multiple Types](#using-an-enum-to-store-multiple-types)
+   * [Dropping a Vector Drops Its Elements](#dropping-a-vector-drops-its-elements)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Wed Jan  4 14:30:53 UTC 2023 -->
+
 <!--te-->
 
 ## Creating a New Vector
