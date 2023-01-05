@@ -181,7 +181,8 @@ Compiling this code will result in this error:
 > The code in Listing 8-6 might look like it should work: why should a reference
 > to the first element care about changes at the end of the vector?
 
-This error is due to the way vectors work:
+> This error is due to the way vectors work:
+
 because vectors put the values next to each other
 in memory, adding a new element onto the end of the vector might require
 allocating new memory and copying the old elements to the new space, if there
