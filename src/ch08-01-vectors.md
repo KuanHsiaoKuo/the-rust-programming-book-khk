@@ -103,7 +103,7 @@ Listing 8-4 shows both methods of accessing a value in a vector, with indexing
 syntax and the `get` method.
 
 ```rust, editable
-{{#rustdoc_include../ listings/ch08-common-collections/listing-08-04/src/main.rs:here}}
+{{#rustdoc_include ../ listings/ch08-common-collections/listing-08-04/src/main.rs:here}}
 ```
 
 <span class="caption">Listing 8-4: Using indexing syntax or the `get` method to
