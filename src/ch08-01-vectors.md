@@ -96,7 +96,7 @@ vector</span>
 - via indexing
 - or using the `get` method.
 
-n the following examples, we’ve annotated the types of
+In the following examples, we’ve annotated the types of
 the values that are returned from these functions for extra clarity.
 
 Listing 8-4 shows both methods of accessing a value in a vector, with indexing
