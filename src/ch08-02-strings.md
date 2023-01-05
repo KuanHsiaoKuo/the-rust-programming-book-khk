@@ -3,6 +3,25 @@
 > A `String` is a wrapper over a `Vec<u8>`.
 
 <!--ts-->
+* [Storing UTF-8 Encoded Text with Strings](#storing-utf-8-encoded-text-with-strings)
+   * [What Is a String?](#what-is-a-string)
+   * [Creating a New String](#creating-a-new-string)
+   * [Updating a String](#updating-a-string)
+      * [Appending to a String with push_str and push](#appending-to-a-string-with-push_str-and-push)
+      * [Concatenation with the + Operator or the format! Macro](#concatenation-with-the--operator-or-the-format-macro)
+         * [First, s2 has an &amp;](#first-s2-has-an-)
+         * [Second, add takes ownership of self](#second-add-takes-ownership-of-self)
+      * [Using the format! macro](#using-the-format-macro)
+      * [Indexing into Strings](#indexing-into-strings)
+         * [Internal Representation](#internal-representation)
+         * [Bytes and Scalar Values and Grapheme Clusters! Oh My!](#bytes-and-scalar-values-and-grapheme-clusters-oh-my)
+      * [Slicing Strings](#slicing-strings)
+      * [Methods for Iterating Over Strings](#methods-for-iterating-over-strings)
+      * [Strings Are Not So Simple](#strings-are-not-so-simple)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Thu Jan  5 09:53:20 UTC 2023 -->
+
 <!--te-->
 
 We talked about strings in Chapter 4, but we’ll look at them in more depth now.

@@ -1,16 +1,10 @@
 # Documentation: cargo doc
 
 <!--ts-->
-* [Documentation: cargo doc](#documentation-cargo-doc)
-   * [Doc comments](#doc-comments)
-   * [Doc attributes](#doc-attributes)
-      * [inline](#inline)
-      * [no_inline](#no_inline)
-      * [hidden](#hidden)
-      * [See also:](#see-also)
+
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Wed Jan  4 14:32:09 UTC 2023 -->
+<!-- Added by: runner, at: Thu Jan  5 09:54:04 UTC 2023 -->
 
 <!--te-->
 Use `cargo doc` to build documentation in `target/doc`.
