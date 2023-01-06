@@ -3,6 +3,20 @@
 > Like vectors, hash maps are homogeneous: all of the keys must have the same type as each other, and all of
 > the values must have the same type.
 <!--ts-->
+* [HasnMap&lt;K, V&gt;: Storing Keys with Associated Values](#hasnmapk-v-storing-keys-with-associated-values)
+   * [Creating a New Hash Map](#creating-a-new-hash-map)
+   * [Accessing Values in a Hash Map](#accessing-values-in-a-hash-map)
+   * [Hash Maps and Ownership](#hash-maps-and-ownership)
+   * [Updating a Hash Map](#updating-a-hash-map)
+      * [Overwriting a Value](#overwriting-a-value)
+      * [Adding a Key and Value Only If a Key Isn’t Present](#adding-a-key-and-value-only-if-a-key-isnt-present)
+      * [Updating a Value Based on the Old Value](#updating-a-value-based-on-the-old-value)
+   * [Hashing Functions](#hashing-functions)
+   * [Summary](#summary)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Fri Jan  6 12:56:51 UTC 2023 -->
+
 <!--te-->
 
 The last of our common collections is the *hash map*.
