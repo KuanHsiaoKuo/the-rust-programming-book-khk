@@ -54,7 +54,7 @@
         - [Common Collections](ch08-00-common-collections.md)
             - [Vectors: Storing Lists of The Same Type of Values](ch08-01-vectors.md)
             - [Strings: Storing UTF-8 Encoded Text](ch08-02-strings.md)
-            - [Hash Maps: Storing Keys with Associated Values](ch08-03-hash-maps.md)
+            - [HasnMap<K, V>: Storing Keys with Associated Values](ch08-03-hash-maps.md)
 
         - [Error Handling](ch09-00-error-handling.md)
             - [Unrecoverable Errors with `panic!`](ch09-01-unrecoverable-errors-with-panic.md)
