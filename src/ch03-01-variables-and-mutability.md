@@ -12,6 +12,13 @@
    change the type of the value but reuse the same name.
 
 <!--ts-->
+* [Variables and Mutability](#variables-and-mutability)
+   * [Constants](#constants)
+   * [Shadowing](#shadowing)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Sat Jan  7 15:45:55 UTC 2023 -->
+
 <!--te-->
 As mentioned in the [“Storing Values with
 Variables”][storing-values-with-variables]<!-- ignore --> section, by default,
