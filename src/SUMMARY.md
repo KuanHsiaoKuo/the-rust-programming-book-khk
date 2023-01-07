@@ -7,7 +7,7 @@
     - [Associated Items]()
         - [Associated type, Generic associate types](topics/at_gat.md)
         - [Associated Types]()
-          - [Associated types examples](rust_by_example_src/generics/assoc_items/types.md)
+            - [Associated types examples](rust_by_example_src/generics/assoc_items/types.md)
         - [Generic Associated Types]()
         - [Associated Functions & Methods]()
 - [The Rust Programming Language](title-page.md)
@@ -21,7 +21,7 @@
         - [Programming a Guessing Game](ch02-00-guessing-game-tutorial.md)
 
         - [Common Programming Concepts](ch03-00-common-programming-concepts.md)
-            - [Variables and Mutability](ch03-01-variables-and-mutability.md)
+            - [⚠️Variables and Mutability](ch03-01-variables-and-mutability.md)
             - [Data Types](ch03-02-data-types.md)
             - [✨Functions](ch03-03-how-functions-work.md)
             - [Comments](ch03-04-comments.md)
