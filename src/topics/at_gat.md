@@ -1,10 +1,12 @@
 # Questions about associated type and generic associated type
 
 <!--ts-->
-
+* [Questions about associated type and generic associated type](#questions-about-associated-type-and-generic-associated-type)
+   * [in rust, what is associate type, what is generic associate type.](#in-rust-what-is-associate-type-what-is-generic-associate-type)
+   * [what are the differences between associate type, generic type and generic associate type](#what-are-the-differences-between-associate-type-generic-type-and-generic-associate-type)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Jan  7 15:47:12 UTC 2023 -->
+<!-- Added by: runner, at: Sun Jan  8 14:33:08 UTC 2023 -->
 
 <!--te-->
 
