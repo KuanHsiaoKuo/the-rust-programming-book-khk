@@ -9,7 +9,7 @@ Branching with `if`-`else` is similar to other languages.
 - `if`-`else` conditionals are expressions,
 - and, all branches must return the same type.
 
-~~~admonish info title="if-else example" collapsible=tru
+~~~admonish info title="if-else example" collapsible=true
 ```rust,editable
 fn main() {
     let n = 5;
