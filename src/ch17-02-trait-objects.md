@@ -14,7 +14,7 @@
    * [Trait Objects Perform Dynamic Dispatch](#trait-objects-perform-dynamic-dispatch)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Jan  8 14:31:15 UTC 2023 -->
+<!-- Added by: runner, at: Sun Jan  8 14:48:31 UTC 2023 -->
 
 <!--te-->
 
