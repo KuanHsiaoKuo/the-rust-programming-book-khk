@@ -190,17 +190,13 @@
 <li><code>if</code>-<code>else</code> conditionals are expressions,</li>
 <li>and, all branches must return the same type.</li>
 </ul>
-<div id="admonition-error-rendering-admonishment" class="admonition bug">
-<div class="admonition-title">
-<p>Error rendering admonishment</p>
-<p><a class="admonition-anchor-link" href="#admonition-error-rendering-admonishment"></a></p>
-</div>
+<details id="admonition-if-else-example" class="admonition info">
+<summary class="admonition-title">
+<p>if-else example</p>
+<p><a class="admonition-anchor-link" href="#admonition-if-else-example"></a></p>
+</summary>
 <div>
-<p>Failed with: TOML parsing error: expected an equals, found a newline at line 1 column 6</p>
-<p>Original markdown input:</p>
-<pre><code>~~~admonish info title=&quot;if-else example&quot; collapsible=tru
-```rust,editable
-fn main() {
+<pre><pre class="playground"><code class="language-rust editable">fn main() {
     let n = 5;
 
     if n &lt; 0 {
@@ -228,11 +224,9 @@ fn main() {
 
     println!(&quot;{} -&gt; {}&quot;, n, big_n);
 }
-```
-~~~
-</code></pre>
+</code></pre></pre>
 </div>
-</div>
+</details>
 
             </main>
 
