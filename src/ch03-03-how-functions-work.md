@@ -27,19 +27,18 @@
 - Early Return
 
 <!--ts-->
-
 * [Functions](#functions)
-    * [Parameters](#parameters)
-    * [Statements and Expressions](#statements-and-expressions)
-        * [Function bodies are made up of statements](#function-bodies-are-made-up-of-statements)
-        * [Expression-based language](#expression-based-language)
-        * [Differences](#differences)
-    * [Functions with Return Values](#functions-with-return-values)
-        * [Last return or early return](#last-return-or-early-return)
-        * [place a semicolon or not](#place-a-semicolon-or-not)
+   * [Parameters](#parameters)
+   * [Statements and Expressions](#statements-and-expressions)
+      * [Function bodies are made up of statements](#function-bodies-are-made-up-of-statements)
+      * [Expression-based language](#expression-based-language)
+      * [Differences](#differences)
+   * [Functions with Return Values](#functions-with-return-values)
+      * [Last return or early return](#last-return-or-early-return)
+      * [place a semicolon or not](#place-a-semicolon-or-not)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Jan  8 14:48:18 UTC 2023 -->
+<!-- Added by: runner, at: Mon Jan  9 15:25:16 UTC 2023 -->
 
 <!--te-->
 
