@@ -1,15 +1,42 @@
 # Functions
 
+- Rust doesn’t care where you define your functions, only that they’re defined somewhere in a scope that can be seen by the caller.
+
+- In function signatures, you must declare the type of each parameter.
+
+- Function bodies are made up of statements
+
+- Rust is an expression-based language
+
+- Statements are instructions that perform some action and do not return a value, end with a semicolon
+  Expressions evaluate to a resultant value.
+
+- Function definitions are also statements;
+
+- Expressions can be part of statements
+
+- Calling a function, a macro, a scope, all are expressions.
+
+- A new scope block created with curly brackets is an expression
+
+- Expressions do not include ending semicolons
+  if you add a semicolon to the end of an expression, you turn it into a statement, and it will then not return a value.
+
+- Last Return
+
+- Early Return
+
 <!--ts-->
+
 * [Functions](#functions)
-   * [Parameters](#parameters)
-   * [Statements and Expressions](#statements-and-expressions)
-      * [Function bodies are made up of statements](#function-bodies-are-made-up-of-statements)
-      * [Expression-based language](#expression-based-language)
-      * [Differences](#differences)
-   * [Functions with Return Values](#functions-with-return-values)
-      * [Last return or early return](#last-return-or-early-return)
-      * [place a semicolon or not](#place-a-semicolon-or-not)
+    * [Parameters](#parameters)
+    * [Statements and Expressions](#statements-and-expressions)
+        * [Function bodies are made up of statements](#function-bodies-are-made-up-of-statements)
+        * [Expression-based language](#expression-based-language)
+        * [Differences](#differences)
+    * [Functions with Return Values](#functions-with-return-values)
+        * [Last return or early return](#last-return-or-early-return)
+        * [place a semicolon or not](#place-a-semicolon-or-not)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 <!-- Added by: runner, at: Sun Jan  8 14:48:18 UTC 2023 -->
@@ -152,8 +179,10 @@ of functions.
 
 ~~~admonish tip title="Diffreence between statements and expressions" collapsible=true
 - **Statements** are instructions that perform some action and do not return a value, end with a semicolon
-- **Expressions** evaluate to a resultant value. Let’s look at some examples.
+- **Expressions** evaluate to a resultant value.
 ~~~
+
+Let’s look at some examples.
 
 We’ve actually already used statements and expressions:
 
@@ -162,8 +191,8 @@ We’ve actually already used statements and expressions:
 In Listing 3-1, `let y = 6;` is a statement.
 
 ~~~admonish info title="Listing 3-1: A *main* function declaration containing one statement" collapsible=true
-```rust
-{{#rustdoc_include../listings/ch03-common-programming-concepts/listing-03-01/src/main.rs}}
+```rust, editable
+{{#rustdoc_include ../listings/ch03-common-programming-concepts/listing-03-01/src/main.rs}}
 ```
 ~~~
 
@@ -206,7 +235,7 @@ in Listing 3-1, the `6` in the statement `let y = 6;` is an expression that eval
 7. Calling a function, a macro, a scope, all are expressions.
 
 ~~~admonish info title=" A new scope block created with curly brackets is an expression, for example:" collapsible=true
-```rust
+```rust, editable
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-20-blocks-are-expressions/src/main.rs}}
 ```
 ~~~
@@ -254,7 +283,7 @@ function by using the `return` keyword and specifying a value, but most
 functions return the last expression implicitly.
 
 ~~~admonish info title="Here’s an example of a function that returns a value:" collapsible=true
-```rust
+```rust,editable
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-21-function-return-values/src/main.rs}}
 ```
 ~~~
@@ -285,7 +314,7 @@ Let’s examine this in more detail.
 
 Because the function `five` returns a `5`, that line is the same as the following:
 
-```rust
+```rust, editable
 let x = 5;
 ```
 
