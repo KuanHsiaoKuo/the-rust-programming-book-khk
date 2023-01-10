@@ -9,6 +9,18 @@
 - *reference cycles*: how they can leak memory and how to prevent them.
 
 <!--ts-->
+* [Smart Pointers](#smart-pointers)
+   * [Start from pointer](#start-from-pointer)
+   * [Smart Pointers](#smart-pointers-1)
+   * [String and Vec:](#string-and-vec)
+   * [Smart pointers are usually implemented using structs.](#smart-pointers-are-usually-implemented-using-structs)
+   * [smart pointer pattern is a general design pattern](#smart-pointer-pattern-is-a-general-design-pattern)
+      * [interior mutability](#interior-mutability)
+      * [reference cycles](#reference-cycles)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Tue Jan 10 12:36:42 UTC 2023 -->
+
 <!--te-->
 
 ## Start from pointer
