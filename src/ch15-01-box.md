@@ -13,16 +13,15 @@ The most straightforward smart pointer is a box, whose type is written Box<T>:
 - When you want to own a value and you care only that it’s a type that implements a particular trait rather than being of a specific type
 
 <!--ts-->
-
-* [Using Box&lt;T&gt; to Point to Data on the Heap](#using-boxt-to-point-to-data-on-the-heap)
-* [Using a Box&lt;T&gt; to Store Data on the Heap](#using-a-boxt-to-store-data-on-the-heap)
-* [Enabling Recursive Types with Boxes](#enabling-recursive-types-with-boxes)
-    * [More Information About the Cons List](#more-information-about-the-cons-list)
-    * [Computing the Size of a Non-Recursive Type](#computing-the-size-of-a-non-recursive-type)
-    * [Using Box&lt;T&gt; to Get a Recursive Type with a Known Size](#using-boxt-to-get-a-recursive-type-with-a-known-size)
+   * [Using Box&lt;T&gt; to Point to Data on the Heap](#using-boxt-to-point-to-data-on-the-heap)
+   * [Using a Box&lt;T&gt; to Store Data on the Heap](#using-a-boxt-to-store-data-on-the-heap)
+   * [Enabling Recursive Types with Boxes](#enabling-recursive-types-with-boxes)
+      * [More Information About the Cons List](#more-information-about-the-cons-list)
+      * [Computing the Size of a Non-Recursive Type](#computing-the-size-of-a-non-recursive-type)
+      * [Using Box&lt;T&gt; to Get a Recursive Type with a Known Size](#using-boxt-to-get-a-recursive-type-with-a-known-size)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Jan 10 12:36:43 UTC 2023 -->
+<!-- Added by: runner, at: Wed Jan 11 12:38:21 UTC 2023 -->
 
 <!--te-->
 
