@@ -12,6 +12,8 @@ The most straightforward smart pointer is a box, whose type is written Box<T>:
 - When you have a large amount of data and you want to transfer ownership but ensure the data won’t be copied when you do so
 - When you want to own a value and you care only that it’s a type that implements a particular trait rather than being of a specific type
 
+----
+
 <!--ts-->
    * [Using Box&lt;T&gt; to Point to Data on the Heap](#using-boxt-to-point-to-data-on-the-heap)
    * [Using a Box&lt;T&gt; to Store Data on the Heap](#using-a-boxt-to-store-data-on-the-heap)
