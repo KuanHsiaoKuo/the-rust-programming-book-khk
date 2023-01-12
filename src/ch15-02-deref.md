@@ -1,13 +1,26 @@
-# Treating Smart Pointers Like Regular References with the `Deref` Trait
+# Deref(* operator): Treating Smart Pointers Like Regular References with the `Deref` Trait
 
+- A regular reference is a type of pointer, and one way to think of a pointer is as an arrow to a value stored somewhere else.
+- Implementing the `Deref` trait allows you to customize the behavior of the *dereference operator* `*` (not to be confused with the multiplication or glob operator).
+- Without the `Deref` trait, the compiler can only dereference `&` references.
+- *Deref coercion* converts a reference to a type that implements the `Deref` trait into a reference to another type.
+
+> Rust does deref coercion when it finds types and trait implementations in three cases:
+
+* From `&T` to `&U` when `T: Deref<Target=U>`
+* From `&mut T` to `&mut U` when `T: DerefMut<Target=U>`
+* From `&mut T` to `&U` when `T: Deref<Target=U>`
+
+----
 <!--ts-->
+
 * [Treating Smart Pointers Like Regular References with the Deref Trait](#treating-smart-pointers-like-regular-references-with-the-deref-trait)
-   * [Following the Pointer to the Value](#following-the-pointer-to-the-value)
-   * [Using Box&lt;T&gt; Like a Reference](#using-boxt-like-a-reference)
-   * [Defining Our Own Smart Pointer](#defining-our-own-smart-pointer)
-   * [Treating a Type Like a Reference by Implementing the Deref Trait](#treating-a-type-like-a-reference-by-implementing-the-deref-trait)
-   * [Implicit Deref Coercions with Functions and Methods](#implicit-deref-coercions-with-functions-and-methods)
-   * [DerefMut: How Deref Coercion Interacts with Mutability](#derefmut-how-deref-coercion-interacts-with-mutability)
+    * [Following the Pointer to the Value](#following-the-pointer-to-the-value)
+    * [Using Box&lt;T&gt; Like a Reference](#using-boxt-like-a-reference)
+    * [Defining Our Own Smart Pointer](#defining-our-own-smart-pointer)
+    * [Treating a Type Like a Reference by Implementing the Deref Trait](#treating-a-type-like-a-reference-by-implementing-the-deref-trait)
+    * [Implicit Deref Coercions with Functions and Methods](#implicit-deref-coercions-with-functions-and-methods)
+    * [DerefMut: How Deref Coercion Interacts with Mutability](#derefmut-how-deref-coercion-interacts-with-mutability)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 <!-- Added by: runner, at: Wed Jan 11 12:48:52 UTC 2023 -->
@@ -49,7 +62,7 @@ In Listing 15-6, we create a reference to an `i32` value and then use the derefe
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust, ignore
+```rust, editable
 {{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-06/src/main.rs}}
 ```
 
@@ -86,7 +99,7 @@ Listing 15-6:
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust, ignore
+```rust, editable
 {{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-07/src/main.rs}}
 ```
 
@@ -115,7 +128,7 @@ Listing 15-8 defines a `MyBox<T>` type in the same way. We’ll also define a
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust, ignore
+```rust, editable
 {{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-08/src/main.rs:here}}
 ```
 
@@ -137,7 +150,7 @@ code in Listing 15-9 won’t compile because Rust doesn’t know how to derefere
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust,ignore,does_not_compile
+```rust, editable
 {{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-09/src/main.rs:here}}
 ```
 
@@ -169,7 +182,7 @@ contains an implementation of `Deref` to add to the definition of `MyBox`:
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust, ignore
+```rust, editable
 {{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-10/src/main.rs:here}}
 ```
 
