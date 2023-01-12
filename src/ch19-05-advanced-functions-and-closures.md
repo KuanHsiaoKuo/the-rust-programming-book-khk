@@ -6,7 +6,7 @@
    * [Returning Closures](#returning-closures)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Wed Jan 11 12:48:59 UTC 2023 -->
+<!-- Added by: runner, at: Thu Jan 12 15:40:40 UTC 2023 -->
 
 <!--te-->
 
