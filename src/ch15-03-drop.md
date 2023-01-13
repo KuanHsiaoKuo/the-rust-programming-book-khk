@@ -27,6 +27,13 @@ smart pointer.
 --- 
 
 <!--ts-->
+* [Running Code on Cleanup with the Drop Trait](#running-code-on-cleanup-with-the-drop-trait)
+   * [Just like Context Manager in Python](#just-like-context-manager-in-python)
+   * [Dropping a Value Early with std::mem::drop](#dropping-a-value-early-with-stdmemdrop)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Fri Jan 13 13:54:04 UTC 2023 -->
+
 <!--te-->
 
 ## Just like Context Manager in Python
