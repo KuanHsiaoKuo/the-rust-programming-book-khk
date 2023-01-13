@@ -1,14 +1,5 @@
 # Running Code on Cleanup with the `Drop` Trait
 
-<!--ts-->
-* [Running Code on Cleanup with the Drop Trait](#running-code-on-cleanup-with-the-drop-trait)
-   * [Just like Context Manager in Python](#just-like-context-manager-in-python)
-   * [Dropping a Value Early with std::mem::drop](#dropping-a-value-early-with-stdmemdrop)
-
-<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Jan 12 15:40:35 UTC 2023 -->
-
-<!--te-->
 The second trait important to the smart pointer pattern is `Drop`, which lets
 you customize what happens when a value is about to go out of scope.
 
@@ -21,6 +12,22 @@ smart pointer.
 
 > For example, when a `Box<T>` is dropped it will deallocate the
 > space on the heap that the box points to.
+
+- In Rust, you can specify that a particular bit of code be run whenever a value goes out of scope, and the compiler will insert this code automatically.
+- Rust doesn’t let us call `drop` explicitly because Rust would still
+  automatically call `drop` on the value at the end of `main`.
+
+> This would cause a *double free* error because Rust would be trying to clean up the same value twice.
+
+- Drop early: drop(c), not c.drop()
+  Rust doesn’t let you call the `Drop` trait’s `drop` method manually; instead
+  you have to call the `std::mem::drop` function provided by the standard library
+  if you want to force a value to be dropped before the end of its scope.
+
+--- 
+
+<!--ts-->
+<!--te-->
 
 ## Just like Context Manager in Python
 
@@ -42,8 +49,7 @@ this code automatically.
 - The `Drop` trait requires you to implement one method named
   `drop` that takes a mutable reference to `self`.
 
-> To see when Rust calls `drop`,
-> let’s implement `drop` with `println!` statements for now.
+> To see when Rust calls `drop`, let’s implement `drop` with `println!` statements for now.
 
 Listing 15-14 shows a `CustomSmartPointer` struct whose only custom
 functionality is that it will print `Dropping CustomSmartPointer!` when the
@@ -51,7 +57,7 @@ instance goes out of scope, to show when Rust runs the `drop` function.
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust, ignore
+```rust, editable
 {{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-14/src/main.rs}}
 ```
 
@@ -111,7 +117,7 @@ compiler error:
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust,ignore,does_not_compile
+```rust,editable
 {{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-15/src/main.rs:here}}
 ```
 
@@ -149,7 +155,7 @@ call the `drop` function, as shown in Listing 15-16:
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust, ignore
+```rust, editable
 {{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-16/src/main.rs:here}}
 ```
 
