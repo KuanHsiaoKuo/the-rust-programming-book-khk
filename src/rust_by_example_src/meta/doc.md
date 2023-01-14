@@ -4,7 +4,7 @@
 
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Jan 13 13:54:50 UTC 2023 -->
+<!-- Added by: runner, at: Sat Jan 14 13:34:50 UTC 2023 -->
 
 <!--te-->
 Use `cargo doc` to build documentation in `target/doc`.
