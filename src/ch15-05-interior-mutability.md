@@ -74,17 +74,22 @@ When creating immutable and mutable references, we use the `&` and `&mut` syntax
 
 ----
 <!--ts-->
-
-* [Interior Mutability](#interior-mutability)
-* [Enforcing Borrowing Rules at Runtime with RefCell&lt;T&gt;](#enforcing-borrowing-rules-at-runtime-with-refcellt)
-    * [the reasons to choose Box&lt;T&gt;, Rc&lt;T&gt;, or RefCell&lt;T&gt;](#the-reasons-to-choose-boxt-rct-or-refcellt)
-* [Interior Mutability: A Mutable Borrow to an Immutable Value](#interior-mutability-a-mutable-borrow-to-an-immutable-value)
-    * [A Use Case for Interior Mutability: Mock Objects](#a-use-case-for-interior-mutability-mock-objects)
-    * [Keeping Track of Borrows at Runtime with RefCell&lt;T&gt;](#keeping-track-of-borrows-at-runtime-with-refcellt)
-* [Having Multiple Owners of Mutable Data by Combining Rc&lt;T&gt; and RefCell&lt;T&gt;](#having-multiple-owners-of-mutable-data-by-combining-rct-and-refcellt)
+   * [Interior Mutability](#interior-mutability)
+   * [Enforcing Borrowing Rules at Runtime with RefCell&lt;T&gt;](#enforcing-borrowing-rules-at-runtime-with-refcellt)
+      * [So, what makes RefCell&lt;T&gt; different from a type like Box&lt;T&gt;?](#so-what-makes-refcellt-different-from-a-type-like-boxt)
+         * [Different Time](#different-time)
+         * [The advantages of checking the borrowing rules at compile time:](#the-advantages-of-checking-the-borrowing-rules-at-compile-time)
+         * [The advantage of checking the borrowing rules at runtime instead:](#the-advantage-of-checking-the-borrowing-rules-at-runtime-instead)
+         * [Some properties of code are impossible to detect by analyzing the code:](#some-properties-of-code-are-impossible-to-detect-by-analyzing-the-code)
+         * [The Rust Compiler might reject a correct program](#the-rust-compiler-might-reject-a-correct-program)
+      * [the reasons to choose Box&lt;T&gt;, Rc&lt;T&gt;, or RefCell&lt;T&gt;](#the-reasons-to-choose-boxt-rct-or-refcellt)
+   * [Interior Mutability: A Mutable Borrow to an Immutable Value](#interior-mutability-a-mutable-borrow-to-an-immutable-value)
+      * [A Use Case for Interior Mutability: Mock Objects](#a-use-case-for-interior-mutability-mock-objects)
+      * [Keeping Track of Borrows at Runtime with RefCell&lt;T&gt;](#keeping-track-of-borrows-at-runtime-with-refcellt)
+   * [Having Multiple Owners of Mutable Data by Combining Rc&lt;T&gt; and RefCell&lt;T&gt;](#having-multiple-owners-of-mutable-data-by-combining-rct-and-refcellt)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Jan 15 14:21:17 UTC 2023 -->
+<!-- Added by: runner, at: Mon Jan 16 11:33:25 UTC 2023 -->
 
 <!--te-->
 
