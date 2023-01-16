@@ -1,13 +1,87 @@
-# `RefCell<T>` and the Interior Mutability Pattern
+# `RefCell<T>`: Runtime Borrow Checking and the Interior Mutability Pattern
 
+1. *Interior mutability* is a design pattern in Rust that allows you to mutate data even when there are immutable references to that data; normally, this action is disallowed by the borrowing rules.
+
+2. Unsafe code indicates to the compiler that we’re checking the rules manually instead of relying on the compiler to check them for us;
+
+3. Unlike `Rc<T>`, the `RefCell<T>` type represents single ownership over the data it holds.
+
+4. So, what makes `RefCell<T>` different from a type like `Box<T>`?
+
+- Box<T> at compile time: With references and `Box<T>`, the borrowing rules’ invariants are enforced at compile time.
+
+- Refcell<T> at runtime: With `RefCell<T>`, these invariants are enforced *at runtime*.
+
+5. Recall the borrowing rules you learned in Chapter 4:
+
+- At any given time, you can have *either* (but not both) one mutable reference or any number of immutable references.
+- References must always be valid.
+
+6. The `RefCell<T>` type is useful when you’re sure your code follows the borrowing rules but the compiler is unable to understand and guarantee that.
+
+7. the reasons to choose `Box<T>`, `Rc<T>`, or `RefCell<T>`
+
+> Here is a recap of the reasons to choose `Box<T>`, `Rc<T>`, or `RefCell<T>`:
+
+* Owners:
+
+`Rc<T>` enables multiple owners of the same data;
+`Box<T>` and `RefCell<T>` have single owners.
+
+* Borrows Check:
+  `Box<T>` allows immutable or mutable borrows checked at compile time;
+  `Rc<T>` allows only immutable borrows checked at compile time;
+  `RefCell<T>` allows immutable or mutable borrows checked at runtime.
+* Mutate or not:
+  Because `RefCell<T>` allows mutable borrows checked at runtime, you can
+  mutate the value inside the `RefCell<T>` even when the `RefCell<T>` is
+  immutable.
+
+8. A Mutable Borrow to an Immutable Value: this code won’t compile
+
+
+9. A library to keep track of how close a value is to a maximum value and warn when the value is at certain levels
+
+10. Keeping Track of Borrows at Runtime with `RefCell<T>`
+
+When creating immutable and mutable references, we use the `&` and `&mut` syntax, respectively.
+> The `RefCell<T>` keeps track of how many `Ref<T>` and `RefMut<T>` smart pointers are currently active.
+
+- With `RefCell<T>`, we use the `borrow` and `borrow_mut` methods, which are part of the safe API that belongs to `RefCell<T>`.
+- The `borrow` method returns the smart pointer type `Ref<T>`
+- and `borrow_mut` returns the smart pointer type `RefMut<T>`.
+- Both types implement `Deref`, so we can treat them like regular references.
+- Every time we call `borrow`, the `RefCell<T>` increases its count of how many immutable borrows are active.
+- When a `Ref<T>` value goes out of scope, the count of immutable borrows goes down by one.
+- Just like the compile-time borrowing rules, `RefCell<T>` lets us have many immutable borrows or one mutable borrow at any point in time.
+
+
+11. Having Multiple Owners of Mutable Data by Combining `Rc<T>` and `RefCell<T>`
+
+> A common way to use `RefCell<T>` is in combination with `Rc<T>`.
+
+- Recall that `Rc<T>` lets you have multiple owners of some data, but it only gives immutable access to that data.
+
+- If you have an `Rc<T>` that holds a `RefCell<T>`, you can get a value that can have multiple owners *and* that you can mutate!
+
+- For example, recall the cons list example in Listing 15-18 where we used `Rc<T>` to allow multiple lists to share ownership of another list.
+- Because `Rc<T>` holds only immutable values, we can’t change any of the values in the list once we’ve created them.
+- Let’s add in `RefCell<T>` to gain the ability to change the values in the lists.
+
+12. Using `Rc<RefCell<i32>>` to create a `List` that we can mutate
+
+13. Note that `RefCell<T>` does not work for multithreaded code! `Mutex<T>` is the thread-safe version of `RefCell<T>` and we’ll discuss `Mutex<T>` in Chapter 16.
+
+----
 <!--ts-->
-   * [Interior Mutability](#interior-mutability)
-   * [Enforcing Borrowing Rules at Runtime with RefCell&lt;T&gt;](#enforcing-borrowing-rules-at-runtime-with-refcellt)
-      * [the reasons to choose Box&lt;T&gt;, Rc&lt;T&gt;, or RefCell&lt;T&gt;](#the-reasons-to-choose-boxt-rct-or-refcellt)
-   * [Interior Mutability: A Mutable Borrow to an Immutable Value](#interior-mutability-a-mutable-borrow-to-an-immutable-value)
-      * [A Use Case for Interior Mutability: Mock Objects](#a-use-case-for-interior-mutability-mock-objects)
-      * [Keeping Track of Borrows at Runtime with RefCell&lt;T&gt;](#keeping-track-of-borrows-at-runtime-with-refcellt)
-   * [Having Multiple Owners of Mutable Data by Combining Rc&lt;T&gt; and RefCell&lt;T&gt;](#having-multiple-owners-of-mutable-data-by-combining-rct-and-refcellt)
+
+* [Interior Mutability](#interior-mutability)
+* [Enforcing Borrowing Rules at Runtime with RefCell&lt;T&gt;](#enforcing-borrowing-rules-at-runtime-with-refcellt)
+    * [the reasons to choose Box&lt;T&gt;, Rc&lt;T&gt;, or RefCell&lt;T&gt;](#the-reasons-to-choose-boxt-rct-or-refcellt)
+* [Interior Mutability: A Mutable Borrow to an Immutable Value](#interior-mutability-a-mutable-borrow-to-an-immutable-value)
+    * [A Use Case for Interior Mutability: Mock Objects](#a-use-case-for-interior-mutability-mock-objects)
+    * [Keeping Track of Borrows at Runtime with RefCell&lt;T&gt;](#keeping-track-of-borrows-at-runtime-with-refcellt)
+* [Having Multiple Owners of Mutable Data by Combining Rc&lt;T&gt; and RefCell&lt;T&gt;](#having-multiple-owners-of-mutable-data-by-combining-rct-and-refcellt)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 <!-- Added by: runner, at: Sun Jan 15 14:21:17 UTC 2023 -->
@@ -26,22 +100,24 @@ action is disallowed by the borrowing rules.
 
 Unsafe code indicates to the compiler that we’re
 checking the rules manually instead of relying on the compiler to check them
-for us; we will discuss unsafe code more in Chapter 19.
+for us;
 
-We can use types that use the interior mutability pattern only when we can
-ensure that the borrowing rules will be followed at runtime, even though the
-compiler can’t guarantee that. The `unsafe` code involved is then wrapped in a
-safe API, and the outer type is still immutable.
+we will discuss unsafe code more in Chapter 19.
+
+> We can use types that use the interior mutability pattern only when we can
+> ensure that the borrowing rules will be followed at runtime, even though the
+> compiler can’t guarantee that.
+
+The `unsafe` code involved is then wrapped in a safe API, and the outer type is still immutable.
 
 Let’s explore this concept by looking at the `RefCell<T>` type that follows the
 interior mutability pattern.
 
 ## Enforcing Borrowing Rules at Runtime with `RefCell<T>`
 
-Unlike `Rc<T>`, the `RefCell<T>` type represents single ownership over the data
-it holds.
+Unlike `Rc<T>`, the `RefCell<T>` type represents single ownership over the data it holds.
 
-> So, what makes `RefCell<T>` different from a type like `Box<T>`?
+### So, what makes `RefCell<T>` different from a type like `Box<T>`?
 
 Recall the borrowing rules you learned in Chapter 4:
 
@@ -49,45 +125,45 @@ Recall the borrowing rules you learned in Chapter 4:
   or any number of immutable references.
 * References must always be valid.
 
-> Box<T> at compile time: With references and `Box<T>`, the borrowing rules’ invariants are enforced at
-> compile time.
+#### Different Time
 
-> Refcell<T> at runtime: With `RefCell<T>`, these invariants are enforced *at runtime*.
+1. Box<T> at compile time: With references and `Box<T>`, the borrowing rules’ invariants are enforced at compile time.
+
+2. Refcell<T> at runtime: With `RefCell<T>`, these invariants are enforced *at runtime*.
 
 - With references, if you break these rules, you’ll get a compiler error.
 - With `RefCell<T>`, if you break these rules, your program will panic and exit.
 
-> The advantages of checking the borrowing rules at compile time are that errors
-> will be caught sooner in the development process, and there is no impact on
-> runtime performance because all the analysis is completed beforehand.
+#### The advantages of checking the borrowing rules at compile time:
+
+- errors will be caught sooner in the development process
+- there is no impact on runtime performance because all the analysis is completed beforehand.
 
 For those
 reasons, checking the borrowing rules at compile time is the best choice in the
 majority of cases, which is why this is Rust’s default.
 
-> The advantage of checking the borrowing rules at runtime instead is that
-> certain memory-safe scenarios are then allowed, where they would’ve been
-> disallowed by the compile-time checks.
+#### The advantage of checking the borrowing rules at runtime instead:
 
-Static analysis, like the Rust compiler,
-is inherently conservative.
+- certain memory-safe scenarios are then allowed, where they would’ve been disallowed by the compile-time checks.
 
-> Some properties of code are impossible to detect by
-> analyzing the code: the most famous example is the Halting Problem, which is
-> beyond the scope of this book but is an interesting topic to research.
+- Static analysis, like the Rust compiler, is inherently conservative.
+
+#### Some properties of code are impossible to detect by analyzing the code:
+
+- the most famous example is the Halting Problem, which is beyond the scope of this book but is an interesting topic to research.
+
+#### The Rust Compiler might reject a correct program
 
 Because some analysis is impossible, if the Rust compiler can’t be sure the
 code complies with the ownership rules, it might reject a correct program; in
 this way, it’s conservative.
 
-If Rust accepted an incorrect program, users
-wouldn’t be able to trust in the guarantees Rust makes.
+If Rust accepted an incorrect program, users wouldn’t be able to trust in the guarantees Rust makes.
 
-> However, if Rust
-> rejects a correct program, the programmer will be inconvenienced, but nothing
-> catastrophic can occur. The `RefCell<T>` type is useful when you’re sure your
-> code follows the borrowing rules but the compiler is unable to understand and
-> guarantee that.
+> However, if Rust rejects a correct program, the programmer will be inconvenienced, but nothing catastrophic can occur.
+
+- The `RefCell<T>` type is useful when you’re sure your code follows the borrowing rules but the compiler is unable to understand and guarantee that.
 
 Similar to `Rc<T>`, `RefCell<T>` is only for use in single-threaded scenarios
 and will give you a compile-time error if you try using it in a multithreaded
@@ -98,14 +174,19 @@ context.
 
 ### the reasons to choose `Box<T>`, `Rc<T>`, or `RefCell<T>`
 
-Here is a recap of the reasons to choose `Box<T>`, `Rc<T>`, or `RefCell<T>`:
+> Here is a recap of the reasons to choose `Box<T>`, `Rc<T>`, or `RefCell<T>`:
 
-* `Rc<T>` enables multiple owners of the same data; `Box<T>` and `RefCell<T>`
-  have single owners.
-* `Box<T>` allows immutable or mutable borrows checked at compile time; `Rc<T>`
-  allows only immutable borrows checked at compile time; `RefCell<T>` allows
-  immutable or mutable borrows checked at runtime.
-* Because `RefCell<T>` allows mutable borrows checked at runtime, you can
+* Owners:
+
+`Rc<T>` enables multiple owners of the same data;
+`Box<T>` and `RefCell<T>` have single owners.
+
+* Borrows Check:
+  `Box<T>` allows immutable or mutable borrows checked at compile time;
+  `Rc<T>` allows only immutable borrows checked at compile time;
+  `RefCell<T>` allows immutable or mutable borrows checked at runtime.
+* Mutate or not:
+  Because `RefCell<T>` allows mutable borrows checked at runtime, you can
   mutate the value inside the `RefCell<T>` even when the `RefCell<T>` is
   immutable.
 
@@ -118,7 +199,7 @@ examine how it’s possible.
 A consequence of the borrowing rules is that when you have an immutable value,
 you can’t borrow it mutably. For example, this code won’t compile:
 
-```rust,ignore,does_not_compile
+```rust, editable
 {{#rustdoc_include ../listings/ch15-smart-pointers/no-listing-01-cant-borrow-immutable-as-mutable/src/main.rs}}
 ```
 
@@ -185,7 +266,7 @@ Listing 15-20 shows the library code:
 
 <span class="filename">Filename: src/lib.rs</span>
 
-```rust,noplayground
+```rust, editable
 {{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-20/src/lib.rs}}
 ```
 
@@ -218,7 +299,7 @@ implement a mock object to do just that, but the borrow checker won’t allow it
 
 <span class="filename">Filename: src/lib.rs</span>
 
-```rust,ignore,does_not_compile
+```rust, editable
 {{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-21/src/lib.rs:here}}
 ```
 
@@ -270,9 +351,89 @@ Listing 15-22 shows what that looks like:
 
 <span class="filename">Filename: src/lib.rs</span>
 
-```rust,noplayground
-{{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-22/src/lib.rs:here}}
+~~~admonish tip title="In contrast, *&T* borrows the data via an immutable reference, and the borrower can read the data but not modify it:" collapsible=true 
+```rust,editable,ignore,mdbook-runnable
+pub trait Messenger {
+    fn send(&self, msg: &str);
+}
+
+pub struct LimitTracker<'a, T: Messenger> {
+    messenger: &'a T,
+    value: usize,
+    max: usize,
+}
+
+impl<'a, T> LimitTracker<'a, T>
+where
+    T: Messenger,
+{
+    pub fn new(messenger: &'a T, max: usize) -> LimitTracker<'a, T> {
+        LimitTracker {
+            messenger,
+            value: 0,
+            max,
+        }
+    }
+
+    pub fn set_value(&mut self, value: usize) {
+        self.value = value;
+
+        let percentage_of_max = self.value as f64 / self.max as f64;
+
+        if percentage_of_max >= 1.0 {
+            self.messenger.send("Error: You are over your quota!");
+        } else if percentage_of_max >= 0.9 {
+            self.messenger
+                .send("Urgent warning: You've used up over 90% of your quota!");
+        } else if percentage_of_max >= 0.75 {
+            self.messenger
+                .send("Warning: You've used up over 75% of your quota!");
+        }
+    }
+}
+
+// ANCHOR: here
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::cell::RefCell;
+
+    struct MockMessenger {
+        sent_messages: RefCell<Vec<String>>,
+    }
+
+    impl MockMessenger {
+        fn new() -> MockMessenger {
+            MockMessenger {
+                sent_messages: RefCell::new(vec![]),
+            }
+        }
+    }
+
+    impl Messenger for MockMessenger {
+        fn send(&self, message: &str) {
+            self.sent_messages.borrow_mut().push(String::from(message));
+        }
+    }
+
+    #[test]
+    fn it_sends_an_over_75_percent_warning_message() {
+        // --snip--
+        // ANCHOR_END: here
+        let mock_messenger = MockMessenger::new();
+        let mut limit_tracker = LimitTracker::new(&mock_messenger, 100);
+
+        limit_tracker.set_value(80);
+        // ANCHOR: here
+
+        // ANCHOR: here
+        assert_eq!(mock_messenger.sent_messages.borrow().len(), 1);
+    }
+}
+// ANCHOR_END: here
+
 ```
+~~~
 
 <span class="caption">Listing 15-22: Using `RefCell<T>` to mutate an inner
 value while the outer value is considered immutable</span>
@@ -298,27 +459,16 @@ Now that you’ve seen how to use `RefCell<T>`, let’s dig into how it works!
 
 ### Keeping Track of Borrows at Runtime with `RefCell<T>`
 
-When creating immutable and mutable references, we use the `&` and `&mut`
-syntax, respectively.
+When creating immutable and mutable references, we use the `&` and `&mut` syntax, respectively.
+> The `RefCell<T>` keeps track of how many `Ref<T>` and `RefMut<T>` smart pointers are currently active.
 
-> With `RefCell<T>`, we use the `borrow` and `borrow_mut`
-> methods, which are part of the safe API that belongs to `RefCell<T>`.
-
+- With `RefCell<T>`, we use the `borrow` and `borrow_mut` methods, which are part of the safe API that belongs to `RefCell<T>`.
 - The `borrow` method returns the smart pointer type `Ref<T>`
 - and `borrow_mut` returns the smart pointer type `RefMut<T>`.
-- Both types implement `Deref`, so we
-  can treat them like regular references.
-
-> The `RefCell<T>` keeps track of how many `Ref<T>` and `RefMut<T>` smart
-> pointers are currently active.
-
-- Every time we call `borrow`, the `RefCell<T>`
-  increases its count of how many immutable borrows are active.
-- When a `Ref<T>`
-  value goes out of scope, the count of immutable borrows goes down by one.
-- Just
-  like the compile-time borrowing rules, `RefCell<T>` lets us have many immutable
-  borrows or one mutable borrow at any point in time.
+- Both types implement `Deref`, so we can treat them like regular references.
+- Every time we call `borrow`, the `RefCell<T>` increases its count of how many immutable borrows are active.
+- When a `Ref<T>` value goes out of scope, the count of immutable borrows goes down by one.
+- Just like the compile-time borrowing rules, `RefCell<T>` lets us have many immutable borrows or one mutable borrow at any point in time.
 
 > If we try to violate these rules, rather than getting a compiler error as we
 > would with references, the implementation of `RefCell<T>` will panic at
@@ -331,7 +481,7 @@ at runtime.
 
 <span class="filename">Filename: src/lib.rs</span>
 
-```rust,ignore,panics
+```rust, editable
 {{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-23/src/lib.rs:here}}
 ```
 
@@ -372,20 +522,15 @@ You can use `RefCell<T>` despite its trade-offs to get more functionality than r
 
 ## Having Multiple Owners of Mutable Data by Combining `Rc<T>` and `RefCell<T>`
 
-A common way to use `RefCell<T>` is in combination with `Rc<T>`. Recall that
-`Rc<T>` lets you have multiple owners of some data, but it only gives immutable
-access to that data.
+> A common way to use `RefCell<T>` is in combination with `Rc<T>`.
 
-> If you have an `Rc<T>` that holds a `RefCell<T>`, you can
-> get a value that can have multiple owners *and* that you can mutate!
+- Recall that `Rc<T>` lets you have multiple owners of some data, but it only gives immutable access to that data.
 
-- For example, recall the cons list example in Listing 15-18 where we used
-  `Rc<T>` to allow multiple lists to share ownership of another list.
-- Because
-  `Rc<T>` holds only immutable values, we can’t change any of the values in the
-  list once we’ve created them.
-- Let’s add in `RefCell<T>` to gain the ability to
-  change the values in the lists.
+- If you have an `Rc<T>` that holds a `RefCell<T>`, you can get a value that can have multiple owners *and* that you can mutate!
+
+- For example, recall the cons list example in Listing 15-18 where we used `Rc<T>` to allow multiple lists to share ownership of another list.
+- Because `Rc<T>` holds only immutable values, we can’t change any of the values in the list once we’ve created them.
+- Let’s add in `RefCell<T>` to gain the ability to change the values in the lists.
 
 Listing 15-24 shows that by using a
 `RefCell<T>` in the `Cons` definition, we can modify the value stored in all
@@ -393,7 +538,7 @@ the lists:
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust, ignore
+```rust, editable
 {{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-24/src/main.rs}}
 ```
 
