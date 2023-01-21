@@ -23,7 +23,7 @@ The most straightforward smart pointer is a box, whose type is written Box<T>:
       * [Using Box&lt;T&gt; to Get a Recursive Type with a Known Size](#using-boxt-to-get-a-recursive-type-with-a-known-size)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Jan 20 15:36:17 UTC 2023 -->
+<!-- Added by: runner, at: Sat Jan 21 15:27:32 UTC 2023 -->
 
 <!--te-->
 
