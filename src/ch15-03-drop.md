@@ -32,7 +32,7 @@ smart pointer.
    * [Dropping a Value Early with std::mem::drop](#dropping-a-value-early-with-stdmemdrop)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Jan 21 15:27:33 UTC 2023 -->
+<!-- Added by: runner, at: Sun Jan 22 11:21:34 UTC 2023 -->
 
 <!--te-->
 
