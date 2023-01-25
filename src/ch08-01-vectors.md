@@ -19,7 +19,7 @@ The first collection type we’ll look at is `Vec<T>`, also known as a *vector*.
    * [Dropping a Vector Drops Its Elements](#dropping-a-vector-drops-its-elements)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Jan 24 15:05:19 UTC 2023 -->
+<!-- Added by: runner, at: Wed Jan 25 14:03:51 UTC 2023 -->
 
 <!--te-->
 

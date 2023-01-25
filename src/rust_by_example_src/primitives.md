@@ -1,10 +1,13 @@
 # Primitives
 
 <!--ts-->
-
+* [Primitives](#primitives)
+   * [Scalar Types](#scalar-types)
+   * [Compound Types](#compound-types)
+      * [See also:](#see-also)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Jan 24 15:06:46 UTC 2023 -->
+<!-- Added by: runner, at: Wed Jan 25 14:04:40 UTC 2023 -->
 
 <!--te-->
 
