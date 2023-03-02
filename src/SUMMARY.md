@@ -95,7 +95,7 @@
             - [Installing Binaries from Crates.io with `cargo install`](ch14-04-installing-binaries.md)
             - [Extending Cargo with Custom Commands](ch14-05-extending-cargo.md)
 
-        - [✨Smart Pointers: Heap、Deref、Drop、Rc<T>、RefCell<T>、Reference Cycle](ch15-00-smart-pointers.md)
+        - [✨Smart Pointers(2+3): (Deref、Drop) + (Box<T>/heap、Rc<T>、RefCell<T>/Reference Cycle）](ch15-00-smart-pointers.md)
             - [Two Typical Traits: Deref & Drop](smart_pointers_deref_drop.md)
                 - [Deref(* operator): Treating Smart Pointers Like Regular References with the `Deref` Trait](ch15-02-deref.md)
                 - [Drop: Running Code on Cleanup with the `Drop` Trait](ch15-03-drop.md)
@@ -104,7 +104,7 @@
                 - [References Tracking Pointer Types](rc_refcell.md)
                   - [`Rc<T>`(Reference Counting): single-threaded scenarios, immutable references of multiple owners, the Reference Counted Smart Pointer](ch15-04-rc.md)
                   - [`RefCell<T>`(reference counting cell): single-threaded scenarios, runtime borrow checking, the Interior Mutability Pattern](ch15-05-interior-mutability.md)
-            - [Reference Cycles Can Leak Memory](ch15-06-reference-cycles.md)
+                  - [🌟Reference Cycles Can Leak Memory: Mainly from Incorrect Usage of `Rc<T>` and `RefCell<T>`](ch15-06-reference-cycles.md)
 
         - [Fearless Concurrency](ch16-00-concurrency.md)
             - [Using Threads to Run Code Simultaneously](ch16-01-threads.md)

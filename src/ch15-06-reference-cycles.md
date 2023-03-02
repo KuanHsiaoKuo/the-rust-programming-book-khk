@@ -1,13 +1,38 @@
 ## Reference Cycles Can Leak Memory
 
+<!--ts-->
+<!--te-->
+
 Rust’s memory safety guarantees make it difficult, but not impossible, to
 accidentally create memory that is never cleaned up (known as a *memory leak*).
-Preventing memory leaks entirely is not one of Rust’s guarantees, meaning
-memory leaks are memory safe in Rust. We can see that Rust allows memory leaks
-by using `Rc<T>` and `RefCell<T>`: it’s possible to create references where
-items refer to each other in a cycle. This creates memory leaks because the
-reference count of each item in the cycle will never reach 0, and the values
-will never be dropped.
+
+> Preventing memory leaks entirely is not one of Rust’s guarantees, meaning
+> memory leaks are memory safe in Rust.
+
+- We can see that Rust allows memory leaks
+  by using `Rc<T>` and `RefCell<T>`
+- it’s possible to create references where items refer to each other in a cycle.
+- This creates memory leaks because the reference count of each item in the cycle will never reach 0, and the values will never be dropped.
+
+### Abstract
+
+~~~admonish abstract title="memory leak abstract" collapsible=true
+- Reference cycles occur when two or more values have references to each other, creating a cycle that cannot be dropped by the memory allocator.
+- Reference cycles can cause memory leaks and unexpected behavior in Rust programs.
+- Rust's ownership and borrowing system prevents most types of reference cycles, but they can still occur with the use of Rc<T> and RefCell<T> types.
+- Rc<T> is a reference-counted smart pointer type that allows multiple owners of the same value, but it can create reference cycles if used incorrectly.
+- RefCell<T> is a type that allows for mutable borrowing of an immutable value, but it can also create reference cycles if used incorrectly.
+- Rust provides the Weak<T> type to break reference cycles created by Rc<T>. Weak references do not contribute to the reference count, so they do not prevent the value from being dropped.
+- Another way to break reference cycles is to use std::mem::take() function to take ownership of a value and leave behind a default value, which will drop the original value if it was the only owner.
+~~~
+
+### Error-prone
+
+~~~admonish attention title="memory leak attention" collapsible=true
+- The use of Rc<T> and RefCell<T> types can create reference cycles if not used correctly. It is important to follow Rust's ownership and borrowing rules to avoid creating reference cycles.
+- Weak<T> should be used instead of Rc<T> in cases where reference cycles may occur.
+- std::mem::take() should only be used as a last resort for breaking reference cycles, as it can lead to unexpected behavior if the value is not meant to be reset to its default state.
+~~~
 
 ### Creating a Reference Cycle
 
@@ -18,7 +43,7 @@ starting with the definition of the `List` enum and a `tail` method in Listing
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust
-{{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-25/src/main.rs}}
+{{# rustdoc_include../ listings / ch15 - smart -pointers / listing - 15 - 25 / src /main.rs}}
 ```
 
 <span class="caption">Listing 15-25: A cons list definition that holds a
@@ -40,7 +65,7 @@ reference counts are at various points in this process.
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust
-{{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-26/src/main.rs:here}}
+{{# rustdoc_include../ listings / ch15 - smart -pointers / listing - 15 - 26 / src /main.rs: here}}
 ```
 
 <span class="caption">Listing 15-26: Creating a reference cycle of two `List`
@@ -150,7 +175,7 @@ references to its children `Node` values:
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust
-{{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-27/src/main.rs:here}}
+{{# rustdoc_include../ listings / ch15 - smart -pointers / listing - 15 - 27 / src /main.rs: here}}
 ```
 
 We want a `Node` to own its children, and we want to share that ownership with
@@ -166,7 +191,7 @@ with the value 5 and `leaf` as one of its children, as shown in Listing 15-27:
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust
-{{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-27/src/main.rs:there}}
+{{# rustdoc_include../ listings / ch15 - smart -pointers / listing - 15 - 27 / src /main.rs: there}}
 ```
 
 <span class="caption">Listing 15-27: Creating a `leaf` node with no children
@@ -200,7 +225,7 @@ like this:
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust
-{{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-28/src/main.rs:here}}
+{{# rustdoc_include../ listings / ch15 - smart -pointers / listing - 15 - 28 / src /main.rs: here}}
 ```
 
 A node will be able to refer to its parent node but doesn’t own its parent.
@@ -210,7 +235,7 @@ node will have a way to refer to its parent, `branch`:
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust
-{{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-28/src/main.rs:there}}
+{{# rustdoc_include../ listings / ch15 - smart -pointers / listing - 15 - 28 / src /main.rs: there}}
 ```
 
 <span class="caption">Listing 15-28: A `leaf` node with a weak reference to its
@@ -263,7 +288,7 @@ in Listing 15-29:
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust
-{{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-29/src/main.rs:here}}
+{{# rustdoc_include../ listings / ch15 - smart -pointers / listing - 15 - 29 / src /main.rs: here}}
 ```
 
 <span class="caption">Listing 15-29: Creating `branch` in an inner scope and
@@ -295,7 +320,7 @@ specifying that the relationship from a child to its parent should be a
 nodes point to child nodes and vice versa without creating a reference cycle
 and memory leaks.
 
-## Summary
+### Summary
 
 This chapter covered how to use smart pointers to make different guarantees and
 trade-offs from those Rust makes by default with regular references. The
@@ -318,3 +343,31 @@ Next, we’ll talk about concurrency in Rust. You’ll even learn about a few ne
 smart pointers.
 
 [nomicon]: ../nomicon/index.html
+
+### Q&A
+
+~~~admonish question title="memory leak questions" collapsible=true
+1. What are reference cycles in Rust, and why are they problematic?
+2. How does Rust's ownership and borrowing system prevent most types of reference cycles?
+3. What are Rc<T> and RefCell<T> types in Rust, and how can they create reference cycles? How does Rust's Weak<T> type break reference cycles created by Rc<T>?
+4. What is the std::mem::take() function in Rust, and how can it be used to break reference cycles?
+5. What are some potential issues with using std::mem::take() to break reference cycles?
+6. Can reference cycles be created with regular references (i.e., &T)? Why or why not?
+7. How can you debug reference cycles in Rust programs?
+8. Can you provide an example of a scenario where using RefCell<T> could create a reference cycle?
+9. Why might you choose to use Rc<T> instead of regular references or Box<T>? What are some potential drawbacks to using Rc<T>?
+~~~
+
+~~~admonish tip title="memory leak answers" collapsible=true
+1. Reference cycles occur when two or more values have references to each other, creating a cycle that cannot be dropped by the memory allocator. They are problematic because they can cause memory leaks and unexpected behavior in Rust programs.
+2. Rust's ownership and borrowing system prevents most types of reference cycles by enforcing strict rules for how values can be borrowed and moved. For example, Rust does not allow mutable aliases or aliasing across mutable borrows, which can help prevent reference cycles.
+3. Rc<T> is a reference-counted smart pointer type that allows multiple owners of the same value. If two Rc<T> values reference each other, or if an Rc<T> value references a RefCell<T> that contains an Rc<T> value that references it, a reference cycle can be created.
+4. Rust's Weak<T> type is a weak reference that does not contribute to the reference count, so it can be used to break reference cycles created by Rc<T>. Weak<T> values can be created from Rc<T> values and used to access the value's data without keeping the value alive.
+5. std::mem::take() is a function that takes ownership of a value and leaves behind a default value, which can be used to break reference cycles. If a value is only owned by a reference cycle, calling std::mem::take() will drop the value and create a new default value in its place.
+6. One potential issue with using std::mem::take() is that it can lead to unexpected behavior if the value is not meant to be reset to its default state. Additionally, using std::mem::take() may not be as efficient as breaking the reference cycle in other ways, such as using Weak<T>.
+7. No, regular references (i.e., &T) cannot create reference cycles because they do not have ownership. Regular references are borrowed pointers that do not affect the lifetime of the value they point to.
+8. Debugging reference cycles in Rust programs can be challenging because they can cause memory leaks and other unexpected behavior. Some tools and techniques that can be used to debug reference cycles include analyzing heap allocations with profilers, using Rust's Debug and Drop traits to log reference counts and deallocations, and using Rust's borrow checker to ensure that reference cycles are not created in the first place.
+9. RefCell<T> can create a reference cycle if it contains an Rc<T> value that references it. For example, if you have a RefCell<Rc<T>> value that contains an Rc<T> value that references the RefCell, a reference cycle can be created.
+10. You might choose to use Rc<T> instead of regular references or Box<T> when you need to share ownership of a value across multiple parts of your program. Rc<T> allows multiple owners to access the same value, which can be useful for scenarios like creating a tree structure. However, Rc<T> has some potential drawbacks, such as the possibility of creating reference cycles and the overhead of reference counting.
+~~~
+
