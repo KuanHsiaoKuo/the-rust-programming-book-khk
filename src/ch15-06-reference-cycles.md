@@ -1,6 +1,20 @@
 ## Reference Cycles Can Leak Memory
 
 <!--ts-->
+   * [Reference Cycles Can Leak Memory](#reference-cycles-can-leak-memory)
+      * [Abstract](#abstract)
+      * [Error-prone](#error-prone)
+      * [Creating a Reference Cycle](#creating-a-reference-cycle)
+      * [Preventing Reference Cycles: Turning an Rc&lt;T&gt; into a Weak&lt;T&gt;](#preventing-reference-cycles-turning-an-rct-into-a-weakt)
+         * [Creating a Tree Data Structure: a Node with Child Nodes](#creating-a-tree-data-structure-a-node-with-child-nodes)
+         * [Adding a Reference from a Child to Its Parent](#adding-a-reference-from-a-child-to-its-parent)
+         * [Visualizing Changes to strong_count and weak_count](#visualizing-changes-to-strong_count-and-weak_count)
+      * [Summary](#summary)
+      * [Q&amp;A](#qa)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Thu Mar  2 03:46:15 UTC 2023 -->
+
 <!--te-->
 
 Rust’s memory safety guarantees make it difficult, but not impossible, to
