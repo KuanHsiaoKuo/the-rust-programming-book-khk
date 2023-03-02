@@ -56,9 +56,11 @@ starting with the definition of the `List` enum and a `tail` method in Listing
 
 <span class="filename">Filename: src/main.rs</span>
 
+~~~admonish example title="" collapsible=true
 ```rust
-{{# rustdoc_include../ listings / ch15 - smart -pointers / listing - 15 - 25 / src /main.rs}}
+{{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-25/src/main.rs}}
 ```
+~~~
 
 <span class="caption">Listing 15-25: A cons list definition that holds a
 `RefCell<T>` so we can modify what a `Cons` variant is referring to</span>
@@ -78,9 +80,11 @@ reference counts are at various points in this process.
 
 <span class="filename">Filename: src/main.rs</span>
 
+~~~admonish example title="" collapsible=true
 ```rust
-{{# rustdoc_include../ listings / ch15 - smart -pointers / listing - 15 - 26 / src /main.rs: here}}
+{{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-26/src/main.rs:here}}
 ```
+~~~
 
 <span class="caption">Listing 15-26: Creating a reference cycle of two `List`
 values pointing to each other</span>
@@ -188,9 +192,11 @@ references to its children `Node` values:
 
 <span class="filename">Filename: src/main.rs</span>
 
+~~~admonish example title="" collapsible=true
 ```rust
-{{# rustdoc_include../ listings / ch15 - smart -pointers / listing - 15 - 27 / src /main.rs: here}}
+{{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-27/src/main.rs:here}}
 ```
+~~~
 
 We want a `Node` to own its children, and we want to share that ownership with
 variables so we can access each `Node` in the tree directly. To do this, we
@@ -204,9 +210,11 @@ with the value 5 and `leaf` as one of its children, as shown in Listing 15-27:
 
 <span class="filename">Filename: src/main.rs</span>
 
+~~~admonish example title="" collapsible=true
 ```rust
-{{# rustdoc_include../ listings / ch15 - smart -pointers / listing - 15 - 27 / src /main.rs: there}}
+{{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-27/src/main.rs:there}}
 ```
+~~~
 
 <span class="caption">Listing 15-27: Creating a `leaf` node with no children
 and a `branch` node with `leaf` as one of its children</span>
@@ -238,9 +246,11 @@ like this:
 
 <span class="filename">Filename: src/main.rs</span>
 
+~~~admonish example title="" collapsible=true
 ```rust
-{{# rustdoc_include../ listings / ch15 - smart -pointers / listing - 15 - 28 / src /main.rs: here}}
+{{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-28/src/main.rs:here}}
 ```
+~~~
 
 A node will be able to refer to its parent node but doesn’t own its parent.
 In Listing 15-28, we update `main` to use this new definition so the `leaf`
@@ -248,9 +258,11 @@ node will have a way to refer to its parent, `branch`:
 
 <span class="filename">Filename: src/main.rs</span>
 
+~~~admonish example title="" collapsible=true
 ```rust
-{{# rustdoc_include../ listings / ch15 - smart -pointers / listing - 15 - 28 / src /main.rs: there}}
+{{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-28/src/main.rs:there}}
 ```
+~~~
 
 <span class="caption">Listing 15-28: A `leaf` node with a weak reference to its
 parent node `branch`</span>
@@ -301,9 +313,11 @@ in Listing 15-29:
 
 <span class="filename">Filename: src/main.rs</span>
 
+~~~admonish example title="" collapsible=true
 ```rust
-{{# rustdoc_include../ listings / ch15 - smart -pointers / listing - 15 - 29 / src /main.rs: here}}
+{{#rustdoc_include ../listings/ch15-smart-pointers/listing-15-29/src/main.rs:here}}
 ```
+~~~
 
 <span class="caption">Listing 15-29: Creating `branch` in an inner scope and
 examining strong and weak reference counts</span>
