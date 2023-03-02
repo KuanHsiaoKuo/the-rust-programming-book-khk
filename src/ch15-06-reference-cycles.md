@@ -1,16 +1,17 @@
 ## Reference Cycles Can Leak Memory
 
 <!--ts-->
-   * [Reference Cycles Can Leak Memory](#reference-cycles-can-leak-memory)
-      * [Abstract](#abstract)
-      * [Error-prone](#error-prone)
-      * [Creating a Reference Cycle](#creating-a-reference-cycle)
-      * [Preventing Reference Cycles: Turning an Rc&lt;T&gt; into a Weak&lt;T&gt;](#preventing-reference-cycles-turning-an-rct-into-a-weakt)
-         * [Creating a Tree Data Structure: a Node with Child Nodes](#creating-a-tree-data-structure-a-node-with-child-nodes)
-         * [Adding a Reference from a Child to Its Parent](#adding-a-reference-from-a-child-to-its-parent)
-         * [Visualizing Changes to strong_count and weak_count](#visualizing-changes-to-strong_count-and-weak_count)
-      * [Summary](#summary)
-      * [Q&amp;A](#qa)
+
+* [Reference Cycles Can Leak Memory](#reference-cycles-can-leak-memory)
+    * [Abstract](#abstract)
+    * [Error-prone](#error-prone)
+    * [Creating a Reference Cycle](#creating-a-reference-cycle)
+    * [Preventing Reference Cycles: Turning an Rc&lt;T&gt; into a Weak&lt;T&gt;](#preventing-reference-cycles-turning-an-rct-into-a-weakt)
+        * [Creating a Tree Data Structure: a Node with Child Nodes](#creating-a-tree-data-structure-a-node-with-child-nodes)
+        * [Adding a Reference from a Child to Its Parent](#adding-a-reference-from-a-child-to-its-parent)
+        * [Visualizing Changes to strong_count and weak_count](#visualizing-changes-to-strong_count-and-weak_count)
+    * [Summary](#summary)
+    * [Q&amp;A](#qa)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 <!-- Added by: runner, at: Thu Mar  2 03:46:15 UTC 2023 -->
@@ -363,13 +364,14 @@ smart pointers.
 ~~~admonish question title="memory leak questions" collapsible=true
 1. What are reference cycles in Rust, and why are they problematic?
 2. How does Rust's ownership and borrowing system prevent most types of reference cycles?
-3. What are Rc<T> and RefCell<T> types in Rust, and how can they create reference cycles? How does Rust's Weak<T> type break reference cycles created by Rc<T>?
-4. What is the std::mem::take() function in Rust, and how can it be used to break reference cycles?
-5. What are some potential issues with using std::mem::take() to break reference cycles?
-6. Can reference cycles be created with regular references (i.e., &T)? Why or why not?
-7. How can you debug reference cycles in Rust programs?
-8. Can you provide an example of a scenario where using RefCell<T> could create a reference cycle?
-9. Why might you choose to use Rc<T> instead of regular references or Box<T>? What are some potential drawbacks to using Rc<T>?
+3. What are Rc<T> and RefCell<T> types in Rust, and how can they create reference cycles? 
+4. How does Rust's Weak<T> type break reference cycles created by Rc<T>?
+5. What is the std::mem::take() function in Rust, and how can it be used to break reference cycles?
+6. What are some potential issues with using std::mem::take() to break reference cycles?
+7. Can reference cycles be created with regular references (i.e., &T)? Why or why not?
+8. How can you debug reference cycles in Rust programs?
+9. Can you provide an example of a scenario where using RefCell<T> could create a reference cycle?
+10. Why might you choose to use Rc<T> instead of regular references or Box<T>? What are some potential drawbacks to using Rc<T>?
 ~~~
 
 ~~~admonish tip title="memory leak answers" collapsible=true
