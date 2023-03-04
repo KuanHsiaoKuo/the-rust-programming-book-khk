@@ -128,7 +128,7 @@ exist, or we might not have permission to access the file.
   happened.
 ~~~
 
-# Match Expression: How to hanle the information?
+# Match Expression: How to handle the information?
 
 We need to add to the code in Listing 9-3 to take different actions depending
 on the value `File::open` returns.
