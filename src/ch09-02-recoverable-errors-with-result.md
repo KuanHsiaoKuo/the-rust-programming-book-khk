@@ -6,7 +6,7 @@
 * [Result Definition and Basic Usage](#result-definition-and-basic-usage)
    * [What the definition of Result conveys?](#what-the-definition-of-result-conveys)
    * [What is the information the result enum conveys?](#what-is-the-information-the-result-enum-conveys)
-* [Match Expression: How to hanle the information?](#match-expression-how-to-hanle-the-information)
+* [Match Expression: How to handle the information?](#match-expression-how-to-handle-the-information)
    * [What happened if the match expression not handle a situation?](#what-happened-if-the-match-expression-not-handle-a-situation)
    * [Matching on Different Errors](#matching-on-different-errors)
 * [Shortcuts for Panic on Error, simplify match expression](#shortcuts-for-panic-on-error-simplify-match-expression)
@@ -29,7 +29,7 @@
          * [The Executable of main](#the-executable-of-main)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Mar  2 04:12:51 UTC 2023 -->
+<!-- Added by: runner, at: Sat Mar  4 11:47:13 UTC 2023 -->
 
 <!--te-->
 
