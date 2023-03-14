@@ -388,8 +388,8 @@ at the end, we’ll show the shorter way.
    that contains more information about what the problems were.
 ~~~
 
-~~~admonish question title="Why chose *io::Error* as the return type?" collapsible=true
-> We chose `io::Error` as the return type of this function because that happens to be the
+~~~admonish question title="Why choose *io::Error* as the return type?" collapsible=true
+> We choose `io::Error` as the return type of this function because that happens to be the
 type of the error value returned from both of the operations we’re calling in
 this function’s body that might fail: 
 
