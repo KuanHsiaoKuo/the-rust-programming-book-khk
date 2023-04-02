@@ -180,6 +180,26 @@
                     <nav class="pagetoc"></nav>
                 </div>
                 <h2 id="defining-and-instantiating-structs"><a class="header" href="#defining-and-instantiating-structs">Defining and Instantiating Structs</a></h2>
+<details id="admonition-summarize" class="admonition abstract">
+<summary class="admonition-title">
+<p>Summarize</p>
+<p><a class="admonition-anchor-link" href="#admonition-summarize"></a></p>
+</summary>
+<div>
+<p>This chapter explains how to define and instantiate structs in Rust: </p>
+<ol>
+<li>Structs are similar to tuples, but with named fields, making them more flexible than tuples.</li>
+<li>To define a struct, use the struct keyword followed by the name of the struct and the names and types of its fields inside curly brackets.</li>
+<li>To create an instance of a struct, specify concrete values for each field using key: value pairs inside curly brackets.</li>
+<li>To access a specific value from a struct, use dot notation.</li>
+<li>To change a value in a mutable struct, use dot notation and assign a new value to the field.</li>
+<li>Struct update syntax can be used to create a new instance of a struct that includes most of the values from another instance but changes some.</li>
+<li>Tuple structs are similar to tuples, but with a name that makes them a different type from other tuples.</li>
+<li>Unit-like structs don’t have any fields and can be useful when implementing a trait on a type without any data to store.</li>
+<li>It’s important to consider ownership of struct data, and Rust’s lifetime feature can be used to ensure that data referenced by a struct is valid for as long as the struct is.</li>
+</ol>
+</div>
+</details>
 <p>Structs are similar to tuples, discussed in <a href="ch03-02-data-types.html#the-tuple-type">“The Tuple Type”</a><!--
 ignore --> section, in that both hold multiple related values. Like tuples, the
 pieces of a struct can be different types. Unlike with tuples, in a struct

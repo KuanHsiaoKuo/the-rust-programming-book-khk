@@ -214,7 +214,7 @@
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:41:42 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:16:12 UTC 2023 -->
 <!--te-->
 <h2 id="rust-official"><a class="header" href="#rust-official">Rust Official</a></h2>
 <h3 id="rust-lang-home"><a class="header" href="#rust-lang-home">Rust Lang Home</a></h3>
@@ -331,7 +331,7 @@ more</strong>: <a href="https://rust-book.cs.brown.edu">https://rust-book.cs.bro
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:43:13 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:17:15 UTC 2023 -->
 <!--te-->
 <h2 id="in-rust-what-is-associate-type-what-is-generic-associate-type"><a class="header" href="#in-rust-what-is-associate-type-what-is-generic-associate-type">in rust, what is associate type, what is generic associate type.</a></h2>
 <p>In Rust, an associate type is a type placeholder that is defined within the bounds of a trait. It allows a trait to specify that concrete types used to implement the trait must provide a specific type, without requiring the trait to know what that type is.</p>
@@ -2289,7 +2289,7 @@ change the type of the value but reuse the same name.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:34 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:20 UTC 2023 -->
 <!--te-->
 <p>As mentioned in the <a href="ch02-00-guessing-game-tutorial.html#storing-values-with-variables">“Storing Values with
 Variables”</a><!-- ignore --> section, by default,
@@ -3064,7 +3064,7 @@ if you add a semicolon to the end of an expression, you turn it into a statement
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:35 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:20 UTC 2023 -->
 <!--te-->
 <p>Functions are prevalent in Rust code. You’ve already seen one of the most
 important functions in the language:</p>
@@ -5317,6 +5317,26 @@ define associated functions, especially the kind of associated functions called
 (discussed in Chapter 6) are the building blocks for creating new types in your
 program’s domain to take full advantage of Rust’s compile time type checking.</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="defining-and-instantiating-structs"><a class="header" href="#defining-and-instantiating-structs">Defining and Instantiating Structs</a></h2>
+<details id="admonition-summarize" class="admonition abstract">
+<summary class="admonition-title">
+<p>Summarize</p>
+<p><a class="admonition-anchor-link" href="ch05-01-defining-structs.html#admonition-summarize"></a></p>
+</summary>
+<div>
+<p>This chapter explains how to define and instantiate structs in Rust: </p>
+<ol>
+<li>Structs are similar to tuples, but with named fields, making them more flexible than tuples.</li>
+<li>To define a struct, use the struct keyword followed by the name of the struct and the names and types of its fields inside curly brackets.</li>
+<li>To create an instance of a struct, specify concrete values for each field using key: value pairs inside curly brackets.</li>
+<li>To access a specific value from a struct, use dot notation.</li>
+<li>To change a value in a mutable struct, use dot notation and assign a new value to the field.</li>
+<li>Struct update syntax can be used to create a new instance of a struct that includes most of the values from another instance but changes some.</li>
+<li>Tuple structs are similar to tuples, but with a name that makes them a different type from other tuples.</li>
+<li>Unit-like structs don’t have any fields and can be useful when implementing a trait on a type without any data to store.</li>
+<li>It’s important to consider ownership of struct data, and Rust’s lifetime feature can be used to ensure that data referenced by a struct is valid for as long as the struct is.</li>
+</ol>
+</div>
+</details>
 <p>Structs are similar to tuples, discussed in <a href="ch03-02-data-types.html#the-tuple-type">“The Tuple Type”</a><!--
 ignore --> section, in that both hold multiple related values. Like tuples, the
 pieces of a struct can be different types. Unlike with tuples, in a struct
@@ -5973,7 +5993,7 @@ continue to refactor this code by turning the <code>area</code> function into an
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:39 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:23 UTC 2023 -->
 <!--te-->
 <h2 id="similar-and-difference"><a class="header" href="#similar-and-difference">Similar and Difference</a></h2>
 <blockquote>
@@ -8524,7 +8544,7 @@ lines of text in a file or the prices of items in a shopping cart.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:44 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:27 UTC 2023 -->
 <!--te-->
 <h2 id="creating-a-new-vector"><a class="header" href="#creating-a-new-vector">Creating a New Vector</a></h2>
 <p>To create a new empty vector, we call the <code>Vec::new</code> function, as shown in
@@ -8912,7 +8932,7 @@ valid.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:44 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:27 UTC 2023 -->
 <!--te-->
 <p>We talked about strings in Chapter 4, but we’ll look at them in more depth now.</p>
 <blockquote>
@@ -9453,7 +9473,7 @@ the values must have the same type.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:45 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:28 UTC 2023 -->
 <!--te-->
 <p>The last of our common collections is the <em>hash map</em>.</p>
 <blockquote>
@@ -9845,7 +9865,7 @@ execution.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:46 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:28 UTC 2023 -->
 <!--te-->
 <p>Sometimes, bad things happen in your code, and there’s nothing you can do about
 it. In these cases, Rust has the <code>panic!</code> macro. There are two ways to cause a
@@ -10038,7 +10058,7 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:46 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:29 UTC 2023 -->
 <!--te-->
 <p>Most errors aren’t serious enough to require the program to stop entirely.</p>
 <details id="admonition-sometimes-when-a-function-fails-its-for-a-reason-that-you-can-easily-interpret-and-respond-to" class="admonition tip">
@@ -11045,7 +11065,7 @@ cases.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:47 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:29 UTC 2023 -->
 <!--te-->
 <p>So how do you decide when you should call <code>panic!</code> and when you should return
 <code>Result</code>? When code panics, there’s no way to recover. You could call <code>panic!</code>
@@ -11448,7 +11468,7 @@ values. How would we eliminate that duplication? Let’s find out!</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:47 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:30 UTC 2023 -->
 <!--te-->
 <p>We use generics to create definitions for items like function signatures or
 structs, which we can then use with many different concrete data types. </p>
@@ -12016,7 +12036,7 @@ at runtime.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:48 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:30 UTC 2023 -->
 <!--te-->
 <p>A <em>trait</em> defines functionality a particular type has and can share with other
 types. We can use traits to define shared behavior in an abstract way. We can
@@ -12610,7 +12630,7 @@ generics.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:49 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:30 UTC 2023 -->
 <!--te-->
 <blockquote>
 <p>Lifetimes are <strong>another kind of generic</strong> that we’ve already been using.</p>
@@ -17595,7 +17615,7 @@ code, we’ll devote this entire chapter to them.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:54 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:34 UTC 2023 -->
 <!--te-->
 <p>Rust’s closures are anonymous functions you can save in a variable or pass as
 arguments to other functions.</p>
@@ -18346,7 +18366,7 @@ as we continue!</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:54 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:35 UTC 2023 -->
 <!--te-->
 <p>The iterator pattern allows you to perform some task on a sequence of items in
 turn. An iterator is responsible for the logic of iterating over each item and
@@ -20348,7 +20368,7 @@ type exposes an API for mutating an interior value.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:57 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:37 UTC 2023 -->
 <!--te-->
 <h2 id="start-from-pointer"><a class="header" href="#start-from-pointer">Start from pointer</a></h2>
 <blockquote>
@@ -20461,7 +20481,7 @@ type exposes an API for mutating an interior value.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:58 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:38 UTC 2023 -->
 <!--te-->
 <p>Implementing the <code>Deref</code> trait allows you to customize the behavior of the
 <em>dereference operator</em> <code>*</code> (not to be confused with the multiplication or glob
@@ -20955,7 +20975,7 @@ if you want to force a value to be dropped before the end of its scope.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:58 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:38 UTC 2023 -->
 <!--te-->
 <h2 id="just-like-context-manager-in-python"><a class="header" href="#just-like-context-manager-in-python">Just like Context Manager in Python</a></h2>
 <p>In some languages, for some types, the programmer must call code to free memory
@@ -21201,7 +21221,7 @@ library.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:58 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:38 UTC 2023 -->
 <!--te-->
 <p>The most straightforward smart pointer is a <em>box</em>, whose type is written
 <code>Box&lt;T&gt;</code>:</p>
@@ -21576,7 +21596,7 @@ code, we only need to consider the deep-copy clones and can disregard calls to
 <li><a href="ch15-04-rc.html#cloning-an-rct-increases-the-reference-count">Cloning an Rc&lt;T&gt; Increases the Reference Count</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:59 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:39 UTC 2023 -->
 <!--te-->
 <p>In the majority of cases, ownership is clear: you know exactly which variable
 owns a given value.</p>
@@ -21957,7 +21977,7 @@ immutable.</li>
 <li><a href="ch15-05-interior-mutability.html#having-multiple-owners-of-mutable-data-by-combining-rct-and-refcellt">Having Multiple Owners of Mutable Data by Combining Rc&lt;T&gt; and RefCell&lt;T&gt;</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:59 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:39 UTC 2023 -->
 <!--te-->
 <h2 id="interior-mutability-1"><a class="header" href="#interior-mutability-1">Interior Mutability</a></h2>
 <p><em>Interior mutability</em> is a design pattern in Rust that allows you to mutate
@@ -22723,7 +22743,7 @@ structures.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:41:00 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:39 UTC 2023 -->
 <!--te-->
 <p>Rust’s memory safety guarantees make it difficult, but not impossible, to
 accidentally create memory that is never cleaned up (known as a <em>memory leak</em>).</p>
@@ -24533,7 +24553,7 @@ Rust.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:41:03 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:42 UTC 2023 -->
 <!--te-->
 <h2 id="compare-implementing-trait-with-trait-bounds-and-trait-objects"><a class="header" href="#compare-implementing-trait-with-trait-bounds-and-trait-objects">Compare implementing trait with trait bounds and trait objects</a></h2>
 <ol>
@@ -25922,7 +25942,7 @@ a clear way.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:41:04 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:43 UTC 2023 -->
 <!--te-->
 <p>Patterns pop up in a number of places in Rust, and you’ve been using them a lot
 without realizing it! This section discusses all the places where patterns are
@@ -26340,6 +26360,76 @@ this syntax isn’t particularly useful and could be replaced with a simpler
 and irrefutable patterns, let’s cover all the syntax we can use to create
 patterns.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="pattern-syntax"><a class="header" href="#pattern-syntax">Pattern Syntax</a></h1>
+<details id="admonition-summarize-made-by-chatgpt" class="admonition abstract">
+<summary class="admonition-title">
+<p>Summarize made by chatGPT</p>
+<p><a class="admonition-anchor-link" href="ch18-03-pattern-syntax.html#admonition-summarize-made-by-chatgpt"></a></p>
+</summary>
+<div>
+<ol>
+<li>Patterns are used in Rust for destructuring complex types, matching against specific values, and binding variables.</li>
+<li>Rust’s pattern syntax includes various types of patterns such as literals, variables, wildcards, ranges, references,
+structs, enums, and more.</li>
+<li>Pattern matching can be used in various contexts such as function arguments, match expressions, let statements, and
+more.</li>
+<li>Pattern matching can also be used with guards to specify additional conditions for a match arm.</li>
+<li>Rust also supports destructuring nested structures using patterns like tuples, structs, and enums with multiple
+fields.</li>
+<li>Patterns can be combined using the | operator to match multiple patterns, and the .. operator to ignore some parts of
+a pattern.</li>
+<li>Rust provides the ability to define custom patterns using the @ operator.</li>
+<li>The _ wildcard pattern can be used as a catch-all to match any value.</li>
+<li>The ref and ref mut patterns can be used to create references to the matched value.</li>
+<li>The box pattern can be used to match against a boxed value.</li>
+<li>The @ operator can also be used to bind a variable to a pattern without destructuring it.</li>
+<li>Rust provides various shorthand notations for patterns such as .. for matching the rest of a slice or array, and ..=
+for inclusive ranges.</li>
+<li>Rust also supports pattern matching with if let and while let expressions, which are useful for handling optional
+values.</li>
+<li>Finally, the webpage provides examples and code snippets to illustrate the use of pattern matching in Rust.</li>
+</ol>
+</div>
+</details>
+<details id="admonition-questions-made-by-chatgpt" class="admonition question">
+<summary class="admonition-title">
+<p>Questions made by chatGPT</p>
+<p><a class="admonition-anchor-link" href="ch18-03-pattern-syntax.html#admonition-questions-made-by-chatgpt"></a></p>
+</summary>
+<div>
+<ol>
+<li>What are some of the different types of patterns that Rust’s pattern syntax includes?</li>
+<li>What are some of the contexts in which pattern matching can be used in Rust?</li>
+<li>How can you combine patterns using Rust’s pattern syntax?</li>
+<li>What are some of the shorthand notations for patterns that Rust provides?</li>
+<li>What are some examples of when you might use pattern matching with if let or while let expressions in Rust?</li>
+<li>How does Rust’s pattern matching syntax differ from that of other programming languages you are familiar with?</li>
+<li>What are some of the benefits of using pattern matching in Rust?</li>
+<li>Can you think of any potential drawbacks or challenges associated with using pattern matching in Rust?</li>
+<li>How might you go about practicing and experimenting with pattern matching in Rust?</li>
+<li>Can you provide an example of a real-world problem that you might solve using pattern matching in Rust?</li>
+</ol>
+</div>
+</details>
+<details id="admonition-answers-made-by-chatgpt" class="admonition tip">
+<summary class="admonition-title">
+<p>Answers made by chatGPT</p>
+<p><a class="admonition-anchor-link" href="ch18-03-pattern-syntax.html#admonition-answers-made-by-chatgpt"></a></p>
+</summary>
+<div>
+<ol>
+<li>Rust’s pattern syntax includes various types of patterns, such as literals, variables, wildcards, ranges, references, structs, enums, and more. These patterns can be used to match against specific values, bind variables, and destructure complex types.</li>
+<li>Pattern matching can be used in various contexts in Rust, such as function arguments, match expressions, let statements, and more. It is a powerful tool for handling complex data types and making decisions based on their values.</li>
+<li>Rust’s pattern syntax allows you to combine patterns using the | operator to match multiple patterns, and the .. operator to ignore some parts of a pattern. This can make it easier to write concise and expressive code that handles a wide range of values.</li>
+<li>Rust provides various shorthand notations for patterns, such as .. for matching the rest of a slice or array, and ..= for inclusive ranges. These notations can help simplify pattern matching code and make it more readable.</li>
+<li>if let and while let expressions in Rust are useful for handling optional values. For example, you might use them to check whether a variable contains a value, and then do something with that value if it does. This can help prevent runtime errors caused by trying to access None values.</li>
+<li>Rust’s pattern matching syntax is similar to that of other programming languages like Scala and Haskell, but it has some unique features such as the ability to define custom patterns using the @ operator.</li>
+<li>Some benefits of using pattern matching in Rust include its ability to make code more concise and readable, its ability to handle complex data types easily, and its ability to prevent runtime errors by ensuring that all possible cases are handled.</li>
+<li>Some potential challenges associated with using pattern matching in Rust include the need to carefully consider all possible cases and the potential for complex code that is difficult to maintain.</li>
+<li>To practice and experiment with pattern matching in Rust, you might start by writing simple programs that use basic patterns like literals and variables, and then gradually work your way up to more complex patterns like structs and enums. The Rust documentation and other online resources can also be helpful for learning more about pattern matching in Rust.</li>
+<li>A real-world problem that you might solve using pattern matching in Rust could be parsing a file format that contains structured data. By using patterns to match against different parts of the file format, you could easily extract the data you need and transform it into a more useful format</li>
+</ol>
+</div>
+</details>
 <!--ts-->
 <ul>
 <li><a href="ch18-03-pattern-syntax.html#pattern-syntax">Pattern Syntax</a></li>
@@ -26371,7 +26461,7 @@ patterns.</p>
 <li><a href="ch18-03-pattern-syntax.html#summary">Summary</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:41:05 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:43 UTC 2023 -->
 <!--te-->
 <p>In this section, we gather all the syntax valid in patterns and discuss why and
 when you might want to use each one.</p>
@@ -26444,7 +26534,8 @@ running this code or reading further.</li>
 <p>Let’s walk through what happens when the <code>match</code> expression runs:</p>
 <ol>
 <li>The pattern in the first match arm doesn’t match the defined value of <code>x</code>, so the code continues.</li>
-<li>The pattern in the second match arm introduces a new variable named <code>y</code> that will match any value inside a <code>Some</code> value.</li>
+<li>The pattern in the second match arm introduces a new variable named <code>y</code> that will match any value inside a <code>Some</code>
+value.</li>
 </ol>
 <ul>
 <li>Because we’re in a new scope inside the <code>match</code> expression, this is a new <code>y</code> variable, not the <code>y</code> we declared at
@@ -26473,7 +26564,8 @@ been shadowed.</p>
 the inner <code>y</code>. The last <code>println!</code> produces <code>at the end: x = Some(5), y = 10</code>.</li>
 </ol>
 <blockquote>
-<p>To create a <code>match</code> expression that compares the values of the outer <code>x</code> and <code>y</code>, rather than introducing a shadowed variable, we would need to use a <strong>match guard conditional</strong> instead.</p>
+<p>To create a <code>match</code> expression that compares the values of the outer <code>x</code> and <code>y</code>, rather than introducing a shadowed
+variable, we would need to use a <strong>match guard conditional</strong> instead.</p>
 </blockquote>
 <p>We’ll talk about match guards later in the <a href="ch18-03-pattern-syntax.html#extra-conditionals-with-match-guards">“Extra
 Conditionals with Match Guards”</a><!--
@@ -26754,8 +26846,10 @@ of the <code>id</code> field.</p>
 </li>
 </ol>
 <ul>
-<li>The <code>id</code> field’s value could have been 10, 11, or 12, but the code that goes with that pattern doesn’t know which it is.</li>
-<li>The pattern code isn’t able to use the value from the <code>id</code> field, because we haven’t saved the <code>id</code> value in a variable.</li>
+<li>The <code>id</code> field’s value could have been 10, 11, or 12, but the code that goes with that pattern doesn’t know which it
+is.</li>
+<li>The pattern code isn’t able to use the value from the <code>id</code> field, because we haven’t saved the <code>id</code> value in a
+variable.</li>
 </ul>
 <ol start="3">
 <li>In the last arm, where we’ve specified a variable without a range, we do have
@@ -27038,7 +27132,8 @@ anything but does account for all remaining possible values.</p>
 <h2 id="1-ignoring-an-entire-value-with-_"><a class="header" href="#1-ignoring-an-entire-value-with-_">1. Ignoring an Entire Value with <code>_</code></a></h2>
 <p>We’ve used the underscore as a wildcard pattern that will match any value but
 not bind to the value.</p>
-<p>This is especially useful as the last arm in a <code>match</code> expression, but we can also use it in any pattern, including function
+<p>This is especially useful as the last arm in a <code>match</code> expression, but we can also use it in any pattern, including
+function
 parameters, as shown in Listing 18-17.</p>
 <details id="admonition-listing-18-17-using-_-in-a-function-signature" class="admonition info">
 <summary class="admonition-title">
@@ -27864,7 +27959,7 @@ annotation makes it easier to track down the source of problems when they occur.
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:41:06 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:44 UTC 2023 -->
 <!--te-->
 <p>We first covered traits in the <a href="ch10-02-traits.html#traits-defining-shared-behavior">“Traits: Defining Shared
 Behavior”</a><!-- ignore --> section of Chapter
@@ -29239,7 +29334,7 @@ pointer. In this case, we’ve chosen a reference.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:41:07 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:45 UTC 2023 -->
 <!--te-->
 <p>This section explores some advanced features related to functions and closures,
 including function pointers and returning closures.</p>
@@ -32896,7 +32991,7 @@ macros and specifying attributes on an item.</p>
 * <a href="appendix-03-derivable-traits.html#copy">Copy</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:27 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:14 UTC 2023 -->
 <!--te-->
 <p>In various places in the book, we’ve discussed the <code>derive</code> attribute, which
 you can apply to a struct or enum definition.</p>
@@ -34087,7 +34182,7 @@ RGB (0, 0, 0) 0x000000
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:42:33 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:16:43 UTC 2023 -->
 <!--te-->
 <p>Rust provides access to a wide variety of <code>primitives</code>. A sample includes:</p>
 <ol>
@@ -36261,7 +36356,7 @@ difference in the types of iteration.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:42:03 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:16:28 UTC 2023 -->
 <!--te-->
 <p>A <code>match</code> block can destructure items in a variety of ways.</p>
 <h2 id="destructuring-tuples"><a class="header" href="#destructuring-tuples">Destructuring Tuples</a></h2>
@@ -43224,7 +43319,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:42:37 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:16:47 UTC 2023 -->
 <!--te-->
 <p>Rust has a few reserved lifetime names.</p>
 <p>One of those is <code>'static</code>.</p>
@@ -45876,7 +45971,7 @@ includes support for writing software tests within the language itself.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:42:49 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:16:56 UTC 2023 -->
 <!--te-->
 <ul>
 <li>Tests are Rust functions that verify that the non-test code is functioning in the expected manner.</li>
@@ -46202,7 +46297,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:42:30 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:16:41 UTC 2023 -->
 <!--te-->
 <p>Use <code>cargo doc</code> to build documentation in <code>target/doc</code>.</p>
 <p>Use <code>cargo test</code> to run all tests (including documentation tests), and <code>cargo test --doc</code> to only run documentation tests.</p>
@@ -46621,7 +46716,7 @@ mod tests {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:42:54 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:17:00 UTC 2023 -->
 <!--te-->
 <p>As an introduction to this section, to borrow from <a href="https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html">the official docs</a>:</p>
 <blockquote>
@@ -46708,7 +46803,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:42:54 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:17:01 UTC 2023 -->
 <!--te-->
 <p>Rust provides support for <code>inline assembly</code> via the <code>asm!</code> macro.</p>
 <blockquote>
@@ -51337,7 +51432,7 @@ defines exceptions for several standard library modules.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:23 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:11 UTC 2023 -->
 <!--te-->
 <p>This chapter of the guide documents some ways to interact with Python code from Rust:</p>
 <ul>
@@ -52414,7 +52509,7 @@ the chapter on <a href="PyO3_guides/src/./memory.html">memory management</a> for
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Mar 14 07:40:12 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  2 15:15:02 UTC 2023 -->
 <!--te-->
 <p>This chapter of the guide goes into detail on how to build and distribute projects using PyO3. </p>
 <ol>
