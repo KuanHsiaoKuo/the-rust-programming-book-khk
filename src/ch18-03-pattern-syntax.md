@@ -1,23 +1,73 @@
 # Pattern Syntax
 
+```admonish abstract title="Summarize made by chatGPT" collapsible=true
+1. Patterns are used in Rust for destructuring complex types, matching against specific values, and binding variables.
+2. Rust's pattern syntax includes various types of patterns such as literals, variables, wildcards, ranges, references,
+   structs, enums, and more.
+3. Pattern matching can be used in various contexts such as function arguments, match expressions, let statements, and
+   more.
+4. Pattern matching can also be used with guards to specify additional conditions for a match arm.
+5. Rust also supports destructuring nested structures using patterns like tuples, structs, and enums with multiple
+   fields.
+6. Patterns can be combined using the | operator to match multiple patterns, and the .. operator to ignore some parts of
+   a pattern.
+7. Rust provides the ability to define custom patterns using the @ operator.
+8. The _ wildcard pattern can be used as a catch-all to match any value.
+9. The ref and ref mut patterns can be used to create references to the matched value.
+10. The box pattern can be used to match against a boxed value.
+11. The @ operator can also be used to bind a variable to a pattern without destructuring it.
+12. Rust provides various shorthand notations for patterns such as .. for matching the rest of a slice or array, and ..=
+    for inclusive ranges.
+13. Rust also supports pattern matching with if let and while let expressions, which are useful for handling optional
+    values.
+14. Finally, the webpage provides examples and code snippets to illustrate the use of pattern matching in Rust.
+```
+
+```admonish question title="Questions made by chatGPT" collapsible=true
+1. What are some of the different types of patterns that Rust's pattern syntax includes?
+2. What are some of the contexts in which pattern matching can be used in Rust?
+3. How can you combine patterns using Rust's pattern syntax?
+4. What are some of the shorthand notations for patterns that Rust provides?
+5. What are some examples of when you might use pattern matching with if let or while let expressions in Rust?
+6. How does Rust's pattern matching syntax differ from that of other programming languages you are familiar with?
+7. What are some of the benefits of using pattern matching in Rust?
+8. Can you think of any potential drawbacks or challenges associated with using pattern matching in Rust?
+9. How might you go about practicing and experimenting with pattern matching in Rust?
+10. Can you provide an example of a real-world problem that you might solve using pattern matching in Rust?
+```
+
+```admonish tip title="Answers made by chatGPT" collapsible=true
+1. Rust's pattern syntax includes various types of patterns, such as literals, variables, wildcards, ranges, references, structs, enums, and more. These patterns can be used to match against specific values, bind variables, and destructure complex types.
+2. Pattern matching can be used in various contexts in Rust, such as function arguments, match expressions, let statements, and more. It is a powerful tool for handling complex data types and making decisions based on their values.
+3. Rust's pattern syntax allows you to combine patterns using the | operator to match multiple patterns, and the .. operator to ignore some parts of a pattern. This can make it easier to write concise and expressive code that handles a wide range of values.
+4. Rust provides various shorthand notations for patterns, such as .. for matching the rest of a slice or array, and ..= for inclusive ranges. These notations can help simplify pattern matching code and make it more readable.
+5. if let and while let expressions in Rust are useful for handling optional values. For example, you might use them to check whether a variable contains a value, and then do something with that value if it does. This can help prevent runtime errors caused by trying to access None values.
+6. Rust's pattern matching syntax is similar to that of other programming languages like Scala and Haskell, but it has some unique features such as the ability to define custom patterns using the @ operator.
+7. Some benefits of using pattern matching in Rust include its ability to make code more concise and readable, its ability to handle complex data types easily, and its ability to prevent runtime errors by ensuring that all possible cases are handled.
+8. Some potential challenges associated with using pattern matching in Rust include the need to carefully consider all possible cases and the potential for complex code that is difficult to maintain.
+9. To practice and experiment with pattern matching in Rust, you might start by writing simple programs that use basic patterns like literals and variables, and then gradually work your way up to more complex patterns like structs and enums. The Rust documentation and other online resources can also be helpful for learning more about pattern matching in Rust.
+10. A real-world problem that you might solve using pattern matching in Rust could be parsing a file format that contains structured data. By using patterns to match against different parts of the file format, you could easily extract the data you need and transform it into a more useful format
+```
+
 <!--ts-->
+
 * [Pattern Syntax](#pattern-syntax)
 * [A. Matching Situations](#a-matching-situations)
-   * [Matching Literals](#matching-literals)
-   * [Matching Named Variables](#matching-named-variables)
-   * [Extra Conditionals with Match Guards](#extra-conditionals-with-match-guards)
-   * [Multiple Patterns](#multiple-patterns)
-   * [Matching Ranges of Values with ..=](#matching-ranges-of-values-with-)
+    * [Matching Literals](#matching-literals)
+    * [Matching Named Variables](#matching-named-variables)
+    * [Extra Conditionals with Match Guards](#extra-conditionals-with-match-guards)
+    * [Multiple Patterns](#multiple-patterns)
+    * [Matching Ranges of Values with ..=](#matching-ranges-of-values-with-)
 * [B. Destructuring to Break Apart Values](#b-destructuring-to-break-apart-values)
-   * [Destructuring Structs](#destructuring-structs)
-   * [Destructuring Enums](#destructuring-enums)
-   * [Destructuring <strong>Nested</strong> Structs and Enums](#destructuring-nested-structs-and-enums)
-   * [Destructuring Structs and Tuples](#destructuring-structs-and-tuples)
+    * [Destructuring Structs](#destructuring-structs)
+    * [Destructuring Enums](#destructuring-enums)
+    * [Destructuring <strong>Nested</strong> Structs and Enums](#destructuring-nested-structs-and-enums)
+    * [Destructuring Structs and Tuples](#destructuring-structs-and-tuples)
 * [C. Ignoring Values in a Pattern](#c-ignoring-values-in-a-pattern)
-   * [1. Ignoring an Entire Value with _](#1-ignoring-an-entire-value-with-_)
-   * [2. Ignoring Parts of a Value with a Nested _](#2-ignoring-parts-of-a-value-with-a-nested-_)
-   * [3. Ignoring an Unused Variable by Starting Its Name with _](#3-ignoring-an-unused-variable-by-starting-its-name-with-_)
-   * [4. Ignoring Remaining Parts of a Value with ..](#4-ignoring-remaining-parts-of-a-value-with-)
+    * [1. Ignoring an Entire Value with _](#1-ignoring-an-entire-value-with-_)
+    * [2. Ignoring Parts of a Value with a Nested _](#2-ignoring-parts-of-a-value-with-a-nested-_)
+    * [3. Ignoring an Unused Variable by Starting Its Name with _](#3-ignoring-an-unused-variable-by-starting-its-name-with-_)
+    * [4. Ignoring Remaining Parts of a Value with ..](#4-ignoring-remaining-parts-of-a-value-with-)
 * [Summary](#summary)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
@@ -74,7 +124,8 @@ named variables in `match` expressions:
 Let’s walk through what happens when the `match` expression runs:
 
 1. The pattern in the first match arm doesn’t match the defined value of `x`, so the code continues.
-2. The pattern in the second match arm introduces a new variable named `y` that will match any value inside a `Some` value.
+2. The pattern in the second match arm introduces a new variable named `y` that will match any value inside a `Some`
+   value.
 
 - Because we’re in a new scope inside the `match` expression, this is a new `y` variable, not the `y` we declared at
   the beginning with the value 10.
@@ -96,7 +147,8 @@ Let’s walk through what happens when the `match` expression runs:
 4. When the `match` expression is done, its scope ends, and so does the scope of
    the inner `y`. The last `println!` produces `at the end: x = Some(5), y = 10`.
 
-> To create a `match` expression that compares the values of the outer `x` and `y`, rather than introducing a shadowed variable, we would need to use a **match guard conditional** instead.
+> To create a `match` expression that compares the values of the outer `x` and `y`, rather than introducing a shadowed
+> variable, we would need to use a **match guard conditional** instead.
 
 We’ll talk about match guards later in the [“Extra
 Conditionals with Match Guards”](#extra-conditionals-with-match-guards)<!--
@@ -306,8 +358,10 @@ This example will print `Found an id in range: 5`.
    associated with the arm doesn’t have a variable that contains the actual value
    of the `id` field.
 
-- The `id` field’s value could have been 10, 11, or 12, but the code that goes with that pattern doesn’t know which it is.
-- The pattern code isn’t able to use the value from the `id` field, because we haven’t saved the `id` value in a variable.
+- The `id` field’s value could have been 10, 11, or 12, but the code that goes with that pattern doesn’t know which it
+  is.
+- The pattern code isn’t able to use the value from the `id` field, because we haven’t saved the `id` value in a
+  variable.
 
 3. In the last arm, where we’ve specified a variable without a range, we do have
    the value available to use in the arm’s code in a variable named `id`.
@@ -497,7 +551,8 @@ Let’s explore how and why to use each of these patterns.
 We’ve used the underscore as a wildcard pattern that will match any value but
 not bind to the value.
 
-This is especially useful as the last arm in a `match` expression, but we can also use it in any pattern, including function
+This is especially useful as the last arm in a `match` expression, but we can also use it in any pattern, including
+function
 parameters, as shown in Listing 18-17.
 
 ~~~admonish info title="Listing 18-17: Using *_* in a function signature" collapsible=true
