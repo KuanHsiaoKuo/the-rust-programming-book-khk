@@ -1,9 +1,15 @@
 # Deref(* operator): Treating Smart Pointers Like Regular References with the `Deref` Trait
 
+```admonish abstract title="Summarize made by chatGPT" collapsible=true
+1. It covers the Deref trait, which is used to implement the dereferencing operator (*), and how it can be implemented for custom types.
+2. The article also discusses the pitfalls of using dereferencing, including the possibility of creating dangling references, and provides guidance on how to avoid these issues. 
+3. Overall, the article emphasizes the importance of understanding and using dereferencing correctly to write safe and effective Rust code.
+
 - A regular reference is a type of pointer, and one way to think of a pointer is as an arrow to a value stored somewhere else.
 - Implementing the `Deref` trait allows you to customize the behavior of the *dereference operator* `*` (not to be confused with the multiplication or glob operator).
 - Without the `Deref` trait, the compiler can only dereference `&` references.
 - *Deref coercion* converts a reference to a type that implements the `Deref` trait into a reference to another type.
+```
 
 > Rust does deref coercion when it finds types and trait implementations in three cases:
 
@@ -13,13 +19,14 @@
 
 ----
 <!--ts-->
+
 * [Deref(* operator): Treating Smart Pointers Like Regular References with the Deref Trait](#deref-operator-treating-smart-pointers-like-regular-references-with-the-deref-trait)
-   * [Following the Pointer to the Value](#following-the-pointer-to-the-value)
-   * [Using Box&lt;T&gt; Like a Reference](#using-boxt-like-a-reference)
-   * [Defining Our Own Smart Pointer](#defining-our-own-smart-pointer)
-   * [Treating a Type Like a Reference by Implementing the Deref Trait](#treating-a-type-like-a-reference-by-implementing-the-deref-trait)
-   * [Implicit Deref Coercions with Functions and Methods](#implicit-deref-coercions-with-functions-and-methods)
-   * [DerefMut: How Deref Coercion Interacts with Mutability](#derefmut-how-deref-coercion-interacts-with-mutability)
+    * [Following the Pointer to the Value](#following-the-pointer-to-the-value)
+    * [Using Box&lt;T&gt; Like a Reference](#using-boxt-like-a-reference)
+    * [Defining Our Own Smart Pointer](#defining-our-own-smart-pointer)
+    * [Treating a Type Like a Reference by Implementing the Deref Trait](#treating-a-type-like-a-reference-by-implementing-the-deref-trait)
+    * [Implicit Deref Coercions with Functions and Methods](#implicit-deref-coercions-with-functions-and-methods)
+    * [DerefMut: How Deref Coercion Interacts with Mutability](#derefmut-how-deref-coercion-interacts-with-mutability)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 <!-- Added by: runner, at: Sun Apr  2 15:15:38 UTC 2023 -->
@@ -47,7 +54,8 @@ operator).
 > Note: there’s one big difference between the `MyBox<T>` type we’re about to build and the real `Box<T>`:
 
 - our version will not store its data on the heap.
-- We are focusing this example on `Deref`, so where the data is actually stored is less important than the pointer-like behavior.
+- We are focusing this example on `Deref`, so where the data is actually stored is less important than the pointer-like
+  behavior.
 
 <!-- Old link, do not remove -->
 <a id="following-the-pointer-to-the-value-with-the-dereference-operator"></a>
@@ -57,7 +65,8 @@ operator).
 > A regular reference is a type of pointer, and one way to think of a pointer is
 > as `an arrow` to a value stored somewhere else.
 
-In Listing 15-6, we create a reference to an `i32` value and then use the dereference operator to follow the reference to the value:
+In Listing 15-6, we create a reference to an `i32` value and then use the dereference operator to follow the reference
+to the value:
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -317,7 +326,8 @@ with a reference to a value of type `MyBox<String>`, as shown in Listing 15-12:
 didn’t have deref coercion</span>
 
 - The `(*m)` dereferences the `MyBox<String>` into a `String`.
-- Then the `&` and `[..]` take a string slice of the `String` that is equal to the whole string to match the signature of `hello`.
+- Then the `&` and `[..]` take a string slice of the `String` that is equal to the whole string to match the signature
+  of `hello`.
 - This code without deref coercions is harder to read, write, and understand with all of these symbols involved.
 - Deref coercion allows Rust to handle these conversions for us automatically.
 
@@ -352,9 +362,11 @@ operator on mutable references.
 
 - Rust will also coerce a mutable reference to an immutable one.
 - But the reverse is *not* possible: immutable references will never coerce to mutable references.
-- Because of the borrowing rules, if you have a mutable reference, that mutable reference must be the only reference to that data (otherwise, the program wouldn’t compile).
+- Because of the borrowing rules, if you have a mutable reference, that mutable reference must be the only reference to
+  that data (otherwise, the program wouldn’t compile).
 - Converting one mutable reference to one immutable reference will never break the borrowing rules.
-- Converting an immutable reference to a mutable reference would require that the initial immutable reference is the only immutable reference to that data, but the borrowing rules don’t guarantee that.
+- Converting an immutable reference to a mutable reference would require that the initial immutable reference is the
+  only immutable reference to that data, but the borrowing rules don’t guarantee that.
 
 > Therefore, Rust can’t make the
 > assumption that converting an immutable reference to a mutable reference is
