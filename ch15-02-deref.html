@@ -180,12 +180,25 @@
                     <nav class="pagetoc"></nav>
                 </div>
                 <h1 id="deref-operator-treating-smart-pointers-like-regular-references-with-the-deref-trait"><a class="header" href="#deref-operator-treating-smart-pointers-like-regular-references-with-the-deref-trait">Deref(* operator): Treating Smart Pointers Like Regular References with the <code>Deref</code> Trait</a></h1>
+<details id="admonition-summarize-made-by-chatgpt" class="admonition abstract">
+<summary class="admonition-title">
+<p>Summarize made by chatGPT</p>
+<p><a class="admonition-anchor-link" href="#admonition-summarize-made-by-chatgpt"></a></p>
+</summary>
+<div>
+<ol>
+<li>It covers the Deref trait, which is used to implement the dereferencing operator (*), and how it can be implemented for custom types.</li>
+<li>The article also discusses the pitfalls of using dereferencing, including the possibility of creating dangling references, and provides guidance on how to avoid these issues. </li>
+<li>Overall, the article emphasizes the importance of understanding and using dereferencing correctly to write safe and effective Rust code.</li>
+</ol>
 <ul>
 <li>A regular reference is a type of pointer, and one way to think of a pointer is as an arrow to a value stored somewhere else.</li>
 <li>Implementing the <code>Deref</code> trait allows you to customize the behavior of the <em>dereference operator</em> <code>*</code> (not to be confused with the multiplication or glob operator).</li>
 <li>Without the <code>Deref</code> trait, the compiler can only dereference <code>&amp;</code> references.</li>
 <li><em>Deref coercion</em> converts a reference to a type that implements the <code>Deref</code> trait into a reference to another type.</li>
 </ul>
+</div>
+</details>
 <blockquote>
 <p>Rust does deref coercion when it finds types and trait implementations in three cases:</p>
 </blockquote>
@@ -209,7 +222,7 @@
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  2 15:15:38 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr  3 15:42:17 UTC 2023 -->
 <!--te-->
 <p>Implementing the <code>Deref</code> trait allows you to customize the behavior of the
 <em>dereference operator</em> <code>*</code> (not to be confused with the multiplication or glob
@@ -235,7 +248,8 @@ or smart pointers.</li>
 </blockquote>
 <ul>
 <li>our version will not store its data on the heap.</li>
-<li>We are focusing this example on <code>Deref</code>, so where the data is actually stored is less important than the pointer-like behavior.</li>
+<li>We are focusing this example on <code>Deref</code>, so where the data is actually stored is less important than the pointer-like
+behavior.</li>
 </ul>
 <!-- Old link, do not remove -->
 <p><a id="following-the-pointer-to-the-value-with-the-dereference-operator"></a></p>
@@ -244,7 +258,8 @@ or smart pointers.</li>
 <p>A regular reference is a type of pointer, and one way to think of a pointer is
 as <code>an arrow</code> to a value stored somewhere else.</p>
 </blockquote>
-<p>In Listing 15-6, we create a reference to an <code>i32</code> value and then use the dereference operator to follow the reference to the value:</p>
+<p>In Listing 15-6, we create a reference to an <code>i32</code> value and then use the dereference operator to follow the reference
+to the value:</p>
 <p><span class="filename">Filename: src/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust  editable">fn main() {
     let x = 5;
@@ -616,7 +631,8 @@ of type <code>&amp;MyBox&lt;String&gt;</code>.</p>
 didn’t have deref coercion</span></p>
 <ul>
 <li>The <code>(*m)</code> dereferences the <code>MyBox&lt;String&gt;</code> into a <code>String</code>.</li>
-<li>Then the <code>&amp;</code> and <code>[..]</code> take a string slice of the <code>String</code> that is equal to the whole string to match the signature of <code>hello</code>.</li>
+<li>Then the <code>&amp;</code> and <code>[..]</code> take a string slice of the <code>String</code> that is equal to the whole string to match the signature
+of <code>hello</code>.</li>
 <li>This code without deref coercions is harder to read, write, and understand with all of these symbols involved.</li>
 <li>Deref coercion allows Rust to handle these conversions for us automatically.</li>
 </ul>
@@ -655,9 +671,11 @@ implements <code>Deref</code> to some type <code>U</code>, you can get a <code>&
 <ul>
 <li>Rust will also coerce a mutable reference to an immutable one.</li>
 <li>But the reverse is <em>not</em> possible: immutable references will never coerce to mutable references.</li>
-<li>Because of the borrowing rules, if you have a mutable reference, that mutable reference must be the only reference to that data (otherwise, the program wouldn’t compile).</li>
+<li>Because of the borrowing rules, if you have a mutable reference, that mutable reference must be the only reference to
+that data (otherwise, the program wouldn’t compile).</li>
 <li>Converting one mutable reference to one immutable reference will never break the borrowing rules.</li>
-<li>Converting an immutable reference to a mutable reference would require that the initial immutable reference is the only immutable reference to that data, but the borrowing rules don’t guarantee that.</li>
+<li>Converting an immutable reference to a mutable reference would require that the initial immutable reference is the
+only immutable reference to that data, but the borrowing rules don’t guarantee that.</li>
 </ul>
 <blockquote>
 <p>Therefore, Rust can’t make the
