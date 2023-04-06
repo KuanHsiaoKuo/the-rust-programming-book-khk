@@ -4,6 +4,8 @@
 - [Overviews](overviews.md)
     - [Rust By Examples](overviews/rbe_radial_tree_embed.html)
 - [Rust Topics](title-page.md)
+    - [chatGPT Rust Q&A]()
+      [Experience & Pitfall](chatgpt_rust/rust_grammar_experience_pitfalls
     - [Associated Items]()
         - [Associated type, Generic associate types](topics/at_gat.md)
         - [Associated Types]()
