@@ -6,6 +6,8 @@
 - [Rust Topics](title-page.md)
     - [chatGPT Rust Q&A]()
       [Experience & Pitfall](chatgpt_rust/rust_grammar_experience_pitfalls)
+    - [Rust Video Summary](rust_video_summary)
+        - [Stop Duplicating Your Code](rust_video_summary/stop_duplicating_your_code.md)
     - [Associated Items]()
         - [Associated type, Generic associate types](topics/at_gat.md)
         - [Associated Types]()
