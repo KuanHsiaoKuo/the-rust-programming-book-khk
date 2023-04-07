@@ -183,8 +183,38 @@
                 <h1 id="resources"><a class="header" href="#resources">Resources</a></h1>
 <p><img src="https://raw.githubusercontent.com/KuanHsiaoKuo/writing_materials/main/imgs/unicorn.png" alt="unicorn" /></p>
 <!--ts-->
+<ul>
+<li><a href="not_involved_resources.html#resources">Resources</a>
+<ul>
+<li><a href="not_involved_resources.html#rust-official">Rust Official</a>
+<ul>
+<li><a href="not_involved_resources.html#rust-lang-home">Rust Lang Home</a></li>
+<li><a href="not_involved_resources.html#this-week-in-rust">This Week in Rust</a></li>
+<li><a href="not_involved_resources.html#rustup-components-history">Rustup Components History</a></li>
+<li><a href="not_involved_resources.html#cratesio">Crates.io</a></li>
+<li><a href="not_involved_resources.html#rust-blog">Rust Blog</a></li>
+<li><a href="not_involved_resources.html#rustc-dev-guide">RustC Dev Guide</a></li>
+<li><a href="not_involved_resources.html#rust-vim">Rust Vim</a></li>
+<li><a href="not_involved_resources.html#module-arch">Module Arch</a></li>
+<li><a href="not_involved_resources.html#rust-lang---compiler-team">Rust Lang - Compiler Team</a></li>
+<li><a href="not_involved_resources.html#standard-library-developers-guide">Standard Library Developers Guide</a></li>
+</ul>
+</li>
+<li><a href="not_involved_resources.html#awesome-series">awesome series</a>
+<ul>
+<li><a href="not_involved_resources.html#rust-unofficialawesome-rust">rust-unofficial/awesome-rust</a></li>
+<li><a href="not_involved_resources.html#rust-embeddedasesome-embedded-rust">rust-embedded/asesome-embedded-rust</a></li>
+<li><a href="not_involved_resources.html#rust-in-blockchainawesome-blockchain-rust">rust-in-blockchain/awesome-blockchain-rust</a></li>
+<li><a href="not_involved_resources.html#tako8kiawesome-alternatives-in-rust">TaKO8Ki/awesome-alternatives-in-rust</a></li>
+<li><a href="not_involved_resources.html#rustbegginersawesome-rust-mentors">RustBegginers/awesome-rust-mentors</a></li>
+<li><a href="not_involved_resources.html#awesome-rust-comawesome-rust">awesome-rust-com/awesome-rust</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:50:07 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:09:02 UTC 2023 -->
 <!--te-->
 <h2 id="rust-official"><a class="header" href="#rust-official">Rust Official</a></h2>
 <h3 id="rust-lang-home"><a class="header" href="#rust-lang-home">Rust Lang Home</a></h3>
@@ -291,7 +321,218 @@ of the Rust Book, featuring: quizzes, highlighting, visualizations, and
 more</strong>: <a href="https://rust-book.cs.brown.edu">https://rust-book.cs.brown.edu</a></p>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="chatgpt-rust-prompts"><a class="header" href="#chatgpt-rust-prompts">chatGPT Rust Prompts</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="experience--pitfall"><a class="header" href="#experience--pitfall">Experience &amp; Pitfall</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="rust-grammar-points-experience--pitfalls"><a class="header" href="#rust-grammar-points-experience--pitfalls">Rust Grammar Points Experience &amp; Pitfalls</a></h1>
+<blockquote>
+<p>Suppose you are a rust programmer with five years of development experience. During the development process, you deeply feel the difference between rust and python and golang, as well as the characteristics of rust itself. Please list 10-15 features of rust in the development process, and inform them in the following format:</p>
+</blockquote>
+<pre><code class="language-shell">Grammar Points: Ownership Mechanisms 
+
+Usage experience: variables can only be used once, if you want to use it multiple times, you have to consider using references. Under the ownership mechanism, factors such as borrowing situation and life cycle have to be considered 
+
+Common pitfalls: After a variable is assigned once, it often fails to compile, because the ownership mechanism must be considered 
+</code></pre>
+<ol>
+<li>
+<p>Ownership Mechanisms</p>
+<ul>
+<li>Usage experience: Variables can only be used once; if you want to use them multiple times, you have to consider using references. Under the ownership mechanism, factors such as borrowing situation and life cycle have to be considered.</li>
+<li>Common pitfalls: After a variable is assigned once, it often fails to compile because the ownership mechanism must be considered.</li>
+</ul>
+</li>
+<li>
+<p>Memory Safety</p>
+<ul>
+<li>Usage experience: Rust has a strict memory safety mechanism that prevents common programming errors such as null pointer dereferencing, buffer overflows, and use-after-free errors.</li>
+<li>Common pitfalls: The strict memory safety mechanism can sometimes make the development process more cumbersome and may require more thought and planning.</li>
+</ul>
+</li>
+<li>
+<p>Error Handling</p>
+<ul>
+<li>Usage experience: Rust has a robust error handling mechanism that uses the Result and Option enums to provide detailed error messages and handle errors gracefully.</li>
+<li>Common pitfalls: If not handled properly, errors can propagate throughout the program and cause unexpected behavior.</li>
+</ul>
+</li>
+<li>
+<p>Performance</p>
+<ul>
+<li>Usage experience: Rust is designed to be a high-performance language, with a focus on low-level control and optimization. It has zero-cost abstractions and supports low-level programming features such as inline assembly.</li>
+<li>Common pitfalls: Writing high-performance code in Rust can sometimes require more complex code and a deeper understanding of how the underlying system works.</li>
+</ul>
+</li>
+<li>
+<p>Traits</p>
+<ul>
+<li>Usage experience: Rust’s trait system allows for powerful abstractions and code reuse. Traits define behavior that types can implement, allowing for generic programming and code that can work with different types.</li>
+<li>Common pitfalls: The trait system can be complex and may require a deeper understanding of Rust’s type system.</li>
+</ul>
+</li>
+<li>
+<p>Cargo Package Manager</p>
+<ul>
+<li>Usage experience: Rust comes with a built-in package manager called Cargo, which makes it easy to manage dependencies, build projects, and publish libraries.</li>
+<li>Common pitfalls: Managing dependencies and dealing with versioning can still be challenging, especially in large projects.</li>
+</ul>
+</li>
+<li>
+<p>Pattern Matching</p>
+<ul>
+<li>Usage experience: Rust’s pattern matching mechanism allows for concise and expressive code, making it easy to handle complex data structures and control flow.</li>
+<li>Common pitfalls: The syntax for pattern matching can be verbose and may require more code than other languages.</li>
+</ul>
+</li>
+<li>
+<p>Macros</p>
+<ul>
+<li>Usage experience: Rust’s macro system allows for powerful metaprogramming, enabling code generation and manipulation at compile time.</li>
+<li>Common pitfalls: Macros can be difficult to write and understand, and may introduce unexpected behavior if not used carefully.</li>
+</ul>
+</li>
+<li>
+<p>Macros 2.0 </p>
+<ul>
+<li>Usage experience: Rust’s Macros 2.0 system allows developers to write more powerful and flexible macros, making it easier to generate code that is both concise and expressive. </li>
+<li>Common pitfalls: Macros 2.0 can be challenging to write and debug, and can lead to unexpected behavior if not used properly.</li>
+</ul>
+</li>
+<li>
+<p>Functional Programming</p>
+<ul>
+<li>Usage experience: Rust supports functional programming concepts such as closures, higher-order functions, and immutable data structures, allowing for expressive and concise code.</li>
+<li>Common pitfalls: The syntax and terminology of functional programming can be unfamiliar to some programmers, and functional code may not always be as performant as imperative code.</li>
+</ul>
+</li>
+<li>
+<p>Lifetime Annotations</p>
+<ul>
+<li>
+<p>Usage experience: Rust requires explicit lifetime annotations to manage memory allocation and deallocation, ensuring that the code is safe and efficient.</p>
+</li>
+<li>
+<p>Common pitfalls: Lifetime annotations can be confusing and error-prone, especially for complex data structures and code.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Async/Await</p>
+<ul>
+<li>Usage experience: Rust has native support for asynchronous programming, with the async/await syntax making it easier to write asynchronous code that is both efficient and easy to reason about.</li>
+<li>Common pitfalls: Async/await syntax can be difficult to understand for developers unfamiliar with asynchronous programming, and it can also introduce complex control flow.</li>
+</ul>
+</li>
+<li>
+<p>Unsafe Code</p>
+<ul>
+<li>Usage experience: Rust allows developers to write unsafe code for situations where low-level control and optimization are necessary, but it must be carefully reviewed and handled with caution.</li>
+<li>Common pitfalls: Unsafe code can be challenging to write and debug, and it can introduce security vulnerabilities and undefined behavior.</li>
+</ul>
+</li>
+<li>
+<p>Trait Bounds</p>
+<ul>
+<li>Usage experience: Rust’s trait bounds allow developers to specify constraints on generic types, ensuring that they have the required functionality to be used in a particular context.</li>
+<li>Common pitfalls: Specifying trait bounds can be challenging, especially for complex code, and can lead to confusing error messages.</li>
+</ul>
+</li>
+<li>
+<p>Smart Pointers</p>
+<ul>
+<li>Usage experience: Rust provides several types of smart pointers such as Rc and Arc, which allow for shared ownership and reference counting, making it easier to manage complex data structures.</li>
+<li>Common pitfalls: Using smart pointers can introduce overhead and performance penalties, and can also make the code more complex and error-prone.</li>
+</ul>
+</li>
+<li>
+<p>Type Inference</p>
+<ul>
+<li>Usage experience: Rust has a powerful type inference system that allows the compiler to infer the type of a variable, making the code more concise and readable.</li>
+<li>Common pitfalls: Type inference can sometimes lead to unexpected behavior, especially when combined with complex expressions or nested data structures.</li>
+</ul>
+</li>
+<li>
+<p>Algebraic Data Types</p>
+<ul>
+<li>Usage experience: Rust’s algebraic data types such as enums and structs with named fields provide a flexible and expressive way to define data structures and their behavior.</li>
+<li>Common pitfalls: Algebraic data types can be challenging to work with, especially for developers unfamiliar with functional programming concepts.</li>
+</ul>
+</li>
+<li>
+<p>Trait Objects</p>
+<ul>
+<li>Usage experience: Rust’s trait objects allow for dynamic dispatch and polymorphism, making it easier to write generic code that can work with different types.</li>
+<li>Common pitfalls: Using trait objects can lead to performance penalties, and can also make the code more complex and harder to reason about.</li>
+</ul>
+</li>
+<li>
+<p>Iterators</p>
+<ul>
+<li>Usage experience: Rust’s iterator system provides a flexible and expressive way to work with collections and sequences, making it easier to write concise and efficient code.</li>
+<li>Common pitfalls: Iterators can be challenging to work with, especially for developers unfamiliar with functional programming concepts.</li>
+</ul>
+</li>
+<li>
+<p>Benchmarking</p>
+<ul>
+<li>Usage experience: Rust has a built-in benchmarking framework that allows developers to measure the performance of their code and optimize it accordingly.</li>
+<li>Common pitfalls: Benchmarking can be time-consuming and can lead to over-optimization, resulting in code that is hard to understand and maintain.</li>
+</ul>
+</li>
+<li>
+<p>Closures</p>
+<ul>
+<li>Usage experience: Rust’s closures allow developers to define anonymous functions that can capture and manipulate variables from their surrounding environment.</li>
+<li>Common pitfalls: Closures can be challenging to understand, especially for developers unfamiliar with functional programming concepts.</li>
+</ul>
+</li>
+<li>
+<p>Concurrency</p>
+<ul>
+<li>Usage experience: Rust’s concurrency primitives such as threads and channels allow developers to write concurrent code that is both safe and efficient.</li>
+<li>Common pitfalls: Concurrency can introduce complex control flow and race conditions, and can be challenging to debug and optimize.</li>
+</ul>
+</li>
+<li>
+<p>Documentation </p>
+<ul>
+<li>Usage experience: Rust’s documentation system encourages developers to write comprehensive and readable documentation, making it easier for others to understand and use their code. </li>
+<li>Common pitfalls: Documentation can be time-consuming and can lead to neglecting code quality and maintainability.</li>
+</ul>
+</li>
+<li>
+<p>Testing </p>
+<ul>
+<li>Usage experience: Rust’s testing framework makes it easy to write and run tests, ensuring that the code is correct and reliable. </li>
+<li>Common pitfalls: Testing can be time-consuming and can lead to over-testing, resulting in code that is hard to understand and maintain.</li>
+</ul>
+</li>
+<li>
+<p>Memory Management </p>
+<ul>
+<li>Usage experience: Rust’s memory management system ensures that the code is both safe and efficient, with no runtime overhead or garbage collection. </li>
+<li>Common pitfalls: Memory management can be challenging to understand, especially for developers unfamiliar with low-level programming concepts.</li>
+</ul>
+</li>
+<li>
+<p>Functional Programming </p>
+<ul>
+<li>Usage experience: Rust’s functional programming features such as higher-order functions and closures allow developers to write concise and expressive code. </li>
+<li>Common pitfalls: Functional programming can be challenging to understand, especially for developers unfamiliar with functional programming concepts.</li>
+</ul>
+</li>
+<li>
+<p>Foreign Function Interface (FFI) </p>
+<ul>
+<li>Usage experience: Rust’s FFI allows developers to call functions from other programming languages and libraries, making it easier to integrate Rust code with existing systems. </li>
+<li>Common pitfalls: FFI can introduce security vulnerabilities and undefined behavior, and can be challenging to debug and optimize.</li>
+</ul>
+</li>
+<li>
+<p>Unsafe Rust </p>
+<ul>
+<li>Usage experience: Rust’s unsafe features allow developers to write low-level code that bypasses the safety checks of the compiler, making it possible to write code that is both safe and fast. </li>
+<li>Common pitfalls: Unsafe Rust can introduce memory unsafety and undefined behavior, and can be challenging to debug and optimize.</li>
+</ul>
+</li>
+</ol>
 <div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="stop-duplicating-code-generics-traits-lifetimes"><a class="header" href="#stop-duplicating-code-generics-traits-lifetimes">Stop Duplicating Code: Generics, Traits, Lifetimes</a></h1>
 <!--ts-->
 <ul>
@@ -355,7 +596,7 @@ more</strong>: <a href="https://rust-book.cs.brown.edu">https://rust-book.cs.bro
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:50:34 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:09:57 UTC 2023 -->
 <!--te-->
 <h2 id="introduction-to-generics"><a class="header" href="#introduction-to-generics">Introduction to Generics</a></h2>
 <p>Section Overview: In this section, we will learn about generics and how they can be used with functions, methods, and
@@ -562,7 +803,7 @@ https://videohighlight.com/video/summary/JLfEiJhpTbE</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:50:42 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:10:14 UTC 2023 -->
 <!--te-->
 <h2 id="in-rust-what-is-associate-type-what-is-generic-associate-type"><a class="header" href="#in-rust-what-is-associate-type-what-is-generic-associate-type">in rust, what is associate type, what is generic associate type.</a></h2>
 <p>In Rust, an associate type is a type placeholder that is defined within the bounds of a trait. It allows a trait to specify that concrete types used to implement the trait must provide a specific type, without requiring the trait to know what that type is.</p>
@@ -2520,7 +2761,7 @@ change the type of the value but reuse the same name.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:36 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:03 UTC 2023 -->
 <!--te-->
 <p>As mentioned in the <a href="ch02-00-guessing-game-tutorial.html#storing-values-with-variables">“Storing Values with
 Variables”</a><!-- ignore --> section, by default,
@@ -3295,7 +3536,7 @@ if you add a semicolon to the end of an expression, you turn it into a statement
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:37 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:04 UTC 2023 -->
 <!--te-->
 <p>Functions are prevalent in Rust code. You’ve already seen one of the most
 important functions in the language:</p>
@@ -6224,7 +6465,7 @@ continue to refactor this code by turning the <code>area</code> function into an
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:38 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:07 UTC 2023 -->
 <!--te-->
 <h2 id="similar-and-difference"><a class="header" href="#similar-and-difference">Similar and Difference</a></h2>
 <blockquote>
@@ -8775,7 +9016,7 @@ lines of text in a file or the prices of items in a shopping cart.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:41 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:11 UTC 2023 -->
 <!--te-->
 <h2 id="creating-a-new-vector"><a class="header" href="#creating-a-new-vector">Creating a New Vector</a></h2>
 <p>To create a new empty vector, we call the <code>Vec::new</code> function, as shown in
@@ -9163,7 +9404,7 @@ valid.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:41 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:12 UTC 2023 -->
 <!--te-->
 <p>We talked about strings in Chapter 4, but we’ll look at them in more depth now.</p>
 <blockquote>
@@ -9704,7 +9945,7 @@ the values must have the same type.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:41 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:12 UTC 2023 -->
 <!--te-->
 <p>The last of our common collections is the <em>hash map</em>.</p>
 <blockquote>
@@ -10096,7 +10337,7 @@ execution.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:42 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:13 UTC 2023 -->
 <!--te-->
 <p>Sometimes, bad things happen in your code, and there’s nothing you can do about
 it. In these cases, Rust has the <code>panic!</code> macro. There are two ways to cause a
@@ -10289,7 +10530,7 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:42 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:13 UTC 2023 -->
 <!--te-->
 <p>Most errors aren’t serious enough to require the program to stop entirely.</p>
 <details id="admonition-sometimes-when-a-function-fails-its-for-a-reason-that-you-can-easily-interpret-and-respond-to" class="admonition tip">
@@ -11296,7 +11537,7 @@ cases.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:42 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:13 UTC 2023 -->
 <!--te-->
 <p>So how do you decide when you should call <code>panic!</code> and when you should return
 <code>Result</code>? When code panics, there’s no way to recover. You could call <code>panic!</code>
@@ -11699,7 +11940,7 @@ values. How would we eliminate that duplication? Let’s find out!</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:42 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:14 UTC 2023 -->
 <!--te-->
 <p>We use generics to create definitions for items like function signatures or
 structs, which we can then use with many different concrete data types. </p>
@@ -12267,7 +12508,7 @@ at runtime.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:42 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:15 UTC 2023 -->
 <!--te-->
 <p>A <em>trait</em> defines functionality a particular type has and can share with other
 types. We can use traits to define shared behavior in an abstract way. We can
@@ -12861,7 +13102,7 @@ generics.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:43 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:15 UTC 2023 -->
 <!--te-->
 <blockquote>
 <p>Lifetimes are <strong>another kind of generic</strong> that we’ve already been using.</p>
@@ -17846,7 +18087,7 @@ code, we’ll devote this entire chapter to them.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:45 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:20 UTC 2023 -->
 <!--te-->
 <p>Rust’s closures are anonymous functions you can save in a variable or pass as
 arguments to other functions.</p>
@@ -18597,7 +18838,7 @@ as we continue!</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:45 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:20 UTC 2023 -->
 <!--te-->
 <p>The iterator pattern allows you to perform some task on a sequence of items in
 turn. An iterator is responsible for the logic of iterating over each item and
@@ -20599,7 +20840,7 @@ type exposes an API for mutating an interior value.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:47 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:23 UTC 2023 -->
 <!--te-->
 <h2 id="start-from-pointer"><a class="header" href="#start-from-pointer">Start from pointer</a></h2>
 <blockquote>
@@ -20725,7 +20966,7 @@ type exposes an API for mutating an interior value.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:47 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:23 UTC 2023 -->
 <!--te-->
 <p>Implementing the <code>Deref</code> trait allows you to customize the behavior of the
 <em>dereference operator</em> <code>*</code> (not to be confused with the multiplication or glob
@@ -21224,7 +21465,7 @@ if you want to force a value to be dropped before the end of its scope.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:48 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:24 UTC 2023 -->
 <!--te-->
 <h2 id="just-like-context-manager-in-python"><a class="header" href="#just-like-context-manager-in-python">Just like Context Manager in Python</a></h2>
 <p>In some languages, for some types, the programmer must call code to free memory
@@ -21470,7 +21711,7 @@ library.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:47 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:23 UTC 2023 -->
 <!--te-->
 <p>The most straightforward smart pointer is a <em>box</em>, whose type is written
 <code>Box&lt;T&gt;</code>:</p>
@@ -21845,7 +22086,7 @@ code, we only need to consider the deep-copy clones and can disregard calls to
 <li><a href="ch15-04-rc.html#cloning-an-rct-increases-the-reference-count">Cloning an Rc&lt;T&gt; Increases the Reference Count</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:48 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:24 UTC 2023 -->
 <!--te-->
 <p>In the majority of cases, ownership is clear: you know exactly which variable
 owns a given value.</p>
@@ -22226,7 +22467,7 @@ immutable.</li>
 <li><a href="ch15-05-interior-mutability.html#having-multiple-owners-of-mutable-data-by-combining-rct-and-refcellt">Having Multiple Owners of Mutable Data by Combining Rc&lt;T&gt; and RefCell&lt;T&gt;</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:48 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:25 UTC 2023 -->
 <!--te-->
 <h2 id="interior-mutability-1"><a class="header" href="#interior-mutability-1">Interior Mutability</a></h2>
 <p><em>Interior mutability</em> is a design pattern in Rust that allows you to mutate
@@ -22992,7 +23233,7 @@ structures.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:48 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:25 UTC 2023 -->
 <!--te-->
 <p>Rust’s memory safety guarantees make it difficult, but not impossible, to
 accidentally create memory that is never cleaned up (known as a <em>memory leak</em>).</p>
@@ -24802,7 +25043,7 @@ Rust.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:50 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:28 UTC 2023 -->
 <!--te-->
 <h2 id="compare-implementing-trait-with-trait-bounds-and-trait-objects"><a class="header" href="#compare-implementing-trait-with-trait-bounds-and-trait-objects">Compare implementing trait with trait bounds and trait objects</a></h2>
 <ol>
@@ -26191,7 +26432,7 @@ a clear way.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:51 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:29 UTC 2023 -->
 <!--te-->
 <p>Patterns pop up in a number of places in Rust, and you’ve been using them a lot
 without realizing it! This section discusses all the places where patterns are
@@ -26710,7 +26951,7 @@ values.</li>
 <li><a href="ch18-03-pattern-syntax.html#summary">Summary</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:51 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:30 UTC 2023 -->
 <!--te-->
 <p>In this section, we gather all the syntax valid in patterns and discuss why and
 when you might want to use each one.</p>
@@ -28208,7 +28449,7 @@ annotation makes it easier to track down the source of problems when they occur.
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:51 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:31 UTC 2023 -->
 <!--te-->
 <p>We first covered traits in the <a href="ch10-02-traits.html#traits-defining-shared-behavior">“Traits: Defining Shared
 Behavior”</a><!-- ignore --> section of Chapter
@@ -29583,7 +29824,7 @@ pointer. In this case, we’ve chosen a reference.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:52 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:08:32 UTC 2023 -->
 <!--te-->
 <p>This section explores some advanced features related to functions and closures,
 including function pointers and returning closures.</p>
@@ -33240,7 +33481,7 @@ macros and specifying attributes on an item.</p>
 * <a href="appendix-03-derivable-traits.html#copy">Copy</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:33 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:07:56 UTC 2023 -->
 <!--te-->
 <p>In various places in the book, we’ve discussed the <code>derive</code> attribute, which
 you can apply to a struct or enum definition.</p>
@@ -34418,8 +34659,20 @@ RGB (0, 0, 0) 0x000000
 <p><a href="https://doc.rust-lang.org/std/fmt/"><code>std::fmt</code></a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="primitives"><a class="header" href="#primitives">Primitives</a></h1>
 <!--ts-->
+<ul>
+<li><a href="rust_by_example_src/primitives.html#primitives">Primitives</a>
+<ul>
+<li><a href="rust_by_example_src/primitives.html#scalar-types">Scalar Types</a></li>
+<li><a href="rust_by_example_src/primitives.html#compound-types">Compound Types</a>
+<ul>
+<li><a href="rust_by_example_src/primitives.html#see-also">See also:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:50:23 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:09:37 UTC 2023 -->
 <!--te-->
 <p>Rust provides access to a wide variety of <code>primitives</code>. A sample includes:</p>
 <ol>
@@ -36581,7 +36834,7 @@ difference in the types of iteration.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="destructuring"><a class="header" href="#destructuring">Destructuring</a></h1>
 <!--ts-->
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:50:15 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:09:20 UTC 2023 -->
 <!--te-->
 <p>A <code>match</code> block can destructure items in a variety of ways.</p>
 <h2 id="destructuring-tuples"><a class="header" href="#destructuring-tuples">Destructuring Tuples</a></h2>
@@ -43544,7 +43797,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:50:25 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:09:41 UTC 2023 -->
 <!--te-->
 <p>Rust has a few reserved lifetime names.</p>
 <p>One of those is <code>'static</code>.</p>
@@ -46196,7 +46449,7 @@ includes support for writing software tests within the language itself.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:50:30 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:09:51 UTC 2023 -->
 <!--te-->
 <ul>
 <li>Tests are Rust functions that verify that the non-test code is functioning in the expected manner.</li>
@@ -46506,8 +46759,23 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 </details>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="documentation-cargo-doc"><a class="header" href="#documentation-cargo-doc">Documentation: cargo doc</a></h1>
 <!--ts-->
+<ul>
+<li><a href="rust_by_example_src/meta/doc.html#documentation-cargo-doc">Documentation: cargo doc</a>
+<ul>
+<li><a href="rust_by_example_src/meta/doc.html#doc-comments">Doc comments</a></li>
+<li><a href="rust_by_example_src/meta/doc.html#doc-attributes">Doc attributes</a>
+<ul>
+<li><a href="rust_by_example_src/meta/doc.html#inline">inline</a></li>
+<li><a href="rust_by_example_src/meta/doc.html#no_inline">no_inline</a></li>
+<li><a href="rust_by_example_src/meta/doc.html#hidden">hidden</a></li>
+<li><a href="rust_by_example_src/meta/doc.html#see-also">See also:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:50:22 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:09:34 UTC 2023 -->
 <!--te-->
 <p>Use <code>cargo doc</code> to build documentation in <code>target/doc</code>.</p>
 <p>Use <code>cargo test</code> to run all tests (including documentation tests), and <code>cargo test --doc</code> to only run documentation tests.</p>
@@ -46926,7 +47194,7 @@ mod tests {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:50:33 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:09:55 UTC 2023 -->
 <!--te-->
 <p>As an introduction to this section, to borrow from <a href="https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html">the official docs</a>:</p>
 <blockquote>
@@ -47013,7 +47281,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:50:33 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:09:55 UTC 2023 -->
 <!--te-->
 <p>Rust provides support for <code>inline assembly</code> via the <code>asm!</code> macro.</p>
 <blockquote>
@@ -51642,7 +51910,7 @@ defines exceptions for several standard library modules.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:31 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:07:53 UTC 2023 -->
 <!--te-->
 <p>This chapter of the guide documents some ways to interact with Python code from Rust:</p>
 <ul>
@@ -52719,7 +52987,7 @@ the chapter on <a href="PyO3_guides/src/./memory.html">memory management</a> for
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Fri Apr  7 14:49:26 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr  7 15:07:43 UTC 2023 -->
 <!--te-->
 <p>This chapter of the guide goes into detail on how to build and distribute projects using PyO3. </p>
 <ol>
