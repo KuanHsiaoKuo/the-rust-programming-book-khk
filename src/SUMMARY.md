@@ -22,6 +22,7 @@
             - [The Drop Check](rust_video_summary/curst_of_rust/the_drop_check.md)
         - [Impl Rust](rust_video_summary/impl_rust/impl_rust.md)
             - [Solving Distributed System Challenges](rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.md)
+        - [Open-Source streams](rust_video_summary/open_source_streams/open_source_streams.md)
         - [Stop Duplicating Your Code](rust_video_summary/stop_duplicating_your_code.md)
         - [Rust Crash Course](rust_video_summary/rust_crash_course_rustlang.md)
     
