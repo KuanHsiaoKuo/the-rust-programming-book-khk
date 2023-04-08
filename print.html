@@ -214,7 +214,7 @@
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:32 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:59 UTC 2023 -->
 <!--te-->
 <h2 id="rust-official"><a class="header" href="#rust-official">Rust Official</a></h2>
 <h3 id="rust-lang-home"><a class="header" href="#rust-lang-home">Rust Lang Home</a></h3>
@@ -533,10 +533,188 @@ Common pitfalls: After a variable is assigned once, it often fails to compile, b
 </ul>
 </li>
 </ol>
-<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="lifetime-annotations"><a class="header" href="#lifetime-annotations">Lifetime Annotations</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><ul>
+<li><a href="https://videohighlight.com/">Video Highlight</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="lifetime-annotations"><a class="header" href="#lifetime-annotations">Lifetime Annotations</a></h1>
 <!--ts-->
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#lifetime-annotations">Lifetime Annotations</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#introduction">Introduction</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#background-information">Background Information</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#purpose-of-video">Purpose of Video</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#logistics">Logistics</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#getting-started-with-cargo">Getting Started with Cargo</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#starting-a-new-project-with-cargo">Starting a New Project with Cargo</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#introducing-stir_split-library">Introducing stir_split Library</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#introduction-to-string-split">Introduction to String Split</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#building-string-split">Building String Split</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#lifetimes">Lifetimes</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#quality-comparison-between-iterators">Quality Comparison Between Iterators</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#all-loops-desugar-to-loop-with-a-break-condition">All Loops Desugar To Loop With A Break Condition</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#writing-code-for-string-split">Writing Code for String Split</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#remaining-questions">Remaining Questions</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#implementation-of-split-function">Implementation of Split Function</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#implementing-next">Implementing Next</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#using-self-as-a-preferred-way-of-implementing-cascade">Using Self as a Preferred Way of Implementing Cascade</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#associated-types-vs-generics">Associated Types vs Generics</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#match-vs-if-lets-sum">Match vs If Let’s Sum</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#compiling-errors-and-lifetime-specifiers">Compiling Errors and Lifetime Specifiers</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#missing-lifetime-specifier-error">Missing Lifetime Specifier Error</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#adding-lifetime-specifiers">Adding Lifetime Specifiers</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#conclusion-and-bug-fixing">Conclusion and Bug Fixing</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#bug-fixing">Bug Fixing</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#understanding-lifetimes-in-rust">Understanding Lifetimes in Rust</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#how-pointers-work-with-iterators">How Pointers Work with Iterators</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#lifetime-of-references">Lifetime of References</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#specifying-lifetimes">Specifying Lifetimes</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#conclusion-1">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#introduction-to-lifetimes">Introduction to Lifetimes</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#what-are-lifetimes">What are Lifetimes?</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#anonymous-lifetimes">Anonymous Lifetimes</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#lifetime-errors">Lifetime Errors</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#understanding-lifetimes-in-rust-1">Understanding Lifetimes in Rust</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#generic-names-for-lifetimes">Generic Names for Lifetimes</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#relationship-between-lifetimes">Relationship Between Lifetimes</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#static-lifetime">Static Lifetime</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#conclusion-2">Conclusion</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#variables-and-lifetimes">Variables and Lifetimes</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#string-splitting-with-delimiters">String Splitting with Delimiters</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#handling-empty-strings">Handling Empty Strings</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#heap-allocation-lifetime">Heap Allocation Lifetime</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#spotting-allocation-in-binary">Spotting Allocation in Binary</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#fixing-a-bug">Fixing a Bug</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#refactoring-code">Refactoring Code</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#searching-for-delimiters">Searching for Delimiters</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#mutable-references">Mutable References</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#understanding-references">Understanding References</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#dereferencing">Dereferencing</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#rust-option-and-mutable-references">Rust Option and Mutable References</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#using-take-with-mutable-references">Using take with Mutable References</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#simplifying-code-with-try-operator">Simplifying Code with Try Operator</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#limitations-of-mutable-references">Limitations of Mutable References</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#multiple-lifetimes-in-rust">Multiple Lifetimes in Rust</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#lifetime-annotations-1">Lifetime Annotations</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#writing-a-function-with-multiple-lifetimes">Writing a Function with Multiple Lifetimes</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#rust-ownership-and-borrowing">Rust Ownership and Borrowing</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#ownership-rules">Ownership Rules</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#borrowing-rules">Borrowing Rules</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#mutable-references-1">Mutable References</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#rust-smart-pointers">Rust Smart Pointers</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#what-are-smart-pointers">What Are Smart Pointers?</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#box-pointer">Box Pointer</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#rc-pointer">Rc Pointer</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#arc-pointer">Arc Pointer</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#understanding-rusts-lifetime-system">Understanding Rust’s Lifetime System</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#temporary-value-issue">Temporary Value Issue</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#string-vs-str">String vs. Str</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#conclusion-3">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#string-manipulation">String Manipulation</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#heap-allocation-and-string-manipulation">Heap Allocation and String Manipulation</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#multiple-lifetimes">Multiple Lifetimes</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#conclusion-4">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#introduction-to-lifetimes-and-delimiters">Introduction to Lifetimes and Delimiters</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#lifetime-delimiter-downgrading">Lifetime Delimiter Downgrading</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#introducing-delimiters">Introducing Delimiters</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#implementing-delimiter-trait">Implementing Delimiter Trait</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#generic-delimiter-implementation">Generic Delimiter Implementation</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#implementing-generic-delimiter">Implementing Generic Delimiter</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#qa">Q&amp;A</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#questions-and-answers">Questions and Answers</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#conclusion-5">Conclusion</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#rust-standard-library-exercise">Rust Standard Library Exercise</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#implementing-patterns">Implementing Patterns</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#questions-and-answers-1">Questions and Answers</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#creating-strings-from-astor-fat-pointer">Creating Strings from Astor Fat Pointer</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#readability-of-rust-programming-language">Readability of Rust Programming Language</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#pattern-in-haystack">Pattern in Haystack</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#generic-associated-types-gat">Generic Associated Types (GAT)</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#future-plans-for-videos-on-rust-programming-language">Future Plans for Videos on Rust Programming Language</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#beginner-streams">Beginner Streams</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#conclusion-and-farewell">Conclusion and Farewell</a></li>
+<li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:52:04 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:56:00 UTC 2023 -->
 <!--te-->
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>Section Overview: In this section, the speaker introduces the topic of the video and explains how they came up with the
@@ -1045,8 +1223,266 @@ appetite for them.</li>
 <div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><p><a href="https://www.youtube.com/playlist?list=PLqbS7AVVErFhAhQ5s9SWcvxHh4GwsIk_d">impl Rust - YouTube</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="solving-distributed-systems-challenges-in-rust"><a class="header" href="#solving-distributed-systems-challenges-in-rust">Solving distributed systems challenges in Rust</a></h1>
 <!--ts-->
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#solving-distributed-systems-challenges-in-rust">Solving distributed systems challenges in Rust</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#introduction">Introduction</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#distributed-systems-challenges">Distributed Systems Challenges</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#what-is-maelstrom">What is Maelstrom?</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#about-maelstrom">About Maelstrom</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#implementing-the-protocol">Implementing the Protocol</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#protocol-implementation">Protocol Implementation</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#setting-up-the-project">Setting up the Project</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#naming-the-project">Naming the Project</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#defining-message-struct">Defining Message Struct</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#struct-definition">Struct Definition</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#enum-and-payload">Enum and Payload</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#using-enums-for-message-types">Using Enums for Message Types</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#flattening-payload">Flattening Payload</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#state-machine-driver">State Machine Driver</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#deserializing-inputs">Deserializing Inputs</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#state-machine-model">State Machine Model</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#echo-node-step-function">Echo Node Step Function</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#echo-node-step-function-1">Echo Node Step Function</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#introduction-1">Introduction</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#running-a-command">Running a Command</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#debugging">Debugging</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#running-binary">Running Binary</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#responding-to-messages">Responding to Messages</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#responding-to-init-message">Responding to Init Message</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#node-id-and-node-ids-fields">Node ID and Node IDs Fields</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#init-message-type">Init Message Type</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#responding-with-required-message">Responding with Required Message</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#flushing-standard-out">Flushing Standard Out</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#printing-new-line">Printing New Line</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#pretty-formatter">Pretty Formatter</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#inner-part-of-output-stream">Inner Part of Output Stream</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#implementing-json-serialization">Implementing JSON Serialization</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#returning-messages-from-step-function">Returning Messages from Step Function</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#implementing-a-globally-unique-id-generation-system">Implementing a Globally Unique ID Generation System</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#introduction-2">Introduction</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#testing">Testing</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#payload-definition">Payload Definition</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#generic-payload">Generic Payload</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#node-service-implementation">Node Service Implementation</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#splitting-up-shareable-parts">Splitting Up Shareable Parts</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#copying-echo">Copying Echo</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#generating-unique-ids">Generating Unique IDs</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#responding-with-generate-okay-message">Responding with Generate Okay Message</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#node-receiving-generate-messages">Node Receiving Generate Messages</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#unique-ids">Unique IDs</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#generating-unique-ids-1">Generating Unique IDs</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#implementing-unique-ids">Implementing Unique IDs</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#extracting-init">Extracting Init</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#extracting-initialization-message">Extracting Initialization Message</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#extracting-initialization-message-1">Extracting Initialization Message</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#creating-init-response">Creating Init Response</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#generating-payload">Generating Payload</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#incrementing-id">Incrementing ID</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#generating-init-reply">Generating Init Reply</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#generating-init-reply-1">Generating Init Reply</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#implementing-payload-trait-for-echo">Implementing Payload Trait for Echo</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#restructuring-the-code">Restructuring the Code</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#handling-init-messages">Handling Init Messages</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#removing-payload-trait">Removing Payload Trait</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#updating-echo-node">Updating Echo Node</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#unique-ids-1">Unique IDs</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#changes-to-unique-id-generator">Changes to Unique ID Generator</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#unique-id-generator-changes">Unique ID Generator Changes</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#debugging-echo-functionality">Debugging Echo Functionality</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#debugging-echo-functionality-1">Debugging Echo Functionality</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#updating-stream-deserializer">Updating Stream Deserializer</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#updating-stream-deserializer-1">Updating Stream Deserializer</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#unique-ids-and-broadcast-challenge">Unique IDs and Broadcast Challenge</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#generating-unique-ids-2">Generating Unique IDs</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#single-node-broadcast-system">Single Node Broadcast System</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#conclusion">Conclusion</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#order-of-returned-values-and-topology">Order of Returned Values and Topology</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#the-order-of-returned-values">The Order of Returned Values</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#topology">Topology</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#setting-up-messages">Setting Up Messages</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#initial-setup">Initial Setup</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#broadcast-message">Broadcast Message</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#introduction-3">Introduction</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#implementing-broadcast">Implementing Broadcast</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#multi-node-broadcast">Multi-node Broadcast</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#gossip-protocols">Gossip Protocols</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#broadcast-and-gossip">Broadcast and Gossip</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#broadcast-vs-gossip">Broadcast vs. Gossip</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#how-gossip-works">How Gossip Works</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#understanding-gossip-protocol">Understanding Gossip Protocol</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#how-gossip-protocol-works">How Gossip Protocol Works</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#syncing-data-between-nodes">Syncing Data Between Nodes</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#the-two-generals-problem">The Two Generals Problem</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#sending-messages-and-acknowledgments">Sending Messages and Acknowledgments</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#no-solution-to-consensus">No Solution to Consensus</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#optimizing-gossip-protocol">Optimizing Gossip Protocol</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#implementing-known-values">Implementing Known Values</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#implementing-broadcast-1">Implementing Broadcast</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#determining-nodes-to-communicate-with">Determining Nodes to Communicate With</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#network-partitioning-issues">Network Partitioning Issues</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#implementing-gossip-protocol">Implementing Gossip Protocol</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#introduction-to-asynchronous-programming">Introduction to Asynchronous Programming</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#two-approaches-to-writing-asynchronous-code">Two Approaches to Writing Asynchronous Code</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#avoiding-asynchronous-programming-for-now">Avoiding Asynchronous Programming for Now</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#synchronous-programming-techniques">Synchronous Programming Techniques</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#using-channels-for-input-messages">Using Channels for Input Messages</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#creating-a-channel">Creating a Channel</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#receiving-from-channel-and-performing-step-function">Receiving from Channel and Performing Step Function</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#dropping-standard-in">Dropping Standard In</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#introduction-4">Introduction</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#thread-panics-and-error-handling">Thread Panics and Error Handling</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#main-loop">Main Loop</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#generating-additional-input-events">Generating Additional Input Events</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#event-payload">Event Payload</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#differentiating-between-injected-payloads-and-actual-messages">Differentiating Between Injected Payloads and Actual Messages</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#echo-fix">Echo Fix</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#fixing-echo">Fixing Echo</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#end-of-file-and-injected-payloads">End of File and Injected Payloads</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#handling-end-of-file-events">Handling End-of-File Events</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#handling-injected-payloads">Handling Injected Payloads</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#starting-a-new-thread">Starting a New Thread</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#serialized-payload">Serialized Payload</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#enum-for-injected-payload">Enum for Injected Payload</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#understanding-gossip-protocol-1">Understanding Gossip Protocol</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#implementing-injected-payload">Implementing Injected Payload</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#creating-helper-functions">Creating Helper Functions</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#updating-gossip-protocol">Updating Gossip Protocol</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#filtering-messages">Filtering Messages</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#gossip-protocol-implementation">Gossip Protocol Implementation</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#sending-messages">Sending Messages</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#gossiping-between-nodes">Gossiping Between Nodes</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#naive-gossip-implementation">Naive Gossip Implementation</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#performance-analysis">Performance Analysis</a>
+<ul>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#broadcast-rate-vs-propagation-delay">Broadcast Rate vs. Propagation Delay</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#visibility-delay">Visibility Delay</a></li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#naive-gossip-implementation-1">Naive Gossip Implementation</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:52:04 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:56:02 UTC 2023 -->
 <!--te-->
 <h2 id="introduction-1"><a class="header" href="#introduction-1">Introduction</a></h2>
 <p>Section Overview: In this section, the speaker introduces a set of distributed systems challenges that use a platform
@@ -1757,8 +2193,68 @@ provided transcript is not sufficient to create a comprehensive and informative 
 <div style="break-before: page; page-break-before: always;"></div><p><a href="https://www.youtube.com/playlist?list=PLqbS7AVVErFj-euU-OW79x9na1Qj3_JYL">Open-Source streams - YouTube</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="stop-duplicating-code-generics-traits-lifetimes"><a class="header" href="#stop-duplicating-code-generics-traits-lifetimes">Stop Duplicating Code: Generics, Traits, Lifetimes</a></h1>
 <!--ts-->
+<ul>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#stop-duplicating-code-generics-traits-lifetimes">Stop Duplicating Code: Generics, Traits, Lifetimes</a>
+<ul>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#introduction-to-generics">Introduction to Generics</a>
+<ul>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#removing-duplication">Removing Duplication</a></li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#using-generics-with-structs">Using Generics with Structs</a></li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#implementing-traits">Implementing Traits</a></li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#lifetimes">Lifetimes</a></li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#generics-in-type-definitions-and-functions">Generics in Type Definitions and Functions</a>
+<ul>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#using-generics-in-type-definitions">Using Generics in Type Definitions</a></li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#using-generics-in-enums">Using Generics in Enums</a></li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#using-generics-in-methods">Using Generics in Methods</a></li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#mixing-types-with-generics">Mixing Types with Generics</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#introduction-to-generics-and-traits">Introduction to Generics and Traits</a>
+<ul>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#generics">Generics</a></li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#traits">Traits</a></li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#using-traits-as-parameters">Using Traits as Parameters</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#rust-generics-and-traits">Rust Generics and Traits</a>
+<ul>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#using-generics-with-traits">Using Generics with Traits</a></li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#returning-different-concrete-types-based-on-business-logic">Returning Different Concrete Types Based on Business Logic</a></li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#fixing-issues-with-partial-and-copy-traits">Fixing Issues with Partial and Copy Traits</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#understanding-lifetimes-in-rust">Understanding Lifetimes in Rust</a>
+<ul>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#introduction-to-lifetimes">Introduction to Lifetimes</a></li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#implementing-lifetimes">Implementing Lifetimes</a></li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#output-lifetimes">Output Lifetimes</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#dangling-pointers-and-lifetimes">Dangling Pointers and Lifetimes</a>
+<ul>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#dangling-pointers">Dangling Pointers</a></li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#lifetimes-in-structs">Lifetimes in Structs</a></li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#rules-for-lifetime-elision">Rules for Lifetime Elision</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#understanding-lifetimes-in-rust-1">Understanding Lifetimes in Rust</a>
+<ul>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#lifetime-rules-for-functions">Lifetime Rules for Functions</a></li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#specifying-output-lifetime">Specifying Output Lifetime</a></li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#lifetime-rules-for-methods">Lifetime Rules for Methods</a></li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#static-lifetime">Static Lifetime</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/stop_duplicating_your_code.html#advanced-scenarios">Advanced Scenarios</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:52:05 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:56:04 UTC 2023 -->
 <!--te-->
 <h2 id="introduction-to-generics"><a class="header" href="#introduction-to-generics">Introduction to Generics</a></h2>
 <p>Section Overview: In this section, we will learn about generics and how they can be used with functions, methods, and
@@ -1956,8 +2452,189 @@ them effectively.</p>
 https://videohighlight.com/video/summary/JLfEiJhpTbE</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rust-crash-course--rustlang"><a class="header" href="#rust-crash-course--rustlang">Rust Crash Course | Rustlang</a></h1>
 <!--ts-->
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#rust-crash-course--rustlang">Rust Crash Course | Rustlang</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#introduction-to-rust-programming-language">Introduction to Rust Programming Language</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#what-is-rust">What is Rust?</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#garbage-collection">Garbage Collection</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#cargo-package-manager">Cargo Package Manager</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#installing-rust-and-setting-up-the-environment">Installing Rust and Setting Up the Environment</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#installing-rust">Installing Rust</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#basic-utilities">Basic Utilities</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#creating-a-rust-file-and-compiling-it">Creating a Rust File and Compiling It</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#initializing-a-project-with-cargo">Initializing a Project with Cargo</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#introduction-to-print-line-command-and-formatting">Introduction to Print Line Command and Formatting</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#creating-a-function-in-print-file">Creating a Function in Print File</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#running-the-function-in-main-rs-files">Running the Function in Main RS Files</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#basic-formatting">Basic Formatting</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#basic-formatting-with-multiple-placeholders">Basic Formatting with Multiple Placeholders</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#using-multiple-placeholders">Using Multiple Placeholders</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#positional-arguments">Positional Arguments</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#named-arguments">Named Arguments</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#placeholder-traits">Placeholder Traits</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#binary-trait">Binary Trait</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#hexadecimal-trait">Hexadecimal Trait</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#octal-trait">Octal Trait</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#debug-traits">Debug Traits</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#using-print-line-function">Using Print Line Function</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#basic-math">Basic Math</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#variables">Variables</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#creating-variables">Creating Variables</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#mutable-variables">Mutable Variables</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#constants">Constants</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#assigning-multiple-variables-at-once">Assigning Multiple Variables at Once</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#introduction-to-rust-programming-language-1">Introduction to Rust Programming Language</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#assigning-variables">Assigning Variables</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#data-types">Data Types</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#boolean-expressions">Boolean Expressions</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#rust-primitive-types">Rust Primitive Types</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#char-and-unicode">Char and Unicode</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#strings-in-rust">Strings in Rust</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#creating-strings">Creating Strings</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#modifying-strings">Modifying Strings</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#working-with-strings">Working with Strings</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#checking-for-substrings-and-replacing-them">Checking for Substrings and Replacing Them</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#looping-through-strings">Looping Through Strings</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#creating-strings-with-capacity">Creating Strings with Capacity</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#assertion-testing">Assertion Testing</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#working-with-tuples">Working with Tuples</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#introduction-to-tuples">Introduction to Tuples</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#creating-and-accessing-tuples">Creating and Accessing Tuples</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#destructuring-tuples">Destructuring Tuples</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#tuple-methods">Tuple Methods</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#tuples-and-arrays-in-rust">Tuples and Arrays in Rust</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#creating-tuples">Creating Tuples</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#creating-arrays">Creating Arrays</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#modifying-array-values">Modifying Array Values</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#debugging-arrays">Debugging Arrays</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#slicing-arrays-and-using-vectors">Slicing Arrays and Using Vectors</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#slicing-arrays">Slicing Arrays</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#using-vectors">Using Vectors</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#mutating-values-in-vectors">Mutating Values in Vectors</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#conditionals">Conditionals</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#if-else-statements">If-else statements</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#operators">Operators</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#shorthand-if">Shorthand If</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#loops">Loops</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#infinite-loop">Infinite Loop</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#while-loop">While Loop</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#for-loop">For Loop</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#introduction-to-loops-and-functions">Introduction to Loops and Functions</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#while-loop-1">While Loop</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#fizzbuzz-challenge">FizzBuzz Challenge</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#for-range-loop">For Range Loop</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#functions">Functions</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#rust-functions">Rust Functions</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#creating-a-function">Creating a Function</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#returning-from-a-function">Returning from a Function</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#closures">Closures</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#pointers-and-references">Pointers and References</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#primitive-arrays">Primitive Arrays</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#non-primitive-values">Non-primitive Values</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#rust-basics-references-and-structs">Rust Basics: References and Structs</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#creating-references">Creating References</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#creating-structs">Creating Structs</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#tuple-structs">Tuple Structs</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#creating-a-struct-in-rust">Creating a Struct in Rust</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#creating-a-new-person">Creating a New Person</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#getting-full-name-of-person">Getting Full Name of Person</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#changing-last-name-of-person">Changing Last Name of Person</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#converting-name-to-tuple">Converting Name to Tuple</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#structs">Structs</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#introduction-to-structs">Introduction to Structs</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#enums">Enums</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#introduction-to-enums">Introduction to Enums</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#using-enums">Using Enums</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#functions-with-enums">Functions with Enums</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#creating-functions-with-enums">Creating Functions with Enums</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#command-line-arguments">Command Line Arguments</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#introduction-to-command-line-arguments">Introduction to Command Line Arguments</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#getting-command-line-arguments">Getting Command Line Arguments</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#introduction-to-command-line-applications">Introduction to Command Line Applications</a>
+<ul>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#getting-input-from-command-line-arguments">Getting Input from Command Line Arguments</a></li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#creating-a-command-line-application">Creating a Command Line Application</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/rust_crash_course_rustlang.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:52:05 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:56:03 UTC 2023 -->
 <!--te-->
 <h2 id="introduction-to-rust-programming-language"><a class="header" href="#introduction-to-rust-programming-language">Introduction to Rust Programming Language</a></h2>
 <p>Section Overview: This video is an introductory course on the fundamentals and syntax of the Rust programming language.
@@ -2469,8 +3146,16 @@ to get them using env::args().</p>
 <p><a href="https://videohighlight.com/video/summary/zF34dRivLOw">Generated by Video Highlight</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="questions-about-associated-type-and-generic-associated-type"><a class="header" href="#questions-about-associated-type-and-generic-associated-type">Questions about associated type and generic associated type</a></h1>
 <!--ts-->
+<ul>
+<li><a href="topics/at_gat.html#questions-about-associated-type-and-generic-associated-type">Questions about associated type and generic associated type</a>
+<ul>
+<li><a href="topics/at_gat.html#in-rust-what-is-associate-type-what-is-generic-associate-type">in rust, what is associate type, what is generic associate type.</a></li>
+<li><a href="topics/at_gat.html#what-are-the-differences-between-associate-type-generic-type-and-generic-associate-type">what are the differences between associate type, generic type and generic associate type</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:52:13 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:56:19 UTC 2023 -->
 <!--te-->
 <h2 id="in-rust-what-is-associate-type-what-is-generic-associate-type"><a class="header" href="#in-rust-what-is-associate-type-what-is-generic-associate-type">in rust, what is associate type, what is generic associate type.</a></h2>
 <p>In Rust, an associate type is a type placeholder that is defined within the bounds of a trait. It allows a trait to specify that concrete types used to implement the trait must provide a specific type, without requiring the trait to know what that type is.</p>
@@ -4428,7 +5113,7 @@ change the type of the value but reuse the same name.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:50:56 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:00 UTC 2023 -->
 <!--te-->
 <p>As mentioned in the <a href="ch02-00-guessing-game-tutorial.html#storing-values-with-variables">“Storing Values with
 Variables”</a><!-- ignore --> section, by default,
@@ -5203,7 +5888,7 @@ if you add a semicolon to the end of an expression, you turn it into a statement
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:50:57 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:01 UTC 2023 -->
 <!--te-->
 <p>Functions are prevalent in Rust code. You’ve already seen one of the most
 important functions in the language:</p>
@@ -8132,7 +8817,7 @@ continue to refactor this code by turning the <code>area</code> function into an
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:50:59 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:04 UTC 2023 -->
 <!--te-->
 <h2 id="similar-and-difference"><a class="header" href="#similar-and-difference">Similar and Difference</a></h2>
 <blockquote>
@@ -10683,7 +11368,7 @@ lines of text in a file or the prices of items in a shopping cart.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:01 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:08 UTC 2023 -->
 <!--te-->
 <h2 id="creating-a-new-vector"><a class="header" href="#creating-a-new-vector">Creating a New Vector</a></h2>
 <p>To create a new empty vector, we call the <code>Vec::new</code> function, as shown in
@@ -11071,7 +11756,7 @@ valid.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:02 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:08 UTC 2023 -->
 <!--te-->
 <p>We talked about strings in Chapter 4, but we’ll look at them in more depth now.</p>
 <blockquote>
@@ -11612,7 +12297,7 @@ the values must have the same type.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:02 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:09 UTC 2023 -->
 <!--te-->
 <p>The last of our common collections is the <em>hash map</em>.</p>
 <blockquote>
@@ -12004,7 +12689,7 @@ execution.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:02 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:09 UTC 2023 -->
 <!--te-->
 <p>Sometimes, bad things happen in your code, and there’s nothing you can do about
 it. In these cases, Rust has the <code>panic!</code> macro. There are two ways to cause a
@@ -12197,7 +12882,7 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:03 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:10 UTC 2023 -->
 <!--te-->
 <p>Most errors aren’t serious enough to require the program to stop entirely.</p>
 <details id="admonition-sometimes-when-a-function-fails-its-for-a-reason-that-you-can-easily-interpret-and-respond-to" class="admonition tip">
@@ -13204,7 +13889,7 @@ cases.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:03 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:10 UTC 2023 -->
 <!--te-->
 <p>So how do you decide when you should call <code>panic!</code> and when you should return
 <code>Result</code>? When code panics, there’s no way to recover. You could call <code>panic!</code>
@@ -13607,7 +14292,7 @@ values. How would we eliminate that duplication? Let’s find out!</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:03 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:11 UTC 2023 -->
 <!--te-->
 <p>We use generics to create definitions for items like function signatures or
 structs, which we can then use with many different concrete data types. </p>
@@ -14175,7 +14860,7 @@ at runtime.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:03 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:11 UTC 2023 -->
 <!--te-->
 <p>A <em>trait</em> defines functionality a particular type has and can share with other
 types. We can use traits to define shared behavior in an abstract way. We can
@@ -14769,7 +15454,7 @@ generics.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:04 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:12 UTC 2023 -->
 <!--te-->
 <blockquote>
 <p>Lifetimes are <strong>another kind of generic</strong> that we’ve already been using.</p>
@@ -19754,7 +20439,7 @@ code, we’ll devote this entire chapter to them.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:06 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:16 UTC 2023 -->
 <!--te-->
 <p>Rust’s closures are anonymous functions you can save in a variable or pass as
 arguments to other functions.</p>
@@ -20505,7 +21190,7 @@ as we continue!</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:07 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:16 UTC 2023 -->
 <!--te-->
 <p>The iterator pattern allows you to perform some task on a sequence of items in
 turn. An iterator is responsible for the logic of iterating over each item and
@@ -22507,7 +23192,7 @@ type exposes an API for mutating an interior value.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:08 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:19 UTC 2023 -->
 <!--te-->
 <h2 id="start-from-pointer"><a class="header" href="#start-from-pointer">Start from pointer</a></h2>
 <blockquote>
@@ -22633,7 +23318,7 @@ type exposes an API for mutating an interior value.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:09 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:20 UTC 2023 -->
 <!--te-->
 <p>Implementing the <code>Deref</code> trait allows you to customize the behavior of the
 <em>dereference operator</em> <code>*</code> (not to be confused with the multiplication or glob
@@ -23132,7 +23817,7 @@ if you want to force a value to be dropped before the end of its scope.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:09 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:20 UTC 2023 -->
 <!--te-->
 <h2 id="just-like-context-manager-in-python"><a class="header" href="#just-like-context-manager-in-python">Just like Context Manager in Python</a></h2>
 <p>In some languages, for some types, the programmer must call code to free memory
@@ -23378,7 +24063,7 @@ library.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:09 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:20 UTC 2023 -->
 <!--te-->
 <p>The most straightforward smart pointer is a <em>box</em>, whose type is written
 <code>Box&lt;T&gt;</code>:</p>
@@ -23753,7 +24438,7 @@ code, we only need to consider the deep-copy clones and can disregard calls to
 <li><a href="ch15-04-rc.html#cloning-an-rct-increases-the-reference-count">Cloning an Rc&lt;T&gt; Increases the Reference Count</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:09 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:21 UTC 2023 -->
 <!--te-->
 <p>In the majority of cases, ownership is clear: you know exactly which variable
 owns a given value.</p>
@@ -24134,7 +24819,7 @@ immutable.</li>
 <li><a href="ch15-05-interior-mutability.html#having-multiple-owners-of-mutable-data-by-combining-rct-and-refcellt">Having Multiple Owners of Mutable Data by Combining Rc&lt;T&gt; and RefCell&lt;T&gt;</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:10 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:21 UTC 2023 -->
 <!--te-->
 <h2 id="interior-mutability-1"><a class="header" href="#interior-mutability-1">Interior Mutability</a></h2>
 <p><em>Interior mutability</em> is a design pattern in Rust that allows you to mutate
@@ -24900,7 +25585,7 @@ structures.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:10 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:21 UTC 2023 -->
 <!--te-->
 <p>Rust’s memory safety guarantees make it difficult, but not impossible, to
 accidentally create memory that is never cleaned up (known as a <em>memory leak</em>).</p>
@@ -26710,7 +27395,7 @@ Rust.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:12 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:24 UTC 2023 -->
 <!--te-->
 <h2 id="compare-implementing-trait-with-trait-bounds-and-trait-objects"><a class="header" href="#compare-implementing-trait-with-trait-bounds-and-trait-objects">Compare implementing trait with trait bounds and trait objects</a></h2>
 <ol>
@@ -28099,7 +28784,7 @@ a clear way.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:12 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:25 UTC 2023 -->
 <!--te-->
 <p>Patterns pop up in a number of places in Rust, and you’ve been using them a lot
 without realizing it! This section discusses all the places where patterns are
@@ -28618,7 +29303,7 @@ values.</li>
 <li><a href="ch18-03-pattern-syntax.html#summary">Summary</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:13 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:26 UTC 2023 -->
 <!--te-->
 <p>In this section, we gather all the syntax valid in patterns and discuss why and
 when you might want to use each one.</p>
@@ -30116,7 +30801,7 @@ annotation makes it easier to track down the source of problems when they occur.
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:13 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:27 UTC 2023 -->
 <!--te-->
 <p>We first covered traits in the <a href="ch10-02-traits.html#traits-defining-shared-behavior">“Traits: Defining Shared
 Behavior”</a><!-- ignore --> section of Chapter
@@ -31491,7 +32176,7 @@ pointer. In this case, we’ve chosen a reference.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:14 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:54:27 UTC 2023 -->
 <!--te-->
 <p>This section explores some advanced features related to functions and closures,
 including function pointers and returning closures.</p>
@@ -35148,7 +35833,7 @@ macros and specifying attributes on an item.</p>
 * <a href="appendix-03-derivable-traits.html#copy">Copy</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:50:52 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:53:53 UTC 2023 -->
 <!--te-->
 <p>In various places in the book, we’ve discussed the <code>derive</code> attribute, which
 you can apply to a struct or enum definition.</p>
@@ -36326,8 +37011,20 @@ RGB (0, 0, 0) 0x000000
 <p><a href="https://doc.rust-lang.org/std/fmt/"><code>std::fmt</code></a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="primitives"><a class="header" href="#primitives">Primitives</a></h1>
 <!--ts-->
+<ul>
+<li><a href="rust_by_example_src/primitives.html#primitives">Primitives</a>
+<ul>
+<li><a href="rust_by_example_src/primitives.html#scalar-types">Scalar Types</a></li>
+<li><a href="rust_by_example_src/primitives.html#compound-types">Compound Types</a>
+<ul>
+<li><a href="rust_by_example_src/primitives.html#see-also">See also:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:52 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:55:36 UTC 2023 -->
 <!--te-->
 <p>Rust provides access to a wide variety of <code>primitives</code>. A sample includes:</p>
 <ol>
@@ -38501,7 +39198,7 @@ difference in the types of iteration.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:43 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:55:18 UTC 2023 -->
 <!--te-->
 <p>A <code>match</code> block can destructure items in a variety of ways.</p>
 <h2 id="destructuring-tuples-1"><a class="header" href="#destructuring-tuples-1">Destructuring Tuples</a></h2>
@@ -45449,8 +46146,22 @@ fn main() {
 </div>
 </details><div style="break-before: page; page-break-before: always;"></div><h1 id="static"><a class="header" href="#static">Static</a></h1>
 <!--ts-->
+<ul>
+<li><a href="rust_by_example_src/scope/lifetime/static_lifetime.html#static">Static</a>
+<ul>
+<li><a href="rust_by_example_src/scope/lifetime/static_lifetime.html#two-situations">Two situations</a></li>
+<li><a href="rust_by_example_src/scope/lifetime/static_lifetime.html#some-examples-for-each-situation">some examples for each situation:</a>
+<ul>
+<li><a href="rust_by_example_src/scope/lifetime/static_lifetime.html#reference-lifetime">Reference lifetime</a></li>
+<li><a href="rust_by_example_src/scope/lifetime/static_lifetime.html#trait-bound">Trait bound</a></li>
+<li><a href="rust_by_example_src/scope/lifetime/static_lifetime.html#see-also">See also:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:54 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:55:41 UTC 2023 -->
 <!--te-->
 <p>Rust has a few reserved lifetime names.</p>
 <p>One of those is <code>'static</code>.</p>
@@ -48090,8 +48801,19 @@ includes support for writing software tests within the language itself.</p>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="unit-testing-for-panic-cfgtest-test-should_panic-ignore"><a class="header" href="#unit-testing-for-panic-cfgtest-test-should_panic-ignore">Unit testing for panic: <code>#[cfg(test)]</code>, <code>#[test]</code>, <code>#[should_panic]</code>, <code>#[ignore]</code></a></h1>
 <!--ts-->
+<ul>
+<li><a href="rust_by_example_src/testing/unit_testing.html#unit-testing-for-panic-cfgtest-test-should_panic-ignore">Unit testing for panic: #[cfg(test)], #[test], #[should_panic], #[ignore]</a>
+<ul>
+<li><a href="rust_by_example_src/testing/unit_testing.html#unit-tests-basic">Unit tests basic</a></li>
+<li><a href="rust_by_example_src/testing/unit_testing.html#tests-and-">Tests and ?</a></li>
+<li><a href="rust_by_example_src/testing/unit_testing.html#testing-panics-should_panic">Testing panics: #[should_panic]</a></li>
+<li><a href="rust_by_example_src/testing/unit_testing.html#running-specific-tests">Running specific tests</a></li>
+<li><a href="rust_by_example_src/testing/unit_testing.html#ignoring-tests-ignore">Ignoring tests: #[ignore]</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:59 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:55:51 UTC 2023 -->
 <!--te-->
 <ul>
 <li>Tests are Rust functions that verify that the non-test code is functioning in the expected manner.</li>
@@ -48401,8 +49123,23 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 </details>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="documentation-cargo-doc"><a class="header" href="#documentation-cargo-doc">Documentation: cargo doc</a></h1>
 <!--ts-->
+<ul>
+<li><a href="rust_by_example_src/meta/doc.html#documentation-cargo-doc">Documentation: cargo doc</a>
+<ul>
+<li><a href="rust_by_example_src/meta/doc.html#doc-comments">Doc comments</a></li>
+<li><a href="rust_by_example_src/meta/doc.html#doc-attributes">Doc attributes</a>
+<ul>
+<li><a href="rust_by_example_src/meta/doc.html#inline">inline</a></li>
+<li><a href="rust_by_example_src/meta/doc.html#no_inline">no_inline</a></li>
+<li><a href="rust_by_example_src/meta/doc.html#hidden">hidden</a></li>
+<li><a href="rust_by_example_src/meta/doc.html#see-also">See also:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:51:51 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:55:34 UTC 2023 -->
 <!--te-->
 <p>Use <code>cargo doc</code> to build documentation in <code>target/doc</code>.</p>
 <p>Use <code>cargo test</code> to run all tests (including documentation tests), and <code>cargo test --doc</code> to only run documentation tests.</p>
@@ -48812,8 +49549,16 @@ mod tests {
 <p><a href="http://doc.crates.io/specifying-dependencies.html">Cargo</a> docs on specifying dependencies.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="unsafe-operations"><a class="header" href="#unsafe-operations">Unsafe Operations</a></h1>
 <!--ts-->
+<ul>
+<li><a href="rust_by_example_src/unsafe.html#unsafe-operations">Unsafe Operations</a>
+<ul>
+<li><a href="rust_by_example_src/unsafe.html#raw-pointers">Raw Pointers</a></li>
+<li><a href="rust_by_example_src/unsafe.html#calling-unsafe-functions">Calling Unsafe Functions</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:52:01 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:55:56 UTC 2023 -->
 <!--te-->
 <p>As an introduction to this section, to borrow from <a href="https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html">the official docs</a>:</p>
 <blockquote>
@@ -48883,8 +49628,24 @@ fn main() {
 <p>If these invariants aren’t upheld then the program’s behaviour is undefined and there is no knowing what will happen.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="inline-assembly-in-unsafe-asm"><a class="header" href="#inline-assembly-in-unsafe-asm">Inline assembly in Unsafe: asm!</a></h1>
 <!--ts-->
+<ul>
+<li><a href="rust_by_example_src/unsafe/asm.html#inline-assembly-in-unsafe-asm">Inline assembly in Unsafe: asm!</a>
+<ul>
+<li><a href="rust_by_example_src/unsafe/asm.html#basic-usage">Basic usage</a></li>
+<li><a href="rust_by_example_src/unsafe/asm.html#inputs-and-outputs">Inputs and outputs</a></li>
+<li><a href="rust_by_example_src/unsafe/asm.html#late-output-operands">Late output operands</a></li>
+<li><a href="rust_by_example_src/unsafe/asm.html#explicit-register-operands">Explicit register operands</a></li>
+<li><a href="rust_by_example_src/unsafe/asm.html#clobbered-registers">Clobbered registers</a></li>
+<li><a href="rust_by_example_src/unsafe/asm.html#symbol-operands-and-abi-clobbers">Symbol operands and ABI clobbers</a></li>
+<li><a href="rust_by_example_src/unsafe/asm.html#register-template-modifiers">Register template modifiers</a></li>
+<li><a href="rust_by_example_src/unsafe/asm.html#memory-address-operands">Memory address operands</a></li>
+<li><a href="rust_by_example_src/unsafe/asm.html#labels">Labels</a></li>
+<li><a href="rust_by_example_src/unsafe/asm.html#options">Options</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:52:02 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:55:56 UTC 2023 -->
 <!--te-->
 <p>Rust provides support for <code>inline assembly</code> via the <code>asm!</code> macro.</p>
 <blockquote>
@@ -53513,7 +54274,7 @@ defines exceptions for several standard library modules.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:50:50 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:53:50 UTC 2023 -->
 <!--te-->
 <p>This chapter of the guide documents some ways to interact with Python code from Rust:</p>
 <ul>
@@ -54590,7 +55351,7 @@ the chapter on <a href="PyO3_guides/src/./memory.html">memory management</a> for
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:50:44 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:53:40 UTC 2023 -->
 <!--te-->
 <p>This chapter of the guide goes into detail on how to build and distribute projects using PyO3. </p>
 <ol>

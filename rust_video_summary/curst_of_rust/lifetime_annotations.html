@@ -181,8 +181,183 @@
                 </div>
                 <h1 id="lifetime-annotations"><a class="header" href="#lifetime-annotations">Lifetime Annotations</a></h1>
 <!--ts-->
+<ul>
+<li><a href="#lifetime-annotations">Lifetime Annotations</a>
+<ul>
+<li><a href="#introduction">Introduction</a>
+<ul>
+<li><a href="#background-information">Background Information</a></li>
+<li><a href="#purpose-of-video">Purpose of Video</a></li>
+<li><a href="#logistics">Logistics</a></li>
+</ul>
+</li>
+<li><a href="#getting-started-with-cargo">Getting Started with Cargo</a>
+<ul>
+<li><a href="#starting-a-new-project-with-cargo">Starting a New Project with Cargo</a></li>
+<li><a href="#introducing-stir_split-library">Introducing stir_split Library</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-string-split">Introduction to String Split</a>
+<ul>
+<li><a href="#building-string-split">Building String Split</a></li>
+</ul>
+</li>
+<li><a href="#lifetimes">Lifetimes</a>
+<ul>
+<li><a href="#quality-comparison-between-iterators">Quality Comparison Between Iterators</a></li>
+<li><a href="#all-loops-desugar-to-loop-with-a-break-condition">All Loops Desugar To Loop With A Break Condition</a></li>
+</ul>
+</li>
+<li><a href="#writing-code-for-string-split">Writing Code for String Split</a>
+<ul>
+<li><a href="#remaining-questions">Remaining Questions</a></li>
+</ul>
+</li>
+<li><a href="#implementation-of-split-function">Implementation of Split Function</a>
+<ul>
+<li><a href="#implementing-next">Implementing Next</a></li>
+<li><a href="#using-self-as-a-preferred-way-of-implementing-cascade">Using Self as a Preferred Way of Implementing Cascade</a></li>
+<li><a href="#associated-types-vs-generics">Associated Types vs Generics</a></li>
+<li><a href="#match-vs-if-lets-sum">Match vs If Let’s Sum</a></li>
+</ul>
+</li>
+<li><a href="#compiling-errors-and-lifetime-specifiers">Compiling Errors and Lifetime Specifiers</a>
+<ul>
+<li><a href="#missing-lifetime-specifier-error">Missing Lifetime Specifier Error</a></li>
+<li><a href="#adding-lifetime-specifiers">Adding Lifetime Specifiers</a></li>
+</ul>
+</li>
+<li><a href="#conclusion-and-bug-fixing">Conclusion and Bug Fixing</a>
+<ul>
+<li><a href="#bug-fixing">Bug Fixing</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#understanding-lifetimes-in-rust">Understanding Lifetimes in Rust</a>
+<ul>
+<li><a href="#how-pointers-work-with-iterators">How Pointers Work with Iterators</a></li>
+<li><a href="#lifetime-of-references">Lifetime of References</a></li>
+<li><a href="#specifying-lifetimes">Specifying Lifetimes</a></li>
+<li><a href="#conclusion-1">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-lifetimes">Introduction to Lifetimes</a>
+<ul>
+<li><a href="#what-are-lifetimes">What are Lifetimes?</a></li>
+<li><a href="#anonymous-lifetimes">Anonymous Lifetimes</a></li>
+<li><a href="#lifetime-errors">Lifetime Errors</a></li>
+</ul>
+</li>
+<li><a href="#understanding-lifetimes-in-rust-1">Understanding Lifetimes in Rust</a>
+<ul>
+<li><a href="#generic-names-for-lifetimes">Generic Names for Lifetimes</a></li>
+<li><a href="#relationship-between-lifetimes">Relationship Between Lifetimes</a></li>
+<li><a href="#static-lifetime">Static Lifetime</a></li>
+<li><a href="#conclusion-2">Conclusion</a></li>
+<li><a href="#variables-and-lifetimes">Variables and Lifetimes</a></li>
+<li><a href="#string-splitting-with-delimiters">String Splitting with Delimiters</a></li>
+<li><a href="#handling-empty-strings">Handling Empty Strings</a></li>
+<li><a href="#heap-allocation-lifetime">Heap Allocation Lifetime</a></li>
+<li><a href="#spotting-allocation-in-binary">Spotting Allocation in Binary</a></li>
+</ul>
+</li>
+<li><a href="#fixing-a-bug">Fixing a Bug</a>
+<ul>
+<li><a href="#refactoring-code">Refactoring Code</a></li>
+<li><a href="#searching-for-delimiters">Searching for Delimiters</a></li>
+<li><a href="#mutable-references">Mutable References</a></li>
+</ul>
+</li>
+<li><a href="#understanding-references">Understanding References</a>
+<ul>
+<li><a href="#dereferencing">Dereferencing</a></li>
+</ul>
+</li>
+<li><a href="#rust-option-and-mutable-references">Rust Option and Mutable References</a>
+<ul>
+<li><a href="#using-take-with-mutable-references">Using take with Mutable References</a></li>
+<li><a href="#simplifying-code-with-try-operator">Simplifying Code with Try Operator</a></li>
+<li><a href="#limitations-of-mutable-references">Limitations of Mutable References</a></li>
+</ul>
+</li>
+<li><a href="#multiple-lifetimes-in-rust">Multiple Lifetimes in Rust</a>
+<ul>
+<li><a href="#lifetime-annotations-1">Lifetime Annotations</a></li>
+<li><a href="#writing-a-function-with-multiple-lifetimes">Writing a Function with Multiple Lifetimes</a></li>
+</ul>
+</li>
+<li><a href="#rust-ownership-and-borrowing">Rust Ownership and Borrowing</a>
+<ul>
+<li><a href="#ownership-rules">Ownership Rules</a></li>
+<li><a href="#borrowing-rules">Borrowing Rules</a></li>
+<li><a href="#mutable-references-1">Mutable References</a></li>
+</ul>
+</li>
+<li><a href="#rust-smart-pointers">Rust Smart Pointers</a>
+<ul>
+<li><a href="#what-are-smart-pointers">What Are Smart Pointers?</a></li>
+<li><a href="#box-pointer">Box Pointer</a></li>
+<li><a href="#rc-pointer">Rc Pointer</a></li>
+<li><a href="#arc-pointer">Arc Pointer</a></li>
+</ul>
+</li>
+<li><a href="#understanding-rusts-lifetime-system">Understanding Rust’s Lifetime System</a>
+<ul>
+<li><a href="#temporary-value-issue">Temporary Value Issue</a></li>
+<li><a href="#string-vs-str">String vs. Str</a></li>
+<li><a href="#conclusion-3">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#string-manipulation">String Manipulation</a>
+<ul>
+<li><a href="#heap-allocation-and-string-manipulation">Heap Allocation and String Manipulation</a></li>
+<li><a href="#multiple-lifetimes">Multiple Lifetimes</a></li>
+<li><a href="#conclusion-4">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-lifetimes-and-delimiters">Introduction to Lifetimes and Delimiters</a>
+<ul>
+<li><a href="#lifetime-delimiter-downgrading">Lifetime Delimiter Downgrading</a></li>
+<li><a href="#introducing-delimiters">Introducing Delimiters</a></li>
+<li><a href="#implementing-delimiter-trait">Implementing Delimiter Trait</a></li>
+</ul>
+</li>
+<li><a href="#generic-delimiter-implementation">Generic Delimiter Implementation</a>
+<ul>
+<li><a href="#implementing-generic-delimiter">Implementing Generic Delimiter</a></li>
+</ul>
+</li>
+<li><a href="#qa">Q&amp;A</a>
+<ul>
+<li><a href="#questions-and-answers">Questions and Answers</a></li>
+</ul>
+</li>
+<li><a href="#conclusion-5">Conclusion</a></li>
+<li><a href="#rust-standard-library-exercise">Rust Standard Library Exercise</a>
+<ul>
+<li><a href="#implementing-patterns">Implementing Patterns</a></li>
+</ul>
+</li>
+<li><a href="#questions-and-answers-1">Questions and Answers</a>
+<ul>
+<li><a href="#creating-strings-from-astor-fat-pointer">Creating Strings from Astor Fat Pointer</a></li>
+<li><a href="#readability-of-rust-programming-language">Readability of Rust Programming Language</a></li>
+<li><a href="#pattern-in-haystack">Pattern in Haystack</a></li>
+<li><a href="#generic-associated-types-gat">Generic Associated Types (GAT)</a></li>
+</ul>
+</li>
+<li><a href="#future-plans-for-videos-on-rust-programming-language">Future Plans for Videos on Rust Programming Language</a>
+<ul>
+<li><a href="#beginner-streams">Beginner Streams</a></li>
+</ul>
+</li>
+<li><a href="#conclusion-and-farewell">Conclusion and Farewell</a></li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:52:04 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:56:00 UTC 2023 -->
 <!--te-->
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>Section Overview: In this section, the speaker introduces the topic of the video and explains how they came up with the
