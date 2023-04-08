@@ -1,43 +1,10 @@
 # Stop Duplicating Code: Generics, Traits, Lifetimes
 
 <!--ts-->
-* [Stop Duplicating Code: Generics, Traits, Lifetimes](#stop-duplicating-code-generics-traits-lifetimes)
-   * [Introduction to Generics](#introduction-to-generics)
-      * [Removing Duplication](#removing-duplication)
-      * [Using Generics with Structs](#using-generics-with-structs)
-      * [Implementing Traits](#implementing-traits)
-      * [Lifetimes](#lifetimes)
-      * [Conclusion](#conclusion)
-   * [Generics in Type Definitions and Functions](#generics-in-type-definitions-and-functions)
-      * [Using Generics in Type Definitions](#using-generics-in-type-definitions)
-      * [Using Generics in Enums](#using-generics-in-enums)
-      * [Using Generics in Methods](#using-generics-in-methods)
-      * [Mixing Types with Generics](#mixing-types-with-generics)
-   * [Introduction to Generics and Traits](#introduction-to-generics-and-traits)
-      * [Generics](#generics)
-      * [Traits](#traits)
-      * [Using Traits as Parameters](#using-traits-as-parameters)
-   * [Rust Generics and Traits](#rust-generics-and-traits)
-      * [Using Generics with Traits](#using-generics-with-traits)
-      * [Returning Different Concrete Types Based on Business Logic](#returning-different-concrete-types-based-on-business-logic)
-      * [Fixing Issues with Partial and Copy Traits](#fixing-issues-with-partial-and-copy-traits)
-   * [Understanding Lifetimes in Rust](#understanding-lifetimes-in-rust)
-      * [Introduction to Lifetimes](#introduction-to-lifetimes)
-      * [Implementing Lifetimes](#implementing-lifetimes)
-      * [Output Lifetimes](#output-lifetimes)
-   * [Dangling Pointers and Lifetimes](#dangling-pointers-and-lifetimes)
-      * [Dangling Pointers](#dangling-pointers)
-      * [Lifetimes in Structs](#lifetimes-in-structs)
-      * [Rules for Lifetime Elision](#rules-for-lifetime-elision)
-   * [Understanding Lifetimes in Rust](#understanding-lifetimes-in-rust-1)
-      * [Lifetime Rules for Functions](#lifetime-rules-for-functions)
-      * [Specifying Output Lifetime](#specifying-output-lifetime)
-      * [Lifetime Rules for Methods](#lifetime-rules-for-methods)
-      * [Static Lifetime](#static-lifetime)
-   * [Advanced Scenarios](#advanced-scenarios)
+
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 08:45:35 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 09:22:11 UTC 2023 -->
 
 <!--te-->
 

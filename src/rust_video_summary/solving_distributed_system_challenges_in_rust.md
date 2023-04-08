@@ -1,6 +1,11 @@
 # Solving distributed systems challenges in Rust
 
 <!--ts-->
+
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Sat Apr  8 09:22:11 UTC 2023 -->
+
 <!--te-->
 
 ## Introduction
