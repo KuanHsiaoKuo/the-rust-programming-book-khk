@@ -9,6 +9,7 @@
     - [Rust Video Summary](rust_video_summary/rust_video_summary.md)
         - [Stop Duplicating Your Code](rust_video_summary/stop_duplicating_your_code.md)
         - [Rust Crash Course](rust_video_summary/rust_crash_course_rustlang.md)
+        - [Solving Distributed System Challenges](rust_video_summary/solving_distributed_system_challenges_in_rust.md)
     - [Associated Items]()
         - [Associated type, Generic associate types](topics/at_gat.md)
         - [Associated Types]()
