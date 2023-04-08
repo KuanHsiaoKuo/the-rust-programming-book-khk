@@ -28,7 +28,7 @@
    * [DerefMut: How Deref Coercion Interacts with Mutability](#derefmut-how-deref-coercion-interacts-with-mutability)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr  8 16:40:28 UTC 2023 -->
+<!-- Added by: runner, at: Sat Apr  8 16:51:09 UTC 2023 -->
 
 <!--te-->
 
