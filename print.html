@@ -214,7 +214,7 @@
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:32:13 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:50:30 UTC 2023 -->
 <!--te-->
 <h2 id="rust-official"><a class="header" href="#rust-official">Rust Official</a></h2>
 <h3 id="rust-lang-home"><a class="header" href="#rust-lang-home">Rust Lang Home</a></h3>
@@ -536,7 +536,460 @@ Common pitfalls: After a variable is assigned once, it often fails to compile, b
 <div style="break-before: page; page-break-before: always;"></div><ul>
 <li><a href="https://videohighlight.com/">Video Highlight</a></li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="lifetime-annotations"><a class="header" href="#lifetime-annotations">Lifetime Annotations</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="declarative-macros"><a class="header" href="#declarative-macros">Declarative Macros</a></h1>
+<h2 id="introduction-to-declarative-macros"><a class="header" href="#introduction-to-declarative-macros"><a href="rust_video_summary/curst_of_rust/t=0:00:00s">#</a> Introduction to Declarative Macros</a></h2>
+<p>Section Overview: In this video, we will learn about declarative macros and how they work in Rust. We will focus on
+macro rules and implement the <code>vec!</code> macro from the standard library.</p>
+<h3 id="macro-rules"><a class="header" href="#macro-rules">Macro Rules</a></h3>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/t=0:00:22s"></a> Declarative macros are defined using macro rules.</li>
+<li><a href="rust_video_summary/curst_of_rust/t=0:02:39s"></a> Macro rules consist of a name followed by an exclamation point, followed by a bracket containing
+patterns that serve as arguments to the macro.</li>
+<li><a href="rust_video_summary/curst_of_rust/t=0:03:20s"></a> The patterns for macros are looser than those for functions and can include syntax types such as
+identifiers, expressions, items, blocks, type names or module paths.</li>
+</ul>
+<h3 id="implementing-the-vec-macro"><a class="header" href="#implementing-the-vec-macro">Implementing the <code>vec!</code> Macro</a></h3>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/t=0:01:49s"></a> The <code>vec!</code> macro is used to declare a vector using either a vector literal syntax or by specifying an
+element that is cloneable along with its count.</li>
+<li><a href="rust_video_summary/curst_of_rust/t=0:04:05s"></a> To implement the <code>vec!</code> macro, we need to understand some handy patterns explained in “The Little Book
+of Rust Macros”.</li>
+<li><a href="rust_video_summary/curst_of_rust/t=0:04:29s"></a> Section four of “The Little Book of Rust Macros” provides useful patterns for implementing macros.</li>
+</ul>
+<p>Overall, this video provides an introduction to declarative macros and demonstrates how to implement them using macro
+rules. We also learned about the <code>vec!</code> macro from the standard library and how it can be implemented using these
+concepts.</p>
+<h2 id="introduction-to-rust-macros"><a class="header" href="#introduction-to-rust-macros">Introduction to Rust Macros</a></h2>
+<p>Section Overview: In this section, the speaker introduces Rust macros and explains why it is important to have a
+dedicated library for them.</p>
+<h3 id="creating-a-dedicated-library-for-macros"><a class="header" href="#creating-a-dedicated-library-for-macros">Creating a Dedicated Library for Macros</a></h3>
+<ul>
+<li>A dedicated library for macros makes it easier to develop in isolation.</li>
+<li>It is good practice to get into the habit of making libraries.</li>
+</ul>
+<h3 id="macro-rules-and-delimiters"><a class="header" href="#macro-rules-and-delimiters">Macro Rules and Delimiters</a></h3>
+<ul>
+<li>Rust macros have optional delimiters that can be used by the caller.</li>
+<li>The input syntax for a macro must be syntactically valid rust program, but the output must be valid rust code.</li>
+<li>Every macro invocation is replaced by whatever input was given when working with macros.</li>
+</ul>
+<h3 id="using-cargo-expand"><a class="header" href="#using-cargo-expand">Using Cargo Expand</a></h3>
+<ul>
+<li>Cargo expand is a handy crate that expands all macros with their definitions in the source code.</li>
+</ul>
+<h2 id="understanding-rust-macros-continued"><a class="header" href="#understanding-rust-macros-continued">Understanding Rust Macros Continued</a></h2>
+<p>Section Overview: In this section, the speaker continues explaining how Rust macros work and demonstrates how they can
+be used.</p>
+<h3 id="defining-macro-arguments"><a class="header" href="#defining-macro-arguments">Defining Macro Arguments</a></h3>
+<ul>
+<li>Patterns are patterns over rust syntax trees, not argument lists.</li>
+<li>You can introduce any syntax you want in a macro as long as it is syntactically valid rust program.</li>
+</ul>
+<h3 id="using-cargo-check"><a class="header" href="#using-cargo-check">Using Cargo Check</a></h3>
+<ul>
+<li>Running cargo check on an empty macro expansion returns no errors because nothing is allowed to be in these locations.</li>
+</ul>
+<h3 id="optional-delimiters"><a class="header" href="#optional-delimiters">Optional Delimiters</a></h3>
+<ul>
+<li>There isn’t currently a way to specify which delimiter should be used when invoking a macro rule.</li>
+</ul>
+<h3 id="writing-valid-syntax-patterns"><a class="header" href="#writing-valid-syntax-patterns">Writing Valid Syntax Patterns</a></h3>
+<ul>
+<li>The input syntax pattern must be syntactically valid rust program while the output must also be valid rust code
+because it is what gets compiled.</li>
+</ul>
+<h3 id="using-cargo-expand-1"><a class="header" href="#using-cargo-expand-1">Using Cargo Expand</a></h3>
+<ul>
+<li>Cargo expand is a handy crate that expands all macros with their definitions in the source code.</li>
+</ul>
+<h2 id="introduction-to-rust-macros-1"><a class="header" href="#introduction-to-rust-macros-1"><a href="rust_video_summary/curst_of_rust/t=0:11:19">#</a> Introduction to Rust Macros</a></h2>
+<p>Section Overview: In this section, the speaker introduces Rust macros and explains how they work. They discuss the
+concept of syntactically valid Rust grammar and how it relates to macro rules.</p>
+<h3 id="syntactically-valid-rust-grammar"><a class="header" href="#syntactically-valid-rust-grammar">Syntactically Valid Rust Grammar</a></h3>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/t=0:11:32"></a> The speaker explains that for a code to be syntactically valid, it must follow the rules of Rust
+grammar.</li>
+<li><a href="rust_video_summary/curst_of_rust/t=0:12:16"></a> The output is helpful in identifying identifiers, which can be chosen by the user.</li>
+<li><a href="rust_video_summary/curst_of_rust/t=0:12:54"></a> Identifiers defined inside a macro exist in a separate universe from everything outside the macro.</li>
+</ul>
+<h3 id="hygienic-macros"><a class="header" href="#hygienic-macros">Hygienic Macros</a></h3>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/t=0:14:46"></a> The speaker explains that identifier names used inside macros are distinct from those outside of macros.</li>
+<li><a href="rust_video_summary/curst_of_rust/t=0:15:34"></a> Rust macros are hygienic because they cannot access things outside their own scope.</li>
+</ul>
+<h3 id="creating-a-macro"><a class="header" href="#creating-a-macro">Creating a Macro</a></h3>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/t=0:17:02"></a> The speaker demonstrates how to create a simple macro using <code>macro_rules!</code>.</li>
+<li><a href="rust_video_summary/curst_of_rust/t=0:17:50"></a> They explain how to use <code>macro_export</code> to make the macro callable from other libraries.</li>
+</ul>
+<h2 id="using-macros-for-code-generation"><a class="header" href="#using-macros-for-code-generation"><a href="rust_video_summary/curst_of_rust/t=0:20:00">#</a> Using Macros for Code Generation</a></h2>
+<p>Section Overview: In this section, the speaker discusses how macros can be used for code generation and demonstrates an
+example of generating code with macros.</p>
+<h3 id="generating-code-with-macros"><a class="header" href="#generating-code-with-macros">Generating Code with Macros</a></h3>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/t=0:20:22"></a> The speaker demonstrates an example of generating code with macros using <code>vec!</code>.</li>
+<li><a href="rust_video_summary/curst_of_rust/t=0:21.30"></a> They explain how this approach can simplify code and reduce errors.</li>
+<li><a href="rust_video_summary/curst_of_rust/t=0.22.10"></a> The limitations of using macros for code generation are discussed.</li>
+</ul>
+<h2 id="advanced-macro-concepts"><a class="header" href="#advanced-macro-concepts"><a href="rust_video_summary/curst_of_rust/t=0:24:00">#</a> Advanced Macro Concepts</a></h2>
+<p>Section Overview: In this section, the speaker discusses advanced macro concepts such as repetition and recursion.</p>
+<h3 id="repetition-in-macros"><a class="header" href="#repetition-in-macros">Repetition in Macros</a></h3>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/t=0:24:20"></a> The speaker explains how repetition can be used in macros to generate code.</li>
+<li><a href="rust_video_summary/curst_of_rust/t=0:25:30"></a> They demonstrate an example of using repetition to generate a function that calculates the sum of a list
+of numbers.</li>
+</ul>
+<h3 id="recursion-in-macros"><a class="header" href="#recursion-in-macros">Recursion in Macros</a></h3>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/t=0:28:10"></a> The speaker explains how recursion can be used in macros to generate code.</li>
+<li><a href="rust_video_summary/curst_of_rust/t=0:29.40"></a> They demonstrate an example of using recursion to generate a function that calculates the factorial of a
+number.</li>
+</ul>
+<h2 id="conclusion"><a class="header" href="#conclusion"><a href="rust_video_summary/curst_of_rust/t=0:32.50">#</a> Conclusion</a></h2>
+<p>Section Overview: In this section, the speaker concludes by summarizing the key points covered in the video and
+providing resources for further learning.</p>
+<h3 id="summary"><a class="header" href="#summary">Summary</a></h3>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/t=0:33.10"></a> The speaker summarizes the key points covered in the video, including syntactically valid Rust grammar,
+hygienic macros, generating code with macros, and advanced macro concepts.</li>
+<li><a href="rust_video_summary/curst_of_rust/t=0:34.20"></a> They provide resources for further learning about Rust macros.</li>
+</ul>
+<p>Overall, this video provides a comprehensive introduction to Rust macros and demonstrates how they can be used for code
+generation. The examples provided are clear and easy to follow, making it an excellent resource for anyone looking to
+learn more about Rust macros.</p>
+<h2 id="macro-expansion"><a class="header" href="#macro-expansion">Macro Expansion</a></h2>
+<p>Section Overview: In this section, the speaker discusses macro expansion in Rust and provides examples of how to define
+macros.</p>
+<h3 id="defining-a-simple-macro"><a class="header" href="#defining-a-simple-macro">Defining a Simple Macro</a></h3>
+<ul>
+<li>The speaker defines a simple macro that produces a static value.</li>
+<li>The speaker explains that when passing identifiers to a macro, you are not passing ownership but rather access to the
+name.</li>
+<li>The speaker explains that what matters for ownership is what the code that the macro expands to does with that name.</li>
+</ul>
+<h3 id="expanding-macros"><a class="header" href="#expanding-macros">Expanding Macros</a></h3>
+<ul>
+<li>The speaker demonstrates expanding a macro using <code>cargo expand</code>.</li>
+<li>The speaker shows an example of expanding a more complicated macro and explains why it doesn’t work as expected.</li>
+<li>The speaker adds an argument to the macro and expands it correctly using curly brackets to create a block.</li>
+</ul>
+<p>Overall, this section covers how to define and expand macros in Rust, including handling ownership issues and creating
+blocks for more complex expansions.</p>
+<h2 id="macro-rules-in-rust"><a class="header" href="#macro-rules-in-rust">Macro Rules in Rust</a></h2>
+<p>Section Overview: This section discusses the implementation of macro rules in Rust and how it differs from normal
+macros.</p>
+<h3 id="procedural-macros-vs-macro-rules"><a class="header" href="#procedural-macros-vs-macro-rules">Procedural Macros vs. Macro Rules</a></h3>
+<ul>
+<li>Macro rules is not a normal macro, but rather a procedural macro.</li>
+<li>The syntax for macro rules does not allow for an identifier followed by curly brackets, unlike other macros.</li>
+<li>The output type of the macro defined using macro rules is expected to be an expression.</li>
+</ul>
+<h3 id="new-version-of-macros"><a class="header" href="#new-version-of-macros">New Version of Macros</a></h3>
+<ul>
+<li>A new version of macros called “macros” is proposed to be more powerful than macro rules.</li>
+<li>It will have different guarantees about hygiene and work better with the module system and use statements.</li>
+</ul>
+<h3 id="delimiters-in-instantiation"><a class="header" href="#delimiters-in-instantiation">Delimiters in Instantiation</a></h3>
+<ul>
+<li>The delimiter used in instantiation can be freely chosen by the user between square brackets, round brackets, and
+curly brackets.</li>
+<li>All delimiters are valid and have the same meaning.</li>
+</ul>
+<h3 id="declarative-macros-vs-proc-macros"><a class="header" href="#declarative-macros-vs-proc-macros">Declarative Macros vs. Proc Macros</a></h3>
+<ul>
+<li>Declarative macros like macro rules do not let you write a Rust program, while proc macros do.</li>
+<li>Declarative macros are entirely declarative and only allow substitution between one valid Rust syntax tree to another.</li>
+</ul>
+<h2 id="introspection-in-rust-macros"><a class="header" href="#introspection-in-rust-macros">Introspection in Rust Macros</a></h2>
+<p>Section Overview: This section discusses introspection in Rust macros and what information they have access to.</p>
+<h3 id="type-information"><a class="header" href="#type-information">Type Information</a></h3>
+<ul>
+<li>Declarative macros like macro rules do not have access to things like type information.</li>
+<li>Proc macros give you more access to introspection but still don’t provide full introspection capabilities.</li>
+</ul>
+<h3 id="identifiers-before-argument-block"><a class="header" href="#identifiers-before-argument-block">Identifiers Before Argument Block</a></h3>
+<ul>
+<li>Proc macros cannot take identifiers before the argument block.</li>
+</ul>
+<h2 id="introduction-to-proc-macros"><a class="header" href="#introduction-to-proc-macros">Introduction to Proc Macros</a></h2>
+<p>Section Overview: In this section, the speaker introduces proc macros and explains how they differ from declarative
+macros.</p>
+<h3 id="what-are-proc-macros"><a class="header" href="#what-are-proc-macros">What are Proc Macros?</a></h3>
+<ul>
+<li>Proc macros take Rust syntax streams as input and produce a different token stream to replace it with.</li>
+<li>They are more expressive but also more complicated to write than declarative macros.</li>
+</ul>
+<h3 id="special-features-of-proc-macros"><a class="header" href="#special-features-of-proc-macros">Special Features of Proc Macros</a></h3>
+<ul>
+<li>With proc macros, you can add attributes or derives that you cannot do with declarative macros.</li>
+</ul>
+<h2 id="using-repetition-in-patterns"><a class="header" href="#using-repetition-in-patterns">Using Repetition in Patterns</a></h2>
+<p>Section Overview: In this section, the speaker explains how repetition works in patterns and how it can be used in macro
+replacements.</p>
+<h3 id="limitations-of-single-expression-pattern"><a class="header" href="#limitations-of-single-expression-pattern">Limitations of Single Expression Pattern</a></h3>
+<ul>
+<li>The pattern for accepting only one expression is limiting when dealing with multiple expressions separated by commas.</li>
+<li>This limitation causes an error when trying to run the code.</li>
+</ul>
+<h3 id="using-repetition-in-patterns-1"><a class="header" href="#using-repetition-in-patterns-1">Using Repetition in Patterns</a></h3>
+<ul>
+<li>The patterns index allows for repetition by surrounding part of your pattern with dollar parentheses.</li>
+<li>You can give a delimiter followed by either star or plus to indicate zero or more repetitions or one or more
+repetitions respectively.</li>
+<li>This allows for matching comma-separated lists of expressions.</li>
+</ul>
+<h3 id="using-repetition-in-macro-replacements"><a class="header" href="#using-repetition-in-macro-replacements">Using Repetition in Macro Replacements</a></h3>
+<ul>
+<li>Inside the replacement part of your macro, you can use the same syntax as the pattern to give repetitions
+corresponding to the pattern.</li>
+<li>This allows for scaling up your vector macro to work for an arbitrary number of elements and produce an appropriate
+vector.</li>
+</ul>
+<h2 id="expansion-of-patterns"><a class="header" href="#expansion-of-patterns">Expansion of Patterns</a></h2>
+<p>Section Overview: In this section, the speaker discusses how Rust format expands patterns and how it handles multiple
+variables in a single repetition.</p>
+<h3 id="rust-format-expansion"><a class="header" href="#rust-format-expansion">Rust Format Expansion</a></h3>
+<ul>
+<li>Rust format expands patterns multiple times when encountering the pattern of dollar parentheses inside of the
+expansion.</li>
+<li>It matches against each pattern and pulls out the variables every time.</li>
+</ul>
+<h3 id="handling-multiple-variables-in-a-single-repetition"><a class="header" href="#handling-multiple-variables-in-a-single-repetition">Handling Multiple Variables in a Single Repetition</a></h3>
+<ul>
+<li>Using multiple variables in a single repetition is an error.</li>
+<li>If there are different repeating patterns with variables, they have to repeat the same number of times.</li>
+</ul>
+<h2 id="dealing-with-repeating-patterns"><a class="header" href="#dealing-with-repeating-patterns">Dealing with Repeating Patterns</a></h2>
+<p>Section Overview: In this section, the speaker talks about repeating patterns and how to deal with them.</p>
+<h3 id="meta-variable-x-repeats-zero-times"><a class="header" href="#meta-variable-x-repeats-zero-times">Meta Variable X Repeats Zero Times</a></h3>
+<ul>
+<li>When using static strings, if there are no repeating patterns, Rust format will give an error message saying “meta
+variable X repeats zero times but element repeats one time.”</li>
+<li>If there are different repeating patterns with variables, they have to repeat the same number of times.</li>
+</ul>
+<h2 id="macro-rules-vs-proc-macro-plus"><a class="header" href="#macro-rules-vs-proc-macro-plus">Macro Rules vs Proc Macro Plus</a></h2>
+<p>Section Overview: In this section, the speaker explains that for more elaborate things than what macro rules can define,
+you need to drop to a proc macro plus.</p>
+<h3 id="limitations-of-macro-rules"><a class="header" href="#limitations-of-macro-rules">Limitations of Macro Rules</a></h3>
+<ul>
+<li>The format macro is not macro rules.</li>
+<li>Macro rules are somewhat limited in what you can define.</li>
+</ul>
+<h3 id="dropping-to-proc-macro-plus"><a class="header" href="#dropping-to-proc-macro-plus">Dropping to Proc Macro Plus</a></h3>
+<ul>
+<li>For some more elaborate things than what macro rules can define, you need to drop to a proc macro plus.</li>
+</ul>
+<h2 id="inspiration-for-dollar-parentheses-pattern-language"><a class="header" href="#inspiration-for-dollar-parentheses-pattern-language">Inspiration for Dollar Parentheses Pattern Language</a></h2>
+<p>Section Overview: In this section, the speaker discusses where the dollar parentheses pattern language came from.</p>
+<h3 id="origin-of-dollar-parentheses"><a class="header" href="#origin-of-dollar-parentheses">Origin of Dollar Parentheses</a></h3>
+<ul>
+<li>The origin of the dollar parentheses pattern language is unknown.</li>
+<li>It is reminiscent of regular expressions where a parenthesis is a grouping and plus means one or more of the previous
+pattern.</li>
+</ul>
+<h2 id="trailing-commas"><a class="header" href="#trailing-commas">Trailing Commas</a></h2>
+<p>Section Overview: In this section, the speaker talks about trailing commas and how to allow them in Rust format.</p>
+<h3 id="allowing-trailing-commas"><a class="header" href="#allowing-trailing-commas">Allowing Trailing Commas</a></h3>
+<ul>
+<li>When things wrap, you often want to have a trailing comma.</li>
+<li>The current pattern doesn’t allow that because it expects a comma-separated list of things with an expression
+following each comma.</li>
+<li>To allow trailing commas, add a pattern that allows any number of commas after the normal pattern.</li>
+</ul>
+<h2 id="declarative-macros-vs-proc-macros-1"><a class="header" href="#declarative-macros-vs-proc-macros-1">Declarative Macros vs Proc Macros</a></h2>
+<p>Section Overview: This section discusses the differences between declarative macros and proc macros, and their
+respective benefits.</p>
+<h3 id="defining-your-own-macros"><a class="header" href="#defining-your-own-macros">Defining Your Own Macros</a></h3>
+<ul>
+<li>Declarative macros are limited in their ability to provide error messages.</li>
+<li>Proc macros offer better control over what went wrong and what errors are emitted.</li>
+<li>Macro rules can be used to generate repeated patterns quickly.</li>
+</ul>
+<h3 id="example-generating-trait-implementations"><a class="header" href="#example-generating-trait-implementations">Example: Generating Trait Implementations</a></h3>
+<ul>
+<li>Macro rules can be used to generate trait implementations for multiple types quickly.</li>
+<li>This is useful when there are repeated patterns that need to be expressed.</li>
+</ul>
+<h3 id="limitations-of-declarative-macros"><a class="header" href="#limitations-of-declarative-macros">Limitations of Declarative Macros</a></h3>
+<ul>
+<li>When using non-literal expressions, declarative macros may not work as expected due to substitution.</li>
+<li>Substitution can cause issues with more complicated expressions, leading to unexpected behavior.</li>
+</ul>
+<h2 id="macros-in-rust"><a class="header" href="#macros-in-rust">Macros in Rust</a></h2>
+<p>Section Overview: This section covers the use of macros in Rust, including macro rules and proc macros. It also
+discusses the downsides of using proc macros.</p>
+<h3 id="object-oriented-programming-with-macros"><a class="header" href="#object-oriented-programming-with-macros">Object-Oriented Programming with Macros</a></h3>
+<ul>
+<li>Macros are not recommended for object-oriented programming like inheritance.</li>
+<li>Macro rules can become an eyesore when they go beyond simple ones.</li>
+<li>Proc macros are a better option for more complicated macros but add an additional compilation step.</li>
+</ul>
+<h3 id="testing-invalid-expressions"><a class="header" href="#testing-invalid-expressions">Testing Invalid Expressions</a></h3>
+<ul>
+<li>Rust assigns any error produced by a macro to the corresponding place in the macro input.</li>
+<li>A test that includes an invalid expression will not compile and will produce an error message pointing to the location
+of the error.</li>
+</ul>
+<h3 id="compiler-optimization"><a class="header" href="#compiler-optimization">Compiler Optimization</a></h3>
+<ul>
+<li>The compiler is smart enough to recognize types that implement copy, such as integers, and will optimize them
+accordingly.</li>
+<li>The newly introduced syntax can be used to compact arbitrarily nested for-loops.</li>
+</ul>
+<h3 id="doc-tests"><a class="header" href="#doc-tests">Doc Tests</a></h3>
+<ul>
+<li>Rust does not have a way to say that a unit test should not compile, but there is a crate called “compile fail” that
+allows you to write tests that are not supposed to compile.</li>
+<li>Doc tests can be used as a cheap way to get compiled fail tests.</li>
+</ul>
+<h3 id="veck-macro-comparison"><a class="header" href="#veck-macro-comparison">Veck Macro Comparison</a></h3>
+<ul>
+<li>The Veck macro supports the pattern element expression semicolon and expression.</li>
+</ul>
+<h2 id="making-the-star-instead-of-plus"><a class="header" href="#making-the-star-instead-of-plus">Making the Star Instead of Plus</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to make the star instead of plus and reduce the number of
+patterns.</p>
+<h3 id="reducing-patterns"><a class="header" href="#reducing-patterns">Reducing Patterns</a></h3>
+<ul>
+<li>The star can be used instead of plus to indicate zero or more repetitions.</li>
+<li>An allow statement is needed in case the input list is empty and we never push.</li>
+<li>This reduces the number of patterns and makes documentation easier to read.</li>
+</ul>
+<h2 id="other-useful-crates"><a class="header" href="#other-useful-crates">Other Useful Crates</a></h2>
+<p>Section Overview: In this section, the speaker mentions other useful crates for compile fail tests.</p>
+<h3 id="other-useful-crates-1"><a class="header" href="#other-useful-crates-1">Other Useful Crates</a></h3>
+<ul>
+<li>Try build is a good crate to know for compile fail tests.</li>
+<li>Should panic is different from compiled failed macro export.</li>
+<li>Macro export is not always required but without it, you wouldn’t be able to call this macro outside of this crate.</li>
+</ul>
+<h2 id="more-efficient-implementation"><a class="header" href="#more-efficient-implementation">More Efficient Implementation</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to create a more efficient implementation by reducing
+reallocations and pointer increments.</p>
+<h3 id="reducing-reallocations"><a class="header" href="#reducing-reallocations">Reducing Reallocations</a></h3>
+<ul>
+<li>Creating an empty vector and then calling push a thousand twenty-four times will require many reallocations.</li>
+<li>Using capacity count can help allocate for a specific number of elements.</li>
+<li>Standard iterator repeat element take count can be used instead of push to avoid bounds checking for every iteration.</li>
+</ul>
+<h3 id="pointer-increments"><a class="header" href="#pointer-increments">Pointer Increments</a></h3>
+<ul>
+<li>Push still requires pointer increments which can add up if creating a vector with many elements in a busy loop.</li>
+<li>Standard iterator repeat plus take does not implement exact size and can be improved.</li>
+</ul>
+<h2 id="veck-macro"><a class="header" href="#veck-macro">Veck Macro</a></h2>
+<p>Section Overview: This section discusses the Veck macro and its implementation.</p>
+<h3 id="veck-macro-implementation"><a class="header" href="#veck-macro-implementation">Veck Macro Implementation</a></h3>
+<ul>
+<li>The Veck macro is a more sophisticated operation that requires special treatment.</li>
+<li>If an iterator is produced, it must be implemented as an exact size iterator.</li>
+<li>The macro does not have any trait bounds, so if something that isn’t clone is used, the compiler will generate an
+error.</li>
+<li>The error output generated by the macro expansion points to where the type that didn’t implement clone came from.</li>
+</ul>
+<h2 id="power-of-two-expansion"><a class="header" href="#power-of-two-expansion">Power of Two Expansion</a></h2>
+<p>Section Overview: This section discusses power of two expansion and its efficiency.</p>
+<h3 id="purely-power-of-two-expansion"><a class="header" href="#purely-power-of-two-expansion">Purely Power of Two Expansion</a></h3>
+<ul>
+<li>The Veck macro does purely power of two expansion.</li>
+<li>It will do ten allocations before it even gets to 1024, making it inefficient.</li>
+</ul>
+<h2 id="hygienic-macros-1"><a class="header" href="#hygienic-macros-1">Hygienic Macros</a></h2>
+<p>Section Overview: This section discusses hygienic macros and how they can be affected by caller-defined modules.</p>
+<h3 id="caller-defined-modules"><a class="header" href="#caller-defined-modules">Caller-defined Modules</a></h3>
+<ul>
+<li>When defining macros, you have to be careful because the caller might have modules that override you.</li>
+<li>Macros aren’t entirely hygienic because they can’t express certain things like crate or colon colon which are root
+level paths.</li>
+<li>If someone renames the crate STD then they deserve the problems they get.</li>
+</ul>
+<h2 id="trailing-commas-in-expressions"><a class="header" href="#trailing-commas-in-expressions">Trailing Commas in Expressions</a></h2>
+<p>Section Overview: This section discusses trailing commas in expressions and their effect on recursion limits.</p>
+<h3 id="trailing-commas-in-expressions-1"><a class="header" href="#trailing-commas-in-expressions-1">Trailing Commas in Expressions</a></h3>
+<ul>
+<li>If there’s not a trailing comma, then it will keep invoking this rule causing infinite recursion.</li>
+<li>The order matters when defining rules for expressions with no trailing commas.
+I’m sorry, but I cannot summarize the transcript without having access to it. Please provide me with the transcript so
+that I can create a summary for you.</li>
+</ul>
+<h2 id="defining-a-macro-to-avoid-repeating-elements"><a class="header" href="#defining-a-macro-to-avoid-repeating-elements">Defining a Macro to Avoid Repeating Elements</a></h2>
+<p>Section Overview: In this section, the speaker explains how to define a macro to avoid repeating elements in Rust.</p>
+<h3 id="using-a-macro-to-define-an-expression"><a class="header" href="#using-a-macro-to-define-an-expression">Using a Macro to Define an Expression</a></h3>
+<ul>
+<li>The problem with repeating an element multiple times is that it can cause issues.</li>
+<li>Rust figures out how many times to repeat a block by looking at which variables are used inside of it.</li>
+<li>If we don’t use any variables, Rust doesn’t know how many times to repeat the block.</li>
+<li>We can define a substitute variant that takes an expression and returns unit instead of using repetition.</li>
+<li>By expanding the macro with substitution, Rust knows how many times to repeat the block because we’re using element in
+there.</li>
+</ul>
+<h3 id="counting-trick-for-arrays"><a class="header" href="#counting-trick-for-arrays">Counting Trick for Arrays</a></h3>
+<ul>
+<li>The type does not give the length of the array, so we need to use a counting trick.</li>
+<li>We call slice Len on this array turned into a slice by calling the ass ref trade.</li>
+</ul>
+<h2 id="counting-tokens-in-rust-macros"><a class="header" href="#counting-tokens-in-rust-macros">Counting Tokens in Rust Macros</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to count tokens in Rust macros and the tricks involved in
+doing so.</p>
+<h3 id="tricks-for-counting-tokens"><a class="header" href="#tricks-for-counting-tokens">Tricks for Counting Tokens</a></h3>
+<ul>
+<li>You can use size of to count tokens, but it ends up allocating.</li>
+<li>There are other tricks like zero plus multiple replacements with one that can be used to count tokens. However, if you
+do enough of these, you will crash the compiler.</li>
+<li>You can also count the number of tokens by counting sub-patterns and batching them. This has been tested up to ten
+thousand tokens but cannot be used to produce a constant expression.</li>
+<li>There are versions that can produce a constant expression like extracting the enum counter to get the number of items.</li>
+</ul>
+<h3 id="using-procedural-macros"><a class="header" href="#using-procedural-macros">Using Procedural Macros</a></h3>
+<ul>
+<li>When counting tokens gets too complicated, you can write it as a procedural macro instead.</li>
+<li>Although you may not necessarily want to use these tricks yourself, they tell you a lot about how macros work.</li>
+</ul>
+<h3 id="predefined-count-macro"><a class="header" href="#predefined-count-macro">Predefined Count Macro</a></h3>
+<ul>
+<li>Currently, there is no predefined count macro because it’s hard to know what exactly needs to be counted (e.g., number
+of tokens or characters in syntax tree).</li>
+</ul>
+<h3 id="testing-compile-time-length-verification"><a class="header" href="#testing-compile-time-length-verification">Testing Compile Time Length Verification</a></h3>
+<ul>
+<li>It is possible to test and verify that length is known at compile time using const slices.</li>
+</ul>
+<h3 id="hiding-nasty-patterns"><a class="header" href="#hiding-nasty-patterns">Hiding Nasty Patterns</a></h3>
+<ul>
+<li>To hide nasty patterns from documentation, you can make macros export but also doc hidden.</li>
+</ul>
+<h2 id="using-map-lit-crate"><a class="header" href="#using-map-lit-crate">Using Map Lit Crate</a></h2>
+<p>Section Overview: In this section, the speaker recommends using the Map Lit crate to practice creating maps.</p>
+<h3 id="practice-with-map-lit-crate"><a class="header" href="#practice-with-map-lit-crate">Practice with Map Lit Crate</a></h3>
+<ul>
+<li>The Map Lit crate can be used to create maps.</li>
+<li>Expanding or extending the code to work for a hashmap is a good exercise.</li>
+<li>The syntax change required for working with a hashmap is fairly straightforward.</li>
+</ul>
+<h2 id="standard-library-version-of-veck"><a class="header" href="#standard-library-version-of-veck">Standard Library Version of Veck</a></h2>
+<p>Section Overview: In this section, the speaker explains how the standard library version of Veck works.</p>
+<h3 id="explanation-of-standard-library-version"><a class="header" href="#explanation-of-standard-library-version">Explanation of Standard Library Version</a></h3>
+<ul>
+<li>The standard library version uses Box and creates an array on the heap.</li>
+<li>A boxed array is created on the heap and treated as a box slice instead of a boxed array.</li>
+<li>A sequence of things on the heap can be trivially constructed into a vector.</li>
+</ul>
+<h2 id="conclusion-1"><a class="header" href="#conclusion-1">Conclusion</a></h2>
+<p>Section Overview: In this section, the speaker wraps up and invites viewers to suggest additional concepts for future
+videos.</p>
+<h3 id="wrapping-up"><a class="header" href="#wrapping-up">Wrapping Up</a></h3>
+<ul>
+<li>Thanks everyone for watching!</li>
+<li>The standard library version allows them to get away with not doing all the tricks that were done in previous
+sections.</li>
+</ul>
+<h3 id="future-video-concepts"><a class="header" href="#future-video-concepts">Future Video Concepts</a></h3>
+<ul>
+<li>Viewers are invited to suggest additional self-contained real code concepts.</li>
+</ul>
+<h2 id="generated-by-video-highlight"><a class="header" href="#generated-by-video-highlight">Generated by Video Highlight</a></h2>
+<p>https://videohighlight.com/video/summary/q6paRBbLgNw</p>
+<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="lifetime-annotations"><a class="header" href="#lifetime-annotations">Lifetime Annotations</a></h1>
 <!--ts-->
 <ul>
 <li><a href="rust_video_summary/curst_of_rust/lifetime_annotations.html#lifetime-annotations">Lifetime Annotations</a>
@@ -714,7 +1167,7 @@ Common pitfalls: After a variable is assigned once, it often fails to compile, b
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:33:06 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:51:31 UTC 2023 -->
 <!--te-->
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>Section Overview: In this section, the speaker introduces the topic of the video and explains how they came up with the
@@ -831,7 +1284,7 @@ function in Rust.</p>
 <li>There is a bug in the code that needs to be fixed.</li>
 <li>The bug will be addressed later.</li>
 </ul>
-<h3 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h3>
+<h3 id="conclusion-2"><a class="header" href="#conclusion-2">Conclusion</a></h3>
 <ul>
 <li>We have completed our implementation of the split function in Rust.</li>
 <li>We can now test our code using cargo test.</li>
@@ -861,7 +1314,7 @@ one possible guess.</li>
 <li>You can order lifetimes based on how long they are. For example, take static is a ring that lives for the entire
 duration of the rest of the program.</li>
 </ul>
-<h3 id="conclusion-1"><a class="header" href="#conclusion-1">Conclusion</a></h3>
+<h3 id="conclusion-3"><a class="header" href="#conclusion-3">Conclusion</a></h3>
 <ul>
 <li>The name you give does not matter; it’s just like naming generics.</li>
 </ul>
@@ -908,7 +1361,7 @@ assigned to a variable or moved.</li>
 <li>If you have a reference or something containing any lifetime, you can assign anything of the same type but with a
 longer lifetime.</li>
 </ul>
-<h3 id="conclusion-2"><a class="header" href="#conclusion-2">Conclusion</a></h3>
+<h3 id="conclusion-4"><a class="header" href="#conclusion-4">Conclusion</a></h3>
 <ul>
 <li>The speaker concludes by stating that everything defaults to having a static lifetime, although it’s not entirely
 true. A value’s lifetime lasts until it’s moved or assigned to a variable.</li>
@@ -1082,7 +1535,7 @@ the issue of returning a reference to a temporary value and how it relates to li
 <li>Strings are heap-allocated and dynamically expandable while strs are not.</li>
 <li>A string can be converted into a str easily, but not vice versa.</li>
 </ul>
-<h3 id="conclusion-3"><a class="header" href="#conclusion-3">Conclusion</a></h3>
+<h3 id="conclusion-5"><a class="header" href="#conclusion-5">Conclusion</a></h3>
 <ul>
 <li>Rust’s lifetime system can be tricky to navigate, especially when dealing with references and temporary values.</li>
 <li>It’s important to understand the differences between strings and strs in order to write effective code.</li>
@@ -1108,7 +1561,7 @@ downgrading the lifetime.</li>
 <li>The reference given back is now tied only to the haystack lifetime instead of being tied to both haystack and
 delimiter.</li>
 </ul>
-<h3 id="conclusion-4"><a class="header" href="#conclusion-4">Conclusion</a></h3>
+<h3 id="conclusion-6"><a class="header" href="#conclusion-6">Conclusion</a></h3>
 <p>The speaker discussed heap allocation and its use in creating strings. They also explained how multiple lifetimes can be
 used when dealing with references.</p>
 <h2 id="introduction-to-lifetimes-and-delimiters"><a class="header" href="#introduction-to-lifetimes-and-delimiters">Introduction to Lifetimes and Delimiters</a></h2>
@@ -1162,7 +1615,7 @@ and it will tell you the start of that string in that string that plus one is wr
 In order to find the end of the delimiter, it has to be the start of the delimiter plus the length of the delimiter
 not the length of the string we’re searching in. The s here is what we’re searching in.</li>
 </ul>
-<h2 id="conclusion-5"><a class="header" href="#conclusion-5">Conclusion</a></h2>
+<h2 id="conclusion-7"><a class="header" href="#conclusion-7">Conclusion</a></h2>
 <p>Section Overview: In this section, the speaker reveals that all of the things implemented today exist in Rust’s standard
 library.</p>
 <ul>
@@ -1218,7 +1671,7 @@ appetite for them.</li>
 <li>The speaker encourages everyone to stay safe and stay home. <a href="rust_video_summary/curst_of_rust/t=1:32:57"></a></li>
 <li>The speaker announces that there will be a video next time. <a href="rust_video_summary/curst_of_rust/t=1:33:18"></a></li>
 </ul>
-<h2 id="generated-by-video-highlight"><a class="header" href="#generated-by-video-highlight">Generated by Video Highlight</a></h2>
+<h2 id="generated-by-video-highlight-1"><a class="header" href="#generated-by-video-highlight-1">Generated by Video Highlight</a></h2>
 <p>https://videohighlight.com/video/summary/rAl-9HwD858</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="smart-pointers-and-interior-mutability"><a class="header" href="#smart-pointers-and-interior-mutability">Smart Pointers and Interior Mutability</a></h1>
 <!--ts-->
@@ -1426,7 +1879,7 @@ appetite for them.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:33:06 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:51:32 UTC 2023 -->
 <!--te-->
 <h2 id="introduction-1"><a class="header" href="#introduction-1">Introduction</a></h2>
 <p>Section Overview: In this section, the speaker introduces the topic of smart pointers and interior mutability in Rust.
@@ -1989,7 +2442,7 @@ covered next.</p>
 <ul>
 <li>The next stream may cover trade objects, borrow trait, or trade delegation.</li>
 </ul>
-<h2 id="generated-by-video-highlight-1"><a class="header" href="#generated-by-video-highlight-1">Generated by Video Highlight</a></h2>
+<h2 id="generated-by-video-highlight-2"><a class="header" href="#generated-by-video-highlight-2">Generated by Video Highlight</a></h2>
 <p>https://videohighlight.com/video/summary/8O0Nt9qY_vo</p>
 <div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><p><a href="https://www.youtube.com/playlist?list=PLqbS7AVVErFhAhQ5s9SWcvxHh4GwsIk_d">impl Rust - YouTube</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="solving-distributed-systems-challenges-in-rust"><a class="header" href="#solving-distributed-systems-challenges-in-rust">Solving distributed systems challenges in Rust</a></h1>
@@ -2253,7 +2706,7 @@ covered next.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:33:08 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:51:33 UTC 2023 -->
 <!--te-->
 <h2 id="introduction-2"><a class="header" href="#introduction-2">Introduction</a></h2>
 <p>Section Overview: In this section, the speaker introduces a set of distributed systems challenges that use a platform
@@ -2629,7 +3082,7 @@ nodes in the cluster. They start by generating unique IDs and move on to impleme
 message RPC.</li>
 <li>A read message requests that a node returns all values it has seen.</li>
 </ul>
-<h2 id="conclusion-6"><a class="header" href="#conclusion-6">Conclusion</a></h2>
+<h2 id="conclusion-8"><a class="header" href="#conclusion-8">Conclusion</a></h2>
 <p>Section Overview: In this section, there is no new content.</p>
 <h2 id="order-of-returned-values-and-topology"><a class="header" href="#order-of-returned-values-and-topology">Order of Returned Values and Topology</a></h2>
 <p>Section Overview: In this section, the speaker discusses the order of returned values and topology.</p>
@@ -2959,7 +3412,7 @@ I’m sorry, but I cannot summarize the transcript as there are only a few bulle
 provided transcript is not sufficient to create a comprehensive and informative markdown file.
 [<em>CUTOFF_LIMIT</em>]</li>
 </ul>
-<h2 id="generated-by-video-highlight-2"><a class="header" href="#generated-by-video-highlight-2">Generated by Video Highlight</a></h2>
+<h2 id="generated-by-video-highlight-3"><a class="header" href="#generated-by-video-highlight-3">Generated by Video Highlight</a></h2>
 <p>https://videohighlight.com/video/summary/gboGyccRVXI</p>
 <div style="break-before: page; page-break-before: always;"></div><p><a href="https://www.youtube.com/playlist?list=PLqbS7AVVErFj-euU-OW79x9na1Qj3_JYL">Open-Source streams - YouTube</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="stop-duplicating-code-generics-traits-lifetimes"><a class="header" href="#stop-duplicating-code-generics-traits-lifetimes">Stop Duplicating Code: Generics, Traits, Lifetimes</a></h1>
@@ -3025,7 +3478,7 @@ provided transcript is not sufficient to create a comprehensive and informative 
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:33:09 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:51:35 UTC 2023 -->
 <!--te-->
 <h2 id="introduction-to-generics"><a class="header" href="#introduction-to-generics">Introduction to Generics</a></h2>
 <p>Section Overview: In this section, we will learn about generics and how they can be used with functions, methods, and
@@ -3056,7 +3509,7 @@ struct.</li>
 <li>We use apostrophes (’) to denote lifetimes in Rust code.</li>
 <li>Lifetime elision rules allow us to omit explicit lifetime annotations in certain cases.</li>
 </ul>
-<h3 id="conclusion-7"><a class="header" href="#conclusion-7">Conclusion</a></h3>
+<h3 id="conclusion-9"><a class="header" href="#conclusion-9">Conclusion</a></h3>
 <p>Section Overview: In this section, we reviewed what we learned about generics, including how they can be used with functions, methods, and custom types. We also explored traits and lifetimes.</p>
 <ul>
 <li>Generics allow us to write more flexible and reusable code.</li>
@@ -3405,7 +3858,7 @@ https://videohighlight.com/video/summary/JLfEiJhpTbE</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:33:08 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:51:34 UTC 2023 -->
 <!--te-->
 <h2 id="introduction-to-rust-programming-language"><a class="header" href="#introduction-to-rust-programming-language">Introduction to Rust Programming Language</a></h2>
 <p>Section Overview: This video is an introductory course on the fundamentals and syntax of the Rust programming language.
@@ -3908,7 +4361,7 @@ to get them using env::args().</p>
 <li>Use placeholders to insert variables into print statements.</li>
 <li>If an invalid command is entered, print a message indicating so.</li>
 </ul>
-<h2 id="conclusion-8"><a class="header" href="#conclusion-8">Conclusion</a></h2>
+<h2 id="conclusion-10"><a class="header" href="#conclusion-10">Conclusion</a></h2>
 <ul>
 <li>Rust is a powerful language for creating command line applications.</li>
 <li>There is much more that can be done with Rust beyond what was covered in this video.</li>
@@ -3926,7 +4379,7 @@ to get them using env::args().</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:33:22 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:51:50 UTC 2023 -->
 <!--te-->
 <h2 id="in-rust-what-is-associate-type-what-is-generic-associate-type"><a class="header" href="#in-rust-what-is-associate-type-what-is-generic-associate-type">in rust, what is associate type, what is generic associate type.</a></h2>
 <p>In Rust, an associate type is a type placeholder that is defined within the bounds of a trait. It allows a trait to specify that concrete types used to implement the trait must provide a specific type, without requiring the trait to know what that type is.</p>
@@ -4745,7 +5198,7 @@ $ cd someproject
 $ cargo build
 </code></pre>
 <p>For more information about Cargo, check out <a href="https://doc.rust-lang.org/cargo/">its documentation</a>.</p>
-<h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
+<h2 id="summary-1"><a class="header" href="#summary-1">Summary</a></h2>
 <p>You’re already off to a great start on your Rust journey! In this chapter,
 you’ve learned how to:</p>
 <ul>
@@ -5834,7 +6287,7 @@ fn main() {
 </code></pre>
 <p><span class="caption">Listing 2-6: Complete guessing game code</span></p>
 <p>At this point, you’ve successfully built the guessing game. Congratulations!</p>
-<h2 id="summary-1"><a class="header" href="#summary-1">Summary</a></h2>
+<h2 id="summary-2"><a class="header" href="#summary-2">Summary</a></h2>
 <p>This project was a hands-on way to introduce you to many new Rust concepts:
 <code>let</code>, <code>match</code>, functions, the use of external crates, and more. In the next
 few chapters, you’ll learn about these concepts in more detail. Chapter 3
@@ -5884,7 +6337,7 @@ change the type of the value but reuse the same name.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:20 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:31 UTC 2023 -->
 <!--te-->
 <p>As mentioned in the <a href="ch02-00-guessing-game-tutorial.html#storing-values-with-variables">“Storing Values with
 Variables”</a><!-- ignore --> section, by default,
@@ -6659,7 +7112,7 @@ if you add a semicolon to the end of an expression, you turn it into a statement
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:21 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:31 UTC 2023 -->
 <!--te-->
 <p>Functions are prevalent in Rust code. You’ve already seen one of the most
 important functions in the language:</p>
@@ -7626,7 +8079,7 @@ we’ve not yet talked about, <code>rev</code>, to reverse the range:</p>
 }
 </code></pre></pre>
 <p>This code is a bit nicer, isn’t it?</p>
-<h2 id="summary-2"><a class="header" href="#summary-2">Summary</a></h2>
+<h2 id="summary-3"><a class="header" href="#summary-3">Summary</a></h2>
 <p>You made it! This was a sizable chapter: you learned about variables, scalar
 and compound data types, functions, comments, <code>if</code> expressions, and loops! To
 practice with the concepts discussed in this chapter, try building programs to
@@ -8890,7 +9343,7 @@ assert_eq!(slice, &amp;[2, 3]);
 storing a reference to the first element and a length. You’ll use this kind of
 slice for all sorts of other collections. We’ll discuss these collections in
 detail when we talk about vectors in Chapter 8.</p>
-<h2 id="summary-3"><a class="header" href="#summary-3">Summary</a></h2>
+<h2 id="summary-4"><a class="header" href="#summary-4">Summary</a></h2>
 <p>The concepts of ownership, borrowing, and slices ensure memory safety in Rust
 programs at compile time. The Rust language gives you control over your memory
 usage in the same way as other systems programming languages, but having the
@@ -9588,7 +10041,7 @@ continue to refactor this code by turning the <code>area</code> function into an
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:24 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:35 UTC 2023 -->
 <!--te-->
 <h2 id="similar-and-difference"><a class="header" href="#similar-and-difference">Similar and Difference</a></h2>
 <blockquote>
@@ -10065,7 +10518,7 @@ impl Rectangle {
 but this is valid syntax.</p>
 <p>We’ll see a case in which multiple <code>impl</code> blocks are
 useful in Chapter 10, where we discuss generic types and traits.</p>
-<h2 id="summary-4"><a class="header" href="#summary-4">Summary</a></h2>
+<h2 id="summary-5"><a class="header" href="#summary-5">Summary</a></h2>
 <ul>
 <li>
 <p>Structs let you create custom types that are meaningful for your domain.</p>
@@ -10961,7 +11414,7 @@ expression like this:</p>
 </span></code></pre></pre>
 <p>If you have a situation in which your program has logic that is too verbose to
 express using a <code>match</code>, remember that <code>if let</code> is in your Rust toolbox as well.</p>
-<h2 id="summary-5"><a class="header" href="#summary-5">Summary</a></h2>
+<h2 id="summary-6"><a class="header" href="#summary-6">Summary</a></h2>
 <p>We’ve now covered how to use enums to create custom types that can be one of a
 set of enumerated values. We’ve shown how the standard library’s <code>Option&lt;T&gt;</code>
 type helps you use the type system to prevent errors. When enum values have
@@ -12075,7 +12528,7 @@ technique lets you move modules to new files as they grow in size.</p>
 are compiled as part of the crate. The <code>mod</code> keyword declares modules, and Rust
 looks in a file with the same name as the module for the code that goes into
 that module.</p>
-<h2 id="summary-6"><a class="header" href="#summary-6">Summary</a></h2>
+<h2 id="summary-7"><a class="header" href="#summary-7">Summary</a></h2>
 <p>Rust lets you split a package into multiple crates and a crate into modules
 so you can refer to items defined in one module from another module. You can do
 this by specifying absolute or relative paths. These paths can be brought into
@@ -12139,7 +12592,7 @@ lines of text in a file or the prices of items in a shopping cart.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:28 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:39 UTC 2023 -->
 <!--te-->
 <h2 id="creating-a-new-vector"><a class="header" href="#creating-a-new-vector">Creating a New Vector</a></h2>
 <p>To create a new empty vector, we call the <code>Vec::new</code> function, as shown in
@@ -12527,7 +12980,7 @@ valid.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:28 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:39 UTC 2023 -->
 <!--te-->
 <p>We talked about strings in Chapter 4, but we’ll look at them in more depth now.</p>
 <blockquote>
@@ -13068,7 +13521,7 @@ the values must have the same type.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:28 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:39 UTC 2023 -->
 <!--te-->
 <p>The last of our common collections is the <em>hash map</em>.</p>
 <blockquote>
@@ -13402,7 +13855,7 @@ algorithms.</li>
 <div class="footnote-definition" id="siphash"><sup class="footnote-definition-label">1</sup>
 <p><a href="https://en.wikipedia.org/wiki/SipHash">https://en.wikipedia.org/wiki/SipHash</a></p>
 </div>
-<h2 id="summary-7"><a class="header" href="#summary-7">Summary</a></h2>
+<h2 id="summary-8"><a class="header" href="#summary-8">Summary</a></h2>
 <p>Vectors, strings, and hash maps will provide a large amount of functionality
 necessary in programs when you need to store, access, and modify data.</p>
 <blockquote>
@@ -13460,7 +13913,7 @@ execution.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:29 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:40 UTC 2023 -->
 <!--te-->
 <p>Sometimes, bad things happen in your code, and there’s nothing you can do about
 it. In these cases, Rust has the <code>panic!</code> macro. There are two ways to cause a
@@ -13653,7 +14106,7 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:29 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:40 UTC 2023 -->
 <!--te-->
 <p>Most errors aren’t serious enough to require the program to stop entirely.</p>
 <details id="admonition-sometimes-when-a-function-fails-its-for-a-reason-that-you-can-easily-interpret-and-respond-to" class="admonition tip">
@@ -14660,7 +15113,7 @@ cases.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:30 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:41 UTC 2023 -->
 <!--te-->
 <p>So how do you decide when you should call <code>panic!</code> and when you should return
 <code>Result</code>? When code panics, there’s no way to recover. You could call <code>panic!</code>
@@ -14881,7 +15334,7 @@ hasn’t been checked by the conditions in the <code>Guess::new</code> function.
 <p>A function that has a parameter or returns only numbers between 1 and 100 could
 then declare in its signature that it takes or returns a <code>Guess</code> rather than an
 <code>i32</code> and wouldn’t need to do any additional checks in its body.</p>
-<h2 id="summary-8"><a class="header" href="#summary-8">Summary</a></h2>
+<h2 id="summary-9"><a class="header" href="#summary-9">Summary</a></h2>
 <p>Rust’s error handling features are designed to help you write more robust code.
 The <code>panic!</code> macro signals that your program is in a state it can’t handle and
 lets you tell the process to stop instead of trying to proceed with invalid or
@@ -15063,7 +15516,7 @@ values. How would we eliminate that duplication? Let’s find out!</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:30 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:42 UTC 2023 -->
 <!--te-->
 <p>We use generics to create definitions for items like function signatures or
 structs, which we can then use with many different concrete data types. </p>
@@ -15631,7 +16084,7 @@ at runtime.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:31 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:42 UTC 2023 -->
 <!--te-->
 <p>A <em>trait</em> defines functionality a particular type has and can share with other
 types. We can use traits to define shared behavior in an abstract way. We can
@@ -16225,7 +16678,7 @@ generics.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:31 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:42 UTC 2023 -->
 <!--te-->
 <blockquote>
 <p>Lifetimes are <strong>another kind of generic</strong> that we’ve already been using.</p>
@@ -17277,7 +17730,7 @@ using <code>{}</code>, which is why the <code>Display</code> trait bound is nece
 lifetimes are a type of generic, the declarations of the lifetime parameter
 <code>'a</code> and the generic type parameter <code>T</code> go in the same list inside the angle
 brackets after the function name.</p>
-<h2 id="summary-9"><a class="header" href="#summary-9">Summary</a></h2>
+<h2 id="summary-10"><a class="header" href="#summary-10">Summary</a></h2>
 <p>We covered a lot in this chapter!</p>
 <p>Now that you know about generic type
 parameters, traits and trait bounds, and generic lifetime parameters, you’re
@@ -18856,7 +19309,7 @@ library crate with <code>use</code> to make the important functionality availabl
 If the important functionality works, the small amount of code in the
 <em>src/main.rs</em> file will work as well, and that small amount of code doesn’t
 need to be tested.</p>
-<h2 id="summary-10"><a class="header" href="#summary-10">Summary</a></h2>
+<h2 id="summary-11"><a class="header" href="#summary-11">Summary</a></h2>
 <p>Rust’s testing features provide a way to specify how code should function to
 ensure it continues to work as you expect, even as you make changes. Unit tests
 exercise different parts of a library separately and can test private
@@ -21164,7 +21617,7 @@ How dreary to be somebody!
 </code></pre>
 <p>This demonstrates that we’re now using standard output for successful output
 and standard error for error output as appropriate.</p>
-<h2 id="summary-11"><a class="header" href="#summary-11">Summary</a></h2>
+<h2 id="summary-12"><a class="header" href="#summary-12">Summary</a></h2>
 <p>This chapter recapped some of the major concepts you’ve learned so far and
 covered how to perform common I/O operations in Rust. By using command line
 arguments, files, environment variables, and the <code>eprintln!</code> macro for printing
@@ -21210,7 +21663,7 @@ code, we’ll devote this entire chapter to them.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:35 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:46 UTC 2023 -->
 <!--te-->
 <p>Rust’s closures are anonymous functions you can save in a variable or pass as
 arguments to other functions.</p>
@@ -21961,7 +22414,7 @@ as we continue!</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:35 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:47 UTC 2023 -->
 <!--te-->
 <p>The iterator pattern allows you to perform some task on a sequence of items in
 turn. An iterator is responsible for the logic of iterating over each item and
@@ -23035,7 +23488,7 @@ All these optimizations that Rust is able to apply make the resulting code
 extremely efficient. Now that you know this, you can use iterators and closures
 without fear! They make code seem like it’s higher level but don’t impose a
 runtime performance penalty for doing so.</p>
-<h2 id="summary-12"><a class="header" href="#summary-12">Summary</a></h2>
+<h2 id="summary-13"><a class="header" href="#summary-13">Summary</a></h2>
 <p>Closures and iterators are Rust features inspired by functional programming
 language ideas. They contribute to Rust’s capability to clearly express
 high-level ideas at low-level performance. The implementations of closures and
@@ -23928,7 +24381,7 @@ run it as if it was a Cargo subcommand by running <code>cargo something</code>. 
 commands like this are also listed when you run <code>cargo --list</code>. Being able to
 use <code>cargo install</code> to install extensions and then run them just like the
 built-in Cargo tools is a super convenient benefit of Cargo’s design!</p>
-<h2 id="summary-13"><a class="header" href="#summary-13">Summary</a></h2>
+<h2 id="summary-14"><a class="header" href="#summary-14">Summary</a></h2>
 <p>Sharing code with Cargo and <a href="https://crates.io/">crates.io</a><!-- ignore --> is
 part of what makes the Rust ecosystem useful for many different tasks. Rust’s
 standard library is small and stable, but crates are easy to share, use, and
@@ -23963,7 +24416,7 @@ type exposes an API for mutating an interior value.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:38 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:50 UTC 2023 -->
 <!--te-->
 <h2 id="start-from-pointer"><a class="header" href="#start-from-pointer">Start from pointer</a></h2>
 <blockquote>
@@ -24089,7 +24542,7 @@ type exposes an API for mutating an interior value.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:39 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:50 UTC 2023 -->
 <!--te-->
 <p>Implementing the <code>Deref</code> trait allows you to customize the behavior of the
 <em>dereference operator</em> <code>*</code> (not to be confused with the multiplication or glob
@@ -24588,7 +25041,7 @@ if you want to force a value to be dropped before the end of its scope.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:39 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:51 UTC 2023 -->
 <!--te-->
 <h2 id="just-like-context-manager-in-python"><a class="header" href="#just-like-context-manager-in-python">Just like Context Manager in Python</a></h2>
 <p>In some languages, for some types, the programmer must call code to free memory
@@ -24834,7 +25287,7 @@ library.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:38 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:50 UTC 2023 -->
 <!--te-->
 <p>The most straightforward smart pointer is a <em>box</em>, whose type is written
 <code>Box&lt;T&gt;</code>:</p>
@@ -25209,7 +25662,7 @@ code, we only need to consider the deep-copy clones and can disregard calls to
 <li><a href="ch15-04-rc.html#cloning-an-rct-increases-the-reference-count">Cloning an Rc&lt;T&gt; Increases the Reference Count</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:39 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:51 UTC 2023 -->
 <!--te-->
 <p>In the majority of cases, ownership is clear: you know exactly which variable
 owns a given value.</p>
@@ -25590,7 +26043,7 @@ immutable.</li>
 <li><a href="ch15-05-interior-mutability.html#having-multiple-owners-of-mutable-data-by-combining-rct-and-refcellt">Having Multiple Owners of Mutable Data by Combining Rc&lt;T&gt; and RefCell&lt;T&gt;</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:40 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:52 UTC 2023 -->
 <!--te-->
 <h2 id="interior-mutability-1"><a class="header" href="#interior-mutability-1">Interior Mutability</a></h2>
 <p><em>Interior mutability</em> is a design pattern in Rust that allows you to mutate
@@ -26356,7 +26809,7 @@ structures.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:40 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:52 UTC 2023 -->
 <!--te-->
 <p>Rust’s memory safety guarantees make it difficult, but not impossible, to
 accidentally create memory that is never cleaned up (known as a <em>memory leak</em>).</p>
@@ -26859,7 +27312,7 @@ specifying that the relationship from a child to its parent should be a
 <code>Weak&lt;T&gt;</code> reference in the definition of <code>Node</code>, you’re able to have parent
 nodes point to child nodes and vice versa without creating a reference cycle
 and memory leaks.</p>
-<h3 id="summary-14"><a class="header" href="#summary-14">Summary</a></h3>
+<h3 id="summary-15"><a class="header" href="#summary-15">Summary</a></h3>
 <p>This chapter covered how to use smart pointers to make different guarantees and
 trade-offs from those Rust makes by default with regular references. The
 <code>Box&lt;T&gt;</code> type has a known size and points to data allocated on the heap. The
@@ -27955,7 +28408,7 @@ information is that building new concurrent types not made up of <code>Send</cod
 <code>Sync</code> parts requires careful thought to uphold the safety guarantees. <a href="../nomicon/index.html">“The
 Rustonomicon”</a> has more information about these guarantees and how to
 uphold them.</p>
-<h2 id="summary-15"><a class="header" href="#summary-15">Summary</a></h2>
+<h2 id="summary-16"><a class="header" href="#summary-16">Summary</a></h2>
 <p>This isn’t the last you’ll see of concurrency in this book: the project in
 Chapter 20 will use the concepts in this chapter in a more realistic situation
 than the smaller examples discussed here.</p>
@@ -28166,7 +28619,7 @@ Rust.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:42 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:55 UTC 2023 -->
 <!--te-->
 <h2 id="compare-implementing-trait-with-trait-bounds-and-trait-objects"><a class="header" href="#compare-implementing-trait-with-trait-bounds-and-trait-objects">Compare implementing trait with trait bounds and trait objects</a></h2>
 <ol>
@@ -29505,7 +29958,7 @@ problem to take advantage of Rust’s features can provide benefits, such as
 preventing some bugs at compile time. Object-oriented patterns won’t always be
 the best solution in Rust due to certain features, like ownership, that
 object-oriented languages don’t have.</p>
-<h2 id="summary-16"><a class="header" href="#summary-16">Summary</a></h2>
+<h2 id="summary-17"><a class="header" href="#summary-17">Summary</a></h2>
 <p>No matter whether or not you think Rust is an object-oriented language after
 reading this chapter, you now know that you can use trait objects to get some
 object-oriented features in Rust. Dynamic dispatch can give your code some
@@ -29555,7 +30008,7 @@ a clear way.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:43 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:56 UTC 2023 -->
 <!--te-->
 <p>Patterns pop up in a number of places in Rust, and you’ve been using them a lot
 without realizing it! This section discusses all the places where patterns are
@@ -30074,7 +30527,7 @@ values.</li>
 <li><a href="ch18-03-pattern-syntax.html#summary">Summary</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:44 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:56 UTC 2023 -->
 <!--te-->
 <p>In this section, we gather all the syntax valid in patterns and discuss why and
 when you might want to use each one.</p>
@@ -31043,7 +31496,7 @@ ignore thereafter.</p>
 <p>and so forth.</p>
 <p>The variable name <code>second</code> doesn’t mean anything special to Rust, so we get a
 compiler error because using <code>..</code> in two places like this is ambiguous.</p>
-<h1 id="summary-17"><a class="header" href="#summary-17">Summary</a></h1>
+<h1 id="summary-18"><a class="header" href="#summary-18">Summary</a></h1>
 <p>Rust’s patterns are very useful in distinguishing between different kinds of
 data:</p>
 <ul>
@@ -31572,7 +32025,7 @@ annotation makes it easier to track down the source of problems when they occur.
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:45 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:58 UTC 2023 -->
 <!--te-->
 <p>We first covered traits in the <a href="ch10-02-traits.html#traits-defining-shared-behavior">“Traits: Defining Shared
 Behavior”</a><!-- ignore --> section of Chapter
@@ -32947,7 +33400,7 @@ pointer. In this case, we’ve chosen a reference.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:46 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:58 UTC 2023 -->
 <!--te-->
 <p>This section explores some advanced features related to functions and closures,
 including function pointers and returning closures.</p>
@@ -33584,7 +34037,7 @@ pub fn sql(input: TokenStream) -&gt; TokenStream {
 <p>This definition is similar to the custom derive macro’s signature: we receive
 the tokens that are inside the parentheses and return the code we wanted to
 generate.</p>
-<h2 id="summary-18"><a class="header" href="#summary-18">Summary</a></h2>
+<h2 id="summary-19"><a class="header" href="#summary-19">Summary</a></h2>
 <p>Whew! Now you have some Rust features in your toolbox that you likely won’t use
 often, but you’ll know they’re available in very particular circumstances.
 We’ve introduced several complex topics so that when you encounter them in
@@ -36290,7 +36743,7 @@ some ideas:</p>
 similar web server using the crate instead. Then compare its API and
 robustness to the thread pool we implemented.</li>
 </ul>
-<h2 id="summary-19"><a class="header" href="#summary-19">Summary</a></h2>
+<h2 id="summary-20"><a class="header" href="#summary-20">Summary</a></h2>
 <p>Well done! You’ve made it to the end of the book! We want to thank you for
 joining us on this tour of Rust. You’re now ready to implement your own Rust
 projects and help with other peoples’ projects. Keep in mind that there is a
@@ -36604,7 +37057,7 @@ macros and specifying attributes on an item.</p>
 * <a href="appendix-03-derivable-traits.html#copy">Copy</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:15 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:24 UTC 2023 -->
 <!--te-->
 <p>In various places in the book, we’ve discussed the <code>derive</code> attribute, which
 you can apply to a struct or enum definition.</p>
@@ -37795,7 +38248,7 @@ RGB (0, 0, 0) 0x000000
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:32:45 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:51:07 UTC 2023 -->
 <!--te-->
 <p>Rust provides access to a wide variety of <code>primitives</code>. A sample includes:</p>
 <ol>
@@ -39969,7 +40422,7 @@ difference in the types of iteration.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:32:30 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:50:49 UTC 2023 -->
 <!--te-->
 <p>A <code>match</code> block can destructure items in a variety of ways.</p>
 <h2 id="destructuring-tuples-1"><a class="header" href="#destructuring-tuples-1">Destructuring Tuples</a></h2>
@@ -46932,7 +47385,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:32:49 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:51:12 UTC 2023 -->
 <!--te-->
 <p>Rust has a few reserved lifetime names.</p>
 <p>One of those is <code>'static</code>.</p>
@@ -49584,7 +50037,7 @@ includes support for writing software tests within the language itself.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:32:58 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:51:22 UTC 2023 -->
 <!--te-->
 <ul>
 <li>Tests are Rust functions that verify that the non-test code is functioning in the expected manner.</li>
@@ -49910,7 +50363,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:32:43 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:51:05 UTC 2023 -->
 <!--te-->
 <p>Use <code>cargo doc</code> to build documentation in <code>target/doc</code>.</p>
 <p>Use <code>cargo test</code> to run all tests (including documentation tests), and <code>cargo test --doc</code> to only run documentation tests.</p>
@@ -50329,7 +50782,7 @@ mod tests {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:33:02 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:51:26 UTC 2023 -->
 <!--te-->
 <p>As an introduction to this section, to borrow from <a href="https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html">the official docs</a>:</p>
 <blockquote>
@@ -50416,7 +50869,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:33:02 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:51:27 UTC 2023 -->
 <!--te-->
 <p>Rust provides support for <code>inline assembly</code> via the <code>asm!</code> macro.</p>
 <blockquote>
@@ -55045,7 +55498,7 @@ defines exceptions for several standard library modules.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:12 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:21 UTC 2023 -->
 <!--te-->
 <p>This chapter of the guide documents some ways to interact with Python code from Rust:</p>
 <ul>
@@ -56122,7 +56575,7 @@ the chapter on <a href="PyO3_guides/src/./memory.html">memory management</a> for
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:31:03 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr  9 15:49:12 UTC 2023 -->
 <!--te-->
 <p>This chapter of the guide goes into detail on how to build and distribute projects using PyO3. </p>
 <ol>
