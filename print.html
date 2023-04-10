@@ -214,7 +214,7 @@
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:50:30 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:52:47 UTC 2023 -->
 <!--te-->
 <h2 id="rust-official"><a class="header" href="#rust-official">Rust Official</a></h2>
 <h3 id="rust-lang-home"><a class="header" href="#rust-lang-home">Rust Lang Home</a></h3>
@@ -536,7 +536,984 @@ Common pitfalls: After a variable is assigned once, it often fails to compile, b
 <div style="break-before: page; page-break-before: always;"></div><ul>
 <li><a href="https://videohighlight.com/">Video Highlight</a></li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="declarative-macros"><a class="header" href="#declarative-macros">Declarative Macros</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><ul>
+<li><a href="https://www.youtube.com/playlist?list=PLqbS7AVVErFiWDOAVrPt7aYmnuuOLYvOa">Crust of Rust - YouTube</a></li>
+</ul>
+<blockquote>
+<p>In this series we seek to understand intermediate Rust concepts by diving into real examples and working code, often
+by re-implementing functionality from the standard library. These episodes are not targeted at newcomers to Rust, but at
+those who have read The Book and have the theoretical knowledge, but want to see how these concepts translate into real
+use.</p>
+</blockquote>
+<ul>
+<li>John Gjengset (author of <Rust for Rustaceans>)</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="asyncawait-in-rust"><a class="header" href="#asyncawait-in-rust">Async/Await in Rust</a></h1>
+<!--ts-->
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#asyncawait-in-rust">Async/Await in Rust</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#introduction">Introduction</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#speakers-introduction">Speaker’s Introduction</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#async-await-in-rust">Async Await in Rust</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#understanding-async-await">Understanding Async Await</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#additional-resources">Additional Resources</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#recommended-books">Recommended Books</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#other-resources">Other Resources</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#focusing-on-tokio-executor">Focusing on Tokio Executor</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#using-tokio-executor">Using Tokio Executor</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#conclusion">Conclusion</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#final-thoughts">Final Thoughts</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#introduction-to-async-functions">Introduction to Async Functions</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#what-is-an-async-function">What is an Async Function?</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#how-async-functions-work">How Async Functions Work</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#example-of-using-async-functions">Example of Using Async Functions</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#handling-long-running-operations">Handling Long-Running Operations</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#example-code">Example Code</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#async-blocks">Async Blocks</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#async-blocks-1">Async Blocks</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#mental-model-of-async">Mental Model of Async</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#mental-model-of-async-1">Mental Model of Async</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#promises-vs-futures">Promises vs Futures</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#promises-vs-futures-1">Promises vs Futures</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#understanding-async-programming-in-rust">Understanding Async Programming in Rust</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#how-async-programming-works">How Async Programming Works</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#why-use-async-programming">Why Use Async Programming?</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#conclusion-1">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#introduction-to-select-macro">Introduction to Select Macro</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#using-select-macro-with-futures">Using Select Macro with Futures</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#benefits-of-async-await">Benefits of Async Await</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#benefits-of-async-await-1">Benefits of Async Await</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#cooperative-scheduling-and-cancellation">Cooperative Scheduling and Cancellation</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#cooperative-scheduling">Cooperative Scheduling</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#cancellation">Cancellation</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#understanding-async-in-rust">Understanding Async in Rust</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#cancellation-1">Cancellation</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#racing-futures-against-each-other">Racing Futures Against Each Other</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#understanding-executors">Understanding Executors</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#epoll-loop">Epoll Loop</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#tokyos-use-of-event-loops">Tokyo’s Use of Event Loops</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#selecting-among-options-in-a-loop">Selecting Among Options in a Loop</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#abandoned-select-arm-side-effects">Abandoned Select Arm Side Effects</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#select-and-cooperatively-scheduled-world">Select and Cooperatively Scheduled World</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#potential-issues-with-select">Potential Issues with Select</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#importance-of-cooperatively-scheduling-tasks">Importance of Cooperatively Scheduling Tasks</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#future-polling">Future Polling</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#future-polling-and-select">Future Polling and Select</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#select-macro-and-its-implementation">Select Macro and its Implementation</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#smart-select">Smart Select</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#fairness-of-select-macro">Fairness of Select Macro</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#fuse">Fuse</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#asynchronous-io-and-the-benefits-of-async">Asynchronous IO and the Benefits of Async</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#async-keyword">Async Keyword</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#overhead-of-asynchronous-io-read">Overhead of Asynchronous IO Read</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#benefits-of-async">Benefits of Async</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#joining-futures-with-join-operations">Joining Futures with Join Operations</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#example-waiting-for-multiple-files">Example: Waiting for Multiple Files</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#join-macro">Join Macro</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#wrapping-into-future-type">Wrapping into Future Type</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#return-value">Return Value</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#joining-files-with-the-join-macro">Joining Files with the Join Macro</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#using-join-macro">Using Join Macro</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#benefits-of-using-join-macro">Benefits of Using Join Macro</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#downsides-of-not-using-join-macro">Downsides of Not Using Join Macro</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#overview-of-futures-in-rust">Overview of Futures in Rust</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#how-futures-work">How Futures Work</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#concurrency-vs-parallelism">Concurrency vs Parallelism</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#example-writing-a-web-server">Example: Writing a Web Server</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#handling-multiple-connections">Handling Multiple Connections</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#using-futures-stream-and-select">Using Futures Stream and Select</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#awaiting-on-futures">Awaiting on Futures</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#introducing-parallelism-with-spawn">Introducing Parallelism with Spawn</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#introduction-to-parallelism-in-asynchronous-programs">Introduction to Parallelism in Asynchronous Programs</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#communicating-futures-for-parallel-execution">Communicating Futures for Parallel Execution</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#importance-of-spawning-and-performance-issues">Importance of Spawning and Performance Issues</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#remembering-to-spawn-and-program-performance">Remembering to Spawn and Program Performance</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#best-practices-for-passing-data-and-handling-errors-with-tokyo-spawn">Best Practices for Passing Data and Handling Errors with Tokyo Spawn</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#passing-data-with-tokyo-spawn">Passing Data with Tokyo Spawn</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#handling-errors-with-tokyo-spawn">Handling Errors with Tokyo Spawn</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#spawning-and-running-futures">Spawning and Running Futures</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#advantages-of-spawning-futures">Advantages of Spawning Futures</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#how-to-spawn-futures-in-tokio">How to Spawn Futures in Tokio</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#blocking-operations">Blocking Operations</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#rust-futures-and-thread-locals">Rust Futures and Thread Locals</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#thread-locals-in-tokio">Thread Locals in Tokio</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#rust-futures-without-thread-locals">Rust Futures without Thread Locals</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#introduction-1">Introduction</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#what-is-a-future">What is a Future?</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#example-async-function">Example Async Function</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#understanding-impul-futures">Understanding Impul Futures</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#impul-future-type">Impul Future Type</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#state-machine-type">State Machine Type</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#passing-futures-around">Passing Futures Around</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#using-tokyo-spawn">Using Tokyo Spawn</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#introduction-2">Introduction</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#key-points">Key Points</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#async-trait">Async Trait</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#key-points-1">Key Points</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#async-trait-and-associated-types">Async Trait and Associated Types</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#async-trait-vs-associated-types">Async Trait vs. Associated Types</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#naming-associated-types">Naming Associated Types</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#challenges-with-implementing-async-functions-in-traits">Challenges with Implementing Async Functions in Traits</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#compiler-code-generation">Compiler Code Generation</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#asynchronous-programming-in-rust">Asynchronous Programming in Rust</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#key-points-2">Key Points</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#standard-library-mutexes-vs-asynchronously-enabled-mutexes">Standard Library Mutexes vs Asynchronously Enabled Mutexes</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#key-points-3">Key Points</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#using-async-aware-mutexes">Using Async-Aware Mutexes</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#standard-library-mutex-vs-async-aware-mutex">Standard Library Mutex vs Async-Aware Mutex</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#deadlock-potential">Deadlock Potential</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#detecting-problems">Detecting Problems</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#thread-spawn-vs-tokyo-spawn">Thread Spawn vs Tokyo Spawn</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#thread-spawn">Thread Spawn</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#tokyo-spawn">Tokyo Spawn</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#introduction-3">Introduction</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#async-and-await">Async and Await</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#scheduling-futures">Scheduling Futures</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#awaiting-inside-a-future">Awaiting Inside a Future</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#single-threaded-executors">Single Threaded Executors</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#enforcing-static-guarantees">Enforcing Static Guarantees</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#async-stack-trace">Async Stack Trace</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#getting-an-async-stack-trace">Getting an Async Stack Trace</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#tracing-futures">Tracing Futures</a>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#using-instrument-to-trace-futures">Using instrument to Trace Futures</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#best-practices-for-calling-async-code-from-synchronous-code">Best Practices for Calling Async Code from Synchronous Code</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#use-cases-for-threads-instead-of-futures">Use Cases for Threads Instead of Futures</a></li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#when-not-to-use-async">When Not To Use Async</a></li>
+</ul>
+</li>
+<li><a href="rust_video_summary/curst_of_rust/async_await.html#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Mon Apr 10 13:53:49 UTC 2023 -->
+<!--te-->
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<p>Section Overview: In this section, the speaker introduces himself and explains that he will be discussing async await in
+Rust.</p>
+<h3 id="speakers-introduction"><a class="header" href="#speakers-introduction">Speaker’s Introduction</a></h3>
+<ul>
+<li>The speaker welcomes viewers back after a long break.</li>
+<li>He mentions that he has been on vacation and briefly talks about it.</li>
+<li>The speaker announces that this will be another “Crust of Rust” stream.</li>
+<li>He states that he will be discussing async await in Rust.</li>
+</ul>
+<h2 id="async-await-in-rust"><a class="header" href="#async-await-in-rust">Async Await in Rust</a></h2>
+<p>Section Overview: In this section, the speaker discusses async await in Rust from a usability standpoint.</p>
+<h3 id="understanding-async-await"><a class="header" href="#understanding-async-await">Understanding Async Await</a></h3>
+<ul>
+<li>The speaker acknowledges that he has covered async await before but only from a technical standpoint.</li>
+<li>He explains that he wants to discuss how to use async await and what it looks like for developers.</li>
+<li>The speaker emphasizes the importance of understanding the intuition and mental model behind async await.</li>
+</ul>
+<h2 id="additional-resources"><a class="header" href="#additional-resources">Additional Resources</a></h2>
+<p>Section Overview: In this section, the speaker provides additional resources for learning about async programming in
+Rust.</p>
+<h3 id="recommended-books"><a class="header" href="#recommended-books">Recommended Books</a></h3>
+<ul>
+<li>The speaker recommends reading “The Rust Programming Language” book if you haven’t already.</li>
+<li>He mentions that there is no chapter on async programming in the book but one may be added soon.</li>
+<li>The speaker also recommends his own book which covers async programming at a deeper level than basic tutorials.</li>
+</ul>
+<h3 id="other-resources"><a class="header" href="#other-resources">Other Resources</a></h3>
+<ul>
+<li>The speaker recommends checking out “The Rust Async Book” which explains asynchronous programming in Rust but still
+has some work to do.</li>
+<li>He also suggests looking into Mini Redis, a project by Tokyo Project which demonstrates how to structure an
+asynchronous application client-side and server-side.</li>
+</ul>
+<h2 id="focusing-on-tokio-executor"><a class="header" href="#focusing-on-tokio-executor">Focusing on Tokio Executor</a></h2>
+<p>Section Overview: In this section, the speaker focuses on using Tokio executor for asynchronous code.</p>
+<h3 id="using-tokio-executor"><a class="header" href="#using-tokio-executor">Using Tokio Executor</a></h3>
+<ul>
+<li>The speaker mentions that there are many different executors for asynchronous code but he will be focusing on Tokio
+because it is the most widely used and actively maintained one.</li>
+<li>He clarifies that most of what he will be discussing is independent of the executor.</li>
+</ul>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
+<p>Section Overview: In this section, the speaker concludes his discussion on async await in Rust.</p>
+<h3 id="final-thoughts"><a class="header" href="#final-thoughts">Final Thoughts</a></h3>
+<ul>
+<li>The speaker fixes an error in the video title.</li>
+<li>He thanks viewers for watching and encourages them to follow him on Twitter for updates on upcoming videos.</li>
+<li>The speaker emphasizes the importance of understanding async programming in Rust and provides resources for further
+learning.</li>
+</ul>
+<h2 id="introduction-to-async-functions"><a class="header" href="#introduction-to-async-functions">Introduction to Async Functions</a></h2>
+<p>Section Overview: In this section, the speaker introduces async functions and explains how they work.</p>
+<h3 id="what-is-an-async-function"><a class="header" href="#what-is-an-async-function">What is an Async Function?</a></h3>
+<ul>
+<li>An async function is a function that returns a future.</li>
+<li>The future trait signifies a value that’s not ready yet but will eventually be of a certain type.</li>
+<li>Awaiting on a future means not running the following instructions until it resolves into its output type.</li>
+</ul>
+<h3 id="how-async-functions-work"><a class="header" href="#how-async-functions-work">How Async Functions Work</a></h3>
+<ul>
+<li>A future does nothing until it is awaited.</li>
+<li>When awaited, the future describes a series of steps that will be executed at some point in the future.</li>
+<li>If an async function calls another async function, it awaits the returned future before continuing with its own
+execution.</li>
+</ul>
+<h2 id="example-of-using-async-functions"><a class="header" href="#example-of-using-async-functions">Example of Using Async Functions</a></h2>
+<p>Section Overview: In this section, the speaker provides an example of using async functions and explains how they can be
+used to handle long-running operations.</p>
+<h3 id="handling-long-running-operations"><a class="header" href="#handling-long-running-operations">Handling Long-Running Operations</a></h3>
+<ul>
+<li>Reading from a file can take time and block other operations.</li>
+<li>By using async functions, we can avoid blocking other operations while waiting for long-running tasks to complete.</li>
+<li>We can use await to pause execution until the task completes without blocking other operations.</li>
+</ul>
+<h3 id="example-code"><a class="header" href="#example-code">Example Code</a></h3>
+<ul>
+<li>The speaker provides an example code snippet that demonstrates how to use async functions to read from a file without
+blocking other operations.</li>
+</ul>
+<h2 id="async-blocks"><a class="header" href="#async-blocks">Async Blocks</a></h2>
+<p>Section Overview: This section explains how async blocks execute in chunks and yield when they have to wait.</p>
+<h3 id="async-blocks-1"><a class="header" href="#async-blocks-1">Async Blocks</a></h3>
+<ul>
+<li>Async blocks execute in chunks.</li>
+<li>They yield when they have to wait, allowing other things to run.</li>
+<li>A future is checked for progress towards completion.</li>
+<li>When a future makes progress, it continues executing from the last point it yielded until the next point where it
+might fail to make progress.</li>
+</ul>
+<h2 id="mental-model-of-async"><a class="header" href="#mental-model-of-async">Mental Model of Async</a></h2>
+<p>Section Overview: This section provides a mental model of async that helps understand how async works.</p>
+<h3 id="mental-model-of-async-1"><a class="header" href="#mental-model-of-async-1">Mental Model of Async</a></h3>
+<ul>
+<li>The mental model is that async lets you chunk computation.</li>
+<li>It runs until it has to wait and then yields, letting other things run.</li>
+<li>Once an await resolves, execution continues as if there were no async until another future is created and awaited.</li>
+</ul>
+<h2 id="promises-vs-futures"><a class="header" href="#promises-vs-futures">Promises vs Futures</a></h2>
+<p>Section Overview: This section compares promises and futures.</p>
+<h3 id="promises-vs-futures-1"><a class="header" href="#promises-vs-futures-1">Promises vs Futures</a></h3>
+<ul>
+<li>A future can be thought of as a promise in terms of the word “promise,” not in terms of the actual JavaScript type
+Promise.</li>
+</ul>
+<h2 id="understanding-async-programming-in-rust"><a class="header" href="#understanding-async-programming-in-rust">Understanding Async Programming in Rust</a></h2>
+<p>Section Overview: In this section, the speaker explains how async programming works and why it is useful.</p>
+<h3 id="how-async-programming-works"><a class="header" href="#how-async-programming-works">How Async Programming Works</a></h3>
+<ul>
+<li>Async programming involves waiting for multiple operations to complete without blocking the main thread.</li>
+<li>Yielding allows you to return all the way up to where a future was first awaited.</li>
+<li>This approach is useful when you have many futures that you want to wait on simultaneously.</li>
+</ul>
+<h3 id="why-use-async-programming"><a class="header" href="#why-use-async-programming">Why Use Async Programming?</a></h3>
+<ul>
+<li>Traditional threading systems require one thread for each operation, which can be difficult to manage.</li>
+<li>Async programming allows you to handle multiple operations with a single thread, making it easier to manage and more
+efficient.</li>
+<li>Using async programming also allows you to handle slow connections without getting stuck writing to them.</li>
+</ul>
+<h3 id="conclusion-1"><a class="header" href="#conclusion-1">Conclusion</a></h3>
+<ul>
+<li>Async programming is a powerful tool for managing multiple operations efficiently and effectively. By using async
+programming, developers can avoid the pitfalls of traditional threading systems and create more robust applications.</li>
+</ul>
+<h2 id="introduction-to-select-macro"><a class="header" href="#introduction-to-select-macro">Introduction to Select Macro</a></h2>
+<p>Section Overview: In this section, the speaker introduces the select macro and how it can be used with futures.</p>
+<h3 id="using-select-macro-with-futures"><a class="header" href="#using-select-macro-with-futures">Using Select Macro with Futures</a></h3>
+<ul>
+<li>The select macro waits on multiple futures and tells you which one finished first.</li>
+<li>If progress is made on network, then a stream is given and the code inside is called. If not, progress is tried on the
+terminal.</li>
+<li>When neither of them make progress, it yields and retries later using some operating system primitive under the hood
+to be smarter about when it tries again.</li>
+<li>Async allows you to express waiting for something else to happen while giving up thread’s time.</li>
+</ul>
+<h2 id="benefits-of-async-await"><a class="header" href="#benefits-of-async-await">Benefits of Async Await</a></h2>
+<p>Section Overview: In this section, the speaker explains how async await can be used as a state machine and its benefits.</p>
+<h3 id="benefits-of-async-await-1"><a class="header" href="#benefits-of-async-await-1">Benefits of Async Await</a></h3>
+<ul>
+<li>Async allows something else to run instead while waiting for disk or network operations.</li>
+<li>Async await can be thought of as a big state machine where there are multiple paths forward depending on what becomes
+available on sockets.</li>
+<li>Select operation allows branching execution but in this case, there’s no real branching.</li>
+</ul>
+<h2 id="cooperative-scheduling-and-cancellation"><a class="header" href="#cooperative-scheduling-and-cancellation">Cooperative Scheduling and Cancellation</a></h2>
+<p>Section Overview: This section discusses cooperative scheduling and cancellation in Rust.</p>
+<h3 id="cooperative-scheduling"><a class="header" href="#cooperative-scheduling">Cooperative Scheduling</a></h3>
+<ul>
+<li><code>async</code> functions allow for cooperative scheduling, where execution is yielded to other tasks when a function
+encounters an <code>await</code> statement.</li>
+<li>The <code>select!</code> macro allows for non-blocking I/O operations by selecting the first future that completes.</li>
+<li>When a future is awaited, it does not execute until it is explicitly called with an <code>await</code> statement.</li>
+<li>If there are no other tasks to run, the current task will continue executing until it reaches another <code>await</code>
+statement or yields control back to the scheduler.</li>
+</ul>
+<h3 id="cancellation"><a class="header" href="#cancellation">Cancellation</a></h3>
+<ul>
+<li>Futures can be cancelled by dropping them if they have not been awaited yet.</li>
+<li>Once a future has been awaited, its execution cannot be cancelled directly.</li>
+<li>To cancel a future’s execution, you can use the <code>select!</code> macro with a timeout value or a cancellation token.</li>
+</ul>
+<h2 id="understanding-async-in-rust"><a class="header" href="#understanding-async-in-rust">Understanding Async in Rust</a></h2>
+<p>Section Overview: In this section, the speaker explains how async works in Rust and describes the mechanisms for
+cooperatively scheduling a bunch of computation by describing when under what circumstances code can make progress and
+under what circumstances code can yield.</p>
+<h3 id="cancellation-1"><a class="header" href="#cancellation-1">Cancellation</a></h3>
+<ul>
+<li>The speaker explains that cancellation is done by describing the circumstances under which you should cancel the
+operation.</li>
+<li>A good example of cancellation is given as a cancellation channel which is like a Tokyo sync mpsc receiver.</li>
+<li>The cancel function is defined as cancel.08.</li>
+<li>If we get a weight, we fall through to print line below.</li>
+</ul>
+<h3 id="racing-futures-against-each-other"><a class="header" href="#racing-futures-against-each-other">Racing Futures Against Each Other</a></h3>
+<ul>
+<li>The speaker proposes another name for select, which is race.</li>
+<li>Whichever await can produce its result first gets to run while the other one does not.</li>
+<li>If we get a weight, we return zero and don’t execute any of the remainder.</li>
+</ul>
+<h3 id="understanding-executors"><a class="header" href="#understanding-executors">Understanding Executors</a></h3>
+<ul>
+<li>An executor provides both the lowest level resources like network sockets and timers and also the executor loop at the
+top.</li>
+<li>At some point in your program, you’re going to have this giant future that holds the entire execution of your program
+but it’s a future so nothing runs yet right?</li>
+<li>You’re only allowed to await in async functions and async blocks so this wouldn’t actually compile if this was an
+async fn but then you see compiler complaints main function is not allowed to be async because ultimately at some
+point in your program you’re going to have this giant future that holds the entire execution of your program.</li>
+<li>The executor crate provides both the lowest level resources like network sockets and timers and also the executor loop
+at the top.</li>
+</ul>
+<h3 id="epoll-loop"><a class="header" href="#epoll-loop">Epoll Loop</a></h3>
+<ul>
+<li>An executor is a sort of primitive executor that just pulls futures in a loop and does nothing else it just keeps
+retrying aggressively instead.</li>
+<li>Imagine that you’re doing a read from the network and you call dot await what’s going to actually happen is Tokyo’s
+tcp stream is going to do a read from the network realize that I can’t read yet and then it’s going to sort of store
+its file descriptor store the socket id if you will into the executor’s sort of internal state.</li>
+<li>The main executor takes all those resources that it knows it needs to wait for, sends them to the operating system,
+puts itself to sleep but wakes up if any of these change because it has more work to do.
+I’m sorry, but I cannot provide a summary of the transcript without having access to it. Please provide me with the
+transcript so that I can create a summary for you.</li>
+</ul>
+<h2 id="tokyos-use-of-event-loops"><a class="header" href="#tokyos-use-of-event-loops"><a href="rust_video_summary/curst_of_rust/t=0:47:15s">#</a> Tokyo’s Use of Event Loops</a></h2>
+<p>Section Overview: This section discusses how Tokyo uses event loops and the Mayo crate to abstract over kq, epoll, and
+other operating system event loops.</p>
+<h3 id="tokyos-use-of-event-loops-1"><a class="header" href="#tokyos-use-of-event-loops-1">Tokyo’s Use of Event Loops</a></h3>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/t=0:47:15s"></a> Tokyo does not re-implement kq but instead uses the Mayo crate to abstract over kq and other operating
+system event loops.</li>
+<li><a href="rust_video_summary/curst_of_rust/t=0:47:45s"></a> The Mayo crate allows you to register events with the operating system and go to sleep until any of
+those events occur. The operating system will then wake you up when one of those events happens.</li>
+<li><a href="rust_video_summary/curst_of_rust/t=0:48:49s"></a> You can use the Futures channel with Tokyo because they use the same underlying mechanisms that Rust
+provides.</li>
+</ul>
+<h2 id="selecting-among-options-in-a-loop"><a class="header" href="#selecting-among-options-in-a-loop"><a href="rust_video_summary/curst_of_rust/t=0:49:27s">#</a> Selecting Among Options in a Loop</a></h2>
+<p>Section Overview: This section discusses how select works in a loop and what happens if an abandoned select arm has side
+effects.</p>
+<h3 id="selecting-among-options-in-a-loop-1"><a class="header" href="#selecting-among-options-in-a-loop-1">Selecting Among Options in a Loop</a></h3>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/t=0:49:27s"></a> When using select, it selects among all given options every time. It doesn’t remember anything about
+having been run in the past.</li>
+<li><a href="rust_video_summary/curst_of_rust/t=0:50:18s"></a> To reuse network across multiple iterations of the loop, you need to do something like this:</li>
+</ul>
+<pre><code>let mut network = network;
+select! {
+    _ = terminal =&gt; { ... },
+    _ = foo =&gt; { ... },
+    _ = &amp;mut network =&gt; { ... },
+}
+</code></pre>
+<h3 id="abandoned-select-arm-side-effects"><a class="header" href="#abandoned-select-arm-side-effects">Abandoned Select Arm Side Effects</a></h3>
+<ul>
+<li><a href="rust_video_summary/curst_of_rust/t=0:51:09s"></a> If an abandoned select arm has side effects, such as file copying, it will still execute those side
+effects even if it is not selected.</li>
+</ul>
+<h2 id="select-and-cooperatively-scheduled-world"><a class="header" href="#select-and-cooperatively-scheduled-world">Select and Cooperatively Scheduled World</a></h2>
+<p>Section Overview: This section discusses the potential issues that arise when using select in an asynchronous context.
+It also explains the importance of cooperatively scheduling tasks to avoid blocking other futures.</p>
+<h3 id="potential-issues-with-select"><a class="header" href="#potential-issues-with-select">Potential Issues with Select</a></h3>
+<ul>
+<li>When using select, it’s possible to be in a state where some bytes have been copied from one future to another but not
+all, which can lead to errors if not handled properly.</li>
+<li>If a future is partially completed and then dropped, it won’t get to finish its work and will be cancelled. This means
+that your program might be in an intermediate state that needs to be considered.</li>
+<li>You need to be careful about what happens if one branch runs and then another branch completes so the first branch
+didn’t run to completion but the second branch did where does that leave you? This is an error case that you need to
+be concerned about when you’re using select.</li>
+</ul>
+<h3 id="importance-of-cooperatively-scheduling-tasks"><a class="header" href="#importance-of-cooperatively-scheduling-tasks">Importance of Cooperatively Scheduling Tasks</a></h3>
+<ul>
+<li>In an asynchronous context, it’s important for tasks to yield occasionally so that other things can run as well. If a
+future never yields, it can block other futures from making progress.</li>
+<li>Using blocking operations (operations that aren’t aware of async yielding or very compute-intensive operations) can
+cause threads to block and prevent other futures from making progress. It’s important to use methods
+like <code>spawn_blocking</code> or <code>block_in_place</code> in Tokyo for long-blocking operations so that the executor knows how to
+handle them appropriately.</li>
+</ul>
+<h2 id="future-polling"><a class="header" href="#future-polling">Future Polling</a></h2>
+<p>Section Overview: This section discusses whether select with a huge number of cases will potentially slow down by trying
+all options out every time.</p>
+<h3 id="future-polling-and-select"><a class="header" href="#future-polling-and-select">Future Polling and Select</a></h3>
+<ul>
+<li>The implementation of select determines whether a select with a huge number of cases will be slowed down by trying all
+options out every time.</li>
+<li>In general, if you have a select with a million cases, it seems like it would be slow. However, the answer depends on
+the implementation of select.</li>
+</ul>
+<h2 id="select-macro-and-its-implementation"><a class="header" href="#select-macro-and-its-implementation">Select Macro and its Implementation</a></h2>
+<p>Section Overview: In this section, the speaker talks about the select macro and how it can be implemented to optimize
+for few cases rather than many cases. The speaker also explains how select can integrate with Rust machinery for dealing
+with futures and wakeups.</p>
+<h3 id="smart-select"><a class="header" href="#smart-select">Smart Select</a></h3>
+<ul>
+<li>The select macro can be smart in the sense of only polling the ones that might be able to make progress.</li>
+<li>When a future becomes runnable through whatever mechanism like a file descriptor was ready or a send happened on an
+in-memory channel, there’s a way for the select macro to sort of inject itself into that notification that this future
+is ready and sort of get a signal to update its own state when that happens.</li>
+<li>The select keeps almost like a bit mask across all of its branches, and when that notification comes in, it flips the
+bit for the appropriate branch. Then, next time the select is awaited, it’ll only check the ones where the bit is set.</li>
+</ul>
+<h3 id="fairness-of-select-macro"><a class="header" href="#fairness-of-select-macro">Fairness of Select Macro</a></h3>
+<ul>
+<li>It depends on which implementation you use. For example, if you look at the futures crate, it has a select biased
+variant that always runs if multiple are ready; it runs the first one so that would not be fair.</li>
+</ul>
+<h3 id="fuse"><a class="header" href="#fuse">Fuse</a></h3>
+<ul>
+<li>Fuse is a way to say that it’s safe to pull or await a future even if that future has already completed in the past.</li>
+<li>In general, you will want to select on mutable references to futures rather than on futures themselves because if you
+await on futures directly then they would just be dropped at end of selection.</li>
+</ul>
+<h2 id="asynchronous-io-and-the-benefits-of-async"><a class="header" href="#asynchronous-io-and-the-benefits-of-async">Asynchronous IO and the Benefits of Async</a></h2>
+<p>Section Overview: This section discusses the benefits of using async in Rust, particularly for IO-bound tasks.</p>
+<h3 id="async-keyword"><a class="header" href="#async-keyword">Async Keyword</a></h3>
+<ul>
+<li>Adding the <code>async</code> keyword to a function that implements matrix multiplication does not make it more expensive.</li>
+<li>The code runs the same way but is wrapped in a future type, which requires waiting for results with <code>await</code>.</li>
+<li>There is no overhead to marking something as async since it doesn’t change generated code.</li>
+</ul>
+<h3 id="overhead-of-asynchronous-io-read"><a class="header" href="#overhead-of-asynchronous-io-read">Overhead of Asynchronous IO Read</a></h3>
+<ul>
+<li>There is some overhead when doing an asynchronous IO read compared to synchronous IO read.</li>
+<li>Additional system calls get amortized across all resources, so there’s not much added.</li>
+<li>Fewer threads run by the executor and cooperatively scheduled are usually faster than having many threads that cross
+operating system boundaries.</li>
+</ul>
+<h3 id="benefits-of-async"><a class="header" href="#benefits-of-async">Benefits of Async</a></h3>
+<ul>
+<li>Async leads to more efficient use of resources for IO-bound tasks like web servers.</li>
+<li>It also makes code easier to read but not necessarily easier to reason about.</li>
+<li>User space threads are one way to think about async.</li>
+</ul>
+<h2 id="joining-futures-with-join-operations"><a class="header" href="#joining-futures-with-join-operations">Joining Futures with Join Operations</a></h2>
+<p>Section Overview: This section discusses how join operations work in Rust and their usefulness when waiting for multiple
+futures to complete.</p>
+<h3 id="example-waiting-for-multiple-files"><a class="header" href="#example-waiting-for-multiple-files">Example: Waiting for Multiple Files</a></h3>
+<ul>
+<li>An example scenario where join operations are useful is when waiting for multiple files to complete before continuing
+with a program.</li>
+<li>The join operation waits until all futures complete before continuing with the program.</li>
+</ul>
+<h3 id="join-macro"><a class="header" href="#join-macro">Join Macro</a></h3>
+<ul>
+<li>In the futures crate, there is a join macro that lists all futures you want to wait on without specifying branches.</li>
+<li>It looks similar to select macro except you don’t specify branches.</li>
+</ul>
+<h3 id="wrapping-into-future-type"><a class="header" href="#wrapping-into-future-type">Wrapping into Future Type</a></h3>
+<ul>
+<li>You can construct a select manually too but it’s usually more hassle.</li>
+<li>Select expands into basically a loop with a match or a bunch of ifs.</li>
+<li>You could make select a future by wrapping it in an async block and assigning that to a variable.</li>
+</ul>
+<h3 id="return-value"><a class="header" href="#return-value">Return Value</a></h3>
+<ul>
+<li>Join doesn’t return anything meaningful apart from a future.</li>
+<li>It’s possible to construct the select future for a block yourself, but it’s not quite true that select generates a
+future.</li>
+</ul>
+<h2 id="joining-files-with-the-join-macro"><a class="header" href="#joining-files-with-the-join-macro">Joining Files with the Join Macro</a></h2>
+<p>Section Overview: In this section, the speaker explains how to use the join macro to read multiple files concurrently
+and efficiently.</p>
+<h3 id="using-join-macro"><a class="header" href="#using-join-macro">Using Join Macro</a></h3>
+<ul>
+<li>The join macro allows operations to continue concurrently, which is more efficient.</li>
+<li>It lets you overlap compute and I/O.</li>
+<li>You need to explicitly enumerate all the things you’re joining.</li>
+<li>There are multiple functions like join which joins two things joint three joint four joint five etc.</li>
+<li>Try join all takes an iterator over things that are futures whose output is a result. It will make sure that the
+result output is in the same order as the input even if they completed out of order.</li>
+</ul>
+<h3 id="benefits-of-using-join-macro"><a class="header" href="#benefits-of-using-join-macro">Benefits of Using Join Macro</a></h3>
+<ul>
+<li>Allows operations to continue concurrently, which is more efficient.</li>
+<li>Lets you overlap compute and I/O.</li>
+</ul>
+<h3 id="downsides-of-not-using-join-macro"><a class="header" href="#downsides-of-not-using-join-macro">Downsides of Not Using Join Macro</a></h3>
+<ul>
+<li>Sequential execution does not allow for concurrent operations.</li>
+<li>Does not give the operating system all read operations at once, making it less efficient.</li>
+</ul>
+<h2 id="overview-of-futures-in-rust"><a class="header" href="#overview-of-futures-in-rust">Overview of Futures in Rust</a></h2>
+<p>Section Overview: In this section, the speaker discusses how futures work in Rust and how they can be used to run
+operations concurrently.</p>
+<h3 id="how-futures-work"><a class="header" href="#how-futures-work">How Futures Work</a></h3>
+<ul>
+<li>The output of a future describes which input it was from, making it more efficient.</li>
+<li>Join operations like futures unordered implement a hook into the runtime system to only check the futures that might
+be ready.</li>
+</ul>
+<h3 id="concurrency-vs-parallelism"><a class="header" href="#concurrency-vs-parallelism">Concurrency vs Parallelism</a></h3>
+<ul>
+<li>Only one thread can await one future at any time because awaiting a future requires an immutable reference to it.
+Multiple threads cannot do it.</li>
+<li>Even if you use multiple threads, all operations are still happening concurrently on one thread, which is not what you
+want for optimal performance.</li>
+</ul>
+<h3 id="example-writing-a-web-server"><a class="header" href="#example-writing-a-web-server">Example: Writing a Web Server</a></h3>
+<ul>
+<li>If you’re writing a web server and have a loop over accepting TCP connections, using futures unordered will not give
+optimal performance since all operations are still happening concurrently on one thread.</li>
+</ul>
+<h2 id="handling-multiple-connections"><a class="header" href="#handling-multiple-connections">Handling Multiple Connections</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to handle multiple connections in Rust using Tokio.</p>
+<h3 id="using-futures-stream-and-select"><a class="header" href="#using-futures-stream-and-select">Using Futures Stream and Select</a></h3>
+<ul>
+<li>The speaker creates a <code>let mute connections</code> variable that is a <code>futures stream future maybe futures unordered new</code>.</li>
+<li>The speaker then uses <code>select</code> to either get a new stream or call an async function called <code>handle connection</code>.</li>
+<li>If there are new streams, the speaker pushes them into the <code>connections</code> variable
+using <code>connections.push(handle connection of stream)</code>.</li>
+</ul>
+<h3 id="awaiting-on-futures"><a class="header" href="#awaiting-on-futures">Awaiting on Futures</a></h3>
+<ul>
+<li>The async function <code>handle connection</code> takes a TCP stream and does something with it.</li>
+<li>To ensure all futures run concurrently, the speaker needs to await on both the accepting and client connections.</li>
+<li>However, having only one top-level future means that even if there are many threads, only one thread can run at a
+time.</li>
+</ul>
+<h3 id="introducing-parallelism-with-spawn"><a class="header" href="#introducing-parallelism-with-spawn">Introducing Parallelism with Spawn</a></h3>
+<ul>
+<li>To introduce parallelism, the speaker gets rid of the <code>connections</code> variable and replaces it with a while loop.</li>
+<li>The speaker then uses Tokio’s provided function called spawn which gives additional futures to work on.</li>
+<li>This allows for two separate futures which means that two threads can run them at the same time.</li>
+</ul>
+<h2 id="introduction-to-parallelism-in-asynchronous-programs"><a class="header" href="#introduction-to-parallelism-in-asynchronous-programs">Introduction to Parallelism in Asynchronous Programs</a></h2>
+<p>Section Overview: This section covers how to introduce parallelism into asynchronous programs by communicating futures
+that can run in parallel to the executor. The importance of using this pattern is highlighted, as it allows for futures
+to run concurrently on multiple threads.</p>
+<h3 id="communicating-futures-for-parallel-execution"><a class="header" href="#communicating-futures-for-parallel-execution">Communicating Futures for Parallel Execution</a></h3>
+<ul>
+<li>To introduce parallelism into asynchronous programs, communicate futures that can run in parallel to the executor.</li>
+<li>If the executor doesn’t have many threads, there may not be much parallelism.</li>
+<li>Using this pattern allows for futures to run concurrently on multiple threads.</li>
+</ul>
+<h2 id="importance-of-spawning-and-performance-issues"><a class="header" href="#importance-of-spawning-and-performance-issues">Importance of Spawning and Performance Issues</a></h2>
+<p>Section Overview: This section discusses why it’s important to remember to spawn when writing async await code. It also
+highlights how program performance can drop significantly if nothing is spawned, causing the entire application to run
+on one thread.</p>
+<h3 id="remembering-to-spawn-and-program-performance"><a class="header" href="#remembering-to-spawn-and-program-performance">Remembering to Spawn and Program Performance</a></h3>
+<ul>
+<li>When writing async await code, it’s important to remember to spawn.</li>
+<li>If nothing is spawned, program performance can drop significantly.</li>
+<li>The entire application will run on one thread without spawning anything.</li>
+<li>Running an entire application on one thread is slower than running it on multiple threads because nothing gets to run
+in parallel.</li>
+</ul>
+<h2 id="best-practices-for-passing-data-and-handling-errors-with-tokyo-spawn"><a class="header" href="#best-practices-for-passing-data-and-handling-errors-with-tokyo-spawn">Best Practices for Passing Data and Handling Errors with Tokyo Spawn</a></h2>
+<p>Section Overview: This section covers best practices for passing data and handling errors with Tokyo Spawn. Techniques
+such as using mutexes or channels are discussed, along with how errors should be handled when they occur.</p>
+<h3 id="passing-data-with-tokyo-spawn"><a class="header" href="#passing-data-with-tokyo-spawn">Passing Data with Tokyo Spawn</a></h3>
+<ul>
+<li>To share data between two things that are spawned and want them both accessing a vector, use arc new mutex new.</li>
+<li>Each thing gets its own arc and has a mutex regarding the underlying value.</li>
+<li>Communication over a channel or static memory is also possible.</li>
+</ul>
+<h3 id="handling-errors-with-tokyo-spawn"><a class="header" href="#handling-errors-with-tokyo-spawn">Handling Errors with Tokyo Spawn</a></h3>
+<ul>
+<li>If an error occurs in a spawned future and there is nowhere to communicate it, print it to standard out or log it to a
+file.</li>
+<li>Use an event distribution tool like tracing to emit an error event that gets handled somewhere else.</li>
+</ul>
+<h2 id="spawning-and-running-futures"><a class="header" href="#spawning-and-running-futures">Spawning and Running Futures</a></h2>
+<p>Section Overview: This section discusses the advantages of spawning futures and how to do it in Tokio.</p>
+<h3 id="advantages-of-spawning-futures"><a class="header" href="#advantages-of-spawning-futures">Advantages of Spawning Futures</a></h3>
+<ul>
+<li>Spawning a future allows other tasks on the current thread to keep running while that operation is running elsewhere.</li>
+<li>This can be valuable when you have an expensive operation like deserialization or hashing a password that you don’t
+want to block async execution of a thread.</li>
+</ul>
+<h3 id="how-to-spawn-futures-in-tokio"><a class="header" href="#how-to-spawn-futures-in-tokio">How to Spawn Futures in Tokio</a></h3>
+<ul>
+<li>Use <code>tokio::spawn</code> to spawn a future.</li>
+<li>Thread locals are used by Tokio to find the current runtime and executor.</li>
+<li>Multiple runtimes can be created, each with its own thread count, allowing for prioritized traffic handling.</li>
+</ul>
+<h3 id="blocking-operations"><a class="header" href="#blocking-operations">Blocking Operations</a></h3>
+<ul>
+<li>Use <code>tokio::task::spawn_blocking</code> or <code>tokio::task::block_in_place</code> for blocking operations like hashing passwords.</li>
+</ul>
+<h2 id="rust-futures-and-thread-locals"><a class="header" href="#rust-futures-and-thread-locals">Rust Futures and Thread Locals</a></h2>
+<p>Section Overview: This section explains how Rust futures work with thread locals and why they are used in Tokio.</p>
+<h3 id="thread-locals-in-tokio"><a class="header" href="#thread-locals-in-tokio">Thread Locals in Tokio</a></h3>
+<ul>
+<li>Thread locals are used by Tokio to make the interface slightly nicer.</li>
+<li>Without thread locals, <code>spawn</code> would not be a free function, requiring the handle to the runtime throughout your
+entire application.</li>
+</ul>
+<h3 id="rust-futures-without-thread-locals"><a class="header" href="#rust-futures-without-thread-locals">Rust Futures without Thread Locals</a></h3>
+<ul>
+<li>There is nothing in Rust’s async support that requires thread locals.</li>
+</ul>
+<h2 id="introduction-1"><a class="header" href="#introduction-1">Introduction</a></h2>
+<p>Section Overview: In this section, the speaker introduces the topic of creating a runtime and explains that it does not
+allocate a lot of memory.</p>
+<h2 id="what-is-a-future"><a class="header" href="#what-is-a-future">What is a Future?</a></h2>
+<p>Section Overview: In this section, the speaker explains what a future is and how it works in an async function.</p>
+<ul>
+<li>A future is a chunked computation with weights in between each chunk.</li>
+<li>Each chunk contains the state for that part of the state machine.</li>
+<li>Local variables that need to be kept across await points are saved as part of the state.</li>
+<li>The compiler generates an enum-like structure to represent the state machine.</li>
+<li>The future itself needs to be stored somewhere because it holds a reference into x.</li>
+</ul>
+<h2 id="example-async-function"><a class="header" href="#example-async-function">Example Async Function</a></h2>
+<p>Section Overview: In this section, the speaker provides an example async function and explains how it gets divided up
+into chunks.</p>
+<ul>
+<li>The async function has one chunk that starts at its beginning and ends before any await points.</li>
+<li>Between each chunk is a weight operation represented by an await point.</li>
+<li>Local variables that need to be kept across await points are saved as part of the state.</li>
+</ul>
+<h2 id="understanding-impul-futures"><a class="header" href="#understanding-impul-futures">Understanding Impul Futures</a></h2>
+<p>Section Overview: In this section, the speaker explains how Impul futures work and how they are implemented in Rust.</p>
+<h3 id="impul-future-type"><a class="header" href="#impul-future-type">Impul Future Type</a></h3>
+<ul>
+<li>An <code>Impul Future</code> is a type that returns an <code>Impul Future</code>.</li>
+<li>The <code>Impul Future</code> is actually a type of state machine.</li>
+<li>The state machine contains all the values kept across await points.</li>
+<li>When we await an <code>Impul Future</code>, we are invoking a method on the state machine type that gets an exclusive reference
+immutable reference to that type so it can access the future and continue to wait.</li>
+</ul>
+<h3 id="state-machine-type"><a class="header" href="#state-machine-type">State Machine Type</a></h3>
+<ul>
+<li>The generated state machine type is a trait with a name but no specified name.</li>
+<li>It contains internal local variables and references to other futures.</li>
+<li>This conversion from async fn rewrites these variables as references into the state machine struct that we pass
+around.</li>
+</ul>
+<h3 id="passing-futures-around"><a class="header" href="#passing-futures-around">Passing Futures Around</a></h3>
+<ul>
+<li>Futures can get really large because they contain all of the futures they in turn await.</li>
+<li>Passing them around requires mem copying which can be expensive for large futures.</li>
+<li>Boxing your features solves this problem by placing them on the heap or using box pin.</li>
+</ul>
+<h3 id="using-tokyo-spawn"><a class="header" href="#using-tokyo-spawn">Using Tokyo Spawn</a></h3>
+<ul>
+<li>Using something like Tokyo spawn is useful because it stores only a pointer to the future instead of storing the
+entire future itself.</li>
+<li>This reduces mem copies and avoids having futures grow indefinitely.</li>
+</ul>
+<h2 id="introduction-2"><a class="header" href="#introduction-2">Introduction</a></h2>
+<p>Section Overview: In this section, the speaker introduces the topic of futures and async functions in Rust.</p>
+<h3 id="key-points"><a class="header" href="#key-points">Key Points</a></h3>
+<ul>
+<li>The speaker briefly discusses why futures can be moved even though they may need to be pinned.</li>
+<li>The speaker explains that it is possible to create a vector of futures recursively within an async function by using a
+join handle.</li>
+<li>However, the speaker notes that using a vector is not enough because an array needs to know the size of its elements,
+which may not be known for all futures.</li>
+<li>The speaker mentions that there is an async trait crate available for writing asynchronous functions within traits.</li>
+</ul>
+<h2 id="async-trait"><a class="header" href="#async-trait">Async Trait</a></h2>
+<p>Section Overview: In this section, the speaker discusses the limitations of writing asynchronous functions within traits
+in Rust.</p>
+<h3 id="key-points-1"><a class="header" href="#key-points-1">Key Points</a></h3>
+<ul>
+<li>The speaker explains that currently, it is not possible to define an async function within a trait in Rust.</li>
+<li>This is because the size of the future returned by the function cannot be determined at compile time.</li>
+<li>The speaker provides an example where defining an async function within a trait would result in an error due to
+unknown future size.</li>
+<li>The speaker mentions that there are two ways around this limitation: using existential types or using the async trait
+crate.</li>
+</ul>
+<h2 id="async-trait-and-associated-types"><a class="header" href="#async-trait-and-associated-types">Async Trait and Associated Types</a></h2>
+<p>Section Overview: In this section, the speaker discusses the use of async trait and associated types in Rust
+programming. They explain how async trait works for higher-level functions but may not work well at the bottom of a
+stack due to heap allocation and dynamic dispatch.</p>
+<h3 id="async-trait-vs-associated-types"><a class="header" href="#async-trait-vs-associated-types">Async Trait vs. Associated Types</a></h3>
+<ul>
+<li>Async trait rewrites signatures and bodies into an async move, which works if you remove async trait.</li>
+<li>Rust already knows how to reason about dynamically dispatched futures, making it easy to await them.</li>
+<li>Heap allocating all futures leads to dynamic dispatch, indirection, and memory allocator pressure.</li>
+<li>Async trade is best suited for higher-level functions as opposed to lower-level ones like reads that require frequent
+heap allocations.</li>
+<li>Declaring an associated type call future can help solve the problem of heap allocation by allowing callers to know how
+large the actual type is.</li>
+</ul>
+<h3 id="naming-associated-types"><a class="header" href="#naming-associated-types">Naming Associated Types</a></h3>
+<ul>
+<li>The challenge with using associated types is naming them since there are no clear conventions on how to do so.</li>
+<li>Type alias infiltration could be used to name associated types but would require additional design decisions.</li>
+</ul>
+<h2 id="challenges-with-implementing-async-functions-in-traits"><a class="header" href="#challenges-with-implementing-async-functions-in-traits">Challenges with Implementing Async Functions in Traits</a></h2>
+<p>Section Overview: In this section, the speaker discusses some of the challenges involved in implementing async functions
+in traits. They explain that while it’s possible for the compiler to generate code automatically, there are still many
+design decisions that need to be made before this can happen.</p>
+<h3 id="compiler-code-generation"><a class="header" href="#compiler-code-generation">Compiler Code Generation</a></h3>
+<ul>
+<li>The rust compiler could theoretically generate code automatically behind the scenes when writing async functions in
+traits.</li>
+<li>There is a lot of magic involved in the process, and it’s not always clear how to name types that aren’t pin box.</li>
+<li>Async functions and traits are likely to be implemented eventually in Rust, but there are still many design decisions
+that need to be made.</li>
+</ul>
+<h2 id="asynchronous-programming-in-rust"><a class="header" href="#asynchronous-programming-in-rust">Asynchronous Programming in Rust</a></h2>
+<p>Section Overview: In this section, the speaker talks about various aspects of asynchronous programming in Rust.</p>
+<h3 id="key-points-2"><a class="header" href="#key-points-2">Key Points</a></h3>
+<ul>
+<li>The speaker discusses different topics related to asynchronous programming such as join, futures unordered, spawn,
+number of worker threads, async trait, spawn blocking, send and static futures pin and box futures.</li>
+<li>Blocking code is problematic because it doesn’t let other tasks run.</li>
+<li>There is an argument ongoing about whether to use the standard library mutex or an asynchronously enabled mutex. Using
+a standard library mutex can lead to deadlock situations where the executor’s one thread is blocked. On the other
+hand, using an asynchronously enabled mutex yields when it fails to take the lock which lets other future run again.</li>
+</ul>
+<h2 id="standard-library-mutexes-vs-asynchronously-enabled-mutexes"><a class="header" href="#standard-library-mutexes-vs-asynchronously-enabled-mutexes">Standard Library Mutexes vs Asynchronously Enabled Mutexes</a></h2>
+<p>Section Overview: This section focuses on the differences between standard library mutexes and asynchronously enabled
+mutexes.</p>
+<h3 id="key-points-3"><a class="header" href="#key-points-3">Key Points</a></h3>
+<ul>
+<li>Standard library mutexes can lead to deadlock situations where the executor’s one thread is blocked while using an
+asynchronously enabled mutex yields when it fails to take the lock which lets other future run again.</li>
+<li>Async-enabled mutexes are necessary for sharing state between two futures. If two asynchronous threads access the same
+arc and use a standard library mutex then they may end up in deadlock situations.</li>
+</ul>
+<h2 id="using-async-aware-mutexes"><a class="header" href="#using-async-aware-mutexes">Using Async-Aware Mutexes</a></h2>
+<p>Section Overview: In this section, the speaker discusses the use of async-aware mutexes and standard library mutexes in
+critical sections.</p>
+<h3 id="standard-library-mutex-vs-async-aware-mutex"><a class="header" href="#standard-library-mutex-vs-async-aware-mutex">Standard Library Mutex vs Async-Aware Mutex</a></h3>
+<ul>
+<li>Use a standard library mutex for short critical sections without await points.</li>
+<li>Use an async-aware mutex if the critical section is long or contains await points to avoid blocking other futures on
+other threads.</li>
+<li>Standard library mutexes can be faster to acquire and release than async-aware mutexes.</li>
+</ul>
+<h3 id="deadlock-potential"><a class="header" href="#deadlock-potential">Deadlock Potential</a></h3>
+<ul>
+<li>Critical sections with await points are ripe for deadlock potential.</li>
+<li>Holding a lock while running a slow operation can block other futures on other threads, causing them to be unable to
+make progress.</li>
+</ul>
+<h3 id="detecting-problems"><a class="header" href="#detecting-problems">Detecting Problems</a></h3>
+<ul>
+<li>There are currently no good tools for detecting blocking or unexpected cancellations in futures.</li>
+<li>Tokyo console is being developed as a tool that hooks into the executor and monitors how long it has been since a
+given future yielded or was retried.</li>
+</ul>
+<h2 id="thread-spawn-vs-tokyo-spawn"><a class="header" href="#thread-spawn-vs-tokyo-spawn">Thread Spawn vs Tokyo Spawn</a></h2>
+<p>Section Overview: In this section, the speaker explains the conceptual difference between thread spawn and Tokyo spawn.</p>
+<h3 id="thread-spawn"><a class="header" href="#thread-spawn">Thread Spawn</a></h3>
+<ul>
+<li>Spawns a new operating system thread that runs in parallel with everything else in your program.</li>
+<li>Does not take a future but takes a closure instead.</li>
+<li>If you want to await a future inside of a spawned thread, you need to create your own executor inside of there.</li>
+</ul>
+<h3 id="tokyo-spawn"><a class="header" href="#tokyo-spawn">Tokyo Spawn</a></h3>
+<ul>
+<li>Does not guarantee having its own thread and requires cooperative scheduling with yield points.</li>
+<li>If you do not have yield points, you might block the executor.</li>
+</ul>
+<h2 id="introduction-3"><a class="header" href="#introduction-3">Introduction</a></h2>
+<p>Section Overview: In this section, the speaker introduces the topic of async and await.</p>
+<h3 id="async-and-await"><a class="header" href="#async-and-await">Async and Await</a></h3>
+<ul>
+<li>The speaker introduces async and await as higher-level techniques for working with futures.</li>
+<li>The lower levels, such as the future trait, pin, context, or waker are not discussed in detail.</li>
+<li>This section provides a good survey of what mental models to have when working with async and await.</li>
+</ul>
+<h2 id="scheduling-futures"><a class="header" href="#scheduling-futures">Scheduling Futures</a></h2>
+<p>Section Overview: In this section, the speaker discusses how futures get scheduled on threads.</p>
+<h3 id="awaiting-inside-a-future"><a class="header" href="#awaiting-inside-a-future">Awaiting Inside a Future</a></h3>
+<ul>
+<li>When a future yields, it just yields to whatever awaited it.</li>
+<li>If inside of f you await and then you end up yielding you just go back up to b and it’s up to b what happens at this
+point right b in this case is chosen to await.</li>
+<li>All the way up the stack it’s going to be awaits all the way up to the executor which does have the option of
+rescheduling you on a different thread.</li>
+</ul>
+<h3 id="single-threaded-executors"><a class="header" href="#single-threaded-executors">Single Threaded Executors</a></h3>
+<ul>
+<li>If you have a single threaded executor it would execute on that same thread because there are no other threads in
+Tokyo.</li>
+<li>You’re not guaranteed that it’s the same thread; there are ways to say only run me on one thread in different
+executors like in Tokyo there’s like a spawn local which gives you some of these guarantees.</li>
+</ul>
+<h3 id="enforcing-static-guarantees"><a class="header" href="#enforcing-static-guarantees">Enforcing Static Guarantees</a></h3>
+<ul>
+<li>If you really wanted a future not to be sent across threads, you would just not implement send for it. Of course, that
+makes it harder to work with that future but that would be how you enforce that statically.</li>
+</ul>
+<h2 id="async-stack-trace"><a class="header" href="#async-stack-trace">Async Stack Trace</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to get an async stack trace.</p>
+<h3 id="getting-an-async-stack-trace"><a class="header" href="#getting-an-async-stack-trace">Getting an Async Stack Trace</a></h3>
+<ul>
+<li>If you print just a regular stack trace inside of an async inside of a future, you will get the call trace going up to
+the executor.</li>
+<li>The problem really stems from spawning. If I spawn this future and then let’s say I panicked right here then this
+panic would not show main.</li>
+<li>When that executor thread awaits this future and it panics, the backtrace for that panic will only say the executor
+pulled this future so it’ll point you at this future but that trace.</li>
+</ul>
+<h2 id="tracing-futures"><a class="header" href="#tracing-futures">Tracing Futures</a></h2>
+<p>Section Overview: This section discusses tracing futures and how to use them to trace back to where a future was
+originally spawned.</p>
+<h3 id="using-instrument-to-trace-futures"><a class="header" href="#using-instrument-to-trace-futures">Using <code>instrument</code> to Trace Futures</a></h3>
+<ul>
+<li><code>instrument</code> is used with a future import trait.</li>
+<li>It takes a future and returns the same future.</li>
+<li>The whole future gets spawned, allowing for tracing back to where it was originally spawned.</li>
+</ul>
+<h3 id="best-practices-for-calling-async-code-from-synchronous-code"><a class="header" href="#best-practices-for-calling-async-code-from-synchronous-code">Best Practices for Calling Async Code from Synchronous Code</a></h3>
+<ul>
+<li>Avoid calling async code from synchronous code as it is difficult to do right.</li>
+<li>Using <code>futures::block_on</code> can be problematic as it does not provide cooperative scheduling.</li>
+<li>Enforcing an asynchronous runtime on users can cause issues such as nested asynchronous runtimes, runtime panics, and
+performance problems.</li>
+<li>Expose internal asynchronous operations as asynchronous and leave it up to the user to choose how to make them
+synchronous.</li>
+</ul>
+<h3 id="use-cases-for-threads-instead-of-futures"><a class="header" href="#use-cases-for-threads-instead-of-futures">Use Cases for Threads Instead of Futures</a></h3>
+<ul>
+<li>For compute-heavy tasks, use something like Rayon instead of futures.</li>
+<li>If there is no I/O involved in the program, there is no need for async.</li>
+</ul>
+<h3 id="when-not-to-use-async"><a class="header" href="#when-not-to-use-async">When Not To Use Async</a></h3>
+<ul>
+<li>Writing non-async code tends to make simple or single execution code easier to read.</li>
+<li>Back traces work better when not in an async context.</li>
+<li>If you don’t need the mechanisms that async provides, use normal threading.</li>
+</ul>
+<h2 id="generated-by-video-highlight"><a class="header" href="#generated-by-video-highlight">Generated by Video Highlight</a></h2>
+<p>https://videohighlight.com/video/summary/ThjvMReOXYM</p>
+<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="declarative-macros"><a class="header" href="#declarative-macros">Declarative Macros</a></h1>
 <h2 id="introduction-to-declarative-macros"><a class="header" href="#introduction-to-declarative-macros"><a href="rust_video_summary/curst_of_rust/t=0:00:00s">#</a> Introduction to Declarative Macros</a></h2>
 <p>Section Overview: In this video, we will learn about declarative macros and how they work in Rust. We will focus on
 macro rules and implement the <code>vec!</code> macro from the standard library.</p>
@@ -645,7 +1622,7 @@ of numbers.</li>
 <li><a href="rust_video_summary/curst_of_rust/t=0:29.40"></a> They demonstrate an example of using recursion to generate a function that calculates the factorial of a
 number.</li>
 </ul>
-<h2 id="conclusion"><a class="header" href="#conclusion"><a href="rust_video_summary/curst_of_rust/t=0:32.50">#</a> Conclusion</a></h2>
+<h2 id="conclusion-2"><a class="header" href="#conclusion-2"><a href="rust_video_summary/curst_of_rust/t=0:32.50">#</a> Conclusion</a></h2>
 <p>Section Overview: In this section, the speaker concludes by summarizing the key points covered in the video and
 providing resources for further learning.</p>
 <h3 id="summary"><a class="header" href="#summary">Summary</a></h3>
@@ -974,7 +1951,7 @@ of tokens or characters in syntax tree).</li>
 <li>A boxed array is created on the heap and treated as a box slice instead of a boxed array.</li>
 <li>A sequence of things on the heap can be trivially constructed into a vector.</li>
 </ul>
-<h2 id="conclusion-1"><a class="header" href="#conclusion-1">Conclusion</a></h2>
+<h2 id="conclusion-3"><a class="header" href="#conclusion-3">Conclusion</a></h2>
 <p>Section Overview: In this section, the speaker wraps up and invites viewers to suggest additional concepts for future
 videos.</p>
 <h3 id="wrapping-up"><a class="header" href="#wrapping-up">Wrapping Up</a></h3>
@@ -987,7 +1964,7 @@ sections.</li>
 <ul>
 <li>Viewers are invited to suggest additional self-contained real code concepts.</li>
 </ul>
-<h2 id="generated-by-video-highlight"><a class="header" href="#generated-by-video-highlight">Generated by Video Highlight</a></h2>
+<h2 id="generated-by-video-highlight-1"><a class="header" href="#generated-by-video-highlight-1">Generated by Video Highlight</a></h2>
 <p>https://videohighlight.com/video/summary/q6paRBbLgNw</p>
 <div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="lifetime-annotations"><a class="header" href="#lifetime-annotations">Lifetime Annotations</a></h1>
 <!--ts-->
@@ -1167,9 +2144,9 @@ sections.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:51:31 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:53:51 UTC 2023 -->
 <!--te-->
-<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<h2 id="introduction-4"><a class="header" href="#introduction-4">Introduction</a></h2>
 <p>Section Overview: In this section, the speaker introduces the topic of the video and explains how they came up with the
 idea for it. They also provide some background information about their YouTube channel and what viewers can expect from
 the video.</p>
@@ -1284,7 +2261,7 @@ function in Rust.</p>
 <li>There is a bug in the code that needs to be fixed.</li>
 <li>The bug will be addressed later.</li>
 </ul>
-<h3 id="conclusion-2"><a class="header" href="#conclusion-2">Conclusion</a></h3>
+<h3 id="conclusion-4"><a class="header" href="#conclusion-4">Conclusion</a></h3>
 <ul>
 <li>We have completed our implementation of the split function in Rust.</li>
 <li>We can now test our code using cargo test.</li>
@@ -1314,7 +2291,7 @@ one possible guess.</li>
 <li>You can order lifetimes based on how long they are. For example, take static is a ring that lives for the entire
 duration of the rest of the program.</li>
 </ul>
-<h3 id="conclusion-3"><a class="header" href="#conclusion-3">Conclusion</a></h3>
+<h3 id="conclusion-5"><a class="header" href="#conclusion-5">Conclusion</a></h3>
 <ul>
 <li>The name you give does not matter; it’s just like naming generics.</li>
 </ul>
@@ -1361,7 +2338,7 @@ assigned to a variable or moved.</li>
 <li>If you have a reference or something containing any lifetime, you can assign anything of the same type but with a
 longer lifetime.</li>
 </ul>
-<h3 id="conclusion-4"><a class="header" href="#conclusion-4">Conclusion</a></h3>
+<h3 id="conclusion-6"><a class="header" href="#conclusion-6">Conclusion</a></h3>
 <ul>
 <li>The speaker concludes by stating that everything defaults to having a static lifetime, although it’s not entirely
 true. A value’s lifetime lasts until it’s moved or assigned to a variable.</li>
@@ -1535,7 +2512,7 @@ the issue of returning a reference to a temporary value and how it relates to li
 <li>Strings are heap-allocated and dynamically expandable while strs are not.</li>
 <li>A string can be converted into a str easily, but not vice versa.</li>
 </ul>
-<h3 id="conclusion-5"><a class="header" href="#conclusion-5">Conclusion</a></h3>
+<h3 id="conclusion-7"><a class="header" href="#conclusion-7">Conclusion</a></h3>
 <ul>
 <li>Rust’s lifetime system can be tricky to navigate, especially when dealing with references and temporary values.</li>
 <li>It’s important to understand the differences between strings and strs in order to write effective code.</li>
@@ -1561,7 +2538,7 @@ downgrading the lifetime.</li>
 <li>The reference given back is now tied only to the haystack lifetime instead of being tied to both haystack and
 delimiter.</li>
 </ul>
-<h3 id="conclusion-6"><a class="header" href="#conclusion-6">Conclusion</a></h3>
+<h3 id="conclusion-8"><a class="header" href="#conclusion-8">Conclusion</a></h3>
 <p>The speaker discussed heap allocation and its use in creating strings. They also explained how multiple lifetimes can be
 used when dealing with references.</p>
 <h2 id="introduction-to-lifetimes-and-delimiters"><a class="header" href="#introduction-to-lifetimes-and-delimiters">Introduction to Lifetimes and Delimiters</a></h2>
@@ -1615,7 +2592,7 @@ and it will tell you the start of that string in that string that plus one is wr
 In order to find the end of the delimiter, it has to be the start of the delimiter plus the length of the delimiter
 not the length of the string we’re searching in. The s here is what we’re searching in.</li>
 </ul>
-<h2 id="conclusion-7"><a class="header" href="#conclusion-7">Conclusion</a></h2>
+<h2 id="conclusion-9"><a class="header" href="#conclusion-9">Conclusion</a></h2>
 <p>Section Overview: In this section, the speaker reveals that all of the things implemented today exist in Rust’s standard
 library.</p>
 <ul>
@@ -1671,7 +2648,7 @@ appetite for them.</li>
 <li>The speaker encourages everyone to stay safe and stay home. <a href="rust_video_summary/curst_of_rust/t=1:32:57"></a></li>
 <li>The speaker announces that there will be a video next time. <a href="rust_video_summary/curst_of_rust/t=1:33:18"></a></li>
 </ul>
-<h2 id="generated-by-video-highlight-1"><a class="header" href="#generated-by-video-highlight-1">Generated by Video Highlight</a></h2>
+<h2 id="generated-by-video-highlight-2"><a class="header" href="#generated-by-video-highlight-2">Generated by Video Highlight</a></h2>
 <p>https://videohighlight.com/video/summary/rAl-9HwD858</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="smart-pointers-and-interior-mutability"><a class="header" href="#smart-pointers-and-interior-mutability">Smart Pointers and Interior Mutability</a></h1>
 <!--ts-->
@@ -1879,9 +2856,9 @@ appetite for them.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:51:32 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:53:52 UTC 2023 -->
 <!--te-->
-<h2 id="introduction-1"><a class="header" href="#introduction-1">Introduction</a></h2>
+<h2 id="introduction-5"><a class="header" href="#introduction-5">Introduction</a></h2>
 <p>Section Overview: In this section, the speaker introduces the topic of smart pointers and interior mutability in Rust.
 They discuss some of the types that are commonly used in Rust, such as arc, RC, refs, l mutex L, DRF, as ref traits,
 Baro trait, cow and sized.</p>
@@ -2442,7 +3419,7 @@ covered next.</p>
 <ul>
 <li>The next stream may cover trade objects, borrow trait, or trade delegation.</li>
 </ul>
-<h2 id="generated-by-video-highlight-2"><a class="header" href="#generated-by-video-highlight-2">Generated by Video Highlight</a></h2>
+<h2 id="generated-by-video-highlight-3"><a class="header" href="#generated-by-video-highlight-3">Generated by Video Highlight</a></h2>
 <p>https://videohighlight.com/video/summary/8O0Nt9qY_vo</p>
 <div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><p><a href="https://www.youtube.com/playlist?list=PLqbS7AVVErFhAhQ5s9SWcvxHh4GwsIk_d">impl Rust - YouTube</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="solving-distributed-systems-challenges-in-rust"><a class="header" href="#solving-distributed-systems-challenges-in-rust">Solving distributed systems challenges in Rust</a></h1>
@@ -2706,9 +3683,9 @@ covered next.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:51:33 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:53:53 UTC 2023 -->
 <!--te-->
-<h2 id="introduction-2"><a class="header" href="#introduction-2">Introduction</a></h2>
+<h2 id="introduction-6"><a class="header" href="#introduction-6">Introduction</a></h2>
 <p>Section Overview: In this section, the speaker introduces a set of distributed systems challenges that use a platform
 called Maelstrom. The challenges are designed to build an increasingly sophisticated distributed system and run it
 through Maelstrom to test its correctness.</p>
@@ -2795,7 +3772,7 @@ They talk about the input message and how it returns a mutable reference to the 
 <li>We construct an output channel using Certi Jason serializer new standard out.</li>
 <li>State starts at zero and then we’re going to do state step give it input.</li>
 </ul>
-<h2 id="introduction-3"><a class="header" href="#introduction-3">Introduction</a></h2>
+<h2 id="introduction-7"><a class="header" href="#introduction-7">Introduction</a></h2>
 <p>Section Overview: In this section, the speaker introduces the topic and mentions that they will be running a command.</p>
 <h3 id="running-a-command"><a class="header" href="#running-a-command">Running a Command</a></h3>
 <ul>
@@ -2886,7 +3863,7 @@ Maelstrom’s unique IDs workload.</li>
 <li><a href="rust_video_summary/impl_rust/t=0:43:00s"></a> The speaker decides to tidy up the code before generalizing and moves all the stuff over to <code>live.rs</code>.</li>
 <li><a href="rust_video_summary/impl_rust/t=0:43:00s"></a> The payload is defined in <code>live.rs</code>.</li>
 </ul>
-<h2 id="introduction-4"><a class="header" href="#introduction-4">Introduction</a></h2>
+<h2 id="introduction-8"><a class="header" href="#introduction-8">Introduction</a></h2>
 <p>Section Overview: The speaker introduces the topic and mentions that they want to test something.</p>
 <h3 id="testing"><a class="header" href="#testing">Testing</a></h3>
 <ul>
@@ -3082,7 +4059,7 @@ nodes in the cluster. They start by generating unique IDs and move on to impleme
 message RPC.</li>
 <li>A read message requests that a node returns all values it has seen.</li>
 </ul>
-<h2 id="conclusion-8"><a class="header" href="#conclusion-8">Conclusion</a></h2>
+<h2 id="conclusion-10"><a class="header" href="#conclusion-10">Conclusion</a></h2>
 <p>Section Overview: In this section, there is no new content.</p>
 <h2 id="order-of-returned-values-and-topology"><a class="header" href="#order-of-returned-values-and-topology">Order of Returned Values and Topology</a></h2>
 <p>Section Overview: In this section, the speaker discusses the order of returned values and topology.</p>
@@ -3114,7 +4091,7 @@ prepare reply that sets ID to one that’s passed in if you have one and it sets
 <li>There is now a reply which consumes the message. It returns itself and what it does is exactly what prepare reply
 does.</li>
 </ul>
-<h2 id="introduction-5"><a class="header" href="#introduction-5">Introduction</a></h2>
+<h2 id="introduction-9"><a class="header" href="#introduction-9">Introduction</a></h2>
 <p>Section Overview: In this section, the speaker introduces the topic of gossip protocols and explains that they will be
 implementing a broadcast system that propagates values to all nodes in the cluster.</p>
 <h3 id="implementing-broadcast"><a class="header" href="#implementing-broadcast">Implementing Broadcast</a></h3>
@@ -3278,7 +4255,7 @@ using <code>std::io::stdin().lock().lines()</code> and <code>tx.send(input)</cod
 <li>All instances of standard in are replaced with <code>std::io::stdin().lock().lines()</code>.</li>
 <li>Since <code>self</code> is consumed, there is no need to worry about dropping P.</li>
 </ul>
-<h2 id="introduction-6"><a class="header" href="#introduction-6">Introduction</a></h2>
+<h2 id="introduction-10"><a class="header" href="#introduction-10">Introduction</a></h2>
 <p>Section Overview: In this section, the speaker introduces the topic of thread panics and error handling.</p>
 <h3 id="thread-panics-and-error-handling"><a class="header" href="#thread-panics-and-error-handling">Thread Panics and Error Handling</a></h3>
 <ul>
@@ -3412,7 +4389,7 @@ I’m sorry, but I cannot summarize the transcript as there are only a few bulle
 provided transcript is not sufficient to create a comprehensive and informative markdown file.
 [<em>CUTOFF_LIMIT</em>]</li>
 </ul>
-<h2 id="generated-by-video-highlight-3"><a class="header" href="#generated-by-video-highlight-3">Generated by Video Highlight</a></h2>
+<h2 id="generated-by-video-highlight-4"><a class="header" href="#generated-by-video-highlight-4">Generated by Video Highlight</a></h2>
 <p>https://videohighlight.com/video/summary/gboGyccRVXI</p>
 <div style="break-before: page; page-break-before: always;"></div><p><a href="https://www.youtube.com/playlist?list=PLqbS7AVVErFj-euU-OW79x9na1Qj3_JYL">Open-Source streams - YouTube</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="stop-duplicating-code-generics-traits-lifetimes"><a class="header" href="#stop-duplicating-code-generics-traits-lifetimes">Stop Duplicating Code: Generics, Traits, Lifetimes</a></h1>
@@ -3478,7 +4455,7 @@ provided transcript is not sufficient to create a comprehensive and informative 
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:51:35 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:53:55 UTC 2023 -->
 <!--te-->
 <h2 id="introduction-to-generics"><a class="header" href="#introduction-to-generics">Introduction to Generics</a></h2>
 <p>Section Overview: In this section, we will learn about generics and how they can be used with functions, methods, and
@@ -3509,7 +4486,7 @@ struct.</li>
 <li>We use apostrophes (’) to denote lifetimes in Rust code.</li>
 <li>Lifetime elision rules allow us to omit explicit lifetime annotations in certain cases.</li>
 </ul>
-<h3 id="conclusion-9"><a class="header" href="#conclusion-9">Conclusion</a></h3>
+<h3 id="conclusion-11"><a class="header" href="#conclusion-11">Conclusion</a></h3>
 <p>Section Overview: In this section, we reviewed what we learned about generics, including how they can be used with functions, methods, and custom types. We also explored traits and lifetimes.</p>
 <ul>
 <li>Generics allow us to write more flexible and reusable code.</li>
@@ -3858,7 +4835,7 @@ https://videohighlight.com/video/summary/JLfEiJhpTbE</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:51:34 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:53:54 UTC 2023 -->
 <!--te-->
 <h2 id="introduction-to-rust-programming-language"><a class="header" href="#introduction-to-rust-programming-language">Introduction to Rust Programming Language</a></h2>
 <p>Section Overview: This video is an introductory course on the fundamentals and syntax of the Rust programming language.
@@ -4361,7 +5338,7 @@ to get them using env::args().</p>
 <li>Use placeholders to insert variables into print statements.</li>
 <li>If an invalid command is entered, print a message indicating so.</li>
 </ul>
-<h2 id="conclusion-10"><a class="header" href="#conclusion-10">Conclusion</a></h2>
+<h2 id="conclusion-12"><a class="header" href="#conclusion-12">Conclusion</a></h2>
 <ul>
 <li>Rust is a powerful language for creating command line applications.</li>
 <li>There is much more that can be done with Rust beyond what was covered in this video.</li>
@@ -4379,7 +5356,7 @@ to get them using env::args().</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:51:50 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:54:11 UTC 2023 -->
 <!--te-->
 <h2 id="in-rust-what-is-associate-type-what-is-generic-associate-type"><a class="header" href="#in-rust-what-is-associate-type-what-is-generic-associate-type">in rust, what is associate type, what is generic associate type.</a></h2>
 <p>In Rust, an associate type is a type placeholder that is defined within the bounds of a trait. It allows a trait to specify that concrete types used to implement the trait must provide a specific type, without requiring the trait to know what that type is.</p>
@@ -4616,7 +5593,7 @@ friendly and approachable text intended to help you level up not just your
 knowledge of Rust, but also your reach and confidence as a programmer in
 general. So dive in, get ready to learn—and welcome to the Rust community!</p>
 <p>— Nicholas Matsakis and Aaron Turon</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="introduction-7"><a class="header" href="#introduction-7">Introduction</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="introduction-11"><a class="header" href="#introduction-11">Introduction</a></h1>
 <blockquote>
 <p>Note: This edition of the book is the same as <a href="https://nostarch.com/rust">The Rust Programming
 Language</a> available in print and ebook format from <a href="https://nostarch.com/">No Starch
@@ -6337,7 +7314,7 @@ change the type of the value but reuse the same name.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:31 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:51:44 UTC 2023 -->
 <!--te-->
 <p>As mentioned in the <a href="ch02-00-guessing-game-tutorial.html#storing-values-with-variables">“Storing Values with
 Variables”</a><!-- ignore --> section, by default,
@@ -7112,7 +8089,7 @@ if you add a semicolon to the end of an expression, you turn it into a statement
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:31 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:51:45 UTC 2023 -->
 <!--te-->
 <p>Functions are prevalent in Rust code. You’ve already seen one of the most
 important functions in the language:</p>
@@ -10041,7 +11018,7 @@ continue to refactor this code by turning the <code>area</code> function into an
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:35 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:51:49 UTC 2023 -->
 <!--te-->
 <h2 id="similar-and-difference"><a class="header" href="#similar-and-difference">Similar and Difference</a></h2>
 <blockquote>
@@ -12592,7 +13569,7 @@ lines of text in a file or the prices of items in a shopping cart.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:39 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:51:53 UTC 2023 -->
 <!--te-->
 <h2 id="creating-a-new-vector"><a class="header" href="#creating-a-new-vector">Creating a New Vector</a></h2>
 <p>To create a new empty vector, we call the <code>Vec::new</code> function, as shown in
@@ -12980,7 +13957,7 @@ valid.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:39 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:51:53 UTC 2023 -->
 <!--te-->
 <p>We talked about strings in Chapter 4, but we’ll look at them in more depth now.</p>
 <blockquote>
@@ -13521,7 +14498,7 @@ the values must have the same type.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:39 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:51:54 UTC 2023 -->
 <!--te-->
 <p>The last of our common collections is the <em>hash map</em>.</p>
 <blockquote>
@@ -13913,7 +14890,7 @@ execution.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:40 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:51:54 UTC 2023 -->
 <!--te-->
 <p>Sometimes, bad things happen in your code, and there’s nothing you can do about
 it. In these cases, Rust has the <code>panic!</code> macro. There are two ways to cause a
@@ -14106,7 +15083,7 @@ chapter. Next, we’ll look at how to recover from an error using <code>Result</
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:40 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:51:55 UTC 2023 -->
 <!--te-->
 <p>Most errors aren’t serious enough to require the program to stop entirely.</p>
 <details id="admonition-sometimes-when-a-function-fails-its-for-a-reason-that-you-can-easily-interpret-and-respond-to" class="admonition tip">
@@ -15113,7 +16090,7 @@ cases.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:41 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:51:55 UTC 2023 -->
 <!--te-->
 <p>So how do you decide when you should call <code>panic!</code> and when you should return
 <code>Result</code>? When code panics, there’s no way to recover. You could call <code>panic!</code>
@@ -15516,7 +16493,7 @@ values. How would we eliminate that duplication? Let’s find out!</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:42 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:51:56 UTC 2023 -->
 <!--te-->
 <p>We use generics to create definitions for items like function signatures or
 structs, which we can then use with many different concrete data types. </p>
@@ -16084,7 +17061,7 @@ at runtime.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:42 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:51:56 UTC 2023 -->
 <!--te-->
 <p>A <em>trait</em> defines functionality a particular type has and can share with other
 types. We can use traits to define shared behavior in an abstract way. We can
@@ -16678,7 +17655,7 @@ generics.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:42 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:51:57 UTC 2023 -->
 <!--te-->
 <blockquote>
 <p>Lifetimes are <strong>another kind of generic</strong> that we’ve already been using.</p>
@@ -21663,7 +22640,7 @@ code, we’ll devote this entire chapter to them.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:46 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:52:01 UTC 2023 -->
 <!--te-->
 <p>Rust’s closures are anonymous functions you can save in a variable or pass as
 arguments to other functions.</p>
@@ -22414,7 +23391,7 @@ as we continue!</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:47 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:52:02 UTC 2023 -->
 <!--te-->
 <p>The iterator pattern allows you to perform some task on a sequence of items in
 turn. An iterator is responsible for the logic of iterating over each item and
@@ -24416,7 +25393,7 @@ type exposes an API for mutating an interior value.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:50 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:52:05 UTC 2023 -->
 <!--te-->
 <h2 id="start-from-pointer"><a class="header" href="#start-from-pointer">Start from pointer</a></h2>
 <blockquote>
@@ -24542,7 +25519,7 @@ type exposes an API for mutating an interior value.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:50 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:52:06 UTC 2023 -->
 <!--te-->
 <p>Implementing the <code>Deref</code> trait allows you to customize the behavior of the
 <em>dereference operator</em> <code>*</code> (not to be confused with the multiplication or glob
@@ -25041,7 +26018,7 @@ if you want to force a value to be dropped before the end of its scope.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:51 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:52:06 UTC 2023 -->
 <!--te-->
 <h2 id="just-like-context-manager-in-python"><a class="header" href="#just-like-context-manager-in-python">Just like Context Manager in Python</a></h2>
 <p>In some languages, for some types, the programmer must call code to free memory
@@ -25287,7 +26264,7 @@ library.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:50 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:52:05 UTC 2023 -->
 <!--te-->
 <p>The most straightforward smart pointer is a <em>box</em>, whose type is written
 <code>Box&lt;T&gt;</code>:</p>
@@ -25662,7 +26639,7 @@ code, we only need to consider the deep-copy clones and can disregard calls to
 <li><a href="ch15-04-rc.html#cloning-an-rct-increases-the-reference-count">Cloning an Rc&lt;T&gt; Increases the Reference Count</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:51 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:52:06 UTC 2023 -->
 <!--te-->
 <p>In the majority of cases, ownership is clear: you know exactly which variable
 owns a given value.</p>
@@ -26043,7 +27020,7 @@ immutable.</li>
 <li><a href="ch15-05-interior-mutability.html#having-multiple-owners-of-mutable-data-by-combining-rct-and-refcellt">Having Multiple Owners of Mutable Data by Combining Rc&lt;T&gt; and RefCell&lt;T&gt;</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:52 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:52:07 UTC 2023 -->
 <!--te-->
 <h2 id="interior-mutability-1"><a class="header" href="#interior-mutability-1">Interior Mutability</a></h2>
 <p><em>Interior mutability</em> is a design pattern in Rust that allows you to mutate
@@ -26809,7 +27786,7 @@ structures.</li>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:52 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:52:07 UTC 2023 -->
 <!--te-->
 <p>Rust’s memory safety guarantees make it difficult, but not impossible, to
 accidentally create memory that is never cleaned up (known as a <em>memory leak</em>).</p>
@@ -28619,7 +29596,7 @@ Rust.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:55 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:52:10 UTC 2023 -->
 <!--te-->
 <h2 id="compare-implementing-trait-with-trait-bounds-and-trait-objects"><a class="header" href="#compare-implementing-trait-with-trait-bounds-and-trait-objects">Compare implementing trait with trait bounds and trait objects</a></h2>
 <ol>
@@ -30008,7 +30985,7 @@ a clear way.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:56 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:52:11 UTC 2023 -->
 <!--te-->
 <p>Patterns pop up in a number of places in Rust, and you’ve been using them a lot
 without realizing it! This section discusses all the places where patterns are
@@ -30527,7 +31504,7 @@ values.</li>
 <li><a href="ch18-03-pattern-syntax.html#summary">Summary</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:56 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:52:12 UTC 2023 -->
 <!--te-->
 <p>In this section, we gather all the syntax valid in patterns and discuss why and
 when you might want to use each one.</p>
@@ -32025,7 +33002,7 @@ annotation makes it easier to track down the source of problems when they occur.
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:58 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:52:13 UTC 2023 -->
 <!--te-->
 <p>We first covered traits in the <a href="ch10-02-traits.html#traits-defining-shared-behavior">“Traits: Defining Shared
 Behavior”</a><!-- ignore --> section of Chapter
@@ -33400,7 +34377,7 @@ pointer. In this case, we’ve chosen a reference.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:58 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:52:14 UTC 2023 -->
 <!--te-->
 <p>This section explores some advanced features related to functions and closures,
 including function pointers and returning closures.</p>
@@ -37057,7 +38034,7 @@ macros and specifying attributes on an item.</p>
 * <a href="appendix-03-derivable-traits.html#copy">Copy</a></li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:24 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:51:37 UTC 2023 -->
 <!--te-->
 <p>In various places in the book, we’ve discussed the <code>derive</code> attribute, which
 you can apply to a struct or enum definition.</p>
@@ -38248,7 +39225,7 @@ RGB (0, 0, 0) 0x000000
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:51:07 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:53:26 UTC 2023 -->
 <!--te-->
 <p>Rust provides access to a wide variety of <code>primitives</code>. A sample includes:</p>
 <ol>
@@ -40422,7 +41399,7 @@ difference in the types of iteration.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:50:49 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:53:07 UTC 2023 -->
 <!--te-->
 <p>A <code>match</code> block can destructure items in a variety of ways.</p>
 <h2 id="destructuring-tuples-1"><a class="header" href="#destructuring-tuples-1">Destructuring Tuples</a></h2>
@@ -47385,7 +48362,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:51:12 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:53:31 UTC 2023 -->
 <!--te-->
 <p>Rust has a few reserved lifetime names.</p>
 <p>One of those is <code>'static</code>.</p>
@@ -50037,7 +51014,7 @@ includes support for writing software tests within the language itself.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:51:22 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:53:42 UTC 2023 -->
 <!--te-->
 <ul>
 <li>Tests are Rust functions that verify that the non-test code is functioning in the expected manner.</li>
@@ -50363,7 +51340,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:51:05 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:53:24 UTC 2023 -->
 <!--te-->
 <p>Use <code>cargo doc</code> to build documentation in <code>target/doc</code>.</p>
 <p>Use <code>cargo test</code> to run all tests (including documentation tests), and <code>cargo test --doc</code> to only run documentation tests.</p>
@@ -50782,7 +51759,7 @@ mod tests {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:51:26 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:53:46 UTC 2023 -->
 <!--te-->
 <p>As an introduction to this section, to borrow from <a href="https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html">the official docs</a>:</p>
 <blockquote>
@@ -50869,7 +51846,7 @@ fn main() {
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:51:27 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:53:47 UTC 2023 -->
 <!--te-->
 <p>Rust provides support for <code>inline assembly</code> via the <code>asm!</code> macro.</p>
 <blockquote>
@@ -55498,7 +56475,7 @@ defines exceptions for several standard library modules.</p>
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:21 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:51:34 UTC 2023 -->
 <!--te-->
 <p>This chapter of the guide documents some ways to interact with Python code from Rust:</p>
 <ul>
@@ -56575,7 +57552,7 @@ the chapter on <a href="PyO3_guides/src/./memory.html">memory management</a> for
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sun Apr  9 15:49:12 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 13:51:24 UTC 2023 -->
 <!--te-->
 <p>This chapter of the guide goes into detail on how to build and distribute projects using PyO3. </p>
 <ol>
