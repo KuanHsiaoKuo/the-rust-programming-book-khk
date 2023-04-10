@@ -179,7 +179,868 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                
+                <h1 id="atomics-and-memory-ordering"><a class="header" href="#atomics-and-memory-ordering">Atomics and Memory Ordering</a></h1>
+<!--ts-->
+<ul>
+<li><a href="#atomics-and-memory-ordering">Atomics and Memory Ordering</a>
+<ul>
+<li><a href="#introduction">Introduction</a>
+<ul>
+<li><a href="#why-do-we-need-atomics">Why Do We Need Atomics?</a></li>
+<li><a href="#what-will-be-covered">What Will Be Covered?</a></li>
+</ul>
+</li>
+<li><a href="#atomic-types">Atomic Types</a>
+<ul>
+<li><a href="#why-not-use-primitive-types">Why Not Use Primitive Types?</a></li>
+<li><a href="#what-are-atomic-types">What Are Atomic Types?</a></li>
+<li><a href="#why-do-we-need-different-apis-for-atomic-types">Why Do We Need Different APIs for Atomic Types?</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a>
+<ul>
+<li><a href="#key-takeaways">Key Takeaways</a></li>
+</ul>
+</li>
+<li><a href="#rust-memory-model">Rust Memory Model</a>
+<ul>
+<li><a href="#introduction-to-memory-model">Introduction to Memory Model</a></li>
+<li><a href="#memory-ordering-documentation">Memory Ordering Documentation</a></li>
+<li><a href="#atomic-types-in-rust">Atomic Types in Rust</a></li>
+<li><a href="#methods-for-atomic-use-size-type">Methods for Atomic Use Size Type</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-memory-ordering">Introduction to Memory Ordering</a>
+<ul>
+<li><a href="#memory-ordering-and-guarantees">Memory Ordering and Guarantees</a></li>
+<li><a href="#atomic-operations">Atomic Operations</a></li>
+<li><a href="#questions-from-viewers">Questions from Viewers</a></li>
+<li><a href="#atomic-operations-and-compiler-semantics">Atomic Operations and Compiler Semantics</a></li>
+<li><a href="#unsafe-cell-and-atomic-instructions">Unsafe Cell and Atomic Instructions</a></li>
+<li><a href="#using-arc-for-static-lifetime">Using Arc for Static Lifetime</a></li>
+<li><a href="#alternative-approach-with-box-leak">Alternative Approach with Box Leak</a></li>
+<li><a href="#defining-a-mutex-type">Defining a Mutex Type</a></li>
+<li><a href="#using-with-lock-function">Using with Lock Function</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-mutexes">Introduction to Mutexes</a>
+<ul>
+<li><a href="#naive-implementation-of-mutex">Naive Implementation of Mutex</a></li>
+<li><a href="#problems-with-naive-implementation">Problems with Naive Implementation</a></li>
+<li><a href="#testing-mutex">Testing Mutex</a></li>
+</ul>
+</li>
+<li><a href="#implementing-a-mutex">Implementing a Mutex</a>
+<ul>
+<li><a href="#collecting-thread-handles">Collecting Thread Handles</a></li>
+<li><a href="#sync-for-mutex">Sync for Mutex</a></li>
+<li><a href="#problems-with-mutex-implementation">Problems with Mutex Implementation</a></li>
+</ul>
+</li>
+<li><a href="#understanding-concurrency-issues">Understanding Concurrency Issues</a>
+<ul>
+<li><a href="#concurrency-issues-with-multiple-cores">Concurrency Issues with Multiple Cores</a></li>
+<li><a href="#race-conditions-and-preemption">Race Conditions and Preemption</a></li>
+<li><a href="#solving-concurrency-issues-with-compare-exchange-operation">Solving Concurrency Issues with Compare Exchange Operation</a></li>
+</ul>
+</li>
+<li><a href="#overview-of-compare-exchange">Overview of Compare Exchange</a>
+<ul>
+<li><a href="#how-compare-exchange-works">How Compare Exchange Works</a></li>
+<li><a href="#why-compare-exchange-is-useful">Why Compare Exchange Is Useful</a></li>
+</ul>
+</li>
+<li><a href="#compare-exchange-and-spin-locks">Compare Exchange and Spin Locks</a>
+<ul>
+<li><a href="#compare-exchange-vs-spin-locks">Compare Exchange vs. Spin Locks</a></li>
+<li><a href="#optimizing-spin-locks-for-high-contention">Optimizing Spin Locks for High Contention</a></li>
+</ul>
+</li>
+<li><a href="#compare-exchange-weak">Compare Exchange Weak</a></li>
+<li><a href="#load-exclusive-and-store-exclusive">Load Exclusive and Store Exclusive</a>
+<ul>
+<li><a href="#load-exclusive-and-store-exclusive-1">Load Exclusive and Store Exclusive</a></li>
+</ul>
+</li>
+<li><a href="#memory-ordering">Memory Ordering</a>
+<ul>
+<li><a href="#ordering-variants">Ordering Variants</a></li>
+</ul>
+</li>
+<li><a href="#memory-barriers">Memory Barriers</a>
+<ul>
+<li><a href="#memory-barriers-1">Memory Barriers</a></li>
+</ul>
+</li>
+<li><a href="#happens-before-relationship">Happens-Before Relationship</a>
+<ul>
+<li><a href="#happens-before-relationship-1">Happens-Before Relationship</a></li>
+</ul>
+</li>
+<li><a href="#lock-free-programming">Lock-Free Programming</a>
+<ul>
+<li><a href="#lock-free-programming-1">Lock-Free Programming</a></li>
+</ul>
+</li>
+<li><a href="#relaxed-ordering-in-rust">Relaxed Ordering in Rust</a>
+<ul>
+<li><a href="#relaxed-ordering-and-thread-execution">Relaxed Ordering and Thread Execution</a></li>
+<li><a href="#explanation-of-relaxed-ordering">Explanation of Relaxed Ordering</a></li>
+</ul>
+</li>
+<li><a href="#reordering-and-speculative-execution">Reordering and Speculative Execution</a>
+<ul>
+<li><a href="#reordering-in-programming">Reordering in Programming</a></li>
+<li><a href="#speculative-execution">Speculative Execution</a></li>
+<li><a href="#constraints-on-reordering">Constraints on Reordering</a></li>
+</ul>
+</li>
+<li><a href="#exclusive-access-and-relaxed-memory-ordering">Exclusive Access and Relaxed Memory Ordering</a>
+<ul>
+<li><a href="#exclusive-access">Exclusive Access</a></li>
+<li><a href="#relaxed-memory-ordering-and-locks">Relaxed Memory Ordering and Locks</a></li>
+</ul>
+</li>
+<li><a href="#memory-orderings-and-acquiringreleasing-resources">Memory Orderings and Acquiring/Releasing Resources</a>
+<ul>
+<li><a href="#store-with-release-ordering">Store with Release Ordering</a></li>
+<li><a href="#load-with-acquire-ordering">Load with Acquire Ordering</a></li>
+<li><a href="#additional-restrictions">Additional Restrictions</a></li>
+</ul>
+</li>
+<li><a href="#understanding-acquire-release-semantics">Understanding Acquire-Release Semantics</a>
+<ul>
+<li><a href="#acquire-release-semantics">Acquire-Release Semantics</a></li>
+<li><a href="#compare-exchange-operation">Compare Exchange Operation</a></li>
+<li><a href="#testing-concurrent-code">Testing Concurrent Code</a></li>
+</ul>
+</li>
+<li><a href="#relaxed-and-strong-memory-ordering">Relaxed and Strong Memory Ordering</a>
+<ul>
+<li><a href="#relaxed-memory-ordering">Relaxed Memory Ordering</a></li>
+<li><a href="#fetch-operations">Fetch Operations</a></li>
+</ul>
+</li>
+<li><a href="#fetch-operations-and-sequentially-consistent-ordering">Fetch Operations and Sequentially Consistent Ordering</a>
+<ul>
+<li><a href="#sequentially-consistent-ordering">Sequentially Consistent Ordering</a></li>
+<li><a href="#fetch-operations-with-sequentially-consistent-ordering">Fetch Operations with Sequentially Consistent Ordering</a></li>
+</ul>
+</li>
+<li><a href="#understanding-fetch-operations">Understanding Fetch Operations</a>
+<ul>
+<li><a href="#fetch-update">Fetch Update</a></li>
+<li><a href="#unique-sequence-numbers">Unique Sequence Numbers</a></li>
+</ul>
+</li>
+<li><a href="#sequentially-consistent-ordering-1">Sequentially Consistent Ordering</a>
+<ul>
+<li><a href="#example-with-atomic-bools-and-usize">Example with Atomic Bools and Usize</a></li>
+</ul>
+</li>
+<li><a href="#possible-values-for-z">Possible Values for Z</a>
+<ul>
+<li><a href="#two-is-possible">Two is Possible</a></li>
+<li><a href="#one-is-possible">One is Possible</a></li>
+<li><a href="#zero-may-not-be-possible">Zero May Not Be Possible</a></li>
+</ul>
+</li>
+<li><a href="#mutex-panic-safety">Mutex Panic Safety</a></li>
+<li><a href="#introduction-1">Introduction</a>
+<ul>
+<li><a href="#thread-execution-order">Thread Execution Order</a></li>
+</ul>
+</li>
+<li><a href="#thread-schedules">Thread Schedules</a>
+<ul>
+<li><a href="#thread-schedules-1">Thread Schedules</a></li>
+</ul>
+</li>
+<li><a href="#acquire-and-release-semantics">Acquire and Release Semantics</a>
+<ul>
+<li><a href="#acquire-and-release-semantics-1">Acquire and Release Semantics</a></li>
+</ul>
+</li>
+<li><a href="#memory-ordering-in-rust">Memory Ordering in Rust</a>
+<ul>
+<li><a href="#happens-before-relationship-2">Happens Before Relationship</a></li>
+<li><a href="#concurrent-operations">Concurrent Operations</a></li>
+<li><a href="#sequentially-consistent-operation">Sequentially Consistent Operation</a></li>
+</ul>
+</li>
+<li><a href="#memory-ordering-and-sequential-consistency">Memory Ordering and Sequential Consistency</a>
+<ul>
+<li><a href="#memory-ordering-1">Memory Ordering</a></li>
+<li><a href="#testing-concurrent-code-1">Testing Concurrent Code</a></li>
+</ul>
+</li>
+<li><a href="#detecting-concurrency-problems">Detecting Concurrency Problems</a>
+<ul>
+<li><a href="#thread-sanitizer">Thread Sanitizer</a></li>
+<li><a href="#loom">Loom</a></li>
+</ul>
+</li>
+<li><a href="#loom-a-tool-for-testing-concurrent-code">Loom: A Tool for Testing Concurrent Code</a>
+<ul>
+<li><a href="#exploring-all-possible-legal-executions">Exploring All Possible Legal Executions</a></li>
+<li><a href="#limitations-of-loom">Limitations of Loom</a></li>
+</ul>
+</li>
+<li><a href="#examples-for-sequentially-consistent-ordering">Examples for Sequentially Consistent Ordering</a>
+<ul>
+<li><a href="#no-less-contrived-example-available">No Less Contrived Example Available</a></li>
+<li><a href="#recommendation">Recommendation</a></li>
+</ul>
+</li>
+<li><a href="#limitations-of-zulu">Limitations of Zulu</a>
+<ul>
+<li><a href="#limitations-of-zulu-1">Limitations of Zulu</a></li>
+<li><a href="#example-for-relaxed-ordering">Example for Relaxed Ordering</a></li>
+</ul>
+</li>
+<li><a href="#contributing-to-loom">Contributing to Loom</a>
+<ul>
+<li><a href="#benefits-of-contributing-to-loom">Benefits of Contributing to Loom</a></li>
+<li><a href="#limitations-of-loom-1">Limitations of Loom</a></li>
+<li><a href="#how-contributions-can-help">How Contributions Can Help</a></li>
+</ul>
+</li>
+<li><a href="#testing-sequentially-consistent-ordering-with-acquire-release">Testing Sequentially Consistent Ordering with Acquire Release</a>
+<ul>
+<li><a href="#testing-sequential-consistency-with-acquire-release">Testing Sequential Consistency with Acquire Release</a></li>
+</ul>
+</li>
+<li><a href="#overview-of-loom-and-relaxed-ordering">Overview of Loom and Relaxed Ordering</a>
+<ul>
+<li><a href="#atomic-module-in-sender-library">Atomic Module in Sender Library</a></li>
+<li><a href="#memory-ordering-2">Memory Ordering</a></li>
+</ul>
+</li>
+<li><a href="#volatile-keyword">Volatile Keyword</a>
+<ul>
+<li><a href="#volatile-keyword-1">Volatile Keyword</a></li>
+</ul>
+</li>
+<li><a href="#understanding-volatile">Understanding Volatile</a>
+<ul>
+<li><a href="#what-is-volatile">What is Volatile?</a></li>
+</ul>
+</li>
+<li><a href="#atomic-pointer">Atomic Pointer</a></li>
+<li><a href="#what-is-atomic-pointer">What is Atomic Pointer?</a></li>
+</ul>
+</li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Mon Apr 10 14:43:18 UTC 2023 -->
+<!--te-->
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<p>Section Overview: In this video, the speaker will explain atomics and memory ordering. The speaker has been hesitant to tackle this topic because of the lack of documentation and complexity of the subject. However, after working with it enough, he feels confident in giving a correct and understandable explanation.</p>
+<h3 id="why-do-we-need-atomics"><a class="header" href="#why-do-we-need-atomics">Why Do We Need Atomics?</a></h3>
+<ul>
+<li>If you have a primitive type like bool or usize that is shared across thread boundaries, there are only certain ways to interact with that value that are safe.</li>
+<li>It makes sense to have slightly different APIs for atomic types because you’re issuing different instructions to the underlying CPU and placing different limitations on what code the compiler is allowed to generate.</li>
+<li>When you have shared access to some memory value, you need additional information about that access to let the CPU know when should different threads see the operations that other threads do.</li>
+<li>Rust’s standard sync atomic model has good documentation on high-level ideas of why we have these types and what they’re used for.</li>
+</ul>
+<h3 id="what-will-be-covered"><a class="header" href="#what-will-be-covered">What Will Be Covered?</a></h3>
+<ul>
+<li>The stream will be Rust-specific but most of it translates to any other language that has atomics in this kind of sense.</li>
+<li>The core focus will be on Rust’s atomic types and memory ordering observed in Rust.</li>
+</ul>
+<h2 id="atomic-types"><a class="header" href="#atomic-types">Atomic Types</a></h2>
+<p>Section Overview: This section explains why using primitive types like bool or usize can lead to undefined behavior when shared across thread boundaries. It also explains how atomic types provide additional information about shared access to memory values.</p>
+<h3 id="why-not-use-primitive-types"><a class="header" href="#why-not-use-primitive-types">Why Not Use Primitive Types?</a></h3>
+<ul>
+<li>There are only certain ways to interact with primitive types safely when they are shared across thread boundaries.</li>
+<li>Data races are undefined behavior, so if you don’t control how different threads interoperate on the same memory location, you run into undefined behavior.</li>
+<li>Atomic types provide additional information about shared access to memory values.</li>
+</ul>
+<h3 id="what-are-atomic-types"><a class="header" href="#what-are-atomic-types">What Are Atomic Types?</a></h3>
+<ul>
+<li>When operating on atomic versions of primitive types, you’re issuing different instructions to the underlying CPU and placing different limitations on what code the compiler is allowed to generate.</li>
+<li>You need additional information about shared access to memory values to let the CPU know when should different threads see the operations that other threads do.</li>
+</ul>
+<h3 id="why-do-we-need-different-apis-for-atomic-types"><a class="header" href="#why-do-we-need-different-apis-for-atomic-types">Why Do We Need Different APIs for Atomic Types?</a></h3>
+<ul>
+<li>It makes sense to have slightly different APIs for atomic types because they place different limitations on what code the compiler is allowed to generate.</li>
+</ul>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
+<p>Section Overview: The speaker concludes by summarizing why atomics are necessary and what will be covered in this video. He also emphasizes that understanding memory ordering is useful regardless of what language you’re working in.</p>
+<h3 id="key-takeaways"><a class="header" href="#key-takeaways">Key Takeaways</a></h3>
+<ul>
+<li>If you have a primitive type like bool or usize that is shared across thread boundaries, there are only certain ways to interact with that value that are safe.</li>
+<li>Rust’s standard sync atomic model has good documentation on high-level ideas of why we have these types and what they’re used for.</li>
+<li>Understanding memory ordering is useful regardless of what language you’re working in.</li>
+</ul>
+<h2 id="rust-memory-model"><a class="header" href="#rust-memory-model">Rust Memory Model</a></h2>
+<p>Section Overview: In this section, the speaker talks about the Rust memory model and how it is not yet fully defined. They also introduce the Rust reference as a source of information for implementing a Rust compiler.</p>
+<h3 id="introduction-to-memory-model"><a class="header" href="#introduction-to-memory-model">Introduction to Memory Model</a></h3>
+<ul>
+<li>The Rust language does not have a fully defined memory model yet.</li>
+<li>Various proposals are being worked on by academics and industry professionals.</li>
+<li>This can be unhelpful when writing code that uses atomics and concurrency.</li>
+</ul>
+<h3 id="memory-ordering-documentation"><a class="header" href="#memory-ordering-documentation">Memory Ordering Documentation</a></h3>
+<ul>
+<li>The speaker will be using the memory ordering documentation from C++ as it has good explanations and examples of different memory orderings.</li>
+<li>This page will be used for explanations, examples, and guarantees throughout the talk.</li>
+</ul>
+<h3 id="atomic-types-in-rust"><a class="header" href="#atomic-types-in-rust">Atomic Types in Rust</a></h3>
+<ul>
+<li>Atomic types in Rust are not inherently shared and need to be placed on the heap using something like <code>Box</code> or <code>Arc</code>.</li>
+<li>This allows sharing a pointer or reference to that atomic value which can then be updated.</li>
+<li>The main differentiator between atomic types and regular types is that atomic types can be operated on using shared references to self.</li>
+</ul>
+<h3 id="methods-for-atomic-use-size-type"><a class="header" href="#methods-for-atomic-use-size-type">Methods for Atomic Use Size Type</a></h3>
+<ul>
+<li>There are several methods available for operating on an atomic use size type, including load, store, swap, compare_and_swap, fetch_add/sub/and/or/xor/nand.</li>
+<li>Load returns the value stored in the atomic use size type while store takes a value and stores it into the type.</li>
+<li>Swap performs both operations at once by returning the old value while storing a new one.</li>
+<li>Compare_and_swap compares the current value with an expected value and if they match, replaces it with a new one. Otherwise, it returns the current value without modifying it.</li>
+<li>Fetch_add/sub/and/or/xor/nand performs the corresponding operation on the value stored in the atomic use size type and returns the old value.</li>
+</ul>
+<h2 id="introduction-to-memory-ordering"><a class="header" href="#introduction-to-memory-ordering">Introduction to Memory Ordering</a></h2>
+<p>Section Overview: In this section, the speaker introduces memory ordering and its importance in multi-threaded programming. They also introduce some methods for reading and swapping values atomically.</p>
+<h3 id="memory-ordering-and-guarantees"><a class="header" href="#memory-ordering-and-guarantees">Memory Ordering and Guarantees</a></h3>
+<ul>
+<li>Memory ordering tells the compiler which set of guarantees you expect for a particular memory access with respect to things that might be happening in other threads at the same time.</li>
+<li>There are different types of guarantees provided by memory ordering, such as acquire, release, and sequentially consistent.</li>
+</ul>
+<h3 id="atomic-operations"><a class="header" href="#atomic-operations">Atomic Operations</a></h3>
+<ul>
+<li>Atomic operations allow multiple threads to operate on a value at the same time in a well-defined way without locking.</li>
+<li>Compare-and-swap is an atomic operation that reads a value and swaps it out conditionally in one atomic step. It ensures no thread can get between the load and store operations.</li>
+<li>Fetch methods like fetch-add or fetch-sub are similar to compare-and-swap but perform arithmetic operations instead of conditional swaps. They also ensure no thread can execute between load and store operations.</li>
+</ul>
+<h3 id="questions-from-viewers"><a class="header" href="#questions-from-viewers">Questions from Viewers</a></h3>
+<ul>
+<li>Non-exhaustive means that no code is allowed to assume that these are all the variants that will ever be in ordering so if you match on an ordering, you always need to include an underscore branch in an otherwise or else branch because the standard library wants to be able to add additional orderings later if necessary.</li>
+<li>The different orderings are related to what guarantees the operation gives you; how different architectures implement those guarantees will vary from architecture to architecture as we’ll see later on.</li>
+<li>Mutex guards a larger section of code while atomic guards just a single memory access if needed but more efficiently than mutexes would.</li>
+</ul>
+<h2 id="understanding-atomic-types-in-rust"><a class="header" href="#understanding-atomic-types-in-rust"><a href="t=0:16:28">#</a> Understanding Atomic Types in Rust</a></h2>
+<p>Section Overview: In this section, the speaker explains how atomic types work in Rust and why they are considered lock-free.</p>
+<h3 id="atomic-operations-and-compiler-semantics"><a class="header" href="#atomic-operations-and-compiler-semantics">Atomic Operations and Compiler Semantics</a></h3>
+<ul>
+<li><a href="t=0:16:28"></a> Atomic types in Rust are considered lock-free because they do not use mutexes.</li>
+<li><a href="t=0:16:51"></a> Atomic operations limit both what the CPU can do and what the compiler can do about a given memory access.</li>
+<li><a href="t=0:17:08"></a> Even on architectures like Intel x86 64, it is still recommended to use atomic types because they provide guarantees from the compiler as well.</li>
+</ul>
+<h3 id="unsafe-cell-and-atomic-instructions"><a class="header" href="#unsafe-cell-and-atomic-instructions">Unsafe Cell and Atomic Instructions</a></h3>
+<ul>
+<li><a href="t=0:17:45"></a> The store swap and friends all take an immutable reference to self, which means they rely on unsafe cell.</li>
+<li><a href="t=0:18:09"></a> All of these atomic instructions contain an unsafe cell that they then call get on to get the pointer to the value.</li>
+<li><a href="t=0:18:30"></a> The atomic type macro expands to a struct definition that holds an unsafe cell of the inner type.</li>
+</ul>
+<h2 id="sharing-atomics-with-arc"><a class="header" href="#sharing-atomics-with-arc"><a href="t=0:19:07">#</a> Sharing Atomics with Arc</a></h2>
+<p>Section Overview: In this section, the speaker discusses why atomics are generally shared via Arc rather than Box.</p>
+<h3 id="using-arc-for-static-lifetime"><a class="header" href="#using-arc-for-static-lifetime">Using Arc for Static Lifetime</a></h3>
+<ul>
+<li><a href="t=0:19:27"></a> When spawning two threads, both require that the closure you pass in has a static lifetime.</li>
+<li><a href="t=0:19:49"></a> With an Arc, you can clone it and give each thread its own individually owned and therefore static Arc to the atomic usize.</li>
+</ul>
+<h3 id="alternative-approach-with-box-leak"><a class="header" href="#alternative-approach-with-box-leak">Alternative Approach with Box Leak</a></h3>
+<ul>
+<li><a href="t=0:20.08s"></a> Box leak will leak a value on the heap so it will never call the destructor which gives you back a static reference which you can then pass to both threads.</li>
+</ul>
+<h2 id="implementing-a-mutex-type"><a class="header" href="#implementing-a-mutex-type"><a href="t=0:20:23">#</a> Implementing a Mutex Type</a></h2>
+<p>Section Overview: In this section, the speaker demonstrates how to implement a mutex type using atomic types in Rust.</p>
+<h3 id="defining-a-mutex-type"><a class="header" href="#defining-a-mutex-type">Defining a Mutex Type</a></h3>
+<ul>
+<li><a href="t=0:21:13"></a> A mutex is a combination of a boolean that marks whether or not someone currently holds the lock and then an unsafe cell to the inner type.</li>
+<li><a href="t=0:21:43"></a> The implementation requires Sync Atomic and Atomic Bool.</li>
+</ul>
+<h3 id="using-with-lock-function"><a class="header" href="#using-with-lock-function">Using with Lock Function</a></h3>
+<ul>
+<li><a href="t=0:22:06"></a> The with_lock function takes an impul f and once that’s given immutable value to t returns r.</li>
+</ul>
+<h2 id="introduction-to-mutexes"><a class="header" href="#introduction-to-mutexes">Introduction to Mutexes</a></h2>
+<p>Section Overview: In this section, the speaker introduces mutexes and explains why spin locks should not be used.</p>
+<h3 id="naive-implementation-of-mutex"><a class="header" href="#naive-implementation-of-mutex">Naive Implementation of Mutex</a></h3>
+<ul>
+<li>The speaker creates a new method for the mutex.</li>
+<li>The method takes an initial value to create the mutex with.</li>
+<li>Constants are created to make the code more readable.</li>
+<li>The speaker explains how the naive implementation of mutex works using a while loop that spins until the lock is no longer held.</li>
+<li>The function captures return value, sets it back to unlocked, and returns red.</li>
+</ul>
+<h3 id="problems-with-naive-implementation"><a class="header" href="#problems-with-naive-implementation">Problems with Naive Implementation</a></h3>
+<ul>
+<li>The code does not compile because an argument is missing in the method.</li>
+<li>Ordering is required in this method but it’s not clear what ordering should be used yet. For now, relaxed ordering will be used.</li>
+</ul>
+<h3 id="testing-mutex"><a class="header" href="#testing-mutex">Testing Mutex</a></h3>
+<ul>
+<li>A lock mutex is created and five threads are spawned to modify its value at the same time through the lock.</li>
+<li>Each thread uses l.with_lock() and adds 1 to v a hundred times.</li>
+</ul>
+<h2 id="implementing-a-mutex"><a class="header" href="#implementing-a-mutex">Implementing a Mutex</a></h2>
+<p>Section Overview: In this section, the speaker explains how to implement a mutex in Rust using atomics and compare-and-swap operations.</p>
+<h3 id="collecting-thread-handles"><a class="header" href="#collecting-thread-handles">Collecting Thread Handles</a></h3>
+<ul>
+<li>We collect all thread handles so that we can wait for them afterwards.</li>
+<li>We spin up 10 threads, each of which increments the value 100 times.</li>
+</ul>
+<h3 id="sync-for-mutex"><a class="header" href="#sync-for-mutex">Sync for Mutex</a></h3>
+<ul>
+<li>Unsafe cell cannot be shared between threads safely.</li>
+<li>Mutex is sync for mutex t where t is send.</li>
+<li>We implement sync from mutex so that you can concurrently access it from multiple threads as long as the value t is send.</li>
+</ul>
+<h3 id="problems-with-mutex-implementation"><a class="header" href="#problems-with-mutex-implementation">Problems with Mutex Implementation</a></h3>
+<ul>
+<li>The reason we need atomics and why we need operations like compare and swap is because here we’re doing a load and then we’re doing a store but in between here maybe another thread runs.</li>
+<li>It’s possible for two threads to execute the closure passed to with lock at the same time, leading to undefined behavior.</li>
+</ul>
+<h2 id="understanding-concurrency-issues"><a class="header" href="#understanding-concurrency-issues">Understanding Concurrency Issues</a></h2>
+<p>Section Overview: This section discusses the issues that arise when multiple threads are running concurrently and accessing shared memory.</p>
+<h3 id="concurrency-issues-with-multiple-cores"><a class="header" href="#concurrency-issues-with-multiple-cores">Concurrency Issues with Multiple Cores</a></h3>
+<ul>
+<li>When different threads run on different cores, there is no control over the relative operations of each thread.</li>
+<li>The operating system limits how long a given thread gets to run for and may forcibly stop a program in the middle to ensure all threads get to run.</li>
+</ul>
+<h3 id="race-conditions-and-preemption"><a class="header" href="#race-conditions-and-preemption">Race Conditions and Preemption</a></h3>
+<ul>
+<li>Preemption can occur at any point in time, including between a load and store operation.</li>
+<li>A race condition occurs when two threads observe the mutex being unlocked at the same time.</li>
+</ul>
+<h3 id="solving-concurrency-issues-with-compare-exchange-operation"><a class="header" href="#solving-concurrency-issues-with-compare-exchange-operation">Solving Concurrency Issues with Compare Exchange Operation</a></h3>
+<ul>
+<li>The compare exchange operation is used to avoid race conditions between multiple threads accessing shared memory.</li>
+<li>Compare exchange is more powerful than compare and swap because it strictly avoids race conditions.</li>
+</ul>
+<h2 id="overview-of-compare-exchange"><a class="header" href="#overview-of-compare-exchange">Overview of Compare Exchange</a></h2>
+<p>Section Overview: In this section, the speaker explains how compare exchange works and why it is useful.</p>
+<h3 id="how-compare-exchange-works"><a class="header" href="#how-compare-exchange-works">How Compare Exchange Works</a></h3>
+<ul>
+<li><code>compare_exchange</code> takes the current value, new value, and two orderings.</li>
+<li>The first line of documentation stores a value into the atomic integer or boolean if the current value is the same as the current value.</li>
+<li>If the CPU looks at the atomic bool and sees that it is unlocked (false), then it sets it to true in such a way that no other thread gets to modify the value in between when we look at it and when we change it.</li>
+<li>Compare exchange is a single operation that is both read and write.</li>
+<li>It can be done in a loop because if the current value is locked, then compare exchange will return an error.</li>
+</ul>
+<h3 id="why-compare-exchange-is-useful"><a class="header" href="#why-compare-exchange-is-useful">Why Compare Exchange Is Useful</a></h3>
+<ul>
+<li>Compare exchange solves this particular problem because there’s no space in between load and store; they’re just one operation performed on memory location.</li>
+<li>However, compare exchange can be expensive because every CPU spins during compare exchange.</li>
+<li>CPUs need to coordinate exclusive access amongst all these cores which can be inefficient.</li>
+</ul>
+<h2 id="compare-exchange-and-spin-locks"><a class="header" href="#compare-exchange-and-spin-locks">Compare Exchange and Spin Locks</a></h2>
+<p>Section Overview: This section discusses the differences between compare exchange and spin locks, and how to optimize spin locks for high contention.</p>
+<h3 id="compare-exchange-vs-spin-locks"><a class="header" href="#compare-exchange-vs-spin-locks">Compare Exchange vs. Spin Locks</a></h3>
+<ul>
+<li>In compare exchange, the CPU requires exclusive access to a location in memory, which requires coordination with everyone else.</li>
+<li>A given location of memory can be marked as shared, allowing multiple cores to have a value in the shared state at the same time.</li>
+<li>Compare exchange is much faster than locking a mutex because it will never wait. A single compare exchange call will try to do the operation you told it and then say either “I succeeded” or “I failed”. If it fails, it does not block the thread.</li>
+<li>The biggest difference between compare exchange and a mutex is that a mutex has to wait while a compare exchange will never wait.</li>
+</ul>
+<h3 id="optimizing-spin-locks-for-high-contention"><a class="header" href="#optimizing-spin-locks-for-high-contention">Optimizing Spin Locks for High Contention</a></h3>
+<ul>
+<li>If we can have a value stay in the shared state while the lock is still held, that’s going to avoid all of the ownership bouncing.</li>
+<li>Certain spin lock implementations use an inner loop that only reads values if they fail to take the lock. This allows values to stay in the shared state until some core takes exclusive access to them.</li>
+<li>When there is high contention on a particular value with many threads or cores fighting over who gets exclusive access, performance may collapse. Avoiding this collapse by optimizing spin locks can lead to better performance curves.</li>
+</ul>
+<h2 id="compare-exchange-weak"><a class="header" href="#compare-exchange-weak">Compare Exchange Weak</a></h2>
+<p>Section Overview: This section explains what compare exchange weak is and how it differs from regular compare exchange.</p>
+<ul>
+<li>Compare exchange weak is allowed to fail spuriously, even if the current value is what you passed in. Regular compare exchange is only allowed to fail if the current value did not match the value you passed in.</li>
+<li>The difference between these two operations comes down to what operations the CPU supports. On Intel x86, there is a compare and swap operation that effectively implements compare exchange.</li>
+</ul>
+<h2 id="load-exclusive-and-store-exclusive"><a class="header" href="#load-exclusive-and-store-exclusive">Load Exclusive and Store Exclusive</a></h2>
+<p>Section Overview: This section discusses the difference between compare and swap operations on x86 and ARM processors.</p>
+<h3 id="load-exclusive-and-store-exclusive-1"><a class="header" href="#load-exclusive-and-store-exclusive-1">Load Exclusive and Store Exclusive</a></h3>
+<ul>
+<li>On ARM processors, instead of a compare and swap operation, there is a load exclusive (ldrex) and store exclusive (strex) operation.</li>
+<li>Load exclusive takes exclusive ownership of the memory location and loads the value to you.</li>
+<li>Store exclusive only works if you still have exclusive access to that location. If another thread has taken ownership of the value, it will fail.</li>
+<li>Compare exchange on ARM is implemented using a loop of ldrex and strex because it needs to implement the semantics of comparexchange which is only fail if the current value stayed the same.</li>
+<li>Compare exchange weak is allowed to fail spuriously so it can be implemented directly using ldrx and strx.</li>
+</ul>
+<h2 id="memory-ordering"><a class="header" href="#memory-ordering">Memory Ordering</a></h2>
+<p>Section Overview: This section discusses how memory ordering affects observable behavior when multiple threads interact with a shared memory location.</p>
+<h3 id="ordering-variants"><a class="header" href="#ordering-variants">Ordering Variants</a></h3>
+<ul>
+<li>There are different variants for ordering: relaxed, release, acquire, acquire-release, sequential consistency.</li>
+<li>Relaxed means there are no guarantees about what happens when multiple threads interact with a shared memory location.</li>
+<li>Release ensures that all previous writes become visible before any subsequent write or read from another thread occurs.</li>
+<li>Acquire ensures that all previous reads become visible before any subsequent read or write from another thread occurs.</li>
+<li>Acquire-release combines both acquire and release semantics.</li>
+<li>Sequential consistency ensures that all operations appear to execute in a total order.</li>
+</ul>
+<h2 id="memory-barriers"><a class="header" href="#memory-barriers">Memory Barriers</a></h2>
+<p>Section Overview: This section discusses memory barriers and how they can be used to enforce ordering constraints.</p>
+<h3 id="memory-barriers-1"><a class="header" href="#memory-barriers-1">Memory Barriers</a></h3>
+<ul>
+<li>Memory barriers are instructions that enforce ordering constraints on memory operations.</li>
+<li>There are two types of memory barriers: compiler barriers and hardware barriers.</li>
+<li>Compiler barriers prevent the compiler from reordering memory operations across the barrier.</li>
+<li>Hardware barriers ensure that all previous memory operations have completed before any subsequent operation is executed.</li>
+<li>The C++11 standard defines several types of hardware barriers, including acquire, release, and full.</li>
+</ul>
+<h2 id="happens-before-relationship"><a class="header" href="#happens-before-relationship">Happens-Before Relationship</a></h2>
+<p>Section Overview: This section discusses the happens-before relationship and how it relates to observable behavior when multiple threads interact with shared memory locations.</p>
+<h3 id="happens-before-relationship-1"><a class="header" href="#happens-before-relationship-1">Happens-Before Relationship</a></h3>
+<ul>
+<li>The happens-before relationship is a partial order between events in a program that determines what values can be observed by other threads.</li>
+<li>If event A happens before event B, then any value written by A must be visible to B.</li>
+<li>If there is no happens-before relationship between two events, then their order is undefined.</li>
+<li>Synchronizes-with is a special case of happens-before where one event synchronizes with another if it releases a mutex or semaphore that another thread acquires later.</li>
+</ul>
+<h2 id="lock-free-programming"><a class="header" href="#lock-free-programming">Lock-Free Programming</a></h2>
+<p>Section Overview: This section discusses lock-free programming and its advantages and disadvantages.</p>
+<h3 id="lock-free-programming-1"><a class="header" href="#lock-free-programming-1">Lock-Free Programming</a></h3>
+<ul>
+<li>Lock-free programming is a technique for writing concurrent programs without using locks.</li>
+<li>The advantage of lock-free programming is that it can avoid the overhead of acquiring and releasing locks, which can be expensive.</li>
+<li>The disadvantage of lock-free programming is that it can be more difficult to reason about and debug than lock-based programming.</li>
+<li>Lock-free programming requires careful attention to memory ordering constraints and the happens-before relationship.</li>
+</ul>
+<h2 id="relaxed-ordering-in-rust"><a class="header" href="#relaxed-ordering-in-rust">Relaxed Ordering in Rust</a></h2>
+<p>Section Overview: In this section, the speaker explains how relaxed ordering works in Rust and why it can lead to unexpected results.</p>
+<h3 id="relaxed-ordering-and-thread-execution"><a class="header" href="#relaxed-ordering-and-thread-execution">Relaxed Ordering and Thread Execution</a></h3>
+<ul>
+<li>The speaker spawns two threads and creates an atomic variable x with size 0.</li>
+<li>The speaker creates another atomic variable y with size 0.</li>
+<li>Box leak returns a static mutable reference which cannot be moved into two threads. Therefore, the speaker casts it as an atomic variable.</li>
+<li>The speaker creates two threads, x and y, both of which are numbers.</li>
+<li>Thread 1 reads y with relaxed ordering and stores that value into x.</li>
+<li>Thread 2 loads x and then stores 42 into y.</li>
+<li>Both threads are joined so that we have the values t2.</li>
+</ul>
+<h3 id="explanation-of-relaxed-ordering"><a class="header" href="#explanation-of-relaxed-ordering">Explanation of Relaxed Ordering</a></h3>
+<ul>
+<li>It is possible for r1 to be equal to r2 be equal to 42. This is a possible execution of this program.</li>
+<li>When multiple threads execute concurrently by default there are no guarantees about what values a thread can read from something another thread wrote under ordering relaxed.</li>
+<li>There is a modification order stored per value in atomic operations. When you load a value with ordering relaxed you can see any value written by any thread to that location there’s no restriction on when that has to happen relative to you.</li>
+<li>For example, when loading a value from x, it is allowed to see any value ever stored to x including 42 because it’s in the modification set of x and there are no constraints on which subset of that which range of that modification order is visible to this thread.</li>
+<li>The compiler is totally allowed to reorder these two operations. Similarly, the CPU is allowed to execute them out of order for optimization purposes.</li>
+<li>Under either of these conditions, the reverse execution might happen and if the code looks like this it’s totally obvious why r2 might be 42. With ordering relaxed you’re not guaranteed any ordering between threads.</li>
+</ul>
+<h2 id="reordering-and-speculative-execution"><a class="header" href="#reordering-and-speculative-execution">Reordering and Speculative Execution</a></h2>
+<p>Section Overview: In this section, the speaker discusses how reordering makes sense in programming and how CPUs can execute operations speculatively. They also explain the constraints on what CPUs and compilers are allowed to reorder.</p>
+<h3 id="reordering-in-programming"><a class="header" href="#reordering-in-programming">Reordering in Programming</a></h3>
+<ul>
+<li>Reordering lines of code that don’t depend on each other can make sense for programmers.</li>
+<li>There is no downside to swapping two lines of code that don’t depend on each other.</li>
+<li>Observable execution outcomes are different, but in the case of relaxed memory ordering, they’re interchangeable as far as the memory ordering specification is concerned.</li>
+</ul>
+<h3 id="speculative-execution"><a class="header" href="#speculative-execution">Speculative Execution</a></h3>
+<ul>
+<li>CPUs can run an operation before another one if it knows it’s about to be executed. This is called speculative execution.</li>
+<li>Speculative execution usually comes up when there’s a question whether an operation might be executed or not.</li>
+<li>Today’s CPUs are very good at out-of-order execution because it makes programs much faster.</li>
+</ul>
+<h3 id="constraints-on-reordering"><a class="header" href="#constraints-on-reordering">Constraints on Reordering</a></h3>
+<ul>
+<li>CPUs and compilers are allowed to reorder anything that doesn’t have a clear “happens before” relationship.</li>
+<li>If two lines of code have a dependence relation (i.e., if one depends on the other), they cannot be reordered.</li>
+<li>Memory ordering and semantics are not just about the CPU or architecture; they’re also about what the compiler is allowed to do.</li>
+</ul>
+<h2 id="exclusive-access-and-relaxed-memory-ordering"><a class="header" href="#exclusive-access-and-relaxed-memory-ordering">Exclusive Access and Relaxed Memory Ordering</a></h2>
+<p>Section Overview: In this section, the speaker explains why relaxed memory ordering matters when taking locks with exclusive access.</p>
+<h3 id="exclusive-access"><a class="header" href="#exclusive-access">Exclusive Access</a></h3>
+<ul>
+<li>If we already have exclusive access to a piece of memory, we can do an operation on it efficiently.</li>
+<li>In the case of relaxed memory ordering, this can lead to shenanigans where operations are executed out of order.</li>
+</ul>
+<h3 id="relaxed-memory-ordering-and-locks"><a class="header" href="#relaxed-memory-ordering-and-locks">Relaxed Memory Ordering and Locks</a></h3>
+<ul>
+<li>Relaxed memory ordering doesn’t imply any ordering or that anything happens before anything else.</li>
+<li>When taking locks with relaxed memory ordering, operations might execute while another thread is holding the lock, violating the exclusivity of immutable reference. This is bad for both the compiler and CPU.</li>
+<li>The reordering we give determines whether an operation is legal or not.</li>
+</ul>
+<h2 id="memory-orderings-and-acquiringreleasing-resources"><a class="header" href="#memory-orderings-and-acquiringreleasing-resources">Memory Orderings and Acquiring/Releasing Resources</a></h2>
+<p>Section Overview: This section discusses memory orderings in the context of acquiring or releasing a resource. It explains how the release ordering ensures that nothing moves below the lock, and how the acquire ordering guarantees that anything that happened before the store happens before anything that happens after the load.</p>
+<h3 id="store-with-release-ordering"><a class="header" href="#store-with-release-ordering">Store with Release Ordering</a></h3>
+<ul>
+<li>A reordering is valid with relaxed, but not with release.</li>
+<li>The release ordering ensures that nothing moves below the lock.</li>
+<li>All previous operations become ordered before any load of this value with acquire or stronger ordering.</li>
+</ul>
+<h3 id="load-with-acquire-ordering"><a class="header" href="#load-with-acquire-ordering">Load with Acquire Ordering</a></h3>
+<ul>
+<li>Anything we do in here must be visible after an acquire load of the same value.</li>
+<li>Whoever next takes the lock must see anything that happened before this store.</li>
+<li>The acquire-release pair establishes a happens-before relationship between threads.</li>
+</ul>
+<h3 id="additional-restrictions"><a class="header" href="#additional-restrictions">Additional Restrictions</a></h3>
+<ul>
+<li>No reads or writes in the current thread can be reordered after a store operation with memory order release.</li>
+<li>A load operation with memory order acquire performs the acquire operation on the effective memory location.</li>
+</ul>
+<h2 id="understanding-acquire-release-semantics"><a class="header" href="#understanding-acquire-release-semantics">Understanding Acquire-Release Semantics</a></h2>
+<p>Section Overview: In this section, the speaker explains acquire-release semantics and how they are used in synchronization operations.</p>
+<h3 id="acquire-release-semantics"><a class="header" href="#acquire-release-semantics">Acquire-Release Semantics</a></h3>
+<ul>
+<li>Acquire-release semantics are used in synchronization operations that involve a read and write operation.</li>
+<li>The acquire-release semantics establish ordering between threads to ensure correct synchronization.</li>
+<li>Acquire-release is commonly used for single modification operations where there is no critical section.</li>
+<li>Sequentially consistent ordering is stronger than acquire-release.</li>
+</ul>
+<h3 id="compare-exchange-operation"><a class="header" href="#compare-exchange-operation">Compare Exchange Operation</a></h3>
+<ul>
+<li>The compare exchange operation has an extra parameter that specifies the ordering of the load if it indicates that you shouldn’t store.</li>
+<li>Establishing a happens-before relationship between threads is important when taking a lock.</li>
+<li>Relaxed memory semantics can be used when failing to take a lock does not require coordination with other threads.</li>
+</ul>
+<h3 id="testing-concurrent-code"><a class="header" href="#testing-concurrent-code">Testing Concurrent Code</a></h3>
+<ul>
+<li>x86_64 architecture guarantees acquire-release semantics for all operations, but this is not true for all platforms.</li>
+<li>Testing concurrent code by running it multiple times on current hardware and compiler may not be representative of future executions.</li>
+</ul>
+<h2 id="relaxed-and-strong-memory-ordering"><a class="header" href="#relaxed-and-strong-memory-ordering">Relaxed and Strong Memory Ordering</a></h2>
+<p>Section Overview: This section discusses the use of relaxed memory ordering when it doesn’t matter what each thread sees. It also introduces fetch operations as a gentler version of compare exchanges.</p>
+<h3 id="relaxed-memory-ordering"><a class="header" href="#relaxed-memory-ordering">Relaxed Memory Ordering</a></h3>
+<ul>
+<li>Use relaxed memory ordering when it doesn’t matter what each thread sees.</li>
+<li>For example, if you maintain a counter for statistics, you can generally have it be relaxed because the relative ordering of execution doesn’t really matter.</li>
+<li>Relax imposes the least amount of restrictions on the CPU and compiler, allowing them to execute more efficiently.</li>
+</ul>
+<h3 id="fetch-operations"><a class="header" href="#fetch-operations">Fetch Operations</a></h3>
+<ul>
+<li>Fetch operations are gentler versions of compare exchanges.</li>
+<li>They allow you to tell the CPU how to compute the new value instead of just dictating what the updated value should be.</li>
+<li>Fetch ad is an example where you add one to the current value and store it back without failing.</li>
+<li>Fetch update takes a closure that is given the current value and should return the new value.</li>
+</ul>
+<h2 id="fetch-operations-and-sequentially-consistent-ordering"><a class="header" href="#fetch-operations-and-sequentially-consistent-ordering">Fetch Operations and Sequentially Consistent Ordering</a></h2>
+<p>Section Overview: This section explains how fetch operations work in combination with sequentially consistent ordering.</p>
+<h3 id="sequentially-consistent-ordering"><a class="header" href="#sequentially-consistent-ordering">Sequentially Consistent Ordering</a></h3>
+<ul>
+<li>Sequentially consistent ordering ensures that all threads see a consistent order of events.</li>
+<li>It’s useful when there are dependencies between threads or instructions.</li>
+</ul>
+<h3 id="fetch-operations-with-sequentially-consistent-ordering"><a class="header" href="#fetch-operations-with-sequentially-consistent-ordering">Fetch Operations with Sequentially Consistent Ordering</a></h3>
+<ul>
+<li>When using fetch operations with sequentially consistent ordering, they behave like acquire-release semantics.</li>
+<li>The operation has both an acquire effect on any previous memory accesses by other threads and a release effect on any subsequent memory accesses by other threads.</li>
+</ul>
+<h2 id="understanding-fetch-operations"><a class="header" href="#understanding-fetch-operations">Understanding Fetch Operations</a></h2>
+<p>Section Overview: In this section, the speaker explains what fetch operations are and how they work.</p>
+<h3 id="fetch-update"><a class="header" href="#fetch-update">Fetch Update</a></h3>
+<ul>
+<li><code>fetch_update</code> loads the current value and does a compare exchange in a loop.</li>
+<li>It is not the same as other fetch operations because it uses a compare exchange loop.</li>
+<li>Atomic types in Rust’s atomic module are guaranteed to be lock-free if available.</li>
+</ul>
+<h3 id="unique-sequence-numbers"><a class="header" href="#unique-sequence-numbers">Unique Sequence Numbers</a></h3>
+<ul>
+<li>Fetch operations are used for things like giving unique sequence numbers to concurrent operations.</li>
+<li>Using <code>fetch_add</code> on an atomic usize guarantees that every call to get a sequence number will get a distinct one.</li>
+</ul>
+<h2 id="sequentially-consistent-ordering-1"><a class="header" href="#sequentially-consistent-ordering-1">Sequentially Consistent Ordering</a></h2>
+<p>Section Overview: In this section, the speaker discusses sequentially consistent ordering and provides an example to demonstrate its difference from acquire-release ordering.</p>
+<h3 id="example-with-atomic-bools-and-usize"><a class="header" href="#example-with-atomic-bools-and-usize">Example with Atomic Bools and Usize</a></h3>
+<ul>
+<li>The example involves two threads storing values in atomic bools and one thread doing a fetch add on an atomic usize.</li>
+<li>One thread stores true with ordering release while another stores y with no specified ordering.</li>
+<li>A third thread does while not x load, acquires in a loop, checks if y again will acquire, then fetch adds one to z which is relaxed.</li>
+</ul>
+<h2 id="possible-values-for-z"><a class="header" href="#possible-values-for-z">Possible Values for Z</a></h2>
+<p>Section Overview: In this section, the speaker discusses possible values for z in a given code snippet.</p>
+<h3 id="two-is-possible"><a class="header" href="#two-is-possible">Two is Possible</a></h3>
+<ul>
+<li>Execution order: t x ty t1 t2</li>
+<li>X is true and Y is true, so Z increments by 1 twice.</li>
+<li>Therefore, Z equals 2.</li>
+</ul>
+<h3 id="one-is-possible"><a class="header" href="#one-is-possible">One is Possible</a></h3>
+<ul>
+<li>Execution order: tx t1 t2 ty t2</li>
+<li>X is true but Y is false when T1 runs, so it does not increment Z.</li>
+<li>When Ty runs, it sets Y to true.</li>
+<li>When T2 runs, it sees that both X and Y are true and increments Z by 1.</li>
+<li>Therefore, Z equals 1.</li>
+</ul>
+<h3 id="zero-may-not-be-possible"><a class="header" href="#zero-may-not-be-possible">Zero May Not Be Possible</a></h3>
+<ul>
+<li>To achieve zero as the value of Z:
+<ul>
+<li>T1 must run after Tx.</li>
+<li>T2 must run after Ty.</li>
+<li>There are no other restrictions on execution order.</li>
+</ul>
+</li>
+</ul>
+<h2 id="mutex-panic-safety"><a class="header" href="#mutex-panic-safety">Mutex Panic Safety</a></h2>
+<p>Section Overview: In this section, the speaker answers a question about mutex panic safety.</p>
+<ul>
+<li>The mutex is panic safe but will not propagate panics.</li>
+</ul>
+<h2 id="introduction-1"><a class="header" href="#introduction-1">Introduction</a></h2>
+<p>Section Overview: In this section, the speaker discusses a pattern and execution order for threads.</p>
+<h3 id="thread-execution-order"><a class="header" href="#thread-execution-order">Thread Execution Order</a></h3>
+<ul>
+<li>The speaker explains that if t2 goes here, then ty must go before that and t1 will increment c because it runs after x and y have both been set to true.</li>
+<li>If t2 goes after tx, ty still has to go before t2 is going to get to do anything useful. In either case, t1 and t2 will increment z because they’re both going to go after the things that set x and y.</li>
+<li>If we place t2 at the end, ty could go here but if ty goes there then tx is already run so t2 will increment z. If ty went earlier, t2 would still increment c so there’s no place given this restriction where one of them won’t increment z. It seems impossible to have a thread schedule where z equals zero.</li>
+</ul>
+<h2 id="thread-schedules"><a class="header" href="#thread-schedules">Thread Schedules</a></h2>
+<p>Section Overview: In this section, the speaker talks about thread schedules and how computers don’t have a single order that things run in.</p>
+<h3 id="thread-schedules-1"><a class="header" href="#thread-schedules-1">Thread Schedules</a></h3>
+<ul>
+<li>The speaker explains that thread schedules are just like the human desire to put things in order but in reality computers don’t have a single order that things run in.</li>
+<li>We have multiple cores and those cores can show old values new values all we’re subject to are the exact rules of acquire and release semantics which is what we’ve given here.</li>
+<li>There’s no requirement that we see anything that happened in another thread. When you spawn a thread these threads all happen after the main thread that spawned them so we must actually see this false it’s not like we could see a value written somewhere else independently but we must see this false or anything that happens later we can’t see if imagine that this thread did like x dot store true then the loads down here must see the store because it happened before them.</li>
+</ul>
+<h2 id="acquire-and-release-semantics"><a class="header" href="#acquire-and-release-semantics">Acquire and Release Semantics</a></h2>
+<p>Section Overview: In this section, the speaker talks about acquire and release semantics.</p>
+<h3 id="acquire-and-release-semantics-1"><a class="header" href="#acquire-and-release-semantics-1">Acquire and Release Semantics</a></h3>
+<ul>
+<li>The speaker explains that if you observe a value from acquire you will see all operations that happen before the corresponding release store while the corresponding release store is here in this thread there are no operations prior to the store but if there were we would be guaranteed to see them here because we’re synchronizing with tx but there are none.</li>
+<li>This load synchronizes with this store so after this load we must see all memory operations that happened before this store. There’s no requirement that that’s any particular store of why if there had been a store of y in this thread if this did y dot store we must observe that y dot store because it happened strictly before this store which happened before this load because of acquire release so if there was a store here we must see it but there isn’t so we’re allowed to see any value for y.</li>
+</ul>
+<h2 id="memory-ordering-in-rust"><a class="header" href="#memory-ordering-in-rust">Memory Ordering in Rust</a></h2>
+<p>Section Overview: This section discusses memory ordering in Rust and how it affects concurrent operations.</p>
+<h3 id="happens-before-relationship-2"><a class="header" href="#happens-before-relationship-2">Happens Before Relationship</a></h3>
+<ul>
+<li>When a thread runs, it synchronizes with other threads but there is no requirement that it sees any particular operation that happened to x because there’s no happens before relationship between the store here in tx and the load down here.</li>
+<li>Acquire loads says that you’re not allowed to move any operation from below to above an acquire load so the compiler is not allowed to reorder these by the acquire semantics.</li>
+<li>The load is allowed to see any previous value for x subject to happens before which does not include the operation of t y so therefore uh t2 must see this.</li>
+</ul>
+<h3 id="concurrent-operations"><a class="header" href="#concurrent-operations">Concurrent Operations</a></h3>
+<ul>
+<li>T2 can see either of these and T1 can see either of these. If both threads run, then T1 runs, observes x being true but does not observe y being true even though T1 has run because there’s no happens before relationship there.</li>
+<li>Imagine that it’s already in cache in the CPU or something; it just uses that value. It doesn’t bother to check again because it’s allowed not to. Therefore, this value is false even though Tx Ty ran; therefore, it does not increment one this one for some reason like it spins until y is true.</li>
+<li>It observes that y is true great. It’s no requirement that it observes that x is true even though Tx has run so it does not increment c so therefore z is zero.</li>
+</ul>
+<h3 id="sequentially-consistent-operation"><a class="header" href="#sequentially-consistent-operation">Sequentially Consistent Operation</a></h3>
+<ul>
+<li>Sexy as t (pronounced “sequentially consistent”) means acquire and release and acquire release with the additional guarantee that all threads see all sequentially consistent operations in the same order. If we make these all be sequentially consistent now, zero is no longer possible because if this thread observes that x observes x is true and then y is true, it establishes a happens before relationship.</li>
+</ul>
+<h2 id="memory-ordering-and-sequential-consistency"><a class="header" href="#memory-ordering-and-sequential-consistency">Memory Ordering and Sequential Consistency</a></h2>
+<p>Section Overview: This section discusses memory ordering and sequential consistency in concurrent programming.</p>
+<h3 id="memory-ordering-1"><a class="header" href="#memory-ordering-1">Memory Ordering</a></h3>
+<ul>
+<li>In concurrent programming, there must exist some ordering that’s consistent across all threads.</li>
+<li>If some thread sees that x happened then y happened, then no thread is allowed to see x not happen even though y has happened.</li>
+<li>If we end up with x is true and then y is true, then here y is true therefore x must be true. It’s not allowed to see x being false because that would be inconsistent with the memory ordering that these sequentially consistent operations saw.</li>
+<li>The sequentially consistent ordering is only with relation to all other sequentially consistent operations.</li>
+<li>Sequentially consistent only really interacts with other sequentially consistent acquire release does interact with sequentially consistent so sequentially consistent it is always stronger than acquire release.</li>
+</ul>
+<h3 id="testing-concurrent-code-1"><a class="header" href="#testing-concurrent-code-1">Testing Concurrent Code</a></h3>
+<ul>
+<li>Memory ordering is real subtle and hard to get right.</li>
+<li>Running your code lots of times in a loop or making your computer busy with other tasks can help test for errors but it’s not reliable since it might depend on the architecture, operating system scheduler, compiler optimizations, or how likely the error occurs.</li>
+<li>Detecting bugs in concurrent code can be difficult since they may not cause a program crash or may go unnoticed for a long time.</li>
+</ul>
+<h2 id="detecting-concurrency-problems"><a class="header" href="#detecting-concurrency-problems">Detecting Concurrency Problems</a></h2>
+<p>Section Overview: This section discusses the need to detect concurrency problems and some automated systems that can help with this.</p>
+<h3 id="thread-sanitizer"><a class="header" href="#thread-sanitizer">Thread Sanitizer</a></h3>
+<ul>
+<li>Google has built-in sanitizers in compilers like Clang, GCC, and MSVC.</li>
+<li>The thread sanitizer is one of these sanitizers.</li>
+<li>It detects unsynchronized operations on a single memory location by tracking every load and store operation in a program.</li>
+<li>The algorithm for the thread sanitizer is specified in the documentation.</li>
+</ul>
+<h3 id="loom"><a class="header" href="#loom">Loom</a></h3>
+<ul>
+<li>Loom is a tool that implements the CDS Checker paper for Rust.</li>
+<li>It takes a concurrent program, instruments it using loom synchronization and atomic types instead of standard library ones, and runs it multiple times to expose it to different possible executions.</li>
+<li>Loom executes all possible thread interleavings and memory orderings to ensure that all legal executions of the program are explored.</li>
+</ul>
+<h2 id="loom-a-tool-for-testing-concurrent-code"><a class="header" href="#loom-a-tool-for-testing-concurrent-code">Loom: A Tool for Testing Concurrent Code</a></h2>
+<p>Section Overview: In this section, the speaker talks about Loom, a tool used to test concurrent code. The speaker explains that Loom explores all possible legal executions of threads and implements a bunch of implementation things from the paper to reduce the number of possible executions.</p>
+<h3 id="exploring-all-possible-legal-executions"><a class="header" href="#exploring-all-possible-legal-executions">Exploring All Possible Legal Executions</a></h3>
+<ul>
+<li>Loom explores all possible legal executions of threads.</li>
+<li>There might be an insane number of such possible executions.</li>
+<li>Loom has a bunch of implementation things that are from the paper that looks at reducing those.</li>
+</ul>
+<h3 id="limitations-of-loom"><a class="header" href="#limitations-of-loom">Limitations of Loom</a></h3>
+<ul>
+<li>Ultimately, there’s like a limit to how complex your test cases can be when you run them on the loop loom.</li>
+<li>Even so, loom is the best tool I know of to try to make sure that your concurrent code is actually correct under only the assumptions that the memory model gives you rather than the assumptions that the current compiler or optimization or CPU might give you.</li>
+</ul>
+<h2 id="examples-for-sequentially-consistent-ordering"><a class="header" href="#examples-for-sequentially-consistent-ordering">Examples for Sequentially Consistent Ordering</a></h2>
+<p>Section Overview: In this section, someone asks if there are any toy programs one can think of to try and drill sequentially consistent ordering into their head. The speaker recommends looking at some papers that implement concurrent data structures and notice where they use sequentially consistent ordering as opposed to other orderings.</p>
+<h3 id="no-less-contrived-example-available"><a class="header" href="#no-less-contrived-example-available">No Less Contrived Example Available</a></h3>
+<ul>
+<li>The speaker doesn’t have a less contrived example for sequentially consistent ordering.</li>
+</ul>
+<h3 id="recommendation"><a class="header" href="#recommendation">Recommendation</a></h3>
+<ul>
+<li>Look at some papers that implement concurrent data structures and notice where they use sequentially consistent ordering as opposed to other orderings.</li>
+<li>Generally, the paper will explain why.</li>
+</ul>
+<h2 id="limitations-of-zulu"><a class="header" href="#limitations-of-zulu">Limitations of Zulu</a></h2>
+<p>Section Overview: In this section, the speaker talks about some limitations of Zulu and how relaxed ordering is so relaxed that you can’t fully model all possible executions even with something like Loom.</p>
+<h3 id="limitations-of-zulu-1"><a class="header" href="#limitations-of-zulu-1">Limitations of Zulu</a></h3>
+<ul>
+<li>Zulu has some limitations, some of them are known problems, some of them are more fundamental problems with the approach or are just impossible to model.</li>
+<li>Relaxed ordering is so relaxed that you can’t fully model all possible executions even with something like Loom.</li>
+</ul>
+<h3 id="example-for-relaxed-ordering"><a class="header" href="#example-for-relaxed-ordering">Example for Relaxed Ordering</a></h3>
+<ul>
+<li>The speaker gives an example where loom has to produce some value for a load but doesn’t know about it yet because it hasn’t happened yet.</li>
+</ul>
+<h2 id="contributing-to-loom"><a class="header" href="#contributing-to-loom">Contributing to Loom</a></h2>
+<p>Section Overview: This section discusses the benefits of contributing to Loom, a project that deals with concurrency. It also highlights some of the limitations of Loom and how contributions can help improve it.</p>
+<h3 id="benefits-of-contributing-to-loom"><a class="header" href="#benefits-of-contributing-to-loom">Benefits of Contributing to Loom</a></h3>
+<ul>
+<li>The speaker encourages people interested in concurrency to contribute to Loom.</li>
+<li>The documentation for Loom has been recently updated and is recommended reading for anyone interested in using or contributing to the project.</li>
+<li>Tokyo uses Loom and has caught several critical bugs, making it an important tool for detecting issues.</li>
+</ul>
+<h3 id="limitations-of-loom-1"><a class="header" href="#limitations-of-loom-1">Limitations of Loom</a></h3>
+<ul>
+<li>Currently, Loom does not model sequentially consistent ordering correctly.</li>
+<li>Implementing the additional guarantees required for sequentially consistent ordering is complex.</li>
+<li>Downgrading every sequentially consistent order to acquire release means that while Loom won’t miss any bugs, it might give false positives.</li>
+</ul>
+<h3 id="how-contributions-can-help"><a class="header" href="#how-contributions-can-help">How Contributions Can Help</a></h3>
+<ul>
+<li>There is an open issue and test case for modeling sequentially consistent ordering correctly that needs fixing.</li>
+<li>Contributions towards improving documentation are highly encouraged.</li>
+</ul>
+<h2 id="testing-sequentially-consistent-ordering-with-acquire-release"><a class="header" href="#testing-sequentially-consistent-ordering-with-acquire-release">Testing Sequentially Consistent Ordering with Acquire Release</a></h2>
+<p>Section Overview: This section explains how testing sequential consistency with acquire release works in Loom.</p>
+<h3 id="testing-sequential-consistency-with-acquire-release"><a class="header" href="#testing-sequential-consistency-with-acquire-release">Testing Sequential Consistency with Acquire Release</a></h3>
+<ul>
+<li>If code depends on sequential consistency but is tested using acquire release, there may be false positives when using Loom.</li>
+<li>However, running code through Loom will catch real errors and explore possible cases with acquire release.</li>
+</ul>
+<h2 id="overview-of-loom-and-relaxed-ordering"><a class="header" href="#overview-of-loom-and-relaxed-ordering">Overview of Loom and Relaxed Ordering</a></h2>
+<p>Section Overview: In this section, the speaker provides an overview of Loom and relaxed ordering.</p>
+<h3 id="atomic-module-in-sender-library"><a class="header" href="#atomic-module-in-sender-library">Atomic Module in Sender Library</a></h3>
+<ul>
+<li>The atomic module in the sender library contains atomic types, constants, and three functions: spin loop hint, compiler fence, and fence.</li>
+<li>Spin loop hint is deprecated and has been moved to the hint module. It is used in atomic contexts such as a spin lock.</li>
+<li>Compiler fence ensures that the compiler won’t move a given load or store operation above or below a fence within that thread’s execution. It is mostly used for preventing a thread from racing with itself when using signal handlers.</li>
+<li>Fence establishes a happens before relationship between two threads without talking about a particular memory location. It synchronizes with all other threads that are doing an offense.</li>
+</ul>
+<h3 id="memory-ordering-2"><a class="header" href="#memory-ordering-2">Memory Ordering</a></h3>
+<ul>
+<li>Load acquire synchronizes or happens after store release of the same memory location.</li>
+<li>Fence is basically an atomic operation that establishes a happens before relationship between two threads but without talking about a particular memory location.</li>
+</ul>
+<h2 id="volatile-keyword"><a class="header" href="#volatile-keyword">Volatile Keyword</a></h2>
+<p>Section Overview: In this section, the speaker explains why there is no mention of volatile in the atomic module.</p>
+<h3 id="volatile-keyword-1"><a class="header" href="#volatile-keyword-1">Volatile Keyword</a></h3>
+<ul>
+<li>There is no mention of volatile in the atomic module because it is just unrelated to atomics.</li>
+</ul>
+<h2 id="understanding-volatile"><a class="header" href="#understanding-volatile">Understanding Volatile</a></h2>
+<p>Section Overview: In this section, the speaker explains what volatile is and its purpose.</p>
+<h3 id="what-is-volatile"><a class="header" href="#what-is-volatile">What is Volatile?</a></h3>
+<ul>
+<li>Volatile is used when interacting with memory-mapped devices.</li>
+<li>It ensures that operations cannot be reordered relative to other operations.</li>
+<li>If you read twice from a given variable in memory map memory without using read volatile, the compiler would cache the first read into register and just read from the register for the second read. However, both reads need to go to memory to have a side effect on device map memory.</li>
+</ul>
+<h2 id="atomic-pointer"><a class="header" href="#atomic-pointer">Atomic Pointer</a></h2>
+<p>Section Overview: In this section, the speaker explains atomic pointer and how it differs from other types.</p>
+<h2 id="what-is-atomic-pointer"><a class="header" href="#what-is-atomic-pointer">What is Atomic Pointer?</a></h2>
+<ul>
+<li>Atomic pointer is an atomic usize where methods are specialized to the underlying type being a pointer.</li>
+<li>It provides load, store, compare exchange and fetch update which is like having a nicer interface to doing a compare exchange loop.
+[<em>CUTOFF_LIMIT</em>]</li>
+</ul>
+<h1 id="generated-by-video-highlight"><a class="header" href="#generated-by-video-highlight">Generated by Video Highlight</a></h1>
+<p>https://videohighlight.com/video/summary/rMGWeSjctlY</p>
+
             </main>
 
             <!--            <script src="https://utteranc.es/client.js"-->
