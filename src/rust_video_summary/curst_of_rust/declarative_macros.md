@@ -1,5 +1,8 @@
 # Declarative Macros
 
+<!--ts-->
+<!--te-->
+
 ## [#](t=0:00:00s) Introduction to Declarative Macros
 
 Section Overview: In this video, we will learn about declarative macros and how they work in Rust. We will focus on
