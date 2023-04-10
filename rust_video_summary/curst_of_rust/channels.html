@@ -179,7 +179,1153 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                
+                <h1 id="channels"><a class="header" href="#channels">Channels</a></h1>
+<!--ts-->
+<ul>
+<li><a href="#channels">Channels</a>
+<ul>
+<li><a href="#introduction">Introduction</a>
+<ul>
+<li><a href="#introduction-to-crust-of-rust">Introduction to Crust of Rust</a></li>
+</ul>
+</li>
+<li><a href="#what-is-crust-of-rust">What is Crust of Rust?</a>
+<ul>
+<li><a href="#description-of-crust-of-rust">Description of Crust of Rust</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-standard-sync-mpsc-module">Introduction to Standard Sync Mpsc Module</a>
+<ul>
+<li><a href="#introduction-to-standard-sync-mpsc-module-1">Introduction to Standard Sync Mpsc Module</a></li>
+</ul>
+</li>
+<li><a href="#topics-covered-in-past-videos">Topics Covered in Past Videos</a>
+<ul>
+<li><a href="#topics-covered-in-past-videos-1">Topics Covered in Past Videos</a></li>
+</ul>
+</li>
+<li><a href="#overview-of-standard-sync-mpsc-module">Overview of Standard Sync Mpsc Module</a>
+<ul>
+<li><a href="#overview-of-standard-sync-mpsc-module-1">Overview of Standard Sync Mpsc Module</a></li>
+</ul>
+</li>
+<li><a href="#implementation-of-channel">Implementation of Channel</a>
+<ul>
+<li><a href="#implementation-of-channel-1">Implementation of Channel</a></li>
+</ul>
+</li>
+<li><a href="#notification-for-upcoming-streams">Notification for Upcoming Streams</a>
+<ul>
+<li><a href="#notification-for-upcoming-streams-1">Notification for Upcoming Streams</a></li>
+</ul>
+</li>
+<li><a href="#channel-implementation-in-rust">Channel Implementation in Rust</a>
+<ul>
+<li><a href="#sender-and-receiver-types">Sender and Receiver Types</a></li>
+<li><a href="#sending-data-through-channels">Sending Data through Channels</a></li>
+<li><a href="#size-constraints-for-types-sent-through-channels">Size Constraints for Types Sent through Channels</a></li>
+<li><a href="#ownership-of-data-in-channels">Ownership of Data in Channels</a></li>
+</ul>
+</li>
+<li><a href="#panama-a-simple-channel-implementation-in-rust">Panama: A Simple Channel Implementation in Rust</a>
+<ul>
+<li><a href="#implementation-details">Implementation Details</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#back-pressure">Back Pressure</a></li>
+</ul>
+</li>
+<li><a href="#mutex-and-conditional-variables">Mutex and Conditional Variables</a>
+<ul>
+<li><a href="#mutex">Mutex</a></li>
+<li><a href="#arc-and-rc">Arc and Rc</a></li>
+<li><a href="#conditional-variables">Conditional Variables</a></li>
+</ul>
+</li>
+<li><a href="#channel-implementation-in-rust-1">Channel Implementation in Rust</a>
+<ul>
+<li><a href="#inner-type">Inner Type</a></li>
+<li><a href="#sender-and-receiver-types-1">Sender and Receiver Types</a></li>
+<li><a href="#alternative-implementations">Alternative Implementations</a></li>
+</ul>
+</li>
+<li><a href="#mutex-and-convar">Mutex and Convar</a>
+<ul>
+<li><a href="#parking-lot-implementations">Parking Lot Implementations</a></li>
+<li><a href="#default-implementation-of-vec">Default Implementation of Vec</a></li>
+<li><a href="#arc-mutex-vs-boolean-semaphore">Arc Mutex vs Boolean Semaphore</a></li>
+</ul>
+</li>
+<li><a href="#mutex-vs-boolean-semaphore-continued">Mutex vs Boolean Semaphore Continued</a>
+<ul>
+<li><a href="#problem-with-boolean-semaphore">Problem with Boolean Semaphore</a></li>
+<li><a href="#advantages-of-mutex">Advantages of Mutex</a></li>
+</ul>
+</li>
+<li><a href="#why-arc-is-needed">Why Arc Is Needed</a>
+<ul>
+<li><a href="#sharing-inner">Sharing Inner</a></li>
+</ul>
+</li>
+<li><a href="#implementing-sender">Implementing Sender</a>
+<ul>
+<li><a href="#send-function">Send Function</a></li>
+</ul>
+</li>
+<li><a href="#implementing-receiver">Implementing Receiver</a>
+<ul>
+<li><a href="#receive-method">Receive Method</a></li>
+</ul>
+</li>
+<li><a href="#using-vec-as-a-stack-and-ring-buffer">Using Vec as a Stack and Ring Buffer</a>
+<ul>
+<li><a href="#using-vec-as-a-stack">Using Vec as a Stack</a></li>
+<li><a href="#ring-buffer">Ring Buffer</a></li>
+</ul>
+</li>
+<li><a href="#blocking-version-of-receive">Blocking Version of Receive</a>
+<ul>
+<li><a href="#try-receive-method">Try Receive Method</a></li>
+<li><a href="#blocking-version-of-receive-1">Blocking Version of Receive</a></li>
+</ul>
+</li>
+<li><a href="#notification-and-waiting-receivers">Notification and Waiting Receivers</a>
+<ul>
+<li><a href="#using-condvar-for-notification">Using Condvar for Notification</a></li>
+</ul>
+</li>
+<li><a href="#vector-double-ended-queue">Vector Double Ended Queue</a>
+<ul>
+<li><a href="#understanding-vector-double-ended-queue">Understanding Vector Double Ended Queue</a></li>
+</ul>
+</li>
+<li><a href="#async-wait-vs-weight">Async Wait vs Weight</a>
+<ul>
+<li><a href="#difference-between-async-wait-and-weight">Difference Between Async Wait and Weight</a></li>
+</ul>
+</li>
+<li><a href="#convars-spurious-wake-ups">Convars Spurious Wake Ups</a>
+<ul>
+<li><a href="#convars-spurious-wake-ups-1">Convars Spurious Wake Ups</a></li>
+</ul>
+</li>
+<li><a href="#dropping-lock-before-notify">Dropping Lock Before Notify</a>
+<ul>
+<li><a href="#dropping-lock-before-notify-1">Dropping Lock Before Notify</a></li>
+</ul>
+</li>
+<li><a href="#notify-one-vs-notify-all">Notify One vs Notify All</a>
+<ul>
+<li><a href="#notify-one-vs-notify-all-1">Notify One vs Notify All</a></li>
+</ul>
+</li>
+<li><a href="#introduction-1">Introduction</a>
+<ul>
+<li><a href="#current-setup-for-senders">Current Setup for Senders</a></li>
+</ul>
+</li>
+<li><a href="#making-sender-cloneable">Making Sender Cloneable</a>
+<ul>
+<li><a href="#deriving-clone-for-sender">Deriving Clone for Sender</a></li>
+<li><a href="#implementing-clone-manually">Implementing Clone Manually</a></li>
+</ul>
+</li>
+<li><a href="#using-our-clone-implementation">Using Our Clone Implementation</a>
+<ul>
+<li><a href="#using-our-clone-method">Using Our Clone Method</a></li>
+<li><a href="#issues-with-dot-operator">Issues with Dot Operator</a></li>
+</ul>
+</li>
+<li><a href="#blocking-send-and-receive-methods">Blocking Send and Receive Methods</a>
+<ul>
+<li><a href="#blocking-send-and-receive-methods-1">Blocking Send and Receive Methods</a></li>
+</ul>
+</li>
+<li><a href="#testing-our-implementation">Testing Our Implementation</a>
+<ul>
+<li><a href="#ping-pong-test">Ping Pong Test</a></li>
+</ul>
+</li>
+<li><a href="#arc-clone-and-channel-implementation">Arc Clone and Channel Implementation</a>
+<ul>
+<li><a href="#coercing-to-trait-objects">Coercing to Trait Objects</a></li>
+<li><a href="#naming-channels">Naming Channels</a></li>
+<li><a href="#problems-with-channel-implementation">Problems with Channel Implementation</a></li>
+<li><a href="#implementing-shared-channels">Implementing Shared Channels</a></li>
+</ul>
+</li>
+<li><a href="#introduction-2">Introduction</a>
+<ul>
+<li><a href="#potential-optimization">Potential Optimization</a></li>
+</ul>
+</li>
+<li><a href="#complicated-case">Complicated Case</a>
+<ul>
+<li><a href="#dropping-sender">Dropping Sender</a></li>
+</ul>
+</li>
+<li><a href="#atomic-use-size">Atomic Use Size</a>
+<ul>
+<li><a href="#using-atomic-use-size">Using Atomic Use Size</a></li>
+</ul>
+</li>
+<li><a href="#notifying-all-for-drop">Notifying All for Drop</a>
+<ul>
+<li><a href="#notifying-all-for-drop-1">Notifying All for Drop</a></li>
+</ul>
+</li>
+<li><a href="#vector-default">Vector Default</a>
+<ul>
+<li><a href="#vector-default-1">Vector Default</a></li>
+</ul>
+</li>
+<li><a href="#initializing-senders">Initializing Senders</a>
+<ul>
+<li><a href="#initializing-senders-1">Initializing Senders</a></li>
+</ul>
+</li>
+<li><a href="#debugging-closed-test">Debugging Closed Test</a>
+<ul>
+<li><a href="#debugging-closed-test-1">Debugging Closed Test</a></li>
+</ul>
+</li>
+<li><a href="#debugging-rust-programs-with-gdb">Debugging Rust Programs with GDB</a>
+<ul>
+<li><a href="#using-print-debugging-instead-of-gdb">Using Print Debugging Instead of GDB</a></li>
+</ul>
+</li>
+<li><a href="#removing-unnecessary-code">Removing Unnecessary Code</a>
+<ul>
+<li><a href="#removing-unnecessary-code-1">Removing Unnecessary Code</a></li>
+</ul>
+</li>
+<li><a href="#identifying-a-problem-with-the-implementation">Identifying a Problem with the Implementation</a>
+<ul>
+<li><a href="#identifying-a-problem-with-closed-rx-channels">Identifying a Problem with Closed RX Channels</a></li>
+</ul>
+</li>
+<li><a href="#implementing-closed-flag-for-failed-sends">Implementing Closed Flag for Failed Sends</a>
+<ul>
+<li><a href="#implementing-closed-flag-for-failed-sends-1">Implementing Closed Flag for Failed Sends</a></li>
+</ul>
+</li>
+<li><a href="#multi-producer-multiple-consumer">Multi-Producer Multiple Consumer</a>
+<ul>
+<li><a href="#resurrecting-a-drop-channel-and-multi-producer-multiple-consumer-channels">Resurrecting a Drop Channel and Multi-Producer Multiple Consumer Channels</a></li>
+</ul>
+</li>
+<li><a href="#synchronous-and-asynchronous-channels">Synchronous and Asynchronous Channels</a>
+<ul>
+<li><a href="#synchronous-vs-asynchronous-channels">Synchronous vs. Asynchronous Channels</a></li>
+</ul>
+</li>
+<li><a href="#weak-counters-and-convars">Weak Counters and ConVars</a>
+<ul>
+<li><a href="#using-weak-counters">Using Weak Counters</a></li>
+<li><a href="#convars-without-mutexes">ConVars Without Mutexes</a></li>
+</ul>
+</li>
+<li><a href="#blocking-sends-on-vector-resizing">Blocking Sends on Vector Resizing</a>
+<ul>
+<li><a href="#blocking-sends-during-vector-resizing">Blocking Sends During Vector Resizing</a></li>
+</ul>
+</li>
+<li><a href="#resizing-insights">Resizing Insights</a>
+<ul>
+<li><a href="#optimization-for-channels">Optimization for Channels</a></li>
+<li><a href="#benefits-of-optimization">Benefits of Optimization</a></li>
+<li><a href="#implementation-source">Implementation Source</a></li>
+</ul>
+</li>
+<li><a href="#branch-predictor-and-channel-implementations">Branch Predictor and Channel Implementations</a>
+<ul>
+<li><a href="#branch-predictor">Branch Predictor</a></li>
+<li><a href="#channel-implementations">Channel Implementations</a>
+<ul>
+<li><a href="#synchronous-channels">Synchronous Channels</a></li>
+<li><a href="#asynchronous-channels">Asynchronous Channels</a></li>
+<li><a href="#rendezvous-channels">Rendezvous Channels</a></li>
+<li><a href="#one-shot-channels">One-Shot Channels</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#flavors-of-channels">Flavors of Channels</a>
+<ul>
+<li><a href="#two-way-synchronization">Two-way Synchronization</a></li>
+<li><a href="#one-shot-channels-1">One-shot Channels</a></li>
+<li><a href="#bounded-and-unbounded-channels">Bounded and Unbounded Channels</a></li>
+<li><a href="#rendezvous-channel">Rendezvous Channel</a></li>
+</ul>
+</li>
+<li><a href="#different-implementations-of-channels">Different Implementations of Channels</a>
+<ul>
+<li><a href="#synchronous-channel-with-mutex-plus-convar">Synchronous Channel with Mutex Plus Convar</a></li>
+<li><a href="#upgrading-channel-type-at-runtime">Upgrading Channel Type at Runtime</a></li>
+</ul>
+</li>
+<li><a href="#async-await-in-futures">Async Await in Futures</a>
+<ul>
+<li><a href="#async-await">Async-Await</a></li>
+</ul>
+</li>
+<li><a href="#implementing-channels-in-rust">Implementing Channels in Rust</a>
+<ul>
+<li><a href="#atomic-vectec-or-queue">Atomic Vectec or Queue</a></li>
+<li><a href="#signaling-mechanism">Signaling Mechanism</a></li>
+<li><a href="#linked-list-implementation">Linked List Implementation</a></li>
+<li><a href="#atomic-linked-list">Atomic Linked List</a></li>
+</ul>
+</li>
+<li><a href="#optimizing-channel-implementations">Optimizing Channel Implementations</a>
+<ul>
+<li><a href="#using-wake-up-primitive-instead-of-linked-list">Using Wake-Up Primitive Instead of Linked List</a></li>
+<li><a href="#specialized-implementations">Specialized Implementations</a></li>
+</ul>
+</li>
+<li><a href="#memory-overhead-vs-memory-allocator-performance">Memory Overhead vs. Memory Allocator Performance</a>
+<ul>
+<li><a href="#linked-lists-and-allocationdeallocation">Linked Lists and Allocation/Deallocation</a></li>
+<li><a href="#reusing-pool-of-nodes">Reusing Pool of Nodes</a></li>
+</ul>
+</li>
+<li><a href="#implementing-channels-for-async-await">Implementing Channels for Async Await</a>
+<ul>
+<li><a href="#differences-in-primitives">Differences in Primitives</a></li>
+<li><a href="#internal-implementation">Internal Implementation</a></li>
+</ul>
+</li>
+<li><a href="#channel-implementations-1">Channel Implementations</a>
+<ul>
+<li><a href="#blocking-vs-async-worlds">Blocking vs Async Worlds</a></li>
+<li><a href="#memory-allocation">Memory Allocation</a></li>
+<li><a href="#use-of-channels-in-thesis">Use of Channels in Thesis</a></li>
+</ul>
+</li>
+<li><a href="#real-implementation-examples">Real Implementation Examples</a>
+<ul>
+<li><a href="#standard-library-implementation">Standard Library Implementation</a></li>
+<li><a href="#crossbeam-channel-implementation">Crossbeam Channel Implementation</a></li>
+<li><a href="#benchmarking-channel-implementations">Benchmarking Channel Implementations</a></li>
+</ul>
+</li>
+<li><a href="#benchmarking-possible-configurations">Benchmarking Possible Configurations</a>
+<ul>
+<li><a href="#creating-a-grid-of-configurations">Creating a Grid of Configurations</a></li>
+</ul>
+</li>
+<li><a href="#async-await-ecosystem">Async Await Ecosystem</a>
+<ul>
+<li><a href="#supporting-async-without-tying-it-to-a-specific-executor">Supporting Async Without Tying It To A Specific Executor</a></li>
+</ul>
+</li>
+<li><a href="#sleeping-center-thread">Sleeping Center Thread</a>
+<ul>
+<li><a href="#waking-up-a-sleeping-center-thread">Waking Up A Sleeping Center Thread</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a>
+<ul>
+<li><a href="#recording-and-upcoming-streams">Recording and Upcoming Streams</a></li>
+</ul>
+</li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Mon Apr 10 15:05:10 UTC 2023 -->
+<!--te-->
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<p>Section Overview: In this section, the speaker introduces the episode and explains that it is a variant of the live
+streams where he tackles beginner-intermediate content. He also mentions that in this episode, they will be looking at
+the standard sync mpsc module.</p>
+<h3 id="introduction-to-crust-of-rust"><a class="header" href="#introduction-to-crust-of-rust">Introduction to Crust of Rust</a></h3>
+<ul>
+<li>The speaker introduces another episode of Crust of Rust.</li>
+<li>He explains that it is a variant of his live streams where he tackles beginner-intermediate content.</li>
+<li>The speaker mentions that in this episode, they will be looking at the standard sync mpsc module.</li>
+</ul>
+<h2 id="what-is-crust-of-rust"><a class="header" href="#what-is-crust-of-rust">What is Crust of Rust?</a></h2>
+<p>Section Overview: In this section, the speaker describes what Crust of Rust is and who it’s for.</p>
+<h3 id="description-of-crust-of-rust"><a class="header" href="#description-of-crust-of-rust">Description of Crust of Rust</a></h3>
+<ul>
+<li>The speaker describes Crust of Rust as a series where he tackles beginner-intermediate content.</li>
+<li>He explains that it’s for people who have read the rust book and have some familiarity with the language but are
+looking to understand more advanced topics.</li>
+</ul>
+<h2 id="introduction-to-standard-sync-mpsc-module"><a class="header" href="#introduction-to-standard-sync-mpsc-module">Introduction to Standard Sync Mpsc Module</a></h2>
+<p>Section Overview: In this section, the speaker introduces the standard sync mpsc module and explains what a channel is.</p>
+<h3 id="introduction-to-standard-sync-mpsc-module-1"><a class="header" href="#introduction-to-standard-sync-mpsc-module-1">Introduction to Standard Sync Mpsc Module</a></h3>
+<ul>
+<li>The speaker introduces the standard sync mpsc module.</li>
+<li>He explains that mpsc is a channel implementation that comes in the standard library.</li>
+<li>A channel is just a way to send data from one place and receive it somewhere else.</li>
+<li>The mpsc part of it means multi-producer single consumer. This means you can have many senders but only one receiver
+so it’s a many-to-one channel.</li>
+</ul>
+<h2 id="topics-covered-in-past-videos"><a class="header" href="#topics-covered-in-past-videos">Topics Covered in Past Videos</a></h2>
+<p>Section Overview: In this section, the speaker talks about some topics covered in past videos related to rust.</p>
+<h3 id="topics-covered-in-past-videos-1"><a class="header" href="#topics-covered-in-past-videos-1">Topics Covered in Past Videos</a></h3>
+<ul>
+<li>The speaker mentions that he has covered topics such as lifetime annotations, declarative macros, iterators, smart
+pointers, and interior immutability.</li>
+<li>These are the topics that start popping up once you start getting deeper into rust.</li>
+</ul>
+<h2 id="overview-of-standard-sync-mpsc-module"><a class="header" href="#overview-of-standard-sync-mpsc-module">Overview of Standard Sync Mpsc Module</a></h2>
+<p>Section Overview: In this section, the speaker gives an overview of the standard sync mpsc module and how it works.</p>
+<h3 id="overview-of-standard-sync-mpsc-module-1"><a class="header" href="#overview-of-standard-sync-mpsc-module-1">Overview of Standard Sync Mpsc Module</a></h3>
+<ul>
+<li>The speaker explains that when you create a channel using the standard sync mpsc module, you get a sender and receiver
+handle.</li>
+<li>You can move these handles independently to different threads to communicate over the channel.</li>
+<li>The channel is unidirectional. Only senders can send and only receivers can receive.</li>
+<li>You can clone the sender but not the receiver. This is why it’s called multi-producer single consumer.</li>
+</ul>
+<h2 id="implementation-of-channel"><a class="header" href="#implementation-of-channel">Implementation of Channel</a></h2>
+<p>Section Overview: In this section, the speaker talks about implementing a channel and compares it with other
+implementations.</p>
+<h3 id="implementation-of-channel-1"><a class="header" href="#implementation-of-channel-1">Implementation of Channel</a></h3>
+<ul>
+<li>The speaker explains that they will be implementing their own channel in this episode.</li>
+<li>They will compare their implementation with both the standard library channel and other implementations out there.</li>
+<li>The speaker talks about some considerations that come up when deciding how to use channels.</li>
+</ul>
+<h2 id="notification-for-upcoming-streams"><a class="header" href="#notification-for-upcoming-streams">Notification for Upcoming Streams</a></h2>
+<p>Section Overview: In this section, the speaker talks about how to stay notified for upcoming streams.</p>
+<h3 id="notification-for-upcoming-streams-1"><a class="header" href="#notification-for-upcoming-streams-1">Notification for Upcoming Streams</a></h3>
+<ul>
+<li>The speaker mentions that if you’re interested in these crossover streams, you should follow him on Twitter or
+subscribe on YouTube or Twitch.</li>
+<li>This way, you’ll be notified whenever he does any upcoming stream.</li>
+</ul>
+<h2 id="channel-implementation-in-rust"><a class="header" href="#channel-implementation-in-rust">Channel Implementation in Rust</a></h2>
+<p>Section Overview: In this section, the speaker discusses the implementation of channels in Rust.</p>
+<h3 id="sender-and-receiver-types"><a class="header" href="#sender-and-receiver-types">Sender and Receiver Types</a></h3>
+<ul>
+<li>A channel has two halves: a sender half and a receiver half.</li>
+<li>The sender type is used to send data over the channel, while the receiver type is used to receive data from the
+channel.</li>
+<li>The sender and receiver types are different and can be distinguished from each other.</li>
+</ul>
+<h3 id="sending-data-through-channels"><a class="header" href="#sending-data-through-channels">Sending Data through Channels</a></h3>
+<ul>
+<li>Data sent through a channel does not necessarily have to be sent between threads.</li>
+<li>If a channel is used within the same thread, then the data is sent on that thread without needing to be sent across
+threads.</li>
+<li>There are no constraints on what types of data can be sent through a channel. Any type can be sent as long as it is
+owned.</li>
+</ul>
+<h3 id="size-constraints-for-types-sent-through-channels"><a class="header" href="#size-constraints-for-types-sent-through-channels">Size Constraints for Types Sent through Channels</a></h3>
+<ul>
+<li>Every type that is sent through a channel must implement the <code>Sized</code> trait unless you use <code>?Sized</code>.</li>
+<li>If there’s no <code>?Sized</code>, then every type that is sent must be sized.</li>
+</ul>
+<h3 id="ownership-of-data-in-channels"><a class="header" href="#ownership-of-data-in-channels">Ownership of Data in Channels</a></h3>
+<ul>
+<li>The channel object owns any data that is stored in it.</li>
+<li>When something is sent over a channel, it remains owned by the channel until it’s received by another thread or
+dropped.</li>
+</ul>
+<h2 id="panama-a-simple-channel-implementation-in-rust"><a class="header" href="#panama-a-simple-channel-implementation-in-rust">Panama: A Simple Channel Implementation in Rust</a></h2>
+<p>Section Overview: In this section, the speaker demonstrates how to implement a simple version of channels in Rust using
+concurrency primitives from its standard library.</p>
+<h3 id="implementation-details"><a class="header" href="#implementation-details">Implementation Details</a></h3>
+<ul>
+<li>To implement channels in Rust, we need to create two structs: <code>Sender&lt;T&gt;</code> and <code>Receiver&lt;T&gt;</code>.</li>
+<li>We also need to create a function called <code>channel</code> which returns both halves of our newly created struct.</li>
+<li>Our implementation will use other parts of Rust’s standard library such as sync module for concurrency primitives.</li>
+</ul>
+<h3 id="performance-considerations"><a class="header" href="#performance-considerations">Performance Considerations</a></h3>
+<ul>
+<li>The implementation demonstrated in this section is not the most performant.</li>
+<li>Implementing a highly performant channel requires more subtlety and trickiness that may be hard to cover in a stream.</li>
+</ul>
+<h3 id="back-pressure"><a class="header" href="#back-pressure">Back Pressure</a></h3>
+<ul>
+<li>The speaker mentions that they will discuss how back pressure works when they start implementing the channel.</li>
+</ul>
+<h2 id="mutex-and-conditional-variables"><a class="header" href="#mutex-and-conditional-variables">Mutex and Conditional Variables</a></h2>
+<p>Section Overview: In this section, the speaker explains how mutexes and conditional variables work in Rust’s concurrency
+model.</p>
+<h3 id="mutex"><a class="header" href="#mutex">Mutex</a></h3>
+<ul>
+<li>A mutex is a way to ensure that only one thread can access a shared resource at any given time.</li>
+<li>If two threads try to lock the same mutex, one will get to go while the other will block until the first thread
+releases the guard.</li>
+<li>This ensures that there’s only ever one thread modifying the shared resource at any given time.</li>
+</ul>
+<h3 id="arc-and-rc"><a class="header" href="#arc-and-rc">Arc and Rc</a></h3>
+<ul>
+<li>Arc is an atomically reference counted type that allows for safe sharing of data across thread boundaries.</li>
+<li>Rc is a reference counter type that does not allow for safe sharing of data across thread boundaries.</li>
+</ul>
+<h3 id="conditional-variables"><a class="header" href="#conditional-variables">Conditional Variables</a></h3>
+<ul>
+<li>A conditional variable (convar) is a way to announce to a different thread that you’ve changed something it cares
+about.</li>
+<li>It allows a sender to wake up a receiver who was waiting because there was no data yet.</li>
+<li>Together with mutexes, convars provide useful concurrency primitives for writing concurrent code safely.</li>
+</ul>
+<h2 id="channel-implementation-in-rust-1"><a class="header" href="#channel-implementation-in-rust-1">Channel Implementation in Rust</a></h2>
+<p>Section Overview: In this section, the speaker outlines how channels are implemented in Rust using mutexes and
+conditional variables.</p>
+<h3 id="inner-type"><a class="header" href="#inner-type">Inner Type</a></h3>
+<ul>
+<li>The inner type holds the data that is shared between multiple handles or halves of the channel.</li>
+<li>For now, it’s defined as an empty vector but will be modified later on.</li>
+</ul>
+<h3 id="sender-and-receiver-types-1"><a class="header" href="#sender-and-receiver-types-1">Sender and Receiver Types</a></h3>
+<ul>
+<li>Both sender and receiver types contain an inner type which is an arc-mutex-t holding shared state.</li>
+<li>They both return their respective types containing this inner type when created.</li>
+</ul>
+<h3 id="alternative-implementations"><a class="header" href="#alternative-implementations">Alternative Implementations</a></h3>
+<ul>
+<li>Linked lists could be used instead of vectors for storing data in channels.</li>
+<li>An unsynced version could be created for non-sendable types by defining an unsynced mpsc.</li>
+</ul>
+<h2 id="mutex-and-convar"><a class="header" href="#mutex-and-convar">Mutex and Convar</a></h2>
+<p>Section Overview: In this section, the speaker discusses the implementation of mutex and convar in Rust’s standard
+library. They also explain why a mutex is needed for synchronization between sender and receiver threads.</p>
+<h3 id="parking-lot-implementations"><a class="header" href="#parking-lot-implementations">Parking Lot Implementations</a></h3>
+<ul>
+<li>The parking lot implementations of mutex and convar could be used as well.</li>
+<li>There has been talk of making them the standard library ones.</li>
+<li>The reason to not put the mutex in inner is discussed.</li>
+</ul>
+<h3 id="default-implementation-of-vec"><a class="header" href="#default-implementation-of-vec">Default Implementation of Vec</a></h3>
+<ul>
+<li>The default implementation of vec can be used.</li>
+<li>The question about why the receiver type needs to have an arc protected by a mutex if the channel may only have a
+single consumer thread is answered.</li>
+</ul>
+<h3 id="arc-mutex-vs-boolean-semaphore"><a class="header" href="#arc-mutex-vs-boolean-semaphore">Arc Mutex vs Boolean Semaphore</a></h3>
+<ul>
+<li>A mutex is effectively a boolean semaphore, so there is no difference between them.</li>
+<li>Using a boolean semaphore over the implementation in mutex would require spinning, which makes it less efficient than
+using a mutex that integrates with parking mechanisms.</li>
+</ul>
+<h2 id="mutex-vs-boolean-semaphore-continued"><a class="header" href="#mutex-vs-boolean-semaphore-continued">Mutex vs Boolean Semaphore Continued</a></h2>
+<p>Section Overview: In this section, the speaker continues discussing the differences between using a boolean semaphore
+versus using a mutex for synchronization.</p>
+<h3 id="problem-with-boolean-semaphore"><a class="header" href="#problem-with-boolean-semaphore">Problem with Boolean Semaphore</a></h3>
+<ul>
+<li>If someone else has already taken the lock with a boolean semaphore, then you have to spin repeatedly checking it
+until it becomes available again.</li>
+</ul>
+<h3 id="advantages-of-mutex"><a class="header" href="#advantages-of-mutex">Advantages of Mutex</a></h3>
+<ul>
+<li>With a mutex, if someone else has taken it, then the operating system can put your thread to sleep and wake it back up
+when the lock becomes available again.</li>
+<li>This generally more efficient than spinning with a boolean semaphore but adds some latency.</li>
+</ul>
+<h2 id="why-arc-is-needed"><a class="header" href="#why-arc-is-needed">Why Arc Is Needed</a></h2>
+<p>Section Overview: In this section, the speaker explains why an arc is needed for sender and receiver threads to
+communicate.</p>
+<h3 id="sharing-inner"><a class="header" href="#sharing-inner">Sharing Inner</a></h3>
+<ul>
+<li>If there was no arc, then the sender and receiver would have two different instances of inner.</li>
+<li>They need to share an inner because that’s where the sender puts data and where the receiver takes data out of.</li>
+</ul>
+<h2 id="implementing-sender"><a class="header" href="#implementing-sender">Implementing Sender</a></h2>
+<p>Section Overview: In this section, the speaker starts implementing a send function for the sender thread.</p>
+<h3 id="send-function"><a class="header" href="#send-function">Send Function</a></h3>
+<ul>
+<li>The send function takes immute self and t that we’re going to send.</li>
+<li>It returns nothing for now.</li>
+<li>The lock is taken on self.inner.</li>
+<li>Lock result is used in case another thread panicked while holding the lock.</li>
+<li>Inner q is locked, and t is pushed onto it.</li>
+</ul>
+<h2 id="implementing-receiver"><a class="header" href="#implementing-receiver">Implementing Receiver</a></h2>
+<p>Section Overview: In this section, the speaker implements a receive method for the receiver thread.</p>
+<h3 id="receive-method"><a class="header" href="#receive-method">Receive Method</a></h3>
+<ul>
+<li>The receive method does not take a t but returns it instead.</li>
+<li>The queue is locked with inner q.lock().</li>
+<li>T is popped from the queue.</li>
+</ul>
+<h2 id="using-vec-as-a-stack-and-ring-buffer"><a class="header" href="#using-vec-as-a-stack-and-ring-buffer">Using Vec as a Stack and Ring Buffer</a></h2>
+<p>Section Overview: In this section, the speaker explains how to use Vec as a stack and why it is better to use a ring
+buffer instead.</p>
+<h3 id="using-vec-as-a-stack"><a class="header" href="#using-vec-as-a-stack">Using Vec as a Stack</a></h3>
+<ul>
+<li>A Vec can be used like a stack.</li>
+<li>When removing an element from the front of the Vec, all other elements have to be shifted down to fill the hole left
+by the removed element.</li>
+</ul>
+<h3 id="ring-buffer"><a class="header" href="#ring-buffer">Ring Buffer</a></h3>
+<ul>
+<li>A ring buffer is a type of collection that implements fixed memory.</li>
+<li>It is similar to a vector but keeps track of start and end positions separately.</li>
+<li>If you push an element to the end, it pushes it to the end.</li>
+<li>If you pop from the front, it removes the element and moves a pointer to where data starts.</li>
+<li>This allows for using it as a queue instead of just as a stack.</li>
+</ul>
+<h2 id="blocking-version-of-receive"><a class="header" href="#blocking-version-of-receive">Blocking Version of Receive</a></h2>
+<p>Section Overview: In this section, we learn about providing blocking version of receive in Rust.</p>
+<h3 id="try-receive-method"><a class="header" href="#try-receive-method">Try Receive Method</a></h3>
+<ul>
+<li>We can provide try_receive method that returns an option t if there’s nothing in there.</li>
+<li>It just returns none if there’s nothing to receive.</li>
+</ul>
+<h3 id="blocking-version-of-receive-1"><a class="header" href="#blocking-version-of-receive-1">Blocking Version of Receive</a></h3>
+<ul>
+<li>We want to provide blocking version of receive that waits for something in channel.</li>
+<li>To do this, we need convar which needs to be outside mutex because when holding mutex and waking up another thread
+causes deadlock.</li>
+<li>The convar requires giving in mutex guard so that it does this step atomically.</li>
+<li>We match on cue pop front; if sum t then return t else block with self inner available wait.</li>
+</ul>
+<h2 id="notification-and-waiting-receivers"><a class="header" href="#notification-and-waiting-receivers">Notification and Waiting Receivers</a></h2>
+<p>Section Overview: In this section, the speaker discusses how the sender needs to notify waiting receivers once it sends.
+They explain that if a thread enters a loop and is sleeping when a send happens, the thread needs to wake up. The
+speaker also introduces the use of <code>condvar</code> for notification.</p>
+<h3 id="using-condvar-for-notification"><a class="header" href="#using-condvar-for-notification">Using Condvar for Notification</a></h3>
+<ul>
+<li>The speaker explains that they will use <code>condvar</code> for notification.</li>
+<li>They mention that <code>condvar</code> has a <code>notify_one()</code> and a <code>notify_all()</code> call.</li>
+<li>The speaker drops the lock so that whoever they notify can wake up.</li>
+<li>They notify one thread because they are the sender and know that this will be a receiver.</li>
+</ul>
+<h2 id="vector-double-ended-queue"><a class="header" href="#vector-double-ended-queue">Vector Double Ended Queue</a></h2>
+<p>Section Overview: In this section, the speaker briefly explains what a vector double ended queue is.</p>
+<h3 id="understanding-vector-double-ended-queue"><a class="header" href="#understanding-vector-double-ended-queue">Understanding Vector Double Ended Queue</a></h3>
+<ul>
+<li>The speaker mentions that vector double ended queue is just like a vector with head and tail index.</li>
+</ul>
+<h2 id="async-wait-vs-weight"><a class="header" href="#async-wait-vs-weight">Async Wait vs Weight</a></h2>
+<p>Section Overview: In this section, the speaker clarifies the difference between async wait and weight.</p>
+<h3 id="difference-between-async-wait-and-weight"><a class="header" href="#difference-between-async-wait-and-weight">Difference Between Async Wait and Weight</a></h3>
+<ul>
+<li>The speaker explains that weight requires you to give up the guard before going to sleep because otherwise whoever
+would have woken you up can’t get the mutex.</li>
+<li>They clarify that async wait is generally used when you are I/O bound, not CPU bound.</li>
+<li>If you’re woken up without there being anything for you to do, you loop around, check the queue, realize it’s still
+empty, then go back to sleep again.</li>
+</ul>
+<h2 id="convars-spurious-wake-ups"><a class="header" href="#convars-spurious-wake-ups">Convars Spurious Wake Ups</a></h2>
+<p>Section Overview: In this section, the speaker explains how convars can have spurious wake ups.</p>
+<h3 id="convars-spurious-wake-ups-1"><a class="header" href="#convars-spurious-wake-ups-1">Convars Spurious Wake Ups</a></h3>
+<ul>
+<li>The speaker mentions that one thing that can happen with convars is when you call weight, the operating system doesn’t
+guarantee that you aren’t woken up without there being anything for you to do.</li>
+<li>They explain that the loop checks the queue and goes back to sleep again if there’s nothing to do.</li>
+</ul>
+<h2 id="dropping-lock-before-notify"><a class="header" href="#dropping-lock-before-notify">Dropping Lock Before Notify</a></h2>
+<p>Section Overview: In this section, the speaker clarifies why they drop the lock before notify.</p>
+<h3 id="dropping-lock-before-notify-1"><a class="header" href="#dropping-lock-before-notify-1">Dropping Lock Before Notify</a></h3>
+<ul>
+<li>The speaker clarifies that they drop the lock before notify so that when the other thread wakes up, it can immediately
+take the lock.</li>
+</ul>
+<h2 id="notify-one-vs-notify-all"><a class="header" href="#notify-one-vs-notify-all">Notify One vs Notify All</a></h2>
+<p>Section Overview: In this section, the speaker explains notify one and notify all.</p>
+<h3 id="notify-one-vs-notify-all-1"><a class="header" href="#notify-one-vs-notify-all-1">Notify One vs Notify All</a></h3>
+<ul>
+<li>The speaker explains that notify one means notifying one of the threads waiting on a specific convar.</li>
+<li>They clarify that notify all notifies all waiting threads.</li>
+</ul>
+<h2 id="introduction-1"><a class="header" href="#introduction-1">Introduction</a></h2>
+<p>Section Overview: In this section, the speaker introduces the topic of the video and discusses the current setup for
+senders.</p>
+<h3 id="current-setup-for-senders"><a class="header" href="#current-setup-for-senders">Current Setup for Senders</a></h3>
+<ul>
+<li>Senders cannot block in the current setup.</li>
+<li>When a sender gets the lock, it always succeeds in sending.</li>
+<li>There are never any waiting senders in the current design.</li>
+</ul>
+<h2 id="making-sender-cloneable"><a class="header" href="#making-sender-cloneable">Making Sender Cloneable</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to make sender cloneable and why deriving clone is not
+sufficient.</p>
+<h3 id="deriving-clone-for-sender"><a class="header" href="#deriving-clone-for-sender">Deriving Clone for Sender</a></h3>
+<ul>
+<li>Deriving clone at least at the moment actually desugars into impul t clone clone for sender t.</li>
+<li>This implementation added the clone bound to t as well.</li>
+<li>Inner might like if the structure you’re deriving clone on contains a t then t does need to be cloned in order for you
+to clone the whole type.</li>
+</ul>
+<h3 id="implementing-clone-manually"><a class="header" href="#implementing-clone-manually">Implementing Clone Manually</a></h3>
+<ul>
+<li>Arc implements clone regardless of whether the inner type is cloned that’s sort of what reference counting means.</li>
+<li>We don’t actually need t to be cloned; we want this implementation.</li>
+<li>The reason why we need to implement clone ourselves manually luckily it’s pretty simple though um it’s just inner is
+self inner.clone().</li>
+</ul>
+<h2 id="using-our-clone-implementation"><a class="header" href="#using-our-clone-implementation">Using Our Clone Implementation</a></h2>
+<p>Section Overview: In this section, we discuss how to use our implemented clone method and why using dot operator can
+cause issues.</p>
+<h3 id="using-our-clone-method"><a class="header" href="#using-our-clone-method">Using Our Clone Method</a></h3>
+<ul>
+<li>Usually what you want to do here is use our_clone() to say that I specifically want to clone the arc and not the thing
+inside the arc.</li>
+</ul>
+<h3 id="issues-with-dot-operator"><a class="header" href="#issues-with-dot-operator">Issues with Dot Operator</a></h3>
+<ul>
+<li>Imagine that inner also implemented clone rust won’t know whether this call is supposed to clone the arc or thing
+inside because arc dereferences to inner type and dot operator sort of recurses into the inner drafts.</li>
+<li>Usually, it’s not what you want to write.</li>
+</ul>
+<h2 id="blocking-send-and-receive-methods"><a class="header" href="#blocking-send-and-receive-methods">Blocking Send and Receive Methods</a></h2>
+<p>Section Overview: In this section, we discuss how send and receive methods should be blocking.</p>
+<h3 id="blocking-send-and-receive-methods-1"><a class="header" href="#blocking-send-and-receive-methods-1">Blocking Send and Receive Methods</a></h3>
+<ul>
+<li>Send and receive should be blocking methods.</li>
+<li>If you try to receive, and there’s nothing in the channel, we want the thread to block.</li>
+</ul>
+<h2 id="testing-our-implementation"><a class="header" href="#testing-our-implementation">Testing Our Implementation</a></h2>
+<p>Section Overview: In this section, we discuss how to test our implementation using a ping pong test.</p>
+<h3 id="ping-pong-test"><a class="header" href="#ping-pong-test">Ping Pong Test</a></h3>
+<ul>
+<li>We create a tx and an rx.</li>
+<li>We use super::channel() to create a channel.</li>
+<li>We send 42 using tx.send(42).</li>
+<li>We assert equals rx.receive(42).</li>
+</ul>
+<h2 id="arc-clone-and-channel-implementation"><a class="header" href="#arc-clone-and-channel-implementation">Arc Clone and Channel Implementation</a></h2>
+<p>Section Overview: In this section, the speaker discusses the implementation of arc clone and channels in Rust.</p>
+<h3 id="coercing-to-trait-objects"><a class="header" href="#coercing-to-trait-objects">Coercing to Trait Objects</a></h3>
+<ul>
+<li>The <code>arc clone</code> cannot coerce to trait objects automatically.</li>
+<li>It needs to be done manually by using <code>r clone as arctin trade</code>.</li>
+</ul>
+<h3 id="naming-channels"><a class="header" href="#naming-channels">Naming Channels</a></h3>
+<ul>
+<li>The speaker prefers using <code>tx</code> and <code>rx</code> for channels instead of the standard documentation’s use of <code>std</code>.</li>
+<li>However, it ultimately comes down to personal preference.</li>
+</ul>
+<h3 id="problems-with-channel-implementation"><a class="header" href="#problems-with-channel-implementation">Problems with Channel Implementation</a></h3>
+<ul>
+<li>If there are no senders left, the receiver will block forever.</li>
+<li>To solve this problem, we need a way to indicate that there are no more senders left and that the channel has been
+closed.</li>
+</ul>
+<h3 id="implementing-shared-channels"><a class="header" href="#implementing-shared-channels">Implementing Shared Channels</a></h3>
+<ul>
+<li>We change the naming convention from <code>q</code> to <code>inner</code>.</li>
+<li>A mutex is used to protect an inner t which holds both the queue and a count of senders.</li>
+<li>Every time a sender is cloned, we increase the number of senders in that value.</li>
+<li>When a sender goes away, we grab the lock and check if it was the last one. If so, we wake up any blocking receivers.</li>
+<li>The receiver now returns an option t rather than just a t because it could be that the channel truly is empty forever.</li>
+</ul>
+<h2 id="introduction-2"><a class="header" href="#introduction-2">Introduction</a></h2>
+<p>Section Overview: In this section, the speakers discuss potential optimizations for their implementation of a channel in
+Rust.</p>
+<h3 id="potential-optimization"><a class="header" href="#potential-optimization">Potential Optimization</a></h3>
+<ul>
+<li>The speakers discuss the possibility of optimizing their implementation by using the reference count in the arc
+instead of keeping track of senders.</li>
+<li>They explain that with Arc, there is a strong count which tells how many instances of that arc there are. If there’s
+only one, then that must be the receiver and therefore there are no senders.</li>
+<li>They agree that it’s a good optimization and decide to get rid of the sender’s field.</li>
+</ul>
+<h2 id="complicated-case"><a class="header" href="#complicated-case">Complicated Case</a></h2>
+<p>Section Overview: In this section, the speakers discuss a complicated case related to dropping a sender.</p>
+<h3 id="dropping-sender"><a class="header" href="#dropping-sender">Dropping Sender</a></h3>
+<ul>
+<li>The speakers mention that if you drop a sender, you don’t know whether to notify because if the count is two, you
+might be the last sender or you might be the second to last sender and the receiver has been dropped.</li>
+<li>They decide to keep it as it was since it’s easier to read and there are plenty of optimizations they can make over
+this implementation.</li>
+</ul>
+<h2 id="atomic-use-size"><a class="header" href="#atomic-use-size">Atomic Use Size</a></h2>
+<p>Section Overview: In this section, the speakers discuss using an atomic use size and shared rather than creating inner.</p>
+<h3 id="using-atomic-use-size"><a class="header" href="#using-atomic-use-size">Using Atomic Use Size</a></h3>
+<ul>
+<li>The speakers suggest using an atomic use size and shared instead of creating inner.</li>
+<li>However, they explain that at the moment you take a mutex, there isn’t really much value to it. It would mean you
+don’t have to take lock in and drop and clone, but those should be relatively rare and the critical sections are short
+enough that the lock should be fast anyway.</li>
+</ul>
+<h2 id="notifying-all-for-drop"><a class="header" href="#notifying-all-for-drop">Notifying All for Drop</a></h2>
+<p>Section Overview: In this section, the speakers discuss whether to notify all for drop.</p>
+<h3 id="notifying-all-for-drop-1"><a class="header" href="#notifying-all-for-drop-1">Notifying All for Drop</a></h3>
+<ul>
+<li>The speakers discuss whether to notify all for drop.</li>
+<li>They explain that when the last sender goes away, there will be at most one thread waiting which will be the receiver
+if any.</li>
+<li>They mention that there’s no correctness issue to waking up more threads, but it is a performance issue.</li>
+</ul>
+<h2 id="vector-default"><a class="header" href="#vector-default">Vector Default</a></h2>
+<p>Section Overview: In this section, the speakers discuss vector default.</p>
+<h3 id="vector-default-1"><a class="header" href="#vector-default-1">Vector Default</a></h3>
+<ul>
+<li>The speakers answer a question about the difference between vectec new and vector default. They explain that there is
+no difference.</li>
+</ul>
+<h2 id="initializing-senders"><a class="header" href="#initializing-senders">Initializing Senders</a></h2>
+<p>Section Overview: In this section, the speakers discuss initializing senders in their implementation of channel in Rust.</p>
+<h3 id="initializing-senders-1"><a class="header" href="#initializing-senders-1">Initializing Senders</a></h3>
+<ul>
+<li>The speakers mention that they think the error was initializing senders to one in the constructor and then calling
+clone on the sender they return.</li>
+<li>They also answer a question about whether you can get false sharing in between vectec and sender count. They explain
+that they’re under a mutex anyway so that shouldn’t matter.</li>
+</ul>
+<h2 id="debugging-closed-test"><a class="header" href="#debugging-closed-test">Debugging Closed Test</a></h2>
+<p>Section Overview: In this section, the speakers debug why their closed test did not work as expected.</p>
+<h3 id="debugging-closed-test-1"><a class="header" href="#debugging-closed-test-1">Debugging Closed Test</a></h3>
+<ul>
+<li>The speakers mention that their closed test hangs forever on receive and they need to figure out why.</li>
+<li>They decide to debug print the value of senders and see what comes out.</li>
+<li>They realize that the sender is not being dropped and try assigning to underscore, but it doesn’t work as expected.</li>
+<li>They finally realize that this implementation is pretty straightforward.</li>
+</ul>
+<h2 id="debugging-rust-programs-with-gdb"><a class="header" href="#debugging-rust-programs-with-gdb">Debugging Rust Programs with GDB</a></h2>
+<p>Section Overview: In this section, the speaker discusses using GDB to debug Rust programs and how print debugging is
+easier for small examples.</p>
+<h3 id="using-print-debugging-instead-of-gdb"><a class="header" href="#using-print-debugging-instead-of-gdb">Using Print Debugging Instead of GDB</a></h3>
+<ul>
+<li>The speaker uses print debugging instead of GDB for small examples.</li>
+</ul>
+<h2 id="removing-unnecessary-code"><a class="header" href="#removing-unnecessary-code">Removing Unnecessary Code</a></h2>
+<p>Section Overview: In this section, the speaker removes unnecessary code from the implementation.</p>
+<h3 id="removing-unnecessary-code-1"><a class="header" href="#removing-unnecessary-code-1">Removing Unnecessary Code</a></h3>
+<ul>
+<li>The speaker removes unnecessary code from the implementation.</li>
+</ul>
+<h2 id="identifying-a-problem-with-the-implementation"><a class="header" href="#identifying-a-problem-with-the-implementation">Identifying a Problem with the Implementation</a></h2>
+<p>Section Overview: In this section, the speaker identifies a problem with the current implementation and discusses
+whether send should always succeed or fail in some way.</p>
+<h3 id="identifying-a-problem-with-closed-rx-channels"><a class="header" href="#identifying-a-problem-with-closed-rx-channels">Identifying a Problem with Closed RX Channels</a></h3>
+<ul>
+<li>The current implementation has a problem where it can go the other way around if there’s a closed RX channel.</li>
+<li>It’s not clear whether send should always succeed or fail in some way when trying to send something on a closed
+channel.</li>
+<li>The decision is made to keep it as is but in real implementations, send might return an error if the channel is
+closed.</li>
+<li>If send fails, make sure to give back the value that was tried to be sent so that it can be used elsewhere or logged.</li>
+</ul>
+<h2 id="implementing-closed-flag-for-failed-sends"><a class="header" href="#implementing-closed-flag-for-failed-sends">Implementing Closed Flag for Failed Sends</a></h2>
+<p>Section Overview: In this section, the speaker discusses implementing a closed flag for failed sends and how it would
+work.</p>
+<h3 id="implementing-closed-flag-for-failed-sends-1"><a class="header" href="#implementing-closed-flag-for-failed-sends-1">Implementing Closed Flag for Failed Sends</a></h3>
+<ul>
+<li>If you want sending to be able to fail, you need to add a closed flag to the inner or just a boolean that the sender
+sets.</li>
+<li>When you send, if the flag is set, you return an error rather than pushing to the queue.</li>
+</ul>
+<h2 id="multi-producer-multiple-consumer"><a class="header" href="#multi-producer-multiple-consumer">Multi-Producer Multiple Consumer</a></h2>
+<p>Section Overview: In this section, the speaker discusses whether it’s possible to resurrect a drop channel and how
+multi-producer multiple consumer channels work.</p>
+<h3 id="resurrecting-a-drop-channel-and-multi-producer-multiple-consumer-channels"><a class="header" href="#resurrecting-a-drop-channel-and-multi-producer-multiple-consumer-channels">Resurrecting a Drop Channel and Multi-Producer Multiple Consumer Channels</a></h3>
+<ul>
+<li>If the sender goes away, there’s no way to send anymore in this particular design.</li>
+<li>In theory, we can add a method that lets you construct a sender from the receiver but most implementations are not
+quite as symmetric as this one and you can’t easily create a center from a receiver.</li>
+<li>Every operation takes the lock which is fine for low-performance channels but for high-performance channels with many
+sends competing with each other, it might be better not to have them contend with one another.</li>
+<li>Realistically, an implementation could allow sends to compete with each other and only synchronize between senders and
+receivers instead of locking all of them.</li>
+<li>The standard library channel has two different sender types: sender and sync sender. The difference between these is
+that one is synchronous and the other is asynchronous.</li>
+</ul>
+<h2 id="synchronous-and-asynchronous-channels"><a class="header" href="#synchronous-and-asynchronous-channels">Synchronous and Asynchronous Channels</a></h2>
+<p>Section Overview: This section discusses the difference between synchronous and asynchronous channels, and how they
+handle back pressure.</p>
+<h3 id="synchronous-vs-asynchronous-channels"><a class="header" href="#synchronous-vs-asynchronous-channels">Synchronous vs. Asynchronous Channels</a></h3>
+<ul>
+<li>The sender and receiver go in lockstep in a synchronous channel.</li>
+<li>Sends can’t block in this implementation of asynchronous channels.</li>
+<li>A synchronous channel has back pressure, meaning the sender will eventually start blocking if the receiver isn’t
+keeping up.</li>
+<li>The standard library has a sync channel function that takes a bound (channel capacity), whereas our channel method is
+an infinite queue.</li>
+</ul>
+<h2 id="weak-counters-and-convars"><a class="header" href="#weak-counters-and-convars">Weak Counters and ConVars</a></h2>
+<p>Section Overview: This section discusses weak counters, convars, and their use cases.</p>
+<h3 id="using-weak-counters"><a class="header" href="#using-weak-counters">Using Weak Counters</a></h3>
+<ul>
+<li>Senders could use weak counters to determine if the receiver is still there before sending data.</li>
+<li>Upgrading to a strong reference using weak counters adds overhead to each send operation.</li>
+</ul>
+<h3 id="convars-without-mutexes"><a class="header" href="#convars-without-mutexes">ConVars Without Mutexes</a></h3>
+<ul>
+<li>ConVars require mutex guards, so it’s not possible to have them without mutexes.</li>
+</ul>
+<h2 id="blocking-sends-on-vector-resizing"><a class="header" href="#blocking-sends-on-vector-resizing">Blocking Sends on Vector Resizing</a></h2>
+<p>Section Overview: This section discusses vector resizing during sends and its impact on blocking.</p>
+<h3 id="blocking-sends-during-vector-resizing"><a class="header" href="#blocking-sends-during-vector-resizing">Blocking Sends During Vector Resizing</a></h3>
+<ul>
+<li>Pushing beyond the capacity of a vector requires allocating new memory for it, which takes time but doesn’t block
+sends.</li>
+<li>However, during this time, sends take longer than usual because they’re waiting for the vector resize to complete.</li>
+</ul>
+<h2 id="resizing-insights"><a class="header" href="#resizing-insights">Resizing Insights</a></h2>
+<p>Section Overview: In this section, the speaker talks about an optimization that can be made to the implementation of
+channels.</p>
+<h3 id="optimization-for-channels"><a class="header" href="#optimization-for-channels">Optimization for Channels</a></h3>
+<ul>
+<li>An optimization is made by encoding the assumption that there is only one receiver in the code to make it more
+efficient.</li>
+<li>The trick used is to steal all items that have been queued up rather than just stealing one since no one else will
+take them.</li>
+<li>When someone calls receive, we first check if we still have some leftover items from last time we took the lock. If
+so, we return from there without taking the lock again.</li>
+<li>If the queue is not empty and we get an item, then we check if there are more items in the queue and steal all of
+them. We swap that vec deck with the one buffered inside ourselves and leave m empty self.buffer.</li>
+</ul>
+<h3 id="benefits-of-optimization"><a class="header" href="#benefits-of-optimization">Benefits of Optimization</a></h3>
+<ul>
+<li>This optimization reduces contention because now, instead of taking a lock on every receive, it’s taken fewer times
+making it faster to acquire.</li>
+<li>It triggers twice as many resizes at predictable intervals but only uses twice as much memory which is also amortized.</li>
+</ul>
+<h3 id="implementation-source"><a class="header" href="#implementation-source">Implementation Source</a></h3>
+<ul>
+<li>The speaker got this optimization from other implementations since it’s a pretty common implementation.</li>
+</ul>
+<h2 id="branch-predictor-and-channel-implementations"><a class="header" href="#branch-predictor-and-channel-implementations">Branch Predictor and Channel Implementations</a></h2>
+<p>Section Overview: In this section, the speaker discusses the branch predictor and different flavors of channel
+implementations.</p>
+<h3 id="branch-predictor"><a class="header" href="#branch-predictor">Branch Predictor</a></h3>
+<ul>
+<li>The CPU has a built-in component that observes all conditional jumps.</li>
+<li>It tries to remember whether it took the branch or not the last time.</li>
+<li>Speculative execution comes into play where if it runs that code again, the branch predictor is going to say it’s
+probably going to take the branch or it’s probably not going to take the branch.</li>
+<li>Start running that code under the assumption that it will or won’t and then if it doesn’t end up doing that then go
+back and unwind what you did and then do that stuff instead.</li>
+</ul>
+<h3 id="channel-implementations"><a class="header" href="#channel-implementations">Channel Implementations</a></h3>
+<ul>
+<li>There are multiple different kinds of flavors for channel implementations.</li>
+<li>Usually, they take one of two approaches:
+<ul>
+<li>Different types for different implementations of channels</li>
+<li>A single sender type with an enum-like implementation under the hood</li>
+</ul>
+</li>
+<li>Flavors have multiple implementations of your channel with different backing implementations chosen depending on how
+the channel is used.</li>
+<li>Common flavors include synchronous channels, asynchronous channels, rendezvous channels, and one-shot channels.</li>
+</ul>
+<h4 id="synchronous-channels"><a class="header" href="#synchronous-channels">Synchronous Channels</a></h4>
+<ul>
+<li>This is a channel where send blocks.</li>
+<li>Usually has limited capacity.</li>
+</ul>
+<h4 id="asynchronous-channels"><a class="header" href="#asynchronous-channels">Asynchronous Channels</a></h4>
+<ul>
+<li>This is a channel where send cannot block.</li>
+<li>Usually unbounded so any number of sends can build up as much as stuff impossible in memory.</li>
+</ul>
+<h4 id="rendezvous-channels"><a class="header" href="#rendezvous-channels">Rendezvous Channels</a></h4>
+<ul>
+<li>A synchronous channel with capacity equals zero.</li>
+<li>Used for thread synchronization rather than sending data between threads.</li>
+<li>Only allows sending if there’s currently a blocking receiver because you can’t store anything in the channel itself.</li>
+</ul>
+<h4 id="one-shot-channels"><a class="header" href="#one-shot-channels">One-Shot Channels</a></h4>
+<p>Not discussed in detail.</p>
+<h2 id="flavors-of-channels"><a class="header" href="#flavors-of-channels">Flavors of Channels</a></h2>
+<p>Section Overview: This section covers the different flavors of channels in Rust.</p>
+<h3 id="two-way-synchronization"><a class="header" href="#two-way-synchronization">Two-way Synchronization</a></h3>
+<ul>
+<li>Two-way synchronization occurs because the receiver cannot proceed until the sender arrives.</li>
+<li>The channel version is still a two-way synchronization.</li>
+</ul>
+<h3 id="one-shot-channels-1"><a class="header" href="#one-shot-channels-1">One-shot Channels</a></h3>
+<ul>
+<li>One-shot channels are channels that you only send on once.</li>
+<li>These can be any capacity, but usually, they are things like an application where you have a channel that you use to
+tell all the threads that they should exit early.</li>
+<li>You might have a channel that you only send on once and don’t send anything useful.</li>
+</ul>
+<h3 id="bounded-and-unbounded-channels"><a class="header" href="#bounded-and-unbounded-channels">Bounded and Unbounded Channels</a></h3>
+<ul>
+<li>Circular channels are often called bounded channels.</li>
+<li>Asynchronous channels are often called unbounded channels.</li>
+<li>In Rust, these flavors aren’t different types in the type system; they’re different implementations chosen between at
+runtime.</li>
+</ul>
+<h3 id="rendezvous-channel"><a class="header" href="#rendezvous-channel">Rendezvous Channel</a></h3>
+<ul>
+<li>A rendezvous is not a mutex because it doesn’t guarantee mutual exclusion. It’s more like a convar in that you can
+wake up another thread.</li>
+<li>You can totally send data in a rendezvous channel right; it still has the t type, but if both sender and receiver
+aren’t present, nothing happens.</li>
+</ul>
+<h2 id="different-implementations-of-channels"><a class="header" href="#different-implementations-of-channels">Different Implementations of Channels</a></h2>
+<p>Section Overview: This section covers different implementations of Rust’s synchronous channel and async-await futures.</p>
+<h3 id="synchronous-channel-with-mutex-plus-convar"><a class="header" href="#synchronous-channel-with-mutex-plus-convar">Synchronous Channel with Mutex Plus Convar</a></h3>
+<ul>
+<li>For synchronous channels, what we implemented was a mutex plus convar as well.</li>
+</ul>
+<h3 id="upgrading-channel-type-at-runtime"><a class="header" href="#upgrading-channel-type-at-runtime">Upgrading Channel Type at Runtime</a></h3>
+<ul>
+<li>Initially, assume that the channel is a one-shot channel.</li>
+<li>The moment an additional send happens, upgrade it to be a different type of channel.</li>
+<li>This means that the first send will be more efficient than later ones.</li>
+</ul>
+<h2 id="async-await-in-futures"><a class="header" href="#async-await-in-futures">Async Await in Futures</a></h2>
+<p>Section Overview: This section covers async-await in Rust’s futures.</p>
+<h3 id="async-await"><a class="header" href="#async-await">Async-Await</a></h3>
+<ul>
+<li>The idea of async-await is that you can write code that looks like it’s synchronous, but it’s actually asynchronous.</li>
+<li>You can use the <code>async</code> keyword to mark a function as being asynchronous.</li>
+<li>You can then use the <code>await</code> keyword to wait for an asynchronous operation to complete.</li>
+<li>In Rust, futures are used to represent asynchronous operations.</li>
+</ul>
+<h2 id="implementing-channels-in-rust"><a class="header" href="#implementing-channels-in-rust">Implementing Channels in Rust</a></h2>
+<p>Section Overview: In this section, the speaker discusses different ways to implement channels in Rust.</p>
+<h3 id="atomic-vectec-or-queue"><a class="header" href="#atomic-vectec-or-queue">Atomic Vectec or Queue</a></h3>
+<ul>
+<li>Use an atomic vectec or queue to update head and tail pointers atomically.</li>
+<li>No need to take a mutex in order to send.</li>
+<li>Update head and tail pointers atomically to ensure no thread ever tries to touch data that another thread is currently
+touching.</li>
+</ul>
+<h3 id="signaling-mechanism"><a class="header" href="#signaling-mechanism">Signaling Mechanism</a></h3>
+<ul>
+<li>Use park and notify primitives from the standard library or parking lot for wake-ups.</li>
+<li>Need some signaling mechanism where if the sender is asleep because it’s blocking, the receiver needs to wake it up if
+it receives something because now there’s capacity available.</li>
+<li>Similarly, if the receiver is blocking because the channel is empty and a sender comes along and sends something, it
+needs to make sure to wake up the receiver.</li>
+</ul>
+<h3 id="linked-list-implementation"><a class="header" href="#linked-list-implementation">Linked List Implementation</a></h3>
+<ul>
+<li>Use a linked list implementation instead of a vectec when resizing becomes problematic.</li>
+<li>When a sender comes along, append or push to the front of the linked list.</li>
+<li>The receiver steals all items by setting head to null or none and walking backwards through the doubly linked list.</li>
+</ul>
+<h3 id="atomic-linked-list"><a class="header" href="#atomic-linked-list">Atomic Linked List</a></h3>
+<ul>
+<li>An atomic linked list is often referred to as an atomic queue.</li>
+<li>Mix atomic head and tail with an atomic linked list so that only occasionally do you need to actually append new
+items.</li>
+<li>This avoids problematic operations when two senders want to send at the same time with a linked list.</li>
+</ul>
+<h2 id="optimizing-channel-implementations"><a class="header" href="#optimizing-channel-implementations">Optimizing Channel Implementations</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to optimize channel implementations by using a wake-up
+primitive instead of a linked list for rendezvous channels.</p>
+<h3 id="using-wake-up-primitive-instead-of-linked-list"><a class="header" href="#using-wake-up-primitive-instead-of-linked-list">Using Wake-Up Primitive Instead of Linked List</a></h3>
+<ul>
+<li>A block atomic linked list is more efficient in practice.</li>
+<li>A single place in memory can store the item for handoff.</li>
+<li>You don’t need a linked list at all; you only need a wake-up primitive.</li>
+<li>An atomic place in memory that is either none or some can be used to swap elements.</li>
+</ul>
+<h3 id="specialized-implementations"><a class="header" href="#specialized-implementations">Specialized Implementations</a></h3>
+<ul>
+<li>More specialized implementations can be written that are faster for specific use cases.</li>
+<li>Async await channels have different implementations than blocking thread world channels.</li>
+</ul>
+<h2 id="memory-overhead-vs-memory-allocator-performance"><a class="header" href="#memory-overhead-vs-memory-allocator-performance">Memory Overhead vs. Memory Allocator Performance</a></h2>
+<p>Section Overview: In this section, the speaker discusses the trade-off between memory overhead and memory allocator
+performance when using linked lists in channel implementations.</p>
+<h3 id="linked-lists-and-allocationdeallocation"><a class="header" href="#linked-lists-and-allocationdeallocation">Linked Lists and Allocation/Deallocation</a></h3>
+<ul>
+<li>With linked lists, an allocation/deallocation occurs on each push/pop operation.</li>
+<li>The memory allocation system is not always the bottleneck, especially with thread-local allocation like jmallock.</li>
+<li>Measuring memory overhead versus memory allocator performance is important.</li>
+</ul>
+<h3 id="reusing-pool-of-nodes"><a class="header" href="#reusing-pool-of-nodes">Reusing Pool of Nodes</a></h3>
+<ul>
+<li>Keeping a pool of nodes around can help reduce allocations/deallocations.</li>
+<li>Managing the pool atomically requires synchronization primitives and may not be better than using a memory allocator.</li>
+</ul>
+<h2 id="implementing-channels-for-async-await"><a class="header" href="#implementing-channels-for-async-await">Implementing Channels for Async Await</a></h2>
+<p>Section Overview: In this section, the speaker discusses the challenges of implementing channels for both async await
+and blocking thread worlds.</p>
+<h3 id="differences-in-primitives"><a class="header" href="#differences-in-primitives">Differences in Primitives</a></h3>
+<ul>
+<li>It is difficult to write a channel implementation that works for both async await and blocking thread worlds.</li>
+<li>Yielding to the parent future is necessary in async await when the channel is full.</li>
+<li>Notification primitives are similar but not quite the same.</li>
+</ul>
+<h3 id="internal-implementation"><a class="header" href="#internal-implementation">Internal Implementation</a></h3>
+<ul>
+<li>Writing an implementation that knows whether it’s being used in async context or blocking context without exposing it
+to the user can be challenging.</li>
+</ul>
+<h2 id="channel-implementations-1"><a class="header" href="#channel-implementations-1">Channel Implementations</a></h2>
+<p>Section Overview: In this section, the speaker discusses channel implementations and their underlying data structures.
+They also talk about memory allocation and the use of channels in their thesis.</p>
+<h3 id="blocking-vs-async-worlds"><a class="header" href="#blocking-vs-async-worlds">Blocking vs Async Worlds</a></h3>
+<ul>
+<li>At runtime, channel implementations diverge into different ways of managing the underlying data store depending on
+whether you’re in the blocking world or not.</li>
+<li>In practice, the data structure used is fairly similar regardless of whether you’re using a vector or an atomic linked
+list.</li>
+</ul>
+<h3 id="memory-allocation"><a class="header" href="#memory-allocation">Memory Allocation</a></h3>
+<ul>
+<li>Allocators are good at taking advantage of repeated patterns, so it’s hard to write good performant garbage collection
+and memory allocator has had a lot of practice with it.</li>
+<li>It’s not clear if you could beat the allocator because we always need allocations of the same size.</li>
+</ul>
+<h3 id="use-of-channels-in-thesis"><a class="header" href="#use-of-channels-in-thesis">Use of Channels in Thesis</a></h3>
+<ul>
+<li>The speaker uses Tokyo channels because they needed one with async. They don’t have a particularly strong feeling
+about it.</li>
+<li>The decision wasn’t that important since Noria is not really channel-bound.</li>
+<li>The standard library channel didn’t support async await when they started adding them.</li>
+</ul>
+<h2 id="real-implementation-examples"><a class="header" href="#real-implementation-examples">Real Implementation Examples</a></h2>
+<p>Section Overview: In this section, the speaker recommends looking at real implementation examples for channels and
+provides some pointers on where to look next.</p>
+<h3 id="standard-library-implementation"><a class="header" href="#standard-library-implementation">Standard Library Implementation</a></h3>
+<ul>
+<li>The mpsc module in Rust’s standard library has really good documentation on what’s going on under the hood and some
+optimizations that they do like internal atomic counters.</li>
+</ul>
+<h3 id="crossbeam-channel-implementation"><a class="header" href="#crossbeam-channel-implementation">Crossbeam Channel Implementation</a></h3>
+<ul>
+<li>Crossbeam has a cross beam channel subdirectory that holds all different flavor implementations such as array for
+synchronous channels, headtail business for multi-producer single consumer, and atomic block linked list for
+multi-producer multi-consumer.</li>
+<li>Flume is a different implementation of channels that popped up fairly recently. It has a very different implementation
+to what crossbeam does.</li>
+</ul>
+<h3 id="benchmarking-channel-implementations"><a class="header" href="#benchmarking-channel-implementations">Benchmarking Channel Implementations</a></h3>
+<ul>
+<li>Benchmarking channel implementations is hard. Burnt Sushi did a bunch of benchmarking of channels looking at go
+channels, the standard library channels, flume, crossbeam channel, and chan crate.</li>
+<li>When benchmarking channels, you want to try to benchmark all the different flavors because they represent real use
+cases. You want your benchmark to test cases where you send large or small things with many or few senders.</li>
+</ul>
+<h2 id="benchmarking-possible-configurations"><a class="header" href="#benchmarking-possible-configurations">Benchmarking Possible Configurations</a></h2>
+<p>Section Overview: The speaker suggests creating a grid of all possible configurations and benchmarking each one
+separately.</p>
+<h3 id="creating-a-grid-of-configurations"><a class="header" href="#creating-a-grid-of-configurations">Creating a Grid of Configurations</a></h3>
+<ul>
+<li>The speaker suggests creating a grid of all possible configurations.</li>
+<li>Rendezvous channels are like the default go channels with zero capacity.</li>
+<li>A bump allocator would be really good since you would likely allocate memory atomically quite possibly and also
+because it you don’t need to drop anything in that case because the memory has already been handed off.</li>
+</ul>
+<h2 id="async-await-ecosystem"><a class="header" href="#async-await-ecosystem">Async Await Ecosystem</a></h2>
+<p>Section Overview: The speaker explains how async is supported without tying it to a specific executor like Tokyo.</p>
+<h3 id="supporting-async-without-tying-it-to-a-specific-executor"><a class="header" href="#supporting-async-without-tying-it-to-a-specific-executor">Supporting Async Without Tying It To A Specific Executor</a></h3>
+<ul>
+<li>The primary reason for the lack of harmony in the async await ecosystem is around the i/o traits.</li>
+<li>Implementing a channel does not require either asynchronous or spawn features. All that’s needed is the primitive
+provided by the standard library, which is the waker trait, and the ability to yield or go to sleep and wake something
+up or notify something. These are from the standard task module in the standard library, so they can be used
+independently of what executor is being used.</li>
+</ul>
+<h2 id="sleeping-center-thread"><a class="header" href="#sleeping-center-thread">Sleeping Center Thread</a></h2>
+<p>Section Overview: The speaker explains how to wake up a sleeping center thread if its receiver is dropped.</p>
+<h3 id="waking-up-a-sleeping-center-thread"><a class="header" href="#waking-up-a-sleeping-center-thread">Waking Up A Sleeping Center Thread</a></h3>
+<ul>
+<li>If you have a sleeping center thread and you’d like to wake it if the receiver is dropped, implement drop for your
+receiver where it will do a notify all to wake up all sleeping centers which could then do whatever freeing up of
+resources it needs to do.</li>
+</ul>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
+<p>Section Overview: The speaker concludes the video and provides information on where to find the recording and upcoming
+streams.</p>
+<h3 id="recording-and-upcoming-streams"><a class="header" href="#recording-and-upcoming-streams">Recording and Upcoming Streams</a></h3>
+<ul>
+<li>The recording will be uploaded to YouTube, and the speaker will tweet about it.</li>
+<li>Follow the speaker on Twitter or join their Discord for updates on upcoming streams.</li>
+<li>The Discord channel includes other Rust streamers, including Steve Klabneck.</li>
+</ul>
+<h2 id="generated-by-video-highlight"><a class="header" href="#generated-by-video-highlight">Generated by Video Highlight</a></h2>
+<p>https://videohighlight.com/video/summary/b4mS5UPHh20：</p>
+
             </main>
 
             <!--            <script src="https://utteranc.es/client.js"-->
