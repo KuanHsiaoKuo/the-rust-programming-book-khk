@@ -6,7 +6,7 @@
    * [Calling Unsafe Functions](#calling-unsafe-functions)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Mon Apr 10 13:53:46 UTC 2023 -->
+<!-- Added by: runner, at: Mon Apr 10 14:43:15 UTC 2023 -->
 
 <!--te-->
 As an introduction to this section, to borrow from [the official docs][unsafe]:
