@@ -179,7 +179,901 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                
+                <h1 id="dispatch-and-fat-pointers"><a class="header" href="#dispatch-and-fat-pointers">Dispatch and Fat Pointers</a></h1>
+<!--ts-->
+<ul>
+<li><a href="#dispatch-and-fat-pointers">Dispatch and Fat Pointers</a>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#topics-covered">Topics Covered</a>
+<ul>
+<li><a href="#traits-and-dispatch">Traits and Dispatch</a></li>
+<li><a href="#size-trait">Size Trait</a></li>
+<li><a href="#wide-or-fat-pointers">Wide or Fat Pointers</a></li>
+<li><a href="#v-tables-coherence">V Tables Coherence</a></li>
+<li><a href="#monomorphization">Monomorphization</a></li>
+</ul>
+</li>
+<li><a href="#rust-book">Rust Book</a></li>
+<li><a href="#monomorphization-and-generics-in-rust">Monomorphization and Generics in Rust</a>
+<ul>
+<li><a href="#generics-in-rust">Generics in Rust</a></li>
+<li><a href="#benefits-of-monomorphization">Benefits of Monomorphization</a></li>
+<li><a href="#downsides-of-monomorphization">Downsides of Monomorphization</a></li>
+<li><a href="#monomorphization-and-binary-size">Monomorphization and Binary Size</a></li>
+<li><a href="#debug-symbols-and-stripping-binaries">Debug Symbols and Stripping Binaries</a></li>
+<li><a href="#dynamic-libraries-and-generics">Dynamic Libraries and Generics</a></li>
+<li><a href="#implementing-a-trait">Implementing a Trait</a></li>
+<li><a href="#dispatching-methods">Dispatching Methods</a></li>
+</ul>
+</li>
+<li><a href="#static-dispatch-vs-dynamic-dispatch">Static Dispatch vs Dynamic Dispatch</a>
+<ul>
+<li><a href="#static-dispatch">Static Dispatch</a></li>
+<li><a href="#dynamic-dispatch">Dynamic Dispatch</a></li>
+</ul>
+</li>
+<li><a href="#understanding-trait-objects-and-the-sized-trait">Understanding Trait Objects and the Sized Trait</a>
+<ul>
+<li><a href="#trait-objects">Trait Objects</a></li>
+<li><a href="#the-sized-trait">The Sized Trait</a></li>
+</ul>
+</li>
+<li><a href="#dynamic-dispatch-and-object-safety">Dynamic Dispatch and Object Safety</a>
+<ul>
+<li><a href="#dynamic-dispatch-1">Dynamic Dispatch</a></li>
+<li><a href="#object-safety">Object Safety</a></li>
+</ul>
+</li>
+<li><a href="#implementing-traits-for-trait-objects">Implementing Traits for Trait Objects</a>
+<ul>
+<li><a href="#implementing-traits">Implementing Traits</a></li>
+</ul>
+</li>
+<li><a href="#downcasting-trait-objects">Downcasting Trait Objects</a>
+<ul>
+<li><a href="#downcasting">Downcasting</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#introduction-to-the-problem">Introduction to the Problem</a>
+<ul>
+<li><a href="#the-problem-with-din-high">The Problem with Din High</a></li>
+</ul>
+</li>
+<li><a href="#understanding-the-issue">Understanding the Issue</a>
+<ul>
+<li><a href="#types-of-different-sizes">Types of Different Sizes</a></li>
+</ul>
+</li>
+<li><a href="#implementing-sized-trait">Implementing Sized Trait</a>
+<ul>
+<li><a href="#auto-implementation-of-sized-trait">Auto Implementation of Sized Trait</a></li>
+</ul>
+</li>
+<li><a href="#types-that-are-not-sized">Types That Are Not Sized</a>
+<ul>
+<li><a href="#traits-that-are-not-sized">Traits That Are Not Sized</a></li>
+</ul>
+</li>
+<li><a href="#indirection-through-sized-types">Indirection through Sized Types</a>
+<ul>
+<li><a href="#making-an-unsized-type-sized">Making an Unsized Type Sized</a></li>
+</ul>
+</li>
+<li><a href="#using-box-to-make-an-unsized-type-sized">Using Box to Make an Unsized Type Sized</a>
+<ul>
+<li><a href="#using-box">Using Box</a></li>
+<li><a href="#creating-a-trait-object">Creating a Trait Object</a></li>
+<li><a href="#passing-references">Passing References</a></li>
+<li><a href="#boxed-pointer-type">Boxed Pointer Type</a></li>
+<li><a href="#static-vs-dynamic-dispatch">Static vs Dynamic Dispatch</a></li>
+<li><a href="#virtual-dispatch-tables">Virtual Dispatch Tables</a></li>
+<li><a href="#conclusion-1">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#dynamically-sized-types-and-v-tables">Dynamically Sized Types and V-Tables</a>
+<ul>
+<li><a href="#dynamically-sized-types">Dynamically Sized Types</a></li>
+<li><a href="#v-tables">V-Tables</a></li>
+<li><a href="#pointers-to-string-references">Pointers to String References</a></li>
+<li><a href="#vtables-and-duplication">Vtables and Duplication</a></li>
+<li><a href="#box-din">Box Din</a></li>
+<li><a href="#two-different-traits">Two Different Traits</a></li>
+<li><a href="#workaround">Workaround</a></li>
+</ul>
+</li>
+<li><a href="#trait-objects-and-associated-types">Trait Objects and Associated Types</a>
+<ul>
+<li><a href="#combining-traits">Combining Traits</a></li>
+<li><a href="#object-safety-1">Object Safety</a></li>
+<li><a href="#associated-functions">Associated Functions</a></li>
+</ul>
+</li>
+<li><a href="#opting-out-of-trait-object-safety">Opting Out of Trait Object Safety</a>
+<ul>
+<li><a href="#weird-function-and-trait-objects">Weird Function and Trait Objects</a></li>
+<li><a href="#disallowing-trait-objects">Disallowing Trait Objects</a></li>
+<li><a href="#associated-type-problem-with-static-dispatch">Associated Type Problem with Static Dispatch</a></li>
+</ul>
+</li>
+<li><a href="#opting-out-of-trait-object-safety-with-static-dispatch">Opting Out of Trait Object Safety with Static Dispatch</a>
+<ul>
+<li><a href="#opting-out-with-sized-requirements">Opting Out with Sized Requirements</a></li>
+</ul>
+</li>
+<li><a href="#implementing-traits-for-concrete-dsts">Implementing Traits for Concrete DSTs</a>
+<ul>
+<li><a href="#implementing-traits-for-concrete-dsts-1">Implementing Traits for Concrete DSTs</a></li>
+</ul>
+</li>
+<li><a href="#type-erasure-in-trait-objects">Type Erasure in Trait Objects</a>
+<ul>
+<li><a href="#associated-types-and-vtables">Associated Types and Vtables</a></li>
+<li><a href="#finagling-around-associated-types">Finagling Around Associated Types</a></li>
+</ul>
+</li>
+<li><a href="#the-fromiterator-trait-and-trait-objects">The FromIterator Trait and Trait Objects</a>
+<ul>
+<li><a href="#the-fromiterator-trait">The FromIterator Trait</a></li>
+</ul>
+</li>
+<li><a href="#extending-with-a-single-bool-add-true">Extending with a Single Bool Add True</a>
+<ul>
+<li><a href="#extending-with-a-single-bool-add-true-1">Extending with a Single Bool Add True</a></li>
+</ul>
+</li>
+<li><a href="#could-rusty-add-a-monomorphized-version-of-extend">Could Rusty Add a Monomorphized Version of Extend?</a>
+<ul>
+<li><a href="#possibility-and-problems">Possibility and Problems</a></li>
+</ul>
+</li>
+<li><a href="#object-safety-in-rust">Object Safety in Rust</a>
+<ul>
+<li><a href="#traits-and-object-safety">Traits and Object Safety</a></li>
+<li><a href="#iterator-trait-example">Iterator Trait Example</a></li>
+<li><a href="#receiver-requirements">Receiver Requirements</a></li>
+</ul>
+</li>
+<li><a href="#object-safe-traits">Object Safe Traits</a>
+<ul>
+<li><a href="#dispatchable-functions">Dispatchable Functions</a></li>
+<li><a href="#non-dispatchable-functions">Non-Dispatchable Functions</a></li>
+<li><a href="#iterator-last">Iterator Last</a></li>
+</ul>
+</li>
+<li><a href="#trait-objects-and-drop-function">Trait Objects and Drop Function</a>
+<ul>
+<li><a href="#drop-function">Drop Function</a></li>
+</ul>
+</li>
+<li><a href="#unsized-types-and-fat-pointers">Unsized Types and Fat Pointers</a>
+<ul>
+<li><a href="#unsized-types">Unsized Types</a></li>
+<li><a href="#making-unsized-types-sized">Making Unsized Types Sized</a></li>
+<li><a href="#manipulating-fat-pointers">Manipulating Fat Pointers</a></li>
+</ul>
+</li>
+<li><a href="#understanding-waker-and-raw-waker">Understanding Waker and Raw Waker</a>
+<ul>
+<li><a href="#structure-of-waker-and-raw-waker">Structure of Waker and Raw Waker</a></li>
+<li><a href="#manually-constructed-v-table">Manually Constructed V Table</a></li>
+</ul>
+</li>
+<li><a href="#questions-on-references-metadata-types-dynamically-sized-types-box-u8-vs-vec-u8-din-fn-vs-fn">Questions on References, Metadata Types, Dynamically Sized Types, Box U8 vs Vec U8, Din Fn vs Fn</a>
+<ul>
+<li><a href="#reference-to-u8">Reference to U8</a></li>
+<li><a href="#metadata-types">Metadata Types</a></li>
+<li><a href="#dynamically-sized-types-1">Dynamically Sized Types</a></li>
+<li><a href="#box-u8-vs-vec-u8">Box U8 vs Vec U8</a></li>
+<li><a href="#din-fn-vs-fn">Din Fn vs Fn</a></li>
+</ul>
+</li>
+<li><a href="#static-dispatch-vs-dynamic-dispatch-1">Static Dispatch vs Dynamic Dispatch</a>
+<ul>
+<li><a href="#calling-functions-with-closures">Calling Functions with Closures</a></li>
+<li><a href="#using-dyn-fn-over-impl-fn">Using dyn Fn over impl Fn</a></li>
+<li><a href="#object-safety-2">Object Safety</a></li>
+</ul>
+</li>
+<li><a href="#coherence">Coherence</a></li>
+<li><a href="#understanding-v-tables-and-dynamic-dispatch">Understanding V-Tables and Dynamic Dispatch</a>
+<ul>
+<li><a href="#v-tables-and-trait-objects">V-Tables and Trait Objects</a></li>
+<li><a href="#double-d-reference">Double D Reference</a></li>
+<li><a href="#comparing-v-tables">Comparing V-Tables</a></li>
+</ul>
+</li>
+<li><a href="#working-with-slices-and-vec-of-dins">Working with Slices and Vec of Dins</a>
+<ul>
+<li><a href="#example-code">Example Code</a></li>
+</ul>
+</li>
+<li><a href="#rust-traits-and-the-any-trait">Rust Traits and the Any Trait</a>
+<ul>
+<li><a href="#rust-traits">Rust Traits</a></li>
+<li><a href="#the-any-trait">The Any Trait</a></li>
+</ul>
+</li>
+<li><a href="#conclusion-2">Conclusion</a></li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Mon Apr 10 15:22:04 UTC 2023 -->
+<!--te-->
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<p>Section Overview: In this video, the speaker covers a range of topics related to Rust programming language. The topics
+include traits, dynamic and static dispatch, size trait, wide or fat pointers, v tables coherence and monomorphization.</p>
+<h2 id="topics-covered"><a class="header" href="#topics-covered">Topics Covered</a></h2>
+<p>Section Overview: This section covers the various topics that will be discussed in the video.</p>
+<h3 id="traits-and-dispatch"><a class="header" href="#traits-and-dispatch">Traits and Dispatch</a></h3>
+<ul>
+<li>The video covers traits and dynamic and static dispatch.</li>
+<li>Dynamic dispatch is when you have a pointer to an object on the heap.</li>
+<li>Static dispatch is when you have a concrete type.</li>
+<li>Traits are used to define shared behavior between types.</li>
+</ul>
+<h3 id="size-trait"><a class="header" href="#size-trait">Size Trait</a></h3>
+<ul>
+<li><a href="t=1m10s"></a> The size trait is used to determine the size of a type at compile time.</li>
+<li><a href="t=1m20s"></a> It can be used for optimization purposes.</li>
+</ul>
+<h3 id="wide-or-fat-pointers"><a class="header" href="#wide-or-fat-pointers">Wide or Fat Pointers</a></h3>
+<ul>
+<li><a href="t=1m25s"></a> Wide or fat pointers are pointers that contain additional information about their referent.</li>
+<li><a href="t=1m35s"></a> They are useful for dynamically sized types like slices.</li>
+</ul>
+<h3 id="v-tables-coherence"><a class="header" href="#v-tables-coherence">V Tables Coherence</a></h3>
+<ul>
+<li><a href="t=1m45s"></a> V tables coherence refers to how Rust ensures that all implementations of a trait are consistent with each
+other.</li>
+<li><a href="t=2m0s"></a> It ensures that there is only one implementation of a trait for any given type.</li>
+</ul>
+<h3 id="monomorphization"><a class="header" href="#monomorphization">Monomorphization</a></h3>
+<ul>
+<li><a href="t=2m8s"></a> Monomorphization is the process of turning generic code into specific code by filling in the concrete types
+that are used when compiled.</li>
+<li><a href="t=2m23s"></a> It enables more efficient code generation by allowing the compiler to generate specialized code for each
+concrete type.</li>
+</ul>
+<h2 id="rust-book"><a class="header" href="#rust-book">Rust Book</a></h2>
+<p>Section Overview: This section covers a chapter in the Rust book on generic types, traits, and lifetimes.</p>
+<ul>
+<li><a href="t=1m23s"></a> The Rust book has a chapter on generic types and traits.</li>
+<li><a href="t=1m44s"></a> The chapter discusses the performance of code using generics and introduces the concept of
+monomorphization.</li>
+<li><a href="t=2m23s"></a> Monomorphization is the process of turning generic code into specific code by filling in the concrete
+types that are used when compiled.</li>
+</ul>
+<h2 id="monomorphization-and-generics-in-rust"><a class="header" href="#monomorphization-and-generics-in-rust">Monomorphization and Generics in Rust</a></h2>
+<p>Section Overview: In this section, the speaker explains how generics work in Rust and the process of monomorphization.</p>
+<h3 id="generics-in-rust"><a class="header" href="#generics-in-rust">Generics in Rust</a></h3>
+<ul>
+<li>Generics in Rust are turned by the compiler into multiple non-generic implementations through a process called
+monomorphization.</li>
+<li>Monomorphization generates a full copy of the entire struct and all its methods for each type that it is used by.</li>
+<li>The generation of copies happens on demand determined at compile time when code needs a function for a given type.</li>
+<li>Rust generates distinct copies of functions for each type, which makes it hard to ship people a binary that they can
+use as a library.</li>
+</ul>
+<h3 id="benefits-of-monomorphization"><a class="header" href="#benefits-of-monomorphization">Benefits of Monomorphization</a></h3>
+<ul>
+<li>Monomorphization produces potentially much more efficient code because the compiler gets to see the concrete
+written-out code for particular types that are used, which lets it optimize better.</li>
+<li>For hashmap, it only generates methods you actually end up calling, so it amortizes the cost.</li>
+</ul>
+<h3 id="downsides-of-monomorphization"><a class="header" href="#downsides-of-monomorphization">Downsides of Monomorphization</a></h3>
+<ul>
+<li>One downside is that your binary ends up being larger because you need to generate a copy of the type or function for
+every type that it’s used with.</li>
+<li>Another downside is that rather than having one function called sterling, you end up with more code in the final
+binary.</li>
+</ul>
+<h2 id="rust-binary-size-and-monomorphization"><a class="header" href="#rust-binary-size-and-monomorphization"><a href="t=0:12:09s">#</a> Rust Binary Size and Monomorphization</a></h2>
+<p>Section Overview: This section discusses the reasons why Rust binaries are larger than C ones, and how monomorphization
+works.</p>
+<h3 id="monomorphization-and-binary-size"><a class="header" href="#monomorphization-and-binary-size">Monomorphization and Binary Size</a></h3>
+<ul>
+<li><a href="t=0:12:09s"></a> The compiler generates copies of functions during monomorphization, but this is usually not too costly
+unless instantiated with a large number of types.</li>
+<li><a href="t=0:13:23s"></a> Monomorphization allows for inlining and optimizing based on the specific type used, which can result
+in larger binary sizes due to more static compilation.</li>
+<li><a href="t=0:14:43s"></a> The size of the standard library used also affects binary size, especially if using many generics from
+it.</li>
+</ul>
+<h3 id="debug-symbols-and-stripping-binaries"><a class="header" href="#debug-symbols-and-stripping-binaries">Debug Symbols and Stripping Binaries</a></h3>
+<ul>
+<li><a href="t=0:12:32s"></a> Rust binaries statically compile more stuff, including debug symbols that can make the binary larger.
+Stripping the binary can help reduce its size.</li>
+</ul>
+<h2 id="generics-in-dynamic-libraries"><a class="header" href="#generics-in-dynamic-libraries"><a href="t=0:15:00s">#</a> Generics in Dynamic Libraries</a></h2>
+<p>Section Overview: This section discusses how dynamic libraries handle generics in Rust.</p>
+<h3 id="dynamic-libraries-and-generics"><a class="header" href="#dynamic-libraries-and-generics">Dynamic Libraries and Generics</a></h3>
+<ul>
+<li><a href="t=0:15:34s"></a> Dynamic libraries do not handle generics in Rust. This makes it challenging to distribute Rust
+libraries in binary form or use them for dynamically linked libraries.</li>
+<li><a href="t=0:16:14s"></a> Swift has been trying to stabilize something similar to dynamic linking for Rust, but it is still
+unclear how it will work.</li>
+</ul>
+<h2 id="dispatching-methods-with-traits"><a class="header" href="#dispatching-methods-with-traits"><a href="t=0:16:44s">#</a> Dispatching Methods with Traits</a></h2>
+<p>Section Overview: This section explains how dispatching methods with traits works in Rust.</p>
+<h3 id="implementing-a-trait"><a class="header" href="#implementing-a-trait">Implementing a Trait</a></h3>
+<ul>
+<li><a href="t=0:16:49s"></a> Defining a trait involves creating a method that can be implemented for different types.</li>
+<li><a href="t=0:17:17s"></a> Implementing the trait for a specific type involves defining the method for that type.</li>
+</ul>
+<h3 id="dispatching-methods"><a class="header" href="#dispatching-methods">Dispatching Methods</a></h3>
+<ul>
+<li><a href="t=0:17:26s"></a> When generating code for a trait, the compiler determines the type and looks up which methods are
+available.</li>
+<li><a href="t=0:18:00s"></a> The dispatch process involves selecting the appropriate method based on the type used.</li>
+</ul>
+<h2 id="static-dispatch-vs-dynamic-dispatch"><a class="header" href="#static-dispatch-vs-dynamic-dispatch">Static Dispatch vs Dynamic Dispatch</a></h2>
+<p>Section Overview: This section discusses the difference between static dispatch and dynamic dispatch.</p>
+<h3 id="static-dispatch"><a class="header" href="#static-dispatch">Static Dispatch</a></h3>
+<ul>
+<li>When the compiler generates machine code, it knows the type of h and can call the method directly. This is known as
+static dispatch.</li>
+<li>The method is trivial to figure out where it lives because the compiler knows what the actual type is.</li>
+</ul>
+<h3 id="dynamic-dispatch"><a class="header" href="#dynamic-dispatch">Dynamic Dispatch</a></h3>
+<ul>
+<li>If we don’t want to generate multiple copies, we use dynamically sized types or generics.</li>
+<li>We can treat things that are different concrete types as the same type using trait objects.</li>
+<li>Dynamic dispatch allows us to treat different concrete types as if they were the same type.</li>
+</ul>
+<h2 id="understanding-trait-objects-and-the-sized-trait"><a class="header" href="#understanding-trait-objects-and-the-sized-trait">Understanding Trait Objects and the Sized Trait</a></h2>
+<p>Section Overview: In this section, the speaker discusses trait objects and the sized trait. They explain how trait
+objects work and why we need to use them. They also discuss the sized trait and its importance in Rust.</p>
+<h3 id="trait-objects"><a class="header" href="#trait-objects">Trait Objects</a></h3>
+<ul>
+<li>Bar is generic over one type which has to be either a stir reference or a string.</li>
+<li>When taking a slice or an iterator, there is nowhere to put h2 as there is only one iterator that only has items of
+one type.</li>
+<li>Type erasure is used to take a collection of things where we only care about implementing a specific trait.</li>
+</ul>
+<h3 id="the-sized-trait"><a class="header" href="#the-sized-trait">The Sized Trait</a></h3>
+<ul>
+<li>The size trait has no methods; it’s just a marker trait that requires types with constant sizes known at compile time.</li>
+<li>Every trait bound requires that the type is sized implicitly.</li>
+<li>The compiler needs to know how large an argument is so it can allocate space on the stack for it when calling
+functions.</li>
+<li>The size of an argument can be determined by knowing its concrete implementation.</li>
+</ul>
+<h2 id="dynamic-dispatch-and-object-safety"><a class="header" href="#dynamic-dispatch-and-object-safety">Dynamic Dispatch and Object Safety</a></h2>
+<p>Section Overview: In this section, the speaker discusses dynamic dispatch and object safety in Rust. They explain what
+dynamic dispatch means, why it’s important, and how it works in Rust. They also discuss object safety and what makes a
+trait object safe or unsafe.</p>
+<h3 id="dynamic-dispatch-1"><a class="header" href="#dynamic-dispatch-1">Dynamic Dispatch</a></h3>
+<ul>
+<li>Dynamic dispatch allows us to call methods on objects whose concrete types are unknown at compile time.</li>
+<li>Virtual method tables (VMTs), also known as vtables, are used to implement dynamic dispatch in Rust.</li>
+<li>VMTs contain pointers to the actual functions that will be called at runtime.</li>
+</ul>
+<h3 id="object-safety"><a class="header" href="#object-safety">Object Safety</a></h3>
+<ul>
+<li>A trait is object-safe if it can be safely used as a trait object.</li>
+<li>A trait is not object-safe if it has associated types or self-referential methods.</li>
+<li>The compiler will generate an error if we try to use a non-object-safe trait as a trait object.</li>
+</ul>
+<h2 id="implementing-traits-for-trait-objects"><a class="header" href="#implementing-traits-for-trait-objects">Implementing Traits for Trait Objects</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to implement traits for trait objects. They explain what it
+means to implement a trait for a type and how this differs from implementing a trait for a trait object. They also
+discuss how to use the <code>dyn</code> keyword when working with trait objects.</p>
+<h3 id="implementing-traits"><a class="header" href="#implementing-traits">Implementing Traits</a></h3>
+<ul>
+<li>To implement a trait for a type, we simply define the methods of the trait on that type.</li>
+<li>To implement a trait for a trait object, we need to use dynamic dispatch and vtables.</li>
+<li>We can use the <code>dyn</code> keyword when working with trait objects to indicate that we want dynamic dispatch.</li>
+</ul>
+<h2 id="downcasting-trait-objects"><a class="header" href="#downcasting-trait-objects">Downcasting Trait Objects</a></h2>
+<p>Section Overview: In this section, the speaker discusses downcasting and how it works with Rust’s type system. They
+explain what downcasting means and why it’s useful. They also discuss how to downcast using Rust’s built-in <code>as</code>
+operator.</p>
+<h3 id="downcasting"><a class="header" href="#downcasting">Downcasting</a></h3>
+<ul>
+<li>Downcasting allows us to convert from one type of pointer (e.g., <code>&amp;T</code>) to another (e.g., <code>&amp;U</code>) when <code>T</code> is a supertype
+of <code>U</code>.</li>
+<li>Downcasting can be useful when working with trait objects, as it allows us to access methods that are specific to the
+concrete type of the object.</li>
+<li>We can use Rust’s built-in <code>as</code> operator to downcast trait objects.</li>
+</ul>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
+<p>Section Overview: In this section, the speaker concludes their discussion on trait objects in Rust. They summarize the
+key points covered in the video and provide some final thoughts.</p>
+<ul>
+<li>Trait objects allow us to work with collections of objects that implement a specific trait without knowing their
+concrete types at compile time.</li>
+<li>The sized trait is important because it allows the compiler to determine how much space an argument takes up on the
+stack.</li>
+<li>Dynamic dispatch and vtables are used to implement trait objects and allow us to call methods on unknown types at
+runtime.</li>
+<li>Object safety is</li>
+</ul>
+<h2 id="introduction-to-the-problem"><a class="header" href="#introduction-to-the-problem">Introduction to the Problem</a></h2>
+<p>Section Overview: In this section, the speaker introduces a problem with Rust’s type system and explains why it is
+important to understand.</p>
+<h3 id="the-problem-with-din-high"><a class="header" href="#the-problem-with-din-high">The Problem with Din High</a></h3>
+<ul>
+<li>Rust allows for traits to be used as types.</li>
+<li>However, when using a trait as a type, there can be issues with size.</li>
+<li>This is because different types that implement the same trait may have different sizes.</li>
+<li>This can cause problems when trying to use these types in arrays or slices.</li>
+</ul>
+<h2 id="understanding-the-issue"><a class="header" href="#understanding-the-issue">Understanding the Issue</a></h2>
+<p>Section Overview: In this section, the speaker goes into more detail about why the issue occurs and how it affects code.</p>
+<h3 id="types-of-different-sizes"><a class="header" href="#types-of-different-sizes">Types of Different Sizes</a></h3>
+<ul>
+<li>Strings and stirs are examples of types that have different sizes but implement the same trait.</li>
+<li>A slice is just a contiguous piece of memory where each chunk is the same size.</li>
+<li>If we don’t know the size of each element in a slice, we can’t guarantee that they are all the same size.</li>
+<li>This makes it impossible to generate code for functions that require knowing how much space to allocate for variables.</li>
+</ul>
+<h2 id="implementing-sized-trait"><a class="header" href="#implementing-sized-trait">Implementing Sized Trait</a></h2>
+<p>Section Overview: In this section, the speaker discusses how Rust implements sizing for types and what exceptions there
+may be.</p>
+<h3 id="auto-implementation-of-sized-trait"><a class="header" href="#auto-implementation-of-sized-trait">Auto Implementation of Sized Trait</a></h3>
+<ul>
+<li>The <code>Sized</code> trait is auto-implemented for any type that can implement it.</li>
+<li>For example, if you create a struct with no fields or add a string field to it, then that struct will be sized
+automatically.</li>
+<li>You never need to implement <code>Sized</code> yourself; it is only ever used as an auto-trait.</li>
+</ul>
+<h2 id="types-that-are-not-sized"><a class="header" href="#types-that-are-not-sized">Types That Are Not Sized</a></h2>
+<p>Section Overview: In this section, the speaker discusses some examples of traits that are not sized and what issues they
+can cause.</p>
+<h3 id="traits-that-are-not-sized"><a class="header" href="#traits-that-are-not-sized">Traits That Are Not Sized</a></h3>
+<ul>
+<li>Traits like <code>High</code> are not sized because different types that implement the trait may have different sizes.</li>
+<li>This makes it impossible to generate code for functions that require knowing how much space to allocate for variables.</li>
+<li>The compiler needs to know the size of a type in order to generate efficient code.</li>
+</ul>
+<h2 id="indirection-through-sized-types"><a class="header" href="#indirection-through-sized-types">Indirection through Sized Types</a></h2>
+<p>Section Overview: In this section, the speaker explains how to make a type that is not sized into a type that is always
+sized by indirecting it through some type that is itself sized.</p>
+<h3 id="making-an-unsized-type-sized"><a class="header" href="#making-an-unsized-type-sized">Making an Unsized Type Sized</a></h3>
+<ul>
+<li>An example of an unsized type is <code>dyn Trait</code> or <code>str</code>.</li>
+<li>To make an unsized type like <code>dyn Trait</code> or <code>str</code> into a sized type, we need to indirect it through some other type
+that is itself sized.</li>
+<li>Examples of such types include references (<code>&amp;T</code>) and boxes (<code>Box&lt;T&gt;</code>).</li>
+<li>By indirection through these types, the size of the argument becomes known and relevant code can be generated.</li>
+</ul>
+<h2 id="using-box-to-make-an-unsized-type-sized"><a class="header" href="#using-box-to-make-an-unsized-type-sized">Using Box to Make an Unsized Type Sized</a></h2>
+<p>Section Overview: In this section, the speaker explains how to use <code>Box&lt;T&gt;</code> to make an unsized type like <code>str</code> into a
+sized type.</p>
+<h3 id="using-box"><a class="header" href="#using-box">Using Box<T></a></h3>
+<ul>
+<li>A box has a known size because it’s just a pointer.</li>
+<li>When you create a box initially, you allocate space for whatever you’re going to put inside of it.</li>
+<li>The box is still of a known size even if what it points to might have an arbitrary size.</li>
+<li>You can create a box of something that itself is not sized by opting out of the auto-bound that gets added saying for
+box the T does not have to be sized.</li>
+<li>Once you do this, you can pass the boxed value as an argument without getting monomorphization errors.</li>
+</ul>
+<h2 id="passing-references-to-functions"><a class="header" href="#passing-references-to-functions"><a href="t=0:44:44s">#</a> Passing References to Functions</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to pass a reference to the stack and create a trait object.</p>
+<h3 id="creating-a-trait-object"><a class="header" href="#creating-a-trait-object">Creating a Trait Object</a></h3>
+<ul>
+<li><a href="t=0:45:59s"></a> A trait object is an object that only has the property of representing a trait.</li>
+<li><a href="t=0:46:35s"></a> When you turn an object into a trait object, you erase all knowledge about what type it used to be.</li>
+<li><a href="t=0:47:20s"></a> You can technically go back through unsafe transmutes and any traits, but in general, you should ignore
+that.</li>
+<li><a href="t=0:47:57s"></a> When you create a boxed in astrif stir or any other trait object, you only retain the ability to use
+this trait.</li>
+</ul>
+<h3 id="passing-references"><a class="header" href="#passing-references">Passing References</a></h3>
+<ul>
+<li><a href="t=0:44:44s"></a> You can give the function a reference to the stack by using <code>&amp;</code>.</li>
+<li><a href="t=0:45:30s"></a> You can pass something that’s on the stack by creating a pointer in direction here and then passing it
+to something that takes a reference din.</li>
+</ul>
+<h3 id="boxed-pointer-type"><a class="header" href="#boxed-pointer-type">Boxed Pointer Type</a></h3>
+<ul>
+<li><a href="t=0:46:44s"></a> Box is kind of a pointer type.</li>
+<li><a href="t=0:50.29s"></a> The trick to constructing a trait object is that it carries extra information about the type pointed
+to.</li>
+</ul>
+<h2 id="generating-machine-code-for-dynamic-dispatch"><a class="header" href="#generating-machine-code-for-dynamic-dispatch"><a href="t=0:48.17s">#</a> Generating Machine Code for Dynamic Dispatch</a></h2>
+<p>Section Overview: In this section, the speaker explains how dynamic dispatch works when generating machine code.</p>
+<h3 id="static-vs-dynamic-dispatch"><a class="header" href="#static-vs-dynamic-dispatch">Static vs Dynamic Dispatch</a></h3>
+<ul>
+<li><a href="t=0.49.24s"></a> In the generic case, generating machine code is trivial because it’s just like an assembly call.</li>
+<li><a href="t=0:50.00s"></a> In the dynamic case, we don’t know what type it is, so we don’t know whether to generate the address of
+this or something else entirely.</li>
+</ul>
+<h3 id="virtual-dispatch-tables"><a class="header" href="#virtual-dispatch-tables">Virtual Dispatch Tables</a></h3>
+<ul>
+<li><a href="t=0:50.29s"></a> The trick to constructing a trait object is that it carries extra information about the type pointed
+to.</li>
+<li><a href="t=0:50.55s"></a> The reference of the box is not just one pointer wide; it carries a little bit of extra information
+about the type pointed to.</li>
+<li><a href="t=0:51.45s"></a> A virtual dispatch table (vtable) is an array of function pointers used in implementing polymorphism in
+object-oriented programming languages.</li>
+</ul>
+<h3 id="conclusion-1"><a class="header" href="#conclusion-1">Conclusion</a></h3>
+<ul>
+<li>Dynamic dispatch and vtables are used when generating machine code for trait objects.</li>
+<li>Trait objects only retain the ability to use their underlying trait, erasing all other knowledge about their concrete
+types.</li>
+</ul>
+<h2 id="dynamically-sized-types-and-v-tables"><a class="header" href="#dynamically-sized-types-and-v-tables">Dynamically Sized Types and V-Tables</a></h2>
+<p>Section Overview: This section discusses dynamically sized types, which are only known at runtime, and v-tables, which
+are little data structures that have pointers to each of the methods for a trait for a type.</p>
+<h3 id="dynamically-sized-types"><a class="header" href="#dynamically-sized-types">Dynamically Sized Types</a></h3>
+<ul>
+<li>Slices and trait objects are two examples of dynamically sized types.</li>
+<li>At compile time, we don’t know what type this is going to be. It’s only at runtime that we’ll know.</li>
+<li>The reason why this is determined at runtime is because some input can’t be predicted at compile time.</li>
+</ul>
+<h3 id="v-tables"><a class="header" href="#v-tables">V-Tables</a></h3>
+<ul>
+<li>A v-table or virtual dispatch table is a little data structure that has pointers to each of the methods for the trait
+for the type.</li>
+<li>When you have a trait object like <code>dyn Hi</code>, what actually gets stored in the reference is one pointer to the actual
+concrete implementing type and two a pointer to a v-table for the referenced trait.</li>
+<li>A different v-table ends up being constructed for each concrete type turned into a trait object.</li>
+<li>The second pointer in there will always be known statically because it’s determined by the original construction of
+the trait object.</li>
+</ul>
+<h2 id="trait-objects-1"><a class="header" href="#trait-objects-1"><a href="t=0:59:03s">#</a> Trait Objects</a></h2>
+<p>Section Overview: This section covers the basics of trait objects, including how they work and their limitations.</p>
+<h3 id="pointers-to-string-references"><a class="header" href="#pointers-to-string-references">Pointers to String References</a></h3>
+<ul>
+<li><a href="t=0:59:03s"></a> Trait objects are pointers to string references, not pointers to actual strings.</li>
+<li><a href="t=0:59:23s"></a> The vtable struct for a trait object contains a member for each method of the corresponding trait that
+this is a trait object for.</li>
+<li><a href="t=0:59:48s"></a> The value in the vtable struct is the pointer to the implementation of that method for the concrete
+type.</li>
+</ul>
+<h3 id="vtables-and-duplication"><a class="header" href="#vtables-and-duplication">Vtables and Duplication</a></h3>
+<ul>
+<li><a href="t=1:00:12s"></a> The vtable is generally statically constructed for the type and does not get constructed dynamically.</li>
+<li><a href="t=1:00:32s"></a> Identical vtables are not detected, and they are guaranteed to not be duplicates even if they contain
+the same code.</li>
+<li><a href="t=1:01:00s"></a> If you implement a trait for two different types, then the implementations are still distinct locations
+in the source code and resulting binary.</li>
+</ul>
+<h3 id="box-din"><a class="header" href="#box-din">Box Din</a></h3>
+<ul>
+<li><a href="t=1:01:09s"></a> Box din is a thin pointer that points to a wide pointer that points to an object.</li>
+<li><a href="t=1:01.33s"></a> Pointer types are special because if they are trait objects, they have two pointers instead of one.</li>
+<li><a href="t=1.02.05s"></a> Nightly APIs exist for trade objects too.</li>
+</ul>
+<h2 id="limitations-of-trait-objects"><a class="header" href="#limitations-of-trait-objects"><a href="t=1.02.14s">#</a> Limitations of Trait Objects</a></h2>
+<p>Section Overview: This section discusses some limitations of trait objects compared to fully generic types.</p>
+<h3 id="two-different-traits"><a class="header" href="#two-different-traits">Two Different Traits</a></h3>
+<ul>
+<li><a href="t=1.02.38s"></a> A trade object cannot be created for two different traits because the vtables for each trait are
+contained in two different locations.</li>
+<li><a href="t=1.04.11s"></a> To create a trade object for two different traits, you would need a three-wide pointer: one to the
+data, one to the vtable for high, and one to the vtable for asref.</li>
+</ul>
+<h3 id="workaround"><a class="header" href="#workaround">Workaround</a></h3>
+<ul>
+<li><a href="t=1.04.55s"></a> A workaround is to create a new trait that requires both traits with no methods of its own.</li>
+<li><a href="t=1.05.13s"></a> The rust compiler does not currently generate a vtable for the combination of multiple traits, but it
+is possible in theory.</li>
+</ul>
+<h2 id="trait-objects-and-associated-types"><a class="header" href="#trait-objects-and-associated-types">Trait Objects and Associated Types</a></h2>
+<p>Section Overview: In this section, the speaker discusses trait objects and associated types in Rust.</p>
+<h3 id="combining-traits"><a class="header" href="#combining-traits">Combining Traits</a></h3>
+<ul>
+<li>When combining traits, adding a trait to a larger v table tells the developer that they can do something else instead.</li>
+<li>Developers can generate their own trait here.</li>
+<li>Only auto traits like Send and Sync are fine for marker traits because they don’t have any methods.</li>
+</ul>
+<h3 id="object-safety-1"><a class="header" href="#object-safety-1">Object Safety</a></h3>
+<ul>
+<li>If an associated type is added to a trait, it cannot be turned into a trait object directly. Instead, developers must
+specify the associated type when taking in the trait.</li>
+<li>For a trait to be object safe, it needs to allow building a v table to allow the call to be resolvable dynamically.</li>
+</ul>
+<h3 id="associated-functions"><a class="header" href="#associated-functions">Associated Functions</a></h3>
+<ul>
+<li>The high trait cannot be made into an object because its associated function weird has no self parameter.</li>
+<li>A self parameter is necessary for dynamic dispatching of functions in Rust.</li>
+</ul>
+<h2 id="opting-out-of-trait-object-safety"><a class="header" href="#opting-out-of-trait-object-safety">Opting Out of Trait Object Safety</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to opt out of trait object safety in Rust.</p>
+<h3 id="weird-function-and-trait-objects"><a class="header" href="#weird-function-and-trait-objects">Weird Function and Trait Objects</a></h3>
+<ul>
+<li>The <code>weird</code> function cannot be called through a trait object because it requires a valid instance of the type that
+implements the trait.</li>
+<li>If there were multiple implementations of <code>weird</code>, it would not be clear which one to call through a trait object.</li>
+<li>To make sure that the trait remains object safe, you can opt out of including certain functions in the vtable by
+requiring that <code>self</code> is sized. This means that these functions cannot be called through a trait object.</li>
+</ul>
+<h3 id="disallowing-trait-objects"><a class="header" href="#disallowing-trait-objects">Disallowing Trait Objects</a></h3>
+<ul>
+<li>You can also disallow using an entire trait as a trait object by specifying <code>where self is sized</code>.</li>
+<li>This is rare and usually only done for backwards compatibility reasons or if non-object safe methods may be added
+later.</li>
+</ul>
+<h3 id="associated-type-problem-with-static-dispatch"><a class="header" href="#associated-type-problem-with-static-dispatch">Associated Type Problem with Static Dispatch</a></h3>
+<ul>
+<li>The associated type problem does not occur with static dispatch because concrete types are known at compile time.</li>
+<li>It would be possible to include the <code>weird</code> method in the vtable for a specific type if special syntax was added to
+specify which implementation to use.</li>
+</ul>
+<h2 id="opting-out-of-trait-object-safety-with-static-dispatch"><a class="header" href="#opting-out-of-trait-object-safety-with-static-dispatch">Opting Out of Trait Object Safety with Static Dispatch</a></h2>
+<p>Section Overview: In this section, the speaker discusses how opting out of trait object safety works with static
+dispatch in Rust.</p>
+<h3 id="opting-out-with-sized-requirements"><a class="header" href="#opting-out-with-sized-requirements">Opting Out with Sized Requirements</a></h3>
+<ul>
+<li>Requiring that <code>self</code> is sized allows you to opt out of including certain functions in the vtable and ensures that
+they cannot be called through a trait object.</li>
+<li>With static dispatch, it is possible to include specific implementations of functions like <code>weird</code> in the vtable for a
+given type.</li>
+</ul>
+<h2 id="implementing-traits-for-concrete-dsts"><a class="header" href="#implementing-traits-for-concrete-dsts">Implementing Traits for Concrete DSTs</a></h2>
+<p>Section Overview: In this section, the speaker discusses whether it is possible to implement a trait for concrete
+dynamically sized types (DSTs), such as <code>Box&lt;dyn AsRef&lt;str&gt;&gt;</code>. They also explain why there are restrictions on
+implementing traits for DSTs.</p>
+<h3 id="implementing-traits-for-concrete-dsts-1"><a class="header" href="#implementing-traits-for-concrete-dsts-1">Implementing Traits for Concrete DSTs</a></h3>
+<ul>
+<li>It is possible to implement a trait for concrete DSTs if the <code>where Self: Sized</code> constraint is not present.</li>
+<li>The reason this should be possible is because when you wrap a type behind a pointer, it now has a size and is no
+longer dynamically sized.</li>
+<li>However, there are some restrictions on implementing traits for DSTs. For example, methods cannot be generic.</li>
+<li>If <code>Self: Sized</code> constraint is present, then it disallows implementing the trait for concrete DSTs.</li>
+</ul>
+<h2 id="type-erasure-in-trait-objects"><a class="header" href="#type-erasure-in-trait-objects">Type Erasure in Trait Objects</a></h2>
+<p>Section Overview: In this section, the speaker explains how type erasure works in trait objects and why associated types
+pose a problem.</p>
+<h3 id="associated-types-and-vtables"><a class="header" href="#associated-types-and-vtables">Associated Types and Vtables</a></h3>
+<ul>
+<li>The point of associated types is that only one exists for any given concrete type. However, the vtable does not know
+what the associated type should be because the type is erased.</li>
+<li>Trade objects are type erased. You don’t get to keep information about the type it used to be.</li>
+</ul>
+<h3 id="finagling-around-associated-types"><a class="header" href="#finagling-around-associated-types">Finagling Around Associated Types</a></h3>
+<ul>
+<li>There are some ways to finagle around this limitation. For example, the <code>Any</code> trait has a method that returns a
+descriptor of the type of the concrete type that it used to be.</li>
+</ul>
+<h2 id="the-fromiterator-trait-and-trait-objects"><a class="header" href="#the-fromiterator-trait-and-trait-objects">The <code>FromIterator</code> Trait and Trait Objects</a></h2>
+<p>Section Overview: In this section, the speaker discusses the <code>FromIterator</code> trait and how it poses a problem for trait
+objects.</p>
+<h3 id="the-fromiterator-trait"><a class="header" href="#the-fromiterator-trait">The <code>FromIterator</code> Trait</a></h3>
+<ul>
+<li>The <code>FromIterator</code> trait is implemented by types like <code>Vec</code>. It allows you to collect items from an iterator into a
+collection.</li>
+<li>The type of the trait is the type of the items of the iterator. However, the <code>FromIterator</code> type itself takes a
+generic parameter that represents the type of the iterator.</li>
+<li>This poses a problem for trait objects because they cannot have methods that are generic.</li>
+</ul>
+<h2 id="extending-with-a-single-bool-add-true"><a class="header" href="#extending-with-a-single-bool-add-true">Extending with a Single Bool Add True</a></h2>
+<p>Section Overview: In this section, the speaker explains how to extend an iterator of bools and why the trait extend
+cannot be made into an object.</p>
+<h3 id="extending-with-a-single-bool-add-true-1"><a class="header" href="#extending-with-a-single-bool-add-true-1">Extending with a Single Bool Add True</a></h3>
+<ul>
+<li>The function extends anything that can be extended with an iterator of bools and then tries to extend it with an
+iterator that yields a single bool by adding true.</li>
+<li>The implementation of extend is generic over the type of items in the iterator.</li>
+<li>The implementation of extend is generic over the type of the iterator, which leads to multiple copies of this method
+at compile time.</li>
+<li>There is no pointer to the appropriate implementation of extend, so there cannot be a v table for din extend.
+Therefore, din extend cannot exist.</li>
+</ul>
+<h2 id="could-rusty-add-a-monomorphized-version-of-extend"><a class="header" href="#could-rusty-add-a-monomorphized-version-of-extend">Could Rusty Add a Monomorphized Version of Extend?</a></h2>
+<p>Section Overview: In this section, the speaker discusses whether Rusty could add a monomorphized version of extend for
+each t it’s called with to each type that implements extend.</p>
+<h3 id="possibility-and-problems"><a class="header" href="#possibility-and-problems">Possibility and Problems</a></h3>
+<ul>
+<li>It is tempting to add a monomorphized version of extend for each t it’s called with to each type that implements
+extend.</li>
+<li>However, it is not always possible because crates that depend on another crate might call extend with even more types,
+leading to different v tables for din extends in different crates.</li>
+<li>This would result in lots of different v table implementations or lots of different v tables for din extends and make
+passing din extends from one crate to another impossible.</li>
+</ul>
+<h2 id="object-safety-in-rust"><a class="header" href="#object-safety-in-rust">Object Safety in Rust</a></h2>
+<p>Section Overview: This section discusses the requirements for a trait to be object safe and why some traits cannot be
+made into objects.</p>
+<h3 id="traits-and-object-safety"><a class="header" href="#traits-and-object-safety">Traits and Object Safety</a></h3>
+<ul>
+<li>A trait needs to have all of its methods include a receiver that includes self to be object safe.</li>
+<li>The trait cannot have a type that returns self, as this would make the return value not sized, which is required for
+generating code.</li>
+<li>Some traits have methods that are object safe but also have other methods that aren’t. These traits can still be
+useful on their own without being made into objects.</li>
+</ul>
+<h3 id="iterator-trait-example"><a class="header" href="#iterator-trait-example">Iterator Trait Example</a></h3>
+<ul>
+<li>The iterator trait has some methods that are object safe, such as next, but also has other methods like chain and
+enumerate that return self or are generic, making them non-object safe.</li>
+<li>To make the iterator trait object safe, certain methods like chain have where clauses specifying that self is sized,
+allowing them to be ignored when using the trait as an object. This allows for a mix of object-safe and
+non-object-safe methods in the same trait.</li>
+</ul>
+<h3 id="receiver-requirements"><a class="header" href="#receiver-requirements">Receiver Requirements</a></h3>
+<ul>
+<li>The receiver for an object-safe method can include anything that includes self or &amp;self/mut self. There are no
+additional restrictions beyond this requirement.</li>
+</ul>
+<h2 id="object-safe-traits"><a class="header" href="#object-safe-traits">Object Safe Traits</a></h2>
+<p>Section Overview: This section discusses object safe traits and their requirements.</p>
+<h3 id="dispatchable-functions"><a class="header" href="#dispatchable-functions">Dispatchable Functions</a></h3>
+<ul>
+<li>All associative functions must either be dispatchable from a trait object or be explicitly non-dispatchable.</li>
+<li>Dispatchable functions require that they don’t have type parameters so they’re not generic.</li>
+<li>They have to be a method that does not use the self type right the concrete type except in the type of receiver.</li>
+</ul>
+<h3 id="non-dispatchable-functions"><a class="header" href="#non-dispatchable-functions">Non-Dispatchable Functions</a></h3>
+<ul>
+<li>Non-dispatchable functions should library writers always consider adding where self is size to non-object safe methods
+just in case someone downstream wants to use it as a trait object.</li>
+<li>If you have a trait where it is useful even if you could only call the objective methods then it might make sense to
+opt-out for the other one so that the trait overall is objective.</li>
+</ul>
+<h3 id="iterator-last"><a class="header" href="#iterator-last">Iterator Last</a></h3>
+<ul>
+<li>Iterator last has the size restriction because its receiver doesn’t go behind a reference, it consumes self which
+means that it takes self and self is a din iterator which is not sized.</li>
+<li>Function arguments must be sized therefore last can’t be called through a trade object.</li>
+</ul>
+<h2 id="trait-objects-and-drop-function"><a class="header" href="#trait-objects-and-drop-function">Trait Objects and Drop Function</a></h2>
+<p>Section Overview: This section discusses how drop function works with trait objects.</p>
+<h3 id="drop-function"><a class="header" href="#drop-function">Drop Function</a></h3>
+<ul>
+<li>The v table for any trait object includes a pointer to the drop function for the concrete type because it’s necessary.</li>
+<li>Every v table includes drop, which technically includes extra information such as size and alignment of the concrete
+type.</li>
+<li>For something like a box where you have to deallocate memory, that information is necessary to pass to the allocator.</li>
+</ul>
+<h2 id="unsized-types-and-fat-pointers"><a class="header" href="#unsized-types-and-fat-pointers">Unsized Types and Fat Pointers</a></h2>
+<p>Section Overview: In this section, the speaker discusses unsized types such as din trait, u8, and stir. They explain
+that these types are not sized and cannot be used as function arguments or return types. The speaker also explains how
+to make these types sized by placing them behind a reference or a pointer.</p>
+<h3 id="unsized-types"><a class="header" href="#unsized-types">Unsized Types</a></h3>
+<ul>
+<li>Din trait, u8, and stir are examples of unsized types.</li>
+<li>When placed behind a reference or a pointer, unsized types become a tuple of a pointer to the data and a pointer to
+the v table.</li>
+<li>U8 becomes sized when placed behind a type that can mask its unsizedness such as box or raw pointers.</li>
+</ul>
+<h3 id="making-unsized-types-sized"><a class="header" href="#making-unsized-types-sized">Making Unsized Types Sized</a></h3>
+<ul>
+<li>To make an unsized type sized, place it behind a type that can mask its unsizedness such as references or boxes.</li>
+<li>Box can be used to make an unsized type sized by turning it into a wide pointer where one part is the data and the
+other part is the length of the slice.</li>
+<li>Dynamically-sized types are special in Rust because they require knowledge about whether their pointers are wide or
+not.</li>
+</ul>
+<h3 id="manipulating-fat-pointers"><a class="header" href="#manipulating-fat-pointers">Manipulating Fat Pointers</a></h3>
+<ul>
+<li>RFC 2580 adds generic APIs for manipulating metadata of fat pointers.</li>
+<li>A din trait becomes pointy where metadata is din metadata which contains information such as type size, alignment,
+drop-in-place pointer, and methods for implementing traits.</li>
+<li>Trait alias thin refers to any type that implements pointy where metadata is empty. It has methods for introspecting
+the metadata of a pointer.</li>
+<li>Waker trait in Rust’s standard library is an example of dynamically constructing v tables at runtime.</li>
+</ul>
+<h2 id="understanding-waker-and-raw-waker"><a class="header" href="#understanding-waker-and-raw-waker">Understanding Waker and Raw Waker</a></h2>
+<p>Section Overview: This section explains the structure of a waker and raw waker, which is a manually constructed v table
+in the standard library.</p>
+<h3 id="structure-of-waker-and-raw-waker"><a class="header" href="#structure-of-waker-and-raw-waker">Structure of Waker and Raw Waker</a></h3>
+<ul>
+<li>A waker is a struct that has the methods wake, wake by ref will awaken from raw, and you can drop it and clone it.</li>
+<li>Inside of a waker is a raw waker. A raw waker if you look inside of it is a data pointer and a v table pointer so it
+really is dynamic dispatch but in sort of a hidden way.</li>
+<li>The v table is a raw waker v table and you construct by giving the function pointers for the clone method for the wake
+method for the wake by ref and for drop.</li>
+</ul>
+<h3 id="manually-constructed-v-table"><a class="header" href="#manually-constructed-v-table">Manually Constructed V Table</a></h3>
+<ul>
+<li>It’s basically a manually constructed v table that gives you dynamic dispatch through a type rather than a trait.</li>
+<li>This section concludes with no further information provided.</li>
+</ul>
+<h2 id="questions-on-references-metadata-types-dynamically-sized-types-box-u8-vs-vec-u8-din-fn-vs-fn"><a class="header" href="#questions-on-references-metadata-types-dynamically-sized-types-box-u8-vs-vec-u8-din-fn-vs-fn">Questions on References, Metadata Types, Dynamically Sized Types, Box U8 vs Vec U8, Din Fn vs Fn</a></h2>
+<p>Section Overview: This section answers various questions related to Rust programming language.</p>
+<h3 id="reference-to-u8"><a class="header" href="#reference-to-u8">Reference to U8</a></h3>
+<ul>
+<li>A reference to u8 had length not start pointer or endpoint.</li>
+</ul>
+<h3 id="metadata-types"><a class="header" href="#metadata-types">Metadata Types</a></h3>
+<ul>
+<li>RFC deprecates trait object stuff that existed nightly because this is replacement pointy trade thin metadata from raw
+parts where is the definition of oh it doesn’t actually give.</li>
+</ul>
+<h3 id="dynamically-sized-types-1"><a class="header" href="#dynamically-sized-types-1">Dynamically Sized Types</a></h3>
+<ul>
+<li>You can create your own dynamically sized types by adding fields to a struct. If it’s the last field, then it’s fine
+you can statically know the offset of f the offset of x and the offset of t.</li>
+</ul>
+<h3 id="box-u8-vs-vec-u8"><a class="header" href="#box-u8-vs-vec-u8">Box U8 vs Vec U8</a></h3>
+<ul>
+<li>Box u8 is not the same thing as a vec u8. Evacuate can grow so evacuate first of all has um it’s three three words it’
+s the pointer to the vector on the heap uh it’s the length of the vector and it’s the capacity of the vector.</li>
+<li>With a box u8, you can’t do that this will never grow or shrink you can’t push to it.</li>
+</ul>
+<h3 id="din-fn-vs-fn"><a class="header" href="#din-fn-vs-fn">Din Fn vs Fn</a></h3>
+<ul>
+<li>A din fn is different from an fn because din fn is really a v table which means that it both has a sort of v table.
+This has to be a function; it can’t be a closure.</li>
+</ul>
+<h2 id="static-dispatch-vs-dynamic-dispatch-1"><a class="header" href="#static-dispatch-vs-dynamic-dispatch-1">Static Dispatch vs Dynamic Dispatch</a></h2>
+<p>Section Overview: This section discusses the difference between static dispatch and dynamic dispatch.</p>
+<h3 id="calling-functions-with-closures"><a class="header" href="#calling-functions-with-closures">Calling Functions with Closures</a></h3>
+<ul>
+<li><code>fn main</code> can call <code>foo</code> with a closure, but not <code>bar</code>.</li>
+<li>The reason is that closures capture data from their environment, so when calling the closure, the address of the
+captured data needs to be passed in as well.</li>
+<li>For <code>bar</code>, only a function pointer is required, which means there’s nowhere to pass in the captured data.</li>
+</ul>
+<h3 id="using-dyn-fn-over-impl-fn"><a class="header" href="#using-dyn-fn-over-impl-fn">Using <code>dyn Fn</code> over <code>impl Fn</code></a></h3>
+<ul>
+<li>When using <code>dyn Fn</code> over <code>impl Fn</code>, we can use closures with functions like <code>baz</code>.</li>
+<li>However, using <code>impl Fn</code> generates a copy of the function for each closure type passed in.</li>
+<li>Sometimes it’s better to use <code>dyn Fn</code> to clean up your interface or make traits object-safe.</li>
+</ul>
+<h3 id="object-safety-2"><a class="header" href="#object-safety-2">Object Safety</a></h3>
+<ul>
+<li>Making a trait take an <code>impl Fn</code> makes it not object-safe because there could be multiple implementations of that
+function.</li>
+<li>Using a boxed trait object (<code>Box&lt;dyn Trait&gt;</code>) instead of making it generic cleans up your interface and makes it
+easier to use.</li>
+</ul>
+<h2 id="coherence"><a class="header" href="#coherence">Coherence</a></h2>
+<p>Section Overview: This section briefly mentions coherence but will not go into detail about it.</p>
+<p>Coherence is different enough from previous topics that it will require its own separate stream.</p>
+<h2 id="understanding-v-tables-and-dynamic-dispatch"><a class="header" href="#understanding-v-tables-and-dynamic-dispatch">Understanding V-Tables and Dynamic Dispatch</a></h2>
+<p>Section Overview: This section discusses how Rust generates a V-table for each trait object, and how there are many
+V-tables for each din trait. It also explains that dynamic detection of which traits something implements is not
+possible.</p>
+<h3 id="v-tables-and-trait-objects"><a class="header" href="#v-tables-and-trait-objects">V-Tables and Trait Objects</a></h3>
+<ul>
+<li>Rust generates a V-table for each trait object.</li>
+<li>There are many V-tables for each din trait.</li>
+<li>Dynamic detection of which traits something implements is not possible.</li>
+</ul>
+<h3 id="double-d-reference"><a class="header" href="#double-d-reference">Double D Reference</a></h3>
+<ul>
+<li>Calling a din function involves a double d reference.</li>
+<li>The first reference is for the V-table pointer, while the second one is for the actual function pointer within.</li>
+</ul>
+<h3 id="comparing-v-tables"><a class="header" href="#comparing-v-tables">Comparing V-Tables</a></h3>
+<ul>
+<li>With the new pointer v table dynamic metadata RFC, it’s possible to compare v tables by checking if s.v_table equals
+string as din asref stir dot v table.</li>
+<li>However, this approach may not be guaranteed since there could be different v tables in different compilation units.</li>
+</ul>
+<h2 id="working-with-slices-and-vec-of-dins"><a class="header" href="#working-with-slices-and-vec-of-dins">Working with Slices and Vec of Dins</a></h2>
+<p>Section Overview: This section covers working with slices and vec of dins in Rust.</p>
+<h3 id="example-code"><a class="header" href="#example-code">Example Code</a></h3>
+<ul>
+<li>An example code was provided to demonstrate working with slices and vec of dins in Rust.</li>
+<li>To make the code sized correctly, you have to use Box or Arc for the inner type.</li>
+</ul>
+<h2 id="rust-traits-and-the-any-trait"><a class="header" href="#rust-traits-and-the-any-trait">Rust Traits and the Any Trait</a></h2>
+<p>Section Overview: In this section, the speaker talks about Rust traits and how they work. They also introduce the any
+trait and explain its purpose.</p>
+<h3 id="rust-traits"><a class="header" href="#rust-traits">Rust Traits</a></h3>
+<ul>
+<li>The speaker explains that Rust traits are similar to interfaces in other programming languages.</li>
+<li>They mention that there is an invariant in Rust that states that if two types implement the same trait, then they
+should have the same behavior for that trait. However, this invariant may not hold true in some cases.</li>
+</ul>
+<h3 id="the-any-trait"><a class="header" href="#the-any-trait">The Any Trait</a></h3>
+<ul>
+<li>The speaker introduces the any trait, which is a super magical trait in Rust.</li>
+<li>They explain that any is just a trait with a function that returns a unique identifier for a type guaranteed by the
+compiler.</li>
+<li>Using type id on a trait object over any can give you a unique type identifier for that value, which can be used to
+downcast from din any to the concrete type.</li>
+<li>The speaker recommends reading the standard any module documentation to learn more about why this is safe.</li>
+</ul>
+<h2 id="conclusion-2"><a class="header" href="#conclusion-2">Conclusion</a></h2>
+<p>Section Overview: In this section, the speaker concludes their talk and thanks their audience.</p>
+<ul>
+<li>The speaker ends their talk after covering many topics related to Rust traits and introducing the any trait.</li>
+</ul>
+<h2 id="generated-by-video-highlight"><a class="header" href="#generated-by-video-highlight">Generated by Video Highlight</a></h2>
+<p>https://videohighlight.com/video/summary/xcygqF5LVmM</p>
+
             </main>
 
             <!--            <script src="https://utteranc.es/client.js"-->
