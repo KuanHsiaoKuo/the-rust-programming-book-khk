@@ -179,7 +179,571 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                
+                <h1 id="subtyping-and-variance"><a class="header" href="#subtyping-and-variance">Subtyping and Variance</a></h1>
+<!--ts-->
+<ul>
+<li><a href="#subtyping-and-variance">Subtyping and Variance</a>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#understanding-subtyping-and-variance">Understanding Subtyping and Variance</a></li>
+<li><a href="#implementing-stir-talk-function">Implementing Stir Talk Function</a></li>
+<li><a href="#challenges-with-variance">Challenges with Variance</a></li>
+<li><a href="#introduction-to-stir-talk">Introduction to Stir Talk</a>
+<ul>
+<li><a href="#basic-signature-of-stir-talk">Basic Signature of Stir Talk</a></li>
+<li><a href="#example-usage-of-stir-talk">Example Usage of Stir Talk</a></li>
+<li><a href="#implementation-of-stir-talk">Implementation of Stir Talk</a></li>
+</ul>
+</li>
+<li><a href="#understanding-how-stir-talk-works">Understanding How Stir Talk Works</a>
+<ul>
+<li><a href="#internal-mechanics-of-stir-talk">Internal Mechanics of Stir Talk</a></li>
+<li><a href="#testing-our-implementation">Testing Our Implementation</a></li>
+<li><a href="#slicing-strings">Slicing Strings</a></li>
+<li><a href="#testing-stir_talk-function">Testing stir_talk Function</a></li>
+<li><a href="#compiler-error-message">Compiler Error Message</a></li>
+<li><a href="#extra-scope-added">Extra Scope Added</a></li>
+<li><a href="#simplified-example">Simplified Example</a></li>
+</ul>
+</li>
+<li><a href="#understanding-static-borrowing">Understanding Static Borrowing</a>
+<ul>
+<li><a href="#compilers-perspective-on-static-borrowing">Compiler’s Perspective on Static Borrowing</a></li>
+<li><a href="#shortening-lifetime-of-mutable-borrow">Shortening Lifetime of Mutable Borrow</a></li>
+<li><a href="#exploring-variance">Exploring Variance</a></li>
+<li><a href="#making-x-static">Making X Static</a></li>
+</ul>
+</li>
+<li><a href="#why-does-this-example-work">Why Does This Example Work?</a>
+<ul>
+<li><a href="#subtyping">Subtyping</a></li>
+<li><a href="#variance">Variance</a></li>
+</ul>
+</li>
+<li><a href="#covariance">Covariance</a>
+<ul>
+<li><a href="#not-every-type-is-covariant">Not Every Type Is Covariant</a></li>
+</ul>
+</li>
+<li><a href="#covariance-and-contravariance">Covariance and Contravariance</a>
+<ul>
+<li><a href="#covariant-types">Covariant Types</a></li>
+<li><a href="#contravariant-types">Contravariant Types</a></li>
+<li><a href="#example-function-arguments">Example: Function Arguments</a></li>
+<li><a href="#covariance-and-contravariance-1">Covariance and Contravariance</a></li>
+<li><a href="#invariance">Invariance</a></li>
+<li><a href="#cell-static">Cell Static</a></li>
+</ul>
+</li>
+<li><a href="#invariance-for-mutable-references">Invariance for Mutable References</a>
+<ul>
+<li><a href="#why-mutable-references-are-invariant">Why Mutable References are Invariant</a></li>
+</ul>
+</li>
+<li><a href="#covariance-and-invariance-for-immutable-references">Covariance and Invariance for Immutable References</a>
+<ul>
+<li><a href="#covariance-and-invariance-for-immutable-references-1">Covariance and Invariance for Immutable References</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-mutable-references">Introduction to Mutable References</a>
+<ul>
+<li><a href="#mutable-references">Mutable References</a></li>
+</ul>
+</li>
+<li><a href="#covariance-and-invariance-of-mutable-references">Covariance and Invariance of Mutable References</a>
+<ul>
+<li><a href="#covariance-and-invariance">Covariance and Invariance</a></li>
+</ul>
+</li>
+<li><a href="#understanding-lifetime-issues-with-mutable-references">Understanding Lifetime Issues with Mutable References</a>
+<ul>
+<li><a href="#lifetime-issues">Lifetime Issues</a></li>
+</ul>
+</li>
+<li><a href="#introduction-1">Introduction</a></li>
+<li><a href="#adding-an-additional-lifetime">Adding an Additional Lifetime</a></li>
+<li><a href="#testing-the-fixed-code">Testing the Fixed Code</a></li>
+<li><a href="#explanation-of-lifetime-assumptions">Explanation of Lifetime Assumptions</a></li>
+<li><a href="#borrow-checker-rules">Borrow Checker Rules</a>
+<ul>
+<li><a href="#mutable-reference-lifetime">Mutable Reference Lifetime</a></li>
+<li><a href="#borrowing-rules">Borrowing Rules</a></li>
+<li><a href="#phantom-data">Phantom Data</a></li>
+</ul>
+</li>
+<li><a href="#the-drop-check">The Drop Check</a>
+<ul>
+<li><a href="#the-drop-check-1">The Drop Check</a></li>
+</ul>
+</li>
+<li><a href="#touch-drop">Touch Drop</a>
+<ul>
+<li><a href="#touch-drop-1">Touch Drop</a></li>
+</ul>
+</li>
+<li><a href="#understanding-phantom-data">Understanding Phantom Data</a>
+<ul>
+<li><a href="#phantom-data-1">Phantom Data</a></li>
+<li><a href="#invariance-1">Invariance</a></li>
+<li><a href="#covariance-1">Covariance</a></li>
+</ul>
+</li>
+<li><a href="#raw-pointers-vs-phantom-data">Raw Pointers vs. Phantom Data</a>
+<ul>
+<li><a href="#raw-pointers">Raw Pointers</a></li>
+<li><a href="#auto-implementation">Auto Implementation</a></li>
+</ul>
+</li>
+<li><a href="#covariance-and-invariance-in-rust">Covariance and Invariance in Rust</a>
+<ul>
+<li><a href="#understanding-covariance-and-invariance">Understanding Covariance and Invariance</a></li>
+<li><a href="#syntax-for-lifetime-bounds">Syntax for Lifetime Bounds</a></li>
+<li><a href="#mutating-through-star-const-t">Mutating Through Star Const T</a></li>
+<li><a href="#unique-types-and-non-null-pointers">Unique Types and Non-null Pointers</a></li>
+</ul>
+</li>
+<li><a href="#rust-lifetimes-variance-and-subtyping">Rust Lifetimes: Variance and Subtyping</a>
+<ul>
+<li><a href="#understanding-lifetime-specifiers">Understanding Lifetime Specifiers</a></li>
+<li><a href="#solving-lifetime-issues-with-variance-and-subtyping">Solving Lifetime Issues with Variance and Subtyping</a></li>
+<li><a href="#writing-explicit-code">Writing Explicit Code</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Tue Apr 11 15:33:26 UTC 2023 -->
+<!--te-->
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<p>Section Overview: In this stream, the speaker will cover subtyping and variance in Rust. They will refer to official
+Rust language references and educational code files to explain these concepts.</p>
+<h2 id="understanding-subtyping-and-variance"><a class="header" href="#understanding-subtyping-and-variance">Understanding Subtyping and Variance</a></h2>
+<p>Section Overview: The speaker explains that subtyping and variance are niche topics that can be hard to understand. They
+recommend reading through the Rust reference and Rust nomicon for more information.</p>
+<ul>
+<li>The Rust reference is not great for understanding subtyping and variance.</li>
+<li>The Rust nomicon has a chapter on subtyping and variance that is very helpful.</li>
+<li>There is an educational code file available that provides a thorough example of how lifetime variance works in
+practice.</li>
+</ul>
+<h2 id="implementing-stir-talk-function"><a class="header" href="#implementing-stir-talk-function">Implementing Stir Talk Function</a></h2>
+<p>Section Overview: The speaker will implement the stir talk function from C++ and NC, which takes a string and delimiter
+as input, returns the string up to the next delimiter, then changes the original string by removing the prefix returned.</p>
+<ul>
+<li>This function is similar to strip prefix in the Rust standard library but uses a delimiter instead of a string.</li>
+<li>The function mutates the string in place so it can be called repeatedly.</li>
+<li>Implementing this function straightforwardly runs into issues with variance, making it difficult to use.</li>
+</ul>
+<h2 id="challenges-with-variance"><a class="header" href="#challenges-with-variance">Challenges with Variance</a></h2>
+<p>Section Overview: The speaker acknowledges that they have limited experience with variance but will attempt to explain
+its importance in this context. They encourage viewers to ask questions if they don’t understand why something matters
+or why an error occurs.</p>
+<ul>
+<li>Variance can be confusing due to technical terminology and lifetimes involved.</li>
+<li>Viewers are encouraged to ask questions if they don’t understand something.</li>
+</ul>
+<h2 id="introduction-to-stir-talk"><a class="header" href="#introduction-to-stir-talk">Introduction to Stir Talk</a></h2>
+<p>Section Overview: In this section, the speaker introduces the concept of stir talk and explains its basic signature.
+They also discuss how stir talk modifies a pointer to a string.</p>
+<h3 id="basic-signature-of-stir-talk"><a class="header" href="#basic-signature-of-stir-talk">Basic Signature of Stir Talk</a></h3>
+<ul>
+<li>Stir talk takes a string and a delimiter as input.</li>
+<li>It takes a mutable reference to a string because it modifies the pointer to the string.</li>
+<li>The function returns everything up to the delimiter.</li>
+</ul>
+<h3 id="example-usage-of-stir-talk"><a class="header" href="#example-usage-of-stir-talk">Example Usage of Stir Talk</a></h3>
+<ul>
+<li>To use stir talk, pass in a mutable reference to a variable holding the string and delimiter.</li>
+<li>The function will modify the pointer so that it points after the delimiter and return everything before it.</li>
+</ul>
+<h3 id="implementation-of-stir-talk"><a class="header" href="#implementation-of-stir-talk">Implementation of Stir Talk</a></h3>
+<ul>
+<li>The implementation is not complicated. Find the first occurrence of the delimiter in s using <code>find()</code>.</li>
+<li>Split s at that location into prefix and suffix.</li>
+<li>Set s to be suffix and return prefix.</li>
+<li>If there is no occurrence of delimiter, set s to empty string, have prefix be entirety of s, and return prefix.</li>
+</ul>
+<h2 id="understanding-how-stir-talk-works"><a class="header" href="#understanding-how-stir-talk-works">Understanding How Stir Talk Works</a></h2>
+<p>Section Overview: In this section, we dive deeper into how stir talk works by discussing its internals. We also mention
+that we will test our implementation later on.</p>
+<h3 id="internal-mechanics-of-stir-talk"><a class="header" href="#internal-mechanics-of-stir-talk">Internal Mechanics of Stir Talk</a></h3>
+<ul>
+<li>The function changes its input argument in place; it becomes an in-out argument.</li>
+<li>It finds the limiter, returns what comes before it, and sets input argument to what follows it.</li>
+</ul>
+<h3 id="testing-our-implementation"><a class="header" href="#testing-our-implementation">Testing Our Implementation</a></h3>
+<p>We will test our implementation later on.</p>
+<h2 id="string-slicing-and-utf-8"><a class="header" href="#string-slicing-and-utf-8"><a href="t=0:12:17s">#</a> String Slicing and UTF-8</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to slice strings in Rust and how it works with UTF-8
+characters.</p>
+<h3 id="slicing-strings"><a class="header" href="#slicing-strings">Slicing Strings</a></h3>
+<ul>
+<li><a href="t=0:12:17s"></a> The length of the delimiter is important when slicing strings.</li>
+<li><a href="t=0:12:30s"></a> The function should work with UTF-8 strings as well since it finds the start of the delimiter and
+slices the string up to that point.</li>
+<li><a href="t=0:12:51s"></a> After finding the delimiter, we skip past it and return everything after it.</li>
+</ul>
+<h2 id="borrowing-mutable-references"><a class="header" href="#borrowing-mutable-references"><a href="t=0:13:01s">#</a> Borrowing Mutable References</a></h2>
+<p>Section Overview: This section covers borrowing mutable references in Rust and how they can cause issues.</p>
+<h3 id="testing-stir_talk-function"><a class="header" href="#testing-stir_talk-function">Testing stir_talk Function</a></h3>
+<ul>
+<li><a href="t=0:13:23s"></a> We test our function by passing a mutable string pointer into <code>stir_talk</code> with a whitespace delimiter.
+We assign the return value to be “hello”.</li>
+<li><a href="t=0:13:30s"></a> We assert that “hello” is equal to “hello” and then we assert that x is equal to “world”.</li>
+</ul>
+<h3 id="compiler-error-message"><a class="header" href="#compiler-error-message">Compiler Error Message</a></h3>
+<ul>
+<li><a href="t=0:13:58s"></a> When running <code>cargo check</code>, everything runs fine. However, when running <code>cargo test</code>, it fails due to
+an error message about borrowing mutable references.</li>
+<li><a href="t=0:14:26s"></a> The issue arises because hello has the same lifetime as the mutable reference given in, so as long as
+hello exists, x continues to be immutably borrowed.</li>
+</ul>
+<h2 id="variance-issues"><a class="header" href="#variance-issues"><a href="t=0:15:s19">#</a> Variance Issues</a></h2>
+<p>Section Overview: This section covers variance issues in Rust.</p>
+<h3 id="extra-scope-added"><a class="header" href="#extra-scope-added">Extra Scope Added</a></h3>
+<ul>
+<li><a href="t=0:15:13s"></a> We add an extra scope around the code to drop hello so that the mutable reference to x should no longer
+be in use.</li>
+<li><a href="t=0:15:19s"></a> However, when running <code>cargo test</code>, it still fails with the same error message about borrowing mutable
+references.</li>
+</ul>
+<h3 id="simplified-example"><a class="header" href="#simplified-example">Simplified Example</a></h3>
+<ul>
+<li><a href="t=0:16:27s"></a> We simplify the code by having <code>stir_talk</code> return a static string instead of a mutable one.</li>
+<li><a href="t=0:17:00s"></a> Even with this change, it still fails to compile due to variance issues.</li>
+</ul>
+<h2 id="understanding-static-borrowing"><a class="header" href="#understanding-static-borrowing">Understanding Static Borrowing</a></h2>
+<p>Section Overview: In this section, the speaker explains how the compiler sees a static borrow and why it needs to be
+static. They also explore how the compiler can shorten the lifetime of a mutable borrow.</p>
+<h3 id="compilers-perspective-on-static-borrowing"><a class="header" href="#compilers-perspective-on-static-borrowing">Compiler’s Perspective on Static Borrowing</a></h3>
+<ul>
+<li>The compiler sees a static borrow and assumes that tick a is static.</li>
+<li>If tick a is static, then this must be static, and if that’s static, then this mutable borrow has to be a static
+borrow.</li>
+<li>This mutable borrow of x is only valid for the lifetime of x until drop. Therefore, it needs to last until the end of
+the program. However, x is a stack variable so that won’t work.</li>
+</ul>
+<h3 id="shortening-lifetime-of-mutable-borrow"><a class="header" href="#shortening-lifetime-of-mutable-borrow">Shortening Lifetime of Mutable Borrow</a></h3>
+<ul>
+<li>The mutable borrow of x needs to be able to last until the end of the program but since x is not global or heap
+allocated it cannot do so.</li>
+<li>The compiler knows that if you have a static reference, you can use it in place of anything with shorter lifetime
+reference.</li>
+<li>If you have a string with a static lifetime, it’s valid in any context that takes non-static lifetime because the
+static lifetime is always longer than any other lifetime.</li>
+</ul>
+<h3 id="exploring-variance"><a class="header" href="#exploring-variance">Exploring Variance</a></h3>
+<ul>
+<li>The reason why we can provide tick-static-t instead of take-a-tick-t when taking t as an argument is due to variance
+specifically covariance.</li>
+<li>If we have two strings where one has a non-static lifetime and another has a static lifetime, we can still assign them
+because any string with a static lifetime is valid in any context that takes non-static lifetime.</li>
+<li>The compiler knows that it can shorten the borrow of x in some cases, but not in others. This is what we will explore
+next.</li>
+</ul>
+<h3 id="making-x-static"><a class="header" href="#making-x-static">Making X Static</a></h3>
+<ul>
+<li>If we don’t have an assertion, the compiler can pretend that the mutable borrow has the same lifetime as x until it’s
+dropped.</li>
+<li>When we add an assertion, this is now trying to immutably access x before x is dropped and won’t compile again because
+x needs to be static.</li>
+</ul>
+<h2 id="why-does-this-example-work"><a class="header" href="#why-does-this-example-work">Why Does This Example Work?</a></h2>
+<p>Section Overview: In this section, the speaker explains why a specific example works in Rust.</p>
+<h3 id="subtyping"><a class="header" href="#subtyping">Subtyping</a></h3>
+<ul>
+<li>The type of <code>y</code> is some lifetime tick <code>a</code>, but we’re assigning something that is a tick static into something that’s a
+ticket.</li>
+<li>A subtype is when some type <code>t</code> is at least as useful as some type <code>u</code>.</li>
+<li>Static is a subtype of any tick <code>a</code>.</li>
+<li>You can use subtyping for things that aren’t lifetimes in Rust currently variants mostly just affects lifetimes.</li>
+</ul>
+<h3 id="variance"><a class="header" href="#variance">Variance</a></h3>
+<ul>
+<li>Most things are covariant.</li>
+<li>If you have some function foo that takes a t and doesn’t return anything, you can use the same argument for if you
+have some x of type t and you want to assign to it.</li>
+<li>Here’s what we’re going to do: let’s say that foo takes a tick <code>a</code> stir. You’re allowed to provide any type that is a
+subtype of the arguments in this case right so I can call foo with some tick <code>a</code> stir but I can also call foo with a
+static stirrer static is a subtype of <code>a</code>.</li>
+</ul>
+<h2 id="covariance"><a class="header" href="#covariance">Covariance</a></h2>
+<p>Section Overview: In this section, the speaker explains covariance and how it works in Rust.</p>
+<h3 id="not-every-type-is-covariant"><a class="header" href="#not-every-type-is-covariant">Not Every Type Is Covariant</a></h3>
+<ul>
+<li>There are three types of variance: covariance, contravariance, and invariance.</li>
+<li>Animal is not a subtype of cat because cats can do things that animals can’t.</li>
+</ul>
+<h2 id="covariance-and-contravariance"><a class="header" href="#covariance-and-contravariance">Covariance and Contravariance</a></h2>
+<p>Section Overview: This section discusses covariance and contravariance in Rust, specifically in relation to functions
+that take arguments of different types.</p>
+<h3 id="covariant-types"><a class="header" href="#covariant-types">Covariant Types</a></h3>
+<ul>
+<li>A type is covariant if it can be replaced with a subtype.</li>
+<li>In Rust, most types are covariant.</li>
+<li>Examples of covariant types include <code>&amp;'a T</code> and <code>Box&lt;T&gt;</code>.</li>
+</ul>
+<h3 id="contravariant-types"><a class="header" href="#contravariant-types">Contravariant Types</a></h3>
+<ul>
+<li>A type is contravariant if it can be replaced with a supertype.</li>
+<li>In Rust, the only contravariant type is <code>fn(T)</code>.</li>
+<li>An example of a contravariant function argument is a function that takes an argument of type <code>fn(&amp;'a str)</code>.</li>
+</ul>
+<h3 id="example-function-arguments"><a class="header" href="#example-function-arguments">Example: Function Arguments</a></h3>
+<ul>
+<li>If a function expects an argument of type <code>fn(&amp;'a str)</code> but receives an argument of type <code>fn(&amp;'static str)</code>, this will
+not compile because the provided function requires a longer lifetime than what was expected.</li>
+<li>However, if the function expects an argument of type <code>fn(&amp;'static str)</code> but receives an argument of
+type <code>fn(&amp;'a str)</code>, this will compile because the provided function requires a shorter lifetime than what was
+expected.</li>
+</ul>
+<h2 id="rust-lifetimes"><a class="header" href="#rust-lifetimes"><a href="t=0:39:55">#</a> Rust Lifetimes</a></h2>
+<p>Section Overview: This section covers the concepts of covariance, contravariance, and invariance in Rust lifetimes.</p>
+<h3 id="covariance-and-contravariance-1"><a class="header" href="#covariance-and-contravariance-1">Covariance and Contravariance</a></h3>
+<ul>
+<li><a href="t=0:39:55"></a> Covariant types are more generally applicable than their subtypes.</li>
+<li><a href="t=0:40:19"></a> In Rust, function argument types are the only place where we have contravariant types.</li>
+<li><a href="t=0:41:03"></a> A static lifetime is a subtype of any other lifetime ticket.</li>
+<li><a href="t=0:41:08"></a> A function with a tick a t argument is a subtype of a static t.</li>
+<li><a href="t=0:41:28"></a> The subtyping relationship between these two types is flipped, which is what contravariance means.</li>
+</ul>
+<h3 id="invariance"><a class="header" href="#invariance">Invariance</a></h3>
+<ul>
+<li><a href="t=0:41:57"></a> Invariance refers to cases where neither covariance nor contravariance applies.</li>
+<li><a href="t=0:42:18"></a> Mutable references to a type T are covariant in the tick a but invariant in the T.</li>
+<li><a href="t=0:42:42"></a> If mutable references were covariant, it would be possible to assign an x of type static string
+reference into foo that takes mutable reference to some string pointer. However, this would lead to issues when trying
+to print x since it’s pointing into stack local memory that has since been dropped.</li>
+</ul>
+<h3 id="cell-static"><a class="header" href="#cell-static">Cell Static</a></h3>
+<ul>
+<li><a href="t=0:43.11"></a> The concept of cell static is introduced as an example for explaining why mutable references cannot be
+covariant.</li>
+</ul>
+<p>Overall, this section provides an overview of how covariance and contravariance work in Rust lifetimes and explains why
+there are cases where neither applies (invariance). It also introduces the concept of cell static as an example for
+explaining why mutable references cannot be covariant.</p>
+<h2 id="invariance-for-mutable-references"><a class="header" href="#invariance-for-mutable-references">Invariance for Mutable References</a></h2>
+<p>Section Overview: This section explains why mutable references are invariant in their argument type.</p>
+<h3 id="why-mutable-references-are-invariant"><a class="header" href="#why-mutable-references-are-invariant">Why Mutable References are Invariant</a></h3>
+<ul>
+<li>Mutable references are invariant in their argument type.</li>
+<li>Invariance means that you must provide something that is exactly the same as what was specified. You cannot provide
+something more useful or less useful.</li>
+<li>The compiler needs to reconcile the provided arguments with the signature of foo, but it cannot make static be equal
+to take a or take a equal to static because mutable references are invariant in their thing that they reference.</li>
+<li>If mutable references were not invariant, you could downgrade a mutable reference to something less useful and end up
+with something that thinks it’s a more useful type but it’s actually a less useful type.</li>
+</ul>
+<h2 id="covariance-and-invariance-for-immutable-references"><a class="header" href="#covariance-and-invariance-for-immutable-references">Covariance and Invariance for Immutable References</a></h2>
+<p>Section Overview: This section explains why immutable references are covariant in their lifetime but invariant in the t.</p>
+<h3 id="covariance-and-invariance-for-immutable-references-1"><a class="header" href="#covariance-and-invariance-for-immutable-references-1">Covariance and Invariance for Immutable References</a></h3>
+<ul>
+<li>Immutable reference to t is covariant in its lifetime but invariant in the t because if we had covariance, we could
+have an immutable reference to b with some lifetime and then stick in something less useful.</li>
+<li>The lifetime of the mutable reference to b is from b until when b gets dropped.</li>
+<li>We can introduce a memory leak using box leak which allows us to get an immutable reference with any lifetime but
+specifically with a static lifetime.</li>
+<li>Here, z is a mutable reference to y and we set z equals x which compiles fine because immutable references are
+covariant in their lifetime but invariant in the t.</li>
+</ul>
+<h2 id="introduction-to-mutable-references"><a class="header" href="#introduction-to-mutable-references">Introduction to Mutable References</a></h2>
+<p>Section Overview: In this section, the speaker introduces mutable references and explains how they are invariant in
+their type but covariant in their lifetime.</p>
+<h3 id="mutable-references"><a class="header" href="#mutable-references">Mutable References</a></h3>
+<ul>
+<li>Mutable references are introduced as a way to modify variables.</li>
+<li>They are invariant in their type but covariant in their lifetime.</li>
+<li>The compiler reconciles these two properties by allowing for subtyping between static and other lifetimes.</li>
+<li>This allows for the shortening of an immutable borrow’s lifetime.</li>
+</ul>
+<h2 id="covariance-and-invariance-of-mutable-references"><a class="header" href="#covariance-and-invariance-of-mutable-references">Covariance and Invariance of Mutable References</a></h2>
+<p>Section Overview: In this section, the speaker explains why mutable references are covariant in their lifetime and
+invariant in their type.</p>
+<h3 id="covariance-and-invariance"><a class="header" href="#covariance-and-invariance">Covariance and Invariance</a></h3>
+<ul>
+<li>Mutable references are covariant in their lifetime because it is safe to shorten the lifetime of an immutable borrow.</li>
+<li>They are invariant in their type because it is not safe to assign a less useful type into what’s behind the mutable
+reference.</li>
+</ul>
+<h2 id="understanding-lifetime-issues-with-mutable-references"><a class="header" href="#understanding-lifetime-issues-with-mutable-references">Understanding Lifetime Issues with Mutable References</a></h2>
+<p>Section Overview: In this section, the speaker discusses how mutable references can cause issues with lifetimes.</p>
+<h3 id="lifetime-issues"><a class="header" href="#lifetime-issues">Lifetime Issues</a></h3>
+<ul>
+<li>The speaker goes back to a previous example where there was an issue with lifetimes.</li>
+<li>The compiler tells us that x does not live long enough because it needs to figure out how long the mutable borrow will
+be.</li>
+<li>We cannot shorten the lifetime of what’s behind the mutable reference due to its invariance, so we must make it static
+instead.</li>
+</ul>
+<h2 id="introduction-1"><a class="header" href="#introduction-1">Introduction</a></h2>
+<p>Section Overview: In this section, the speaker explains that they will be discussing why a certain code does not compile
+and how to fix it. They emphasize the importance of understanding why the code doesn’t work before jumping into a
+solution.</p>
+<h2 id="adding-an-additional-lifetime"><a class="header" href="#adding-an-additional-lifetime">Adding an Additional Lifetime</a></h2>
+<p>Section Overview: The speaker introduces an additional lifetime to fix a code that previously did not compile.</p>
+<ul>
+<li>The new signature for <code>stir_talk</code> now has two lifetimes: one for mutable borrow and one for the string being pointed
+to.</li>
+<li>The compiler can now choose these two lifetimes independently, allowing us to choose one as static and one as
+non-static.</li>
+<li>With this new signature, the previously non-compiling code now compiles successfully.</li>
+</ul>
+<h2 id="testing-the-fixed-code"><a class="header" href="#testing-the-fixed-code">Testing the Fixed Code</a></h2>
+<p>Section Overview: The speaker tests the fixed code with an earlier example to ensure that it works properly.</p>
+<ul>
+<li>The earlier example now compiles successfully with the fixed code.</li>
+<li>An unnecessary line is removed from the earlier example.</li>
+<li>The test passes, indicating that our implementation was correct.</li>
+</ul>
+<h2 id="explanation-of-lifetime-assumptions"><a class="header" href="#explanation-of-lifetime-assumptions">Explanation of Lifetime Assumptions</a></h2>
+<p>Section Overview: The speaker explains why a tick bee bound is not needed in this case.</p>
+<ul>
+<li>Rust assumes that any generic lifetime argument implies at least for as long as the duration of the function. This
+assumption is all we need for our mutable reference.</li>
+<li>Tick b does not depend on tick a; we are only returning a string.</li>
+</ul>
+<h2 id="borrow-checker-rules"><a class="header" href="#borrow-checker-rules">Borrow Checker Rules</a></h2>
+<p>Section Overview: This section covers the borrow checker rules in Rust.</p>
+<h3 id="mutable-reference-lifetime"><a class="header" href="#mutable-reference-lifetime">Mutable Reference Lifetime</a></h3>
+<ul>
+<li>Modifying a variable after a mutable borrow would cause an error.</li>
+<li>Non-lexical lifetimes (NLL) enabled in Rust 2015 edition, but before NLL, this code would not compile.</li>
+</ul>
+<h3 id="borrowing-rules"><a class="header" href="#borrowing-rules">Borrowing Rules</a></h3>
+<ul>
+<li>You can have a mutable reference to something that lives longer than the mutable reference.</li>
+<li>You cannot have a tick <code>a</code> is longer than tick <code>b</code>.</li>
+<li>The compiler implicitly adds a bound that tick <code>b</code> must be shorter than or equal to tick <code>a</code>.</li>
+</ul>
+<h3 id="phantom-data"><a class="header" href="#phantom-data">Phantom Data</a></h3>
+<ul>
+<li>Phantom data is used when you have a type that is generic over <code>T</code>, but doesn’t directly contain it.</li>
+<li>A phantom data field is added to satisfy the Rust compiler’s requirement for using unused type parameters.</li>
+</ul>
+<h2 id="the-drop-check"><a class="header" href="#the-drop-check">The Drop Check</a></h2>
+<p>Section Overview: This section discusses the drop check in Rust and how it determines whether generic types might be
+dropped as well.</p>
+<h3 id="the-drop-check-1"><a class="header" href="#the-drop-check-1">The Drop Check</a></h3>
+<ul>
+<li>When a type is dropped, Rust needs to know whether the generic types might be dropped as well.</li>
+<li>If a vector of <code>T</code>s is dropped, then when you drop the vector, you’re also going to drop some <code>T</code>s.</li>
+<li>Rust needs to know this because dropping a reference that still exists is not okay if it’s going to try to access the
+reference later on.</li>
+<li>However, if the vector is never accessed again after being dropped, then dropping the reference does not access the
+inner type on drop and is okay.</li>
+<li>The compiler knows this through something called the drop check which looks at whether the type contains a <code>T</code> and a
+phantom data <code>T</code>.</li>
+<li>Vec will only drop inner types if they implement drop themselves.</li>
+</ul>
+<h2 id="touch-drop"><a class="header" href="#touch-drop">Touch Drop</a></h2>
+<p>Section Overview: This section discusses touch drops in Rust and how they relate to variance.</p>
+<h3 id="touch-drop-1"><a class="header" href="#touch-drop-1">Touch Drop</a></h3>
+<ul>
+<li>Touch drops are used for debugging purposes in Rust.</li>
+<li>They require that their type is format debug and we’re going to impl drop for touch drop.</li>
+<li>If you make this a touch drop instead of just a reference, then this code no longer compiles because when z gets
+dropped right down here, we’re going to call this implementation of touch drop which is going to access the inner type
+which means it’s going to access this reference so dropping x here is not okay because by when z gets dropped it’s
+going to try to access the reference but when we drop the vector dropping the reference does not access the inner type
+on drop.</li>
+<li>Dropping x here would cause an error because there’s still a reference that lives down here.</li>
+</ul>
+<h2 id="understanding-phantom-data"><a class="header" href="#understanding-phantom-data">Understanding Phantom Data</a></h2>
+<p>Section Overview: In this section, the speaker talks about phantom data and its use in Rust programming. They explain
+how it is used to communicate ownership and drop semantics.</p>
+<h3 id="phantom-data-1"><a class="header" href="#phantom-data-1">Phantom Data</a></h3>
+<ul>
+<li><code>self.0</code> is a tuple struct with one element.</li>
+<li>The compiler assumes that it’s going to drop a <code>T</code>.</li>
+<li>Phantom data <code>T</code> communicates that you are owning a <code>T</code> and might drop one.</li>
+<li>Phantom data <code>Fnt</code> is a marker of contravariance.</li>
+</ul>
+<h3 id="invariance-1"><a class="header" href="#invariance-1">Invariance</a></h3>
+<ul>
+<li>If you want your type to be invariant in <code>T</code>, you can use phantom data.</li>
+<li>The compiler concludes that the <code>T</code> in d serializer four must be invariant in T.</li>
+</ul>
+<h3 id="covariance-1"><a class="header" href="#covariance-1">Covariance</a></h3>
+<ul>
+<li>Star const T is covariant.</li>
+<li>Unsafe cell has to be invariant.</li>
+</ul>
+<h2 id="raw-pointers-vs-phantom-data"><a class="header" href="#raw-pointers-vs-phantom-data">Raw Pointers vs. Phantom Data</a></h2>
+<p>Section Overview: In this section, the speaker compares raw pointers and phantom data, explaining why people prefer
+using phantom data over raw pointers.</p>
+<h3 id="raw-pointers"><a class="header" href="#raw-pointers">Raw Pointers</a></h3>
+<ul>
+<li>Once you introduce raw pointers, there are a couple of things you don’t get like send and sync auto-implemented for
+your types assuming all the members are.</li>
+</ul>
+<h3 id="auto-implementation"><a class="header" href="#auto-implementation">Auto Implementation</a></h3>
+<ul>
+<li>People prefer using phantom data over raw pointers because if you use this type and a phantom data, it would get
+auto-implemented for send and sync.</li>
+</ul>
+<h2 id="covariance-and-invariance-in-rust"><a class="header" href="#covariance-and-invariance-in-rust">Covariance and Invariance in Rust</a></h2>
+<p>Section Overview: This section discusses the importance of understanding covariance and invariance in Rust, particularly
+when dealing with generic types.</p>
+<h3 id="understanding-covariance-and-invariance"><a class="header" href="#understanding-covariance-and-invariance">Understanding Covariance and Invariance</a></h3>
+<ul>
+<li>It is important to consider whether a type is covariant or invariant when working with generic types.</li>
+<li>If a compiler concludes that a type is invariant over T, but you need it to be covariant, you must ensure that your
+code is not vulnerable to an “invariance attack.”</li>
+<li>In unsafe code, if the safety of your code relies on a generic parameter being invariant but the compiler concludes
+it’s covariant, you must ensure that your type is actually invariant.</li>
+<li>In order to mutate through a pointer, you can only use <code>&amp;mut T</code>, <code>*mut T</code>, or <code>UnsafeCell&lt;T&gt;</code>. All of these are
+invariant.</li>
+</ul>
+<h3 id="syntax-for-lifetime-bounds"><a class="header" href="#syntax-for-lifetime-bounds">Syntax for Lifetime Bounds</a></h3>
+<ul>
+<li>The syntax <code>for&lt;'a&gt;</code> specifies that a bound holds for any lifetime <code>'a'</code>.</li>
+<li>This syntax does not affect variance or subtyping.</li>
+</ul>
+<h3 id="mutating-through-star-const-t"><a class="header" href="#mutating-through-star-const-t">Mutating Through Star Const T</a></h3>
+<ul>
+<li>You can technically mutate through <code>*const T</code> by casting it without undefined behavior. However, this should be
+avoided as it requires contorting yourself into using an immutable reference as a mutable one.</li>
+</ul>
+<h3 id="unique-types-and-non-null-pointers"><a class="header" href="#unique-types-and-non-null-pointers">Unique Types and Non-null Pointers</a></h3>
+<ul>
+<li>Vectored types and box types contain unique pointers which are non-null. The nominal pointer type is covariant over T.</li>
+<li>If this covariance is incorrect for your use case, include phantom data in your type to provide invariants.</li>
+</ul>
+<h2 id="rust-lifetimes-variance-and-subtyping"><a class="header" href="#rust-lifetimes-variance-and-subtyping">Rust Lifetimes: Variance and Subtyping</a></h2>
+<p>Section Overview: In this video, the speaker covers variance and subtyping in Rust lifetimes. They start with a simple
+function and show how adding lifetimes can cause issues. The speaker then explains how to fix these issues using
+variance and subtyping.</p>
+<h3 id="understanding-lifetime-specifiers"><a class="header" href="#understanding-lifetime-specifiers">Understanding Lifetime Specifiers</a></h3>
+<ul>
+<li>A simple function like <code>stir_talk</code> can become complicated when lifetime specifiers are added.</li>
+<li>Adding lifetime specifiers to every reference is not enough to solve the problem.</li>
+<li>Using tick marks (<code>'a</code>) on all references can lead to problems that are difficult to diagnose.</li>
+</ul>
+<h3 id="solving-lifetime-issues-with-variance-and-subtyping"><a class="header" href="#solving-lifetime-issues-with-variance-and-subtyping">Solving Lifetime Issues with Variance and Subtyping</a></h3>
+<ul>
+<li>Adding a second lifetime specifier solves the issue of calling <code>stir_talk</code>.</li>
+<li>The solution involves using variance and subtyping.</li>
+<li>By the end of the video, viewers should have a better understanding of variance and subtyping in Rust lifetimes.</li>
+</ul>
+<h3 id="writing-explicit-code"><a class="header" href="#writing-explicit-code">Writing Explicit Code</a></h3>
+<ul>
+<li>It’s possible to write code without explicit lifetime specifiers by relying on Rust’s automatic generation of unique
+lifetimes for each reference.</li>
+<li>However, it’s recommended to be explicit about different lifetimes for clarity.</li>
+</ul>
+<h3 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h3>
+<ul>
+<li>The speaker thanks viewers for joining them in this journey through Rust lifetimes.</li>
+<li>They acknowledge that explaining type inference can be challenging but hope that viewers landed in a good place.</li>
+<li>The next stream will likely involve live coding, possibly porting some code.</li>
+</ul>
+<h2 id="generated-by-video-highlight"><a class="header" href="#generated-by-video-highlight">Generated by Video Highlight</a></h2>
+<p>https://videohighlight.com/video/summary/iVYWDIW71jk</p>
+
             </main>
 
             <!--            <script src="https://utteranc.es/client.js"-->

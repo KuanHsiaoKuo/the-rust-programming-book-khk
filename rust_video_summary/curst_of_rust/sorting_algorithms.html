@@ -179,7 +179,632 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                
+                <h1 id="sorting-algorithms"><a class="header" href="#sorting-algorithms">Sorting Algorithms</a></h1>
+<!--ts-->
+<ul>
+<li><a href="#sorting-algorithms">Sorting Algorithms</a>
+<ul>
+<li><a href="#introduction">Introduction</a>
+<ul>
+<li><a href="#sorting-algorithms-in-rust">Sorting Algorithms in Rust</a></li>
+</ul>
+</li>
+<li><a href="#ord-trait">Ord Trait</a>
+<ul>
+<li><a href="#partial-ord-vs-ord">Partial Ord vs. Ord</a></li>
+<li><a href="#total-order">Total Order</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a>
+<ul>
+<li><a href="#recap">Recap</a></li>
+<li><a href="#future-streams">Future Streams</a></li>
+</ul>
+</li>
+<li><a href="#floating-point-operations-and-sorting-mechanisms">Floating Point Operations and Sorting Mechanisms</a>
+<ul>
+<li><a href="#floating-point-operations">Floating Point Operations</a></li>
+<li><a href="#sorting-mechanisms">Sorting Mechanisms</a></li>
+<li><a href="#implementation-of-sorting-trait">Implementation of Sorting Trait</a></li>
+</ul>
+</li>
+<li><a href="#sorting-algorithms-1">Sorting Algorithms</a>
+<ul>
+<li><a href="#bubble-sort">Bubble Sort</a></li>
+<li><a href="#other-sorting-algorithms">Other Sorting Algorithms</a></li>
+</ul>
+</li>
+<li><a href="#implementing-bubble-sort">Implementing Bubble Sort</a>
+<ul>
+<li><a href="#implementing-bubble-sort-1">Implementing Bubble Sort</a></li>
+</ul>
+</li>
+<li><a href="#bubble-sort-and-insertion-sort">Bubble Sort and Insertion Sort</a>
+<ul>
+<li><a href="#bubble-sort-1">Bubble Sort</a></li>
+<li><a href="#insertion-sort">Insertion Sort</a></li>
+</ul>
+</li>
+<li><a href="#threshold-for-sorting">Threshold for Sorting</a></li>
+<li><a href="#insertion-sort-1">Insertion Sort</a>
+<ul>
+<li><a href="#implementing-insertion-sort">Implementing Insertion Sort</a></li>
+<li><a href="#comparison-with-bubble-sort">Comparison with Bubble Sort</a></li>
+<li><a href="#alternative-implementation">Alternative Implementation</a></li>
+</ul>
+</li>
+<li><a href="#using-binary-search-and-insert-to-sort-a-slice">Using Binary Search and Insert to Sort a Slice</a>
+<ul>
+<li><a href="#binary-search-and-insert">Binary Search and Insert</a></li>
+<li><a href="#conclusion-1">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#binary-search-and-sorting">Binary Search and Sorting</a>
+<ul>
+<li><a href="#binary-search">Binary Search</a></li>
+<li><a href="#insertion-sort-2">Insertion Sort</a></li>
+<li><a href="#bubble-sort-2">Bubble Sort</a></li>
+<li><a href="#future-improvements">Future Improvements</a></li>
+<li><a href="#the-phd-mug">The PhD Mug</a></li>
+<li><a href="#selection-sort">Selection Sort</a></li>
+<li><a href="#steps-for-selection-sort">Steps for Selection Sort</a></li>
+</ul>
+</li>
+<li><a href="#rust-analyzer-and-slice-iterator">Rust Analyzer and Slice Iterator</a>
+<ul>
+<li><a href="#using-enumerate-function-on-iterator">Using Enumerate Function on Iterator</a></li>
+<li><a href="#lifetime-issue-with-min-by-key">Lifetime Issue with Min by Key</a></li>
+<li><a href="#adjusting-index-for-unsorted-slice">Adjusting Index for Unsorted Slice</a></li>
+<li><a href="#asserting-equality">Asserting Equality</a></li>
+</ul>
+</li>
+<li><a href="#performance-of-explicit-vs-iterator-way">Performance of Explicit vs Iterator Way</a></li>
+<li><a href="#quick-sort">Quick Sort</a></li>
+<li><a href="#quick-sort-algorithm">Quick Sort Algorithm</a>
+<ul>
+<li><a href="#quick-sort-algorithm-1">Quick Sort Algorithm</a></li>
+</ul>
+</li>
+<li><a href="#implementing-quick-sort-as-an-in-place-sort">Implementing Quick Sort as an In-place Sort</a>
+<ul>
+<li><a href="#picking-a-pivot">Picking a Pivot</a></li>
+<li><a href="#partitioning-elements">Partitioning Elements</a></li>
+</ul>
+</li>
+<li><a href="#understanding-the-left-and-right-side-indicators">Understanding the Left and Right Side Indicators</a>
+<ul>
+<li><a href="#using-left-and-right-side-indicators">Using Left and Right Side Indicators</a></li>
+</ul>
+</li>
+<li><a href="#walking-through-iterative-methods">Walking Through Iterative Methods</a>
+<ul>
+<li><a href="#example-walkthrough">Example Walkthrough</a></li>
+</ul>
+</li>
+<li><a href="#quick-sort-algorithm-2">Quick Sort Algorithm</a>
+<ul>
+<li><a href="#implementing-quicksort">Implementing Quicksort</a></li>
+<li><a href="#issues-with-quicksort-implementation">Issues with Quicksort Implementation</a></li>
+</ul>
+</li>
+<li><a href="#understanding-quicksort">Understanding Quicksort</a>
+<ul>
+<li><a href="#excluding-pivot-from-sub-slices">Excluding Pivot from Sub-Slices</a></li>
+<li><a href="#placing-pivot-at-final-location">Placing Pivot at Final Location</a></li>
+</ul>
+</li>
+<li><a href="#improving-quick-sort">Improving Quick Sort</a>
+<ul>
+<li><a href="#choosing-a-better-pivot">Choosing a Better Pivot</a></li>
+</ul>
+</li>
+<li><a href="#comparing-sorting-algorithms">Comparing Sorting Algorithms</a>
+<ul>
+<li><a href="#efficiency-comparison">Efficiency Comparison</a></li>
+</ul>
+</li>
+<li><a href="#editing-benches-in-mainrs">Editing Benches in main.rs</a>
+<ul>
+<li><a href="#sorting-evaluator">Sorting Evaluator</a></li>
+</ul>
+</li>
+<li><a href="#using-criterion-vs-measuring-complexity">Using Criterion vs Measuring Complexity</a>
+<ul>
+<li><a href="#evaluating-sizes">Evaluating Sizes</a></li>
+</ul>
+</li>
+<li><a href="#sorting-algorithms-in-rust-1">Sorting Algorithms in Rust</a>
+<ul>
+<li><a href="#implementing-sorting-algorithms">Implementing Sorting Algorithms</a></li>
+<li><a href="#writing-a-generic-sort-evaluator">Writing a Generic Sort Evaluator</a></li>
+<li><a href="#object-safety-issue">Object Safety Issue</a></li>
+</ul>
+</li>
+<li><a href="#constructing-the-test">Constructing the Test</a>
+<ul>
+<li><a href="#generating-random-values">Generating Random Values</a></li>
+<li><a href="#printing-results">Printing Results</a></li>
+</ul>
+</li>
+<li><a href="#debugging-quicksort-panic">Debugging Quicksort Panic</a>
+<ul>
+<li><a href="#underflow-issue">Underflow Issue</a></li>
+<li><a href="#implementing-quick-sort">Implementing Quick Sort</a></li>
+<li><a href="#comparisons-in-rust">Comparisons in Rust</a></li>
+<li><a href="#checking-if-list-is-sorted">Checking If List Is Sorted</a></li>
+<li><a href="#plotting-results">Plotting Results</a></li>
+</ul>
+</li>
+<li><a href="#writing-a-simple-r-script">Writing a Simple R Script</a>
+<ul>
+<li><a href="#plotting-data-with-ggplot2">Plotting Data with ggplot2</a></li>
+<li><a href="#comparing-standard-library-sort">Comparing Standard Library Sort</a></li>
+<li><a href="#plotting-changes">Plotting Changes</a></li>
+<li><a href="#sorting-algorithm-performance">Sorting Algorithm Performance</a></li>
+<li><a href="#updating-plot">Updating Plot</a></li>
+<li><a href="#updating-plot-scale">Updating Plot Scale</a></li>
+</ul>
+</li>
+<li><a href="#conclusion-of-the-stream">Conclusion of the Stream</a>
+<ul>
+<li><a href="#sorting-algorithms-2">Sorting Algorithms</a></li>
+<li><a href="#future-streams-1">Future Streams</a></li>
+</ul>
+</li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Tue Apr 11 15:33:26 UTC 2023 -->
+<!--te-->
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<p>Section Overview: In this section, the speaker introduces the topic of the stream and explains why sorting algorithms are important.</p>
+<h3 id="sorting-algorithms-in-rust"><a class="header" href="#sorting-algorithms-in-rust">Sorting Algorithms in Rust</a></h3>
+<ul>
+<li>Sorting algorithms are commonly used in computer science education and coding interviews.</li>
+<li>The purpose of this stream is to show how sorting algorithms can be implemented in Rust in an idiomatic way.</li>
+<li>The speaker will take questions as they go along and may stumble upon interesting Rust topics while implementing these algorithms.</li>
+</ul>
+<h2 id="ord-trait"><a class="header" href="#ord-trait">Ord Trait</a></h2>
+<p>Section Overview: In this section, the speaker discusses the Ord trait in Rust and its importance for sorting algorithms.</p>
+<h3 id="partial-ord-vs-ord"><a class="header" href="#partial-ord-vs-ord">Partial Ord vs. Ord</a></h3>
+<ul>
+<li>Partial Ord is a partial ordering that allows types to be compared with other similar types.</li>
+<li>Ord requires that a type forms a total order, meaning it must always have an answer when comparing two elements.</li>
+<li>The reason for using Ord instead of Partial Ord for sorting is because it’s hard to order things if the order of some things in that set doesn’t matter.</li>
+</ul>
+<h3 id="total-order"><a class="header" href="#total-order">Total Order</a></h3>
+<ul>
+<li>Total order requires that things are transitive and always have an answer when comparing two elements.</li>
+<li>Using total order has some weird properties because there are certain types in Rust that don’t form a total order.</li>
+</ul>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
+<p>Section Overview: In this section, the speaker concludes the stream by summarizing what was covered and mentioning future streams.</p>
+<h3 id="recap"><a class="header" href="#recap">Recap</a></h3>
+<ul>
+<li>The purpose of this stream was to show how sorting algorithms can be implemented in Rust.</li>
+<li>The speaker used the Ord trait instead of Partial Ord for sorting because it’s easier to order things when their order matters.</li>
+<li>Total order requires that things are transitive and always have an answer when comparing two elements.</li>
+</ul>
+<h3 id="future-streams"><a class="header" href="#future-streams">Future Streams</a></h3>
+<ul>
+<li>The speaker will do another stream on implementing an improvement to a concurrent data structure they maintain.</li>
+</ul>
+<h2 id="floating-point-operations-and-sorting-mechanisms"><a class="header" href="#floating-point-operations-and-sorting-mechanisms">Floating Point Operations and Sorting Mechanisms</a></h2>
+<p>Section Overview: This section discusses floating point operations, the ord trait, and sorting mechanisms in Rust.</p>
+<h3 id="floating-point-operations"><a class="header" href="#floating-point-operations">Floating Point Operations</a></h3>
+<ul>
+<li>NaN is used to express floating point operations that don’t have a well-defined answer.</li>
+<li>Comparing a NaN to another floating point number is unclear how they’re related to one another.</li>
+<li>f64 and f32 do not implement ord.</li>
+</ul>
+<h3 id="sorting-mechanisms"><a class="header" href="#sorting-mechanisms">Sorting Mechanisms</a></h3>
+<ul>
+<li>Rust has implemented several sorting mechanisms for you.</li>
+<li>The primary mechanism is sort which requires that the t is ored and sorts the slice in place.</li>
+<li>Sort is stable, meaning if two elements are equal it won’t swap them while doing the sort.</li>
+<li>Sort by allows you to sort a slice of elements by a custom comparison function or field of a struct.</li>
+<li>Sort by key specifically sorts by a field or something like that where you just provide a function that maps from the type in the slice to some other type that is itself ord and then it sorts by that by whatever that function returns.</li>
+</ul>
+<h3 id="implementation-of-sorting-trait"><a class="header" href="#implementation-of-sorting-trait">Implementation of Sorting Trait</a></h3>
+<ul>
+<li>A sort trait will be defined, which will be implemented using different sorting mechanisms.</li>
+<li>There are many sorting algorithms with different properties such as stability, memory usage, and average complexity.</li>
+</ul>
+<h2 id="sorting-algorithms-1"><a class="header" href="#sorting-algorithms-1">Sorting Algorithms</a></h2>
+<p>Section Overview: In this section, the speaker discusses sorting algorithms and their performance. They explain that while it is ideal to have an algorithm with good performance for all cases, in practice, this is not always possible.</p>
+<h3 id="bubble-sort"><a class="header" href="#bubble-sort">Bubble Sort</a></h3>
+<ul>
+<li>Bubble sort is a simple but inefficient sorting algorithm.</li>
+<li>The average performance of bubble sort is n^2.</li>
+<li>The worst-case scenario for bubble sort can be very bad (n^2).</li>
+<li>To implement bubble sort, we need to create a trait called <code>Sorter</code> that takes a mutable slice of type <code>T</code>, where <code>T</code> implements <code>Ord</code>.</li>
+</ul>
+<h3 id="other-sorting-algorithms"><a class="header" href="#other-sorting-algorithms">Other Sorting Algorithms</a></h3>
+<ul>
+<li>Some other sorting algorithms have a best-case scenario of n when the slice is already sorted.</li>
+<li>In general, the best average performance we can get for sorting algorithms is n log n.</li>
+<li>Implementing sorting algorithms for iterators can be challenging because you don’t know how many elements you will get.</li>
+</ul>
+<h2 id="implementing-bubble-sort"><a class="header" href="#implementing-bubble-sort">Implementing Bubble Sort</a></h2>
+<p>Section Overview: In this section, the speaker discusses implementing bubble sort in Rust.</p>
+<h3 id="implementing-bubble-sort-1"><a class="header" href="#implementing-bubble-sort-1">Implementing Bubble Sort</a></h3>
+<ul>
+<li>The speaker creates a unit struct called “bubble sort” and implements the sorter trait for it.</li>
+<li>Bubble sort is implemented by walking through the slice and swapping any out-of-order elements until no more swaps are needed.</li>
+<li>The implementation of bubble sort has some boundary problems that need to be fixed.</li>
+</ul>
+<h2 id="bubble-sort-and-insertion-sort"><a class="header" href="#bubble-sort-and-insertion-sort">Bubble Sort and Insertion Sort</a></h2>
+<p>Section Overview: In this section, the speaker discusses two sorting algorithms: bubble sort and insertion sort. They explain how each algorithm works and provide code examples.</p>
+<h3 id="bubble-sort-1"><a class="header" href="#bubble-sort-1">Bubble Sort</a></h3>
+<ul>
+<li>Bubble sort is a simple sorting algorithm that repeatedly steps through the list to be sorted, compares each pair of adjacent items and swaps them if they are in the wrong order.</li>
+<li>The implementation of bubble sort is straightforward, but it’s not very efficient on large lists.</li>
+<li>Slice swap is used in bubble sort to avoid using a temporary variable when swapping elements.</li>
+</ul>
+<h3 id="insertion-sort"><a class="header" href="#insertion-sort">Insertion Sort</a></h3>
+<ul>
+<li>Insertion sort is another simple sorting algorithm that divides the list into sorted and unsorted parts.</li>
+<li>Elements from the unsorted part are taken one by one and inserted into their correct position in the sorted part.</li>
+<li>Insertion sort can also be implemented as a method on slices using <code>sort_unstable_by_key</code>.</li>
+</ul>
+<h2 id="threshold-for-sorting"><a class="header" href="#threshold-for-sorting">Threshold for Sorting</a></h2>
+<p>Section Overview: In this section, the speaker discusses setting a threshold for sorting.</p>
+<ul>
+<li>A threshold can be set for determining which elements should be sorted.</li>
+<li>Elements beyond the threshold are considered unsorted while those before it are already sorted.</li>
+<li>This approach avoids unnecessary sorting of already sorted elements.</li>
+</ul>
+<h2 id="insertion-sort-1"><a class="header" href="#insertion-sort-1">Insertion Sort</a></h2>
+<p>Section Overview: In this section, the speaker explains how to implement insertion sort and compares it to bubble sort.</p>
+<h3 id="implementing-insertion-sort"><a class="header" href="#implementing-insertion-sort">Implementing Insertion Sort</a></h3>
+<ul>
+<li>Take slice unsorted and place in sorted location in slice up to unsorted.</li>
+<li>While i is greater than zero and slice i minus one is greater than i, keep shifting it left until it no longer needs to go left.</li>
+<li>Keep swapping the current element to the left until the next element is smaller.</li>
+</ul>
+<h3 id="comparison-with-bubble-sort"><a class="header" href="#comparison-with-bubble-sort">Comparison with Bubble Sort</a></h3>
+<ul>
+<li>Insertion sort does not walk the whole array like bubble sort does.</li>
+<li>There are two ways of moving elements: walking from left to right or swapping from right.</li>
+<li>Insertion sort works better with linked lists because you don’t need to shift all elements over.</li>
+</ul>
+<h3 id="alternative-implementation"><a class="header" href="#alternative-implementation">Alternative Implementation</a></h3>
+<ul>
+<li>An alternative way of moving elements is by mem copying all things from that position forward one over.</li>
+</ul>
+<h2 id="using-binary-search-and-insert-to-sort-a-slice"><a class="header" href="#using-binary-search-and-insert-to-sort-a-slice">Using Binary Search and Insert to Sort a Slice</a></h2>
+<p>Section Overview: In this section, the speaker discusses using binary search and insert to sort a slice. They explain how binary search works and why it can be more efficient than other methods.</p>
+<h3 id="binary-search-and-insert"><a class="header" href="#binary-search-and-insert">Binary Search and Insert</a></h3>
+<ul>
+<li>Binary search can be used with insert to reduce the number of comparisons needed when sorting a slice.</li>
+<li>To use binary search with insert, first call <code>slice.binary_search()</code> to find the index where the value should be inserted.</li>
+<li><code>slice.binary_search()</code> returns either an index or an error if the slice is not sorted.</li>
+<li>After finding the correct index, use <code>slice.insert()</code> to splice in the new value at that location.</li>
+<li>Using <code>rotate_right()</code> instead of <code>insert()</code> can further optimize this process by shifting all elements over by one without resizing.</li>
+</ul>
+<h3 id="conclusion-1"><a class="header" href="#conclusion-1">Conclusion</a></h3>
+<ul>
+<li>While using binary search and insert can improve efficiency, it still requires n-squared swaps. Using <code>rotate_right()</code> can further optimize this process.</li>
+</ul>
+<h2 id="binary-search-and-sorting"><a class="header" href="#binary-search-and-sorting">Binary Search and Sorting</a></h2>
+<p>Section Overview: In this section, the speaker discusses binary search and sorting algorithms. They demonstrate how to perform a binary search for a given element in an array and explain what happens when searching for elements that are not present. They also show how to implement insertion sort and bubble sort algorithms.</p>
+<h3 id="binary-search"><a class="header" href="#binary-search">Binary Search</a></h3>
+<ul>
+<li>Binary search returns the index of a given element in an array.</li>
+<li>If the element is not present, it returns an error indicating where it should be inserted.</li>
+<li>The implementation can handle arrays with repeated elements.</li>
+</ul>
+<h3 id="insertion-sort-2"><a class="header" href="#insertion-sort-2">Insertion Sort</a></h3>
+<ul>
+<li>Insertion sort is demonstrated as a way to sort an array.</li>
+<li>The implementation takes a reference to self, allowing for more flexibility.</li>
+<li>A smart version of insertion sort is implemented that avoids unnecessary swaps.</li>
+</ul>
+<h3 id="bubble-sort-2"><a class="header" href="#bubble-sort-2">Bubble Sort</a></h3>
+<ul>
+<li>Bubble sort is another sorting algorithm that is demonstrated.</li>
+<li>It does not require any additional parameters or configuration.</li>
+</ul>
+<h3 id="future-improvements"><a class="header" href="#future-improvements">Future Improvements</a></h3>
+<ul>
+<li>The speaker mentions upcoming improvements to Rust’s language features, including the ability to use or patterns in let statements.</li>
+</ul>
+<h2 id="the-phd-mug"><a class="header" href="#the-phd-mug"><a href="t=0:51:57s">#</a> The PhD Mug</a></h2>
+<p>Section Overview: In this section, the speaker talks about a mug he received as a gift from his girlfriend after graduating with a PhD.</p>
+<h3 id="the-phd-mug-1"><a class="header" href="#the-phd-mug-1">The PhD Mug</a></h3>
+<ul>
+<li>The speaker’s girlfriend got him a mug after he graduated with a PhD.</li>
+<li>The mug has “Dr. Jengset” written on one side and “Done” on the other side.</li>
+</ul>
+<h2 id="introduction-to-selection-sort"><a class="header" href="#introduction-to-selection-sort"><a href="t=0:52:14s">#</a> Introduction to Selection Sort</a></h2>
+<p>Section Overview: In this section, the speaker introduces selection sort and compares it to insertion sort.</p>
+<h3 id="selection-sort"><a class="header" href="#selection-sort">Selection Sort</a></h3>
+<ul>
+<li>Selection sort is an inefficient sorting algorithm that is generally worse than insertion sort.</li>
+<li>Unlike insertion sort, selection sort can be done entirely in place without using any additional memory.</li>
+<li>The idea behind selection sort is to find the smallest element of the list and stick it at the front, then find the smallest element in the remainder of the list and stick it at the front again until you’ve sorted the entire array.</li>
+<li>The implementation of selection sort does not have any arguments and is always dumb.</li>
+<li>A test for selection sort should be more comprehensive than just testing one particular case.</li>
+</ul>
+<h2 id="how-selection-sort-works"><a class="header" href="#how-selection-sort-works"><a href="t=0:53:38s">#</a> How Selection Sort Works</a></h2>
+<p>Section Overview: In this section, the speaker explains how selection sort works in detail.</p>
+<h3 id="steps-for-selection-sort"><a class="header" href="#steps-for-selection-sort">Steps for Selection Sort</a></h3>
+<ul>
+<li>Start by assuming that the first element of the slice is already sorted.</li>
+<li>Walk through each unsorted element in turn, finding its position within the sorted portion of the slice by comparing it to each element in turn.</li>
+<li>Swap each unsorted element into its correct position within the sorted portion of the slice as you go along.</li>
+</ul>
+<h2 id="rust-analyzer-and-slice-iterator"><a class="header" href="#rust-analyzer-and-slice-iterator">Rust Analyzer and Slice Iterator</a></h2>
+<p>Section Overview: In this section, the speaker discusses how Rust Analyzer is giving him the wrong information. He then talks about how slice is an iterator and shows how to use the dot min function to get the smallest value from a slice.</p>
+<h3 id="using-enumerate-function-on-iterator"><a class="header" href="#using-enumerate-function-on-iterator">Using Enumerate Function on Iterator</a></h3>
+<ul>
+<li>The speaker explains that we can use the enumerate function on iterator to find the smallest element.</li>
+<li>He demonstrates using dot enumerate dot min by key to find the smallest element in an iterator.</li>
+<li>The speaker uses dot unwrap or expect since he knows that slice is non-empty.</li>
+<li>He explains that this gives us both the index and value of the smallest element.</li>
+</ul>
+<h3 id="lifetime-issue-with-min-by-key"><a class="header" href="#lifetime-issue-with-min-by-key">Lifetime Issue with Min by Key</a></h3>
+<ul>
+<li>The speaker encounters a lifetime issue while trying to return a reference into slice.</li>
+<li>He explains that min by key gives you a reference to each element, but v is also a reference itself into slice.</li>
+<li>The solution is to de-reference the tuple and fetch out only v instead of returning a reference to the second element of the tuple.</li>
+</ul>
+<h3 id="adjusting-index-for-unsorted-slice"><a class="header" href="#adjusting-index-for-unsorted-slice">Adjusting Index for Unsorted Slice</a></h3>
+<ul>
+<li>Smallest in rest is an index into unsorted slice, so it needs adjustment.</li>
+<li>The adjusted index should be unsorted plus smallest in rest.</li>
+</ul>
+<h3 id="asserting-equality"><a class="header" href="#asserting-equality">Asserting Equality</a></h3>
+<ul>
+<li>For sanity’s sake, we can assert equal smallest in rest and smallest in rest two.</li>
+</ul>
+<h2 id="performance-of-explicit-vs-iterator-way"><a class="header" href="#performance-of-explicit-vs-iterator-way">Performance of Explicit vs Iterator Way</a></h2>
+<p>Section Overview: In this section, the speaker discusses whether to use an explicit or functional iterator way for performance. The speaker mentions that both ways are likely to have similar performance as the compiler is good at optimizing iterators and for loops.</p>
+<ul>
+<li>The iterator version is preferred because it is more readable.</li>
+<li>It’s not cheating to rely on min by key because in order to implement sorting because mean by key is not a sword.</li>
+</ul>
+<h2 id="quick-sort"><a class="header" href="#quick-sort">Quick Sort</a></h2>
+<p>Section Overview: In this section, the speaker introduces quicksort, which is a more complex sorting mechanism than bubble sort, insertion sort, and selection sort.</p>
+<ul>
+<li>Quicksort works by picking an element randomly from the list and then putting everything smaller than that element on one side and everything larger on the other side.</li>
+<li>A helper method may be helpful for quicksort.</li>
+<li>The pivot can be chosen randomly or based on research about how to choose a good pivot.</li>
+<li>An allocating version of quicksort will be written first before looking at having it done in place.</li>
+</ul>
+<h2 id="quick-sort-algorithm"><a class="header" href="#quick-sort-algorithm">Quick Sort Algorithm</a></h2>
+<p>Section Overview: In this section, the speaker explains the quick sort algorithm and its recursive nature. They also discuss the base case for recursion and how to merge two lists.</p>
+<h3 id="quick-sort-algorithm-1"><a class="header" href="#quick-sort-algorithm-1">Quick Sort Algorithm</a></h3>
+<ul>
+<li>The quick sort algorithm involves sorting a list by dividing it into two smaller sub-lists.</li>
+<li>The algorithm is recursive in nature, with left and right sub-lists shrinking until they are only one element long.</li>
+<li>At this point, the sub-list is already sorted.</li>
+<li>To merge two lists, we need to allocate memory for both left and right lists which can be inefficient.</li>
+<li>The speaker proposes implementing quick sort as an in-place sort instead of using separate vectors for left and right.</li>
+</ul>
+<h2 id="implementing-quick-sort-as-an-in-place-sort"><a class="header" href="#implementing-quick-sort-as-an-in-place-sort">Implementing Quick Sort as an In-place Sort</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to implement quick sort as an in-place sort. They explain how to pick a pivot and partition elements based on their relation to the pivot.</p>
+<h3 id="picking-a-pivot"><a class="header" href="#picking-a-pivot">Picking a Pivot</a></h3>
+<ul>
+<li>To implement quick sort as an in-place sort, we need to pick a pivot element from the slice.</li>
+<li>We can use <code>split_at_mut</code> method to get mutable references to two sub-slices where one holds the pivot element while other holds rest of elements that needs sorting.</li>
+</ul>
+<h3 id="partitioning-elements"><a class="header" href="#partitioning-elements">Partitioning Elements</a></h3>
+<ul>
+<li>We can partition elements based on their relation with pivot element i.e., less than or greater than pivot element.</li>
+<li>Left side of slice will hold elements less than or equal to pivot while right side will hold elements greater than pivot.</li>
+</ul>
+<h2 id="understanding-the-left-and-right-side-indicators"><a class="header" href="#understanding-the-left-and-right-side-indicators">Understanding the Left and Right Side Indicators</a></h2>
+<p>Section Overview: In this section, the speaker explains how to use left and right side indicators to sort elements in a slice.</p>
+<h3 id="using-left-and-right-side-indicators"><a class="header" href="#using-left-and-right-side-indicators">Using Left and Right Side Indicators</a></h3>
+<ul>
+<li>If slice of i is less than or equal to the pivot, it stays in place on the correct side.</li>
+<li>We need left and right side indicators. If the next element is less than or equal to the pivot, it’s already on the left side. Otherwise, we move it to the right side.</li>
+<li>After moving an element to the other side, we have to continue looking at this side. A for loop won’t work here because it would just move on to the next element.</li>
+<li>Instead of using a for loop, we use a while loop that continuously looks at elements on the left and moves them if necessary.</li>
+<li>We can do a slice swap of left with right. Then we do <code>right -= 1</code> since we need to look at this element again.</li>
+</ul>
+<h2 id="walking-through-iterative-methods"><a class="header" href="#walking-through-iterative-methods">Walking Through Iterative Methods</a></h2>
+<p>Section Overview: In this section, the speaker walks through an example of using iterative methods with left and right side indicators.</p>
+<h3 id="example-walkthrough"><a class="header" href="#example-walkthrough">Example Walkthrough</a></h3>
+<ul>
+<li>Imagine that we have a slice with a pivot somewhere. We have <code>left</code> pointing to everything before <code>left</code>, and <code>right</code> pointing to everything after <code>right</code>.</li>
+<li>If <code>slice[left]</code> is less than or equal to the pivot, it’s already in <code>left</code>. Otherwise, we move it over to <code>right</code>.</li>
+<li>To move an element to the other side, we do a slice swap of left with right. Then we do <code>right -= 1</code> since we need to look at this element again.</li>
+<li>The iterator code looks at the element at <code>left</code>. If that element is less than or equal to the pivot, it should be in <code>left</code>. Otherwise, it needs to go into <code>right</code>.</li>
+<li>To move an element from <code>left</code> to <code>right</code>, we swap it with whatever element is over there and then decrement <code>right</code>.
+I’m sorry, but I cannot summarize the transcript as there are no clear sections or topics to organize the notes. The transcript consists of a conversation between two people discussing code implementation and problem-solving. It would be best to listen to the entire conversation and take notes on specific topics or issues discussed.</li>
+</ul>
+<h2 id="quick-sort-algorithm-2"><a class="header" href="#quick-sort-algorithm-2">Quick Sort Algorithm</a></h2>
+<p>Section Overview: In this section, the speaker explains how quicksort works and provides a step-by-step guide on how to implement it.</p>
+<h3 id="implementing-quicksort"><a class="header" href="#implementing-quicksort">Implementing Quicksort</a></h3>
+<ul>
+<li>The first step is to choose a pivot element.</li>
+<li>Next, we partition the array into two subarrays: one with elements less than the pivot and another with elements greater than the pivot.</li>
+<li>We then recursively apply quicksort to each of these subarrays until they are sorted.</li>
+<li>For small lists, other sorting algorithms like selection sort or insertion sort can be used instead of quicksort.</li>
+</ul>
+<h3 id="issues-with-quicksort-implementation"><a class="header" href="#issues-with-quicksort-implementation">Issues with Quicksort Implementation</a></h3>
+<ul>
+<li>Infinite recursion can occur if the same pivot element is chosen repeatedly.</li>
+<li>To avoid this issue, we need to ensure that the pivot element is not always the maximum or minimum value in the array. One solution is to pick a random pivot element.</li>
+</ul>
+<p>Overall, this section provides an overview of how quicksort works and highlights some common issues that can arise when implementing it.</p>
+<h2 id="understanding-quicksort"><a class="header" href="#understanding-quicksort">Understanding Quicksort</a></h2>
+<p>Section Overview: In this section, the speaker explains why the pivot should not be included in the sub-slices and how to place it at its final location explicitly.</p>
+<h3 id="excluding-pivot-from-sub-slices"><a class="header" href="#excluding-pivot-from-sub-slices">Excluding Pivot from Sub-Slices</a></h3>
+<ul>
+<li>The real algorithm actually excludes the pivot.</li>
+<li>The pivot is supposed to end up in the final sorted place in the array.</li>
+<li>Typically, that’s the last element of the array.</li>
+</ul>
+<h3 id="placing-pivot-at-final-location"><a class="header" href="#placing-pivot-at-final-location">Placing Pivot at Final Location</a></h3>
+<ul>
+<li>Place pivot at its final location explicitly.</li>
+<li>Swap pivot with last element in left (left - 1).</li>
+<li>Everything less than or equal to pivot is now on left and everything greater than it is on right.</li>
+<li>Split at mute gives us left and right. Exclude pivot from left by slicing it.</li>
+</ul>
+<h2 id="improving-quick-sort"><a class="header" href="#improving-quick-sort">Improving Quick Sort</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to improve quicksort by choosing a better pivot.</p>
+<h3 id="choosing-a-better-pivot"><a class="header" href="#choosing-a-better-pivot">Choosing a Better Pivot</a></h3>
+<ul>
+<li>Choose a pivot at the middle of the slice to avoid some moves.</li>
+<li>Partitioning indexed use instead of split at mute will nicely exclude the pivot.</li>
+</ul>
+<h2 id="comparing-sorting-algorithms"><a class="header" href="#comparing-sorting-algorithms">Comparing Sorting Algorithms</a></h2>
+<p>Section Overview: In this section, the speaker compares quicksort with other sorting algorithms.</p>
+<h3 id="efficiency-comparison"><a class="header" href="#efficiency-comparison">Efficiency Comparison</a></h3>
+<ul>
+<li>Quicksort is more efficient than bubble sort, insertion sort or selection sort.</li>
+</ul>
+<h2 id="editing-benches-in-mainrs"><a class="header" href="#editing-benches-in-mainrs">Editing Benches in main.rs</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to evaluate different algorithms by comparing the number of comparisons they make. They also make a field public for insertion sort and create a sorting evaluator that is generic over t.</p>
+<h3 id="sorting-evaluator"><a class="header" href="#sorting-evaluator">Sorting Evaluator</a></h3>
+<ul>
+<li>Create a sorting evaluator that is generic over t.</li>
+<li>Implement traits manually to compare only t and ignore comps.</li>
+<li>Increment the counter every time an element is compared.</li>
+<li>Implement partial ord to forward to self.t dot computer.</li>
+</ul>
+<h2 id="using-criterion-vs-measuring-complexity"><a class="header" href="#using-criterion-vs-measuring-complexity">Using Criterion vs Measuring Complexity</a></h2>
+<p>Section Overview: In this section, the speaker explains why they do not want to use criterion and instead measure complexity. They also discuss what sizes they want to evaluate.</p>
+<h3 id="evaluating-sizes"><a class="header" href="#evaluating-sizes">Evaluating Sizes</a></h3>
+<ul>
+<li>Evaluate arrays of size 0, 1, 10, 100, 1000, and 10,000.</li>
+</ul>
+<h2 id="sorting-algorithms-in-rust-1"><a class="header" href="#sorting-algorithms-in-rust-1">Sorting Algorithms in Rust</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to implement different sorting algorithms in Rust and compare their performance.</p>
+<h3 id="implementing-sorting-algorithms"><a class="header" href="#implementing-sorting-algorithms">Implementing Sorting Algorithms</a></h3>
+<ul>
+<li>Initialize a counter using <code>Arc::new(AtomicUsize::new(0))</code> and wrap each value in an array with <code>Arc::new(Cell::new(value))</code>.</li>
+<li>Reset the counter to zero before starting each sort.</li>
+<li>Clone the original array of values for each algorithm to ensure that they are all sorted in the same order.</li>
+<li>Use bubble sort, insertion sort (smart true/false), selection sort, and quicksort algorithms on the cloned arrays.</li>
+<li>Use <code>Cell</code> instead of <code>AtomicUsize</code> if only one thread is used.</li>
+</ul>
+<h3 id="writing-a-generic-sort-evaluator"><a class="header" href="#writing-a-generic-sort-evaluator">Writing a Generic Sort Evaluator</a></h3>
+<ul>
+<li>Create a generic function called <code>sort_evaluator</code> that takes a type parameter <code>T: Ord</code>, a trait object parameter <code>S: Sorter</code>, a slice of type T, and a reference to a cell of usize as arguments.</li>
+<li>The function returns usize.</li>
+<li>Inside the function, use <code>.clone()</code> method on the slice argument to avoid borrowing issues.</li>
+<li>Pass all three arguments into each sorting algorithm.</li>
+</ul>
+<h3 id="object-safety-issue"><a class="header" href="#object-safety-issue">Object Safety Issue</a></h3>
+<ul>
+<li>The trait object is not object safe because it has a generic method on it.</li>
+<li>Use <code>.2</code> instead of <code>&lt;T&gt;</code> when calling the function.</li>
+</ul>
+<h2 id="constructing-the-test"><a class="header" href="#constructing-the-test">Constructing the Test</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to construct the test and generate random values.</p>
+<h3 id="generating-random-values"><a class="header" href="#generating-random-values">Generating Random Values</a></h3>
+<ul>
+<li>To generate random values, the speaker suggests using the <code>rand</code> crate.</li>
+<li>The <code>thread_rng</code> function implements <code>RngCore</code>, which gives us access to a random number generator.</li>
+<li>We can use <code>rand::Rng::gen</code> to generate a vector of random values with capacity n.</li>
+<li>The generated values will be sorted using an evaluator.</li>
+</ul>
+<h3 id="printing-results"><a class="header" href="#printing-results">Printing Results</a></h3>
+<ul>
+<li>The program will print out bubble sort, insertion smart, insertion dumb, selection sort, and quicksort results.</li>
+<li>It will print out n and how long it took for each sorting algorithm to complete.</li>
+</ul>
+<h2 id="debugging-quicksort-panic"><a class="header" href="#debugging-quicksort-panic">Debugging Quicksort Panic</a></h2>
+<p>Section Overview: In this section, the speaker debugs a panic that occurred during quicksort.</p>
+<h3 id="underflow-issue"><a class="header" href="#underflow-issue">Underflow Issue</a></h3>
+<ul>
+<li>The issue is caused by right underflowing when all elements get added to right.</li>
+<li>Left is still less than right so we execute a line of code that causes right to become a big number.</li>
+<li>One way to deal with this is while right is greater than or equal to zero and left is less than left rapping sub one.</li>
+<li>This solution would work but not in debug mode because it panics.</li>
+</ul>
+<h2 id="implementing-sorting-algorithms-in-rust"><a class="header" href="#implementing-sorting-algorithms-in-rust"><a href="t=2:12:11s">#</a> Implementing Sorting Algorithms in Rust</a></h2>
+<p>Section Overview: The speaker discusses implementing sorting algorithms in Rust and the challenges that come with it.</p>
+<h3 id="implementing-quick-sort"><a class="header" href="#implementing-quick-sort">Implementing Quick Sort</a></h3>
+<ul>
+<li><a href="t=2:12:11s"></a> To implement quick sort, we can use the <code>values.dot.shuffle</code> method.</li>
+<li><a href="t=2:12:22s"></a> This works fine but won’t work in debug mode because Rust panics on overflow and underflow.</li>
+<li><a href="t=2:12:47s"></a> An alternative is to check if <code>right</code> is zero and break if it is.</li>
+</ul>
+<h3 id="comparisons-in-rust"><a class="header" href="#comparisons-in-rust">Comparisons in Rust</a></h3>
+<ul>
+<li><a href="t=2:13:57s"></a> Rust uses partial compare for less than and greater than operators, which causes issues when checking for comparisons.</li>
+<li><a href="t=2:14:24s"></a> Two ways to solve this are to either not use those operators and call compare directly or move it into partial ord.</li>
+</ul>
+<h3 id="checking-if-list-is-sorted"><a class="header" href="#checking-if-list-is-sorted">Checking If List Is Sorted</a></h3>
+<ul>
+<li><a href="t=2:15:18s"></a> We need to check if the list is sorted after running a benchmark.</li>
+<li><a href="t=2:16:01s"></a> We can use <code>values.is_sorted()</code> to do this.</li>
+</ul>
+<h3 id="plotting-results"><a class="header" href="#plotting-results">Plotting Results</a></h3>
+<ul>
+<li><a href="t=2:18:33s"></a> The speaker wants to plot the results of the sorting algorithms using GNU plot.</li>
+</ul>
+<h2 id="writing-a-simple-r-script"><a class="header" href="#writing-a-simple-r-script">Writing a Simple R Script</a></h2>
+<p>Section Overview: In this section, the speaker discusses writing a simple R script to plot data.</p>
+<h3 id="plotting-data-with-ggplot2"><a class="header" href="#plotting-data-with-ggplot2">Plotting Data with ggplot2</a></h3>
+<ul>
+<li>The speaker imports the ggplot2 library and reads in data using <code>read.table</code>.</li>
+<li>The speaker uses ggplot2 to create a scatter plot of the data, with x-axis as “n”, y-axis as “comparisons”, and color as “algorithm”.</li>
+<li>The speaker adds <code>gm point</code> and <code>gm smooth</code> to the plot.</li>
+<li>The speaker adjusts the font size for better visibility.</li>
+<li>The speaker scales the y-axis logarithmically.</li>
+</ul>
+<h3 id="comparing-standard-library-sort"><a class="header" href="#comparing-standard-library-sort">Comparing Standard Library Sort</a></h3>
+<ul>
+<li>The speaker adds benchmarking for standard library sort.</li>
+<li>The speaker scales the y-axis logarithmically again for better visibility.</li>
+</ul>
+<p>Overall, this section covers how to write a simple R script to plot data using ggplot2 and how to compare it with standard library sort.</p>
+<h2 id="missing-header"><a class="header" href="#missing-header"><a href="t=2:28:29s">#</a> Missing Header</a></h2>
+<p>Section Overview: The header is missing from the plot.</p>
+<h3 id="plotting-changes"><a class="header" href="#plotting-changes">Plotting Changes</a></h3>
+<ul>
+<li><a href="t=2:28:29s"></a> The header is gone.</li>
+<li><a href="t=2:28:39s"></a> The x-axis can be made logarithmic.</li>
+<li><a href="t=2:28:58s"></a> A straight line on the plot is unhelpful due to smoothing.</li>
+</ul>
+<h2 id="sorting-algorithms-comparison"><a class="header" href="#sorting-algorithms-comparison"><a href="t=2:29:14s">#</a> Sorting Algorithms Comparison</a></h2>
+<p>Section Overview: Comparing different sorting algorithms based on number of comparisons and runtime.</p>
+<h3 id="sorting-algorithm-performance"><a class="header" href="#sorting-algorithm-performance">Sorting Algorithm Performance</a></h3>
+<ul>
+<li><a href="t=2:29:14s"></a> Quick sort and standard library sort are generally much faster than other sorting algorithms.</li>
+<li><a href="t=2:30:09s"></a> Insertion sort smart does fewer comparisons than insertion sort dumb, but they have the same number of swaps. This gives a skewed image of what’s going on since we can’t measure the swaps themselves.</li>
+<li><a href="t=2:30:51s"></a> There are algorithms that do zero compares, but they only work for things like numbers. If we did this with runtime, it would include costs like swaps.</li>
+</ul>
+<h2 id="adding-runtime-to-plot"><a class="header" href="#adding-runtime-to-plot"><a href="t=2:31:17s">#</a> Adding Runtime to Plot</a></h2>
+<p>Section Overview: Adding runtime to the plot for better comparison between sorting algorithms.</p>
+<h3 id="updating-plot"><a class="header" href="#updating-plot">Updating Plot</a></h3>
+<ul>
+<li><a href="t=2:31:17s"></a> Code added to measure time elapsed and count for each algorithm.</li>
+<li><a href="t=2:32.33s"></a> Y-axis changed to time scale for better comparison between sorting algorithms based on runtime.</li>
+<li><a href="t=2.33.50s"></a> Delta between smart and dumb insertion sorts is much clearer when comparing runtimes rather than just number of comparisons.</li>
+</ul>
+<h2 id="logarithmic-scale"><a class="header" href="#logarithmic-scale"><a href="t=2.34.25s">#</a> Logarithmic Scale</a></h2>
+<p>Section Overview: Changing the scale of the plot to logarithmic.</p>
+<h3 id="updating-plot-scale"><a class="header" href="#updating-plot-scale">Updating Plot Scale</a></h3>
+<ul>
+<li><a href="t=2:34:25s"></a> Logarithmic scale added to x-axis.</li>
+<li><a href="t=2:34:42s"></a> gm line is not useful for this plot since there are multiple points for every x coordinate.</li>
+<li><a href="t=2:35:11s"></a> The difference between smart and dumb insertion sort is much clearer on a logarithmic scale.</li>
+</ul>
+<h2 id="conclusion-of-the-stream"><a class="header" href="#conclusion-of-the-stream">Conclusion of the Stream</a></h2>
+<p>Section Overview: The stream ended up being longer than planned, but it was enjoyable.</p>
+<h3 id="sorting-algorithms-2"><a class="header" href="#sorting-algorithms-2">Sorting Algorithms</a></h3>
+<ul>
+<li>Quick sort performs poorly with an all-decreasing slice.</li>
+<li>Randomization is currently used to generate data points for sorting algorithms.</li>
+<li>Tim sort is a better option for sorting algorithms than quick sort or merge plus selection sort.</li>
+</ul>
+<h3 id="future-streams-1"><a class="header" href="#future-streams-1">Future Streams</a></h3>
+<ul>
+<li>In a week or two, there will be a stream on modifying evmap, which will deal specifically with concurrent data structures and abstractions around them.</li>
+</ul>
+<h2 id="generated-by-video-highlight"><a class="header" href="#generated-by-video-highlight">Generated by Video Highlight</a></h2>
+<p>https://videohighlight.com/video/summary/h4RkCyJyXmM</p>
+
             </main>
 
             <!--            <script src="https://utteranc.es/client.js"-->
