@@ -1,15 +1,10 @@
 # Static
 
 <!--ts-->
-* [Static](#static)
-   * [Two situations](#two-situations)
-   * [some examples for each situation:](#some-examples-for-each-situation)
-      * [Reference lifetime](#reference-lifetime)
-      * [Trait bound](#trait-bound)
-      * [See also:](#see-also)
+
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Tue Apr 11 15:55:23 UTC 2023 -->
+<!-- Added by: runner, at: Wed Apr 12 03:19:29 UTC 2023 -->
 
 <!--te-->
 Rust has a few reserved lifetime names.
