@@ -1,0 +1,1 @@
+- [Learn Rust Programming - YouTube](https://www.youtube.com/playlist?list=PLwtLEJr-BkXZ9PmoAlqaFdoj47o61TWrS)
