@@ -7,6 +7,7 @@
     - [chatGPT Rust Q&A](chatgpt_rust/chatgpt_rust_prompts.md)
         - [Experience & Pitfall](chatgpt_rust/rust_grammar_experience_pitfalls.md)
     - [Rust Video Summary](rust_video_summary/rust_video_summary.md)
+        - [Code to the Moon](rust_video_summary/code_to_the_moon/code_to_the_moon.md)
         - [Crust Of Rust Series](rust_video_summary/curst_of_rust/crust_of_rust.md)
             - [Async/Await](rust_video_summary/curst_of_rust/async_await.md)
             - [Atomics and Memory Ordering](rust_video_summary/curst_of_rust/atomics_and_memory_ordering.md)
