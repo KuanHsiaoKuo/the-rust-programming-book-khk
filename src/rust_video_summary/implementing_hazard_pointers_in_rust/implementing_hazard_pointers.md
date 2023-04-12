@@ -1,0 +1,1 @@
+- [Hazard Pointers - YouTube](https://www.youtube.com/playlist?list=PLqbS7AVVErFgO7RUIC6lhd0UekFMbjJzb)

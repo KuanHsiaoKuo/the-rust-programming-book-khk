@@ -20,12 +20,17 @@
             - [Sorting Algorithms](rust_video_summary/curst_of_rust/sorting_algorithms.md)
             - [Subtyping and Variance](rust_video_summary/curst_of_rust/subtyping_and_variance.md)
             - [The Drop Check](rust_video_summary/curst_of_rust/the_drop_check.md)
+        - [Implementing Hazard Pointers](rust_video_summary/implementing_hazard_pointers_in_rust/implementing_hazard_pointers.md)
+            - [Part 1](rust_video_summary/implementing_hazard_pointers_in_rust/part1.md)
+            - [Part 2](rust_video_summary/implementing_hazard_pointers_in_rust/part2.md)
+            - [Part 3](rust_video_summary/implementing_hazard_pointers_in_rust/part3.md)
+            - [Part 4](rust_video_summary/implementing_hazard_pointers_in_rust/part4.md)
         - [Impl Rust](rust_video_summary/impl_rust/impl_rust.md)
             - [Solving Distributed System Challenges](rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.md)
         - [Open-Source streams](rust_video_summary/open_source_streams/open_source_streams.md)
         - [Stop Duplicating Your Code](rust_video_summary/stop_duplicating_your_code.md)
         - [Rust Crash Course](rust_video_summary/rust_crash_course_rustlang.md)
-    
+
     - [Associated Items]()
         - [Associated type, Generic associate types](topics/at_gat.md)
         - [Associated Types]()
