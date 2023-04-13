@@ -6,7 +6,7 @@
    * [what are the differences between associate type, generic type and generic associate type](#what-are-the-differences-between-associate-type-generic-type-and-generic-associate-type)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Wed Apr 12 09:55:12 UTC 2023 -->
+<!-- Added by: runner, at: Thu Apr 13 14:36:51 UTC 2023 -->
 
 <!--te-->
 
