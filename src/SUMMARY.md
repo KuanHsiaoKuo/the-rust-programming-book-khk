@@ -13,6 +13,7 @@
     - [Rust Video Summary](rust_video_summary/rust_video_summary.md)
         - [Code to the Moon](rust_video_summary/code_to_the_moon/code_to_the_moon.md)
         - [Learn Rust Programming](rust_video_summary/learn_rust_programming/learn_rust_programming.md)
+        - [Considering Rust](rust_video_summary/considering_rust.md)
         - [Crust Of Rust Series](rust_video_summary/curst_of_rust/crust_of_rust.md)
             - [Async/Await](rust_video_summary/curst_of_rust/async_await.md)
             - [Atomics and Memory Ordering](rust_video_summary/curst_of_rust/atomics_and_memory_ordering.md)
@@ -34,6 +35,10 @@
         - [Impl Rust](rust_video_summary/impl_rust/impl_rust.md)
             - [Solving Distributed System Challenges](rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.md)
         - [Open-Source streams](rust_video_summary/open_source_streams/open_source_streams.md)
+            - [Rust Open Source Contributions Stream](rust_video_summary/open_source_streams/rust_open_source_contributions_stream.md)
+            - [Rust Toos and std::future](rust_video_summary/open_source_streams/rust_tools_and_std_future.md)
+            - [Day in the life of Open Source Maintenance 2022-06-19](rust_video_summary/open_source_streams/day_in_the_life_of_open_source_maintenance_2022_06_19.md)
+            - [Day in the life of Open Source Maintenance 2022-10-08](rust_video_summary/open_source_streams/day_in_the_life_of_open_source_maintenance_2022_10_08.md)
         - [Stop Duplicating Your Code](rust_video_summary/stop_duplicating_your_code.md)
         - [Rust Crash Course](rust_video_summary/rust_crash_course_rustlang.md)
 
