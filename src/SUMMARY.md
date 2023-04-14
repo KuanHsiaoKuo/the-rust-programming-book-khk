@@ -13,6 +13,7 @@
     - [Rust Video Summary](rust_video_summary/rust_video_summary.md)
         - [Code to the Moon](rust_video_summary/code_to_the_moon/code_to_the_moon.md)
         - [Learn Rust Programming](rust_video_summary/learn_rust_programming/learn_rust_programming.md)
+            - [Implementing The Trie Data Structure In Rust](rust_video_summary/learn_rust_programming/implementing_the_trie_data_structure_in_rust.md)
         - [Considering Rust](rust_video_summary/considering_rust.md)
         - [Crust Of Rust Series](rust_video_summary/curst_of_rust/crust_of_rust.md)
             - [Async/Await](rust_video_summary/curst_of_rust/async_await.md)

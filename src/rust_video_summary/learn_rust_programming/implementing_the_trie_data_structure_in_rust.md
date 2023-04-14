@@ -1,0 +1,353 @@
+# Implementing the trie data structure in Rust
+
+<!--ts-->
+<!--te-->
+
+## Introduction
+
+Section Overview: In this section, the speaker introduces himself and expresses excitement about what they will achieve
+in the next few minutes to an hour. They also acknowledge comments from viewers and introduce the project they will be
+working on.
+
+- The speaker greets viewers and expresses excitement about the upcoming stream.
+- They introduce themselves and acknowledge comments from viewers. [](t=0:00:26s)
+- The speaker shares a link to their Div 2 profile and a shader project for viewers to play with. [](t=0:01:03s)
+- They share a link to the post that they will be implementing during the stream. [](t=0:01:56s)
+
+## [#](t=0:02:12s) Creating a New Project
+
+Section Overview: In this section, the speaker creates a new project using Cargo and explains how it works.
+
+- The speaker creates a new project using Cargo called "treee". [](t=0:02:38s)
+- They explain that Cargo is a tool that invokes Rust and demonstrates how to use it by running "cargo
+  run". [](t=0:03:22s)
+- The speaker changes the output of the program to "Hello Internet" and runs it again using "cargo run
+  -q". [](t=0:04:10s)
+
+## [#](t=0:04:31s) Motivation for Trees
+
+Section Overview: In this section, the speaker discusses why trees are useful data structures.
+
+- The speaker acknowledges a viewer's question about what trees are and why they are useful. [](t=0:04:31s)
+- They provide an agenda for the stream, which includes discussing motivation for trees, implementing them naively, and
+  optimizing them later on.[](t=0:04:58s)
+- The speaker explains that trees are used in standard collections and hash sets. [](t=0:05:20s)
+- They mention that they will be using a hash set to demonstrate how trees work. [](t=0:06:21s)
+
+## [#](t=0:07:31) Introduction to the Problem
+
+Section Overview: In this section, the speaker introduces the problem of storing a large number of URLs in memory and
+discusses how much memory is being used.
+
+### Storing URLs in Memory
+
+- The speaker discusses how much memory is being used when storing URLs in a set.
+- They mention that there is a lot of duplication when storing URLs, which wastes memory.
+
+## [#](t=0:10:11) Introducing Trees as a Solution
+
+Section Overview: In this section, the speaker introduces trees as a solution to the problem of storing URLs in memory.
+
+### Trees vs Sets
+
+- The speaker explains that sets require duplicating common prefixes, which wastes memory.
+- Trees only store interesting new stuff and save on memory.
+
+### Implementing Trees
+
+- The speaker explains that they will be implementing trees naively.
+- They discuss creating a tree data structure that holds onto individual characters instead of strings.
+
+## [#](t=0:13:02) Creating the Tree Structure
+
+Section Overview: In this section, the speaker begins implementing the tree structure for storing URLs.
+
+### Creating Root Node
+
+- The speaker begins by creating the root node for their tree structure.
+
+## [#](t=0:15:05s) Introduction to Trie Data Structure
+
+Section Overview: In this section, the speaker introduces the concept of a trie data structure and explains how it is
+made up of elements called nodes.
+
+### Nodes in a Trie
+
+- A node is an element of the tree that is made up of letters.
+- The root node will be an 'h' followed by 't' and 't'.
+- The children of the root node will branch out to 'r', 'm', and 'a'.
+
+## [#](t=0:16:12s) Creating a Hash Map for Tries
+
+Section Overview: In this section, the speaker explains why a hash map is needed for tries and demonstrates how to
+create one.
+
+### Creating a Hash Map
+
+- A hash map with keys as characters and values as nodes is needed for tries.
+- Derive debug and default traits are added to make printing easier.
+- Length starts at zero, and an empty hash map initializes to false.
+
+## [#](t=0:18:54s) Inserting Strings into Tries
+
+Section Overview: In this section, the speaker explains how strings can be inserted into tries.
+
+### Inserting Strings
+
+- Option U size can be returned as the new length of the try.
+- Borrowing oneself allows for memory allocation.
+- An indicator that we're on track can be added.
+
+## Trie Data Structure in Rust
+
+Section Overview: In this section, the speaker discusses the implementation of a trie data structure in Rust. They
+explain how to create a mutable variable and update it using the entry API. They also discuss the use of string slices
+and characters in Rust.
+
+### Creating a Mutable Variable for Insertion
+
+- To insert into a trie data structure, we need to create a mutable variable called `current_node`.
+- We take a mutable reference to `self.root` because it is the only thing we have currently.
+- We use an entry API to check if `c` already exists inside `node`. If not, we insert a default value which is an empty
+  hashmap.
+
+### Using String Slices and Characters in Rust
+
+- A string slice has a convenient method called `chars()` which returns an iterator of characters.
+- The `Char` type is UTF-32 encoded while `String` is UTF-8 encoded.
+- All inputs to our try are of fixed size which we can make use of later on.
+
+## Updating Node with Default Value
+
+Section Overview: In this section, the speaker explains how to update current node with default values when inserting
+into a trie data structure. They also discuss how to ensure that new nodes are continually created.
+
+### Updating Current Node with Default Value
+
+- When inserting into a trie data structure, we want to update current node with default values if it does not exist.
+- We use an all-default method on hashmap or node which guarantees that new nodes will continually be created.
+
+## Ensuring End Field on Node is True
+
+Section Overview: In this section, the speaker discusses how to ensure that end field on node is true when inserting
+into a trie data structure.
+
+### Ensuring End Field on Node is True
+
+- The end field on a node is kind of a marker to say that we've hit the end of a string.
+- We really want that to be true if it's not. Our life will become very hard when we start looking for words.
+
+## Creating Contains Method
+
+Section Overview: In this section, the speaker explains how to create a contains method in Rust for trie data structure.
+
+### Creating Contains Method
+
+- The contains method is effectively our lookup.
+- We take a read-only reference to `self` and some text and return whether or not it exists.
+- We start with the root and go through all of the characters using `text.chars()`.
+- If `c` already exists inside `node`, we get a mutable pointer to the entry inside it. Otherwise, we insert a default
+  value which is an empty hashmap.
+
+## Trie Data Structure Implementation
+
+Section Overview: In this section, the speaker explains how to implement a trie data structure in Rust.
+
+### Implementing the Trie Data Structure
+
+- The function checks if the URL is already present in the trie.
+- If not, it searches for the URL and replaces the current node with it.
+- If it cannot find the URL, it adds a new node to the end of the trie.
+- The function returns whether or not an insertion was successful.
+
+### Guarding Against Accidental Prefixes
+
+- The function guards against accidentally identifying prefixes as part of what is available in the trie.
+- It does this by checking if there are more characters to come before inserting a new node.
+
+### Checking for Existing Strings
+
+- The speaker wonders whether or not to check if a string already exists before inserting it into the trie.
+
+### Conclusion and Comments
+
+- The `Charles` method is like a parser that manipulates text to suit our purposes.
+- Some participants are up very late or early in their time zone.
+- After rewriting code, running tests, and checking URLs, we have a working implementation.
+
+## Introduction to Children as a Hashmap
+
+Section Overview: In this section, the speaker introduces children as a hashmap and discusses how it can be used with
+different input encodings.
+
+### Using Raw Bytes for Input Encoding
+
+- The speaker suggests that using raw bytes for input encoding could make the input encoding irrelevant.
+- The speaker tries implementing this method by adding an implementation for encoding agnostic inputs.
+- The speaker replaces bytes and chars with bytes in the code to implement this method.
+
+### Reducing Memory Usage
+
+- The speaker notes that using individual bytes makes the code ugly but reduces memory usage.
+- The speaker inspects what the data structure looks like inside after implementing this method.
+- The speaker adds a modifier to make the code slightly less ugly but still deals with individual bytes.
+
+## Improving Hashing Algorithm for Short Keys
+
+Section Overview: In this section, the speaker discusses how to improve hashing algorithms for short keys and reduce
+memory usage further.
+
+### Standard Collections Module Hashmap
+
+- The standard collections module provides a hashmap with a cryptographically secure but somewhat slow hashing
+  algorithm.
+- This algorithm is designed to spread bits widely in hash functions but does not do anything special about very short
+  keys.
+
+### Finding Better Hash Function
+
+- We can find better hash functions that deal with relatively short keys without worrying about arbitrary inputs.
+- We can replace the hasher or use its internal API to play around with its internals and find better hash functions.
+
+## Building a Hasher
+
+Section Overview: In this section, the speaker discusses building a hasher and using it in Rust.
+
+### Creating a Hashmap with a Hasher
+
+- A hashmap can be parameterized with a hasher.
+- The code is compiled and runs faster than before.
+- The conventional way to use effects hasher is to create a type alias for hashmap.
+
+### Selecting Your Own Hash Function
+
+- You could allow people to select their own hash function during build.
+- HashMap provides methods to instantiate a hashmap with a specific hash function.
+
+## Using Linear Scan or Binary Search Instead of Hashmap
+
+Section Overview: In this section, the speaker discusses using linear scan or binary search instead of hashmap.
+
+### Problem with Using Hashmap
+
+- A hashmap requires running the hash function for every lookup.
+- It wastes memory.
+
+### Proposal: Using an Array of Option Node
+
+- An array of option node would use less memory than hashmap.
+- This method is interesting to play around with.
+
+## Proposal for a Single Hash Map
+
+Section Overview: In this section, the speaker proposes using a single hash map instead of having each node have its own
+hashmap. The speaker explains their reasoning and discusses potential issues with the proposal.
+
+### Using a Single Hash Map
+
+- The speaker proposes using a single hash map instead of having each node have its own hashmap.
+- The speaker explains that implementing this proposal would involve binding the lifetime of the parent to all of its
+  nodes.
+- The speaker realizes that their proposal will not work and expresses curiosity about whether anyone else would like to
+  try it.
+
+## Binding Lifetimes Together
+
+Section Overview: In this section, the speaker discusses binding lifetimes together in order to make pointer references
+faster on lookup.
+
+### Fusing Lifetimes Together
+
+- The speaker explains that fusing lifetimes together involves binding the tri-struct to all of its nodes.
+- The speaker suggests that this could make pointer references much faster on lookup.
+
+## Implementing Defaults for Node A
+
+Section Overview: In this section, the speaker discusses implementing defaults for node A and encounters some issues
+with doing so.
+
+### Issues with Implementing Defaults
+
+- The speaker encounters an issue when trying to implement defaults for node A because they no longer have a reference
+  during the default method to the actual storage anymore.
+- The speaker realizes that they cannot use their previous trick relying on all default and considers other options.
+
+## Introduction
+
+Section Overview: In this section, the speaker discusses a mutable borrower for self during insert and expresses his
+liking for seeing other people hang out in the past foreign.
+
+### Borrowing and Mutation
+
+- The speaker talks about a mutable borrower for self during insert.
+- He expresses his liking for seeing other people hang out in the past foreign.
+
+## Borrowing Chicken
+
+Section Overview: In this section, the speaker talks about borrowing chicken and how it can sometimes be problematic. He
+also discusses how he cannot give an immutable borrow to himself.
+
+### Problems with Borrowing Chicken
+
+- The speaker expresses his dislike for borrowing chicken.
+- He explains that he cannot give an immutable borrow to himself.
+- This creates problems when trying to re-borrow or do some work.
+
+## Avoiding Double Lookout Problem
+
+Section Overview: In this section, the speaker discusses using entry to avoid double lookout problem and race conditions
+involved with looking into a collection checking if it exists.
+
+### Using Entry to Avoid Double Lookout Problem
+
+- The speaker explains that using entry helps avoid double lookout problem.
+- It also helps avoid race conditions involved with looking into a collection checking if it exists.
+- This is because there's a possibility that after you've gone and looked for the thing that you then need to go on good
+  luck on it again to enter it in.
+
+## Updating Children Nodes
+
+Section Overview: In this section, the speaker talks about updating children nodes and inserting new items into
+children.
+
+### Updating Children Nodes
+
+- The speaker wants to replace current node with the note.
+- He explains that if they don't have anything they need to change their plan.
+- They can't update children nodes because of borrowing twice.
+
+## Default Image
+
+Section Overview: In this section, the speaker talks about the default image and how he can't implement default for tree
+for try because his nodes no longer point default.
+
+### Default Image
+
+- The speaker talks about the default image.
+- He explains that he can't implement default for tree for try because his nodes no longer point default.
+
+## Naive Sensible Way
+
+Section Overview: In this section, the speaker discusses how the naive sensible way to do things is actually the best
+way.
+
+### Naive Sensible Way
+
+- The speaker explains that the naive sensible way to do things is actually the best way.
+- He expresses frustration with not being able to provide a reference to the thing that he's creating right now.
+- Life is pain.
+
+## Conclusion
+
+Section Overview: In this section, the speaker concludes by showing off a laser-engraved rust logo and saying goodnight
+to everyone.
+
+### Goodnight!
+
+- The speaker shows off a laser-engraved rust logo.
+- He says goodnight to everyone and hopes they had a nice night.
+- It's quarter to eleven in the evening and he should probably tuck into bed soon.
+
+## Generated by Video Highlight
+
+https://videohighlight.com/video/summary/f9B87LA86g0
