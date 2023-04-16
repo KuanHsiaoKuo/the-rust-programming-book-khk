@@ -181,8 +181,182 @@
                 </div>
                 <h1 id="sorting-algorithms"><a class="header" href="#sorting-algorithms">Sorting Algorithms</a></h1>
 <!--ts-->
+<ul>
+<li><a href="#sorting-algorithms">Sorting Algorithms</a>
+<ul>
+<li><a href="#introduction">Introduction</a>
+<ul>
+<li><a href="#sorting-algorithms-in-rust">Sorting Algorithms in Rust</a></li>
+</ul>
+</li>
+<li><a href="#ord-trait">Ord Trait</a>
+<ul>
+<li><a href="#partial-ord-vs-ord">Partial Ord vs. Ord</a></li>
+<li><a href="#total-order">Total Order</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a>
+<ul>
+<li><a href="#recap">Recap</a></li>
+<li><a href="#future-streams">Future Streams</a></li>
+</ul>
+</li>
+<li><a href="#floating-point-operations-and-sorting-mechanisms">Floating Point Operations and Sorting Mechanisms</a>
+<ul>
+<li><a href="#floating-point-operations">Floating Point Operations</a></li>
+<li><a href="#sorting-mechanisms">Sorting Mechanisms</a></li>
+<li><a href="#implementation-of-sorting-trait">Implementation of Sorting Trait</a></li>
+</ul>
+</li>
+<li><a href="#sorting-algorithms-1">Sorting Algorithms</a>
+<ul>
+<li><a href="#bubble-sort">Bubble Sort</a></li>
+<li><a href="#other-sorting-algorithms">Other Sorting Algorithms</a></li>
+</ul>
+</li>
+<li><a href="#implementing-bubble-sort">Implementing Bubble Sort</a>
+<ul>
+<li><a href="#implementing-bubble-sort-1">Implementing Bubble Sort</a></li>
+</ul>
+</li>
+<li><a href="#bubble-sort-and-insertion-sort">Bubble Sort and Insertion Sort</a>
+<ul>
+<li><a href="#bubble-sort-1">Bubble Sort</a></li>
+<li><a href="#insertion-sort">Insertion Sort</a></li>
+</ul>
+</li>
+<li><a href="#threshold-for-sorting">Threshold for Sorting</a></li>
+<li><a href="#insertion-sort-1">Insertion Sort</a>
+<ul>
+<li><a href="#implementing-insertion-sort">Implementing Insertion Sort</a></li>
+<li><a href="#comparison-with-bubble-sort">Comparison with Bubble Sort</a></li>
+<li><a href="#alternative-implementation">Alternative Implementation</a></li>
+</ul>
+</li>
+<li><a href="#using-binary-search-and-insert-to-sort-a-slice">Using Binary Search and Insert to Sort a Slice</a>
+<ul>
+<li><a href="#binary-search-and-insert">Binary Search and Insert</a></li>
+<li><a href="#conclusion-1">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#binary-search-and-sorting">Binary Search and Sorting</a>
+<ul>
+<li><a href="#binary-search">Binary Search</a></li>
+<li><a href="#insertion-sort-2">Insertion Sort</a></li>
+<li><a href="#bubble-sort-2">Bubble Sort</a></li>
+<li><a href="#future-improvements">Future Improvements</a></li>
+<li><a href="#the-phd-mug">The PhD Mug</a></li>
+<li><a href="#selection-sort">Selection Sort</a></li>
+<li><a href="#steps-for-selection-sort">Steps for Selection Sort</a></li>
+</ul>
+</li>
+<li><a href="#rust-analyzer-and-slice-iterator">Rust Analyzer and Slice Iterator</a>
+<ul>
+<li><a href="#using-enumerate-function-on-iterator">Using Enumerate Function on Iterator</a></li>
+<li><a href="#lifetime-issue-with-min-by-key">Lifetime Issue with Min by Key</a></li>
+<li><a href="#adjusting-index-for-unsorted-slice">Adjusting Index for Unsorted Slice</a></li>
+<li><a href="#asserting-equality">Asserting Equality</a></li>
+</ul>
+</li>
+<li><a href="#performance-of-explicit-vs-iterator-way">Performance of Explicit vs Iterator Way</a></li>
+<li><a href="#quick-sort">Quick Sort</a></li>
+<li><a href="#quick-sort-algorithm">Quick Sort Algorithm</a>
+<ul>
+<li><a href="#quick-sort-algorithm-1">Quick Sort Algorithm</a></li>
+</ul>
+</li>
+<li><a href="#implementing-quick-sort-as-an-in-place-sort">Implementing Quick Sort as an In-place Sort</a>
+<ul>
+<li><a href="#picking-a-pivot">Picking a Pivot</a></li>
+<li><a href="#partitioning-elements">Partitioning Elements</a></li>
+</ul>
+</li>
+<li><a href="#understanding-the-left-and-right-side-indicators">Understanding the Left and Right Side Indicators</a>
+<ul>
+<li><a href="#using-left-and-right-side-indicators">Using Left and Right Side Indicators</a></li>
+</ul>
+</li>
+<li><a href="#walking-through-iterative-methods">Walking Through Iterative Methods</a>
+<ul>
+<li><a href="#example-walkthrough">Example Walkthrough</a></li>
+</ul>
+</li>
+<li><a href="#quick-sort-algorithm-2">Quick Sort Algorithm</a>
+<ul>
+<li><a href="#implementing-quicksort">Implementing Quicksort</a></li>
+<li><a href="#issues-with-quicksort-implementation">Issues with Quicksort Implementation</a></li>
+</ul>
+</li>
+<li><a href="#understanding-quicksort">Understanding Quicksort</a>
+<ul>
+<li><a href="#excluding-pivot-from-sub-slices">Excluding Pivot from Sub-Slices</a></li>
+<li><a href="#placing-pivot-at-final-location">Placing Pivot at Final Location</a></li>
+</ul>
+</li>
+<li><a href="#improving-quick-sort">Improving Quick Sort</a>
+<ul>
+<li><a href="#choosing-a-better-pivot">Choosing a Better Pivot</a></li>
+</ul>
+</li>
+<li><a href="#comparing-sorting-algorithms">Comparing Sorting Algorithms</a>
+<ul>
+<li><a href="#efficiency-comparison">Efficiency Comparison</a></li>
+</ul>
+</li>
+<li><a href="#editing-benches-in-mainrs">Editing Benches in main.rs</a>
+<ul>
+<li><a href="#sorting-evaluator">Sorting Evaluator</a></li>
+</ul>
+</li>
+<li><a href="#using-criterion-vs-measuring-complexity">Using Criterion vs Measuring Complexity</a>
+<ul>
+<li><a href="#evaluating-sizes">Evaluating Sizes</a></li>
+</ul>
+</li>
+<li><a href="#sorting-algorithms-in-rust-1">Sorting Algorithms in Rust</a>
+<ul>
+<li><a href="#implementing-sorting-algorithms">Implementing Sorting Algorithms</a></li>
+<li><a href="#writing-a-generic-sort-evaluator">Writing a Generic Sort Evaluator</a></li>
+<li><a href="#object-safety-issue">Object Safety Issue</a></li>
+</ul>
+</li>
+<li><a href="#constructing-the-test">Constructing the Test</a>
+<ul>
+<li><a href="#generating-random-values">Generating Random Values</a></li>
+<li><a href="#printing-results">Printing Results</a></li>
+</ul>
+</li>
+<li><a href="#debugging-quicksort-panic">Debugging Quicksort Panic</a>
+<ul>
+<li><a href="#underflow-issue">Underflow Issue</a></li>
+<li><a href="#implementing-quick-sort">Implementing Quick Sort</a></li>
+<li><a href="#comparisons-in-rust">Comparisons in Rust</a></li>
+<li><a href="#checking-if-list-is-sorted">Checking If List Is Sorted</a></li>
+<li><a href="#plotting-results">Plotting Results</a></li>
+</ul>
+</li>
+<li><a href="#writing-a-simple-r-script">Writing a Simple R Script</a>
+<ul>
+<li><a href="#plotting-data-with-ggplot2">Plotting Data with ggplot2</a></li>
+<li><a href="#comparing-standard-library-sort">Comparing Standard Library Sort</a></li>
+<li><a href="#plotting-changes">Plotting Changes</a></li>
+<li><a href="#sorting-algorithm-performance">Sorting Algorithm Performance</a></li>
+<li><a href="#updating-plot">Updating Plot</a></li>
+<li><a href="#updating-plot-scale">Updating Plot Scale</a></li>
+</ul>
+</li>
+<li><a href="#conclusion-of-the-stream">Conclusion of the Stream</a>
+<ul>
+<li><a href="#sorting-algorithms-2">Sorting Algorithms</a></li>
+<li><a href="#future-streams-1">Future Streams</a></li>
+</ul>
+</li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr 15 09:30:00 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr 16 04:25:51 UTC 2023 -->
 <!--te-->
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>Section Overview: In this section, the speaker introduces the topic of the stream and explains why sorting algorithms are important.</p>

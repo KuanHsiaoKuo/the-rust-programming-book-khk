@@ -181,8 +181,265 @@
                 </div>
                 <h1 id="part-3"><a class="header" href="#part-3">Part 3:</a></h1>
 <!--ts-->
+<ul>
+<li><a href="#part-3">Part 3:</a>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#changes-since-last-stream">Changes Since Last Stream</a></li>
+<li><a href="#synchronization-primitives">Synchronization Primitives</a>
+<ul>
+<li><a href="#hazard-pointers">Hazard Pointers</a></li>
+<li><a href="#protecting-pointer-values">Protecting Pointer Values</a></li>
+<li><a href="#releasing-pointer-values">Releasing Pointer Values</a></li>
+</ul>
+</li>
+<li><a href="#hazard-pointers-1">Hazard Pointers</a>
+<ul>
+<li><a href="#protecting-pointer-values-with-hazard-pointers">Protecting Pointer Values with Hazard Pointers</a></li>
+<li><a href="#retiring-pointer-values">Retiring Pointer Values</a></li>
+<li><a href="#live-vs-retired-objects">Live vs. Retired Objects</a></li>
+<li><a href="#example-of-using-hazard-pointers">Example of Using Hazard Pointers</a></li>
+</ul>
+</li>
+<li><a href="#atomic-pointer-type">Atomic Pointer Type</a>
+<ul>
+<li><a href="#implementation-of-atomic-pointer-type">Implementation of Atomic Pointer Type</a></li>
+</ul>
+</li>
+<li><a href="#changes-made-for-hazard-pointers">Changes Made for Hazard Pointers</a>
+<ul>
+<li><a href="#changes-made-for-hazard-pointers-1">Changes Made for Hazard Pointers</a></li>
+</ul>
+</li>
+<li><a href="#tidying-up-interface-names">Tidying Up Interface Names</a>
+<ul>
+<li><a href="#tidying-up-interface-names-1">Tidying Up Interface Names</a></li>
+</ul>
+</li>
+<li><a href="#understanding-hazard-pointer-holders">Understanding Hazard Pointer Holders</a>
+<ul>
+<li><a href="#constructor-changes">Constructor Changes</a></li>
+<li><a href="#hazard-pointer-holders">Hazard Pointer Holders</a></li>
+</ul>
+</li>
+<li><a href="#hazard-pointer-holder">Hazard Pointer Holder</a>
+<ul>
+<li><a href="#default-implementation-for-hazard-pointer-holder">Default Implementation for Hazard Pointer Holder</a></li>
+<li><a href="#private-variants-and-enums">Private Variants and Enums</a></li>
+<li><a href="#make-hazard-pointer">Make Hazard Pointer</a></li>
+<li><a href="#constructor">Constructor</a></li>
+</ul>
+</li>
+<li><a href="#hazard-pointer-holder-api-changes">Hazard Pointer Holder API Changes</a>
+<ul>
+<li><a href="#proposed-changes">Proposed Changes</a></li>
+</ul>
+</li>
+<li><a href="#other-proposed-changes">Other Proposed Changes</a>
+<ul>
+<li><a href="#proposed-changes-1">Proposed Changes</a></li>
+<li><a href="#refactoring-code">Refactoring Code</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#renaming-and-refactoring">Renaming and Refactoring</a>
+<ul>
+<li><a href="#renaming-domain-and-hazard-pointer">Renaming Domain and Hazard Pointer</a></li>
+<li><a href="#qualification-and-importing">Qualification and Importing</a></li>
+</ul>
+</li>
+<li><a href="#hazard-pointers-vs-epoch-based-reclamation">Hazard Pointers vs Epoch-Based Reclamation</a>
+<ul>
+<li><a href="#differences-between-hazard-pointers-and-epoch-based-reclamation">Differences between Hazard Pointers and Epoch-Based Reclamation</a></li>
+</ul>
+</li>
+<li><a href="#relaxed-cleanup">Relaxed Cleanup</a>
+<ul>
+<li><a href="#bug-fix-for-bulk-reclaims">Bug Fix for Bulk Reclaims</a></li>
+</ul>
+</li>
+<li><a href="#push-list">Push List</a>
+<ul>
+<li><a href="#push-list-1">Push List</a></li>
+</ul>
+</li>
+<li><a href="#retirement-and-reclamation">Retirement and Reclamation</a>
+<ul>
+<li><a href="#push-list-and-check-threshold">Push List and Check Threshold</a></li>
+<li><a href="#retiring-objects">Retiring Objects</a></li>
+<li><a href="#consolidating-retired-objects">Consolidating Retired Objects</a></li>
+<li><a href="#sharding-untagged-list">Sharding Untagged List</a></li>
+</ul>
+</li>
+<li><a href="#overview-of-changes-to-code">Overview of Changes to Code</a>
+<ul>
+<li><a href="#changes-to-executors">Changes to Executors</a></li>
+<li><a href="#changes-to-tests-and-benchmarks">Changes to Tests and Benchmarks</a></li>
+<li><a href="#improving-reclamation">Improving Reclamation</a></li>
+</ul>
+</li>
+<li><a href="#moving-from-push-retired-to-push-list">Moving from Push Retired to Push List</a>
+<ul>
+<li><a href="#implementing-push-list">Implementing Push List</a></li>
+<li><a href="#retirement-process">Retirement Process</a></li>
+<li><a href="#updating-code">Updating Code</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-push-list">Introduction to Push List</a>
+<ul>
+<li><a href="#parameters-of-push-list">Parameters of Push List</a></li>
+</ul>
+</li>
+<li><a href="#retiring-items">Retiring Items</a>
+<ul>
+<li><a href="#adding-items-to-retired-list">Adding Items to Retired List</a></li>
+<li><a href="#handling-empty-lists">Handling Empty Lists</a></li>
+<li><a href="#counting-items-in-retired-list">Counting Items in Retired List</a></li>
+</ul>
+</li>
+<li><a href="#understanding-ownership-of-linked-lists">Understanding Ownership of Linked Lists</a>
+<ul>
+<li><a href="#owning-the-head-of-a-list">Owning the Head of a List</a></li>
+<li><a href="#retired-lists-and-valid-elements">Retired Lists and Valid Elements</a></li>
+</ul>
+</li>
+<li><a href="#exclusive-access-to-linked-list-head">Exclusive Access to Linked List Head</a>
+<ul>
+<li><a href="#exclusive-access-to-head-and-dereferencing-pointers">Exclusive Access to Head and Dereferencing Pointers</a></li>
+<li><a href="#implementing-an-unsafe-helper-function-for-length">Implementing an Unsafe Helper Function for Length</a></li>
+</ul>
+</li>
+<li><a href="#implementing-on-tagpush">Implementing on Tag.Push</a>
+<ul>
+<li><a href="#changes-needed-for-supporting-a-list">Changes Needed for Supporting a List</a></li>
+</ul>
+</li>
+<li><a href="#modifying-linked-list">Modifying Linked List</a>
+<ul>
+<li><a href="#changing-next-pointers">Changing Next Pointers</a></li>
+</ul>
+</li>
+<li><a href="#atomic-pointer-and-push-list">Atomic Pointer and Push List</a>
+<ul>
+<li><a href="#atomic-pointer">Atomic Pointer</a></li>
+<li><a href="#push-list-2">Push List</a></li>
+</ul>
+</li>
+<li><a href="#check-count-threshold">Check Count Threshold</a>
+<ul>
+<li><a href="#load-count">Load Count</a></li>
+<li><a href="#while-loop">While Loop</a></li>
+</ul>
+</li>
+<li><a href="#implementing-a-heuristic-for-reclamation">Implementing a Heuristic for Reclamation</a>
+<ul>
+<li><a href="#count-threshold">Count Threshold</a></li>
+<li><a href="#check-count-threshold-1">Check Count Threshold</a></li>
+<li><a href="#check-due-time">Check Due Time</a></li>
+<li><a href="#set-due-time">Set Due Time</a></li>
+</ul>
+</li>
+<li><a href="#understanding-hazard-pointers">Understanding Hazard Pointers</a>
+<ul>
+<li><a href="#introduction-to-hazard-pointers">Introduction to Hazard Pointers</a></li>
+<li><a href="#implementing-hazard-pointers">Implementing Hazard Pointers</a></li>
+<li><a href="#using-hazard-pointers-in-rust">Using Hazard Pointers in Rust</a></li>
+<li><a href="#conclusion-1">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#understanding-garbage-collection-in-rust">Understanding Garbage Collection in Rust</a>
+<ul>
+<li><a href="#identifying-unused-memory">Identifying Unused Memory</a></li>
+<li><a href="#reclaiming-unused-memory">Reclaiming Unused Memory</a></li>
+<li><a href="#separating-identification-from-reclamation">Separating Identification from Reclamation</a></li>
+<li><a href="#helper-methods">Helper Methods</a></li>
+<li><a href="#conclusion-2">Conclusion</a></li>
+<li><a href="#unsafe-dereferencing">Unsafe Dereferencing</a></li>
+<li><a href="#moving-count-out-of-retired-list">Moving Count Out of Retired List</a></li>
+<li><a href="#updating-unreclaimed-and-unreclaimable-tail">Updating Unreclaimed and Unreclaimable Tail</a></li>
+<li><a href="#updating-parent-count">Updating Parent Count</a></li>
+</ul>
+</li>
+<li><a href="#reclaiming-hazard-pointers">Reclaiming Hazard Pointers</a>
+<ul>
+<li><a href="#reclaiming-hazard-pointers-1">Reclaiming Hazard Pointers</a></li>
+<li><a href="#safety-comment">Safety Comment</a></li>
+<li><a href="#removing-unnecessary-methods">Removing Unnecessary Methods</a></li>
+<li><a href="#eager-reclamation">Eager Reclamation</a></li>
+<li><a href="#shutdown-field">Shutdown Field</a></li>
+<li><a href="#reclaim-all-objects">Reclaim All Objects</a></li>
+<li><a href="#reclaim-list-transitive">Reclaim List Transitive</a></li>
+<li><a href="#neat-loop">Neat Loop</a></li>
+<li><a href="#handling-children">Handling Children</a></li>
+<li><a href="#unsafe-and-safe-reclaims">Unsafe and Safe Reclaims</a></li>
+<li><a href="#global-hazard-pointers">Global Hazard Pointers</a></li>
+<li><a href="#safety">Safety</a></li>
+</ul>
+</li>
+<li><a href="#introduction-1">Introduction</a>
+<ul>
+<li><a href="#unsafe-word-and-reclaim-unprotected">Unsafe Word and Reclaim Unprotected</a></li>
+</ul>
+</li>
+<li><a href="#naming-error">Naming Error</a>
+<ul>
+<li><a href="#naming-error-in-reclaim-unprotected">Naming Error in Reclaim Unprotected</a></li>
+</ul>
+</li>
+<li><a href="#code-refactoring">Code Refactoring</a>
+<ul>
+<li><a href="#shut-down-and-free-hazard-pointer-rex">Shut Down and Free Hazard Pointer Rex</a></li>
+</ul>
+</li>
+<li><a href="#shared-reference-issue">Shared Reference Issue</a>
+<ul>
+<li><a href="#exclusive-and-shared-references">Exclusive and Shared References</a></li>
+</ul>
+</li>
+<li><a href="#skipping-global-domain">Skipping Global Domain</a>
+<ul>
+<li><a href="#assertion-check-for-global-domain">Assertion Check for Global Domain</a></li>
+<li><a href="#debug-check-for-hazard-pointers">Debug Check for Hazard Pointers</a></li>
+</ul>
+</li>
+<li><a href="#type-annotation-needed">Type Annotation Needed</a>
+<ul>
+<li><a href="#unreclaimed-type-annotation">Unreclaimed Type Annotation</a></li>
+</ul>
+</li>
+<li><a href="#unused-variable-error">Unused Variable Error</a>
+<ul>
+<li><a href="#pop-crate-not-needed">Pop Crate Not Needed</a></li>
+</ul>
+</li>
+<li><a href="#debugging-segmentation-fault-error">Debugging Segmentation Fault Error</a>
+<ul>
+<li><a href="#running-gdb-debugger">Running GDB Debugger</a></li>
+</ul>
+</li>
+<li><a href="#troubleshooting-code">Troubleshooting Code</a>
+<ul>
+<li><a href="#compiling-issues">Compiling Issues</a></li>
+</ul>
+</li>
+<li><a href="#restructuring-command">Restructuring Command</a>
+<ul>
+<li><a href="#relevant-commit">Relevant Commit</a></li>
+<li><a href="#retired-list-error">Retired List Error</a></li>
+</ul>
+</li>
+<li><a href="#charging-untagged-list">Charging Untagged List</a>
+<ul>
+<li><a href="#num-shards-constant">Num Shards Constant</a></li>
+<li><a href="#calc-shard-function">Calc Shard Function</a></li>
+</ul>
+</li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr 15 09:30:02 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr 16 04:25:53 UTC 2023 -->
 <!--te-->
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>Section Overview: In this section, the speaker introduces the topic of the stream, which is implementing hazard pointers

@@ -181,8 +181,129 @@
                 </div>
                 <h1 id="implementing-the-trie-data-structure-in-rust"><a class="header" href="#implementing-the-trie-data-structure-in-rust">Implementing the trie data structure in Rust</a></h1>
 <!--ts-->
+<ul>
+<li><a href="#implementing-the-trie-data-structure-in-rust">Implementing the trie data structure in Rust</a>
+<ul>
+<li><a href="#introduction">Introduction</a>
+<ul>
+<li><a href="#storing-urls-in-memory">Storing URLs in Memory</a></li>
+<li><a href="#trees-vs-sets">Trees vs Sets</a></li>
+<li><a href="#implementing-trees">Implementing Trees</a></li>
+<li><a href="#creating-root-node">Creating Root Node</a></li>
+<li><a href="#nodes-in-a-trie">Nodes in a Trie</a></li>
+<li><a href="#creating-a-hash-map">Creating a Hash Map</a></li>
+<li><a href="#inserting-strings">Inserting Strings</a></li>
+</ul>
+</li>
+<li><a href="#trie-data-structure-in-rust">Trie Data Structure in Rust</a>
+<ul>
+<li><a href="#creating-a-mutable-variable-for-insertion">Creating a Mutable Variable for Insertion</a></li>
+<li><a href="#using-string-slices-and-characters-in-rust">Using String Slices and Characters in Rust</a></li>
+</ul>
+</li>
+<li><a href="#updating-node-with-default-value">Updating Node with Default Value</a>
+<ul>
+<li><a href="#updating-current-node-with-default-value">Updating Current Node with Default Value</a></li>
+</ul>
+</li>
+<li><a href="#ensuring-end-field-on-node-is-true">Ensuring End Field on Node is True</a>
+<ul>
+<li><a href="#ensuring-end-field-on-node-is-true-1">Ensuring End Field on Node is True</a></li>
+</ul>
+</li>
+<li><a href="#creating-contains-method">Creating Contains Method</a>
+<ul>
+<li><a href="#creating-contains-method-1">Creating Contains Method</a></li>
+</ul>
+</li>
+<li><a href="#trie-data-structure-implementation">Trie Data Structure Implementation</a>
+<ul>
+<li><a href="#implementing-the-trie-data-structure">Implementing the Trie Data Structure</a></li>
+<li><a href="#guarding-against-accidental-prefixes">Guarding Against Accidental Prefixes</a></li>
+<li><a href="#checking-for-existing-strings">Checking for Existing Strings</a></li>
+<li><a href="#conclusion-and-comments">Conclusion and Comments</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-children-as-a-hashmap">Introduction to Children as a Hashmap</a>
+<ul>
+<li><a href="#using-raw-bytes-for-input-encoding">Using Raw Bytes for Input Encoding</a></li>
+<li><a href="#reducing-memory-usage">Reducing Memory Usage</a></li>
+</ul>
+</li>
+<li><a href="#improving-hashing-algorithm-for-short-keys">Improving Hashing Algorithm for Short Keys</a>
+<ul>
+<li><a href="#standard-collections-module-hashmap">Standard Collections Module Hashmap</a></li>
+<li><a href="#finding-better-hash-function">Finding Better Hash Function</a></li>
+</ul>
+</li>
+<li><a href="#building-a-hasher">Building a Hasher</a>
+<ul>
+<li><a href="#creating-a-hashmap-with-a-hasher">Creating a Hashmap with a Hasher</a></li>
+<li><a href="#selecting-your-own-hash-function">Selecting Your Own Hash Function</a></li>
+</ul>
+</li>
+<li><a href="#using-linear-scan-or-binary-search-instead-of-hashmap">Using Linear Scan or Binary Search Instead of Hashmap</a>
+<ul>
+<li><a href="#problem-with-using-hashmap">Problem with Using Hashmap</a></li>
+<li><a href="#proposal-using-an-array-of-option-node">Proposal: Using an Array of Option Node</a></li>
+</ul>
+</li>
+<li><a href="#proposal-for-a-single-hash-map">Proposal for a Single Hash Map</a>
+<ul>
+<li><a href="#using-a-single-hash-map">Using a Single Hash Map</a></li>
+</ul>
+</li>
+<li><a href="#binding-lifetimes-together">Binding Lifetimes Together</a>
+<ul>
+<li><a href="#fusing-lifetimes-together">Fusing Lifetimes Together</a></li>
+</ul>
+</li>
+<li><a href="#implementing-defaults-for-node-a">Implementing Defaults for Node A</a>
+<ul>
+<li><a href="#issues-with-implementing-defaults">Issues with Implementing Defaults</a></li>
+</ul>
+</li>
+<li><a href="#introduction-1">Introduction</a>
+<ul>
+<li><a href="#borrowing-and-mutation">Borrowing and Mutation</a></li>
+</ul>
+</li>
+<li><a href="#borrowing-chicken">Borrowing Chicken</a>
+<ul>
+<li><a href="#problems-with-borrowing-chicken">Problems with Borrowing Chicken</a></li>
+</ul>
+</li>
+<li><a href="#avoiding-double-lookout-problem">Avoiding Double Lookout Problem</a>
+<ul>
+<li><a href="#using-entry-to-avoid-double-lookout-problem">Using Entry to Avoid Double Lookout Problem</a></li>
+</ul>
+</li>
+<li><a href="#updating-children-nodes">Updating Children Nodes</a>
+<ul>
+<li><a href="#updating-children-nodes-1">Updating Children Nodes</a></li>
+</ul>
+</li>
+<li><a href="#default-image">Default Image</a>
+<ul>
+<li><a href="#default-image-1">Default Image</a></li>
+</ul>
+</li>
+<li><a href="#naive-sensible-way">Naive Sensible Way</a>
+<ul>
+<li><a href="#naive-sensible-way-1">Naive Sensible Way</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a>
+<ul>
+<li><a href="#goodnight">Goodnight!</a></li>
+</ul>
+</li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr 15 09:30:04 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr 16 04:25:56 UTC 2023 -->
 <!--te-->
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>Section Overview: In this section, the speaker introduces himself and expresses excitement about what they will achieve

@@ -181,8 +181,266 @@
                 </div>
                 <h1 id="solving-distributed-systems-challenges-in-rust"><a class="header" href="#solving-distributed-systems-challenges-in-rust">Solving distributed systems challenges in Rust</a></h1>
 <!--ts-->
+<ul>
+<li><a href="#solving-distributed-systems-challenges-in-rust">Solving distributed systems challenges in Rust</a>
+<ul>
+<li><a href="#introduction">Introduction</a>
+<ul>
+<li><a href="#distributed-systems-challenges">Distributed Systems Challenges</a></li>
+</ul>
+</li>
+<li><a href="#what-is-maelstrom">What is Maelstrom?</a>
+<ul>
+<li><a href="#about-maelstrom">About Maelstrom</a></li>
+</ul>
+</li>
+<li><a href="#implementing-the-protocol">Implementing the Protocol</a>
+<ul>
+<li><a href="#protocol-implementation">Protocol Implementation</a></li>
+</ul>
+</li>
+<li><a href="#setting-up-the-project">Setting up the Project</a>
+<ul>
+<li><a href="#naming-the-project">Naming the Project</a></li>
+</ul>
+</li>
+<li><a href="#defining-message-struct">Defining Message Struct</a>
+<ul>
+<li><a href="#struct-definition">Struct Definition</a></li>
+</ul>
+</li>
+<li><a href="#enum-and-payload">Enum and Payload</a>
+<ul>
+<li><a href="#using-enums-for-message-types">Using Enums for Message Types</a></li>
+<li><a href="#flattening-payload">Flattening Payload</a></li>
+</ul>
+</li>
+<li><a href="#state-machine-driver">State Machine Driver</a>
+<ul>
+<li><a href="#deserializing-inputs">Deserializing Inputs</a></li>
+<li><a href="#state-machine-model">State Machine Model</a></li>
+</ul>
+</li>
+<li><a href="#echo-node-step-function">Echo Node Step Function</a>
+<ul>
+<li><a href="#echo-node-step-function-1">Echo Node Step Function</a></li>
+</ul>
+</li>
+<li><a href="#introduction-1">Introduction</a>
+<ul>
+<li><a href="#running-a-command">Running a Command</a></li>
+</ul>
+</li>
+<li><a href="#debugging">Debugging</a>
+<ul>
+<li><a href="#running-binary">Running Binary</a></li>
+<li><a href="#responding-to-messages">Responding to Messages</a></li>
+</ul>
+</li>
+<li><a href="#responding-to-init-message">Responding to Init Message</a>
+<ul>
+<li><a href="#node-id-and-node-ids-fields">Node ID and Node IDs Fields</a></li>
+<li><a href="#init-message-type">Init Message Type</a></li>
+<li><a href="#responding-with-required-message">Responding with Required Message</a></li>
+<li><a href="#flushing-standard-out">Flushing Standard Out</a></li>
+</ul>
+</li>
+<li><a href="#printing-new-line">Printing New Line</a>
+<ul>
+<li><a href="#pretty-formatter">Pretty Formatter</a></li>
+<li><a href="#inner-part-of-output-stream">Inner Part of Output Stream</a></li>
+<li><a href="#implementing-json-serialization">Implementing JSON Serialization</a></li>
+<li><a href="#returning-messages-from-step-function">Returning Messages from Step Function</a></li>
+<li><a href="#implementing-a-globally-unique-id-generation-system">Implementing a Globally Unique ID Generation System</a></li>
+</ul>
+</li>
+<li><a href="#introduction-2">Introduction</a>
+<ul>
+<li><a href="#testing">Testing</a></li>
+</ul>
+</li>
+<li><a href="#payload-definition">Payload Definition</a>
+<ul>
+<li><a href="#generic-payload">Generic Payload</a></li>
+<li><a href="#node-service-implementation">Node Service Implementation</a></li>
+</ul>
+</li>
+<li><a href="#splitting-up-shareable-parts">Splitting Up Shareable Parts</a>
+<ul>
+<li><a href="#copying-echo">Copying Echo</a></li>
+<li><a href="#generating-unique-ids">Generating Unique IDs</a></li>
+<li><a href="#responding-with-generate-okay-message">Responding with Generate Okay Message</a></li>
+<li><a href="#node-receiving-generate-messages">Node Receiving Generate Messages</a></li>
+</ul>
+</li>
+<li><a href="#unique-ids">Unique IDs</a>
+<ul>
+<li><a href="#generating-unique-ids-1">Generating Unique IDs</a></li>
+<li><a href="#implementing-unique-ids">Implementing Unique IDs</a></li>
+<li><a href="#extracting-init">Extracting Init</a></li>
+</ul>
+</li>
+<li><a href="#extracting-initialization-message">Extracting Initialization Message</a>
+<ul>
+<li><a href="#extracting-initialization-message-1">Extracting Initialization Message</a></li>
+<li><a href="#creating-init-response">Creating Init Response</a></li>
+<li><a href="#generating-payload">Generating Payload</a></li>
+<li><a href="#incrementing-id">Incrementing ID</a></li>
+</ul>
+</li>
+<li><a href="#generating-init-reply">Generating Init Reply</a>
+<ul>
+<li><a href="#generating-init-reply-1">Generating Init Reply</a></li>
+<li><a href="#implementing-payload-trait-for-echo">Implementing Payload Trait for Echo</a></li>
+</ul>
+</li>
+<li><a href="#restructuring-the-code">Restructuring the Code</a>
+<ul>
+<li><a href="#handling-init-messages">Handling Init Messages</a></li>
+<li><a href="#removing-payload-trait">Removing Payload Trait</a></li>
+<li><a href="#updating-echo-node">Updating Echo Node</a></li>
+<li><a href="#unique-ids-1">Unique IDs</a></li>
+</ul>
+</li>
+<li><a href="#changes-to-unique-id-generator">Changes to Unique ID Generator</a>
+<ul>
+<li><a href="#unique-id-generator-changes">Unique ID Generator Changes</a></li>
+</ul>
+</li>
+<li><a href="#debugging-echo-functionality">Debugging Echo Functionality</a>
+<ul>
+<li><a href="#debugging-echo-functionality-1">Debugging Echo Functionality</a></li>
+</ul>
+</li>
+<li><a href="#updating-stream-deserializer">Updating Stream Deserializer</a>
+<ul>
+<li><a href="#updating-stream-deserializer-1">Updating Stream Deserializer</a></li>
+</ul>
+</li>
+<li><a href="#unique-ids-and-broadcast-challenge">Unique IDs and Broadcast Challenge</a>
+<ul>
+<li><a href="#generating-unique-ids-2">Generating Unique IDs</a></li>
+<li><a href="#single-node-broadcast-system">Single Node Broadcast System</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#order-of-returned-values-and-topology">Order of Returned Values and Topology</a>
+<ul>
+<li><a href="#the-order-of-returned-values">The Order of Returned Values</a></li>
+<li><a href="#topology">Topology</a></li>
+</ul>
+</li>
+<li><a href="#setting-up-messages">Setting Up Messages</a>
+<ul>
+<li><a href="#initial-setup">Initial Setup</a></li>
+<li><a href="#broadcast-message">Broadcast Message</a></li>
+</ul>
+</li>
+<li><a href="#introduction-3">Introduction</a>
+<ul>
+<li><a href="#implementing-broadcast">Implementing Broadcast</a></li>
+</ul>
+</li>
+<li><a href="#multi-node-broadcast">Multi-node Broadcast</a>
+<ul>
+<li><a href="#gossip-protocols">Gossip Protocols</a></li>
+</ul>
+</li>
+<li><a href="#broadcast-and-gossip">Broadcast and Gossip</a>
+<ul>
+<li><a href="#broadcast-vs-gossip">Broadcast vs. Gossip</a></li>
+<li><a href="#how-gossip-works">How Gossip Works</a></li>
+</ul>
+</li>
+<li><a href="#understanding-gossip-protocol">Understanding Gossip Protocol</a>
+<ul>
+<li><a href="#how-gossip-protocol-works">How Gossip Protocol Works</a></li>
+<li><a href="#syncing-data-between-nodes">Syncing Data Between Nodes</a></li>
+</ul>
+</li>
+<li><a href="#the-two-generals-problem">The Two Generals Problem</a>
+<ul>
+<li><a href="#sending-messages-and-acknowledgments">Sending Messages and Acknowledgments</a></li>
+<li><a href="#no-solution-to-consensus">No Solution to Consensus</a></li>
+<li><a href="#optimizing-gossip-protocol">Optimizing Gossip Protocol</a></li>
+<li><a href="#implementing-known-values">Implementing Known Values</a></li>
+<li><a href="#implementing-broadcast-1">Implementing Broadcast</a></li>
+<li><a href="#determining-nodes-to-communicate-with">Determining Nodes to Communicate With</a></li>
+<li><a href="#network-partitioning-issues">Network Partitioning Issues</a></li>
+<li><a href="#implementing-gossip-protocol">Implementing Gossip Protocol</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-asynchronous-programming">Introduction to Asynchronous Programming</a>
+<ul>
+<li><a href="#two-approaches-to-writing-asynchronous-code">Two Approaches to Writing Asynchronous Code</a></li>
+<li><a href="#avoiding-asynchronous-programming-for-now">Avoiding Asynchronous Programming for Now</a></li>
+<li><a href="#synchronous-programming-techniques">Synchronous Programming Techniques</a></li>
+</ul>
+</li>
+<li><a href="#using-channels-for-input-messages">Using Channels for Input Messages</a>
+<ul>
+<li><a href="#creating-a-channel">Creating a Channel</a></li>
+<li><a href="#receiving-from-channel-and-performing-step-function">Receiving from Channel and Performing Step Function</a></li>
+<li><a href="#dropping-standard-in">Dropping Standard In</a></li>
+</ul>
+</li>
+<li><a href="#introduction-4">Introduction</a>
+<ul>
+<li><a href="#thread-panics-and-error-handling">Thread Panics and Error Handling</a></li>
+</ul>
+</li>
+<li><a href="#main-loop">Main Loop</a>
+<ul>
+<li><a href="#generating-additional-input-events">Generating Additional Input Events</a></li>
+</ul>
+</li>
+<li><a href="#event-payload">Event Payload</a>
+<ul>
+<li><a href="#differentiating-between-injected-payloads-and-actual-messages">Differentiating Between Injected Payloads and Actual Messages</a></li>
+</ul>
+</li>
+<li><a href="#echo-fix">Echo Fix</a>
+<ul>
+<li><a href="#fixing-echo">Fixing Echo</a></li>
+</ul>
+</li>
+<li><a href="#end-of-file-and-injected-payloads">End of File and Injected Payloads</a>
+<ul>
+<li><a href="#handling-end-of-file-events">Handling End-of-File Events</a></li>
+<li><a href="#handling-injected-payloads">Handling Injected Payloads</a></li>
+<li><a href="#starting-a-new-thread">Starting a New Thread</a></li>
+<li><a href="#serialized-payload">Serialized Payload</a></li>
+<li><a href="#enum-for-injected-payload">Enum for Injected Payload</a></li>
+</ul>
+</li>
+<li><a href="#understanding-gossip-protocol-1">Understanding Gossip Protocol</a>
+<ul>
+<li><a href="#implementing-injected-payload">Implementing Injected Payload</a></li>
+<li><a href="#creating-helper-functions">Creating Helper Functions</a></li>
+<li><a href="#updating-gossip-protocol">Updating Gossip Protocol</a></li>
+<li><a href="#filtering-messages">Filtering Messages</a></li>
+</ul>
+</li>
+<li><a href="#gossip-protocol-implementation">Gossip Protocol Implementation</a>
+<ul>
+<li><a href="#sending-messages">Sending Messages</a></li>
+<li><a href="#gossiping-between-nodes">Gossiping Between Nodes</a></li>
+<li><a href="#naive-gossip-implementation">Naive Gossip Implementation</a></li>
+</ul>
+</li>
+<li><a href="#performance-analysis">Performance Analysis</a>
+<ul>
+<li><a href="#broadcast-rate-vs-propagation-delay">Broadcast Rate vs. Propagation Delay</a></li>
+<li><a href="#visibility-delay">Visibility Delay</a></li>
+<li><a href="#naive-gossip-implementation-1">Naive Gossip Implementation</a></li>
+</ul>
+</li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr 15 09:30:01 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr 16 04:25:52 UTC 2023 -->
 <!--te-->
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>Section Overview: In this section, the speaker introduces a set of distributed systems challenges that use a platform

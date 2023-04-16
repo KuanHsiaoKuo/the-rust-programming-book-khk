@@ -181,8 +181,211 @@
                 </div>
                 <h1 id="smart-pointers-and-interior-mutability"><a class="header" href="#smart-pointers-and-interior-mutability">Smart Pointers and Interior Mutability</a></h1>
 <!--ts-->
+<ul>
+<li><a href="#smart-pointers-and-interior-mutability">Smart Pointers and Interior Mutability</a>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#overview-of-smart-pointers">Overview of Smart Pointers</a>
+<ul>
+<li><a href="#common-smart-pointer-types">Common Smart Pointer Types</a></li>
+</ul>
+</li>
+<li><a href="#implementation-of-smart-pointers">Implementation of Smart Pointers</a>
+<ul>
+<li><a href="#implementing-smart-pointer-types">Implementing Smart Pointer Types</a></li>
+</ul>
+</li>
+<li><a href="#resources-for-learning-more-about-rust">Resources for Learning More About Rust</a>
+<ul>
+<li><a href="#resources-for-learning-more-about-rust-1">Resources for Learning More About Rust</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-cell">Introduction to Cell</a>
+<ul>
+<li><a href="#introduction-to-cell-1">Introduction to Cell</a></li>
+</ul>
+</li>
+<li><a href="#starting-with-sell">Starting with Sell</a>
+<ul>
+<li><a href="#starting-with-sell-1">Starting with Sell</a></li>
+</ul>
+</li>
+<li><a href="#interior-mutability-and-cell">Interior Mutability and Cell</a>
+<ul>
+<li><a href="#introduction-to-cell-2">Introduction to Cell</a></li>
+<li><a href="#restrictions-of-cell-types">Restrictions of Cell Types</a></li>
+<li><a href="#safety-features-of-cell">Safety Features of Cell</a></li>
+<li><a href="#borrowing-and-exclusive-reference">Borrowing and Exclusive Reference</a></li>
+<li><a href="#benefits-of-using-cell">Benefits of Using Cell</a></li>
+<li><a href="#usage-of-cell">Usage of Cell</a></li>
+<li><a href="#basic-api">Basic API</a></li>
+<li><a href="#unsafe-cell">Unsafe Cell</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-unsafe-cell">Introduction to Unsafe Cell</a>
+<ul>
+<li><a href="#using-unsafe-cell">Using Unsafe Cell</a></li>
+<li><a href="#implementing-not-sync-for-cell-t">Implementing Not Sync for Cell T</a></li>
+</ul>
+</li>
+<li><a href="#recap-of-unsafe-cell">Recap of Unsafe Cell</a>
+<ul>
+<li><a href="#summary-of-unsafe-cell">Summary of Unsafe Cell</a></li>
+<li><a href="#using-cell-to-get-a-reference">Using Cell to Get a Reference</a></li>
+<li><a href="#disallowing-unsafe-implementation-of-sync">Disallowing Unsafe Implementation of Sync</a></li>
+<li><a href="#demonstrating-broken-code-with-multiple-threads">Demonstrating Broken Code with Multiple Threads</a></li>
+</ul>
+</li>
+<li><a href="#the-problem-with-interleaving-threads">The Problem with Interleaving Threads</a>
+<ul>
+<li><a href="#interleaving-threads">Interleaving Threads</a></li>
+<li><a href="#demonstrating-the-problem">Demonstrating the Problem</a></li>
+</ul>
+</li>
+<li><a href="#non-copy-types-and-trait-bounds">Non-Copy Types and Trait Bounds</a>
+<ul>
+<li><a href="#copy-trait-requirement">Copy Trait Requirement</a></li>
+<li><a href="#constrained-trait-bounds">Constrained Trait Bounds</a></li>
+</ul>
+</li>
+<li><a href="#unsafe-cell-and-ref-cell">Unsafe Cell and Ref Cell</a>
+<ul>
+<li><a href="#unsafe-cell-1">Unsafe Cell</a></li>
+<li><a href="#ref-cell">Ref Cell</a></li>
+<li><a href="#borrowing-with-refcell-and-cell">Borrowing with RefCell and Cell</a></li>
+<li><a href="#using-cell-instead-of-refcell">Using Cell instead of RefCell</a></li>
+<li><a href="#safety-argument">Safety Argument</a></li>
+</ul>
+</li>
+<li><a href="#ref-type">Ref Type</a>
+<ul>
+<li><a href="#implementation-of-ref-type">Implementation of Ref Type</a></li>
+<li><a href="#deref-trait">Deref Trait</a></li>
+<li><a href="#safety-argument-1">Safety Argument</a></li>
+</ul>
+</li>
+<li><a href="#refcell-and-rc">RefCell and Rc</a>
+<ul>
+<li><a href="#refcell">RefCell</a></li>
+<li><a href="#rc">RC</a></li>
+</ul>
+</li>
+<li><a href="#rc-and-smart-pointers">RC and Smart Pointers</a>
+<ul>
+<li><a href="#weak-vs-strong-pointers">Weak vs Strong Pointers</a></li>
+<li><a href="#introduction-to-rc-smart-pointers">Introduction to RC Smart Pointers</a></li>
+<li><a href="#implementing-clone-for-t">Implementing Clone for T</a></li>
+</ul>
+</li>
+<li><a href="#rust-reference-types">Rust Reference Types</a>
+<ul>
+<li><a href="#reference-types">Reference Types</a></li>
+</ul>
+</li>
+<li><a href="#box-in-rust">Box in Rust</a>
+<ul>
+<li><a href="#box-provides-heap-allocation">Box Provides Heap Allocation</a></li>
+</ul>
+</li>
+<li><a href="#unsafe-keyword-in-rust">Unsafe Keyword in Rust</a>
+<ul>
+<li><a href="#unsafe-keyword">Unsafe Keyword</a></li>
+</ul>
+</li>
+<li><a href="#smart-pointers-in-rust">Smart Pointers in Rust</a>
+<ul>
+<li><a href="#deallocating-smart-pointers">Deallocating Smart Pointers</a></li>
+</ul>
+</li>
+<li><a href="#understanding-variance-in-rust">Understanding Variance in Rust</a>
+<ul>
+<li><a href="#variance-in-rust">Variance in Rust</a></li>
+<li><a href="#using-non-null">Using Non-Null</a></li>
+</ul>
+</li>
+<li><a href="#using-unsafe-pointers-in-rust">Using Unsafe Pointers in Rust</a>
+<ul>
+<li><a href="#using-unsafe-rf-method-on-non-null">Using Unsafe RF Method on Non Null</a></li>
+<li><a href="#why-unsafe-pointers-are-necessary">Why Unsafe Pointers are Necessary</a></li>
+</ul>
+</li>
+<li><a href="#lifetime-guarantees-in-rust">Lifetime Guarantees in Rust</a>
+<ul>
+<li><a href="#why-you-cannot-store-mutable-references-outside-their-scope">Why You Cannot Store Mutable References Outside Their Scope</a></li>
+<li><a href="#difference-between-mutable-pointer-and-mutable-reference">Difference Between Mutable Pointer and Mutable Reference</a></li>
+</ul>
+</li>
+<li><a href="#understanding-memory-in-rust">Understanding Memory in Rust</a>
+<ul>
+<li><a href="#why-a-cell-is-necessary-even-if-there-is-a-mutable-pointer">Why a Cell is Necessary Even if There is a Mutable Pointer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#inner-dog-ref-count">Inner Dog Ref Count</a>
+<ul>
+<li><a href="#importance-of-marker-in-rust">Importance of Marker in Rust</a></li>
+<li><a href="#drop-check-in-rust">Drop Check in Rust</a></li>
+<li><a href="#example-of-drop-check-issue">Example of Drop Check Issue</a></li>
+</ul>
+</li>
+<li><a href="#understanding-drop-check">Understanding Drop Check</a>
+<ul>
+<li><a href="#how-drop-check-works">How Drop Check Works</a></li>
+<li><a href="#example-of-drop-check-issue-1">Example of Drop Check Issue</a></li>
+</ul>
+</li>
+<li><a href="#understanding-phantom-data-in-rust">Understanding Phantom Data in Rust</a>
+<ul>
+<li><a href="#phantom-data">Phantom Data</a></li>
+<li><a href="#question-mark-sized-types">Question Mark Sized Types</a></li>
+<li><a href="#benefits-of-using-rust-over-c">Benefits of Using Rust Over C</a></li>
+</ul>
+</li>
+<li><a href="#refcell-mutex-and-arc">RefCell, Mutex and Arc</a>
+<ul>
+<li><a href="#exclamation-marks-sized-vs-question-mark-sized">Exclamation Marks Sized vs Question Mark Sized</a></li>
+<li><a href="#synchronous-versions-of-refcell-mutex-and-arc">Synchronous Versions of RefCell, Mutex and Arc</a></li>
+</ul>
+</li>
+<li><a href="#rc-vs-art">RC vs Art</a>
+<ul>
+<li><a href="#cost-of-using-atomics">Cost of Using Atomics</a></li>
+<li><a href="#asynchronous-mutexes">Asynchronous Mutexes</a></li>
+</ul>
+</li>
+<li><a href="#the-cow-type">The Cow Type</a>
+<ul>
+<li><a href="#copy-on-write">Copy-On-Write</a></li>
+<li><a href="#benefits-of-cow-type">Benefits of Cow Type</a></li>
+</ul>
+</li>
+<li><a href="#example-escape-function-with-cow-type">Example: Escape Function with Cow Type</a>
+<ul>
+<li><a href="#escaping-function-with-string-input">Escaping Function with String Input</a></li>
+</ul>
+</li>
+<li><a href="#from-utf-8-lossy">From Utf-8 Lossy</a>
+<ul>
+<li><a href="#from-utf-8-lossy-1">From Utf-8 Lossy</a></li>
+</ul>
+</li>
+<li><a href="#cow-type-and-smart-pointers">Cow Type and Smart Pointers</a>
+<ul>
+<li><a href="#cow-type">Cow Type</a></li>
+<li><a href="#smart-pointers">Smart Pointers</a></li>
+</ul>
+</li>
+<li><a href="#recap-and-next-steps">Recap and Next Steps</a>
+<ul>
+<li><a href="#recap">Recap</a></li>
+<li><a href="#next-steps">Next Steps</a></li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr 15 09:30:00 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr 16 04:25:50 UTC 2023 -->
 <!--te-->
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>Section Overview: In this section, the speaker introduces the topic of smart pointers and interior mutability in Rust.
