@@ -1,0 +1,206 @@
+# What is Rust Borrow Checker and Why is it Useful
+
+<!--ts-->
+<!--te-->
+
+## Introduction
+
+Section Overview: In this section, the speaker introduces themselves and the topic of discussion, which is Rust borrow
+checker.
+
+- The speaker mentions that they are live and invites viewers to ask questions.
+- They introduce the topic of Rust borrow checker and mention that it is a construct within the compiler that ensures
+  every access to memory is valid.
+
+## Overview of Rust Borrow Checker
+
+Section Overview: In this section, the speaker provides an overview of Rust borrow checker.
+
+- The speaker explains that they will be playing around with references and creating an object for digital input.
+- They define what a borrow is and create a type definition for digital input.
+- They add derived blocks for plug, equality, partial load quality, and debug to enable printing input to the screen and
+  comparing different input sources.
+
+## Modifying Digital Input
+
+Section Overview: In this section, the speaker demonstrates how to modify digital input in Rust.
+
+- The speaker creates a function called "receive" that takes an input variant as an argument.
+- They use the question mark operator again and replace analog with digital to receive data from a digital input.
+- They print out the received value using println! macro.
+
+## [#](t=0:07:15) Adding a Warning Restriction
+
+Section Overview: In this section, the speaker adds a warning restriction to avoid compiler warnings.
+
+### Adding a Warning Restriction
+
+- [](t=0:07:39) Added a warning restriction to allow dead code inside the function.
+- [](t=0:07:48) The compiler warning is now restricted, which is helpful because we don't want it.
+
+## [#](t=0:08:05) Understanding Borrow Checker
+
+Section Overview: In this section, the speaker explains what borrow checker is and how it works in Rust.
+
+### Types of Function Arguments in Rust
+
+- [](t=0:09:31) Functions in Rust can take three types of arguments - ownership, mutable borrower, and immutable
+  borrower.
+- [](t=0:10:09) Ownership is another stretched metaphor where the owner of a value is responsible for destroying the
+  value at the end of its scope.
+- [](t=0:10:45) Receive function becomes the owner of input data and deletes it at the end of its scope. Accessing
+  digital on lines 23 and 24 becomes illegal.
+- [](t=0:11:13) Added an ampersand as an immutable borrow to fix ownership issue.
+
+### Borrow Checker
+
+- [](t=0:08:41) The borrow checker ensures that we can call receive twice without any issues.
+- [](t=0:11.50) Digital stays in line 20, and we only pass a reference into receive from digital. Receive will clear up
+  the reference to its input once the call is finished.
+
+## [#](t=0.12.44s) Calibrating Input Data
+
+Section Overview: In this section, the speaker talks about calibrating input data and modifying it using functions.
+
+### Modifying Input Data Using Functions
+
+- [](t=0:12:47) Match on input and convert digital to analog.
+- [](t=0:13:09) If we have another function called calibrate, which takes an input and modifies it, we can modify the
+  input data.
+
+## [#](t=0.13.33s) Conclusion
+
+Section Overview: In this section, the speaker concludes the video and thanks the viewers for watching.
+
+### Thanking Viewers
+
+- [](t=0:13:33) The speaker thanks viewers for watching and encourages them to subscribe to their channel.
+- [](t=0:13:43) The speaker offers to answer any questions about borrowing or Rust.
+
+## [#](t=0:15:05s) Providing Immutable Borrowers
+
+Section Overview: In this section, the speaker discusses the problem of passing ownership into calibrate and how they
+want to provide an immutable borrow instead. They also mention Rust's default immutability and its particularity about
+data access.
+
+### Passing Immutable Borrowers
+
+- [](t=0:15:05s) When tied dialing a knob, calibration is necessary.
+- [](t=0:15:05s) Passing ownership into calibrate is not what we want.
+- [](t=0:15:05s) We want to provide an immutable borrow instead.
+
+### Rust's Immutability and Data Access
+
+- [](t=0:15:39s) Rust is very particular about data access and always tries to be safe.
+- [](t=0:15:39s) Rust is mute immutable by default.
+- [](t=0:17:43s) Digital pins are digital inputs that can be high or low, while analog pins have a range between 0 and
+  255.
+
+## [#](t=0:16:08s) Reassigning References
+
+Section Overview: In this section, the speaker explains why reassigning input variable references is necessary when
+swapping between analog and digital inputs.
+
+### Reassigning Input Variable References
+
+- [](t=0:16:08s) When swapping over to analog or digital inputs, reassignment of input variables is necessary.
+- [](t=0:16.41s) To change what is being referred to (the referent), rust needs to be told that mutable access is
+  required.
+
+## [#](t=0.19.26s) Limitations on Mutable Borrowers
+
+Section Overview: In this section, the speaker demonstrates how rust only allows one mutable borrower at a time and how
+spawning a thread can cause problems.
+
+### Limitations on Mutable Borrowers
+
+- [](t=0:19:26s) Rust only allows one mutable borrower at a time.
+- [](t=0:20:05s) Spawning a thread can cause issues if main finishes before the thread finishes.
+
+### Problems with Spawning Threads
+
+- [](t=0:20:14s) Syntax for spawning a thread in rust involves giving it a closure.
+- [](t=0:20:42s) Rust detects that providing a borrow in the same way as inside main could cause problems.
+
+## Introduction to Rust's Standard Library
+
+Section Overview: In this section, the speaker looks up the documentation for Rust's standard library and finds the
+sleep function. They explain how to use it and discuss why Rust will refuse to compile certain code.
+
+### Finding the Sleep Function
+
+- The speaker looks up the documentation for Rust's standard library at rust-lang.org.
+- They find the sleep function inside of thread.
+- To use it, they need to pass a duration object.
+
+### Using Duration Objects
+
+- The speaker imports std::time to gain access to a duration object.
+- They create a new thread called delay that sleeps for 10 milliseconds using time::Duration::from_millis(10).
+- They explain that if main finishes before delay, Rust will try to destroy all of its values and refuse to compile
+  broken code.
+
+### Fixing Errors with Clone
+
+- The speaker encounters an error with thread::sleep and realizes they need clone as well.
+- Even after fixing this error, they only receive one output because the child thread outlives main.
+
+## Borrowing in Rust
+
+Section Overview: In this section, the speaker discusses borrowing in Rust and explains why having two mutable borrows
+at once can be difficult.
+
+### Calibrating Faucets
+
+- The speaker explains that calling one faucet after another works fine because they are in different scopes.
+- However, having two mutable borrows at once is difficult in Rust.
+
+### Interesting Observations
+
+- The speaker finds their own observations interesting but does not elaborate on what those observations are.
+
+## Conclusion and Additional Resources
+
+Section Overview: In this section, the speaker concludes their talk on Rust and provides additional resources for
+learning more about it.
+
+### Wrapping Up
+
+- The speaker offers to answer any questions but has covered everything they planned to talk about.
+- They mention that they have written a book called Rust in Action and provide a link to it.
+
+### Discount Code
+
+- The speaker provides a discount code for their book.
+
+## Positive Reviews and Special Offer
+
+Section Overview: In this section, the speaker talks about the overwhelmingly positive reviews of a product, with only a
+small chance of disliking it. They also mention a special offer for Independence Day in the USA.
+
+### Positive Reviews
+
+- The product has very positive reviews.
+- There is only about a 5% chance of disliking it.
+- There is a 90-95% chance of liking it.
+
+### Special Offer
+
+- The product is on special right now because of Independence Day in the USA.
+- You can have access to the print book and multiple ebook formats as well.
+- All formats are DRM-free.
+- There is also a web version available.
+
+## Discord Channel for Learning Rust
+
+Section Overview: In this section, the speaker provides a link to their Discord channel for those who wish to continue
+learning Rust.
+
+### Link to Discord Channel
+
+- The speaker provides a link to their Discord server for those who wish to continue learning Rust.
+- They encourage people to ask them any questions they may have.
+
+## Generated by Video Highlight
+
+https://videohighlight.com/video/summary/ENF0V_T0Ayk
