@@ -1,0 +1,289 @@
+# Introducing traits in Rust - what they are and how to use them
+
+<!--ts-->
+<!--te-->
+
+## Introduction to Rust's Traits
+
+Section Overview: In this section, the speaker introduces the topic of Rust's traits and explains what they are. They
+also mention that they will demonstrate how to use them and explore their role within the Rust programming language.
+
+### What is a Trait?
+
+- A trait is an abstract interface or an abstract base class in object-oriented languages.
+- It allows us to define functions and function signatures.
+- It can be implemented by multiple types.
+
+## Basic Rust Program
+
+Section Overview: In this section, the speaker demonstrates a simple Rust program and explains how functions work in
+Rust.
+
+### Creating Functions in Rust
+
+- Functions can be defined with parameters and return values.
+- The difference between `&str` and `String` data types is not explained at this point.
+- Functions can be called from the main function using arguments passed as parameters.
+
+## Abstraction with Traits
+
+Section Overview: In this section, the speaker discusses how traits allow for abstraction in Rust programming.
+
+### Using Traits for Abstraction
+
+- Repeatedly creating functions can become tedious.
+- Traits provide a way to create abstractions that can be used across multiple types.
+- This allows for more efficient code writing and easier maintenance.
+
+## Defining Traits in Rust
+
+Section Overview: In this section, the speaker delves deeper into defining traits in Rust programming.
+
+### Defining Traits
+
+- A trait defines a set of methods that a type must implement.
+- Types implementing a trait must provide implementations for all its methods.
+- A struct can implement multiple traits.
+
+## [#](t=0:06:42s) Implementing Traits in Rust
+
+Section Overview: In this section, the speaker explains how to implement traits in Rust and why they are useful.
+
+### Implementing Score Method for String Type
+
+- [](t=0:06:42s) The speaker receives an error message that they need to implement a method called "score" for a string
+  type.
+- [](t=0:06:58s) They change the code to refer to "self" instead of the string type.
+- [](t=0:07:20s) The speaker implements the score method for the string type by creating a new method.
+- [](t=0:07:54s) They explain that implementing traits allows us to define an interface and give any type its own new
+  method.
+
+### Why Use Traits?
+
+- [](t=0:08:35s) The speaker answers a question about why we bother with traits when we already had a free function
+  called score. They explain that traits become useful when defining an interface or working with generics.
+- [](t=0:09:02s) They give an example of wanting to report on any type using a generic function and ensuring that each
+  type has some sort of score.
+- [](t=0:11:25s) The speaker explains how traits allow us to parameterize functions and work within the generics system.
+
+### Implementing Score Method for Other Types
+
+- [](t=0:11:56s) The speaker demonstrates how we can implement the score method for other types such as i32.
+
+## [#](t=0:13:14s) Introduction to Rust Traits
+
+Section Overview: In this section, the speaker introduces Rust traits and explains how they can be used to define or
+bring together functionalities that are common across types.
+
+### Operator Overloading with Traits
+
+- [](t=0:13:47s) Operator overloading is implemented with traits in Rust.
+- [](t=0:14:38s) To implement operator overloading, a trait (e.g., add trait) must be implemented, and the right-hand
+  side of the operation must be of the same type.
+
+### Iteration with Traits
+
+- [](t=0:15:25s) Types that implement the `IntoIterator` trait can be used with Rust's for loop syntax.
+- [](t=0:15:54s) Many syntaxes in Rust are compiled down to trait implementations, making it important to become
+  familiar with core traits.
+
+## [#](t=0:16:21s) Implementing a Shape Trait in Rust
+
+Section Overview: In this section, the speaker discusses how to implement a shape trait in Rust using examples.
+
+### Defining a Shape Trait
+
+- [](t=0:16:41s) A shape trait can be defined to require an area function to be defined for each shape.
+- [](t=0:17:12s) A 2D shape has height and width parameters and an area method.
+
+### Parameterizing Types
+
+- [](t=0:17:42s) Types such as scalar can be parameterized as any single type as long as they're the same.
+
+### Implementing Methods for Square Shape
+
+- [](t=0:18:22s) To implement methods for square shapes, three methods need to be defined - height, width, and area.
+- [](t=0:19:s40)s The height and width functions are defined as the same for a square shape.
+- [](t=0:19:57s) A default implementation can be defined for the area method.
+
+## Implementing Traits in Rust
+
+Section Overview: In this section, the speaker implements a 2D square and demonstrates how to fall back to default
+implementations for other methods using traits. They also discuss the challenges of understanding and working with
+standard library traits.
+
+### Implementing a 2D Square
+
+- To implement multiplication, the speaker creates a type that must implement multiplication.
+- The speaker needs another block for their implementation.
+- They create a static method on square new that returns type self, which refers back to the original type. They then
+  set its height as f32.
+- The speaker creates a square by calling the static method square new and giving it a height value.
+- They print line square and area. Although they haven't defined area themselves inside their implementation block, they
+  are falling back to the default implementation.
+
+### Falling Back to Default Implementations
+
+- The speaker encounters an issue where they need to restrict scalar to a type that is able to be multiplied.
+- They add a type bound but encounter rebound mismatched types error because of the return type.
+- To get it to pass, they remove the type parameterization and will look up syntax later.
+- The area is correct irrespective of unit because of trait implementation.
+
+### Understanding Standard Library Traits
+
+- There are dozens of standard library traits making it difficult to understand where one should begin or how they all
+  fit together.
+- The speaker provides some brief insight into understanding standard library traits.
+
+## [#](t=0:27:14s) Understanding Debug and Display Traits
+
+Section Overview: In this section, the speaker explains how to use the debug and display traits in Rust programming.
+
+### Implementing Debug Trait
+
+- [](t=0:28:24s) The derive annotation instructs the Rust compiler to automatically implement a debug trait for custom
+  types.
+- [](t=0:29:13s) Debug can only be implemented if your custom type uses types that also implement debug.
+- [](t=0:29:42s) If a custom type is changed, such as adding a new struct, then derived debug will no longer work.
+
+### Implementing Display Trait
+
+- [](t=0:31:39s) Display is designed for output intended for users rather than programmers.
+- [](t=0:32:11s) Unlike debug, display has no default implementation and must be implemented manually.
+- [](t=0:32:59s) The formatter is an internal type to the format module which can be ignored when starting out with Rust
+  programming.
+
+### Customizing Output with Display Trait
+
+- [](t=0:33:50s) The thing being printed has a lifetime that must be long enough for the print to finish.
+- [](t=0:34:20s) We can describe how we want to display our custom type using the format! macro.
+
+## [#](t=0:34:51s) Implementing Traits in Rust
+
+Section Overview: In this section, the speaker discusses implementing traits in Rust and how to familiarize oneself with
+them.
+
+### Familiarizing Oneself with Traits
+
+- [](t=0:34:51s) The speaker suggests that one should start by familiarizing themselves with the `Debug` and `Display`
+  traits.
+- [](t=0:35:34s) The next trait to learn is iteration, which is slightly more complicated.
+
+### Iteration Trait
+
+- [](t=0:36:08s) The speaker explains that iteration requires multiple computers to be created.
+- [](t=0:37:46s) Traits are important for iteration, as well as for the size of each element of an array.
+- [](t=0:38:12s) There are two important types of traits for iteration - `Iterator` and `IntoIterator`.
+- [](t=0:38:50s) The speaker demonstrates how to implement the `IntoIterator` trait for a structure containing random
+  numbers.
+
+### Printing to Screen
+
+- [](t=0:39:44s) The speaker defines the type item as usize and demonstrates how to print random numbers using
+  iterators.
+- [](t=0:40.18s) He then shows how to take five random numbers using the `take()` method on iterators.
+
+### Conclusion
+
+- [](t=0.41.19s) After learning about debug display and iteration, understanding the distinction between them is
+  crucial.
+
+## [#](t=0:42:25s) Rust Traits
+
+Section Overview: In this section, the speaker talks about Rust traits and how they work.
+
+### Understanding Enums
+
+- An enum is either the non-variant or sum of type t.
+- Return self seed.
+
+### Changing Random Numbers
+
+- Change the seed to 10.
+- The output should be 50 50 50.
+- A set of random numbers can be empty, and nothing will be printed out.
+
+### Learning Traits
+
+- Display debug iteration is where to start learning traits.
+- Operator overloading traits are also important to learn.
+
+### Reading Documentation
+
+- Look at implementations to find out what methods you can use on a type.
+- Partial equality is the trait that supports the equal sign operator.
+- Paths can be equal to an OS string or path buffers.
+
+## [#](t=0:48:47s) Double Equals and Deref Trait
+
+Section Overview: In this section, the speaker talks about the use of double equals in Rust and demonstrates how types
+can implement methods that they don't actually implement using the Deref trait.
+
+### Double Equals
+
+- Double equals can be used for a lot of things in Rust. [](t=0:48:47s)
+
+### Deref Trait
+
+- The Deref trait enables a type to masquerade as another type and convert itself into that type. [](t=0:48:58s)
+- This allows a type to implement methods that it doesn't actually implement by calling those methods on the converted
+  type. [](t=0:49:34s)
+- The Deref trait is used implicitly by the compiler in many circumstances through drift coercion, which means that the
+  dereference operation coerces to another type. [](t=0:54:07s)
+- Rust provides ergonomics through implicit use of the Deref trait, but it can be confusing if you are expecting
+  everything to be explicit. [](t=0:55:06s)
+
+## Traits and Associated Types
+
+Section Overview: In this section, the speaker discusses traits and associated types in Rust. They explain what a trait
+is, when to use an associated type, and provide some useful documentation for further learning.
+
+### What are Associated Types?
+
+- An associated type is a type that is defined within a trait.
+- It can be used to define a scalar value within an object.
+- It's useful if you want to include an associated type with inside a generic type argument or parameter so that
+  implementers can choose which type they want to return.
+
+### When Should You Use Associated Types?
+
+- The speaker asks the audience when they think it's appropriate to use an associated type.
+- If it's not required, you can safely ignore it.
+- The Rust reference provides more technical information on traits and their implementation.
+
+### Other Useful Documentation
+
+- The Rust reference is a good guide for understanding how Rust works.
+- The Rust by Example chapter on traits provides another definition of traits that may be useful for beginners.
+
+## Rust by Example: Traits and Generics
+
+Section Overview: In this section, the speaker discusses the definition of traits in Rust and how they relate to
+generics. They also explain why some traits have no methods and are used as marker traits.
+
+### Definition of Traits
+
+- The definition of a trait in Rust is too loose.
+- The speaker objects to this definition.
+
+### Sync Trait
+
+- The `Sync` trait has no methods at all and is a marker trait.
+- It indicates to the type system about some property which matters to you as a programmer, such as concurrency.
+- There's no magical annotation on your type for implementing `Sync`.
+- It's just an assertion that you provide as a programmer to the compiler.
+
+### Marker Traits
+
+- Marker traits are used when there is no need for any associated information with the trait.
+- Rust by example asserts that a trait is a collection of methods, but important traits exist where that's not true.
+
+### Conclusion
+
+- The speaker appreciates people's participation and questions.
+- They encourage connecting with them on Twitter or asking questions in the comments.
+- A tutorial will be created based on this discussion.
+
+## Generated by Video Highlight
+
+https://videohighlight.com/video/summary/MH00-L6oiI0

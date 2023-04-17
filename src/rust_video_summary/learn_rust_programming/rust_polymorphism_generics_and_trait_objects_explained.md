@@ -1,0 +1,258 @@
+# Rust Polymorphism: Generics and trait objects explained
+
+<!--ts-->
+<!--te-->
+
+## Introduction to the Topic
+
+Section Overview: The speaker introduces the topic of generics and explains why it is important to learn about them.
+
+### Why Learn About Generics?
+
+- Generics are a powerful tool that can be intimidating for programmers who have only used languages like JavaScript or
+  Python.
+- Despite being intimidating, generics are worth learning about because they are extremely powerful.
+
+## Creating a New Project
+
+Section Overview: The speaker creates a new project and demonstrates how to compile and run it.
+
+### Creating a New Project
+
+- To create a new project, navigate to the desired directory and use the command "cargo new [project name]".
+- To compile and run the project, navigate into the project directory and use the command "cargo run".
+
+## Printing to the Screen
+
+Section Overview: The speaker demonstrates how to print a message to the screen using Rust.
+
+### Creating a Function
+
+- To print a message to the screen, we need to create a function called "report_status".
+- This function will take in a string slice as an argument.
+
+### Defining Variables
+
+- We define our variable as "report" with type string slice "&str".
+
+### Compiling Code
+
+- We can compile code by clicking on "run" or by using "cargo run" in terminal.
+
+## [#](t=0:07:22s) String and String Slice
+
+Section Overview: In this section, the speaker explains the difference between a string and a string slice in Rust. They
+also discuss how adding a reference to a string changes the type being sent into report status.
+
+### Difference between String and String Slice
+
+- A string literal type is actually a different type than a capital `String` in Rust. [](t=0:07:39s)
+- The editor gives a warning when trying to send a string instead of a string slice into report status. [](t=0:07:55s)
+
+### Adding Reference to String
+
+- Adding an ampersand before the string adds a reference to it. [](t=0:08:16s)
+- This changes the type being sent into report status. [](t=0:08:34s)
+
+### Types Defining their Behavior
+
+- Types can define their behavior when they are dereferenced. [](t=0:09:00s)
+- When a string is dereferenced, it presents the same data as a stir, so they can masquerade as the same
+  type. [](t=0:09:25s)
+
+## [#](t=0:10:43s) Generics in Rust
+
+Section Overview: In this section, the speaker discusses how generics work in Rust and how they can be used to create
+functions that take multiple data types.
+
+### Creating Functions with Multiple Data Types
+
+- To create functions that take multiple data types, we use generics in Rust. [](t=0:11:21s)
+- We constrain t by saying that anything that implements the display trait can be passed into report status function
+  using generics.[](t=0:11:46s)
+
+### Using Generics for Strings and Slices
+
+- We can use generics to create two versions of report status, one for strings and one for slices. [](t=0:12:05s)
+- The Rust compiler duplicates all of the code and creates two functions when generics are used.[](t=0:12:31s)
+
+## [#](t=0:13:37s) Shrink Source Code to a Single Function
+
+Section Overview: In this section, the speaker explains how they have shrunk the source code to a single function that
+accepts multiple arguments.
+
+### Accepting Multiple Arguments
+
+- The source code has been shrunk to a single function that can accept multiple arguments. [](t=0:13:37s)
+- A different text type called "copy on right" is used when special ones are needed. [](t=0:13:37s)
+
+### Creating a Cow
+
+- To create a cow, the speaker uses the "cow from message from from copy" command. [](t=0:14:37s)
+- The speaker defers ownership while convincing others that they can get three types printed out by one
+  function. [](t=0:14:58s)
+
+## [#](t=0:15:31s) Report Status Messages
+
+Section Overview: In this section, the speaker discusses reporting status messages.
+
+### Error and Operational Messages
+
+- Two error messages and one operational message are reported. [](t=0:15:31s)
+- The ship is breaking and something has gone wrong.[](t=0:15:56s)
+
+## [#](t=0:16:33s) Implement Generics with Rust's Monomorphization
+
+Section Overview: In this section, the speaker explains how generics are implemented in Rust using monomorphization.
+
+### Monomorphization
+
+- Rust uses monomorphization which changes generic functions into multiple duplicates that reference specific
+  types.[](t=0:16:33s)
+- There are other patterns for implementing generics in Rust as well.[](t=0:17:s)
+
+## [#](t=0;17;24) Traits in Rust
+
+Section Overview: In this section, the speaker explains what traits are in Rust.
+
+### Describing Traits
+
+- Traits are used to describe the behavior of types.[](t=0:17:24s)
+- As ref stir is an example of a trait.[](t=0:17:42s)
+
+## [#](t=0:18:08s) Implementing as Ref Stir
+
+Section Overview: In this section, the speaker explains how to implement as ref stir.
+
+### Casting Magic Spell
+
+- To access the behavior of as ref stir, the speaker needs to call it and cast its magic spell.[](t=0:18:08s)
+- Rust will complain if display is no longer used.[](t=0:18:34s)
+
+## [#](t=0;19;27) Standard Prelude in Rust
+
+Section Overview: In this section, the speaker explains what standard prelude is in Rust.
+
+### Standard Prelude
+
+- The standard prelude brings three different versions of Rust into scope when compiled.[](t=0;19;27)
+- Each edition has its own prelude.[](t=0;19;54)
+
+## Introduction
+
+Section Overview: In this section, the speaker apologizes for a mistake and explains that he will be showing another way
+of implementing the same thing.
+
+### Another Way of Implementing the Same Thing
+
+- The speaker explains that he can accept any type t that is able to be converted into a string.
+- The speaker shows how changing the type signature does not change the data sent in but only its type signature.
+- The speaker wonders if he can force them to work.
+- The speaker introduces a different strategy called a trait object.
+
+## Avoiding Cost Associated with Monomorphization
+
+Section Overview: In this section, the speaker shows how to avoid some of the cost associated with monomorphization by
+using a trait object.
+
+### Using Trait Object
+
+- The speaker explains what a trait object is and how it works.
+- The speaker adds a special case for when text is empty.
+- If text is empty, the speaker adds some default value or returns an invalid message warning.
+- The speaker overloads text again and prints it out.
+
+## Handling Dynamic Types Inside One Block of Code
+
+Section Overview: In this section, the speaker creates a new variable with trailing underscore and introduces some new
+syntax which is dyn dynamic.
+
+### Introducing Dyn Dynamic Syntax
+
+- The speaker creates a new variable with trailing underscore and introduces dyn dynamic syntax.
+
+## References and Traits
+
+Section Overview: In this section, the speaker discusses references and traits in Rust programming language.
+
+### References
+
+- A reference is a way to refer to some value without taking ownership of it.
+- It allows multiple parts of code to access the same data without copying it.
+
+### Traits
+
+- Traits are similar to interfaces in other programming languages but more powerful.
+- They can have associated constants, values, and types.
+- Rust uses runtime indirection to implement trait objects which can take any type at runtime as long as it implements
+  what it promises to implement.
+- The `Display` trait is implemented by types that have a `format` method that knows how to format the object for
+  display purposes.
+
+## More on Traits
+
+Section Overview: In this section, the speaker provides more information about traits in Rust programming language.
+
+### Clone Trait
+
+- The `Clone` trait is used for types that cannot be implicitly copied and defines two methods: `clone`
+  and `clone_from`.
+- The difference between traits and interfaces is that interfaces avoid the diamond problem in C++ where you have
+  multiple inheritance while Rust has no inheritance hierarchy.
+
+### Other Ways to Think of Traits
+
+- Traits can also be thought of as abstract base classes or mix-ins.
+- There are different definitions for traits depending on the programming language community but they are generally more
+  powerful than most implementations of interfaces.
+
+## [#](t=0:33:34s) Benefits of Trait Objects
+
+Section Overview: In this section, the speaker discusses trait objects and how they can be used to avoid the downsides
+of multiple inheritance.
+
+### Trait Objects
+
+- [](t=0:35:07s) Trait objects allow for abstract types that can implement a shared trait.
+- [](t=0:36:13s) Every concrete type can share the same function calls through dynamic dispatch.
+- [](t=0:36:36s) This speeds up binary size but has a cost at runtime.
+
+### Generic Functions
+
+- [](t=0:37:14s) A generic function can accept any type that implements a certain method.
+- [](t=0:38:12s) An inner function can be used to avoid duplicating or triplicating the function when called from
+  multiple types.
+
+## Rust Programming Language
+
+Section Overview: In this section, the speaker explains how to provide generic code without incurring a lot of
+compile-time size cost by using dynamic dispatch.
+
+### Providing Dynamism with Generic Code
+
+- The lines 13 to 20 are compiled once, while lines 23 through 25 are compiled three times because we apply three types.
+- We can provide some kind of dynamism and generic code without incurring all of the compile-time size cost as long as
+  we're willing to trade off a little bit of runtime cost for this dynamic dispatch.
+- Dynamic dispatch isn't necessary, so we can avoid it and have a marginal cost of an extra function call.
+- We can add an annotation which tells the compiler that it should always execute the function and not just copy out its
+  contents into the inner function. This will keep it small.
+
+## Q&A Session
+
+Section Overview: In this section, the speaker answers questions from viewers about Rust programming language.
+
+### Understanding Rust Programming Language
+
+- A viewer comments that they are understanding half of what is being said despite being new to Rust programming
+  language. The speaker responds that Rust can be intimidating but hopes to demonstrate that it is accessible and fun.
+  Programs written in Rust run really fast too.
+- The speaker asks viewers if these kinds of tutorials are useful and what they would like to know about Rust
+  programming language since he is there to help.
+
+### Conclusion
+
+- Viewers say goodnight and thank you for hanging out with the speaker during his tutorial on Rust programming language.
+
+## Generated by Video Highlight
+
+https://videohighlight.com/video/summary/ywskA8CoulM
