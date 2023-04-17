@@ -1,6 +1,11 @@
 # Why Enums Are Your SuperPower
 
 <!--ts-->
+
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Mon Apr 17 15:51:14 UTC 2023 -->
+
 <!--te-->
 
 ## [#](t=0:00:00s) Introduction

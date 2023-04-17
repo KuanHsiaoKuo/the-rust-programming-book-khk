@@ -1,6 +1,11 @@
 # What is the difference between string and &str in rust
 
 <!--ts-->
+
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Mon Apr 17 15:51:14 UTC 2023 -->
+
 <!--te-->
 
 ## Difference between String and &str
