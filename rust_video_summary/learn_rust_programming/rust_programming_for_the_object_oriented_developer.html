@@ -179,7 +179,513 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                
+                <h1 id="rust-programming-for-the-object-oriented-developer"><a class="header" href="#rust-programming-for-the-object-oriented-developer">Rust Programming for the object-oriented developer</a></h1>
+<!--ts-->
+<ul>
+<li><a href="#rust-programming-for-the-object-oriented-developer">Rust Programming for the object-oriented developer</a>
+<ul>
+<li><a href="#establishing-a-programming-environment">Establishing a Programming Environment</a>
+<ul>
+<li><a href="#compiling-rust-code-with-cargo">Compiling Rust Code with Cargo</a></li>
+</ul>
+</li>
+<li><a href="#understanding-objects-in-object-oriented-languages">Understanding Objects in Object-Oriented Languages</a>
+<ul>
+<li><a href="#defining-objects-in-python">Defining Objects in Python</a></li>
+<li><a href="#emulating-object-creation-in-python">Emulating Object Creation in Python</a></li>
+<li><a href="#defining-objects-in-rust">Defining Objects in Rust</a></li>
+<li><a href="#emulating-object-creation-in-rust">Emulating Object Creation in Rust</a></li>
+<li><a href="#pre-processing-with-asserts">Pre-processing with Asserts</a></li>
+<li><a href="#shorthand-syntax">Shorthand Syntax</a></li>
+<li><a href="#richer-initialization">Richer Initialization</a></li>
+<li><a href="#rust-is-an-aesthetically-typed-language">Rust is an Aesthetically Typed Language</a></li>
+<li><a href="#constructors-and-complex-behavior">Constructors and Complex Behavior</a></li>
+<li><a href="#mutating-objects-in-rust">Mutating Objects in Rust</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#scale-and-type-signature">Scale and Type Signature</a>
+<ul>
+<li><a href="#changing-type-signature">Changing Type Signature</a></li>
+<li><a href="#scalar-values-in-mathematics">Scalar Values in Mathematics</a></li>
+</ul>
+</li>
+<li><a href="#understanding-move-semantics-and-borrow-semantics">Understanding Move Semantics and Borrow Semantics</a>
+<ul>
+<li><a href="#move-semantics">Move Semantics</a></li>
+<li><a href="#borrow-semantics">Borrow Semantics</a></li>
+</ul>
+</li>
+<li><a href="#move-semantics-and-borrowing">Move Semantics and Borrowing</a>
+<ul>
+<li><a href="#move-semantics-1">Move Semantics</a></li>
+<li><a href="#borrowing">Borrowing</a></li>
+<li><a href="#read-only-vs-read-write-borrow">Read-only vs Read-write Borrow</a></li>
+</ul>
+</li>
+<li><a href="#fixing-an-issue-with-magic-ampersand">Fixing an Issue with Magic Ampersand</a>
+<ul>
+<li><a href="#fixing-magic-ampersand-issue">Fixing Magic Ampersand Issue</a></li>
+</ul>
+</li>
+<li><a href="#mutating-in-rust-programming">Mutating in Rust Programming</a>
+<ul>
+<li><a href="#mutating">Mutating</a></li>
+</ul>
+</li>
+<li><a href="#rust-zero-cost-abstractions">Rust Zero Cost Abstractions</a>
+<ul>
+<li><a href="#rusts-zero-cost-abstractions">Rust’s Zero Cost Abstractions</a></li>
+</ul>
+</li>
+<li><a href="#creating-a-method-in-rust">Creating a Method in Rust</a>
+<ul>
+<li><a href="#enabling-methods-for-types">Enabling Methods for Types</a></li>
+<li><a href="#rust-is-pedantic-but-liberating">Rust is Pedantic but Liberating</a></li>
+<li><a href="#default-transfer-of-object-responsibility">Default Transfer of Object Responsibility</a></li>
+<li><a href="#automatic-memory-management-in-rust">Automatic Memory Management in Rust</a></li>
+<li><a href="#garbage-collection-in-rust">Garbage Collection in Rust</a></li>
+<li><a href="#explanation-of-lambda-functions">Explanation of Lambda Functions</a></li>
+<li><a href="#example-of-using-lambda-functions">Example of Using Lambda Functions</a></li>
+<li><a href="#using-derived-macros-for-debugging">Using Derived Macros for Debugging</a></li>
+</ul>
+</li>
+<li><a href="#technical-review-of-a-book">Technical Review of a Book</a>
+<ul>
+<li><a href="#book-availability">Book Availability</a></li>
+</ul>
+</li>
+<li><a href="#applying-functional-programming-styles-in-rust">Applying Functional Programming Styles in Rust</a>
+<ul>
+<li><a href="#introduction-of-collections">Introduction of Collections</a></li>
+<li><a href="#object-oriented-style-vs-functional-programming-style">Object-Oriented Style vs. Functional Programming Style</a></li>
+</ul>
+</li>
+<li><a href="#understanding-bar-syntax-in-rust">Understanding Bar Syntax in Rust</a>
+<ul>
+<li><a href="#explanation-of-bar-syntax">Explanation of Bar Syntax</a></li>
+</ul>
+</li>
+<li><a href="#confusion-and-closure">Confusion and Closure</a>
+<ul>
+<li><a href="#closure-and-anonymous-function">Closure and Anonymous Function</a></li>
+</ul>
+</li>
+<li><a href="#abstraction-and-encapsulation">Abstraction and Encapsulation</a>
+<ul>
+<li><a href="#getters-and-setters">Getters and Setters</a></li>
+</ul>
+</li>
+<li><a href="#creating-accessor-methods-in-rust">Creating Accessor Methods in Rust</a>
+<ul>
+<li><a href="#creating-accessor-methods">Creating Accessor Methods</a></li>
+<li><a href="#generating-data-on-the-fly">Generating Data on the Fly</a></li>
+<li><a href="#implementing-behavior-for-multiple-classes">Implementing Behavior for Multiple Classes</a></li>
+</ul>
+</li>
+<li><a href="#creating-a-trait">Creating a Trait</a>
+<ul>
+<li><a href="#creating-an-abstract-base-class">Creating an Abstract Base Class</a></li>
+<li><a href="#implementing-the-coordinate-trait">Implementing the Coordinate Trait</a></li>
+<li><a href="#drawing-anything-that-implements-coordinate">Drawing Anything That Implements Coordinate</a></li>
+</ul>
+</li>
+<li><a href="#generating-random-numbers">Generating Random Numbers</a>
+<ul>
+<li><a href="#checking-compilation-with-point-type">Checking Compilation with Point Type</a></li>
+<li><a href="#accepting-anything-that-implements-coordinate">Accepting Anything That Implements Coordinate</a></li>
+<li><a href="#creating-zero-sized-types">Creating Zero-Sized Types</a></li>
+</ul>
+</li>
+<li><a href="#implementing-coordinates">Implementing Coordinates</a>
+<ul>
+<li><a href="#creating-a-thread-rng">Creating a Thread RNG</a></li>
+<li><a href="#simplifying-with-prelude">Simplifying with Prelude</a></li>
+<li><a href="#encapsulating-via-trait">Encapsulating via Trait</a></li>
+</ul>
+</li>
+<li><a href="#conclusion-1">Conclusion</a></li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Mon Apr 17 16:09:59 UTC 2023 -->
+<!--te-->
+<h2 id="establishing-a-programming-environment"><a class="header" href="#establishing-a-programming-environment">Establishing a Programming Environment</a></h2>
+<p>Section Overview: In this section, the speaker introduces Rust as a compiled language and explains how to compile code
+using Cargo.</p>
+<h3 id="compiling-rust-code-with-cargo"><a class="header" href="#compiling-rust-code-with-cargo">Compiling Rust Code with Cargo</a></h3>
+<ul>
+<li>Rust is a compiled language.</li>
+<li>To compile Rust code, use Cargo, a tool that runs the code.</li>
+<li>The terminal at the bottom of the screen is used to run Cargo.</li>
+<li>The editor at the top of the screen is used to write Rust code.</li>
+</ul>
+<h2 id="understanding-objects-in-object-oriented-languages"><a class="header" href="#understanding-objects-in-object-oriented-languages">Understanding Objects in Object-Oriented Languages</a></h2>
+<p>Section Overview: In this section, the speaker discusses what an object is in object-oriented languages and compares
+Python’s approach to creating objects with Rust’s approach.</p>
+<h3 id="defining-objects-in-python"><a class="header" href="#defining-objects-in-python">Defining Objects in Python</a></h3>
+<ul>
+<li>An object in an object-oriented language looks like a class definition.</li>
+<li>A class definition may have an init method that takes x and y values.</li>
+<li>The init method initializes self.x and self.y values.</li>
+</ul>
+<h3 id="emulating-object-creation-in-python"><a class="header" href="#emulating-object-creation-in-python">Emulating Object Creation in Python</a></h3>
+<ul>
+<li>Python breaks its own rules by allowing implicit behavior when creating objects.</li>
+<li>There is a hidden method called new that mutates objects in place.</li>
+</ul>
+<h3 id="defining-objects-in-rust"><a class="header" href="#defining-objects-in-rust">Defining Objects in Rust</a></h3>
+<ul>
+<li>In Rust, types must be defined before they can be used.</li>
+<li>Unlike dynamic languages like Python, static languages like Rust require type definitions before use.</li>
+</ul>
+<h3 id="emulating-object-creation-in-rust"><a class="header" href="#emulating-object-creation-in-rust">Emulating Object Creation in Rust</a></h3>
+<ul>
+<li>By convention only, rust programmers have created a new method which emulates constructor patterns found in other
+languages.</li>
+<li>This new method allows for more flexibility than literal syntax.</li>
+</ul>
+<h2 id="00710-adding-constraints-to-types"><a class="header" href="#00710-adding-constraints-to-types"><a href="t=430s">0:07:10</a> Adding Constraints to Types</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to add constraints to types in Rust.</p>
+<h3 id="pre-processing-with-asserts"><a class="header" href="#pre-processing-with-asserts">Pre-processing with Asserts</a></h3>
+<ul>
+<li>To do pre-processing, we can assert that x is greater than zero or at least greater than negative zero.</li>
+<li>We can provide these asserts using <code>is instance</code> and <code>float</code>.</li>
+<li>If x is less than zero, we raise a value error.</li>
+</ul>
+<h3 id="shorthand-syntax"><a class="header" href="#shorthand-syntax">Shorthand Syntax</a></h3>
+<ul>
+<li>Rust provides a literal syntax for creating instances of structs and all types.</li>
+<li>There is no requirement for a constructor or destructor.</li>
+<li>Rust has smart rules about how initialization works.</li>
+</ul>
+<h3 id="richer-initialization"><a class="header" href="#richer-initialization">Richer Initialization</a></h3>
+<ul>
+<li>To add richer initialization, we can use the <code>new</code> method.</li>
+<li>The <code>new</code> method is not baked into the language but part of Rust conventions.</li>
+<li>We can define our own constructor if needed but it’s not required.</li>
+</ul>
+<h2 id="rust-programming-language"><a class="header" href="#rust-programming-language"><a href="t=0:14:19s">#</a> Rust Programming Language</a></h2>
+<p>Section Overview: In this section, the speaker talks about Rust programming language and its type system.</p>
+<h3 id="rust-is-an-aesthetically-typed-language"><a class="header" href="#rust-is-an-aesthetically-typed-language">Rust is an Aesthetically Typed Language</a></h3>
+<ul>
+<li>Rust is aesthetically typed, which means it’s in the middle ground between object-oriented and functional
+programming. <a href="t=0:15:15s"></a></li>
+<li>It operates more like a functional programming language. <a href="t=0:15:33s"></a></li>
+</ul>
+<h3 id="constructors-and-complex-behavior"><a class="header" href="#constructors-and-complex-behavior">Constructors and Complex Behavior</a></h3>
+<ul>
+<li>The speaker talks about constructors and complex behavior in Rust. <a href="t=0:16:00s"></a></li>
+<li>This topic leads to question 3, which is how to mutate an object in Rust. <a href="t=0:16:27s"></a></li>
+</ul>
+<h3 id="mutating-objects-in-rust"><a class="header" href="#mutating-objects-in-rust">Mutating Objects in Rust</a></h3>
+<ul>
+<li>All values are immutable by default in Rust, so you need to opt-in to make them mutable. <a href="t=0:18:54s"></a></li>
+<li>To make a value mutable, add the <code>mut</code> keyword. However, two writers cannot exist at exactly the same
+time.<a href="t=0:19:44s"></a></li>
+</ul>
+<h3 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h3>
+<p>The speaker provides an overview of the type system of Rust programming language and explains how to mutate objects in
+it using the <code>mut</code> keyword.</p>
+<h2 id="scale-and-type-signature"><a class="header" href="#scale-and-type-signature">Scale and Type Signature</a></h2>
+<p>Section Overview: In this section, the speaker changes the type signature and explains scalar values in mathematics.</p>
+<h3 id="changing-type-signature"><a class="header" href="#changing-type-signature">Changing Type Signature</a></h3>
+<ul>
+<li>The speaker changes the type signature.</li>
+</ul>
+<h3 id="scalar-values-in-mathematics"><a class="header" href="#scalar-values-in-mathematics">Scalar Values in Mathematics</a></h3>
+<ul>
+<li>Scalar values are used to scale vectors.</li>
+<li>The speaker explains how to scale a point by 10 using scalar values.</li>
+<li>The speaker attempts to plot a point but encounters compiler warnings.</li>
+<li>After fixing the compiler warnings, the speaker explains that Rust can be confusing when doing something with an
+object and suddenly encountering errors.</li>
+</ul>
+<h2 id="understanding-move-semantics-and-borrow-semantics"><a class="header" href="#understanding-move-semantics-and-borrow-semantics">Understanding Move Semantics and Borrow Semantics</a></h2>
+<p>Section Overview: In this section, the speaker explains move semantics and borrow semantics in Rust programming
+language.</p>
+<h3 id="move-semantics"><a class="header" href="#move-semantics">Move Semantics</a></h3>
+<ul>
+<li>The speaker defines move semantics as logically moving responsibility for a particular value into a different scope.</li>
+</ul>
+<h3 id="borrow-semantics"><a class="header" href="#borrow-semantics">Borrow Semantics</a></h3>
+<ul>
+<li>The speaker introduces borrow semantics as another piece of jargon in Rust programming language.</li>
+<li>Borrow semantics is about borrowing ownership of data without transferring it.</li>
+</ul>
+<h2 id="move-semantics-and-borrowing"><a class="header" href="#move-semantics-and-borrowing">Move Semantics and Borrowing</a></h2>
+<p>Section Overview: In this section, the speaker discusses move semantics and borrowing in Rust programming.</p>
+<h3 id="move-semantics-1"><a class="header" href="#move-semantics-1">Move Semantics</a></h3>
+<ul>
+<li>Move semantics means that the plot method takes responsibility into the plot method.</li>
+<li>When we get to the end of plot, which is line 48, underscore to draw is deleted as well.</li>
+<li>It no longer exists as a valid value when we get all the way down to line 57.</li>
+</ul>
+<h3 id="borrowing"><a class="header" href="#borrowing">Borrowing</a></h3>
+<ul>
+<li>The magic ampersand says that we only want to borrow you.</li>
+<li>Borrow semantics mean that we are effectively going to lend plot access to this point but main still has
+responsibility for deleting it when we get to the end of the scope.</li>
+<li>If you have a read-only borrow, which is denoted by this ampersand, it allows two things running at the same time.</li>
+<li>We could spawn a thread and each of them could have access to point and reference exactly the same memory because by
+design it’s impossible for any of those threads ever to modify the value.</li>
+<li>You’ll never introduce a race condition in Rust code related to concurrency if you use primitives available in Rust.</li>
+</ul>
+<h3 id="read-only-vs-read-write-borrow"><a class="header" href="#read-only-vs-read-write-borrow">Read-only vs Read-write Borrow</a></h3>
+<ul>
+<li>A read-only borrow can have one or more references while a read-write borrow has exclusive access while scale is still
+in scope.</li>
+<li>There can only ever be one read-write access at any given time.</li>
+</ul>
+<h2 id="fixing-an-issue-with-magic-ampersand"><a class="header" href="#fixing-an-issue-with-magic-ampersand">Fixing an Issue with Magic Ampersand</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to fix an issue with magic ampersand in Rust programming.</p>
+<h3 id="fixing-magic-ampersand-issue"><a class="header" href="#fixing-magic-ampersand-issue">Fixing Magic Ampersand Issue</a></h3>
+<ul>
+<li>To fix this issue, we need to use the magic ampersand.</li>
+<li>The magic ampersand says that we only want to borrow you.</li>
+<li>We can use a read-only borrow, which allows two things running at the same time.</li>
+<li>We could spawn a thread and each of them could have access to point and reference exactly the same memory because by
+design it’s impossible for any of those threads ever to modify the value.</li>
+</ul>
+<h2 id="mutating-in-rust-programming"><a class="header" href="#mutating-in-rust-programming">Mutating in Rust Programming</a></h2>
+<p>Section Overview: In this section, the speaker discusses mutating in Rust programming.</p>
+<h3 id="mutating"><a class="header" href="#mutating">Mutating</a></h3>
+<ul>
+<li>Mutt means mutate exclusively.</li>
+<li>A read-write borrow has exclusive access while scale is still in scope.</li>
+<li>There can only ever be one read-write access at any given time.</li>
+</ul>
+<h2 id="rust-zero-cost-abstractions"><a class="header" href="#rust-zero-cost-abstractions">Rust Zero Cost Abstractions</a></h2>
+<p>Section Overview: In this section, the speaker explains how Rust guarantees only one access to any data or one mutable
+access at any given point along the lifetime of the entire program. The speaker also clarifies that “mute” or “mutt”
+means mutation and not mutex.</p>
+<h3 id="rusts-zero-cost-abstractions"><a class="header" href="#rusts-zero-cost-abstractions">Rust’s Zero Cost Abstractions</a></h3>
+<ul>
+<li>Rust is very enthusiastic when it talks about zero cost abstractions.</li>
+<li>Its abstractions impose no runtime cost, or at least the abstractions you opt into runtime cost if you want more
+expressive code.</li>
+<li>There is no runtime guard around a lock that exists at runtime in Rust.</li>
+<li>Mute or mutt means mutation, which has the same semantics as a mutex (mutually exclusive lock).</li>
+<li>There is nothing at run time that slows things down in Rust.</li>
+</ul>
+<h2 id="creating-a-method-in-rust"><a class="header" href="#creating-a-method-in-rust">Creating a Method in Rust</a></h2>
+<p>Section Overview: In this section, the speaker discusses creating a method in Rust and replacing point.t with self. They
+also talk about using an assign multiply operator and how rust will refuse to compile if there is a typo.</p>
+<h3 id="enabling-methods-for-types"><a class="header" href="#enabling-methods-for-types">Enabling Methods for Types</a></h3>
+<ul>
+<li>To create a method in Rust, use an impul block.</li>
+<li>Unlike Python, where implementations can be created anywhere, separate blocks are needed for methods in Rust.</li>
+<li>Replace point.t with self to enable methods for types.</li>
+<li>Use an immutable access to self and then face all of this stuff.</li>
+<li>Using an assign multiply operator can shorten down code but be careful not to make typos since rust will refuse to
+compile if there is one.</li>
+</ul>
+<h2 id="rusts-benefits"><a class="header" href="#rusts-benefits"><a href="t=0:40:30s">#</a> Rust’s Benefits</a></h2>
+<p>Section Overview: In this section, the speaker talks about the benefits of using Rust over other programming languages.</p>
+<h3 id="rust-is-pedantic-but-liberating"><a class="header" href="#rust-is-pedantic-but-liberating">Rust is Pedantic but Liberating</a></h3>
+<ul>
+<li><a href="t=0:40:30s"></a> Rust can only scale positively and must be greater than zero.</li>
+<li><a href="t=0:41:21s"></a> Rust prohibits runtime errors and enables you to write better code.</li>
+<li><a href="t=0:41:51s"></a> The compiler being pedantic is liberating and makes working with Rust enjoyable.</li>
+</ul>
+<h2 id="object-responsibility-in-functions"><a class="header" href="#object-responsibility-in-functions"><a href="t=0:42:32s">#</a> Object Responsibility in Functions</a></h2>
+<p>Section Overview: In this section, the speaker explains why object responsibility is transferred into a function by
+default in Rust.</p>
+<h3 id="default-transfer-of-object-responsibility"><a class="header" href="#default-transfer-of-object-responsibility">Default Transfer of Object Responsibility</a></h3>
+<ul>
+<li><a href="t=0:42:47s"></a> Plot 1, 2, and 3 are the same types but have different prefixes.</li>
+<li><a href="t=0:43:15s"></a> Plot 2 uses a read-only reference while plot 3 uses a mutable reference.</li>
+<li><a href="t=0:43:46s"></a> The language designers decided that undecorated types should represent the type itself (call by value),
+but they want to be explicit.</li>
+<li><a href="t=0:44.24s"></a> Plot 2 and plot 3 are pointers, not values.</li>
+</ul>
+<p>Note that there were no timestamps for some parts of the transcript where music was playing or nothing was happening.</p>
+<h2 id="introduction-to-rusts-drop-trait"><a class="header" href="#introduction-to-rusts-drop-trait"><a href="t=0:46:46s">#</a> Introduction to Rust’s Drop Trait</a></h2>
+<p>Section Overview: In this section, the speaker introduces Rust’s Drop trait and explains how it is used for automatic
+memory management.</p>
+<h3 id="automatic-memory-management-in-rust"><a class="header" href="#automatic-memory-management-in-rust">Automatic Memory Management in Rust</a></h3>
+<ul>
+<li><a href="t=0:47:26s"></a> Rust uses the term “drop” to refer to destruction or disposal of values.</li>
+<li><a href="t=0:48:11s"></a> At the end of a scope, Rust automatically drops any local values created within that scope.</li>
+<li><a href="t=0:49:12s"></a> The <code>Drop</code> trait is an abstract base class that defines how values should be dropped.</li>
+<li><a href="t=0:51:07s"></a> The default implementation of <code>Drop</code> is an empty function, but it can be manually implemented to
+customize memory management.</li>
+</ul>
+<h3 id="garbage-collection-in-rust"><a class="header" href="#garbage-collection-in-rust">Garbage Collection in Rust</a></h3>
+<ul>
+<li><a href="t=0:53:39s"></a> Unlike other languages, Rust does not have a garbage collector running by default.</li>
+<li><a href="t=0:54:04s"></a> It is possible to overwrite the implementation of <code>Drop</code> such that it does not release memory back to
+the operating system. This can lead to memory leaks.</li>
+</ul>
+<h2 id="05447-empty-lambda-functions"><a class="header" href="#05447-empty-lambda-functions"><a href="t=3287s">0:54:47</a> Empty Lambda Functions</a></h2>
+<p>Section Overview: In this section, the speaker answers a question from the chat about empty lambda functions and
+explains how they work in Rust.</p>
+<h3 id="explanation-of-lambda-functions"><a class="header" href="#explanation-of-lambda-functions">Explanation of Lambda Functions</a></h3>
+<ul>
+<li><a href="t=0:56:01s"></a> A lambda function is an anonymous function that doesn’t have a name.</li>
+<li><a href="t=0:56:21s"></a> They are useful in Rust programming.</li>
+<li><a href="t=0:57:10s"></a> The syntax for creating a lambda function is less ergonomic than other languages like Python or Java.</li>
+</ul>
+<h3 id="example-of-using-lambda-functions"><a class="header" href="#example-of-using-lambda-functions">Example of Using Lambda Functions</a></h3>
+<ul>
+<li><a href="t=0:55:41s"></a> The speaker demonstrates how to use an array of points to create a line using lambda functions.</li>
+<li><a href="t=0:57:17s"></a> The example involves drawing a line starting at the origin and going up towards the right.</li>
+<li><a href="t=0:57:31s"></a> The back three points on the line represent a 45-degree angle.</li>
+</ul>
+<h2 id="05811-debugging-with-derived-macros"><a class="header" href="#05811-debugging-with-derived-macros"><a href="t=3491s">0:58:11</a> Debugging with Derived Macros</a></h2>
+<p>Section Overview: In this section, the speaker shows how to use derived macros for debugging purposes in Rust
+programming.</p>
+<h3 id="using-derived-macros-for-debugging"><a class="header" href="#using-derived-macros-for-debugging">Using Derived Macros for Debugging</a></h3>
+<ul>
+<li><a href="t=0:58:21s"></a> The speaker uses derived macros to ask the compiler to write some code for them.</li>
+<li><a href="t=0:58.42s"></a> They derive the debug trait, which is an abstract base class used for debugging purposes.</li>
+<li><a href="t=1.00.11s"></a> The speaker promotes their book on Rust programming, which includes an introduction specifically
+written for people who started their programming journey with dynamic languages like Python and Ruby JavaScript and
+want to know more about systems programming.</li>
+</ul>
+<h2 id="technical-review-of-a-book"><a class="header" href="#technical-review-of-a-book">Technical Review of a Book</a></h2>
+<p>Section Overview: In this section, the speaker talks about a book they are working on and mentions that they are
+currently undergoing an extra technical review with a university professor. They also mention that the book will be
+available for purchase soon.</p>
+<h3 id="book-availability"><a class="header" href="#book-availability">Book Availability</a></h3>
+<ul>
+<li>The speaker mentions that Manning will have the book available for cheap.</li>
+<li>They offer a discount code to interested parties.</li>
+<li>The speaker suggests buying the book together with friends to save even more money.</li>
+</ul>
+<h2 id="applying-functional-programming-styles-in-rust"><a class="header" href="#applying-functional-programming-styles-in-rust">Applying Functional Programming Styles in Rust</a></h2>
+<p>Section Overview: In this section, the speaker introduces functional programming styles in Rust and explains how they
+can be applied using collections.</p>
+<h3 id="introduction-of-collections"><a class="header" href="#introduction-of-collections">Introduction of Collections</a></h3>
+<ul>
+<li>The speaker introduces collections as a way to apply functional programming styles in Rust.</li>
+<li>They mention lambdas as an example of functional programming idioms.</li>
+</ul>
+<h3 id="object-oriented-style-vs-functional-programming-style"><a class="header" href="#object-oriented-style-vs-functional-programming-style">Object-Oriented Style vs. Functional Programming Style</a></h3>
+<ul>
+<li>The speaker explains that Rust supports both object-oriented and functional programming styles.</li>
+<li>They suggest using a higher-order method which takes a point going along and maps it when applying functional
+programming style.</li>
+</ul>
+<h2 id="understanding-bar-syntax-in-rust"><a class="header" href="#understanding-bar-syntax-in-rust">Understanding Bar Syntax in Rust</a></h2>
+<p>Section Overview: In this section, the speaker explains bar syntax in Rust and how it is used.</p>
+<h3 id="explanation-of-bar-syntax"><a class="header" href="#explanation-of-bar-syntax">Explanation of Bar Syntax</a></h3>
+<ul>
+<li>The speaker explains bar syntax as being used to create closures or anonymous functions.</li>
+<li>They demonstrate two different ways of creating closures using bar syntax and traditional function syntax.</li>
+<li>Both methods create exactly the same output, but using bar syntax is considered more idiomatic in Rust.</li>
+</ul>
+<h2 id="confusion-and-closure"><a class="header" href="#confusion-and-closure">Confusion and Closure</a></h2>
+<p>Section Overview: In this section, the speaker is trying to figure out a problem with transfers not being satisfied.
+They introduce the concept of closures and anonymous functions in Rust.</p>
+<h3 id="closure-and-anonymous-function"><a class="header" href="#closure-and-anonymous-function">Closure and Anonymous Function</a></h3>
+<ul>
+<li>The speaker introduces an anonymous function that takes a point and creates a closure.</li>
+<li>The double bar arrow syntax is used to create a closure that encloses its local environment.</li>
+<li>The anonymous function is bound to a variable called “add point” which can be called multiple times to grow the line.</li>
+</ul>
+<h2 id="abstraction-and-encapsulation"><a class="header" href="#abstraction-and-encapsulation">Abstraction and Encapsulation</a></h2>
+<p>Section Overview: In this section, the speaker talks about abstraction and encapsulation in Rust programming.</p>
+<h3 id="getters-and-setters"><a class="header" href="#getters-and-setters">Getters and Setters</a></h3>
+<ul>
+<li>Use bullet points to provide a detailed description of key points and insights. Each bullet point is a link to the
+corresponding part of the video.</li>
+</ul>
+<h2 id="creating-accessor-methods-in-rust"><a class="header" href="#creating-accessor-methods-in-rust">Creating Accessor Methods in Rust</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to create accessor methods in Rust and compares it with
+object-oriented languages.</p>
+<h3 id="creating-accessor-methods"><a class="header" href="#creating-accessor-methods">Creating Accessor Methods</a></h3>
+<ul>
+<li>In Rust, an underscore-based language, creating an accessor or getter method involves using underscores to create a
+getter method.</li>
+<li>Although some people may not like the idea of an accessor value, it is a common way of creating them.</li>
+<li>Encapsulation is important in object-oriented languages. Raw access to attributes should be avoided by exposing only
+the interface.</li>
+<li>If we wanted to change x from up here and remove the field x, we could return x and use another method call instead of
+get x.</li>
+<li>Rust is particular about data use and reuse. To ensure safety, mutable access must be annotated.</li>
+</ul>
+<h3 id="generating-data-on-the-fly"><a class="header" href="#generating-data-on-the-fly">Generating Data on the Fly</a></h3>
+<ul>
+<li>Sometimes data needs to be generated on the fly. The speaker demonstrates how to create three different types of
+points: one that randomly jumps around, one that uses existing values, and one that picks values from a sensor.</li>
+</ul>
+<h3 id="implementing-behavior-for-multiple-classes"><a class="header" href="#implementing-behavior-for-multiple-classes">Implementing Behavior for Multiple Classes</a></h3>
+<ul>
+<li>There are times when two classes need to implement the same behavior. The speaker explains how this can be done in
+Rust.</li>
+</ul>
+<p>Note: This transcript was short and did not have many sections. Therefore, I created only two sections based on their
+content.</p>
+<h2 id="creating-a-trait"><a class="header" href="#creating-a-trait">Creating a Trait</a></h2>
+<p>Section Overview: In this section, the speaker discusses creating a trait that can be used as an abstract base class.</p>
+<h3 id="creating-an-abstract-base-class"><a class="header" href="#creating-an-abstract-base-class">Creating an Abstract Base Class</a></h3>
+<ul>
+<li>The term “trait” is used to think of it as an abstract base class.</li>
+<li>Static types are used to implement the trait.</li>
+</ul>
+<h3 id="implementing-the-coordinate-trait"><a class="header" href="#implementing-the-coordinate-trait">Implementing the Coordinate Trait</a></h3>
+<ul>
+<li>To create a concrete type, the coordinate trait needs to be implemented for point.</li>
+<li>A type error occurs because part of the interface is missing.</li>
+<li>The getter function for y is implemented to fix the error.</li>
+</ul>
+<h3 id="drawing-anything-that-implements-coordinate"><a class="header" href="#drawing-anything-that-implements-coordinate">Drawing Anything That Implements Coordinate</a></h3>
+<ul>
+<li>The ability to draw anything that implements the coordinate trait is introduced using a reference to a trait or an
+abstract base class that is dynamically marked at runtime.</li>
+<li>Invoking drawing will draw x and y to the console without any issues.</li>
+</ul>
+<h2 id="generating-random-numbers"><a class="header" href="#generating-random-numbers">Generating Random Numbers</a></h2>
+<p>Section Overview: In this section, the speaker discusses generating random numbers and creating a zero-sized type.</p>
+<h3 id="checking-compilation-with-point-type"><a class="header" href="#checking-compilation-with-point-type">Checking Compilation with Point Type</a></h3>
+<ul>
+<li>A point is put in place, and it compiles correctly with no warnings.</li>
+</ul>
+<h3 id="accepting-anything-that-implements-coordinate"><a class="header" href="#accepting-anything-that-implements-coordinate">Accepting Anything That Implements Coordinate</a></h3>
+<ul>
+<li>Point was removed from arguments, and anything that implements coordinate can now be accepted by introducing an
+abstract base class known as a trait object.</li>
+</ul>
+<h3 id="creating-zero-sized-types"><a class="header" href="#creating-zero-sized-types">Creating Zero-Sized Types</a></h3>
+<ul>
+<li>A new struct with no data at all is created, which results in a zero-sized type that only exists at compile time and
+not at runtime.</li>
+</ul>
+<h2 id="implementing-coordinates"><a class="header" href="#implementing-coordinates">Implementing Coordinates</a></h2>
+<p>Section Overview: In this section, the speaker discusses implementing coordinates and creating an encapsulated interface
+via trait.</p>
+<h3 id="creating-a-thread-rng"><a class="header" href="#creating-a-thread-rng">Creating a Thread RNG</a></h3>
+<ul>
+<li>The speaker mentions needing to do a thread RNG (random number generator).</li>
+<li>They mention needing to call gin after creating the RNG.</li>
+<li>The speaker decides to just use “rng” instead of “thread rng.”</li>
+</ul>
+<h3 id="simplifying-with-prelude"><a class="header" href="#simplifying-with-prelude">Simplifying with Prelude</a></h3>
+<ul>
+<li>The speaker mentions needing to import a type as a trait and includes the prelude thing that will simplify their work.</li>
+<li>They mention getting access to a random method without worrying about instantiating a random number because all they
+care about is rand ran, which is useful.</li>
+</ul>
+<h3 id="encapsulating-via-trait"><a class="header" href="#encapsulating-via-trait">Encapsulating via Trait</a></h3>
+<ul>
+<li>The speaker explains that rand random turns out that x and y are the same, so they might as well just call x.</li>
+<li>They create an encapsulated interface via trait, which simulates inheritance without actually requiring inheritance in
+the language.</li>
+</ul>
+<h2 id="conclusion-1"><a class="header" href="#conclusion-1">Conclusion</a></h2>
+<p>Section Overview: In this section, the speaker concludes their stream and signs off.</p>
+<ul>
+<li>The speaker notes that they have created an interface and instantiated it twice, creating something that feels like
+inheritance without actually requiring it.</li>
+<li>They mention that the values generated are completely random and express satisfaction with their work.</li>
+<li>The stream ends with the speaker signing off.</li>
+</ul>
+<h2 id="generated-by-video-highlight"><a class="header" href="#generated-by-video-highlight">Generated by Video Highlight</a></h2>
+<p>https://videohighlight.com/video/summary/kwSlvOpGwVg</p>
+
             </main>
 
             <!--            <script src="https://utteranc.es/client.js"-->
