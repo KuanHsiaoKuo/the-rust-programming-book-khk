@@ -179,7 +179,98 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                
+                <h1 id="what-is-the-difference-between-string-and-str-in-rust"><a class="header" href="#what-is-the-difference-between-string-and-str-in-rust">What is the difference between string and &amp;str in rust</a></h1>
+<!--ts-->
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Mon Apr 17 15:51:14 UTC 2023 -->
+<!--te-->
+<h2 id="difference-between-string-and-str"><a class="header" href="#difference-between-string-and-str">Difference between String and &amp;str</a></h2>
+<p>Section Overview: In this section, the speaker explains the difference between String and &amp;str in Rust programming.</p>
+<h3 id="string-vs-str"><a class="header" href="#string-vs-str">String vs. &amp;str</a></h3>
+<ul>
+<li>A String is more versatile than a string slice (&amp;str).</li>
+<li>A string slice has fewer methods.</li>
+<li>A string slice doesn’t allow any extra information to be appended at the end.</li>
+<li>If we try to compile a program with a string slice, we’ll receive an error message from the compiler saying that
+push_str or reference &amp;str won’t work.</li>
+<li>On the other hand, a String will compile and run without any issues.</li>
+</ul>
+<h2 id="strings-and-strs-always-look-different"><a class="header" href="#strings-and-strs-always-look-different">Strings and Strs Always Look Different</a></h2>
+<p>Section Overview: In this section, the speaker talks about how Strings and strs always look different in Rust
+programming.</p>
+<h3 id="representation-of-strings-in-source-code"><a class="header" href="#representation-of-strings-in-source-code">Representation of Strings in Source Code</a></h3>
+<ul>
+<li>Whenever you see a string literal in Rust, it is never an actual string.</li>
+<li>It is a “string slice” which has “&amp;str” as its type.</li>
+<li>If we tell Rust that it’s a string, we’ll get an error message from the compiler saying that it expected a string but
+found an &amp;str instead.</li>
+<li>To convert an &amp;str to a String, we can use the “to_string()” method.</li>
+</ul>
+<h2 id="why-is-ampersand-necessary"><a class="header" href="#why-is-ampersand-necessary">Why Is Ampersand Necessary?</a></h2>
+<p>Section Overview: In this section, the speaker explains why ampersand is necessary when dealing with strings and slices
+in Rust programming.</p>
+<h3 id="the-role-of-ampersand"><a class="header" href="#the-role-of-ampersand">The Role of Ampersand</a></h3>
+<ul>
+<li>The ampersand precedes the type (string slice) because it indicates that we are borrowing data rather than owning it.</li>
+<li>When we borrow data using &amp;, we don’t have to worry about deallocating memory since ownership remains with the
+original owner of data.</li>
+<li>Without &amp;, Rust would not know how much memory to allocate for str since its size cannot be known at compilation time.</li>
+<li>Therefore, the ampersand is necessary to indicate that we are borrowing data and not owning it.</li>
+</ul>
+<h2 id="understanding-rust-strings"><a class="header" href="#understanding-rust-strings"><a href="t=0:04:57s">#</a> Understanding Rust Strings</a></h2>
+<p>Section Overview: In this section, the speaker explains how Rust handles strings and string slices. They discuss the
+conflict beginners face when trying to understand why the Rust compiler behaves in a certain way and explain how
+references are used to get around fixed size limitations.</p>
+<h3 id="fixed-size-limitations"><a class="header" href="#fixed-size-limitations">Fixed Size Limitations</a></h3>
+<ul>
+<li><a href="t=0:05:01s"></a> Beginners often struggle with understanding why the Rust compiler behaves in a certain way.</li>
+<li><a href="t=0:05:23s"></a> Every function call needs to be of a fixed size, which makes it difficult to fit things of arbitrary
+length inside something that requires a fixed length.</li>
+<li><a href="t=0:06:02s"></a> References are used to get around fixed size limitations by adding a reference to the text, which has a
+fixed size represented internally as a number.</li>
+</ul>
+<h3 id="string-capacity"><a class="header" href="#string-capacity">String Capacity</a></h3>
+<ul>
+<li><a href="t=0:07:32s"></a> Strings have more than just an internal pointer and length of bytes; they also have capacity.</li>
+<li><a href="t=0:08:18s"></a> The capacity of strings can change, allowing for reserving extra space.</li>
+</ul>
+<h3 id="borrowing"><a class="header" href="#borrowing">Borrowing</a></h3>
+<ul>
+<li><a href="t=0:09:03s"></a> Borrowing is one of the most fundamental distinctions between strings and string slices.</li>
+<li><a href="t=0:09:14s"></a> A string is called an “owned value,” whereas a string slice is called a “borrowed value.”</li>
+<li><a href="t=0:09:52s"></a> When welcome leaves scope, it will delete any data that it owns. However, borrowed values do not own
+data and will not delete anything.</li>
+</ul>
+<h2 id="understanding-rust-strings-and-string-slices"><a class="header" href="#understanding-rust-strings-and-string-slices">Understanding Rust Strings and String Slices</a></h2>
+<p>Section Overview: In this video, the speaker explains the differences between Rust strings and string slices. He
+demonstrates how to create a function that prints a message using both types of variables and highlights the limitations
+of using strings.</p>
+<h3 id="creating-a-function-with-strings"><a class="header" href="#creating-a-function-with-strings">Creating a Function with Strings</a></h3>
+<ul>
+<li>The speaker creates a function called <code>print_message</code> that takes in a message as an argument.</li>
+<li>When trying to pass in a string variable called <code>welcome</code>, which is defined outside of the function, the compiler
+throws an error because it is not mutable.</li>
+<li>If we change the definition of <code>welcome</code> to be a string instead of a variable, it will fail to compile because
+once <code>welcome</code> leaves scope, it no longer exists.</li>
+</ul>
+<h3 id="borrowing-variables"><a class="header" href="#borrowing-variables">Borrowing Variables</a></h3>
+<ul>
+<li>To get around this limitation, we can borrow the <code>welcome</code> variable again within the <code>print_message</code> function.</li>
+<li>After fixing some type definition issues, borrowing works fine.</li>
+</ul>
+<h3 id="differences-between-strings-and-string-slices"><a class="header" href="#differences-between-strings-and-string-slices">Differences Between Strings and String Slices</a></h3>
+<ul>
+<li>The fundamental difference between strings and string slices is that strings are owned values while string slices are
+borrowed values.</li>
+</ul>
+<h3 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h3>
+<ul>
+<li>The speaker invites viewers to subscribe to his channel for more content on Rust programming. He also encourages
+viewers to ask for explanations on specific topics they would like to learn.</li>
+</ul>
+<h2 id="generated-by-video-highlight"><a class="header" href="#generated-by-video-highlight">Generated by Video Highlight</a></h2>
+<p>https://videohighlight.com/video/summary/n7-vKRLw3zg</p>
+
             </main>
 
             <!--            <script src="https://utteranc.es/client.js"-->

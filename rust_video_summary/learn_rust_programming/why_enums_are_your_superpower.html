@@ -179,7 +179,328 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                
+                <h1 id="why-enums-are-your-superpower"><a class="header" href="#why-enums-are-your-superpower">Why Enums Are Your SuperPower</a></h1>
+<!--ts-->
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Mon Apr 17 15:51:14 UTC 2023 -->
+<!--te-->
+<h2 id="introduction"><a class="header" href="#introduction"><a href="t=0:00:00s">#</a> Introduction</a></h2>
+<p>Section Overview: In this section, the speaker introduces the three main topics that will be discussed in the video.</p>
+<h3 id="topics-to-be-discussed"><a class="header" href="#topics-to-be-discussed">Topics to be Discussed</a></h3>
+<ul>
+<li>The definition and usage of enums</li>
+<li>The benefits of using enums for safe input handling and removing blind booleans from code</li>
+<li>Finite state machines within Rust</li>
+</ul>
+<h2 id="what-is-an-enum"><a class="header" href="#what-is-an-enum"><a href="t=0:01:35s">#</a> What is an Enum?</a></h2>
+<p>Section Overview: In this section, the speaker explains what an enum is and demonstrates how it represents multiple
+positions.</p>
+<h3 id="enum-definition-and-demonstration"><a class="header" href="#enum-definition-and-demonstration">Enum Definition and Demonstration</a></h3>
+<ul>
+<li>An enum represents multiple positions or states.</li>
+<li>A traffic light example is used to demonstrate how an enum can represent different states such as green, yellow, red,
+and flashing yellow.
+<ul>
+<li><a href="t=0:04:10s"></a> Code is shown to print out a traffic light’s state using an enum.</li>
+</ul>
+</li>
+</ul>
+<h2 id="enums-vs-sum-types"><a class="header" href="#enums-vs-sum-types"><a href="t=0:03:29s">#</a> Enums vs Sum Types</a></h2>
+<p>Section Overview: In this section, the speaker briefly discusses sum types and their equivalence to enums.</p>
+<h3 id="comparison-of-enums-and-sum-types"><a class="header" href="#comparison-of-enums-and-sum-types">Comparison of Enums and Sum Types</a></h3>
+<ul>
+<li>A sum type is a term from type theory that is equivalent to an enum.</li>
+<li>The speaker notes that beginners may not understand what a sum type is and will hold off on discussing it further.</li>
+</ul>
+<h2 id="printing-enums-in-rust"><a class="header" href="#printing-enums-in-rust"><a href="t=0:05:09s">#</a> Printing Enums in Rust</a></h2>
+<p>Section Overview: In this section, the speaker explains how to print enums in Rust.</p>
+<h3 id="printing-enums-with-debug-derive-implementation"><a class="header" href="#printing-enums-with-debug-derive-implementation">Printing Enums with Debug Derive Implementation</a></h3>
+<ul>
+<li>To print out an enum’s value in Rust, use the debug derive implementation by adding #[derive(Debug)] above the enum
+definition.
+<ul>
+<li><a href="t=0:05:35s"></a> Code is shown with #[derive(Debug)] added above the enum definition.</li>
+</ul>
+</li>
+<li>Use println!() with curly braces {} inside to indicate where the enum value should be printed.
+<ul>
+<li><a href="t=0:04:41s"></a> Code is shown with println!() used to print out a traffic light’s state using an enum.</li>
+</ul>
+</li>
+</ul>
+<h2 id="safe-input-handling-with-enums"><a class="header" href="#safe-input-handling-with-enums"><a href="t=0:06:20s">#</a> Safe Input Handling with Enums</a></h2>
+<p>Section Overview: In this section, the speaker explains how enums can be used for safe input handling.</p>
+<h3 id="benefits-of-using-enums-for-safe-input-handling"><a class="header" href="#benefits-of-using-enums-for-safe-input-handling">Benefits of Using Enums for Safe Input Handling</a></h3>
+<ul>
+<li>Enums can be used to define a set of valid inputs, ensuring that only those inputs are accepted.</li>
+<li>This helps prevent errors and bugs caused by invalid inputs.</li>
+<li>The speaker notes that enums are not the only way to achieve safe input handling but are one effective method.</li>
+</ul>
+<h2 id="removing-blind-booleans-from-code"><a class="header" href="#removing-blind-booleans-from-code"><a href="t=0:07:10s">#</a> Removing Blind Booleans from Code</a></h2>
+<p>Section Overview: In this section, the speaker explains how enums can be used to remove blind booleans from code.</p>
+<h3 id="definition-of-blind-booleans"><a class="header" href="#definition-of-blind-booleans">Definition of Blind Booleans</a></h3>
+<ul>
+<li>Blind booleans refer to functions that return a boolean without providing context or meaning for what true or false
+represents.</li>
+<li>This can lead to confusion and errors when working with the returned value later on.</li>
+</ul>
+<h3 id="benefits-of-using-enums-to-remove-blind-booleans"><a class="header" href="#benefits-of-using-enums-to-remove-blind-booleans">Benefits of Using Enums to Remove Blind Booleans</a></h3>
+<ul>
+<li>By using an enum instead of a blind boolean, the returned value has clear meaning and context.</li>
+<li>This helps prevent errors and makes code easier to understand and maintain.</li>
+</ul>
+<h2 id="finite-state-machines-in-rust"><a class="header" href="#finite-state-machines-in-rust"><a href="t=0:08:30s">#</a> Finite State Machines in Rust</a></h2>
+<p>Section Overview: In this section, the speaker discusses finite state machines within Rust.</p>
+<h3 id="definition-of-finite-state-machines"><a class="header" href="#definition-of-finite-state-machines">Definition of Finite State Machines</a></h3>
+<ul>
+<li>A finite state machine is a mathematical model used to represent systems that have a finite number of states and
+transitions between those states.</li>
+<li>They are commonly used in programming for things like user interfaces, games, and network protocols.</li>
+</ul>
+<h3 id="discussion-on-finite-state-machines-in-rust"><a class="header" href="#discussion-on-finite-state-machines-in-rust">Discussion on Finite State Machines in Rust</a></h3>
+<ul>
+<li>The speaker notes that finite state machines are an advanced topic in Rust.</li>
+<li>They mention that they have a big example but haven’t made it simple enough for the video yet.</li>
+<li>The speaker will do their best to discuss finite state machines within Rust.</li>
+</ul>
+<h2 id="00634-rust-enum-types"><a class="header" href="#00634-rust-enum-types"><a href="t=394s">0:06:34</a> Rust Enum Types</a></h2>
+<p>Section Overview: In this section, the speaker explains how Rust’s enum types are distinct from C or Java and can act
+like a struct.</p>
+<h3 id="enum-types-in-rust"><a class="header" href="#enum-types-in-rust">Enum Types in Rust</a></h3>
+<ul>
+<li>Rust’s enum types can act like a struct.</li>
+<li>Enums in Rust can encode both a unit as well as a value.</li>
+<li>The speaker gives an example of defining temperature using enums in Rust.</li>
+<li>If you have only ever used enums to encode constants, it may look strange but interesting.</li>
+</ul>
+<h2 id="00927-working-with-enums-in-rust"><a class="header" href="#00927-working-with-enums-in-rust"><a href="t=567s">0:09:27</a> Working with Enums in Rust</a></h2>
+<p>Section Overview: In this section, the speaker explains how to work with enums in Rust using the match keyword.</p>
+<h3 id="using-match-keyword"><a class="header" href="#using-match-keyword">Using Match Keyword</a></h3>
+<ul>
+<li>The match keyword is similar to the switch keyword but more powerful and type-safe.</li>
+<li>It is impossible to not take into account all possible variants every time you encounter a match or use match.</li>
+<li>The speaker gives an example of matching room temperature and converting it to Celsius using high school mathematics
+formula.</li>
+</ul>
+<h2 id="implementation-for-32-to-rise-not-available"><a class="header" href="#implementation-for-32-to-rise-not-available">Implementation for 32 to rise not available</a></h2>
+<p>Section Overview: The speaker mentions that the implementation for 32 to rise is not available.</p>
+<h3 id="fahrenheit-to-celsius-conversion"><a class="header" href="#fahrenheit-to-celsius-conversion">Fahrenheit to Celsius conversion</a></h3>
+<ul>
+<li>Fahrenheit needs to be a floating point number.</li>
+<li>Match function ensures all variants are taken into account.</li>
+<li>Error message indicates if a variant is not covered.</li>
+<li>Wildcard match can be used but is not particularly useful.</li>
+</ul>
+<h3 id="safe-input-handling"><a class="header" href="#safe-input-handling">Safe input handling</a></h3>
+<ul>
+<li>Speaker introduces safe input handling as a superpower.</li>
+<li>Example of reading from network and defining response object with text string.</li>
+<li>Demonstrates pulling out text from response object and converting string literal to string type.</li>
+<li>Difference between string slice and string type in Rust explained.</li>
+</ul>
+<h3 id="protecting-code"><a class="header" href="#protecting-code">Protecting code</a></h3>
+<ul>
+<li>String slice is just a pointer and length, while string has pointer to memory on heap that it owns completely.</li>
+<li>Speaker discusses protecting code in languages like Python, JavaScript, Ruby.</li>
+</ul>
+<h2 id="introduction-to-enums"><a class="header" href="#introduction-to-enums">Introduction to Enums</a></h2>
+<p>Section Overview: In this section, the speaker introduces the concept of enums and explains how they can be used to
+remove strings from code.</p>
+<h3 id="separating-business-logic-from-string-input-handling"><a class="header" href="#separating-business-logic-from-string-input-handling">Separating Business Logic from String Input Handling</a></h3>
+<ul>
+<li>Enums allow for separation of concerns between business logic and handling string input.</li>
+<li>Strings are risky because invalid inputs can be dangerous or malicious. Converting them to a type is safer.</li>
+</ul>
+<h3 id="implementing-enums-in-rust"><a class="header" href="#implementing-enums-in-rust">Implementing Enums in Rust</a></h3>
+<ul>
+<li>The <code>from_str</code> method allows for parsing strings into enums.</li>
+<li>Implementing <code>FromStr</code> trait enables creation of paths automatically.</li>
+</ul>
+<h3 id="parsing-method-and-business-logic"><a class="header" href="#parsing-method-and-business-logic">Parsing Method and Business Logic</a></h3>
+<ul>
+<li>The parsing method should contain the business logic, such as converting to lowercase and checking if it matches “
+okay“.</li>
+<li>Only two inputs are legal: “okay” or “error”. Any other input is considered illegal. An error message is returned for
+illegal inputs.</li>
+</ul>
+<h2 id="parsing-strings-to-enums"><a class="header" href="#parsing-strings-to-enums"><a href="t=0:27:18s">#</a> Parsing Strings to Enums</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to parse strings into enums in Rust.</p>
+<h3 id="implementing-fromstr-trait"><a class="header" href="#implementing-fromstr-trait">Implementing FromStr Trait</a></h3>
+<ul>
+<li>To parse a string into an enum, we need to implement the <code>FromStr</code> trait.</li>
+<li>We can use the <code>match</code> statement to match the input string with the corresponding enum variant. <a href="t=0:27:18s"></a></li>
+</ul>
+<h3 id="returning-status-and-error"><a class="header" href="#returning-status-and-error">Returning Status and Error</a></h3>
+<ul>
+<li>When parsing a string into an enum, we can return either a status or an error.</li>
+<li>We wrap our result in <code>Ok</code> or <code>Err</code>, depending on whether it’s a status or error. <a href="t=0:27:46s"></a></li>
+</ul>
+<h3 id="handling-illegal-inputs"><a class="header" href="#handling-illegal-inputs">Handling Illegal Inputs</a></h3>
+<ul>
+<li>If we receive unexpected input, we return an error message.</li>
+<li>We distinguish between expected and unexpected outcomes using Rust’s version of result and our own version of
+result. <a href="t=0:28:24s"></a></li>
+</ul>
+<h3 id="testing-implementation"><a class="header" href="#testing-implementation">Testing Implementation</a></h3>
+<ul>
+<li>The speaker tests their implementation of <code>FromStr</code>.</li>
+<li>They check for errors using the compiler and try running their code. <a href="t=0:29:31s"></a></li>
+</ul>
+<h3 id="debugging-errors"><a class="header" href="#debugging-errors">Debugging Errors</a></h3>
+<ul>
+<li>The speaker encounters errors while debugging their code.</li>
+<li>They make changes such as importing traits and removing unnecessary variables. <a href="t=0:30:11s"></a></li>
+</ul>
+<h3 id="using-enums-to-remove-stringly-typed-data"><a class="header" href="#using-enums-to-remove-stringly-typed-data">Using Enums to Remove Stringly Typed Data</a></h3>
+<ul>
+<li>By using enums, we can remove stringly typed data from our program and remove business logic from parsing strings.</li>
+<li>This allows us to deal with input in our application code more effectively. <a href="t=0:33:16s"></a></li>
+</ul>
+<h2 id="pattern-matching-and-rust-enums"><a class="header" href="#pattern-matching-and-rust-enums"><a href="t=0:34:51s">#</a> Pattern Matching and Rust Enums</a></h2>
+<p>Section Overview: In this section, the speaker discusses pattern matching in Rust and how it relates to Rust enums. They
+explain how to use pattern matching to handle different variants of an enum, such as handling errors in a Result type.</p>
+<h3 id="using-pattern-matching-with-enums"><a class="header" href="#using-pattern-matching-with-enums">Using Pattern Matching with Enums</a></h3>
+<ul>
+<li><a href="t=0:34:51s"></a> The speaker explains that they can use pattern matching in Rust.</li>
+<li><a href="t=0:34:58s"></a> They note that while the syntax for pattern matching may be unfamiliar at first, it is the idiomatic
+way to handle certain situations in Rust.</li>
+<li><a href="t=0:35:26s"></a> The speaker demonstrates how they used pattern matching to handle illegal input from a response object.</li>
+<li><a href="t=0:36:30s"></a> They explain that using enums allows for more effective error handling because every variant must be
+handled at compile time.</li>
+</ul>
+<h3 id="unwrapping-results"><a class="header" href="#unwrapping-results">Unwrapping Results</a></h3>
+<ul>
+<li><a href="t=0:35:54s"></a> The speaker introduces the unwrap method for Results, which returns the value inside an Ok variant or
+panics if it is an Err variant.</li>
+<li><a href="t=0:39:21s"></a> They demonstrate how to use unwrap with a type hint before a function call.</li>
+<li><a href="t=0:41:22s"></a> The speaker addresses whether using unwrap is considered “evil” and notes that it depends on the
+situation.</li>
+</ul>
+<h3 id="understanding-option-and-result-types"><a class="header" href="#understanding-option-and-result-types">Understanding Option and Result Types</a></h3>
+<ul>
+<li><a href="t=0:40:01s"></a> The speaker explains that understanding enums is important for understanding Option and Result types in
+Rust.</li>
+<li><a href="t=0:40:29s"></a> They emphasize that knowing how these types work is crucial for developing Rust code effectively.</li>
+</ul>
+<h2 id="error-handling-and-blind-booleans"><a class="header" href="#error-handling-and-blind-booleans"><a href="t=0:42:26s">#</a> Error Handling and Blind Booleans</a></h2>
+<p>Section Overview: In this section, the speaker discusses error handling in Rust and introduces the concept of blind
+booleans.</p>
+<h3 id="error-handling"><a class="header" href="#error-handling">Error Handling</a></h3>
+<ul>
+<li>If an input causes an error, the program will crash.</li>
+<li>Tolerating a crash in production code is not recommended.</li>
+<li>There are cases where tolerating a crash is justified.</li>
+</ul>
+<h3 id="blind-booleans"><a class="header" href="#blind-booleans">Blind Booleans</a></h3>
+<ul>
+<li>A blind boolean is a function that takes a string as input and returns a boolean without any indication of what the
+boolean represents.</li>
+<li>The use of blind booleans can lead to confusion and errors in code.</li>
+<li>It’s important to provide clear names for functions that return booleans.</li>
+</ul>
+<h2 id="future-streams-and-discord-channel"><a class="header" href="#future-streams-and-discord-channel"><a href="t=0:43:38s">#</a> Future Streams and Discord Channel</a></h2>
+<p>Section Overview: In this section, the speaker talks about future streams and invites viewers to join their Discord
+channel for updates.</p>
+<h3 id="future-streams"><a class="header" href="#future-streams">Future Streams</a></h3>
+<ul>
+<li>The speaker plans to do weekly streams like this one.</li>
+<li>They have a list of future stream topics, including traits.</li>
+<li>Viewers are encouraged to put the streams on their calendars.</li>
+</ul>
+<h3 id="discord-channel"><a class="header" href="#discord-channel">Discord Channel</a></h3>
+<ul>
+<li>The speaker has a Discord channel where they post updates about their streams.</li>
+<li>Viewers are welcome to join the channel.</li>
+</ul>
+<h2 id="checking-validity-of-strings-with-rust"><a class="header" href="#checking-validity-of-strings-with-rust"><a href="t=0:46:06s">#</a> Checking Validity of Strings with Rust</a></h2>
+<p>Section Overview: In this section, the speaker demonstrates how to check if a string is valid using Rust.</p>
+<h3 id="checking-validity"><a class="header" href="#checking-validity">Checking Validity</a></h3>
+<ul>
+<li>Use <code>is_valid</code> function on string slice to check validity</li>
+<li>If it’s not valid print standard error message</li>
+<li>Otherwise print out rest of story</li>
+</ul>
+<h2 id="ownership-in-rust"><a class="header" href="#ownership-in-rust">Ownership in Rust</a></h2>
+<p>Section Overview: In this section, the speaker explains ownership in Rust and how to indicate to Rust that it should not
+delete text when the scope of a variable ends.</p>
+<h3 id="indicating-ownership"><a class="header" href="#indicating-ownership">Indicating Ownership</a></h3>
+<ul>
+<li>Taking ownership requires indicating to Rust that it should not delete text when the scope of a variable ends.</li>
+<li>Adding ampersands asks Rust to keep the value inside the outer scope.</li>
+</ul>
+<h2 id="improving-boolean-statements-in-type-systems"><a class="header" href="#improving-boolean-statements-in-type-systems">Improving Boolean Statements in Type Systems</a></h2>
+<p>Section Overview: In this section, the speaker discusses how booleans can be improved in type systems and suggests using
+an enum instead.</p>
+<h3 id="creating-an-enum"><a class="header" href="#creating-an-enum">Creating an Enum</a></h3>
+<ul>
+<li>The speaker wanted to create a situation where there is both French and English.</li>
+<li>Validation functions should return a language instead of booleans.</li>
+<li>Creating an enum with special handling for French and English or undetected would be better than using booleans.</li>
+<li>Matching detects language instead of chaining boolean statements.</li>
+</ul>
+<h3 id="returning-specific-language"><a class="header" href="#returning-specific-language">Returning Specific Language</a></h3>
+<ul>
+<li>It is possible to return a specific language by defining result.</li>
+</ul>
+<h2 id="rust-enums"><a class="header" href="#rust-enums">Rust Enums</a></h2>
+<p>Section Overview: In this section, the speaker talks about how Rust enums are similar to French return and how they can
+be used to define a little type for undetected language. The speaker also mentions that enums are highly appropriate for
+encoding state machines.</p>
+<h3 id="using-enums-to-define-undetected-language"><a class="header" href="#using-enums-to-define-undetected-language">Using Enums to Define Undetected Language</a></h3>
+<ul>
+<li>Rust enums are similar to French return.</li>
+<li>A little type can be defined for undetected language using enums.</li>
+<li>It may not necessarily be an error if the language is undetected as it could still be human language but with
+uncertain identification.</li>
+<li>Tests for identifying languages are probabilistic in nature.</li>
+</ul>
+<h3 id="returning-a-result-using-enums"><a class="header" href="#returning-a-result-using-enums">Returning a Result Using Enums</a></h3>
+<ul>
+<li>To return a result using enums, wrap it in <code>Ok</code> and use <code>Err</code> for errors.</li>
+<li>A separate type can be created for undetected language.</li>
+<li>If we want to return a result, we can do so by wrapping it in <code>Ok</code> and providing the undetected language type.</li>
+</ul>
+<h3 id="encoding-state-machines-with-enums"><a class="header" href="#encoding-state-machines-with-enums">Encoding State Machines with Enums</a></h3>
+<ul>
+<li>Enums are highly appropriate for encoding state machines.</li>
+<li>State transitions can be guaranteed at compile time using enums.</li>
+</ul>
+<h3 id="live-book-preview-of-the-speakers-book"><a class="header" href="#live-book-preview-of-the-speakers-book">Live Book Preview of the Speaker’s Book</a></h3>
+<ul>
+<li>The live book preview of the speaker’s book is available on manning.com under “Free Preview”.</li>
+<li>The live book allows readers to read a significant portion of the book for free and copy code examples.</li>
+</ul>
+<h3 id="using-enum-cases-in-type-signatures"><a class="header" href="#using-enum-cases-in-type-signatures">Using Enum Cases in Type Signatures</a></h3>
+<ul>
+<li>Enum cases can be used in type signatures.</li>
+<li>For example, if there is an enum called TrafficLight with cases Red, Yellow, and Green, a function could take
+TrafficLight as an argument.</li>
+</ul>
+<h2 id="returning-traffic-light-green"><a class="header" href="#returning-traffic-light-green">Returning Traffic Light Green</a></h2>
+<p>Section Overview: In this section, the speaker discusses returning traffic light green and how Rust handles it.</p>
+<h3 id="handling-traffic-light-green"><a class="header" href="#handling-traffic-light-green">Handling Traffic Light Green</a></h3>
+<ul>
+<li>Rust cannot return only traffic light green as the type is the actual enum itself.</li>
+<li>Individual structs for each state can be used, but it becomes less comfortable to use.</li>
+<li>A state machine composed of multiple different structures can be used, but there is a proposal that enables returning
+smaller types. The speaker recommends reading Anna’s blog post on encoding transitions in the type system.</li>
+</ul>
+<h2 id="future-streams-and-conclusion"><a class="header" href="#future-streams-and-conclusion">Future Streams and Conclusion</a></h2>
+<p>Section Overview: In this section, the speaker talks about future streams and concludes the current stream.</p>
+<h3 id="future-streams-1"><a class="header" href="#future-streams-1">Future Streams</a></h3>
+<ul>
+<li>The speaker agrees to do a stream on traits and trait objects.</li>
+<li>Requests for further streams are welcome, and the speaker will attempt to stream weekly depending on availability.</li>
+</ul>
+<h3 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h3>
+<ul>
+<li>The speaker thanks everyone for their support and encourages them to subscribe or follow on Twitter.</li>
+<li>The clickable link to connect with the speaker is provided in the transcript.</li>
+<li>The speaker concludes by saying goodbye and wishing everyone well.</li>
+</ul>
+<h2 id="generated-by-video-highlight"><a class="header" href="#generated-by-video-highlight">Generated by Video Highlight</a></h2>
+<p>https://videohighlight.com/video/summary/MAPdmN4hKow</p>
+
             </main>
 
             <!--            <script src="https://utteranc.es/client.js"-->
