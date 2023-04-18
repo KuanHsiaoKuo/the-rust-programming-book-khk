@@ -1,6 +1,11 @@
 # All About Error Handling In the Rust Programming Language
 
 <!--ts-->
+
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Tue Apr 18 03:41:57 UTC 2023 -->
+
 <!--te-->
 
 ## Introduction to Errors in Rust

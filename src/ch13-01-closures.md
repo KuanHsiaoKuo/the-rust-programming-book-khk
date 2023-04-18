@@ -11,7 +11,7 @@
    * [Moving Captured Values Out of Closures and the Fn Traits](#moving-captured-values-out-of-closures-and-the-fn-traits)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Mon Apr 17 16:08:11 UTC 2023 -->
+<!-- Added by: runner, at: Tue Apr 18 03:40:20 UTC 2023 -->
 
 <!--te-->
 
