@@ -179,7 +179,434 @@
                 <div class="sidetoc">
                     <nav class="pagetoc"></nav>
                 </div>
-                
+                <h1 id="all-about-error-handling-in-the-rust-programming-language"><a class="header" href="#all-about-error-handling-in-the-rust-programming-language">All About Error Handling In the Rust Programming Language</a></h1>
+<!--ts-->
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Tue Apr 18 03:41:57 UTC 2023 -->
+<!--te-->
+<h2 id="introduction-to-errors-in-rust"><a class="header" href="#introduction-to-errors-in-rust">Introduction to Errors in Rust</a></h2>
+<p>Section Overview: In this section, the speaker introduces the concept of errors and how they are handled in Rust.</p>
+<h3 id="what-is-an-error"><a class="header" href="#what-is-an-error">What is an Error?</a></h3>
+<ul>
+<li>An error is a message that indicates something has gone wrong during program execution.</li>
+<li>A panic is a type of error that results in a crash. It can be altered to have different semantics.</li>
+<li>Errors and results happen most often when dealing with input/output (I/O).</li>
+<li>I/O refers to input/output not of function arguments but of devices interacting with a program from the outside world.</li>
+</ul>
+<h3 id="dealing-with-errors"><a class="header" href="#dealing-with-errors">Dealing with Errors</a></h3>
+<ul>
+<li>The speaker introduces three strategies for dealing with errors: Propagating, Returning, and Unwrapping.</li>
+<li>The example provided in the book demonstrates how to use the Result type to handle errors in Rust.</li>
+</ul>
+<h2 id="handling-file-io-errors"><a class="header" href="#handling-file-io-errors">Handling File I/O Errors</a></h2>
+<p>Section Overview: In this section, the speaker discusses file input/output (I/O), its importance, and how it can result
+in errors.</p>
+<h3 id="understanding-file-io"><a class="header" href="#understanding-file-io">Understanding File I/O</a></h3>
+<ul>
+<li>File I/O refers to reading from or writing to files on disk.</li>
+<li>Reading from or writing to files can result in errors due to various reasons such as permission issues or file not
+found.</li>
+</ul>
+<h3 id="handling-file-io-errors-1"><a class="header" href="#handling-file-io-errors-1">Handling File I/O Errors</a></h3>
+<ul>
+<li>The Result type can be used to handle file I/O errors by propagating them up through functions.</li>
+<li>Another way of handling file I/O errors is by using unwrap() method which will either return Ok value or panic if
+there’s an error. However, this approach should be used carefully as it can result in unexpected crashes.</li>
+<li>The speaker recommends using the ? operator to handle file I/O errors as it provides a concise and safe way of
+handling errors.</li>
+</ul>
+<h2 id="result-enum"><a class="header" href="#result-enum"><a href="t=0:06:13s">#</a> Result Enum</a></h2>
+<p>Section Overview: In this section, the speaker introduces the <code>Result</code> enum and explains how it is a more elegant
+mechanism than just getting a panic error message. They also explain that <code>Result</code> is an enum with two variants - <code>Ok</code>
+and <code>Error</code>.</p>
+<h3 id="introduction-to-result-enum"><a class="header" href="#introduction-to-result-enum">Introduction to Result Enum</a></h3>
+<ul>
+<li>The <code>Result</code> enum is a more useful mechanism than just getting a panic error message. <a href="t=0:06:13s"></a></li>
+<li>The <code>Result</code> enum has two variants - <code>Ok</code> and <code>Error</code>. <a href="t=0:07:21s"></a></li>
+</ul>
+<h3 id="defining-custom-structs-with-results"><a class="header" href="#defining-custom-structs-with-results">Defining Custom Structs with Results</a></h3>
+<ul>
+<li>To define custom structs that can use results, we need to implement the error for config. <a href="t=0:09:52s"></a></li>
+<li>We can add methods to our custom struct. <a href="t=0:10:21s"></a></li>
+</ul>
+<h3 id="desugaring-question-mark-operator"><a class="header" href="#desugaring-question-mark-operator">Desugaring Question Mark Operator</a></h3>
+<ul>
+<li>The speaker talks about desugaring the question mark operator. <a href="t=0:11:24s"></a></li>
+<li>If we have a result type, we can call match on it. <a href="t=0:11:51s"></a></li>
+</ul>
+<h2 id="handling-errors-in-rust"><a class="header" href="#handling-errors-in-rust">Handling Errors in Rust</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to handle errors in Rust and demonstrates how to print out
+errors and exit the program cleanly.</p>
+<h3 id="printing-out-errors"><a class="header" href="#printing-out-errors">Printing Out Errors</a></h3>
+<ul>
+<li>To print out an error type, use <code>println!</code>.</li>
+<li>Use the debug syntax to make sure that there is a human-readable version of what is being said.</li>
+</ul>
+<h3 id="exiting-cleanly"><a class="header" href="#exiting-cleanly">Exiting Cleanly</a></h3>
+<ul>
+<li>To exit cleanly, use <code>std::process::exit</code>.</li>
+<li>Exit with a value of 1 using <code>std::process::exit(1)</code>.</li>
+</ul>
+<h2 id="debugging-rust-code"><a class="header" href="#debugging-rust-code">Debugging Rust Code</a></h2>
+<p>Section Overview: In this section, the speaker demonstrates how to debug Rust code by going through compile errors and
+fixing them.</p>
+<h3 id="compile-error-expected-a-unit-but-found-usize"><a class="header" href="#compile-error-expected-a-unit-but-found-usize">Compile Error: Expected a Unit but Found usize</a></h3>
+<ul>
+<li>This error occurs because Rust is an expression-based language.</li>
+<li>Add a semicolon at the end of the expression to end it and return an empty unit type.</li>
+</ul>
+<h3 id="compile-error-expected-a-result-but-found-an-enum"><a class="header" href="#compile-error-expected-a-result-but-found-an-enum">Compile Error: Expected a Result but Found an Enum</a></h3>
+<ul>
+<li>The type of the function has changed.</li>
+<li>Duplicate the function so that it can be brought back later if needed.</li>
+</ul>
+<h3 id="compile-error-not-found-in-scope-expecting-a-type-here-because-of-type-description-i-cannot-find-the-value-buffer"><a class="header" href="#compile-error-not-found-in-scope-expecting-a-type-here-because-of-type-description-i-cannot-find-the-value-buffer">Compile Error: Not Found in Scope Expecting a Type Here Because of Type Description I Cannot Find the Value Buffer</a></h3>
+<ul>
+<li>Rust does not have keyword arguments.</li>
+<li>Change mutable variables to immutable variables.</li>
+</ul>
+<h3 id="no-such-file-or-directory-error"><a class="header" href="#no-such-file-or-directory-error">No Such File or Directory Error</a></h3>
+<ul>
+<li>Wrap “Ok” in a unit.</li>
+<li>A unit is similar to void in other languages.</li>
+</ul>
+<h2 id="rust-language-and-productivity"><a class="header" href="#rust-language-and-productivity">Rust Language and Productivity</a></h2>
+<p>Section Overview: In this section, the speaker talks about how Rust language can influence productivity and growth.</p>
+<h3 id="influence-of-rust-on-productivity"><a class="header" href="#influence-of-rust-on-productivity">Influence of Rust on Productivity</a></h3>
+<ul>
+<li>Rust language has the ability to influence productivity and growth.</li>
+<li>The comparison between two versions is not accurate because it involves reading into a string.</li>
+<li>The speaker is looking at their structure configuration and wants to simplify things by taking file away and calling
+it a string.</li>
+<li>The speaker discusses how to enable synthetic sugar for custom types.</li>
+</ul>
+<h2 id="qa-session"><a class="header" href="#qa-session">Q&amp;A Session</a></h2>
+<p>Section Overview: In this section, the speaker interacts with viewers who have joined the stream.</p>
+<h3 id="viewer-interaction"><a class="header" href="#viewer-interaction">Viewer Interaction</a></h3>
+<ul>
+<li>The speaker welcomes everyone who has just joined the stream and invites them to ask questions in the chat.</li>
+<li>The speaker notices that his chat has been hidden and offers to send a DM to anyone who wants to join his Discord.</li>
+</ul>
+<h2 id="creating-a-cache-in-rust"><a class="header" href="#creating-a-cache-in-rust">Creating a Cache in Rust</a></h2>
+<p>Section Overview: In this section, the speaker creates a cache in Rust.</p>
+<h3 id="creating-a-cache"><a class="header" href="#creating-a-cache">Creating a Cache</a></h3>
+<ul>
+<li>The speaker creates boilerplate code for creating a cache.</li>
+<li>They change source file to source data.</li>
+<li>Source data is cloned, and dirty is defined as true.</li>
+<li>The ability to update data is updated.</li>
+<li>A flush method is created which guarantees that data is physically written before returning.</li>
+<li>The concept of “blush” is discussed.</li>
+<li>The speaker mentions that they want to change their mind halfway through building something on the fly.</li>
+<li>A value is returned as a result of a string or another string.</li>
+<li>The speaker acknowledges that using strings in multiple places is not a good way to do Rust.</li>
+<li>If self is dirty, garbage is returned.</li>
+</ul>
+<h2 id="building-a-cache"><a class="header" href="#building-a-cache">Building a Cache</a></h2>
+<p>Section Overview: In this section, the speaker discusses building a cache and enabling it to be printed on the screen.
+They also talk about deriving debug that will enable syntax to happen.</p>
+<h3 id="building-a-cache-1"><a class="header" href="#building-a-cache-1">Building a Cache</a></h3>
+<ul>
+<li>The speaker creates a super cache using the main function.</li>
+<li>They label the point and enable it to be printed on the screen.</li>
+<li>The compiler figures out the code that needs to get written.</li>
+<li>There are some compiler errors that need fixing.</li>
+</ul>
+<h3 id="fixing-compiler-errors"><a class="header" href="#fixing-compiler-errors">Fixing Compiler Errors</a></h3>
+<ul>
+<li>Line 19: The speaker changes “return self” to “return ()”.</li>
+<li>Line 20: “self.data” is an unknown field, so they change it to “source data”.</li>
+<li>There is an unexpected token warning that needs fixing by removing some things.</li>
+</ul>
+<h3 id="additional-information"><a class="header" href="#additional-information">Additional Information</a></h3>
+<ul>
+<li>The chat has been paused for new viewers who are interested in learning about Rust programming language.</li>
+<li>A link to a chapter of the speaker’s book on Rust is provided in the chat for those who want more information.</li>
+</ul>
+<h2 id="unlocking-content-and-rust-basics"><a class="header" href="#unlocking-content-and-rust-basics">Unlocking Content and Rust Basics</a></h2>
+<p>Section Overview: In this section, the speaker talks about unlocking content for a chapter and introduces Rust
+programming language basics.</p>
+<h3 id="unlocking-content"><a class="header" href="#unlocking-content">Unlocking Content</a></h3>
+<ul>
+<li>The publisher has unlocked the content of a chapter for free.</li>
+<li>Anyone watching can access it.</li>
+</ul>
+<h3 id="rust-programming-language-basics"><a class="header" href="#rust-programming-language-basics">Rust Programming Language Basics</a></h3>
+<ul>
+<li>Rust is immutable by default, which means that things are read-only until you satisfy them as mutable (read-write).</li>
+<li>Update method is used to update data in Rust.</li>
+<li>Booleans are not a good data type because they can always get it wrong.</li>
+</ul>
+<h2 id="understanding-error-types-in-rust"><a class="header" href="#understanding-error-types-in-rust">Understanding Error Types in Rust</a></h2>
+<p>Section Overview: In this section, the speaker discusses error types in Rust programming language.</p>
+<h3 id="error-types-in-rust"><a class="header" href="#error-types-in-rust">Error Types in Rust</a></h3>
+<ul>
+<li>Error types don’t compose in Rust programming language.</li>
+<li>Errors from different places cannot be treated similarly.</li>
+<li>A better way to handle errors would be to use enums instead of booleans.</li>
+</ul>
+<h2 id="composing-error-types-and-networking-example"><a class="header" href="#composing-error-types-and-networking-example">Composing Error Types and Networking Example</a></h2>
+<p>Section Overview: In this section, the speaker talks about composing error types and gives an example of networking
+using Rust programming language.</p>
+<h3 id="composing-error-types"><a class="header" href="#composing-error-types">Composing Error Types</a></h3>
+<ul>
+<li>As we become more proficient rust programmers, our error types don’t compose.</li>
+<li>We need to treat errors from different places similarly.</li>
+</ul>
+<h3 id="networking-example"><a class="header" href="#networking-example">Networking Example</a></h3>
+<ul>
+<li>The speaker gives an example of connecting to a database using networking with Rust programming language.</li>
+<li>Type inference can be used to ask for an IP address.</li>
+<li>IPv4 address has a cool thing where it can overload methods and extend strings to parse them.</li>
+</ul>
+<h2 id="writing-to-a-server-and-handling-errors"><a class="header" href="#writing-to-a-server-and-handling-errors">Writing to a Server and Handling Errors</a></h2>
+<p>Section Overview: In this section, the speaker attempts to write code that reads data from a server, stores it in a
+cache, and writes it to disk. They encounter errors along the way and discuss how to handle them.</p>
+<h3 id="attempting-to-write-code-for-reading-data-from-a-server"><a class="header" href="#attempting-to-write-code-for-reading-data-from-a-server">Attempting to Write Code for Reading Data from a Server</a></h3>
+<ul>
+<li>The speaker attempts to write code for reading data from a server but encounters an error.</li>
+<li>They discuss the normal state of confusion when encountering errors while coding.</li>
+<li>The speaker tries another approach by writing code that does not use the server or file yet.</li>
+</ul>
+<h3 id="understanding-formatting-strings-and-ipv4-addresses"><a class="header" href="#understanding-formatting-strings-and-ipv4-addresses">Understanding Formatting Strings and IPv4 Addresses</a></h3>
+<ul>
+<li>The speaker explains that the <code>write</code> macro takes a formatting string as an argument.</li>
+<li>They mention that IPv4 addresses know how to write themselves to the console.</li>
+<li>The speaker discusses how they need a reason for certain code elements to be present.</li>
+</ul>
+<h3 id="handling-errors-in-rust-programming"><a class="header" href="#handling-errors-in-rust-programming">Handling Errors in Rust Programming</a></h3>
+<ul>
+<li>The speaker encounters errors related to missing imports and typos in their code.</li>
+<li>They encounter another error message suggesting they consider importing something they believe they already imported.</li>
+<li>The speaker realizes there was a typo in their code causing an error message.</li>
+<li>They explain that two types of errors are not friends because they are independent types with identical syntax.</li>
+</ul>
+<h3 id="conceptualizing-reading-data-from-a-server"><a class="header" href="#conceptualizing-reading-data-from-a-server">Conceptualizing Reading Data from a Server</a></h3>
+<ul>
+<li>The speaker explains their goal of reading data from a server, storing it in cache, and writing it to disk.</li>
+<li>They demonstrate how they will pretend to read data from a server and write it to disk.</li>
+<li>The speaker acknowledges a question about the trait for pass and promises to answer it soon.</li>
+</ul>
+<h3 id="understanding-traits-in-rust-programming"><a class="header" href="#understanding-traits-in-rust-programming">Understanding Traits in Rust Programming</a></h3>
+<ul>
+<li>The speaker explains that they rewrote a chapter on traits because they are fundamental to Rust programming.</li>
+<li>They demonstrate how to find where a trait is implemented by searching for it in the code.</li>
+<li>The speaker answers a question about the trait for pass.</li>
+</ul>
+<h2 id="implementing-the-from-trait"><a class="header" href="#implementing-the-from-trait">Implementing the “From” Trait</a></h2>
+<p>Section Overview: In this section, the speaker explains how to implement the “From” trait in Rust and provides
+strategies for handling errors.</p>
+<h3 id="strategies-for-implementing-the-from-trait"><a class="header" href="#strategies-for-implementing-the-from-trait">Strategies for Implementing the “From” Trait</a></h3>
+<ul>
+<li>To implement the “From” trait, find the method you’re interested in and look up its trait bounds.
+<ul>
+<li><a href="t=0:48:37"></a></li>
+</ul>
+</li>
+<li>Use a trait object to implement a particular trait.
+<ul>
+<li><a href="t=0:52:42"></a></li>
+</ul>
+</li>
+</ul>
+<h3 id="handling-errors"><a class="header" href="#handling-errors">Handling Errors</a></h3>
+<ul>
+<li>Rust has added implicit behavior that automatically attempts to convert things to the type defined at the return
+statement. This can cause confusion when dealing with different types of errors.
+<ul>
+<li><a href="t=0:49:57"></a></li>
+</ul>
+</li>
+<li>When dealing with I/O and other things, it’s important to be able to join them together.
+<ul>
+<li><a href="t=0:51:21"></a></li>
+</ul>
+</li>
+<li>One strategy for handling errors is using a trait object.
+<ul>
+<li><a href="t=0:52:42"></a></li>
+</ul>
+</li>
+</ul>
+<h2 id="running-cargo-and-address-parser"><a class="header" href="#running-cargo-and-address-parser">Running Cargo and Address Parser</a></h2>
+<p>Section Overview: In this section, the speaker runs cargo and encounters an error with the address parser.</p>
+<h3 id="running-cargo"><a class="header" href="#running-cargo">Running Cargo</a></h3>
+<ul>
+<li>The speaker runs cargo.</li>
+<li>An error occurs with the address parser when running cargo.</li>
+</ul>
+<h3 id="troubleshooting-the-error"><a class="header" href="#troubleshooting-the-error">Troubleshooting the Error</a></h3>
+<ul>
+<li>The speaker realizes they need to include different syntax.</li>
+<li>Despite making changes, the same warning persists.</li>
+<li>The speaker removes a compiler warning by ignoring a parameter.</li>
+<li>Another warning is silenced using code.</li>
+</ul>
+<h3 id="parsing-issues"><a class="header" href="#parsing-issues">Parsing Issues</a></h3>
+<ul>
+<li>The speaker tries to figure out why parsing is not working.</li>
+<li>They try a different approach that results in a different error message.</li>
+<li>Adding a box resolves the issue of parsing errors.</li>
+</ul>
+<h2 id="understanding-box-pointers-and-custom-error-types"><a class="header" href="#understanding-box-pointers-and-custom-error-types">Understanding Box Pointers and Custom Error Types</a></h2>
+<p>Section Overview: This section covers box pointers and custom error types in Rust programming.</p>
+<h3 id="box-pointers"><a class="header" href="#box-pointers">Box Pointers</a></h3>
+<ul>
+<li>A box pointer is defined as a pointer to an implementation of an error type.</li>
+<li>In this case, control flow needs to be sent to three different places depending on what gets called, which requires
+using pointers.</li>
+</ul>
+<h3 id="custom-error-types"><a class="header" href="#custom-error-types">Custom Error Types</a></h3>
+<ul>
+<li>Using string as a way to send warning messages is discussed.</li>
+<li>Implementing trait objects can result in losing the ability for the compiler to detect concrete types.</li>
+</ul>
+<h2 id="creating-a-struct-for-dirty-data"><a class="header" href="#creating-a-struct-for-dirty-data">Creating a Struct for Dirty Data</a></h2>
+<p>Section Overview: In this section, the speaker creates a struct called “dirty data” and explains why they are doing so.</p>
+<h3 id="creating-the-dirty-data-struct"><a class="header" href="#creating-the-dirty-data-struct">Creating the “Dirty Data” Struct</a></h3>
+<ul>
+<li>The speaker creates a struct called “dirty data” that will return data as dirty.</li>
+<li>They explain that they will automatically implement it and will explain why later.</li>
+</ul>
+<h2 id="adding-debug-trait-to-the-struct"><a class="header" href="#adding-debug-trait-to-the-struct">Adding Debug Trait to the Struct</a></h2>
+<p>Section Overview: In this section, the speaker adds the debug trait to the previously created “dirty data” struct.</p>
+<h3 id="adding-debug-trait"><a class="header" href="#adding-debug-trait">Adding Debug Trait</a></h3>
+<ul>
+<li>The speaker derives debug for the “dirty data” struct.</li>
+<li>This allows it to print to the screen.</li>
+</ul>
+<h2 id="distinguishing-error-types"><a class="header" href="#distinguishing-error-types">Distinguishing Error Types</a></h2>
+<p>Section Overview: In this section, the speaker distinguishes one error type from others by creating an address parser
+error in their file.</p>
+<h3 id="creating-address-parser-error"><a class="header" href="#creating-address-parser-error">Creating Address Parser Error</a></h3>
+<ul>
+<li>The speaker adds standard net and address parser error in their file.</li>
+<li>They want to distinguish one error type from others.</li>
+</ul>
+<h2 id="converting-between-different-error-types"><a class="header" href="#converting-between-different-error-types">Converting Between Different Error Types</a></h2>
+<p>Section Overview: In this section, the speaker discusses how they need to convert between different error types and how
+they plan on doing so using Rust’s “from” trait.</p>
+<h3 id="using-rusts-from-trait-for-conversion"><a class="header" href="#using-rusts-from-trait-for-conversion">Using Rust’s “From” Trait for Conversion</a></h3>
+<ul>
+<li>The speaker explains that Rust’s “from” trait enables one type to be used as another type and Rust will automatically
+convert them when needed.</li>
+<li>They add code involving implementing these traits for conversion purposes.</li>
+<li>They mention that strings are not ideal for error types because of potential memory allocation issues.</li>
+</ul>
+<h2 id="using-zero-sized-types-for-internal-errors"><a class="header" href="#using-zero-sized-types-for-internal-errors">Using Zero-Sized Types for Internal Errors</a></h2>
+<p>Section Overview: In this section, the speaker discusses using zero-sized types for internal errors and the potential
+issues that may arise.</p>
+<h3 id="using-zero-sized-types"><a class="header" href="#using-zero-sized-types">Using Zero-Sized Types</a></h3>
+<ul>
+<li>The speaker suggests using zero-sized types for internal errors to minimize memory usage.</li>
+<li>They mention the potential issue of making a mistake and causing a crash.</li>
+<li>They express uncertainty about their decision.</li>
+</ul>
+<h2 id="using-rust-to-handle-errors"><a class="header" href="#using-rust-to-handle-errors">Using Rust to Handle Errors</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to handle errors in Rust and demonstrates different
+strategies for dealing with them.</p>
+<h3 id="bringing-modules-into-local-scope"><a class="header" href="#bringing-modules-into-local-scope">Bringing Modules into Local Scope</a></h3>
+<ul>
+<li>To save time typing later on, the speaker likes to bring modules into local scope using <code>use std::net</code>.</li>
+<li>Using the full path is more explicit and makes the compiler happy, but it’s not necessary.</li>
+<li>The speaker chooses to keep everything quite full and somewhat ugly.</li>
+</ul>
+<h3 id="understanding-function-pointers"><a class="header" href="#understanding-function-pointers">Understanding Function Pointers</a></h3>
+<ul>
+<li>A function pointer is just a function definition.</li>
+<li>If you see <code>fn</code> as a main or a standalone function, it is a function pointer.</li>
+<li>An error message about an unexpected function pointer can be confusing if you don’t know what a function pointer is.</li>
+</ul>
+<h3 id="strategies-for-handling-errors"><a class="header" href="#strategies-for-handling-errors">Strategies for Handling Errors</a></h3>
+<h4 id="building-up-rapid-types"><a class="header" href="#building-up-rapid-types">Building Up Rapid Types</a></h4>
+<ul>
+<li>The speaker has built up the rapid type around all of their types.</li>
+<li>There is a lot of bureaucracy involved with these rapper types.</li>
+<li>A third-party crate called “Jane” has made it much simpler to create these rapper types.</li>
+</ul>
+<h4 id="using-trait-objects"><a class="header" href="#using-trait-objects">Using Trait Objects</a></h4>
+<ul>
+<li>There are some gotchas with trait objects that can be resolved with another crate.</li>
+<li>The speaker demonstrates why Rust does what it does and provides options for either doing things yourself or
+leveraging third-party crates.</li>
+</ul>
+<h4 id="unwrapping-errors"><a class="header" href="#unwrapping-errors">Unwrapping Errors</a></h4>
+<ul>
+<li>Unwrapping errors is not really a strategy for dealing with errors; it causes panics in runtime code.</li>
+<li>Sometimes crashing when there’s an error is what we want, but this should be used sparingly.</li>
+</ul>
+<h3 id="mixing-options-and-results"><a class="header" href="#mixing-options-and-results">Mixing Options and Results</a></h3>
+<ul>
+<li>Mixing options and results semantically can be difficult because they are different. Be mindful of doing so.</li>
+</ul>
+<h2 id="error-conditions-and-conversions"><a class="header" href="#error-conditions-and-conversions">Error Conditions and Conversions</a></h2>
+<p>Section Overview: In this section, the speaker discusses error conditions and conversions between Option and Result
+types in Rust.</p>
+<h3 id="error-conditions"><a class="header" href="#error-conditions">Error Conditions</a></h3>
+<ul>
+<li>An empty Option is not an error condition but rather an expected thing that might happen.</li>
+<li>Unexpected errors can occur due to memory corruption or device failure when retrieving data from disk.</li>
+<li>Mixing up Option and Result types is often a sign that something needs to change in the code.</li>
+</ul>
+<h3 id="conversions"><a class="header" href="#conversions">Conversions</a></h3>
+<ul>
+<li>There are methods available in the standard library for converting between Option and Result types.</li>
+<li>Applying these conversions in your own code may indicate that you have an Option that should have started as a Result
+or vice versa.</li>
+</ul>
+<h2 id="using-options-and-results-together"><a class="header" href="#using-options-and-results-together">Using Options and Results Together</a></h2>
+<p>Section Overview: In this section, the speaker discusses using Options and Results together in Rust.</p>
+<h3 id="example-scenario"><a class="header" href="#example-scenario">Example Scenario</a></h3>
+<ul>
+<li>The speaker creates an example scenario where a function returns an Option type while another function returns a
+Result type.</li>
+<li>When trying to return both values together, there is no available type for combining them.</li>
+<li>The speaker suggests rethinking the design of the functions to avoid mixing Option and Result types.</li>
+</ul>
+<h2 id="converting-option-to-result"><a class="header" href="#converting-option-to-result">Converting Option to Result</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to convert an option to a result in Rust.</p>
+<h3 id="converting-option-i32-to-result"><a class="header" href="#converting-option-i32-to-result">Converting Option i32 to Result</a></h3>
+<ul>
+<li>To convert an option i32 to a result, we can use the question mark operator.</li>
+<li>We can also match on the option and return either an Ok or Err variant of the result.</li>
+<li>The orphan rule in Rust requires us to bring things into local scope when converting between types.</li>
+</ul>
+<h3 id="understanding-rusts-orphan-rule"><a class="header" href="#understanding-rusts-orphan-rule">Understanding Rust’s Orphan Rule</a></h3>
+<ul>
+<li>Rust’s orphan rule requires that we make unambiguous decisions when writing import blocks that overlap.</li>
+<li>The compiler does not like ambiguity and wants to force the programmer to be able to make clear decisions about what
+they actually want to do.</li>
+</ul>
+<h2 id="defining-traits-for-arbitrary-types"><a class="header" href="#defining-traits-for-arbitrary-types">Defining Traits for Arbitrary Types</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to define traits for arbitrary types and the limitations of
+using conversion mechanisms like <code>?</code> operator with options and results.</p>
+<h3 id="wrapping-option-in-a-new-type"><a class="header" href="#wrapping-option-in-a-new-type">Wrapping Option in a New Type</a></h3>
+<ul>
+<li>To use conversion mechanisms like <code>?</code> operator with options and results, we need to define a new type by wrapping
+option in it.</li>
+<li>This is because the end result, option, and error are defined outside of this particular crate.</li>
+<li>We cannot tinker with any of that since it’s already decided what it wants to do.</li>
+</ul>
+<h3 id="limitations-of-using-conversion-mechanisms"><a class="header" href="#limitations-of-using-conversion-mechanisms">Limitations of Using Conversion Mechanisms</a></h3>
+<ul>
+<li>The reason why using conversion mechanisms like <code>?</code> operator with options and results is failing is that we’re pulling
+these from third parties or all from the standard library.</li>
+<li>We can’t tinker with any of that since it’s already decided what it wants to do.</li>
+<li>This problem isn’t seen in real-world use cases because normally you wouldn’t need to use the question mark operator
+with options and results defined in standard libraries.</li>
+</ul>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
+<p>Section Overview: In this section, the speaker concludes the session by apologizing for not being able to get a little
+thing working but assures viewers that this isn’t really a problem encountered in real-life work use cases.</p>
+<ul>
+<li>The speaker enjoyed hanging out and hopes viewers have enjoyed watching him get unstuck from trying to compose
+multiple error types together.</li>
+<li>The speaker apologizes for not being able to get a little thing working but assures viewers that this isn’t really a
+problem encountered in real-life work use cases.</li>
+</ul>
+<h2 id="generated-by-video-highlight"><a class="header" href="#generated-by-video-highlight">Generated by Video Highlight</a></h2>
+<p>https://videohighlight.com/video/summary/K_NO5wJHFys</p>
+
             </main>
 
             <!--            <script src="https://utteranc.es/client.js"-->
