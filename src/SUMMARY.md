@@ -14,6 +14,8 @@
         - [Rust Crash Course](rust_video_summary/rust_crash_course_rustlang.md)
         - [Generics, Traits, Lifetimes: Stop Duplicating Your Code](rust_video_summary/stop_duplicating_your_code.md)
         - [Impl Rust](rust_video_summary/impl_rust/impl_rust.md)
+            - [(3/7h)From cargo to crates.io and back again](rust_video_summary/impl_rust/from_cargo_to_crates_io_and_back_again.md)
+            - [(3/6h)Implementing and optimizing a wordle solver in rust](rust_video_summary/impl_rust/implementing_and_optimizing_a_wordle_solver_in_rust.md)
             - [Solving Distributed System Challenges](rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.md)
             - [Setting up CI and property testing for a Rust Crate](rust_video_summary/impl_rust/setting_up_ci_and_property_testing_for_a_rust_crate.md)
         - [Code to the Moon](rust_video_summary/code_to_the_moon/code_to_the_moon.md)
