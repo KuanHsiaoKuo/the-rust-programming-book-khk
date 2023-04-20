@@ -146,9 +146,9 @@ Section Overview: In this section, the speaker introduces a set of distributed s
 called Maelstrom. The challenges are designed to build an increasingly sophisticated distributed system and run it
 through Maelstrom to test its correctness.
 
-### Distributed Systems Challenges
+### ⭐️Distributed Systems Challenges
 
-- The challenges use a platform called Maelstrom, which is a distributed systems testing framework.
+- The challenges use a platform called Maelstrom, which is a `distributed systems testing framework`.
 - The challenges involve building an increasingly sophisticated distributed system and running it through Maelstrom to
   test its correctness.
 - The exercises are written in Go, but demo implementations of the node code are available in Ruby, JavaScript, Java,
@@ -159,7 +159,7 @@ through Maelstrom to test its correctness.
 
 Section Overview: In this section, the speaker provides more information about Maelstrom and how it works.
 
-### About Maelstrom
+### ⭐About Maelstrom
 
 - Maelstrom is a distributed systems testing framework or exercise framework.
 - It can orchestrate message passing between nodes in a distributed system and emulate things like delayed messages or
@@ -171,7 +171,7 @@ Section Overview: In this section, the speaker provides more information about M
 
 Section Overview: In this section, the speaker discusses how they will implement the protocol required by Maelstrom.
 
-### Protocol Implementation
+### ⭐Protocol Implementation
 
 - Each node is just a binary that receives JSON messages from standard input and sends JSON messages to standard output.
 - Messages have three parts: source (identifying string of sender), destination (identifying string of receiver), body (
@@ -192,7 +192,7 @@ Section Overview: In this section, the speaker sets up the project and decides o
 
 Section Overview: In this section, the speaker defines a struct for messages that will be passed throughout the program.
 
-### Struct Definition
+### ⭐Struct Definition
 
 - The message struct has fields for source, destination (renamed to "dust"), type (renamed to "ty"), message ID, in
   reply to, and body.
@@ -204,7 +204,7 @@ Section Overview: In this section, the speaker defines a struct for messages tha
 
 Section Overview: In this section, the speaker discusses how to use enums and payloads in Rust.
 
-### Using Enums for Message Types
+### ⭐Using Enums for Message Types
 
 - The speaker explains that they will use enums to define message types.
 - They rename all enums to snake case.
@@ -215,7 +215,7 @@ Section Overview: In this section, the speaker discusses how to use enums and pa
 - The speaker mentions that they want to flatten the payload.
 - They are unsure if flattening works in this regard.
 
-## State Machine Driver
+## ⭐State Machine Driver
 
 Section Overview: In this section, the speaker discusses constructing a state machine driver in Rust.
 
@@ -233,7 +233,7 @@ Section Overview: In this section, the speaker discusses constructing a state ma
 Section Overview: In this section, the speaker discusses the step function for an echo node in a distributed system.
 They talk about the input message and how it returns a mutable reference to the state of the node.
 
-### Echo Node Step Function
+### ⭐Echo Node Step Function
 
 - The step function gets a mutable reference to the state of the node in the distributed system and the input message.
 - A stream serializer is used to send messages as well as trigger messages to other nodes.
