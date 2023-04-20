@@ -62,7 +62,7 @@
             - [Rust Toos and std::future](rust_video_summary/open_source_streams/rust_tools_and_std_future.md)
             - [Day in the life of Open Source Maintenance 2022-06-19](rust_video_summary/open_source_streams/day_in_the_life_of_open_source_maintenance_2022_06_19.md)
             - [Day in the life of Open Source Maintenance 2022-10-08](rust_video_summary/open_source_streams/day_in_the_life_of_open_source_maintenance_2022_10_08.md)
-        - [Stop Duplicating Your Code](rust_video_summary/stop_duplicating_your_code.md)
+        - [Generics, Traits, Lifetimes: Stop Duplicating Your Code](rust_video_summary/stop_duplicating_your_code.md)
         - [Rust Crash Course](rust_video_summary/rust_crash_course_rustlang.md)
 
     - [Associated Items]()
