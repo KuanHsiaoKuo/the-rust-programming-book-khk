@@ -1,0 +1,1025 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js navy">
+<head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <title>(3/6h)Implementing and optimizing a wordle solver in rust - The Rust Programming Language</title>
+
+
+    <!-- Custom HTML head -->
+    
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff"/>
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../md-favicon.png">
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/general.css">
+    <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../../highlight.css">
+    <link rel="stylesheet" href="../../tomorrow-night.css">
+    <link rel="stylesheet" href="../../ayu-highlight.css">
+
+    <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../assets/ferris/ferris.css">
+        <link rel="stylesheet" href="../../theme/2018-edition.css">
+        <link rel="stylesheet" href="../../assets/pagetoc/pagetoc_style.css">
+        <link rel="stylesheet" href="../../assets/css/mdbook-admonish.css">
+
+</head>
+<body>
+<!-- Provide site root to javascript -->
+<script type="text/javascript">
+    var path_to_root = "../../";
+    var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+</script>
+
+<!-- Work around some values being stored in localStorage wrapped in quotes -->
+<script type="text/javascript">
+    try {
+        var theme = localStorage.getItem('mdbook-theme');
+        var sidebar = localStorage.getItem('mdbook-sidebar');
+
+        if (theme.startsWith('"') && theme.endsWith('"')) {
+            localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+        }
+
+        if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+            localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+        }
+    } catch (e) {
+    }
+</script>
+
+<!-- Set the theme before any content is loaded, prevents flash -->
+<script type="text/javascript">
+    var theme;
+    try {
+        theme = localStorage.getItem('mdbook-theme');
+    } catch (e) {
+    }
+    if (theme === null || theme === undefined) {
+        theme = default_theme;
+    }
+    var html = document.querySelector('html');
+    html.classList.remove('no-js')
+    html.classList.remove('navy')
+    html.classList.add(theme);
+    html.classList.add('js');
+</script>
+
+<!-- Hide / unhide sidebar before it is displayed -->
+<script type="text/javascript">
+    var html = document.querySelector('html');
+    var sidebar = 'hidden';
+    if (document.body.clientWidth >= 1080) {
+        try {
+            sidebar = localStorage.getItem('mdbook-sidebar');
+        } catch (e) {
+        }
+        sidebar = sidebar || 'visible';
+    }
+    html.classList.remove('sidebar-visible');
+    html.classList.add("sidebar-" + sidebar);
+</script>
+
+<nav id="sidebar" class="sidebar" aria-label="Table of contents">
+    <div class="sidebar-scrollbox">
+        <ol class="chapter"><li class="chapter-item expanded "><a href="../../not_involved_resources.html"><strong aria-hidden="true">1.</strong> Not Involved Resources</a></li><li class="chapter-item expanded "><a href="../../overviews.html"><strong aria-hidden="true">2.</strong> Overviews</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../overviews/rbe_radial_tree_embed.html"><strong aria-hidden="true">2.1.</strong> Rust By Examples</a></li></ol></li><li class="chapter-item expanded "><a href="../../title-page.html"><strong aria-hidden="true">3.</strong> Rust Topics</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../cheat_sheets/cheat_sheets.html"><strong aria-hidden="true">3.1.</strong> Cheat Sheets</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../cheat_sheets/rust_language_cheat_sheet.html"><strong aria-hidden="true">3.1.1.</strong> Rust Language Cheat Sheet</a></li><li class="chapter-item "><a href="../../cheat_sheets/quick_ref_me_rust.html"><strong aria-hidden="true">3.1.2.</strong> Quick Ref Me Rust</a></li><li class="chapter-item "><a href="../../cheat_sheets/phaiax_rust_cheet_sheet.html"><strong aria-hidden="true">3.1.3.</strong> Phaiax Rust Cheet Sheet</a></li></ol></li><li class="chapter-item "><a href="../../chatgpt_rust/chatgpt_rust_prompts.html"><strong aria-hidden="true">3.2.</strong> chatGPT Rust Q&A</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../chatgpt_rust/rust_grammar_experience_pitfalls.html"><strong aria-hidden="true">3.2.1.</strong> Experience & Pitfall</a></li></ol></li><li class="chapter-item expanded "><a href="../../rust_video_summary/rust_video_summary.html"><strong aria-hidden="true">3.3.</strong> Rust Video Summary</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/rust_crash_course_rustlang.html"><strong aria-hidden="true">3.3.1.</strong> Rust Crash Course</a></li><li class="chapter-item "><a href="../../rust_video_summary/stop_duplicating_your_code.html"><strong aria-hidden="true">3.3.2.</strong> Generics, Traits, Lifetimes: Stop Duplicating Your Code</a></li><li class="chapter-item expanded "><a href="../../rust_video_summary/impl_rust/impl_rust.html"><strong aria-hidden="true">3.3.3.</strong> Impl Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/impl_rust/from_cargo_to_crates_io_and_back_again.html"><strong aria-hidden="true">3.3.3.1.</strong> (3/7h)From cargo to crates.io and back again</a></li><li class="chapter-item expanded "><a href="../../rust_video_summary/impl_rust/implementing_and_optimizing_a_wordle_solver_in_rust.html" class="active"><strong aria-hidden="true">3.3.3.2.</strong> (3/6h)Implementing and optimizing a wordle solver in rust</a></li><li class="chapter-item "><a href="../../rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html"><strong aria-hidden="true">3.3.3.3.</strong> Solving Distributed System Challenges</a></li><li class="chapter-item "><a href="../../rust_video_summary/impl_rust/setting_up_ci_and_property_testing_for_a_rust_crate.html"><strong aria-hidden="true">3.3.3.4.</strong> Setting up CI and property testing for a Rust Crate</a></li></ol></li><li class="chapter-item "><a href="../../rust_video_summary/code_to_the_moon/code_to_the_moon.html"><strong aria-hidden="true">3.3.4.</strong> Code to the Moon</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/learn_rust_programming.html"><strong aria-hidden="true">3.3.5.</strong> Learn Rust Programming</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/ownership_and_borrow_checker.html"><strong aria-hidden="true">3.3.5.1.</strong> Ownership and borrow checker</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/what_is_ownership_in_rust.html"><strong aria-hidden="true">3.3.5.1.1.</strong> What is Ownership in Rust?</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/what_is_rust_borrow_checker_and_why_is_it_useful.html"><strong aria-hidden="true">3.3.5.1.2.</strong> What is Rust Borrow-checker and why is it useful</a></li></ol></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/types.html"><strong aria-hidden="true">3.3.5.2.</strong> Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/what_is_the_difference_between_string_and_str_in_rust.html"><strong aria-hidden="true">3.3.5.2.1.</strong> What is the difference between String and &str in rust</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/why_enums_are_your_superpower.html"><strong aria-hidden="true">3.3.5.2.2.</strong> Why Enums are your superpower</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/implementing_the_trie_data_structure_in_rust.html"><strong aria-hidden="true">3.3.5.2.3.</strong> Implementing The Trie Data Structure In Rust</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/happy_little_fractals_coding_the_mandelbrot_set_in_rust.html"><strong aria-hidden="true">3.3.5.2.4.</strong> Happy little fractals coding the Mandelbrot set in Rust</a></li></ol></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/rust_polymorphism.html"><strong aria-hidden="true">3.3.5.3.</strong> Rust Polymorphism</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/rust_polymorphism_generics_and_trait_objects_explained.html"><strong aria-hidden="true">3.3.5.3.1.</strong> Rust Polymorphism: Generics and Trait Objects explained</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/introducing_traits_in_rust_what_they_are_and_how_to_use_them.html"><strong aria-hidden="true">3.3.5.3.2.</strong> Introducing traits in rust: what they are and how to use them</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/rust_programming_for_the_object_oriented_developer.html"><strong aria-hidden="true">3.3.5.3.3.</strong> Rust Programming for The Object-Oriented Developer</a></li></ol></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/error_and_test.html"><strong aria-hidden="true">3.3.5.4.</strong> Error & Test</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/all_about_error_handling_in_the_rust_programming_language.html"><strong aria-hidden="true">3.3.5.4.1.</strong> All About Error Handling in the Rust Programming Language</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/unit_testing_basics.html"><strong aria-hidden="true">3.3.5.4.2.</strong> Unit Testing Basics</a></li></ol></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/iterate.html"><strong aria-hidden="true">3.3.5.5.</strong> Iterate</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/introducing_iterators_in_rust.html"><strong aria-hidden="true">3.3.5.5.1.</strong> Introducing iterators in rust</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/how_to_implement_the_intoiterator_trait.html"><strong aria-hidden="true">3.3.5.5.2.</strong> How to implement the intoiterator trait</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/implementing_iterators_in_rust_creating_a_random_number_generator.html"><strong aria-hidden="true">3.3.5.5.3.</strong> Implementing Iterators in rust & creating a random number generator</a></li></ol></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/qa_and_code_review.html"><strong aria-hidden="true">3.3.5.6.</strong> QA & Code Review</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/answers_to_stackoverflow_top_rust_programming_questions_explained.html"><strong aria-hidden="true">3.3.5.6.1.</strong> Answers to StackOverflow Top Rust Programming Questions Explained</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/conducting_a_code_review_of_the_jwtinfo_crate.html"><strong aria-hidden="true">3.3.5.6.2.</strong> Conducting a code review of the jwtinfo crate</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/rust_programming_qa.html"><strong aria-hidden="true">3.3.5.6.3.</strong> Rust Programming Q&A</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../rust_video_summary/considering_rust.html"><strong aria-hidden="true">3.3.6.</strong> Considering Rust</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/crust_of_rust.html"><strong aria-hidden="true">3.3.7.</strong> Crust Of Rust Series</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/async_await.html"><strong aria-hidden="true">3.3.7.1.</strong> Async/Await</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/atomics_and_memory_ordering.html"><strong aria-hidden="true">3.3.7.2.</strong> Atomics and Memory Ordering</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/channels.html"><strong aria-hidden="true">3.3.7.3.</strong> Channels</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/declarative_macros.html"><strong aria-hidden="true">3.3.7.4.</strong> Declarative Macros</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/dispatch_and_fat_pointers.html"><strong aria-hidden="true">3.3.7.5.</strong> Dispatch and Fat Pointers</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/functions_closures_and_their_traits.html"><strong aria-hidden="true">3.3.7.6.</strong> Functions, Closures and their traits</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/iterators.html"><strong aria-hidden="true">3.3.7.7.</strong> Iterators</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/lifetime_annotations.html"><strong aria-hidden="true">3.3.7.8.</strong> Lifetime Annotations</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/smart_pointers_and_interior_mutability.html"><strong aria-hidden="true">3.3.7.9.</strong> Smart Pointers And Interior Mutability</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/sorting_algorithms.html"><strong aria-hidden="true">3.3.7.10.</strong> Sorting Algorithms</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/subtyping_and_variance.html"><strong aria-hidden="true">3.3.7.11.</strong> Subtyping and Variance</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/the_drop_check.html"><strong aria-hidden="true">3.3.7.12.</strong> The Drop Check</a></li></ol></li><li class="chapter-item "><a href="../../rust_video_summary/implementing_hazard_pointers_in_rust/implementing_hazard_pointers.html"><strong aria-hidden="true">3.3.8.</strong> Implementing Hazard Pointers</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/implementing_hazard_pointers_in_rust/part1.html"><strong aria-hidden="true">3.3.8.1.</strong> Part 1</a></li><li class="chapter-item "><a href="../../rust_video_summary/implementing_hazard_pointers_in_rust/part2.html"><strong aria-hidden="true">3.3.8.2.</strong> Part 2</a></li><li class="chapter-item "><a href="../../rust_video_summary/implementing_hazard_pointers_in_rust/part3.html"><strong aria-hidden="true">3.3.8.3.</strong> Part 3</a></li><li class="chapter-item "><a href="../../rust_video_summary/implementing_hazard_pointers_in_rust/part4.html"><strong aria-hidden="true">3.3.8.4.</strong> Part 4</a></li></ol></li><li class="chapter-item "><a href="../../rust_video_summary/open_source_streams/open_source_streams.html"><strong aria-hidden="true">3.3.9.</strong> Open-Source streams</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/open_source_streams/rust_open_source_contributions_stream.html"><strong aria-hidden="true">3.3.9.1.</strong> Rust Open Source Contributions Stream</a></li><li class="chapter-item "><a href="../../rust_video_summary/open_source_streams/rust_tools_and_std_future.html"><strong aria-hidden="true">3.3.9.2.</strong> Rust Toos and std::future</a></li><li class="chapter-item "><a href="../../rust_video_summary/open_source_streams/day_in_the_life_of_open_source_maintenance_2022_06_19.html"><strong aria-hidden="true">3.3.9.3.</strong> Day in the life of Open Source Maintenance 2022-06-19</a></li><li class="chapter-item "><a href="../../rust_video_summary/open_source_streams/day_in_the_life_of_open_source_maintenance_2022_10_08.html"><strong aria-hidden="true">3.3.9.4.</strong> Day in the life of Open Source Maintenance 2022-10-08</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">3.4.</strong> Associated Items</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../topics/at_gat.html"><strong aria-hidden="true">3.4.1.</strong> Associated type, Generic associate types</a></li><li class="chapter-item "><div><strong aria-hidden="true">3.4.2.</strong> Associated Types</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/generics/assoc_items/types.html"><strong aria-hidden="true">3.4.2.1.</strong> Associated types examples</a></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">3.4.3.</strong> Generic Associated Types</div></li><li class="chapter-item "><div><strong aria-hidden="true">3.4.4.</strong> Associated Functions & Methods</div></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../title-page.html"><strong aria-hidden="true">4.</strong> The Rust Programming Language</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../foreword.html"><strong aria-hidden="true">4.1.</strong> Foreword</a></li><li class="chapter-item "><a href="../../ch00-00-introduction.html"><strong aria-hidden="true">4.2.</strong> Introduction</a></li><li class="chapter-item "><a href="../../ch01-00-getting-started.html"><strong aria-hidden="true">4.3.</strong> Getting Started</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch01-01-installation.html"><strong aria-hidden="true">4.3.1.</strong> Installation</a></li><li class="chapter-item "><a href="../../ch01-02-hello-world.html"><strong aria-hidden="true">4.3.2.</strong> Hello, World!</a></li><li class="chapter-item "><a href="../../ch01-03-hello-cargo.html"><strong aria-hidden="true">4.3.3.</strong> Hello, Cargo!</a></li><li class="chapter-item "><a href="../../ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">4.3.4.</strong> Programming a Guessing Game</a></li><li class="chapter-item "><a href="../../ch03-00-common-programming-concepts.html"><strong aria-hidden="true">4.3.5.</strong> Common Programming Concepts</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch03-01-variables-and-mutability.html"><strong aria-hidden="true">4.3.5.1.</strong> ⚠️Variables and Mutability</a></li><li class="chapter-item "><a href="../../ch03-02-data-types.html"><strong aria-hidden="true">4.3.5.2.</strong> Data Types</a></li><li class="chapter-item "><a href="../../rust_by_example_src/expression.html"><strong aria-hidden="true">4.3.5.3.</strong> RBE(Rust by Examples): Expressions and Statements</a></li><li class="chapter-item "><a href="../../ch03-03-how-functions-work.html"><strong aria-hidden="true">4.3.5.4.</strong> ✨Functions Basic: Statements, Expressions, Last Return, Early Return</a></li><li class="chapter-item "><a href="../../ch03-04-comments.html"><strong aria-hidden="true">4.3.5.5.</strong> Comments</a></li><li class="chapter-item "><a href="../../ch03-05-control-flow.html"><strong aria-hidden="true">4.3.5.6.</strong> Control Flow</a></li></ol></li><li class="chapter-item "><a href="../../ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.3.6.</strong> Understanding Ownership</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.3.6.1.</strong> What is Ownership?</a></li><li class="chapter-item "><a href="../../ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.3.6.2.</strong> References and Borrowing</a></li><li class="chapter-item "><a href="../../ch04-03-slices.html"><strong aria-hidden="true">4.3.6.3.</strong> The Slice Type</a></li></ol></li><li class="chapter-item "><a href="../../ch05-00-structs.html"><strong aria-hidden="true">4.3.7.</strong> Using Structs to Structure Related Data</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch05-01-defining-structs.html"><strong aria-hidden="true">4.3.7.1.</strong> Defining and Instantiating Structs</a></li><li class="chapter-item "><a href="../../ch05-02-example-structs.html"><strong aria-hidden="true">4.3.7.2.</strong> An Example Program Using Structs</a></li><li class="chapter-item "><a href="../../ch05-03-method-syntax.html"><strong aria-hidden="true">4.3.7.3.</strong> ✨Method Syntax</a></li></ol></li><li class="chapter-item "><a href="../../ch06-00-enums.html"><strong aria-hidden="true">4.3.8.</strong> Enums and Pattern Matching</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch06-01-defining-an-enum.html"><strong aria-hidden="true">4.3.8.1.</strong> Defining an Enum</a></li><li class="chapter-item "><a href="../../ch06-02-match.html"><strong aria-hidden="true">4.3.8.2.</strong> The match Control Flow Construct</a></li><li class="chapter-item "><a href="../../ch06-03-if-let.html"><strong aria-hidden="true">4.3.8.3.</strong> Concise Control Flow with if let</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">4.4.</strong> Basic Rust Literacy</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch07-00-managing-growing-projects-with-packages-crates-and-modules.html"><strong aria-hidden="true">4.4.1.</strong> Managing Growing Projects with Packages, Crates, and Modules</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch07-01-packages-and-crates.html"><strong aria-hidden="true">4.4.1.1.</strong> Packages and Crates</a></li><li class="chapter-item "><a href="../../ch07-02-defining-modules-to-control-scope-and-privacy.html"><strong aria-hidden="true">4.4.1.2.</strong> Defining Modules to Control Scope and Privacy</a></li><li class="chapter-item "><a href="../../ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html"><strong aria-hidden="true">4.4.1.3.</strong> Paths for Referring to an Item in the Module Tree</a></li><li class="chapter-item "><a href="../../ch07-04-bringing-paths-into-scope-with-the-use-keyword.html"><strong aria-hidden="true">4.4.1.4.</strong> Bringing Paths Into Scope with the use Keyword</a></li><li class="chapter-item "><a href="../../ch07-05-separating-modules-into-different-files.html"><strong aria-hidden="true">4.4.1.5.</strong> Separating Modules into Different Files</a></li></ol></li><li class="chapter-item "><a href="../../ch08-00-common-collections.html"><strong aria-hidden="true">4.4.2.</strong> Common Collections</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch08-01-vectors.html"><strong aria-hidden="true">4.4.2.1.</strong> Vectors: Storing Lists of The Same Type of Values</a></li><li class="chapter-item "><a href="../../ch08-02-strings.html"><strong aria-hidden="true">4.4.2.2.</strong> Strings: Storing UTF-8 Encoded Text</a></li><li class="chapter-item "><a href="../../ch08-03-hash-maps.html"><strong aria-hidden="true">4.4.2.3.</strong> HasnMap&lt;K, V&gt;: Storing Keys with Associated Values</a></li></ol></li><li class="chapter-item "><a href="../../ch09-00-error-handling.html"><strong aria-hidden="true">4.4.3.</strong> Error Handling</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">4.4.3.1.</strong> Unrecoverable Errors with panic!</a></li><li class="chapter-item "><a href="../../ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">4.4.3.2.</strong> ⭐️Recoverable Errors with Result</a></li><li class="chapter-item "><a href="../../ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">4.4.3.3.</strong> To panic! or Not to panic!</a></li></ol></li><li class="chapter-item "><a href="../../ch10-00-generics.html"><strong aria-hidden="true">4.4.4.</strong> Generic Types, Traits, and Lifetimes</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch10-01-syntax.html"><strong aria-hidden="true">4.4.4.1.</strong> ✨Generic Data Types</a></li><li class="chapter-item "><a href="../../ch10-02-traits.html"><strong aria-hidden="true">4.4.4.2.</strong> 🪐Traits: Defining Shared Behavior</a></li><li class="chapter-item "><a href="../../ch10-03-lifetime-syntax.html"><strong aria-hidden="true">4.4.4.3.</strong> ⭐️Validating References with Lifetimes</a></li></ol></li><li class="chapter-item "><a href="../../ch11-00-testing.html"><strong aria-hidden="true">4.4.5.</strong> Writing Automated Tests</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch11-01-writing-tests.html"><strong aria-hidden="true">4.4.5.1.</strong> How to Write Tests</a></li><li class="chapter-item "><a href="../../ch11-02-running-tests.html"><strong aria-hidden="true">4.4.5.2.</strong> Controlling How Tests Are Run</a></li><li class="chapter-item "><a href="../../ch11-03-test-organization.html"><strong aria-hidden="true">4.4.5.3.</strong> Test Organization</a></li></ol></li><li class="chapter-item "><a href="../../ch12-00-an-io-project.html"><strong aria-hidden="true">4.4.6.</strong> An I/O Project: Building a Command Line Program</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">4.4.6.1.</strong> Accepting Command Line Arguments</a></li><li class="chapter-item "><a href="../../ch12-02-reading-a-file.html"><strong aria-hidden="true">4.4.6.2.</strong> Reading a File</a></li><li class="chapter-item "><a href="../../ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">4.4.6.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li class="chapter-item "><a href="../../ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">4.4.6.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li class="chapter-item "><a href="../../ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">4.4.6.5.</strong> Working with Environment Variables</a></li><li class="chapter-item "><a href="../../ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">4.4.6.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../thinking_in_rust.html"><strong aria-hidden="true">4.5.</strong> 🤔Thinking in Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch13-00-functional-features.html"><strong aria-hidden="true">4.5.1.</strong> Functional Language Features: Iterators and Closures</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch13-01-closures.html"><strong aria-hidden="true">4.5.1.1.</strong> Closures: Anonymous Functions that Capture Their Environment</a></li><li class="chapter-item "><a href="../../ch13-02-iterators.html"><strong aria-hidden="true">4.5.1.2.</strong> Processing a Series of Items with Iterators</a></li><li class="chapter-item "><a href="../../ch13-03-improving-our-io-project.html"><strong aria-hidden="true">4.5.1.3.</strong> Improving Our I/O Project</a></li><li class="chapter-item "><a href="../../ch13-04-performance.html"><strong aria-hidden="true">4.5.1.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li class="chapter-item "><a href="../../ch14-00-more-about-cargo.html"><strong aria-hidden="true">4.5.2.</strong> More about Cargo and Crates.io</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch14-01-release-profiles.html"><strong aria-hidden="true">4.5.2.1.</strong> Customizing Builds with Release Profiles</a></li><li class="chapter-item "><a href="../../ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">4.5.2.2.</strong> Publishing a Crate to Crates.io</a></li><li class="chapter-item "><a href="../../ch14-03-cargo-workspaces.html"><strong aria-hidden="true">4.5.2.3.</strong> Cargo Workspaces</a></li><li class="chapter-item "><a href="../../ch14-04-installing-binaries.html"><strong aria-hidden="true">4.5.2.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item "><a href="../../ch14-05-extending-cargo.html"><strong aria-hidden="true">4.5.2.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li class="chapter-item "><a href="../../ch15-00-smart-pointers.html"><strong aria-hidden="true">4.5.3.</strong> ✨Smart Pointers(2+3): (Deref、Drop) + (Box/heap、Rc、RefCell/Reference Cycle）</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../smart_pointers_deref_drop.html"><strong aria-hidden="true">4.5.3.1.</strong> Two Typical Traits: Deref & Drop</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch15-02-deref.html"><strong aria-hidden="true">4.5.3.1.1.</strong> Deref(* operator): Treating Smart Pointers Like Regular References with the Deref Trait</a></li><li class="chapter-item "><a href="../../ch15-03-drop.html"><strong aria-hidden="true">4.5.3.1.2.</strong> Drop: Running Code on Cleanup with the Drop Trait</a></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">4.5.3.2.</strong> Three main types</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch15-01-box.html"><strong aria-hidden="true">4.5.3.2.1.</strong> Heap: Using Box&lt;T&gt; to Point to Data on the Heap</a></li><li class="chapter-item "><a href="../../rc_refcell.html"><strong aria-hidden="true">4.5.3.2.2.</strong> References Tracking Pointer Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch15-04-rc.html"><strong aria-hidden="true">4.5.3.2.2.1.</strong> Rc&lt;T&gt;(Reference Counting): single-threaded scenarios, immutable references of multiple owners, the Reference Counted Smart Pointer</a></li><li class="chapter-item "><a href="../../ch15-05-interior-mutability.html"><strong aria-hidden="true">4.5.3.2.2.2.</strong> RefCell&lt;T&gt;(reference counting cell): single-threaded scenarios, runtime borrow checking, the Interior Mutability Pattern</a></li><li class="chapter-item "><a href="../../ch15-06-reference-cycles.html"><strong aria-hidden="true">4.5.3.2.2.3.</strong> 🌟Reference Cycles Can Leak Memory: Mainly from Incorrect Usage of Rc&lt;T&gt; and RefCell&lt;T&gt;</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../ch16-00-concurrency.html"><strong aria-hidden="true">4.5.4.</strong> Fearless Concurrency</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch16-01-threads.html"><strong aria-hidden="true">4.5.4.1.</strong> Using Threads to Run Code Simultaneously</a></li><li class="chapter-item "><a href="../../ch16-02-message-passing.html"><strong aria-hidden="true">4.5.4.2.</strong> Using Message Passing to Transfer Data Between Threads</a></li><li class="chapter-item "><a href="../../ch16-03-shared-state.html"><strong aria-hidden="true">4.5.4.3.</strong> Shared-State Concurrency</a></li><li class="chapter-item "><a href="../../ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">4.5.4.4.</strong> Extensible Concurrency with the Sync and Send Traits</a></li></ol></li><li class="chapter-item "><a href="../../ch17-00-oop.html"><strong aria-hidden="true">4.5.5.</strong> Object Oriented Programming Features of Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch17-01-what-is-oo.html"><strong aria-hidden="true">4.5.5.1.</strong> Characteristics of Object-Oriented Languages</a></li><li class="chapter-item "><a href="../../ch17-02-trait-objects.html"><strong aria-hidden="true">4.5.5.2.</strong> 🌛️Using Trait Objects That Allow for Values of Different Types</a></li><li class="chapter-item "><a href="../../ch17-03-oo-design-patterns.html"><strong aria-hidden="true">4.5.5.3.</strong> Implementing an Object-Oriented Design Pattern</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">4.6.</strong> Advanced Topics</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch18-00-patterns.html"><strong aria-hidden="true">4.6.1.</strong> Patterns and Matching</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">4.6.1.1.</strong> All the Places Patterns Can Be Used</a></li><li class="chapter-item "><a href="../../ch18-02-refutability.html"><strong aria-hidden="true">4.6.1.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li class="chapter-item "><a href="../../ch18-03-pattern-syntax.html"><strong aria-hidden="true">4.6.1.3.</strong> ⭐️Pattern Syntax</a></li></ol></li><li class="chapter-item "><a href="../../ch19-00-advanced-features.html"><strong aria-hidden="true">4.6.2.</strong> Advanced Features</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch19-01-unsafe-rust.html"><strong aria-hidden="true">4.6.2.1.</strong> Unsafe Rust</a></li><li class="chapter-item "><a href="../../ch19-03-advanced-traits.html"><strong aria-hidden="true">4.6.2.2.</strong> ⭐️Advanced Traits</a></li><li class="chapter-item "><a href="../../ch19-04-advanced-types.html"><strong aria-hidden="true">4.6.2.3.</strong> ✨Advanced Types</a></li><li class="chapter-item "><a href="../../ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">4.6.2.4.</strong> 📦Advanced Functions and Closures</a></li><li class="chapter-item "><a href="../../ch19-06-macros.html"><strong aria-hidden="true">4.6.2.5.</strong> Macros</a></li></ol></li><li class="chapter-item "><a href="../../ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">4.6.3.</strong> Final Project: Building a Multithreaded Web Server</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch20-01-single-threaded.html"><strong aria-hidden="true">4.6.3.1.</strong> Building a Single-Threaded Web Server</a></li><li class="chapter-item "><a href="../../ch20-02-multithreaded.html"><strong aria-hidden="true">4.6.3.2.</strong> Turning Our Single-Threaded Server into a Multithreaded Server</a></li><li class="chapter-item "><a href="../../ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">4.6.3.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li class="chapter-item "><a href="../../appendix-00.html"><strong aria-hidden="true">4.6.4.</strong> Appendix</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../appendix-01-keywords.html"><strong aria-hidden="true">4.6.4.1.</strong> A - Keywords</a></li><li class="chapter-item "><a href="../../appendix-02-operators.html"><strong aria-hidden="true">4.6.4.2.</strong> B - Operators and Symbols</a></li><li class="chapter-item "><a href="../../appendix-03-derivable-traits.html"><strong aria-hidden="true">4.6.4.3.</strong> ✨️C - Derivable Traits</a></li><li class="chapter-item "><a href="../../appendix-04-useful-development-tools.html"><strong aria-hidden="true">4.6.4.4.</strong> D - Useful Development Tools</a></li><li class="chapter-item "><a href="../../appendix-05-editions.html"><strong aria-hidden="true">4.6.4.5.</strong> E - Editions</a></li><li class="chapter-item "><a href="../../appendix-06-translation.html"><strong aria-hidden="true">4.6.4.6.</strong> F - Translations of the Book</a></li><li class="chapter-item "><a href="../../appendix-07-nightly-rust.html"><strong aria-hidden="true">4.6.4.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../rust_by_example_src/index.html"><strong aria-hidden="true">5.</strong> Rust By Examples</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/hello.html"><strong aria-hidden="true">5.1.</strong> Hello World</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/hello/comment.html"><strong aria-hidden="true">5.1.1.</strong> Comments</a></li><li class="chapter-item "><a href="../../rust_by_example_src/hello/print.html"><strong aria-hidden="true">5.1.2.</strong> Formatted print</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/hello/print/print_debug.html"><strong aria-hidden="true">5.1.2.1.</strong> Debug</a></li><li class="chapter-item "><a href="../../rust_by_example_src/hello/print/print_display.html"><strong aria-hidden="true">5.1.2.2.</strong> Display</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/hello/print/print_display/testcase_list.html"><strong aria-hidden="true">5.1.2.2.1.</strong> Testcase: List</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/hello/print/fmt.html"><strong aria-hidden="true">5.1.2.3.</strong> Formatting</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">5.2.</strong> Types: Primitives, custom Types, Bindings and Change/Define/Advanced Conversion</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/primitives.html"><strong aria-hidden="true">5.2.1.</strong> Primitives</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/primitives/literals.html"><strong aria-hidden="true">5.2.1.1.</strong> Literals and operators</a></li><li class="chapter-item "><a href="../../rust_by_example_src/primitives/tuples.html"><strong aria-hidden="true">5.2.1.2.</strong> Tuples: a collection of values of different types</a></li><li class="chapter-item "><a href="../../rust_by_example_src/primitives/array.html"><strong aria-hidden="true">5.2.1.3.</strong> Arrays and Slices: a collection of objects of the same type T</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/custom_types.html"><strong aria-hidden="true">5.2.2.</strong> Custom Types: struct and enum</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/custom_types/structs.html"><strong aria-hidden="true">5.2.2.1.</strong> Structures: Tuple, C structs and Unit structs</a></li><li class="chapter-item "><a href="../../rust_by_example_src/custom_types/enum.html"><strong aria-hidden="true">5.2.2.2.</strong> ✨Enums: and Type alias</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/custom_types/enum/enum_use.html"><strong aria-hidden="true">5.2.2.2.1.</strong> use</a></li><li class="chapter-item "><a href="../../rust_by_example_src/custom_types/enum/c_like.html"><strong aria-hidden="true">5.2.2.2.2.</strong> C-like</a></li><li class="chapter-item "><a href="../../rust_by_example_src/custom_types/enum/testcase_linked_list.html"><strong aria-hidden="true">5.2.2.2.3.</strong> Testcase: linked-list</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/custom_types/constants.html"><strong aria-hidden="true">5.2.2.3.</strong> constants: const and static</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/variable_bindings.html"><strong aria-hidden="true">5.2.3.</strong> Variable Bindings</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/variable_bindings/mut.html"><strong aria-hidden="true">5.2.3.1.</strong> Mutability</a></li><li class="chapter-item "><a href="../../rust_by_example_src/variable_bindings/scope.html"><strong aria-hidden="true">5.2.3.2.</strong> Scope ({}) and Shadowing</a></li><li class="chapter-item "><a href="../../rust_by_example_src/variable_bindings/declare.html"><strong aria-hidden="true">5.2.3.3.</strong> Declare first</a></li><li class="chapter-item "><a href="../../rust_by_example_src/variable_bindings/freeze.html"><strong aria-hidden="true">5.2.3.4.</strong> Freezing</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/types.html"><strong aria-hidden="true">5.2.4.</strong> 🚶Basic Conversion: Change or Define Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/types/cast.html"><strong aria-hidden="true">5.2.4.1.</strong> as: Casting using as keyword</a></li><li class="chapter-item "><a href="../../rust_by_example_src/types/literals.html"><strong aria-hidden="true">5.2.4.2.</strong> Literals</a></li><li class="chapter-item "><a href="../../rust_by_example_src/types/inference.html"><strong aria-hidden="true">5.2.4.3.</strong> Inference</a></li><li class="chapter-item "><a href="../../rust_by_example_src/types/alias.html"><strong aria-hidden="true">5.2.4.4.</strong> ✨Type Aliasing: give a new name to an existing type</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/conversion.html"><strong aria-hidden="true">5.2.5.</strong> 💃Advanced Conversion: From/Into trait</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/conversion/from_into.html"><strong aria-hidden="true">5.2.5.1.</strong> From and Into</a></li><li class="chapter-item "><a href="../../rust_by_example_src/conversion/try_from_try_into.html"><strong aria-hidden="true">5.2.5.2.</strong> TryFrom and TryInto: used for fallible conversions, return Result</a></li><li class="chapter-item "><a href="../../rust_by_example_src/conversion/string.html"><strong aria-hidden="true">5.2.5.3.</strong> ToString and FromStr trait: To and from Strings</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">5.3.</strong> Control: Statements, Functions and Error handling</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/expression.html"><strong aria-hidden="true">5.3.1.</strong> ✨Expressions: statements end with ;</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control.html"><strong aria-hidden="true">5.3.2.</strong> 🧮 Flow of Control</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/if_else.html"><strong aria-hidden="true">5.3.2.1.</strong> if/else</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/while.html"><strong aria-hidden="true">5.3.2.2.</strong> while</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/loop.html"><strong aria-hidden="true">5.3.2.3.</strong> loop</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/loop/nested.html"><strong aria-hidden="true">5.3.2.3.1.</strong> Nesting and labels: a little like lifetime annotations</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/loop/return.html"><strong aria-hidden="true">5.3.2.3.2.</strong> Returning from loops</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/if_let.html"><strong aria-hidden="true">5.3.2.4.</strong> if let</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/while_let.html"><strong aria-hidden="true">5.3.2.5.</strong> ✨while_let</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/for.html"><strong aria-hidden="true">5.3.2.6.</strong> for and range</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/match.html"><strong aria-hidden="true">5.3.2.7.</strong> ⭐️match</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/match/destructuring.html"><strong aria-hidden="true">5.3.2.7.1.</strong> ✨✨✨Destructuring</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/match/guard.html"><strong aria-hidden="true">5.3.2.7.2.</strong> Guards: to filter the arm</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/match/binding.html"><strong aria-hidden="true">5.3.2.7.3.</strong> @ Binding</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/fn.html"><strong aria-hidden="true">5.3.3.</strong> ✨Functions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/fn/methods.html"><strong aria-hidden="true">5.3.3.1.</strong> Methods</a></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures.html"><strong aria-hidden="true">5.3.3.2.</strong> ✨Closures</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/capture.html"><strong aria-hidden="true">5.3.3.2.1.</strong> Capturing</a></li><li class="chapter-item "><div><strong aria-hidden="true">5.3.3.2.2.</strong> Fn/FnMut/FnOnce</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/anonymity.html"><strong aria-hidden="true">5.3.3.2.2.1.</strong> Type anonymity</a></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/input_parameters.html"><strong aria-hidden="true">5.3.3.2.2.2.</strong> As input parameters</a></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/output_parameters.html"><strong aria-hidden="true">5.3.3.2.2.3.</strong> As output parameters</a></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/input_functions.html"><strong aria-hidden="true">5.3.3.2.2.4.</strong> Input functions</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/closure_examples.html"><strong aria-hidden="true">5.3.3.2.3.</strong> Examples in std</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/closure_examples/iter_any.html"><strong aria-hidden="true">5.3.3.2.3.1.</strong> Iterator::any</a></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/closure_examples/iter_find.html"><strong aria-hidden="true">5.3.3.2.3.2.</strong> Searching through iterators</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/hof.html"><strong aria-hidden="true">5.3.3.3.</strong> Higher Order Functions</a></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/diverging.html"><strong aria-hidden="true">5.3.3.4.</strong> ✨Diverging functions: return !, different from ()</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/error.html"><strong aria-hidden="true">5.3.4.</strong> ⭐️Error handling: Panic、Option and Result</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/error/panic.html"><strong aria-hidden="true">5.3.4.1.</strong> panic!: unrecoverable, try-exception</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/error/abort_unwind.html"><strong aria-hidden="true">5.3.4.1.1.</strong> ✨abort & unwind: Two implementation mechanisms of panic</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/error/option_unwrap.html"><strong aria-hidden="true">5.3.4.2.</strong> Option & unwrap</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/error/option_unwrap/map.html"><strong aria-hidden="true">5.3.4.2.1.</strong> Combinators of Option: map</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/option_unwrap/and_then.html"><strong aria-hidden="true">5.3.4.2.2.</strong> Combinators of Option: and_then</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/option_unwrap/defaults.html"><strong aria-hidden="true">5.3.4.2.3.</strong> Defaults: or, or_else, get_or_insert, 'get_or_insert_with`</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/error/result.html"><strong aria-hidden="true">5.3.4.3.</strong> Result & OK or ?: A Richer Version Of Option</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/error/result/result_map.html"><strong aria-hidden="true">5.3.4.3.1.</strong> map for Result: catch explicit Exception and Continue</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/result/result_alias.html"><strong aria-hidden="true">5.3.4.3.2.</strong> Custom Exception: aliases for Result</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/result/early_returns.html"><strong aria-hidden="true">5.3.4.3.3.</strong> Early returns: Catch Exception and Return</a></li></ol></li><li class="chapter-item "><a href="../../#.html"><strong aria-hidden="true">5.3.4.4.</strong> ?: the uses of question mark</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/error/result/enter_question_mark.html"><strong aria-hidden="true">5.3.4.4.1.</strong> Introducing ?</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/option_unwrap/question_mark.html"><strong aria-hidden="true">5.3.4.4.2.</strong> Unpacking options with ? to return the Some or terminate</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/multiple_error_types/reenter_question_mark.html"><strong aria-hidden="true">5.3.4.4.3.</strong> Other uses of ?</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/error/multiple_error_types.html"><strong aria-hidden="true">5.3.4.5.</strong> Multiple error types to interact</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/error/multiple_error_types/option_result.html"><strong aria-hidden="true">5.3.4.5.1.</strong> Pulling Results out of Options</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/multiple_error_types/define_error_type.html"><strong aria-hidden="true">5.3.4.5.2.</strong> Defining an error type</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/multiple_error_types/boxing_errors.html"><strong aria-hidden="true">5.3.4.5.3.</strong> Boxing errors</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/multiple_error_types/wrap_error.html"><strong aria-hidden="true">5.3.4.5.4.</strong> Wrapping errors</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/error/iter_result.html"><strong aria-hidden="true">5.3.4.6.</strong> Iterating over Results</a></li><li class="chapter-item "><a href="../../rust_by_example_src/encapsulation_modules_crates_cargo.html"><strong aria-hidden="true">5.3.4.7.</strong> 📒Error Handling Practices -- ChatGPT</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/error/error_handling_practices/basic_practics.html"><strong aria-hidden="true">5.3.4.7.1.</strong> Basic Practices</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/encapsulation_modules_crates_cargo.html"><strong aria-hidden="true">5.4.</strong> Encapsulation: Modules, Crates and Cargo</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/mod.html"><strong aria-hidden="true">5.4.1.</strong> Modules: hierarchically split and manage visibility</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/mod/visibility.html"><strong aria-hidden="true">5.4.1.1.</strong> Visibility</a></li><li class="chapter-item "><a href="../../rust_by_example_src/mod/struct_visibility.html"><strong aria-hidden="true">5.4.1.2.</strong> Struct visibility: an extra level of visibility with their fields</a></li><li class="chapter-item "><a href="../../rust_by_example_src/mod/use.html"><strong aria-hidden="true">5.4.1.3.</strong> The use declaration: bind a full path to a new name</a></li><li class="chapter-item "><a href="../../rust_by_example_src/mod/super.html"><strong aria-hidden="true">5.4.1.4.</strong> super and self: remove ambiguity</a></li><li class="chapter-item "><a href="../../rust_by_example_src/mod/split.html"><strong aria-hidden="true">5.4.1.5.</strong> File/Directory hierarchy</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/crates.html"><strong aria-hidden="true">5.4.2.</strong> Crates: compilation units in Rust, library or binary</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/crates/lib.html"><strong aria-hidden="true">5.4.2.1.</strong> Creating a Library: --crate-type=lib</a></li><li class="chapter-item "><a href="../../rust_by_example_src/crates/using_lib.html"><strong aria-hidden="true">5.4.2.2.</strong> Using a Library: --extern</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/cargo.html"><strong aria-hidden="true">5.4.3.</strong> Cargo: package management tool</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/cargo/deps.html"><strong aria-hidden="true">5.4.3.1.</strong> Dependencies</a></li><li class="chapter-item "><a href="../../rust_by_example_src/cargo/conventions.html"><strong aria-hidden="true">5.4.3.2.</strong> Two Binaries Conventions</a></li><li class="chapter-item "><a href="../../rust_by_example_src/cargo/test.html"><strong aria-hidden="true">5.4.3.3.</strong> ✨Tests</a></li><li class="chapter-item "><a href="../../rust_by_example_src/cargo/build_scripts.html"><strong aria-hidden="true">5.4.3.4.</strong> Build Scripts</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">5.5.</strong> Rust Core: Generics, Traits and Scoping</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/generics.html"><strong aria-hidden="true">5.5.1.</strong> 🪐Generics</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/generics/used_as_parameter.html"><strong aria-hidden="true">5.5.1.1.</strong> Used as Parameter</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/generics/gen_fn.html"><strong aria-hidden="true">5.5.1.1.1.</strong> Functions: Identify whether a generic function</a></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/impl.html"><strong aria-hidden="true">5.5.1.1.2.</strong> Impl Type fn: Identify whether a generic method</a></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/gen_trait.html"><strong aria-hidden="true">5.5.1.1.3.</strong> Impl Traits fn: Identify whether a generic method</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/trait_bounds.html"><strong aria-hidden="true">5.5.1.2.</strong> Bounded by Trait</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/generics/bounds/testcase_empty.html"><strong aria-hidden="true">5.5.1.2.1.</strong> ✨Testcase: empty bounds</a></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/bounds/multi_trait_bounds.html"><strong aria-hidden="true">5.5.1.2.2.</strong> Multiple Trait Bounds</a></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/bounds/where_bounds.html"><strong aria-hidden="true">5.5.1.2.3.</strong> Where clauses bounds</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/new_types.html"><strong aria-hidden="true">5.5.1.3.</strong> New Type Idiom</a></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/assoc_items.html"><strong aria-hidden="true">5.5.1.4.</strong> ✨Associated items</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/generics/assoc_items/the_problem.html"><strong aria-hidden="true">5.5.1.4.1.</strong> ✨The Problem</a></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/assoc_items/types.html"><strong aria-hidden="true">5.5.1.4.2.</strong> Associated types</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/phantom.html"><strong aria-hidden="true">5.5.1.5.</strong> Phantom type parameters</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/generics/phantom/testcase_units.html"><strong aria-hidden="true">5.5.1.5.1.</strong> Testcase: unit clarification</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/trait.html"><strong aria-hidden="true">5.5.2.</strong> 🪐Traits</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/trait/derive.html"><strong aria-hidden="true">5.5.2.1.</strong> ✨Derive Macro Traits</a></li><li class="chapter-item "><a href="../../rust_by_example_src/trait/dyn.html"><strong aria-hidden="true">5.5.2.2.</strong> Returning Traits with dyn</a></li><li class="chapter-item "><a href="../../rust_by_example_src/trait/ops.html"><strong aria-hidden="true">5.5.2.3.</strong> Operator Overloading</a></li><li class="chapter-item "><a href="../../rust_by_example_src/trait/drop.html"><strong aria-hidden="true">5.5.2.4.</strong> Drop</a></li><li class="chapter-item "><a href="../../rust_by_example_src/trait/iter.html"><strong aria-hidden="true">5.5.2.5.</strong> Iterators: Iterator Trait</a></li><li class="chapter-item "><a href="../../rust_by_example_src/trait/impl_trait.html"><strong aria-hidden="true">5.5.2.6.</strong> ✨impl Trait</a></li><li class="chapter-item "><a href="../../rust_by_example_src/trait/supertraits.html"><strong aria-hidden="true">5.5.2.7.</strong> Supertraits</a></li><li class="chapter-item "><a href="../../rust_by_example_src/trait/disambiguating.html"><strong aria-hidden="true">5.5.2.8.</strong> Fully Qualified Syntax: Disambiguating overlapping traits</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/scope.html"><strong aria-hidden="true">5.5.3.</strong> 🪐Scoping rules</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/scope/raii.html"><strong aria-hidden="true">5.5.3.1.</strong> RAII</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/move.html"><strong aria-hidden="true">5.5.3.2.</strong> Ownership and moves</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/scope/move/mut.html"><strong aria-hidden="true">5.5.3.2.1.</strong> Mutability</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/move/partial_move.html"><strong aria-hidden="true">5.5.3.2.2.</strong> Partial moves</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/borrow.html"><strong aria-hidden="true">5.5.3.3.</strong> Borrowing</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/scope/borrow/mut.html"><strong aria-hidden="true">5.5.3.3.1.</strong> Mutability</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/borrow/alias.html"><strong aria-hidden="true">5.5.3.3.2.</strong> Mutable or Immutable, Only One</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/borrow/ref.html"><strong aria-hidden="true">5.5.3.3.3.</strong> ✨The ref pattern</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime.html"><strong aria-hidden="true">5.5.3.4.</strong> Lifetimes</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime/elision.html"><strong aria-hidden="true">5.5.3.4.1.</strong> Elision</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime/explicit.html"><strong aria-hidden="true">5.5.3.4.2.</strong> ✨Explicit lifetime annotation: another Generic</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime/fn_method_struct_trait.html"><strong aria-hidden="true">5.5.3.4.3.</strong> ✨Functions、methods、struct、trait</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime/lifetime_bounds.html"><strong aria-hidden="true">5.5.3.4.4.</strong> Lifetime Bounds for generics</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime/lifetime_coercion.html"><strong aria-hidden="true">5.5.3.4.5.</strong> Coercion</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime/static_lifetime.html"><strong aria-hidden="true">5.5.3.4.6.</strong> Static</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">5.6.</strong> Macros: rules! and Attributes</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/macros.html"><strong aria-hidden="true">5.6.1.</strong> macro_rules!</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/macros/syntax.html"><strong aria-hidden="true">5.6.1.1.</strong> Syntax</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/macros/designators.html"><strong aria-hidden="true">5.6.1.1.1.</strong> Designators</a></li><li class="chapter-item "><a href="../../rust_by_example_src/macros/overload.html"><strong aria-hidden="true">5.6.1.1.2.</strong> Overload</a></li><li class="chapter-item "><a href="../../rust_by_example_src/macros/repeat.html"><strong aria-hidden="true">5.6.1.1.3.</strong> Repeat</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/macros/dry.html"><strong aria-hidden="true">5.6.1.2.</strong> DRY (rust_by_example_src/Don't Repeat Yourself)</a></li><li class="chapter-item "><a href="../../rust_by_example_src/macros/dsl.html"><strong aria-hidden="true">5.6.1.3.</strong> DSL (rust_by_example_src/Domain Specific Languages)</a></li><li class="chapter-item "><a href="../../rust_by_example_src/macros/variadics.html"><strong aria-hidden="true">5.6.1.4.</strong> Variadics</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/attribute.html"><strong aria-hidden="true">5.6.2.</strong> 🧐 Attributes: metadata applied to some module, crate or item</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/attribute/unused.html"><strong aria-hidden="true">5.6.2.1.</strong> dead_code: disable the unused lint</a></li><li class="chapter-item "><a href="../../rust_by_example_src/attribute/crate.html"><strong aria-hidden="true">5.6.2.2.</strong> Crates: : crate_type and crate_name</a></li><li class="chapter-item "><a href="../../rust_by_example_src/attribute/cfg.html"><strong aria-hidden="true">5.6.2.3.</strong> cfg: Configuration conditional checks</a></li><li class="chapter-item "><a href="../../rust_by_example_src/attribute/cfg/custom.html"><strong aria-hidden="true">5.6.2.4.</strong> Custom: Custom conditionals</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">5.7.</strong> Std: Library types and Misc</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/std.html"><strong aria-hidden="true">5.7.1.</strong> ⭐️Std library types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/std/box.html"><strong aria-hidden="true">5.7.1.1.</strong> ✨Box, stack and heap</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/vec.html"><strong aria-hidden="true">5.7.1.2.</strong> ✨Vectors: re-sizable arrays</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/str.html"><strong aria-hidden="true">5.7.1.3.</strong> ✨Strings: String and &str</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/panic.html"><strong aria-hidden="true">5.7.1.4.</strong> panic!: Raise Exception , no Catch</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/option.html"><strong aria-hidden="true">5.7.1.5.</strong> Option: catching failure instead of calling panic!</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/result.html"><strong aria-hidden="true">5.7.1.6.</strong> Result: express why an operation failed</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/result/question_mark.html"><strong aria-hidden="true">5.7.1.7.</strong> ?: Chaining Results only match Ok(ok)</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/hash.html"><strong aria-hidden="true">5.7.1.8.</strong> HashMap</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/std/hash/alt_key_types.html"><strong aria-hidden="true">5.7.1.8.1.</strong> Alternate/custom key types</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/hash/hashset.html"><strong aria-hidden="true">5.7.1.8.2.</strong> HashSet</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/std/rc.html"><strong aria-hidden="true">5.7.1.9.</strong> Rc: for mutiple ownership, just like what python have done</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/arc.html"><strong aria-hidden="true">5.7.1.10.</strong> Arc: shared ownership between threads</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc.html"><strong aria-hidden="true">5.7.2.</strong> 🌌 Std misc</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/threads.html"><strong aria-hidden="true">5.7.2.1.</strong> Threads</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/threads/testcase_mapreduce.html"><strong aria-hidden="true">5.7.2.2.</strong> ✨Testcase: map-reduce</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/channels.html"><strong aria-hidden="true">5.7.2.3.</strong> Channels: Asynchronous communication between threads</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/path.html"><strong aria-hidden="true">5.7.2.4.</strong> Path</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/file.html"><strong aria-hidden="true">5.7.2.5.</strong> File I/O</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/file/open.html"><strong aria-hidden="true">5.7.2.5.1.</strong> open: read-only</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/file/create.html"><strong aria-hidden="true">5.7.2.5.2.</strong> create: write-only</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/file/read_lines.html"><strong aria-hidden="true">5.7.2.5.3.</strong> read lines: returns an iterator</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/process.html"><strong aria-hidden="true">5.7.2.6.</strong> Child processes</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/process/pipe.html"><strong aria-hidden="true">5.7.2.6.1.</strong> Pipes: interaction with the underlying process</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/process/wait.html"><strong aria-hidden="true">5.7.2.6.2.</strong> Wait</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/fs.html"><strong aria-hidden="true">5.7.2.7.</strong> std::fs: Filesystem Operations</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/arg.html"><strong aria-hidden="true">5.7.2.8.</strong> Program arguments</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/arg/matching.html"><strong aria-hidden="true">5.7.2.8.1.</strong> Match to Argument parsing</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/ffi.html"><strong aria-hidden="true">5.7.2.9.</strong> FFI: Foreign Function Interface</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">5.8.</strong> Misc: Testing, Unsafe, Compatibility and Meta</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/testing.html"><strong aria-hidden="true">5.8.1.</strong> Testing</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/testing/unit_testing.html"><strong aria-hidden="true">5.8.1.1.</strong> ✨Unit testing for panic: #[cfg(test)], #[test], #[should_panic], #[ignore]</a></li><li class="chapter-item "><a href="../../rust_by_example_src/meta/doc.html"><strong aria-hidden="true">5.8.1.2.</strong> Documentation: cargo doc</a></li><li class="chapter-item "><a href="../../rust_by_example_src/testing/doc_testing.html"><strong aria-hidden="true">5.8.1.3.</strong> ⭐️Documentation testing</a></li><li class="chapter-item "><a href="../../rust_by_example_src/testing/integration_testing.html"><strong aria-hidden="true">5.8.1.4.</strong> Integration testing</a></li><li class="chapter-item "><a href="../../rust_by_example_src/testing/dev_dependencies.html"><strong aria-hidden="true">5.8.1.5.</strong> Dev-dependencies</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/unsafe.html"><strong aria-hidden="true">5.8.2.</strong> Unsafe Operations</a></li><li class="chapter-item "><a href="../../rust_by_example_src/unsafe/asm.html"><strong aria-hidden="true">5.8.3.</strong> 🤔️asm!: Inline assembly in Unsafe</a></li><li class="chapter-item "><a href="../../rust_by_example_src/compatibility.html"><strong aria-hidden="true">5.8.4.</strong> Compatibility</a></li><li class="chapter-item "><a href="../../rust_by_example_src/compatibility/raw_identifiers.html"><strong aria-hidden="true">5.8.5.</strong> Raw identifiers: r#</a></li><li class="chapter-item "><a href="../../rust_by_example_src/meta.html"><strong aria-hidden="true">5.8.6.</strong> Meta</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/meta/playground.html"><strong aria-hidden="true">5.8.6.1.</strong> Playground</a></li></ol></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../PyO3_guides/src/index.html"><strong aria-hidden="true">6.</strong> The PyO3 Guide</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../PyO3_guides/src/getting_started.html"><strong aria-hidden="true">6.1.</strong> Getting started</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/module.html"><strong aria-hidden="true">6.2.</strong> Python modules</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/function.html"><strong aria-hidden="true">6.3.</strong> Python functions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../PyO3_guides/src/function/signature.html"><strong aria-hidden="true">6.3.1.</strong> Function signatures</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/function/error_handling.html"><strong aria-hidden="true">6.3.2.</strong> Error handling</a></li></ol></li><li class="chapter-item "><a href="../../PyO3_guides/src/class.html"><strong aria-hidden="true">6.4.</strong> Python classes</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../PyO3_guides/src/class/protocols.html"><strong aria-hidden="true">6.4.1.</strong> Class customizations</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../PyO3_guides/src/class/object.html"><strong aria-hidden="true">6.4.1.1.</strong> Basic object customization</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/class/numeric.html"><strong aria-hidden="true">6.4.1.2.</strong> Emulating numeric types</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/class/call.html"><strong aria-hidden="true">6.4.1.3.</strong> Emulating callable objects</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../PyO3_guides/src/conversions.html"><strong aria-hidden="true">6.5.</strong> Type conversions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../PyO3_guides/src/conversions/tables.html"><strong aria-hidden="true">6.5.1.</strong> Mapping of Rust types to Python types</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/conversions/traits.html"><strong aria-hidden="true">6.5.2.</strong> Conversion traits</a></li></ol></li><li class="chapter-item "><a href="../../PyO3_guides/src/exception.html"><strong aria-hidden="true">6.6.</strong> Python exceptions</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/python_from_rust.html"><strong aria-hidden="true">6.7.</strong> Calling Python from Rust</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/types.html"><strong aria-hidden="true">6.8.</strong> GIL, mutability and object types</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/parallelism.html"><strong aria-hidden="true">6.9.</strong> Parallelism</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/debugging.html"><strong aria-hidden="true">6.10.</strong> Debugging</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/features.html"><strong aria-hidden="true">6.11.</strong> Features reference</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/memory.html"><strong aria-hidden="true">6.12.</strong> Memory management</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/advanced.html"><strong aria-hidden="true">6.13.</strong> Advanced topics</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/building_and_distribution.html"><strong aria-hidden="true">6.14.</strong> ⭐️Building and distribution</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../PyO3_guides/src/building_and_distribution/multiple_python_versions.html"><strong aria-hidden="true">6.14.1.</strong> Supporting multiple Python versions</a></li></ol></li><li class="chapter-item "><a href="../../PyO3_guides/src/ecosystem.html"><strong aria-hidden="true">6.15.</strong> Useful crates</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../PyO3_guides/src/ecosystem/logging.html"><strong aria-hidden="true">6.15.1.</strong> Logging</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/ecosystem/async-await.html"><strong aria-hidden="true">6.15.2.</strong> Using async and await</a></li></ol></li><li class="chapter-item "><a href="../../PyO3_guides/src/faq.html"><strong aria-hidden="true">6.16.</strong> FAQ and troubleshooting</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/migration.html"><strong aria-hidden="true">6.17.</strong> Appendix A: Migration guide</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/rust_cpython.html"><strong aria-hidden="true">6.18.</strong> Appendix B: PyO3 and rust-cpython</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/trait_bounds.html"><strong aria-hidden="true">6.19.</strong> Appendix C: Trait bounds</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/python_typing_hints.html"><strong aria-hidden="true">6.20.</strong> Appendix D: Python typing hints</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/changelog.html"><strong aria-hidden="true">6.21.</strong> CHANGELOG</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/contributing.html"><strong aria-hidden="true">6.22.</strong> Contributing</a></li></ol></li><li class="chapter-item expanded "><a href="../../checklist.html">Checklist</a></li></ol>
+    </div>
+    <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+</nav>
+
+<div id="page-wrapper" class="page-wrapper">
+
+    <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+        <div id="menu-bar" class="menu-bar sticky bordered">
+            <div class="left-buttons">
+                <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
+                        aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                        aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                    <i class="fa fa-paint-brush"></i>
+                </button>
+                <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="light">Light</button>
+                    </li>
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="rust">Rust</button>
+                    </li>
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="coal">Coal</button>
+                    </li>
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="navy">Navy (default)</button>
+                    </li>
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="ayu">Ayu</button>
+                    </li>
+                </ul>
+                    <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                            aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                            aria-controls="searchbar">
+                        <i class="fa fa-search"></i>
+                    </button>
+            </div>
+
+            <h1 class="menu-title">The Rust Programming Language</h1>
+            <h4 class="menu-bar">日不见增 月有渐进 | 唯剃真我 方有成效｜ 惊涛拍案 千层雪起 | <a href="https://kuanhsiaokuo.github.io/think-tool-kit/">保持批判，有所取舍 | 知行合一, 方见真我</a> | 练武不练功
+                到头一场空 -- 《赛博英雄传》 </h4>
+            <div class="right-buttons">
+                    <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                        <i id="print-button" class="fa fa-print"></i>
+                    </a>
+                    <a href="https://github.com/rust-lang/book" title="Git repository" aria-label="Git repository">
+                        <i id="git-repository-button" class="fa fa-github"></i>
+                    </a>
+            </div>
+        </div>
+
+            <div id="search-wrapper" class="hidden">
+                <form id="searchbar-outer" class="searchbar-outer">
+                    <input type="search" name="search" id="searchbar" name="searchbar"
+                           placeholder="Search this book ..." aria-controls="searchresults-outer"
+                           aria-describedby="searchresults-header">
+                </form>
+                <div id="searchresults-outer" class="searchresults-outer hidden">
+                    <div id="searchresults-header" class="searchresults-header"></div>
+                    <ul id="searchresults">
+                    </ul>
+                </div>
+            </div>
+
+        <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+        <script type="text/javascript">
+            document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+            document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+            Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
+                link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+            });
+        </script>
+
+        <div id="content" class="content">
+            <main>
+
+                <!-- Page table of contents -->
+                <div class="sidetoc">
+                    <nav class="pagetoc"></nav>
+                </div>
+                <h1 id="36himplementing-and-optimizing-a-wordle-solver-in-rust"><a class="header" href="#36himplementing-and-optimizing-a-wordle-solver-in-rust">(3/6h)Implementing and Optimizing a Wordle Solver in Rust</a></h1>
+<!--ts-->
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Thu Apr 20 14:04:29 UTC 2023 -->
+<!--te-->
+<h2 id="00001-introduction-to-wordle"><a class="header" href="#00001-introduction-to-wordle"><a href="t=1s">0:00:01</a> Introduction to Wordle</a></h2>
+<p>Section Overview: In this section, the speaker introduces the topic of the video, which is playing Wordle. They explain
+that they will be writing a program to play the game and optimizing it for performance.</p>
+<h3 id="playing-wordle"><a class="header" href="#playing-wordle">Playing Wordle</a></h3>
+<ul>
+<li><a href="t=0:01:22s"></a> Wordle is a simple word game where players try to guess a five-letter English word.</li>
+<li><a href="t=0:02:02s"></a> When guessing, players are told which letters they have guessed correctly, which letters aren’t in the
+word, and any letters that are in the word but not where they put them.</li>
+<li><a href="t=0:03:23s"></a> The goal is to guess the correct word in as few guesses as possible. The average number of guesses is
+around four.</li>
+<li><a href="t=0:04:24s"></a> There is a dictionary of allowed words and a dictionary of answer words. The speaker will only use
+knowledge available to players when writing their program.</li>
+</ul>
+<h2 id="00019-overview-of-video"><a class="header" href="#00019-overview-of-video"><a href="t=19s">0:00:19</a> Overview of Video</a></h2>
+<p>Section Overview: In this section, the speaker provides an overview of what viewers can expect from this video.</p>
+<h3 id="what-to-expect"><a class="header" href="#what-to-expect">What to Expect</a></h3>
+<ul>
+<li><a href="t=0:00:41s"></a> This video will focus on writing Rust code and performance profiling/optimization.</li>
+<li><a href="t=0:01:43s"></a> The speaker hopes that this video will be more approachable than previous ImpulRust videos since it
+won’t involve complex technical concepts like unsafe pointer manipulation.</li>
+<li><a href="t=0:02:46s"></a> The goal is to write a program that plays Wordle as fast as possible.</li>
+</ul>
+<h2 id="solving-wordle-with-information-theory"><a class="header" href="#solving-wordle-with-information-theory">Solving Wordle with Information Theory</a></h2>
+<p>Section Overview: In this video, the speaker explains how to solve Wordle using information theory. The algorithm from
+this video will be followed and implemented in Rust. The program’s performance will be optimized using a tool called
+hyperfine.</p>
+<h3 id="algorithm-explanation"><a class="header" href="#algorithm-explanation">Algorithm Explanation</a></h3>
+<ul>
+<li>The algorithm is not explained in detail as it is expected that viewers have watched the video.</li>
+<li>A bug was found in Grant’s implementation, but it does not affect the algorithm much.</li>
+<li>This video is a great candidate for performance profiling and optimization because of its large search space.</li>
+<li>The program will be implemented, run, and iteratively optimized to make it faster using hyperfine.</li>
+</ul>
+<h3 id="using-hyperfine-for-performance-optimization"><a class="header" href="#using-hyperfine-for-performance-optimization">Using Hyperfine for Performance Optimization</a></h3>
+<ul>
+<li>Hyperfine is a tool that measures the performance of multiple commands that do ostensibly the same thing.</li>
+<li>It gathers variance and execution time data to give you some measurement of statistical significance of performance
+differences.</li>
+<li>Optimizations will be measured to see which ones make a difference, and then they will be iteratively applied to make
+the program faster.</li>
+</ul>
+<h3 id="multithreading-considerations"><a class="header" href="#multithreading-considerations">Multithreading Considerations</a></h3>
+<ul>
+<li>Multithreading may or may not be important for optimization since it tends to hide true program performance.</li>
+</ul>
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<p>Section Overview: In this section, the speaker introduces the topic of the video and explains that they will be
+implementing an algorithm for playing Wordle using Rust.</p>
+<h3 id="algorithmic-approach"><a class="header" href="#algorithmic-approach">Algorithmic Approach</a></h3>
+<ul>
+<li>The speaker explains that at the core of their approach lies the idea of information theory.</li>
+<li>They plan to use this theory to compute how much information they can expect to get from a given guess in Wordle.</li>
+<li>By picking the word that is likely to give them the highest expected amount of information for each guess, they hope
+to whittle down the list of possible words as quickly as possible.</li>
+</ul>
+<h2 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h2>
+<p>Section Overview: In this section, the speaker explains what resources are needed to implement their algorithm and how
+to obtain them.</p>
+<h3 id="obtaining-wordle-dictionary"><a class="header" href="#obtaining-wordle-dictionary">Obtaining Wordle Dictionary</a></h3>
+<ul>
+<li>The first resource needed is the Wordle dictionary.</li>
+<li>The dictionary can be found in a JavaScript file located in the application sources.</li>
+<li>The <code>ma</code> array contains all target words for each day, while <code>oa</code> contains all allowed words but not <code>ma</code>.</li>
+<li>Concatenating these two arrays gives us all dictionary words needed for our implementation.</li>
+</ul>
+<h3 id="obtaining-google-books-n-gram-dataset"><a class="header" href="#obtaining-google-books-n-gram-dataset">Obtaining Google Books N-Gram Dataset</a></h3>
+<ul>
+<li>To compute which words are more likely to be correct guesses without relying on true answers, we need access to a
+large dataset.</li>
+<li>The Google Books N-Gram Dataset provides counts of n-grams (consecutive sequences of n items) across all books scanned
+by Google Books over many years.</li>
+<li>We will use one gram data set which has single word counts.</li>
+</ul>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
+<p>Section Overview: In this section, the speaker concludes by summarizing what was covered in the video and emphasizing
+that their focus was on Rust rather than algorithmic optimization.</p>
+<h3 id="summary"><a class="header" href="#summary">Summary</a></h3>
+<ul>
+<li>The speaker implemented an algorithm for playing Wordle using Rust.</li>
+<li>Their approach was based on information theory and involved picking the word that would give them the highest expected
+amount of information for each guess.</li>
+<li>They obtained the Wordle dictionary from a JavaScript file in the application sources and used the Google Books N-Gram
+Dataset to compute which words were more likely to be correct guesses.</li>
+<li>The focus of their implementation was on Rust rather than algorithmic optimization.</li>
+</ul>
+<h2 id="english-introduction-to-the-google-books-ngram-viewer"><a class="header" href="#english-introduction-to-the-google-books-ngram-viewer"><a href="t=902s">English</a> Introduction to the Google Books Ngram Viewer</a></h2>
+<p>Section Overview: In this section, the speaker introduces the Google Books Ngram Viewer and explains how it works.</p>
+<h3 id="how-the-data-is-constructed"><a class="header" href="#how-the-data-is-constructed">How the Data is Constructed</a></h3>
+<ul>
+<li>The data is constructed such that every line starts with a word, followed by the year, number of occurrences of that
+word in that year, and the number of distinct books that word appears in.</li>
+<li>The left number is always higher than the right number. There are tab-separated entries for each line.</li>
+</ul>
+<h3 id="using-ripgrep-to-search-for-five-letter-words"><a class="header" href="#using-ripgrep-to-search-for-five-letter-words">Using Ripgrep to Search for Five-Letter Words</a></h3>
+<ul>
+<li>Ripgrep can be used to search for all five-letter words across all files with a specific suffix using <code>-z</code> flag to
+scan compressed files and <code>-i</code> flag to print multiple files without printing out their names.</li>
+<li>The results are saved in <code>five letters.text</code>.</li>
+</ul>
+<h3 id="extracting-occurrence-count-for-each-word"><a class="header" href="#extracting-occurrence-count-for-each-word">Extracting Occurrence Count for Each Word</a></h3>
+<ul>
+<li>Awk is used to extract occurrence count for each word from <code>five letters.text</code>. Field separator is set as tab and
+first field (word) and second-to-last field (occurrence count) are printed. Underscores are substituted with commas
+before running awk with comma as separator. Results are saved in <code>five letters occur file</code>.</li>
+</ul>
+<h3 id="normalizing-data"><a class="header" href="#normalizing-data">Normalizing Data</a></h3>
+<ul>
+<li>Capital letters are replaced with lowercase letters using tr command before sorting data alphabetically. Multiple
+entries exist for same words due to case sensitivity. Sorted list provides normalized data.</li>
+</ul>
+<h2 id="using-awk-to-combine-consecutive-records"><a class="header" href="#using-awk-to-combine-consecutive-records">Using AWK to Combine Consecutive Records</a></h2>
+<p>Section Overview: In this section, the speaker explains how they used AWK to combine consecutive records with the same
+word and wrote it into a combined file. They also show how to sort by count and compute the total count.</p>
+<h3 id="combining-consecutive-records"><a class="header" href="#combining-consecutive-records">Combining Consecutive Records</a></h3>
+<ul>
+<li>The speaker uses AWK to combine consecutive records with the same word.</li>
+<li>The resulting combined file has about 900,000 distinct words.</li>
+<li>The speaker shows how to sort by count and display the top 10 most frequently occurring words in the data set.</li>
+</ul>
+<h3 id="computing-total-count-and-probability"><a class="header" href="#computing-total-count-and-probability">Computing Total Count and Probability</a></h3>
+<ul>
+<li>The speaker computes the total number of occurrences in the data set using a calculator.</li>
+<li>They then divide each word’s occurrence count by the total count to get its probability of occurring.</li>
+<li>Finally, they print out the top 10 words ranked by probability.</li>
+</ul>
+<h2 id="creating-a-wordle-dictionary-file"><a class="header" href="#creating-a-wordle-dictionary-file">Creating a Wordle Dictionary File</a></h2>
+<p>Section Overview: In this section, the speaker explains how they created a dictionary file containing all possible legal
+guesses in Wordle, including answers.</p>
+<h3 id="importing-wordle-dictionary-as-json-file"><a class="header" href="#importing-wordle-dictionary-as-json-file">Importing Wordle Dictionary as JSON File</a></h3>
+<ul>
+<li>The speaker imported a JSON file containing all possible legal guesses in Wordle, including answers.</li>
+</ul>
+<h3 id="joining-dictionary-with-frequency-count-file"><a class="header" href="#joining-dictionary-with-frequency-count-file">Joining Dictionary with Frequency Count File</a></h3>
+<ul>
+<li>They used <code>jq</code> to pull out every entry from the concatenated two lists and sorted them out.</li>
+<li>Then they joined this dictionary file with a frequency count file using <code>join</code>.</li>
+<li>This resulted in a list of legal Wordle guesses with their occurrence count.</li>
+</ul>
+<h3 id="handling-words-without-counts"><a class="header" href="#handling-words-without-counts">Handling Words Without Counts</a></h3>
+<ul>
+<li>The speaker explains how to handle words without counts by looking for anything that ends with a letter.</li>
+<li>They add these words to the dictionary file with a count of one since they didn’t appear in the engram’s data set.</li>
+</ul>
+<h2 id="introduction-to-wordle-solver"><a class="header" href="#introduction-to-wordle-solver">Introduction to Wordle Solver</a></h2>
+<p>Section Overview: In this section, the speaker introduces the purpose of the project and explains why they need a list
+of possible words to run their bot against.</p>
+<h3 id="naming-the-dev-streams"><a class="header" href="#naming-the-dev-streams">Naming the Dev Streams</a></h3>
+<ul>
+<li>The speaker suggests naming the dev streams and has already come up with a name for one: “roget”.</li>
+<li>The name is inspired by Roget’s Thesaurus, which allows users to explore related words and find better words to
+accurately represent what they’re trying to say.</li>
+</ul>
+<h3 id="writing-rust-code"><a class="header" href="#writing-rust-code">Writing Rust Code</a></h3>
+<ul>
+<li>The speaker starts writing Rust code for the Wordle solver.</li>
+<li>They copy in “wordle_answers.txt” and rename “wordle_dictionary_with_counts” as “dictionary.txt”.</li>
+</ul>
+<h3 id="creating-functions"><a class="header" href="#creating-functions">Creating Functions</a></h3>
+<ul>
+<li>Two functions are needed: one that lets you play Wordle and another that tries to do your guesses.</li>
+<li>The function “play” takes an answer (a static string) and a guesser (generic).</li>
+<li>It plays six rounds where it invokes the guesser each round.</li>
+</ul>
+<h3 id="guessing-functionality"><a class="header" href="#guessing-functionality">Guessing Functionality</a></h3>
+<ul>
+<li>The guesser needs to return a word.</li>
+<li>It is allowed to take mute itself in order to guess.</li>
+<li>It will be told all of its past guesses.</li>
+<li>A guess consists of the combination of the word guessed and its correctness mask.
+<ul>
+<li>Correctness can be green (correct), yellow (present but misplaced), or gray (missing).</li>
+</ul>
+</li>
+</ul>
+<h2 id="basic-structure"><a class="header" href="#basic-structure"><a href="t=0:32:43s">#</a> Basic Structure</a></h2>
+<p>Section Overview: In this section, the speaker discusses the basic structure of the program and how it will work.</p>
+<h3 id="program-structure"><a class="header" href="#program-structure">Program Structure</a></h3>
+<ul>
+<li>The program will have a history and a target answer.</li>
+<li>The next guest to make is going to be string given this history.</li>
+<li>The program will include games that are stored in answers.txt.</li>
+<li>The program will play against the guesser, but we don’t know who the guesser is yet.</li>
+<li>A convenience function for implementing at mu t where t implements guesser is created.</li>
+<li>Naive new algorithm is instantiated.</li>
+</ul>
+<h3 id="implementing-algorithms"><a class="header" href="#implementing-algorithms">Implementing Algorithms</a></h3>
+<ul>
+<li>Multiple implementations can be implemented in one binary and switched based on a flag or something so that it’s easy
+to benchmark multiple ones at once.</li>
+<li>A mod algorithms is created with naive as its first implementation.</li>
+</ul>
+<h3 id="playing-wordle-1"><a class="header" href="#playing-wordle-1">Playing Wordle</a></h3>
+<ul>
+<li>Initially, let mute history be vector for i in…</li>
+<li>There won’t be any limit on the number of times you can guess because we want to know whether the bot succeeded or
+failed.</li>
+</ul>
+<h2 id="english-overview-of-the-code"><a class="header" href="#english-overview-of-the-code"><a href="t=2327s">English</a> Overview of the Code</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to compute the correctness based on a guess and how to push
+it into history. They also mention that if the guess is equal to the answer, they will return which iteration it
+succeeded at.</p>
+<h3 id="computing-correctness"><a class="header" href="#computing-correctness">Computing Correctness</a></h3>
+<ul>
+<li>The correctness is an array of length five.</li>
+<li>We need something that computes the correctness so we’re going to need a check which takes the answer and a guess and
+gives you back a correctness.</li>
+<li>We’re going to have it be called compute.</li>
+<li>Here we’re gonna assert that answer.len equals five and assert that guess.len equals five.</li>
+</ul>
+<h3 id="pushing-guesses-into-history"><a class="header" href="#pushing-guesses-into-history">Pushing Guesses into History</a></h3>
+<ul>
+<li>Initially, the history is empty and it’s gonna grow over time.</li>
+<li>We do something in order to compute the correctness based on that guess.</li>
+<li>Then we’re going to do history.push(guess), which is going to be the guess and its corresponding correctness.</li>
+</ul>
+<h3 id="returning-iteration-number"><a class="header" href="#returning-iteration-number">Returning Iteration Number</a></h3>
+<ul>
+<li>If the guess is equal to answer then we return i otherwise we compute the correctness and keep going.</li>
+<li>We want to say starting with one because if you guessed correctly on your first guess then we should return one and
+not zero because you did one guess.</li>
+</ul>
+<h2 id="english-limiting-guesses"><a class="header" href="#english-limiting-guesses"><a href="t=2428s">English</a> Limiting Guesses</a></h2>
+<p>Section Overview: In this section, they discuss limiting guesses for Wordle game.</p>
+<h3 id="setting-maximum-number-of-guesses"><a class="header" href="#setting-maximum-number-of-guesses">Setting Maximum Number of Guesses</a></h3>
+<ul>
+<li>Wordle only allows six guesses but they allow more guesses than that in order not to chop off score distribution for
+stats purposes.</li>
+<li>They set 32 as maximum number of guesses allowed.</li>
+</ul>
+<h3 id="handling-infinite-loop"><a class="header" href="#handling-infinite-loop">Handling Infinite Loop</a></h3>
+<ul>
+<li>They could bound this loop if they really wanted to but realistically wordle only allows six guesses so there
+shouldn’t be any infinite loops.</li>
+<li>However, they could guard against something like a user implementing a guesser that just never succeeds.</li>
+</ul>
+<h3 id="error-message"><a class="header" href="#error-message">Error Message</a></h3>
+<ul>
+<li>They added an error message to handle the case where the program did not finish within the maximum number of guesses
+allowed.</li>
+</ul>
+<h2 id="implementing-a-guess-checker"><a class="header" href="#implementing-a-guess-checker">Implementing a Guess Checker</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to implement a guess checker that always gives the correct
+answer. They explore different ways of implementing this and discuss potential bugs in the code.</p>
+<h3 id="implementing-the-guess-checker"><a class="header" href="#implementing-the-guess-checker">Implementing the Guess Checker</a></h3>
+<ul>
+<li>The guesser should always be able to give a guess right.</li>
+<li>If you know statically that it might not be able to find the answer, that seems like its own kind of problem.</li>
+<li>There are a couple of ways we could implement this.</li>
+<li>We could do something like for i in zero to five if answer i is equal to guess i then c i is correctness.</li>
+</ul>
+<h3 id="optimizing-code"><a class="header" href="#optimizing-code">Optimizing Code</a></h3>
+<ul>
+<li>This is where the annoying thing about using utf-8 comes in; you can’t easily index into this.</li>
+<li>An optimization plan for later is to make this be a five length byte array but not yet.</li>
+<li>The code needs to be as naive as possible in the initial iteration.</li>
+</ul>
+<h3 id="marking-correctness"><a class="header" href="#marking-correctness">Marking Correctness</a></h3>
+<ul>
+<li>For each character in both answers and guesses, mark them green if they are correct.</li>
+<li>Otherwise, check whether there are any other occurrences of this letter in the guess so that we can mark it yellow or
+red accordingly.</li>
+<li>We’re going to have an inner iteration here because we want to check whether this character occurs anywhere else and
+we haven’t already marked it as misplaced.</li>
+</ul>
+<h2 id="marking-correctness-and-misplaced-characters"><a class="header" href="#marking-correctness-and-misplaced-characters"><a href="t=0:53:17s">#</a> Marking Correctness and Misplaced Characters</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to mark correctness and misplaced characters in a guessing
+game. They walk through the logic of marking each character as green or yellow based on whether it has been used to mark
+something as correct or misplaced.</p>
+<h3 id="marking-correctness-and-misplaced-characters-1"><a class="header" href="#marking-correctness-and-misplaced-characters-1">Marking Correctness and Misplaced Characters</a></h3>
+<ul>
+<li>The function <code>compute</code> is used to mark correctness and misplaced characters.</li>
+<li>Use <code>if c is correctness</code> instead of <code>marked</code> to check if an answer is correct.</li>
+<li>For each letter in the answer, mark whether that character has been used to mark something green or yellow.</li>
+<li>Walk through all of the characters of the guess. If they’re already correct, there’s nothing to do. Otherwise, if
+there are any characters in the answer that are equal to the guest character and haven’t already been used to mark
+something as yellow then we mark it as used and then we say yup this is a yellow character otherwise it is not and you
+need to keep looking.</li>
+<li>Return <code>c</code>.</li>
+</ul>
+<h2 id="writing-tests-for-marking-correctness-and-misplaced-characters"><a class="header" href="#writing-tests-for-marking-correctness-and-misplaced-characters"><a href="t=0:55:08s">#</a> Writing Tests for Marking Correctness and Misplaced Characters</a></h2>
+<p>Section Overview: In this section, the speaker writes tests for marking correctness and misplaced characters using
+the <code>compute</code> function.</p>
+<h3 id="writing-tests-for-marking-correctness-and-misplaced-characters-1"><a class="header" href="#writing-tests-for-marking-correctness-and-misplaced-characters-1">Writing Tests for Marking Correctness and Misplaced Characters</a></h3>
+<ul>
+<li>Write tests for basic functionality using <code>assertEqual</code>.</li>
+<li>Create a sub-module for compute tests.</li>
+<li>Test with different inputs such as all green, all gray, all yellow, repeat green.</li>
+</ul>
+<h2 id="implementing-naive-functionality"><a class="header" href="#implementing-naive-functionality"><a href="t=0:58:27s">#</a> Implementing Naive Functionality</a></h2>
+<p>Section Overview: In this section, the speaker implements naive functionality using pub.</p>
+<h3 id="implementing-naive-functionality-1"><a class="header" href="#implementing-naive-functionality-1">Implementing Naive Functionality</a></h3>
+<ul>
+<li>Implement default functionality using pub.</li>
+<li>Arguably just be implemented default really.</li>
+</ul>
+<h2 id="creating-a-macro-for-writing-correctness-things"><a class="header" href="#creating-a-macro-for-writing-correctness-things"><a href="t=1:00:24s">#</a> Creating a Macro for Writing Correctness Things</a></h2>
+<p>Section Overview: In this section, the speaker creates a macro to make writing correctness things easier.</p>
+<h3 id="creating-a-macro-for-writing-correctness-things-1"><a class="header" href="#creating-a-macro-for-writing-correctness-things-1">Creating a Macro for Writing Correctness Things</a></h3>
+<ul>
+<li>Create a macro to make writing correctness things easier.</li>
+<li>Use the syntax <code>m is going to be turned into correctness misplaced</code>.</li>
+<li>This will turn into something funky but it works.</li>
+</ul>
+<h2 id="wordle-algorithm"><a class="header" href="#wordle-algorithm">Wordle Algorithm</a></h2>
+<p>Section Overview: In this section, the speaker discusses the development of the Wordle algorithm and how it marks
+correctness appropriately.</p>
+<h3 id="developing-the-play-algorithm"><a class="header" href="#developing-the-play-algorithm">Developing the Play Algorithm</a></h3>
+<ul>
+<li>The speaker explains that each character in Wordle is repeated by calling a macro and separating by a
+comma. <a href="t=1m31s"></a></li>
+<li>They make some corrections to their code to ensure that things look nice. <a href="t=1m57s"></a></li>
+<li>The speaker tests different use cases from chat to ensure that their algorithm is correct. <a href="t=1m04s"></a></li>
+</ul>
+<h3 id="checking-for-valid-guesses"><a class="header" href="#checking-for-valid-guesses">Checking for Valid Guesses</a></h3>
+<ul>
+<li>The speaker realizes they need to check whether a guess is valid and considers using a perfect hash phf
+set. <a href="t=1m06s"></a></li>
+<li>They explore different options for creating a dictionary, including using a const function or constructor. <a href="t=1m07s"></a></li>
+</ul>
+<p>Overall, this section covers the development of the Wordle algorithm and checking for valid guesses. The speaker tests
+different use cases from chat to ensure that their algorithm is correct and explores different options for creating a
+dictionary.</p>
+<h2 id="creating-a-dictionary"><a class="header" href="#creating-a-dictionary">Creating a Dictionary</a></h2>
+<p>Section Overview: In this section, the speaker discusses creating a dictionary for the Wordle game.</p>
+<h3 id="creating-a-dictionary-1"><a class="header" href="#creating-a-dictionary-1">Creating a Dictionary</a></h3>
+<ul>
+<li>The dictionary will be measured by the benchmark.</li>
+<li>The speaker is sad about it but it’s fine for now.</li>
+<li>A constant variable called “dictionary” is created as a sorted vector.</li>
+<li>The hash set from collections is used to create the frequency count of words in the dictionary.</li>
+</ul>
+<h2 id="implementing-play-function"><a class="header" href="#implementing-play-function">Implementing Play Function</a></h2>
+<p>Section Overview: In this section, the speaker discusses implementing the play function for Wordle.</p>
+<h3 id="implementing-play-function-1"><a class="header" href="#implementing-play-function-1">Implementing Play Function</a></h3>
+<ul>
+<li>The speaker considers using a build script to emit what phf requires.</li>
+<li>Using dot step by two because every other value is the frequency count from eater.</li>
+<li>Lines are used to split every element and then advanced by two.</li>
+<li>Alec suggests using lines instead of line.split once by space.</li>
+<li>Expect that every line is word plus space plus frequency count and dot one.</li>
+<li>Assert that self.dictionary contains guess.</li>
+<li>Debug assert could be used but not necessary since there isn’t a human player who doesn’t know what the dictionary is.</li>
+</ul>
+<h2 id="guess-to-string"><a class="header" href="#guess-to-string">Guess to String</a></h2>
+<p>Section Overview: In this section, the speaker discusses writing test implementations and closures. They also encounter
+an error while trying to implement a closure.</p>
+<h3 id="implementing-closures"><a class="header" href="#implementing-closures">Implementing Closures</a></h3>
+<ul>
+<li>The speaker wants to write test implementations that don’t need state and will use closures.</li>
+<li>They create a closure called “moved” that returns “moved to string”.</li>
+<li>They want to assert equal that they should get a score of one using crate wordle.</li>
+<li>The closure doesn’t implement fn, so the speaker renames it as “guess”.</li>
+<li>The guess function won’t play ball, so the speaker creates a helper called “guess sir” which takes history as an ident
+and then takes a block.</li>
+<li>The guesser is always going to be like this but with the ability for the guesser to contain state that it might mutate
+over time.</li>
+</ul>
+<h3 id="troubleshooting-errors"><a class="header" href="#troubleshooting-errors">Troubleshooting Errors</a></h3>
+<ul>
+<li>There’s some lifetime not matching up in the implementation of guesser for g.</li>
+<li>The trait needs to be in scope.</li>
+<li>The trade guesser is not implemented for that, even though there is an implementation found.</li>
+</ul>
+<h2 id="fixing-code-and-testing-guessing-game"><a class="header" href="#fixing-code-and-testing-guessing-game">Fixing Code and Testing Guessing Game</a></h2>
+<p>Section Overview: In this section, the speaker fixes some code issues and tests a guessing game.</p>
+<h3 id="fixing-code-issues"><a class="header" href="#fixing-code-issues">Fixing Code Issues</a></h3>
+<ul>
+<li>The speaker mentions that something needs to be fixed in the code.</li>
+<li>They mention that they need to guess something.</li>
+<li>The speaker plans to make a config test to get rid of a warning.</li>
+<li>Main is complaining about something, so the speaker needs to do roget wordle new and then w dot play.</li>
+</ul>
+<h3 id="testing-guessing-game"><a class="header" href="#testing-guessing-game">Testing Guessing Game</a></h3>
+<ul>
+<li>The speaker mentions that every line is word plus space plus frequency is a lie it claims.</li>
+<li>They say “really”.</li>
+<li>The speaker realizes they missed one thing - dictionary.</li>
+<li>They don’t understand which word they are missing - add view.</li>
+<li>The search was entirely wrong, and the speaker doesn’t know why they wrote it like that.</li>
+<li>The speaker says “great”.</li>
+<li>They say “fantastic” because now they can play a game and see if they immediately guess the right word.</li>
+<li>The speaker suggests making this fancier by adding history.len == 1 for right guesses.</li>
+<li>If history.len == 1, return right; otherwise, return wrong.</li>
+<li>This should now take two guesses.
+-[]( t =5172 s )The words genius, impressive, magnificent, splendid, great are all used interchangeably in the game.</li>
+<li>The speaker says “oh”.</li>
+<li>They say “really” again.</li>
+<li>Something is right or wrong and not in the dictionary.</li>
+<li>The speaker confirms that they are all right.</li>
+<li>They say something is wrong.</li>
+<li>The speaker realizes that guess wrong is not in the dictionary.</li>
+<li>They need to update some two, some three, some four, some five, and some six.</li>
+<li>The speaker asks how “wrong” got there.</li>
+<li>They ask for a hash set because something isn’t right.</li>
+<li>It has all the numbers because this needs to be dot zero and they realize their mistake.
+-[]( t =5339 s )The speaker says “great,” and everything works fine now.</li>
+</ul>
+<h2 id="checking-naive-implementation"><a class="header" href="#checking-naive-implementation">Checking Naive Implementation</a></h2>
+<p>Section Overview: In this section, the speaker checks a naive implementation.</p>
+<h3 id="checking-naive-implementation-1"><a class="header" href="#checking-naive-implementation-1">Checking Naive Implementation</a></h3>
+<p>-[]( t =5374 s )The speaker mentions that they want to check if something only ever guesses wrong then it eventually
+terminates.
+-[]( t =5400 s )They mention that naive is still claimed not to be there even though it should be there.</p>
+<h2 id="t5463s-parsing-and-computing-word-count"><a class="header" href="#t5463s-parsing-and-computing-word-count">[t=5463s] Parsing and Computing Word Count</a></h2>
+<p>Section Overview: In this section, the speaker discusses parsing and computing word count. They mention bringing in the
+dictionary and lib, parsing that could happen just once, and computing word count using <code>count.parse</code>.</p>
+<h3 id="parsing-words"><a class="header" href="#parsing-words">Parsing Words</a></h3>
+<ul>
+<li>The speaker mentions that parsing is something that could happen just once.</li>
+<li>They suggest bringing in one cell or something to cache this.</li>
+<li>However, they decide to keep it as is for now since it’s named “naive” for a reason.</li>
+</ul>
+<h3 id="computing-word-count"><a class="header" href="#computing-word-count">Computing Word Count</a></h3>
+<ul>
+<li>The speaker explains that they will compute word count using <code>count.parse</code>.</li>
+<li>They expect every count to be a number and then return word and count.</li>
+</ul>
+<h2 id="t5541s-computing-goodness-of-guesses"><a class="header" href="#t5541s-computing-goodness-of-guesses">[t=5541s] Computing Goodness of Guesses</a></h2>
+<p>Section Overview: In this section, the speaker talks about computing how good of a guess each candidate word is. They
+loop over every word and count in self.remaining.</p>
+<h3 id="looping-over-candidate-words"><a class="header" href="#looping-over-candidate-words">Looping Over Candidate Words</a></h3>
+<ul>
+<li>The speaker explains that for each remaining word (candidate), they will compute how good of a guess it is.</li>
+<li>They loop over every word and count in self.remaining.</li>
+</ul>
+<h3 id="comparing-goodness-of-guesses"><a class="header" href="#comparing-goodness-of-guesses">Comparing Goodness of Guesses</a></h3>
+<ul>
+<li>The speaker asks if the current candidate is better than the best one.</li>
+<li>To determine which candidate is better, they need a score or goodness.</li>
+<li>This score will be a floating-point number for now.</li>
+</ul>
+<h2 id="t5671s-updating-remaining-based-on-history"><a class="header" href="#t5671s-updating-remaining-based-on-history">[t=5671s] Updating Remaining Based on History</a></h2>
+<p>Section Overview: In this section, the speaker discusses updating self.remaining based on history. If we previously made
+a guess, we just learned which ones we got correct. We need to update remaining based on that new information.</p>
+<h3 id="retaining-matching-information"><a class="header" href="#retaining-matching-information">Retaining Matching Information</a></h3>
+<ul>
+<li>The speaker explains that we have some mask in last and want to only retain things in remaining that match the updated
+information we got.</li>
+<li>We will do this using <code>self.remaining.retain()</code>.</li>
+</ul>
+<h2 id="t5873s-retaining-words-based-on-guesses"><a class="header" href="#t5873s-retaining-words-based-on-guesses">[t=5873s] Retaining Words Based on Guesses</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to retain a word based on guesses and previous information.
+They explain that the count is irrelevant for retaining words and that they only want to retain a word if it matches the
+last guess or mask.</p>
+<h3 id="matching-words-with-guesses"><a class="header" href="#matching-words-with-guesses">Matching Words with Guesses</a></h3>
+<ul>
+<li>The speaker explains that they need to figure out whether a given piece of information matches a word.</li>
+<li>They discuss how to match a word with previous guesses by using zip and asserting that the length of the word is five.</li>
+<li>The speaker mentions creating a “matches” method to determine whether a given guess matches with a word.</li>
+</ul>
+<h3 id="logic-for-matching-words"><a class="header" href="#logic-for-matching-words">Logic for Matching Words</a></h3>
+<ul>
+<li>The speaker discusses how to check if a letter in the previous guess was green and doesn’t match with the current
+letter in the word.</li>
+<li>They mention that if g is not equal to w, then we can return false because we know that this cannot be the right
+answer.</li>
+<li>If it’s wrong and g is equal, then we also know that it can’t match because you guessed the letter that the previous
+guest told you was wrong.</li>
+<li>If it’s misplaced, then we don’t know what to do yet.</li>
+</ul>
+<h2 id="t6020s-checking-misplaced-letters"><a class="header" href="#t6020s-checking-misplaced-letters">[t=6020s] Checking Misplaced Letters</a></h2>
+<p>Section Overview: In this section, the speaker discusses checking misplaced letters when matching words with guesses.</p>
+<h3 id="checking-greens"><a class="header" href="#checking-greens">Checking Greens</a></h3>
+<ul>
+<li>The speaker explains how they first check greens when matching words with guesses.</li>
+</ul>
+<h3 id="sorting-used-letters"><a class="header" href="#sorting-used-letters">Sorting Used Letters</a></h3>
+<ul>
+<li>The logic for computing correctness is similar to computing misplaced letters but reusing it may not be possible.</li>
+<li>The speaker mentions needing some sort of used thing here too.</li>
+</ul>
+<h2 id="looping-through-characters"><a class="header" href="#looping-through-characters"><a href="t=1:44:23s">#</a> Looping through characters</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to loop through the characters of a word and search for an
+unused letter that is yellow.</p>
+<h3 id="looping-through-characters-1"><a class="header" href="#looping-through-characters-1">Looping through characters</a></h3>
+<ul>
+<li><a href="t=1:44:49s"></a> The speaker suggests that they can do this in one loop by walking all of the characters of just the
+word.</li>
+<li><a href="t=1:45:16s"></a> The second loop might be all they need.</li>
+<li><a href="t=1:45:25s"></a> They discuss if g is equal to if the previous guess is equal to the word.</li>
+<li><a href="t=1:46:19s"></a> They suggest searching for an unused letter that is yellow.</li>
+</ul>
+<h2 id="searching-for-unused-letters"><a class="header" href="#searching-for-unused-letters"><a href="t=1:47:07s">#</a> Searching for Unused Letters</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to search for unused letters and find any other characters.</p>
+<h3 id="searching-for-unused-letters-1"><a class="header" href="#searching-for-unused-letters-1">Searching for Unused Letters</a></h3>
+<ul>
+<li><a href="t=1:47:12s"></a> The speaker suggests searching for unused letters.</li>
+<li><a href="t=1:48:11s"></a> They suggest using map to find any unused indices.</li>
+<li><a href="t=1:48:56s"></a> If there are any other characters, they look for the first unused one.</li>
+</ul>
+<h3 id="finding-occurrences-of-characters"><a class="header" href="#finding-occurrences-of-characters">Finding Occurrences of Characters</a></h3>
+<ul>
+<li><a href="t=1:50.02s"></a> If the previous guess was correct in that location then if the characters are different then we know
+that there’s nothing to do otherwise used of i is true and we continue.</li>
+<li><a href="t=1.51.01s"></a> They look for the first occurrence of that character if any in the previous guess that is unused so if
+unused of…</li>
+</ul>
+<h2 id="matching-algorithm"><a class="header" href="#matching-algorithm">Matching Algorithm</a></h2>
+<p>Section Overview: In this section, the speaker discusses the matching algorithm used to determine if a guess is correct
+or not.</p>
+<h3 id="matching-on-previous-guess"><a class="header" href="#matching-on-previous-guess">Matching on Previous Guess</a></h3>
+<ul>
+<li>The color of the previous guess will tell us whether this guess might be okay.</li>
+<li>We’re going to match on what that previous guess was.</li>
+<li>If the previous guess was correct, then it should already be marked as used or we should have returned so this should
+be unreachable.</li>
+</ul>
+<h3 id="handling-misplaced-characters"><a class="header" href="#handling-misplaced-characters">Handling Misplaced Characters</a></h3>
+<ul>
+<li>If a character is misplaced, then used of j is true and we can return some of j. This might be the same case as we did
+earlier so maybe this is just if any.</li>
+<li>You guessed an x in some position and in the previous guess you were told that there is no x well then your whole
+guess must be wrong so this is sort of a return false kind of situation which really is a return falls from the whole
+thing.</li>
+</ul>
+<h3 id="plausible-matches"><a class="header" href="#plausible-matches">Plausible Matches</a></h3>
+<ul>
+<li>If we found one letter we can use, then word might still match otherwise plausible is false. I suppose plausible is
+initially true. If we get here then plausible is false.</li>
+<li>If in the previous guess we got a yellow here that means that this cannot be the answer so w was yellow in the same
+position it was yellow in the same position last time around which means that word cannot be the answer that match
+cannot be the answer so plausible is false and we return false.</li>
+</ul>
+<h2 id="testing-the-guess-matcher"><a class="header" href="#testing-the-guess-matcher">Testing the Guess Matcher</a></h2>
+<p>Section Overview: In this section, the speaker discusses testing the guess matcher and constructing a guess.</p>
+<h3 id="constructing-a-guess"><a class="header" href="#constructing-a-guess">Constructing a Guess</a></h3>
+<ul>
+<li>To construct a guess, we need to use a word and mask.</li>
+<li>The mask can be created using the masker made earlier.</li>
+<li>A simple check is performed to ensure that the constructed guess works.</li>
+</ul>
+<h3 id="writing-macros-for-testing"><a class="header" href="#writing-macros-for-testing">Writing Macros for Testing</a></h3>
+<ul>
+<li>Macros are used to write tests more efficiently.</li>
+<li>A macro called “guess” is created to take in a word and mask.</li>
+<li>Another macro called “check” is created to test if certain patterns preclude guesses from being considered correct.</li>
+</ul>
+<h3 id="incremental-solver"><a class="header" href="#incremental-solver">Incremental Solver</a></h3>
+<ul>
+<li>The solver only needs to solve incrementally for one step at a time based on previous guesses.</li>
+<li>If yellow is received four times for the same character, then its location can be determined.</li>
+</ul>
+<h2 id="pruning-logic"><a class="header" href="#pruning-logic">Pruning Logic</a></h2>
+<p>Section Overview: The speakers discuss whether or not pruning is necessary and if doing it incrementally is sufficient.</p>
+<h3 id="incremental-pruning"><a class="header" href="#incremental-pruning">Incremental Pruning</a></h3>
+<ul>
+<li>One speaker suggests that incremental pruning may be insufficient.</li>
+<li>They agree that checking the whole history may be necessary, but it will be a bit sad.</li>
+</ul>
+<h3 id="eliminating-words"><a class="header" href="#eliminating-words">Eliminating Words</a></h3>
+<ul>
+<li>A chat message suggests that scanning incrementally cannot determine if a letter appears in a certain position.</li>
+<li>Another speaker explains that eliminating words with each guess makes incremental scanning sufficient.</li>
+</ul>
+<h2 id="guessing-different-letters"><a class="header" href="#guessing-different-letters">Guessing Different Letters</a></h2>
+<p>Section Overview: The speakers discuss how the algorithm should handle guesses with completely different letters.</p>
+<ul>
+<li>If all letters are incorrect, the algorithm should allow a guess with only different letters.</li>
+<li>Shifting all letters by one should also be allowed.</li>
+</ul>
+<h2 id="disallowing-incorrect-patterns"><a class="header" href="#disallowing-incorrect-patterns">Disallowing Incorrect Patterns</a></h2>
+<p>Section Overview: The speakers discuss how the algorithm should disallow incorrect patterns.</p>
+<ul>
+<li>If a pattern indicates a letter is yellow, but it is guessed again and found to be incorrect, then it must be
+disallowed.</li>
+<li>There seems to be a bug in the algorithm where some correct patterns are being disallowed.</li>
+</ul>
+<h2 id="debugging-the-code"><a class="header" href="#debugging-the-code">Debugging the Code</a></h2>
+<p>Section Overview: In this section, the speaker is debugging the code and trying to figure out why certain inputs are not
+working as expected.</p>
+<h3 id="debugging-the-disallowed-inputs"><a class="header" href="#debugging-the-disallowed-inputs">Debugging the Disallowed Inputs</a></h3>
+<ul>
+<li>
+<h2 id="the-input-rita-bond-a-b-c-d-e-plus-w-w-disallows-b-c-d-e-a-is-being-disallowed"><a class="header" href="#the-input-rita-bond-a-b-c-d-e-plus-w-w-disallows-b-c-d-e-a-is-being-disallowed">The input “rita bond a b c d e plus w w disallows b c d e a” is being disallowed.</a></h2>
+</li>
+<li>
+<h2 id="the-speaker-questions-why-this-input-should-be-disallowed-since-all-letters-are-present-but-in-different-arrangements"><a class="header" href="#the-speaker-questions-why-this-input-should-be-disallowed-since-all-letters-are-present-but-in-different-arrangements">The speaker questions why this input should be disallowed since all letters are present but in different arrangements.</a></h2>
+</li>
+<li>
+<h2 id="upon-further-inspection-it-is-discovered-that-all-of-the-letters-are-grayed-out-indicating-that-they-are-incorrect"><a class="header" href="#upon-further-inspection-it-is-discovered-that-all-of-the-letters-are-grayed-out-indicating-that-they-are-incorrect">Upon further inspection, it is discovered that all of the letters are grayed out, indicating that they are incorrect.</a></h2>
+</li>
+</ul>
+<h3 id="identifying-the-issue-with-early-returns"><a class="header" href="#identifying-the-issue-with-early-returns">Identifying the Issue with Early Returns</a></h3>
+<ul>
+<li>
+<h2 id="the-speaker-examines-early-returns-in-the-code-to-determine-which-one-is-being-taken"><a class="header" href="#the-speaker-examines-early-returns-in-the-code-to-determine-which-one-is-being-taken">The speaker examines early returns in the code to determine which one is being taken.</a></h2>
+</li>
+<li>
+<h2 id="it-is-determined-that-an-incorrect-return-statement-is-being-taken-twice"><a class="header" href="#it-is-determined-that-an-incorrect-return-statement-is-being-taken-twice">It is determined that an incorrect return statement is being taken twice.</a></h2>
+</li>
+<li>
+<h2 id="further-investigation-reveals-that-previously-correct-letters-were-being-re-evaluated-causing-errors-in-matching-letters"><a class="header" href="#further-investigation-reveals-that-previously-correct-letters-were-being-re-evaluated-causing-errors-in-matching-letters">Further investigation reveals that previously correct letters were being re-evaluated, causing errors in matching letters.</a></h2>
+</li>
+</ul>
+<h3 id="optimizing-code-1"><a class="header" href="#optimizing-code-1">Optimizing Code</a></h3>
+<ul>
+<li>
+<h2 id="a-suggestion-is-made-to-optimize-the-code-by-comparing-candidate-words-to-answers-element-by-element-for-correctness"><a class="header" href="#a-suggestion-is-made-to-optimize-the-code-by-comparing-candidate-words-to-answers-element-by-element-for-correctness">A suggestion is made to optimize the code by comparing candidate words to answers element by element for correctness.</a></h2>
+</li>
+<li>
+<h2 id="the-speaker-considers-this-proposal-but-ultimately-decides-against-it-due-to-excessive-complexity"><a class="header" href="#the-speaker-considers-this-proposal-but-ultimately-decides-against-it-due-to-excessive-complexity">The speaker considers this proposal but ultimately decides against it due to excessive complexity.</a></h2>
+</li>
+</ul>
+<h2 id="refactoring-code-for-optimization"><a class="header" href="#refactoring-code-for-optimization">Refactoring Code for Optimization</a></h2>
+<p>Section Overview: In this section, the speaker discusses refactoring the code for optimization purposes.</p>
+<h3 id="simplifying-code-with-zip-function"><a class="header" href="#simplifying-code-with-zip-function">Simplifying Code with Zip Function</a></h3>
+<ul>
+<li>
+<h2 id="the-speaker-simplifies-some-of-the-code-by-using-pythons-zip-function-instead-of-manually-iterating-through-lists"><a class="header" href="#the-speaker-simplifies-some-of-the-code-by-using-pythons-zip-function-instead-of-manually-iterating-through-lists">The speaker simplifies some of the code by using Python’s zip function instead of manually iterating through lists.</a></h2>
+</li>
+</ul>
+<h3 id="refactoring-for-efficiency"><a class="header" href="#refactoring-for-efficiency">Refactoring for Efficiency</a></h3>
+<ul>
+<li>
+<h2 id="the-speaker-discusses-refactoring-parts-of-the-code-for-efficiency-such-as-using-sets-instead-of-lists"><a class="header" href="#the-speaker-discusses-refactoring-parts-of-the-code-for-efficiency-such-as-using-sets-instead-of-lists">The speaker discusses refactoring parts of the code for efficiency, such as using sets instead of lists.</a></h2>
+</li>
+</ul>
+<h2 id="finalizing-code"><a class="header" href="#finalizing-code">Finalizing Code</a></h2>
+<p>Section Overview: In this section, the speaker finalizes the code and prepares to submit it.</p>
+<h3 id="testing-final-code"><a class="header" href="#testing-final-code">Testing Final Code</a></h3>
+<ul>
+<li>
+<h2 id="the-speaker-tests-the-final-version-of-the-code-with-various-inputs-to-ensure-that-it-is-working-correctly"><a class="header" href="#the-speaker-tests-the-final-version-of-the-code-with-various-inputs-to-ensure-that-it-is-working-correctly">The speaker tests the final version of the code with various inputs to ensure that it is working correctly.</a></h2>
+</li>
+</ul>
+<h3 id="submitting-code"><a class="header" href="#submitting-code">Submitting Code</a></h3>
+<ul>
+<li>
+<h2 id="the-speaker-submits-the-final-version-of-the-code-for-review"><a class="header" href="#the-speaker-submits-the-final-version-of-the-code-for-review">The speaker submits the final version of the code for review.</a></h2>
+</li>
+</ul>
+<h2 id="introduction-1"><a class="header" href="#introduction-1">Introduction</a></h2>
+<p>Section Overview: In this video, the speaker discusses how to create a program that can guess a word in a game of
+Hangman. They explain the algorithm and the math behind it.</p>
+<h3 id="naive-algorithm"><a class="header" href="#naive-algorithm">Naive Algorithm</a></h3>
+<ul>
+<li>The naive algorithm is to guess each letter in alphabetical order until you find the correct answer.</li>
+<li>This algorithm is not efficient and can take a long time to find the answer.</li>
+</ul>
+<h3 id="improved-algorithm"><a class="header" href="#improved-algorithm">Improved Algorithm</a></h3>
+<ul>
+<li>The improved algorithm involves using information theory to make more informed guesses.</li>
+<li>The program starts by guessing the most common letters in English words, such as “e” or “a”.</li>
+<li>It then uses the feedback from incorrect guesses to eliminate possibilities and make better guesses.</li>
+<li>This algorithm is much more efficient than the naive approach.</li>
+</ul>
+<h2 id="computing-correctness-1"><a class="header" href="#computing-correctness-1">Computing Correctness</a></h2>
+<p>Section Overview: In this section, the speaker explains how to compute correctness for each guess.</p>
+<h3 id="pruning-possibilities"><a class="header" href="#pruning-possibilities">Pruning Possibilities</a></h3>
+<ul>
+<li>To compute correctness, we need to prune down the list of possible words based on previous guesses and their
+corresponding feedback.</li>
+<li>We can use set intersection to find words that match all previous guesses and set difference to remove words that do
+not match any previous guesses.</li>
+</ul>
+<h3 id="exploiting-equivalence"><a class="header" href="#exploiting-equivalence">Exploiting Equivalence</a></h3>
+<ul>
+<li>The speaker discusses an insight where we can assume that if our current guess were actually the answer, then our
+previous guess should have given us the same pattern of correctnesses.</li>
+<li>By exploiting this equivalence, we can further prune down our list of possible words.</li>
+</ul>
+<h3 id="computing-goodness"><a class="header" href="#computing-goodness">Computing Goodness</a></h3>
+<ul>
+<li>To compute goodness for each guess, we need to balance how likely it is to be correct with how much information we
+gain if it’s incorrect.</li>
+<li>We use information theory and a formula involving probabilities and logarithms to compute goodness for each guess.</li>
+</ul>
+<h2 id="probability-of-words"><a class="header" href="#probability-of-words">Probability of Words</a></h2>
+<p>Section Overview: In this section, the speaker explains how to compute the probability of each word being the correct
+answer.</p>
+<h3 id="total-count"><a class="header" href="#total-count">Total Count</a></h3>
+<ul>
+<li>To compute the probability of a word, we need to know the total count of remaining possibilities.</li>
+<li>This involves considering all possible patterns and their corresponding counts.</li>
+</ul>
+<h3 id="probability-calculation"><a class="header" href="#probability-calculation">Probability Calculation</a></h3>
+<ul>
+<li>The probability of a word being correct is based on its relative likelihood compared to other possible words.</li>
+<li>We also need to consider the possible patterns that match previous guesses and their feedback.</li>
+</ul>
+<h2 id="conclusion-1"><a class="header" href="#conclusion-1">Conclusion</a></h2>
+<p>Section Overview: In this section, the speaker concludes by summarizing the algorithm and its efficiency.</p>
+<h3 id="summary-1"><a class="header" href="#summary-1">Summary</a></h3>
+<ul>
+<li>The improved algorithm for Hangman involves using information theory to make more informed guesses.</li>
+<li>It prunes down possibilities based on previous guesses and computes goodness for each guess using probabilities and
+logarithms.</li>
+<li>The program also considers the total count of remaining possibilities and their corresponding probabilities.</li>
+</ul>
+<h3 id="efficiency"><a class="header" href="#efficiency">Efficiency</a></h3>
+<ul>
+<li>The improved algorithm is much more efficient than the naive approach, as it can quickly eliminate unlikely
+possibilities and make better guesses.</li>
+</ul>
+<h2 id="computing-the-goodness-of-words"><a class="header" href="#computing-the-goodness-of-words">Computing the Goodness of Words</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to compute the goodness of words using a formula that
+involves probabilities and patterns.</p>
+<h3 id="formula-for-computing-goodness"><a class="header" href="#formula-for-computing-goodness">Formula for Computing Goodness</a></h3>
+<ul>
+<li>The formula for computing the goodness of a word is based on probabilities and patterns.</li>
+<li>To avoid losing precision, the computation should be done as floating point.</li>
+<li>The sum in the formula is over all possible patterns.</li>
+</ul>
+<h3 id="intuition-behind-the-formula"><a class="header" href="#intuition-behind-the-formula">Intuition Behind the Formula</a></h3>
+<ul>
+<li>The goodness of a word is defined as the sum of the goodness for each possible pattern that might result from guessing
+it.</li>
+<li>The probability of a word is equal to the sum of probabilities for all possible patterns that we might see.</li>
+</ul>
+<h3 id="helper-function-for-permutations"><a class="header" href="#helper-function-for-permutations">Helper Function for Permutations</a></h3>
+<ul>
+<li>A helper function can be used to generate permutations for all possible patterns.</li>
+<li>It’s not necessary to exclude impossible patterns since they would have zero probability anyway.</li>
+</ul>
+<h2 id="permutations"><a class="header" href="#permutations">Permutations</a></h2>
+<p>Section Overview: In this section, the speaker discusses permutations and power sets. They mention wanting a power set
+of a certain length and use the i product macro to achieve this.</p>
+<h3 id="using-cartesian-product-for-power-sets"><a class="header" href="#using-cartesian-product-for-power-sets">Using Cartesian Product for Power Sets</a></h3>
+<ul>
+<li>The speaker mentions wanting a power set of a certain length.</li>
+<li>They use the i product macro to achieve this.</li>
+<li>The i product macro is actually the cartesian product.</li>
+<li>They use <code>cargo.toml</code> to get <code>itertools</code>.</li>
+<li>They then use <code>itertools.product()</code>.</li>
+</ul>
+<h2 id="computing-patterns"><a class="header" href="#computing-patterns">Computing Patterns</a></h2>
+<p>Section Overview: In this section, the speaker discusses computing patterns. They loop over all possible patterns and
+compute what is left after each guess.</p>
+<h3 id="looping-over-possible-patterns"><a class="header" href="#looping-over-possible-patterns">Looping Over Possible Patterns</a></h3>
+<ul>
+<li>The speaker loops over all possible patterns.</li>
+<li>They call these “correctness patterns”.</li>
+<li>They filter on pattern using <code>filter()</code>.</li>
+<li>They filter on guess of word using <code>matches()</code>.</li>
+</ul>
+<h3 id="computing-what-is-left-after-each-guess"><a class="header" href="#computing-what-is-left-after-each-guess">Computing What Is Left After Each Guess</a></h3>
+<ul>
+<li>For every pattern, they find all of the remaining words that would exist if they guessed that word and that pattern
+matched.</li>
+<li>Inside each item of this loop, they consider a world where they did guess word and got pattern as the match as the
+correctness.</li>
+<li>Then they compute what is left.</li>
+</ul>
+<h2 id="understanding-the-code"><a class="header" href="#understanding-the-code">Understanding the Code</a></h2>
+<p>Section Overview: In this section, the speaker is discussing a code and explaining how it works.</p>
+<h3 id="probability-of-getting-a-pattern"><a class="header" href="#probability-of-getting-a-pattern">Probability of Getting a Pattern</a></h3>
+<ul>
+<li>The probability of getting a pattern is calculated by dividing the total count of words in that pattern by the total
+count of words outside that pattern. <a href="t=2:44:57s"></a></li>
+<li>The remaining count is divided by the remaining candidates. <a href="t=2:45:43s"></a></li>
+</ul>
+<h3 id="computing-entropy"><a class="header" href="#computing-entropy">Computing Entropy</a></h3>
+<ul>
+<li>To compute entropy, we sum together all probabilities for each candidate word. <a href="t=2:46:36s"></a></li>
+<li>We use this to compute information amount in guessing a word. <a href="t=2:48:12s"></a></li>
+</ul>
+<h3 id="improving-code-efficiency"><a class="header" href="#improving-code-efficiency">Improving Code Efficiency</a></h3>
+<ul>
+<li>The current computation is very slow and single-threaded. <a href="t=2:49:25s"></a></li>
+<li>Debugging shows that all values are NaN, which means there’s an issue with the code. <a href="t=2:51:59s"></a></li>
+<li>Starting with goodness can help improve efficiency.<a href="t=2:51:43s"></a>
+[<em>CUTOFF_LIMIT</em>]</li>
+</ul>
+<h2 id="generated-by-video-highlight"><a class="header" href="#generated-by-video-highlight">Generated by Video Highlight</a></h2>
+<p>https://videohighlight.com/video/summary/doFowk4xj7Q</p>
+
+            </main>
+
+            <!--            <script src="https://utteranc.es/client.js"-->
+            <!--                    repo="RustMagazine/rust_magazine_2022"-->
+            <!--                    issue-term="title"-->
+            <!--                    theme="github-light"-->
+            <!--                    crossorigin="anonymous"-->
+            <!--                    async></script>-->
+
+            <nav class="nav-wrapper" aria-label="Page navigation">
+                <!-- Mobile navigation buttons -->
+                    <a rel="prev" href="../../rust_video_summary/impl_rust/from_cargo_to_crates_io_and_back_again.html" class="mobile-nav-chapters previous"
+                       title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html" class="mobile-nav-chapters next"
+                       title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+
+                <div style="clear: both"></div>
+            </nav>
+        </div>
+    </div>
+
+    <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            <a rel="prev" href="../../rust_video_summary/impl_rust/from_cargo_to_crates_io_and_back_again.html" class="nav-chapters previous" title="Previous chapter"
+               aria-label="Previous chapter" aria-keyshortcuts="Left">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <a rel="next" href="../../rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html" class="nav-chapters next" title="Next chapter"
+               aria-label="Next chapter" aria-keyshortcuts="Right">
+                <i class="fa fa-angle-right"></i>
+            </a>
+    </nav>
+
+</div>
+
+
+
+    <script type="text/javascript">
+        window.playground_line_numbers = true;
+    </script>
+
+    <script type="text/javascript">
+        window.playground_copyable = true;
+    </script>
+
+    <script src="../../ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../editor.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JS scripts -->
+    <script type="text/javascript" src="../../assets/ferris/ferris.js"></script>
+    <script type="text/javascript" src="../../assets/mermaid/mermaid.min.js"></script>
+    <script type="text/javascript" src="../../assets/mermaid/mermaid-init.js"></script>
+    <script type="text/javascript" src="../../assets/smart-anchor.js"></script>
+    <script type="text/javascript" src="../../assets/pagetoc/sidebar.js"></script>
+
+</body>
+</html>

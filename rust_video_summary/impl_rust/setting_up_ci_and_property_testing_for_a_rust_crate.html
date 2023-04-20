@@ -1,0 +1,1170 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js navy">
+<head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <title>Setting up CI and property testing for a Rust Crate - The Rust Programming Language</title>
+
+
+    <!-- Custom HTML head -->
+    
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff"/>
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../md-favicon.png">
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/general.css">
+    <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../../highlight.css">
+    <link rel="stylesheet" href="../../tomorrow-night.css">
+    <link rel="stylesheet" href="../../ayu-highlight.css">
+
+    <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../assets/ferris/ferris.css">
+        <link rel="stylesheet" href="../../theme/2018-edition.css">
+        <link rel="stylesheet" href="../../assets/pagetoc/pagetoc_style.css">
+        <link rel="stylesheet" href="../../assets/css/mdbook-admonish.css">
+
+</head>
+<body>
+<!-- Provide site root to javascript -->
+<script type="text/javascript">
+    var path_to_root = "../../";
+    var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+</script>
+
+<!-- Work around some values being stored in localStorage wrapped in quotes -->
+<script type="text/javascript">
+    try {
+        var theme = localStorage.getItem('mdbook-theme');
+        var sidebar = localStorage.getItem('mdbook-sidebar');
+
+        if (theme.startsWith('"') && theme.endsWith('"')) {
+            localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+        }
+
+        if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+            localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+        }
+    } catch (e) {
+    }
+</script>
+
+<!-- Set the theme before any content is loaded, prevents flash -->
+<script type="text/javascript">
+    var theme;
+    try {
+        theme = localStorage.getItem('mdbook-theme');
+    } catch (e) {
+    }
+    if (theme === null || theme === undefined) {
+        theme = default_theme;
+    }
+    var html = document.querySelector('html');
+    html.classList.remove('no-js')
+    html.classList.remove('navy')
+    html.classList.add(theme);
+    html.classList.add('js');
+</script>
+
+<!-- Hide / unhide sidebar before it is displayed -->
+<script type="text/javascript">
+    var html = document.querySelector('html');
+    var sidebar = 'hidden';
+    if (document.body.clientWidth >= 1080) {
+        try {
+            sidebar = localStorage.getItem('mdbook-sidebar');
+        } catch (e) {
+        }
+        sidebar = sidebar || 'visible';
+    }
+    html.classList.remove('sidebar-visible');
+    html.classList.add("sidebar-" + sidebar);
+</script>
+
+<nav id="sidebar" class="sidebar" aria-label="Table of contents">
+    <div class="sidebar-scrollbox">
+        <ol class="chapter"><li class="chapter-item expanded "><a href="../../not_involved_resources.html"><strong aria-hidden="true">1.</strong> Not Involved Resources</a></li><li class="chapter-item expanded "><a href="../../overviews.html"><strong aria-hidden="true">2.</strong> Overviews</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../overviews/rbe_radial_tree_embed.html"><strong aria-hidden="true">2.1.</strong> Rust By Examples</a></li></ol></li><li class="chapter-item expanded "><a href="../../title-page.html"><strong aria-hidden="true">3.</strong> Rust Topics</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../cheat_sheets/cheat_sheets.html"><strong aria-hidden="true">3.1.</strong> Cheat Sheets</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../cheat_sheets/rust_language_cheat_sheet.html"><strong aria-hidden="true">3.1.1.</strong> Rust Language Cheat Sheet</a></li><li class="chapter-item "><a href="../../cheat_sheets/quick_ref_me_rust.html"><strong aria-hidden="true">3.1.2.</strong> Quick Ref Me Rust</a></li><li class="chapter-item "><a href="../../cheat_sheets/phaiax_rust_cheet_sheet.html"><strong aria-hidden="true">3.1.3.</strong> Phaiax Rust Cheet Sheet</a></li></ol></li><li class="chapter-item "><a href="../../chatgpt_rust/chatgpt_rust_prompts.html"><strong aria-hidden="true">3.2.</strong> chatGPT Rust Q&A</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../chatgpt_rust/rust_grammar_experience_pitfalls.html"><strong aria-hidden="true">3.2.1.</strong> Experience & Pitfall</a></li></ol></li><li class="chapter-item expanded "><a href="../../rust_video_summary/rust_video_summary.html"><strong aria-hidden="true">3.3.</strong> Rust Video Summary</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/rust_crash_course_rustlang.html"><strong aria-hidden="true">3.3.1.</strong> Rust Crash Course</a></li><li class="chapter-item "><a href="../../rust_video_summary/stop_duplicating_your_code.html"><strong aria-hidden="true">3.3.2.</strong> Generics, Traits, Lifetimes: Stop Duplicating Your Code</a></li><li class="chapter-item expanded "><a href="../../rust_video_summary/impl_rust/impl_rust.html"><strong aria-hidden="true">3.3.3.</strong> Impl Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/impl_rust/from_cargo_to_crates_io_and_back_again.html"><strong aria-hidden="true">3.3.3.1.</strong> (3/7h)From cargo to crates.io and back again</a></li><li class="chapter-item "><a href="../../rust_video_summary/impl_rust/implementing_and_optimizing_a_wordle_solver_in_rust.html"><strong aria-hidden="true">3.3.3.2.</strong> (3/6h)Implementing and optimizing a wordle solver in rust</a></li><li class="chapter-item "><a href="../../rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html"><strong aria-hidden="true">3.3.3.3.</strong> Solving Distributed System Challenges</a></li><li class="chapter-item expanded "><a href="../../rust_video_summary/impl_rust/setting_up_ci_and_property_testing_for_a_rust_crate.html" class="active"><strong aria-hidden="true">3.3.3.4.</strong> Setting up CI and property testing for a Rust Crate</a></li></ol></li><li class="chapter-item "><a href="../../rust_video_summary/code_to_the_moon/code_to_the_moon.html"><strong aria-hidden="true">3.3.4.</strong> Code to the Moon</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/learn_rust_programming.html"><strong aria-hidden="true">3.3.5.</strong> Learn Rust Programming</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/ownership_and_borrow_checker.html"><strong aria-hidden="true">3.3.5.1.</strong> Ownership and borrow checker</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/what_is_ownership_in_rust.html"><strong aria-hidden="true">3.3.5.1.1.</strong> What is Ownership in Rust?</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/what_is_rust_borrow_checker_and_why_is_it_useful.html"><strong aria-hidden="true">3.3.5.1.2.</strong> What is Rust Borrow-checker and why is it useful</a></li></ol></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/types.html"><strong aria-hidden="true">3.3.5.2.</strong> Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/what_is_the_difference_between_string_and_str_in_rust.html"><strong aria-hidden="true">3.3.5.2.1.</strong> What is the difference between String and &str in rust</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/why_enums_are_your_superpower.html"><strong aria-hidden="true">3.3.5.2.2.</strong> Why Enums are your superpower</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/implementing_the_trie_data_structure_in_rust.html"><strong aria-hidden="true">3.3.5.2.3.</strong> Implementing The Trie Data Structure In Rust</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/happy_little_fractals_coding_the_mandelbrot_set_in_rust.html"><strong aria-hidden="true">3.3.5.2.4.</strong> Happy little fractals coding the Mandelbrot set in Rust</a></li></ol></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/rust_polymorphism.html"><strong aria-hidden="true">3.3.5.3.</strong> Rust Polymorphism</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/rust_polymorphism_generics_and_trait_objects_explained.html"><strong aria-hidden="true">3.3.5.3.1.</strong> Rust Polymorphism: Generics and Trait Objects explained</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/introducing_traits_in_rust_what_they_are_and_how_to_use_them.html"><strong aria-hidden="true">3.3.5.3.2.</strong> Introducing traits in rust: what they are and how to use them</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/rust_programming_for_the_object_oriented_developer.html"><strong aria-hidden="true">3.3.5.3.3.</strong> Rust Programming for The Object-Oriented Developer</a></li></ol></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/error_and_test.html"><strong aria-hidden="true">3.3.5.4.</strong> Error & Test</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/all_about_error_handling_in_the_rust_programming_language.html"><strong aria-hidden="true">3.3.5.4.1.</strong> All About Error Handling in the Rust Programming Language</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/unit_testing_basics.html"><strong aria-hidden="true">3.3.5.4.2.</strong> Unit Testing Basics</a></li></ol></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/iterate.html"><strong aria-hidden="true">3.3.5.5.</strong> Iterate</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/introducing_iterators_in_rust.html"><strong aria-hidden="true">3.3.5.5.1.</strong> Introducing iterators in rust</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/how_to_implement_the_intoiterator_trait.html"><strong aria-hidden="true">3.3.5.5.2.</strong> How to implement the intoiterator trait</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/implementing_iterators_in_rust_creating_a_random_number_generator.html"><strong aria-hidden="true">3.3.5.5.3.</strong> Implementing Iterators in rust & creating a random number generator</a></li></ol></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/qa_and_code_review.html"><strong aria-hidden="true">3.3.5.6.</strong> QA & Code Review</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/answers_to_stackoverflow_top_rust_programming_questions_explained.html"><strong aria-hidden="true">3.3.5.6.1.</strong> Answers to StackOverflow Top Rust Programming Questions Explained</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/conducting_a_code_review_of_the_jwtinfo_crate.html"><strong aria-hidden="true">3.3.5.6.2.</strong> Conducting a code review of the jwtinfo crate</a></li><li class="chapter-item "><a href="../../rust_video_summary/learn_rust_programming/rust_programming_qa.html"><strong aria-hidden="true">3.3.5.6.3.</strong> Rust Programming Q&A</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../rust_video_summary/considering_rust.html"><strong aria-hidden="true">3.3.6.</strong> Considering Rust</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/crust_of_rust.html"><strong aria-hidden="true">3.3.7.</strong> Crust Of Rust Series</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/async_await.html"><strong aria-hidden="true">3.3.7.1.</strong> Async/Await</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/atomics_and_memory_ordering.html"><strong aria-hidden="true">3.3.7.2.</strong> Atomics and Memory Ordering</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/channels.html"><strong aria-hidden="true">3.3.7.3.</strong> Channels</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/declarative_macros.html"><strong aria-hidden="true">3.3.7.4.</strong> Declarative Macros</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/dispatch_and_fat_pointers.html"><strong aria-hidden="true">3.3.7.5.</strong> Dispatch and Fat Pointers</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/functions_closures_and_their_traits.html"><strong aria-hidden="true">3.3.7.6.</strong> Functions, Closures and their traits</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/iterators.html"><strong aria-hidden="true">3.3.7.7.</strong> Iterators</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/lifetime_annotations.html"><strong aria-hidden="true">3.3.7.8.</strong> Lifetime Annotations</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/smart_pointers_and_interior_mutability.html"><strong aria-hidden="true">3.3.7.9.</strong> Smart Pointers And Interior Mutability</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/sorting_algorithms.html"><strong aria-hidden="true">3.3.7.10.</strong> Sorting Algorithms</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/subtyping_and_variance.html"><strong aria-hidden="true">3.3.7.11.</strong> Subtyping and Variance</a></li><li class="chapter-item "><a href="../../rust_video_summary/curst_of_rust/the_drop_check.html"><strong aria-hidden="true">3.3.7.12.</strong> The Drop Check</a></li></ol></li><li class="chapter-item "><a href="../../rust_video_summary/implementing_hazard_pointers_in_rust/implementing_hazard_pointers.html"><strong aria-hidden="true">3.3.8.</strong> Implementing Hazard Pointers</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/implementing_hazard_pointers_in_rust/part1.html"><strong aria-hidden="true">3.3.8.1.</strong> Part 1</a></li><li class="chapter-item "><a href="../../rust_video_summary/implementing_hazard_pointers_in_rust/part2.html"><strong aria-hidden="true">3.3.8.2.</strong> Part 2</a></li><li class="chapter-item "><a href="../../rust_video_summary/implementing_hazard_pointers_in_rust/part3.html"><strong aria-hidden="true">3.3.8.3.</strong> Part 3</a></li><li class="chapter-item "><a href="../../rust_video_summary/implementing_hazard_pointers_in_rust/part4.html"><strong aria-hidden="true">3.3.8.4.</strong> Part 4</a></li></ol></li><li class="chapter-item "><a href="../../rust_video_summary/open_source_streams/open_source_streams.html"><strong aria-hidden="true">3.3.9.</strong> Open-Source streams</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_video_summary/open_source_streams/rust_open_source_contributions_stream.html"><strong aria-hidden="true">3.3.9.1.</strong> Rust Open Source Contributions Stream</a></li><li class="chapter-item "><a href="../../rust_video_summary/open_source_streams/rust_tools_and_std_future.html"><strong aria-hidden="true">3.3.9.2.</strong> Rust Toos and std::future</a></li><li class="chapter-item "><a href="../../rust_video_summary/open_source_streams/day_in_the_life_of_open_source_maintenance_2022_06_19.html"><strong aria-hidden="true">3.3.9.3.</strong> Day in the life of Open Source Maintenance 2022-06-19</a></li><li class="chapter-item "><a href="../../rust_video_summary/open_source_streams/day_in_the_life_of_open_source_maintenance_2022_10_08.html"><strong aria-hidden="true">3.3.9.4.</strong> Day in the life of Open Source Maintenance 2022-10-08</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">3.4.</strong> Associated Items</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../topics/at_gat.html"><strong aria-hidden="true">3.4.1.</strong> Associated type, Generic associate types</a></li><li class="chapter-item "><div><strong aria-hidden="true">3.4.2.</strong> Associated Types</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/generics/assoc_items/types.html"><strong aria-hidden="true">3.4.2.1.</strong> Associated types examples</a></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">3.4.3.</strong> Generic Associated Types</div></li><li class="chapter-item "><div><strong aria-hidden="true">3.4.4.</strong> Associated Functions & Methods</div></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../title-page.html"><strong aria-hidden="true">4.</strong> The Rust Programming Language</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../foreword.html"><strong aria-hidden="true">4.1.</strong> Foreword</a></li><li class="chapter-item "><a href="../../ch00-00-introduction.html"><strong aria-hidden="true">4.2.</strong> Introduction</a></li><li class="chapter-item "><a href="../../ch01-00-getting-started.html"><strong aria-hidden="true">4.3.</strong> Getting Started</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch01-01-installation.html"><strong aria-hidden="true">4.3.1.</strong> Installation</a></li><li class="chapter-item "><a href="../../ch01-02-hello-world.html"><strong aria-hidden="true">4.3.2.</strong> Hello, World!</a></li><li class="chapter-item "><a href="../../ch01-03-hello-cargo.html"><strong aria-hidden="true">4.3.3.</strong> Hello, Cargo!</a></li><li class="chapter-item "><a href="../../ch02-00-guessing-game-tutorial.html"><strong aria-hidden="true">4.3.4.</strong> Programming a Guessing Game</a></li><li class="chapter-item "><a href="../../ch03-00-common-programming-concepts.html"><strong aria-hidden="true">4.3.5.</strong> Common Programming Concepts</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch03-01-variables-and-mutability.html"><strong aria-hidden="true">4.3.5.1.</strong> ⚠️Variables and Mutability</a></li><li class="chapter-item "><a href="../../ch03-02-data-types.html"><strong aria-hidden="true">4.3.5.2.</strong> Data Types</a></li><li class="chapter-item "><a href="../../rust_by_example_src/expression.html"><strong aria-hidden="true">4.3.5.3.</strong> RBE(Rust by Examples): Expressions and Statements</a></li><li class="chapter-item "><a href="../../ch03-03-how-functions-work.html"><strong aria-hidden="true">4.3.5.4.</strong> ✨Functions Basic: Statements, Expressions, Last Return, Early Return</a></li><li class="chapter-item "><a href="../../ch03-04-comments.html"><strong aria-hidden="true">4.3.5.5.</strong> Comments</a></li><li class="chapter-item "><a href="../../ch03-05-control-flow.html"><strong aria-hidden="true">4.3.5.6.</strong> Control Flow</a></li></ol></li><li class="chapter-item "><a href="../../ch04-00-understanding-ownership.html"><strong aria-hidden="true">4.3.6.</strong> Understanding Ownership</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch04-01-what-is-ownership.html"><strong aria-hidden="true">4.3.6.1.</strong> What is Ownership?</a></li><li class="chapter-item "><a href="../../ch04-02-references-and-borrowing.html"><strong aria-hidden="true">4.3.6.2.</strong> References and Borrowing</a></li><li class="chapter-item "><a href="../../ch04-03-slices.html"><strong aria-hidden="true">4.3.6.3.</strong> The Slice Type</a></li></ol></li><li class="chapter-item "><a href="../../ch05-00-structs.html"><strong aria-hidden="true">4.3.7.</strong> Using Structs to Structure Related Data</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch05-01-defining-structs.html"><strong aria-hidden="true">4.3.7.1.</strong> Defining and Instantiating Structs</a></li><li class="chapter-item "><a href="../../ch05-02-example-structs.html"><strong aria-hidden="true">4.3.7.2.</strong> An Example Program Using Structs</a></li><li class="chapter-item "><a href="../../ch05-03-method-syntax.html"><strong aria-hidden="true">4.3.7.3.</strong> ✨Method Syntax</a></li></ol></li><li class="chapter-item "><a href="../../ch06-00-enums.html"><strong aria-hidden="true">4.3.8.</strong> Enums and Pattern Matching</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch06-01-defining-an-enum.html"><strong aria-hidden="true">4.3.8.1.</strong> Defining an Enum</a></li><li class="chapter-item "><a href="../../ch06-02-match.html"><strong aria-hidden="true">4.3.8.2.</strong> The match Control Flow Construct</a></li><li class="chapter-item "><a href="../../ch06-03-if-let.html"><strong aria-hidden="true">4.3.8.3.</strong> Concise Control Flow with if let</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">4.4.</strong> Basic Rust Literacy</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch07-00-managing-growing-projects-with-packages-crates-and-modules.html"><strong aria-hidden="true">4.4.1.</strong> Managing Growing Projects with Packages, Crates, and Modules</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch07-01-packages-and-crates.html"><strong aria-hidden="true">4.4.1.1.</strong> Packages and Crates</a></li><li class="chapter-item "><a href="../../ch07-02-defining-modules-to-control-scope-and-privacy.html"><strong aria-hidden="true">4.4.1.2.</strong> Defining Modules to Control Scope and Privacy</a></li><li class="chapter-item "><a href="../../ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html"><strong aria-hidden="true">4.4.1.3.</strong> Paths for Referring to an Item in the Module Tree</a></li><li class="chapter-item "><a href="../../ch07-04-bringing-paths-into-scope-with-the-use-keyword.html"><strong aria-hidden="true">4.4.1.4.</strong> Bringing Paths Into Scope with the use Keyword</a></li><li class="chapter-item "><a href="../../ch07-05-separating-modules-into-different-files.html"><strong aria-hidden="true">4.4.1.5.</strong> Separating Modules into Different Files</a></li></ol></li><li class="chapter-item "><a href="../../ch08-00-common-collections.html"><strong aria-hidden="true">4.4.2.</strong> Common Collections</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch08-01-vectors.html"><strong aria-hidden="true">4.4.2.1.</strong> Vectors: Storing Lists of The Same Type of Values</a></li><li class="chapter-item "><a href="../../ch08-02-strings.html"><strong aria-hidden="true">4.4.2.2.</strong> Strings: Storing UTF-8 Encoded Text</a></li><li class="chapter-item "><a href="../../ch08-03-hash-maps.html"><strong aria-hidden="true">4.4.2.3.</strong> HasnMap&lt;K, V&gt;: Storing Keys with Associated Values</a></li></ol></li><li class="chapter-item "><a href="../../ch09-00-error-handling.html"><strong aria-hidden="true">4.4.3.</strong> Error Handling</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch09-01-unrecoverable-errors-with-panic.html"><strong aria-hidden="true">4.4.3.1.</strong> Unrecoverable Errors with panic!</a></li><li class="chapter-item "><a href="../../ch09-02-recoverable-errors-with-result.html"><strong aria-hidden="true">4.4.3.2.</strong> ⭐️Recoverable Errors with Result</a></li><li class="chapter-item "><a href="../../ch09-03-to-panic-or-not-to-panic.html"><strong aria-hidden="true">4.4.3.3.</strong> To panic! or Not to panic!</a></li></ol></li><li class="chapter-item "><a href="../../ch10-00-generics.html"><strong aria-hidden="true">4.4.4.</strong> Generic Types, Traits, and Lifetimes</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch10-01-syntax.html"><strong aria-hidden="true">4.4.4.1.</strong> ✨Generic Data Types</a></li><li class="chapter-item "><a href="../../ch10-02-traits.html"><strong aria-hidden="true">4.4.4.2.</strong> 🪐Traits: Defining Shared Behavior</a></li><li class="chapter-item "><a href="../../ch10-03-lifetime-syntax.html"><strong aria-hidden="true">4.4.4.3.</strong> ⭐️Validating References with Lifetimes</a></li></ol></li><li class="chapter-item "><a href="../../ch11-00-testing.html"><strong aria-hidden="true">4.4.5.</strong> Writing Automated Tests</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch11-01-writing-tests.html"><strong aria-hidden="true">4.4.5.1.</strong> How to Write Tests</a></li><li class="chapter-item "><a href="../../ch11-02-running-tests.html"><strong aria-hidden="true">4.4.5.2.</strong> Controlling How Tests Are Run</a></li><li class="chapter-item "><a href="../../ch11-03-test-organization.html"><strong aria-hidden="true">4.4.5.3.</strong> Test Organization</a></li></ol></li><li class="chapter-item "><a href="../../ch12-00-an-io-project.html"><strong aria-hidden="true">4.4.6.</strong> An I/O Project: Building a Command Line Program</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch12-01-accepting-command-line-arguments.html"><strong aria-hidden="true">4.4.6.1.</strong> Accepting Command Line Arguments</a></li><li class="chapter-item "><a href="../../ch12-02-reading-a-file.html"><strong aria-hidden="true">4.4.6.2.</strong> Reading a File</a></li><li class="chapter-item "><a href="../../ch12-03-improving-error-handling-and-modularity.html"><strong aria-hidden="true">4.4.6.3.</strong> Refactoring to Improve Modularity and Error Handling</a></li><li class="chapter-item "><a href="../../ch12-04-testing-the-librarys-functionality.html"><strong aria-hidden="true">4.4.6.4.</strong> Developing the Library’s Functionality with Test Driven Development</a></li><li class="chapter-item "><a href="../../ch12-05-working-with-environment-variables.html"><strong aria-hidden="true">4.4.6.5.</strong> Working with Environment Variables</a></li><li class="chapter-item "><a href="../../ch12-06-writing-to-stderr-instead-of-stdout.html"><strong aria-hidden="true">4.4.6.6.</strong> Writing Error Messages to Standard Error Instead of Standard Output</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../thinking_in_rust.html"><strong aria-hidden="true">4.5.</strong> 🤔Thinking in Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch13-00-functional-features.html"><strong aria-hidden="true">4.5.1.</strong> Functional Language Features: Iterators and Closures</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch13-01-closures.html"><strong aria-hidden="true">4.5.1.1.</strong> Closures: Anonymous Functions that Capture Their Environment</a></li><li class="chapter-item "><a href="../../ch13-02-iterators.html"><strong aria-hidden="true">4.5.1.2.</strong> Processing a Series of Items with Iterators</a></li><li class="chapter-item "><a href="../../ch13-03-improving-our-io-project.html"><strong aria-hidden="true">4.5.1.3.</strong> Improving Our I/O Project</a></li><li class="chapter-item "><a href="../../ch13-04-performance.html"><strong aria-hidden="true">4.5.1.4.</strong> Comparing Performance: Loops vs. Iterators</a></li></ol></li><li class="chapter-item "><a href="../../ch14-00-more-about-cargo.html"><strong aria-hidden="true">4.5.2.</strong> More about Cargo and Crates.io</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch14-01-release-profiles.html"><strong aria-hidden="true">4.5.2.1.</strong> Customizing Builds with Release Profiles</a></li><li class="chapter-item "><a href="../../ch14-02-publishing-to-crates-io.html"><strong aria-hidden="true">4.5.2.2.</strong> Publishing a Crate to Crates.io</a></li><li class="chapter-item "><a href="../../ch14-03-cargo-workspaces.html"><strong aria-hidden="true">4.5.2.3.</strong> Cargo Workspaces</a></li><li class="chapter-item "><a href="../../ch14-04-installing-binaries.html"><strong aria-hidden="true">4.5.2.4.</strong> Installing Binaries from Crates.io with cargo install</a></li><li class="chapter-item "><a href="../../ch14-05-extending-cargo.html"><strong aria-hidden="true">4.5.2.5.</strong> Extending Cargo with Custom Commands</a></li></ol></li><li class="chapter-item "><a href="../../ch15-00-smart-pointers.html"><strong aria-hidden="true">4.5.3.</strong> ✨Smart Pointers(2+3): (Deref、Drop) + (Box/heap、Rc、RefCell/Reference Cycle）</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../smart_pointers_deref_drop.html"><strong aria-hidden="true">4.5.3.1.</strong> Two Typical Traits: Deref & Drop</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch15-02-deref.html"><strong aria-hidden="true">4.5.3.1.1.</strong> Deref(* operator): Treating Smart Pointers Like Regular References with the Deref Trait</a></li><li class="chapter-item "><a href="../../ch15-03-drop.html"><strong aria-hidden="true">4.5.3.1.2.</strong> Drop: Running Code on Cleanup with the Drop Trait</a></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">4.5.3.2.</strong> Three main types</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch15-01-box.html"><strong aria-hidden="true">4.5.3.2.1.</strong> Heap: Using Box&lt;T&gt; to Point to Data on the Heap</a></li><li class="chapter-item "><a href="../../rc_refcell.html"><strong aria-hidden="true">4.5.3.2.2.</strong> References Tracking Pointer Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch15-04-rc.html"><strong aria-hidden="true">4.5.3.2.2.1.</strong> Rc&lt;T&gt;(Reference Counting): single-threaded scenarios, immutable references of multiple owners, the Reference Counted Smart Pointer</a></li><li class="chapter-item "><a href="../../ch15-05-interior-mutability.html"><strong aria-hidden="true">4.5.3.2.2.2.</strong> RefCell&lt;T&gt;(reference counting cell): single-threaded scenarios, runtime borrow checking, the Interior Mutability Pattern</a></li><li class="chapter-item "><a href="../../ch15-06-reference-cycles.html"><strong aria-hidden="true">4.5.3.2.2.3.</strong> 🌟Reference Cycles Can Leak Memory: Mainly from Incorrect Usage of Rc&lt;T&gt; and RefCell&lt;T&gt;</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../ch16-00-concurrency.html"><strong aria-hidden="true">4.5.4.</strong> Fearless Concurrency</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch16-01-threads.html"><strong aria-hidden="true">4.5.4.1.</strong> Using Threads to Run Code Simultaneously</a></li><li class="chapter-item "><a href="../../ch16-02-message-passing.html"><strong aria-hidden="true">4.5.4.2.</strong> Using Message Passing to Transfer Data Between Threads</a></li><li class="chapter-item "><a href="../../ch16-03-shared-state.html"><strong aria-hidden="true">4.5.4.3.</strong> Shared-State Concurrency</a></li><li class="chapter-item "><a href="../../ch16-04-extensible-concurrency-sync-and-send.html"><strong aria-hidden="true">4.5.4.4.</strong> Extensible Concurrency with the Sync and Send Traits</a></li></ol></li><li class="chapter-item "><a href="../../ch17-00-oop.html"><strong aria-hidden="true">4.5.5.</strong> Object Oriented Programming Features of Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch17-01-what-is-oo.html"><strong aria-hidden="true">4.5.5.1.</strong> Characteristics of Object-Oriented Languages</a></li><li class="chapter-item "><a href="../../ch17-02-trait-objects.html"><strong aria-hidden="true">4.5.5.2.</strong> 🌛️Using Trait Objects That Allow for Values of Different Types</a></li><li class="chapter-item "><a href="../../ch17-03-oo-design-patterns.html"><strong aria-hidden="true">4.5.5.3.</strong> Implementing an Object-Oriented Design Pattern</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">4.6.</strong> Advanced Topics</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch18-00-patterns.html"><strong aria-hidden="true">4.6.1.</strong> Patterns and Matching</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch18-01-all-the-places-for-patterns.html"><strong aria-hidden="true">4.6.1.1.</strong> All the Places Patterns Can Be Used</a></li><li class="chapter-item "><a href="../../ch18-02-refutability.html"><strong aria-hidden="true">4.6.1.2.</strong> Refutability: Whether a Pattern Might Fail to Match</a></li><li class="chapter-item "><a href="../../ch18-03-pattern-syntax.html"><strong aria-hidden="true">4.6.1.3.</strong> ⭐️Pattern Syntax</a></li></ol></li><li class="chapter-item "><a href="../../ch19-00-advanced-features.html"><strong aria-hidden="true">4.6.2.</strong> Advanced Features</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch19-01-unsafe-rust.html"><strong aria-hidden="true">4.6.2.1.</strong> Unsafe Rust</a></li><li class="chapter-item "><a href="../../ch19-03-advanced-traits.html"><strong aria-hidden="true">4.6.2.2.</strong> ⭐️Advanced Traits</a></li><li class="chapter-item "><a href="../../ch19-04-advanced-types.html"><strong aria-hidden="true">4.6.2.3.</strong> ✨Advanced Types</a></li><li class="chapter-item "><a href="../../ch19-05-advanced-functions-and-closures.html"><strong aria-hidden="true">4.6.2.4.</strong> 📦Advanced Functions and Closures</a></li><li class="chapter-item "><a href="../../ch19-06-macros.html"><strong aria-hidden="true">4.6.2.5.</strong> Macros</a></li></ol></li><li class="chapter-item "><a href="../../ch20-00-final-project-a-web-server.html"><strong aria-hidden="true">4.6.3.</strong> Final Project: Building a Multithreaded Web Server</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ch20-01-single-threaded.html"><strong aria-hidden="true">4.6.3.1.</strong> Building a Single-Threaded Web Server</a></li><li class="chapter-item "><a href="../../ch20-02-multithreaded.html"><strong aria-hidden="true">4.6.3.2.</strong> Turning Our Single-Threaded Server into a Multithreaded Server</a></li><li class="chapter-item "><a href="../../ch20-03-graceful-shutdown-and-cleanup.html"><strong aria-hidden="true">4.6.3.3.</strong> Graceful Shutdown and Cleanup</a></li></ol></li><li class="chapter-item "><a href="../../appendix-00.html"><strong aria-hidden="true">4.6.4.</strong> Appendix</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../appendix-01-keywords.html"><strong aria-hidden="true">4.6.4.1.</strong> A - Keywords</a></li><li class="chapter-item "><a href="../../appendix-02-operators.html"><strong aria-hidden="true">4.6.4.2.</strong> B - Operators and Symbols</a></li><li class="chapter-item "><a href="../../appendix-03-derivable-traits.html"><strong aria-hidden="true">4.6.4.3.</strong> ✨️C - Derivable Traits</a></li><li class="chapter-item "><a href="../../appendix-04-useful-development-tools.html"><strong aria-hidden="true">4.6.4.4.</strong> D - Useful Development Tools</a></li><li class="chapter-item "><a href="../../appendix-05-editions.html"><strong aria-hidden="true">4.6.4.5.</strong> E - Editions</a></li><li class="chapter-item "><a href="../../appendix-06-translation.html"><strong aria-hidden="true">4.6.4.6.</strong> F - Translations of the Book</a></li><li class="chapter-item "><a href="../../appendix-07-nightly-rust.html"><strong aria-hidden="true">4.6.4.7.</strong> G - How Rust is Made and “Nightly Rust”</a></li></ol></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../rust_by_example_src/index.html"><strong aria-hidden="true">5.</strong> Rust By Examples</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/hello.html"><strong aria-hidden="true">5.1.</strong> Hello World</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/hello/comment.html"><strong aria-hidden="true">5.1.1.</strong> Comments</a></li><li class="chapter-item "><a href="../../rust_by_example_src/hello/print.html"><strong aria-hidden="true">5.1.2.</strong> Formatted print</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/hello/print/print_debug.html"><strong aria-hidden="true">5.1.2.1.</strong> Debug</a></li><li class="chapter-item "><a href="../../rust_by_example_src/hello/print/print_display.html"><strong aria-hidden="true">5.1.2.2.</strong> Display</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/hello/print/print_display/testcase_list.html"><strong aria-hidden="true">5.1.2.2.1.</strong> Testcase: List</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/hello/print/fmt.html"><strong aria-hidden="true">5.1.2.3.</strong> Formatting</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">5.2.</strong> Types: Primitives, custom Types, Bindings and Change/Define/Advanced Conversion</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/primitives.html"><strong aria-hidden="true">5.2.1.</strong> Primitives</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/primitives/literals.html"><strong aria-hidden="true">5.2.1.1.</strong> Literals and operators</a></li><li class="chapter-item "><a href="../../rust_by_example_src/primitives/tuples.html"><strong aria-hidden="true">5.2.1.2.</strong> Tuples: a collection of values of different types</a></li><li class="chapter-item "><a href="../../rust_by_example_src/primitives/array.html"><strong aria-hidden="true">5.2.1.3.</strong> Arrays and Slices: a collection of objects of the same type T</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/custom_types.html"><strong aria-hidden="true">5.2.2.</strong> Custom Types: struct and enum</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/custom_types/structs.html"><strong aria-hidden="true">5.2.2.1.</strong> Structures: Tuple, C structs and Unit structs</a></li><li class="chapter-item "><a href="../../rust_by_example_src/custom_types/enum.html"><strong aria-hidden="true">5.2.2.2.</strong> ✨Enums: and Type alias</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/custom_types/enum/enum_use.html"><strong aria-hidden="true">5.2.2.2.1.</strong> use</a></li><li class="chapter-item "><a href="../../rust_by_example_src/custom_types/enum/c_like.html"><strong aria-hidden="true">5.2.2.2.2.</strong> C-like</a></li><li class="chapter-item "><a href="../../rust_by_example_src/custom_types/enum/testcase_linked_list.html"><strong aria-hidden="true">5.2.2.2.3.</strong> Testcase: linked-list</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/custom_types/constants.html"><strong aria-hidden="true">5.2.2.3.</strong> constants: const and static</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/variable_bindings.html"><strong aria-hidden="true">5.2.3.</strong> Variable Bindings</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/variable_bindings/mut.html"><strong aria-hidden="true">5.2.3.1.</strong> Mutability</a></li><li class="chapter-item "><a href="../../rust_by_example_src/variable_bindings/scope.html"><strong aria-hidden="true">5.2.3.2.</strong> Scope ({}) and Shadowing</a></li><li class="chapter-item "><a href="../../rust_by_example_src/variable_bindings/declare.html"><strong aria-hidden="true">5.2.3.3.</strong> Declare first</a></li><li class="chapter-item "><a href="../../rust_by_example_src/variable_bindings/freeze.html"><strong aria-hidden="true">5.2.3.4.</strong> Freezing</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/types.html"><strong aria-hidden="true">5.2.4.</strong> 🚶Basic Conversion: Change or Define Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/types/cast.html"><strong aria-hidden="true">5.2.4.1.</strong> as: Casting using as keyword</a></li><li class="chapter-item "><a href="../../rust_by_example_src/types/literals.html"><strong aria-hidden="true">5.2.4.2.</strong> Literals</a></li><li class="chapter-item "><a href="../../rust_by_example_src/types/inference.html"><strong aria-hidden="true">5.2.4.3.</strong> Inference</a></li><li class="chapter-item "><a href="../../rust_by_example_src/types/alias.html"><strong aria-hidden="true">5.2.4.4.</strong> ✨Type Aliasing: give a new name to an existing type</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/conversion.html"><strong aria-hidden="true">5.2.5.</strong> 💃Advanced Conversion: From/Into trait</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/conversion/from_into.html"><strong aria-hidden="true">5.2.5.1.</strong> From and Into</a></li><li class="chapter-item "><a href="../../rust_by_example_src/conversion/try_from_try_into.html"><strong aria-hidden="true">5.2.5.2.</strong> TryFrom and TryInto: used for fallible conversions, return Result</a></li><li class="chapter-item "><a href="../../rust_by_example_src/conversion/string.html"><strong aria-hidden="true">5.2.5.3.</strong> ToString and FromStr trait: To and from Strings</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">5.3.</strong> Control: Statements, Functions and Error handling</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/expression.html"><strong aria-hidden="true">5.3.1.</strong> ✨Expressions: statements end with ;</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control.html"><strong aria-hidden="true">5.3.2.</strong> 🧮 Flow of Control</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/if_else.html"><strong aria-hidden="true">5.3.2.1.</strong> if/else</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/while.html"><strong aria-hidden="true">5.3.2.2.</strong> while</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/loop.html"><strong aria-hidden="true">5.3.2.3.</strong> loop</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/loop/nested.html"><strong aria-hidden="true">5.3.2.3.1.</strong> Nesting and labels: a little like lifetime annotations</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/loop/return.html"><strong aria-hidden="true">5.3.2.3.2.</strong> Returning from loops</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/if_let.html"><strong aria-hidden="true">5.3.2.4.</strong> if let</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/while_let.html"><strong aria-hidden="true">5.3.2.5.</strong> ✨while_let</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/for.html"><strong aria-hidden="true">5.3.2.6.</strong> for and range</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/match.html"><strong aria-hidden="true">5.3.2.7.</strong> ⭐️match</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/match/destructuring.html"><strong aria-hidden="true">5.3.2.7.1.</strong> ✨✨✨Destructuring</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/match/guard.html"><strong aria-hidden="true">5.3.2.7.2.</strong> Guards: to filter the arm</a></li><li class="chapter-item "><a href="../../rust_by_example_src/flow_control/match/binding.html"><strong aria-hidden="true">5.3.2.7.3.</strong> @ Binding</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/fn.html"><strong aria-hidden="true">5.3.3.</strong> ✨Functions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/fn/methods.html"><strong aria-hidden="true">5.3.3.1.</strong> Methods</a></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures.html"><strong aria-hidden="true">5.3.3.2.</strong> ✨Closures</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/capture.html"><strong aria-hidden="true">5.3.3.2.1.</strong> Capturing</a></li><li class="chapter-item "><div><strong aria-hidden="true">5.3.3.2.2.</strong> Fn/FnMut/FnOnce</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/anonymity.html"><strong aria-hidden="true">5.3.3.2.2.1.</strong> Type anonymity</a></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/input_parameters.html"><strong aria-hidden="true">5.3.3.2.2.2.</strong> As input parameters</a></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/output_parameters.html"><strong aria-hidden="true">5.3.3.2.2.3.</strong> As output parameters</a></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/input_functions.html"><strong aria-hidden="true">5.3.3.2.2.4.</strong> Input functions</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/closure_examples.html"><strong aria-hidden="true">5.3.3.2.3.</strong> Examples in std</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/closure_examples/iter_any.html"><strong aria-hidden="true">5.3.3.2.3.1.</strong> Iterator::any</a></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/closures/closure_examples/iter_find.html"><strong aria-hidden="true">5.3.3.2.3.2.</strong> Searching through iterators</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/hof.html"><strong aria-hidden="true">5.3.3.3.</strong> Higher Order Functions</a></li><li class="chapter-item "><a href="../../rust_by_example_src/fn/diverging.html"><strong aria-hidden="true">5.3.3.4.</strong> ✨Diverging functions: return !, different from ()</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/error.html"><strong aria-hidden="true">5.3.4.</strong> ⭐️Error handling: Panic、Option and Result</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/error/panic.html"><strong aria-hidden="true">5.3.4.1.</strong> panic!: unrecoverable, try-exception</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/error/abort_unwind.html"><strong aria-hidden="true">5.3.4.1.1.</strong> ✨abort & unwind: Two implementation mechanisms of panic</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/error/option_unwrap.html"><strong aria-hidden="true">5.3.4.2.</strong> Option & unwrap</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/error/option_unwrap/map.html"><strong aria-hidden="true">5.3.4.2.1.</strong> Combinators of Option: map</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/option_unwrap/and_then.html"><strong aria-hidden="true">5.3.4.2.2.</strong> Combinators of Option: and_then</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/option_unwrap/defaults.html"><strong aria-hidden="true">5.3.4.2.3.</strong> Defaults: or, or_else, get_or_insert, 'get_or_insert_with`</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/error/result.html"><strong aria-hidden="true">5.3.4.3.</strong> Result & OK or ?: A Richer Version Of Option</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/error/result/result_map.html"><strong aria-hidden="true">5.3.4.3.1.</strong> map for Result: catch explicit Exception and Continue</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/result/result_alias.html"><strong aria-hidden="true">5.3.4.3.2.</strong> Custom Exception: aliases for Result</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/result/early_returns.html"><strong aria-hidden="true">5.3.4.3.3.</strong> Early returns: Catch Exception and Return</a></li></ol></li><li class="chapter-item "><a href="../../#.html"><strong aria-hidden="true">5.3.4.4.</strong> ?: the uses of question mark</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/error/result/enter_question_mark.html"><strong aria-hidden="true">5.3.4.4.1.</strong> Introducing ?</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/option_unwrap/question_mark.html"><strong aria-hidden="true">5.3.4.4.2.</strong> Unpacking options with ? to return the Some or terminate</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/multiple_error_types/reenter_question_mark.html"><strong aria-hidden="true">5.3.4.4.3.</strong> Other uses of ?</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/error/multiple_error_types.html"><strong aria-hidden="true">5.3.4.5.</strong> Multiple error types to interact</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/error/multiple_error_types/option_result.html"><strong aria-hidden="true">5.3.4.5.1.</strong> Pulling Results out of Options</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/multiple_error_types/define_error_type.html"><strong aria-hidden="true">5.3.4.5.2.</strong> Defining an error type</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/multiple_error_types/boxing_errors.html"><strong aria-hidden="true">5.3.4.5.3.</strong> Boxing errors</a></li><li class="chapter-item "><a href="../../rust_by_example_src/error/multiple_error_types/wrap_error.html"><strong aria-hidden="true">5.3.4.5.4.</strong> Wrapping errors</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/error/iter_result.html"><strong aria-hidden="true">5.3.4.6.</strong> Iterating over Results</a></li><li class="chapter-item "><a href="../../rust_by_example_src/encapsulation_modules_crates_cargo.html"><strong aria-hidden="true">5.3.4.7.</strong> 📒Error Handling Practices -- ChatGPT</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/error/error_handling_practices/basic_practics.html"><strong aria-hidden="true">5.3.4.7.1.</strong> Basic Practices</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/encapsulation_modules_crates_cargo.html"><strong aria-hidden="true">5.4.</strong> Encapsulation: Modules, Crates and Cargo</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/mod.html"><strong aria-hidden="true">5.4.1.</strong> Modules: hierarchically split and manage visibility</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/mod/visibility.html"><strong aria-hidden="true">5.4.1.1.</strong> Visibility</a></li><li class="chapter-item "><a href="../../rust_by_example_src/mod/struct_visibility.html"><strong aria-hidden="true">5.4.1.2.</strong> Struct visibility: an extra level of visibility with their fields</a></li><li class="chapter-item "><a href="../../rust_by_example_src/mod/use.html"><strong aria-hidden="true">5.4.1.3.</strong> The use declaration: bind a full path to a new name</a></li><li class="chapter-item "><a href="../../rust_by_example_src/mod/super.html"><strong aria-hidden="true">5.4.1.4.</strong> super and self: remove ambiguity</a></li><li class="chapter-item "><a href="../../rust_by_example_src/mod/split.html"><strong aria-hidden="true">5.4.1.5.</strong> File/Directory hierarchy</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/crates.html"><strong aria-hidden="true">5.4.2.</strong> Crates: compilation units in Rust, library or binary</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/crates/lib.html"><strong aria-hidden="true">5.4.2.1.</strong> Creating a Library: --crate-type=lib</a></li><li class="chapter-item "><a href="../../rust_by_example_src/crates/using_lib.html"><strong aria-hidden="true">5.4.2.2.</strong> Using a Library: --extern</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/cargo.html"><strong aria-hidden="true">5.4.3.</strong> Cargo: package management tool</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/cargo/deps.html"><strong aria-hidden="true">5.4.3.1.</strong> Dependencies</a></li><li class="chapter-item "><a href="../../rust_by_example_src/cargo/conventions.html"><strong aria-hidden="true">5.4.3.2.</strong> Two Binaries Conventions</a></li><li class="chapter-item "><a href="../../rust_by_example_src/cargo/test.html"><strong aria-hidden="true">5.4.3.3.</strong> ✨Tests</a></li><li class="chapter-item "><a href="../../rust_by_example_src/cargo/build_scripts.html"><strong aria-hidden="true">5.4.3.4.</strong> Build Scripts</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">5.5.</strong> Rust Core: Generics, Traits and Scoping</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/generics.html"><strong aria-hidden="true">5.5.1.</strong> 🪐Generics</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/generics/used_as_parameter.html"><strong aria-hidden="true">5.5.1.1.</strong> Used as Parameter</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/generics/gen_fn.html"><strong aria-hidden="true">5.5.1.1.1.</strong> Functions: Identify whether a generic function</a></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/impl.html"><strong aria-hidden="true">5.5.1.1.2.</strong> Impl Type fn: Identify whether a generic method</a></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/gen_trait.html"><strong aria-hidden="true">5.5.1.1.3.</strong> Impl Traits fn: Identify whether a generic method</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/trait_bounds.html"><strong aria-hidden="true">5.5.1.2.</strong> Bounded by Trait</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/generics/bounds/testcase_empty.html"><strong aria-hidden="true">5.5.1.2.1.</strong> ✨Testcase: empty bounds</a></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/bounds/multi_trait_bounds.html"><strong aria-hidden="true">5.5.1.2.2.</strong> Multiple Trait Bounds</a></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/bounds/where_bounds.html"><strong aria-hidden="true">5.5.1.2.3.</strong> Where clauses bounds</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/new_types.html"><strong aria-hidden="true">5.5.1.3.</strong> New Type Idiom</a></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/assoc_items.html"><strong aria-hidden="true">5.5.1.4.</strong> ✨Associated items</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/generics/assoc_items/the_problem.html"><strong aria-hidden="true">5.5.1.4.1.</strong> ✨The Problem</a></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/assoc_items/types.html"><strong aria-hidden="true">5.5.1.4.2.</strong> Associated types</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/generics/phantom.html"><strong aria-hidden="true">5.5.1.5.</strong> Phantom type parameters</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/generics/phantom/testcase_units.html"><strong aria-hidden="true">5.5.1.5.1.</strong> Testcase: unit clarification</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/trait.html"><strong aria-hidden="true">5.5.2.</strong> 🪐Traits</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/trait/derive.html"><strong aria-hidden="true">5.5.2.1.</strong> ✨Derive Macro Traits</a></li><li class="chapter-item "><a href="../../rust_by_example_src/trait/dyn.html"><strong aria-hidden="true">5.5.2.2.</strong> Returning Traits with dyn</a></li><li class="chapter-item "><a href="../../rust_by_example_src/trait/ops.html"><strong aria-hidden="true">5.5.2.3.</strong> Operator Overloading</a></li><li class="chapter-item "><a href="../../rust_by_example_src/trait/drop.html"><strong aria-hidden="true">5.5.2.4.</strong> Drop</a></li><li class="chapter-item "><a href="../../rust_by_example_src/trait/iter.html"><strong aria-hidden="true">5.5.2.5.</strong> Iterators: Iterator Trait</a></li><li class="chapter-item "><a href="../../rust_by_example_src/trait/impl_trait.html"><strong aria-hidden="true">5.5.2.6.</strong> ✨impl Trait</a></li><li class="chapter-item "><a href="../../rust_by_example_src/trait/supertraits.html"><strong aria-hidden="true">5.5.2.7.</strong> Supertraits</a></li><li class="chapter-item "><a href="../../rust_by_example_src/trait/disambiguating.html"><strong aria-hidden="true">5.5.2.8.</strong> Fully Qualified Syntax: Disambiguating overlapping traits</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/scope.html"><strong aria-hidden="true">5.5.3.</strong> 🪐Scoping rules</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/scope/raii.html"><strong aria-hidden="true">5.5.3.1.</strong> RAII</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/move.html"><strong aria-hidden="true">5.5.3.2.</strong> Ownership and moves</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/scope/move/mut.html"><strong aria-hidden="true">5.5.3.2.1.</strong> Mutability</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/move/partial_move.html"><strong aria-hidden="true">5.5.3.2.2.</strong> Partial moves</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/borrow.html"><strong aria-hidden="true">5.5.3.3.</strong> Borrowing</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/scope/borrow/mut.html"><strong aria-hidden="true">5.5.3.3.1.</strong> Mutability</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/borrow/alias.html"><strong aria-hidden="true">5.5.3.3.2.</strong> Mutable or Immutable, Only One</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/borrow/ref.html"><strong aria-hidden="true">5.5.3.3.3.</strong> ✨The ref pattern</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime.html"><strong aria-hidden="true">5.5.3.4.</strong> Lifetimes</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime/elision.html"><strong aria-hidden="true">5.5.3.4.1.</strong> Elision</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime/explicit.html"><strong aria-hidden="true">5.5.3.4.2.</strong> ✨Explicit lifetime annotation: another Generic</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime/fn_method_struct_trait.html"><strong aria-hidden="true">5.5.3.4.3.</strong> ✨Functions、methods、struct、trait</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime/lifetime_bounds.html"><strong aria-hidden="true">5.5.3.4.4.</strong> Lifetime Bounds for generics</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime/lifetime_coercion.html"><strong aria-hidden="true">5.5.3.4.5.</strong> Coercion</a></li><li class="chapter-item "><a href="../../rust_by_example_src/scope/lifetime/static_lifetime.html"><strong aria-hidden="true">5.5.3.4.6.</strong> Static</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">5.6.</strong> Macros: rules! and Attributes</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/macros.html"><strong aria-hidden="true">5.6.1.</strong> macro_rules!</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/macros/syntax.html"><strong aria-hidden="true">5.6.1.1.</strong> Syntax</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/macros/designators.html"><strong aria-hidden="true">5.6.1.1.1.</strong> Designators</a></li><li class="chapter-item "><a href="../../rust_by_example_src/macros/overload.html"><strong aria-hidden="true">5.6.1.1.2.</strong> Overload</a></li><li class="chapter-item "><a href="../../rust_by_example_src/macros/repeat.html"><strong aria-hidden="true">5.6.1.1.3.</strong> Repeat</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/macros/dry.html"><strong aria-hidden="true">5.6.1.2.</strong> DRY (rust_by_example_src/Don't Repeat Yourself)</a></li><li class="chapter-item "><a href="../../rust_by_example_src/macros/dsl.html"><strong aria-hidden="true">5.6.1.3.</strong> DSL (rust_by_example_src/Domain Specific Languages)</a></li><li class="chapter-item "><a href="../../rust_by_example_src/macros/variadics.html"><strong aria-hidden="true">5.6.1.4.</strong> Variadics</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/attribute.html"><strong aria-hidden="true">5.6.2.</strong> 🧐 Attributes: metadata applied to some module, crate or item</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/attribute/unused.html"><strong aria-hidden="true">5.6.2.1.</strong> dead_code: disable the unused lint</a></li><li class="chapter-item "><a href="../../rust_by_example_src/attribute/crate.html"><strong aria-hidden="true">5.6.2.2.</strong> Crates: : crate_type and crate_name</a></li><li class="chapter-item "><a href="../../rust_by_example_src/attribute/cfg.html"><strong aria-hidden="true">5.6.2.3.</strong> cfg: Configuration conditional checks</a></li><li class="chapter-item "><a href="../../rust_by_example_src/attribute/cfg/custom.html"><strong aria-hidden="true">5.6.2.4.</strong> Custom: Custom conditionals</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">5.7.</strong> Std: Library types and Misc</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/std.html"><strong aria-hidden="true">5.7.1.</strong> ⭐️Std library types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/std/box.html"><strong aria-hidden="true">5.7.1.1.</strong> ✨Box, stack and heap</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/vec.html"><strong aria-hidden="true">5.7.1.2.</strong> ✨Vectors: re-sizable arrays</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/str.html"><strong aria-hidden="true">5.7.1.3.</strong> ✨Strings: String and &str</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/panic.html"><strong aria-hidden="true">5.7.1.4.</strong> panic!: Raise Exception , no Catch</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/option.html"><strong aria-hidden="true">5.7.1.5.</strong> Option: catching failure instead of calling panic!</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/result.html"><strong aria-hidden="true">5.7.1.6.</strong> Result: express why an operation failed</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/result/question_mark.html"><strong aria-hidden="true">5.7.1.7.</strong> ?: Chaining Results only match Ok(ok)</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/hash.html"><strong aria-hidden="true">5.7.1.8.</strong> HashMap</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/std/hash/alt_key_types.html"><strong aria-hidden="true">5.7.1.8.1.</strong> Alternate/custom key types</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/hash/hashset.html"><strong aria-hidden="true">5.7.1.8.2.</strong> HashSet</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/std/rc.html"><strong aria-hidden="true">5.7.1.9.</strong> Rc: for mutiple ownership, just like what python have done</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std/arc.html"><strong aria-hidden="true">5.7.1.10.</strong> Arc: shared ownership between threads</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc.html"><strong aria-hidden="true">5.7.2.</strong> 🌌 Std misc</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/threads.html"><strong aria-hidden="true">5.7.2.1.</strong> Threads</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/threads/testcase_mapreduce.html"><strong aria-hidden="true">5.7.2.2.</strong> ✨Testcase: map-reduce</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/channels.html"><strong aria-hidden="true">5.7.2.3.</strong> Channels: Asynchronous communication between threads</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/path.html"><strong aria-hidden="true">5.7.2.4.</strong> Path</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/file.html"><strong aria-hidden="true">5.7.2.5.</strong> File I/O</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/file/open.html"><strong aria-hidden="true">5.7.2.5.1.</strong> open: read-only</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/file/create.html"><strong aria-hidden="true">5.7.2.5.2.</strong> create: write-only</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/file/read_lines.html"><strong aria-hidden="true">5.7.2.5.3.</strong> read lines: returns an iterator</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/process.html"><strong aria-hidden="true">5.7.2.6.</strong> Child processes</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/process/pipe.html"><strong aria-hidden="true">5.7.2.6.1.</strong> Pipes: interaction with the underlying process</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/process/wait.html"><strong aria-hidden="true">5.7.2.6.2.</strong> Wait</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/fs.html"><strong aria-hidden="true">5.7.2.7.</strong> std::fs: Filesystem Operations</a></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/arg.html"><strong aria-hidden="true">5.7.2.8.</strong> Program arguments</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/arg/matching.html"><strong aria-hidden="true">5.7.2.8.1.</strong> Match to Argument parsing</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/std_misc/ffi.html"><strong aria-hidden="true">5.7.2.9.</strong> FFI: Foreign Function Interface</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">5.8.</strong> Misc: Testing, Unsafe, Compatibility and Meta</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/testing.html"><strong aria-hidden="true">5.8.1.</strong> Testing</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/testing/unit_testing.html"><strong aria-hidden="true">5.8.1.1.</strong> ✨Unit testing for panic: #[cfg(test)], #[test], #[should_panic], #[ignore]</a></li><li class="chapter-item "><a href="../../rust_by_example_src/meta/doc.html"><strong aria-hidden="true">5.8.1.2.</strong> Documentation: cargo doc</a></li><li class="chapter-item "><a href="../../rust_by_example_src/testing/doc_testing.html"><strong aria-hidden="true">5.8.1.3.</strong> ⭐️Documentation testing</a></li><li class="chapter-item "><a href="../../rust_by_example_src/testing/integration_testing.html"><strong aria-hidden="true">5.8.1.4.</strong> Integration testing</a></li><li class="chapter-item "><a href="../../rust_by_example_src/testing/dev_dependencies.html"><strong aria-hidden="true">5.8.1.5.</strong> Dev-dependencies</a></li></ol></li><li class="chapter-item "><a href="../../rust_by_example_src/unsafe.html"><strong aria-hidden="true">5.8.2.</strong> Unsafe Operations</a></li><li class="chapter-item "><a href="../../rust_by_example_src/unsafe/asm.html"><strong aria-hidden="true">5.8.3.</strong> 🤔️asm!: Inline assembly in Unsafe</a></li><li class="chapter-item "><a href="../../rust_by_example_src/compatibility.html"><strong aria-hidden="true">5.8.4.</strong> Compatibility</a></li><li class="chapter-item "><a href="../../rust_by_example_src/compatibility/raw_identifiers.html"><strong aria-hidden="true">5.8.5.</strong> Raw identifiers: r#</a></li><li class="chapter-item "><a href="../../rust_by_example_src/meta.html"><strong aria-hidden="true">5.8.6.</strong> Meta</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust_by_example_src/meta/playground.html"><strong aria-hidden="true">5.8.6.1.</strong> Playground</a></li></ol></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../PyO3_guides/src/index.html"><strong aria-hidden="true">6.</strong> The PyO3 Guide</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../PyO3_guides/src/getting_started.html"><strong aria-hidden="true">6.1.</strong> Getting started</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/module.html"><strong aria-hidden="true">6.2.</strong> Python modules</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/function.html"><strong aria-hidden="true">6.3.</strong> Python functions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../PyO3_guides/src/function/signature.html"><strong aria-hidden="true">6.3.1.</strong> Function signatures</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/function/error_handling.html"><strong aria-hidden="true">6.3.2.</strong> Error handling</a></li></ol></li><li class="chapter-item "><a href="../../PyO3_guides/src/class.html"><strong aria-hidden="true">6.4.</strong> Python classes</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../PyO3_guides/src/class/protocols.html"><strong aria-hidden="true">6.4.1.</strong> Class customizations</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../PyO3_guides/src/class/object.html"><strong aria-hidden="true">6.4.1.1.</strong> Basic object customization</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/class/numeric.html"><strong aria-hidden="true">6.4.1.2.</strong> Emulating numeric types</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/class/call.html"><strong aria-hidden="true">6.4.1.3.</strong> Emulating callable objects</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../PyO3_guides/src/conversions.html"><strong aria-hidden="true">6.5.</strong> Type conversions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../PyO3_guides/src/conversions/tables.html"><strong aria-hidden="true">6.5.1.</strong> Mapping of Rust types to Python types</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/conversions/traits.html"><strong aria-hidden="true">6.5.2.</strong> Conversion traits</a></li></ol></li><li class="chapter-item "><a href="../../PyO3_guides/src/exception.html"><strong aria-hidden="true">6.6.</strong> Python exceptions</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/python_from_rust.html"><strong aria-hidden="true">6.7.</strong> Calling Python from Rust</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/types.html"><strong aria-hidden="true">6.8.</strong> GIL, mutability and object types</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/parallelism.html"><strong aria-hidden="true">6.9.</strong> Parallelism</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/debugging.html"><strong aria-hidden="true">6.10.</strong> Debugging</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/features.html"><strong aria-hidden="true">6.11.</strong> Features reference</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/memory.html"><strong aria-hidden="true">6.12.</strong> Memory management</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/advanced.html"><strong aria-hidden="true">6.13.</strong> Advanced topics</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/building_and_distribution.html"><strong aria-hidden="true">6.14.</strong> ⭐️Building and distribution</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../PyO3_guides/src/building_and_distribution/multiple_python_versions.html"><strong aria-hidden="true">6.14.1.</strong> Supporting multiple Python versions</a></li></ol></li><li class="chapter-item "><a href="../../PyO3_guides/src/ecosystem.html"><strong aria-hidden="true">6.15.</strong> Useful crates</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../PyO3_guides/src/ecosystem/logging.html"><strong aria-hidden="true">6.15.1.</strong> Logging</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/ecosystem/async-await.html"><strong aria-hidden="true">6.15.2.</strong> Using async and await</a></li></ol></li><li class="chapter-item "><a href="../../PyO3_guides/src/faq.html"><strong aria-hidden="true">6.16.</strong> FAQ and troubleshooting</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/migration.html"><strong aria-hidden="true">6.17.</strong> Appendix A: Migration guide</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/rust_cpython.html"><strong aria-hidden="true">6.18.</strong> Appendix B: PyO3 and rust-cpython</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/trait_bounds.html"><strong aria-hidden="true">6.19.</strong> Appendix C: Trait bounds</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/python_typing_hints.html"><strong aria-hidden="true">6.20.</strong> Appendix D: Python typing hints</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/changelog.html"><strong aria-hidden="true">6.21.</strong> CHANGELOG</a></li><li class="chapter-item "><a href="../../PyO3_guides/src/contributing.html"><strong aria-hidden="true">6.22.</strong> Contributing</a></li></ol></li><li class="chapter-item expanded "><a href="../../checklist.html">Checklist</a></li></ol>
+    </div>
+    <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+</nav>
+
+<div id="page-wrapper" class="page-wrapper">
+
+    <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+        <div id="menu-bar" class="menu-bar sticky bordered">
+            <div class="left-buttons">
+                <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
+                        aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                        aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                    <i class="fa fa-paint-brush"></i>
+                </button>
+                <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="light">Light</button>
+                    </li>
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="rust">Rust</button>
+                    </li>
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="coal">Coal</button>
+                    </li>
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="navy">Navy (default)</button>
+                    </li>
+                    <li role="none">
+                        <button role="menuitem" class="theme" id="ayu">Ayu</button>
+                    </li>
+                </ul>
+                    <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                            aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                            aria-controls="searchbar">
+                        <i class="fa fa-search"></i>
+                    </button>
+            </div>
+
+            <h1 class="menu-title">The Rust Programming Language</h1>
+            <h4 class="menu-bar">日不见增 月有渐进 | 唯剃真我 方有成效｜ 惊涛拍案 千层雪起 | <a href="https://kuanhsiaokuo.github.io/think-tool-kit/">保持批判，有所取舍 | 知行合一, 方见真我</a> | 练武不练功
+                到头一场空 -- 《赛博英雄传》 </h4>
+            <div class="right-buttons">
+                    <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                        <i id="print-button" class="fa fa-print"></i>
+                    </a>
+                    <a href="https://github.com/rust-lang/book" title="Git repository" aria-label="Git repository">
+                        <i id="git-repository-button" class="fa fa-github"></i>
+                    </a>
+            </div>
+        </div>
+
+            <div id="search-wrapper" class="hidden">
+                <form id="searchbar-outer" class="searchbar-outer">
+                    <input type="search" name="search" id="searchbar" name="searchbar"
+                           placeholder="Search this book ..." aria-controls="searchresults-outer"
+                           aria-describedby="searchresults-header">
+                </form>
+                <div id="searchresults-outer" class="searchresults-outer hidden">
+                    <div id="searchresults-header" class="searchresults-header"></div>
+                    <ul id="searchresults">
+                    </ul>
+                </div>
+            </div>
+
+        <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+        <script type="text/javascript">
+            document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+            document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+            Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
+                link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+            });
+        </script>
+
+        <div id="content" class="content">
+            <main>
+
+                <!-- Page table of contents -->
+                <div class="sidetoc">
+                    <nav class="pagetoc"></nav>
+                </div>
+                <h1 id="setting-up-ci-and-property-testing-for-a-rust-crate"><a class="header" href="#setting-up-ci-and-property-testing-for-a-rust-crate">Setting up CI and property testing for a Rust crate</a></h1>
+<!--ts-->
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Thu Apr 20 14:04:29 UTC 2023 -->
+<!--te-->
+<h2 id="introduction"><a class="header" href="#introduction"><a href="t=0:00:00">#</a> Introduction</a></h2>
+<p>Section Overview: In this stream, the presenter plans to take an arbitrary crate and look at what steps to take after
+writing code that works. The focus is on polishing the crate by setting up CI, adding tests, creating a readme file,
+structuring documentation, and getting coverage testing.</p>
+<h3 id="purpose-of-the-stream"><a class="header" href="#purpose-of-the-stream">Purpose of the Stream</a></h3>
+<ul>
+<li><a href="t=0:00:16"></a> The goal of the stream is to go through things that are done when there’s a crate with one commit and no
+documentation.</li>
+<li><a href="t=0:02:25"></a> The length of the video will be around two hours or shorter depending on how far they get.</li>
+</ul>
+<h2 id="setting-up-ci"><a class="header" href="#setting-up-ci"><a href="t=0:03:07">#</a> Setting Up CI</a></h2>
+<p>Section Overview: This section covers setting up Continuous Integration (CI).</p>
+<h3 id="checking-out-crate"><a class="header" href="#checking-out-crate">Checking Out Crate</a></h3>
+<ul>
+<li><a href="t=0:03:07"></a> The presenter has a checkout of the crate with only one diff patch made in the previous stream.</li>
+<li><a href="t=0:03:24"></a> They want to remove it from being a path because otherwise, CI won’t run.</li>
+</ul>
+<h3 id="fixing-cargo-config-file"><a class="header" href="#fixing-cargo-config-file">Fixing Cargo Config File</a></h3>
+<ul>
+<li><a href="t=0:04:49"></a> There were two cargo config files which were causing issues. They removed one.</li>
+</ul>
+<h3 id="building-crate"><a class="header" href="#building-crate">Building Crate</a></h3>
+<ul>
+<li><a href="t=0:05:05"></a> Running <code>cargo check</code> builds successfully without any errors.</li>
+</ul>
+<h2 id="adding-tests"><a class="header" href="#adding-tests"><a href="t=0:06:10">#</a> Adding Tests</a></h2>
+<p>Section Overview: This section covers adding tests to the crate.</p>
+<h3 id="creating-test-suite"><a class="header" href="#creating-test-suite">Creating Test Suite</a></h3>
+<ul>
+<li><a href="t=0:06.10"></a> A test suite was created in the previous stream but wasn’t advanced.</li>
+</ul>
+<h3 id="writing-tests-for-functions"><a class="header" href="#writing-tests-for-functions">Writing Tests for Functions</a></h3>
+<ul>
+<li><a href="t=0.06.50"></a> Presenter writes tests for functions in their code.</li>
+</ul>
+<h3 id="running-tests"><a class="header" href="#running-tests">Running Tests</a></h3>
+<ul>
+<li>[](t= 00m08s) Running <code>cargo test</code> runs all the tests successfully.</li>
+</ul>
+<h2 id="creating-a-readme-file"><a class="header" href="#creating-a-readme-file"><a href="t=0:09:00">#</a> Creating a Readme File</a></h2>
+<p>Section Overview: This section covers creating a readme file for the crate.</p>
+<h3 id="importance-of-readme"><a class="header" href="#importance-of-readme">Importance of Readme</a></h3>
+<ul>
+<li><a href="t=0:09:00"></a> A readme file is important because it’s the first thing people see when they visit your repository.</li>
+</ul>
+<h3 id="what-to-include-in-readme"><a class="header" href="#what-to-include-in-readme">What to Include in Readme</a></h3>
+<ul>
+<li><a href="t=0:09:30"></a> The presenter suggests including information about what the crate does, how to use it, and how to
+contribute.</li>
+</ul>
+<h3 id="writing-readme"><a class="header" href="#writing-readme">Writing Readme</a></h3>
+<ul>
+<li><a href="t=0:10.20"></a> Presenter writes a readme file for their crate.</li>
+</ul>
+<h2 id="structuring-documentation"><a class="header" href="#structuring-documentation"><a href="t=0:12.50">#</a> Structuring Documentation</a></h2>
+<p>Section Overview: This section covers structuring documentation for the crate.</p>
+<h3 id="importance-of-documentation"><a class="header" href="#importance-of-documentation">Importance of Documentation</a></h3>
+<ul>
+<li><a href="t=0:12.50"></a> Good documentation helps users understand how to use your code and can save time in answering questions.</li>
+</ul>
+<h3 id="types-of-documentation"><a class="header" href="#types-of-documentation">Types of Documentation</a></h3>
+<ul>
+<li><a href="t=0:13.20"></a> The presenter suggests having an overview, getting started guide, API reference, and examples.</li>
+</ul>
+<h3 id="using-rustdoc"><a class="header" href="#using-rustdoc">Using Rustdoc</a></h3>
+<ul>
+<li>[](t= 00m14s) Rustdoc is used to generate documentation from comments in code.</li>
+</ul>
+<h2 id="getting-coverage-testing"><a class="header" href="#getting-coverage-testing"><a href="t=0:16.40">#</a> Getting Coverage Testing</a></h2>
+<p>Section Overview: This section covers getting coverage testing for the crate.</p>
+<h3 id="importance-of-coverage-testing"><a class="header" href="#importance-of-coverage-testing">Importance of Coverage Testing</a></h3>
+<ul>
+<li><a href="t=0:16.40"></a> Coverage testing helps ensure that all parts of your code are being tested.</li>
+</ul>
+<h3 id="using-tarpaulin-crate"><a class="header" href="#using-tarpaulin-crate">Using Tarpaulin Crate</a></h3>
+<ul>
+<li>[](t= 00m17s) Tarpaulin is used as a coverage testing tool for Rust code.</li>
+</ul>
+<h3 id="running-tarpaulin-on-codebase"><a class="header" href="#running-tarpaulin-on-codebase">Running Tarpaulin on Codebase</a></h3>
+<ul>
+<li>[](t= 00m18s) Running <code>cargo tarpaulin</code> generates a coverage report for the codebase.</li>
+</ul>
+<h2 id="conclusion"><a class="header" href="#conclusion"><a href="t=0:20.00">#</a> Conclusion</a></h2>
+<p>Section Overview: The presenter concludes the stream by summarizing what was covered and thanking viewers.</p>
+<h3 id="summary"><a class="header" href="#summary">Summary</a></h3>
+<ul>
+<li><a href="t=0:20.00"></a> The presenter covered setting up CI, adding tests, creating a readme file, structuring documentation,
+and getting coverage testing.</li>
+</ul>
+<h3 id="thanking-viewers"><a class="header" href="#thanking-viewers">Thanking Viewers</a></h3>
+<ul>
+<li><a href="t=0:21.10"></a> Presenter thanks viewers for watching and answering questions in the chat.</li>
+</ul>
+<h2 id="00524-cargo-versioning"><a class="header" href="#00524-cargo-versioning"><a href="t=324s">0:05:24</a> Cargo Versioning</a></h2>
+<p>Section Overview: In this section, the speaker explains the versioning system for the cargo crate and why it is a little
+weird.</p>
+<h3 id="cargo-versioning"><a class="header" href="#cargo-versioning">Cargo Versioning</a></h3>
+<ul>
+<li>The versioning for the cargo crate is based on the current Rust version.</li>
+<li>For Rust 1.x, the cargo version is 0.x plus 1.</li>
+<li>The reason for this system is unknown.</li>
+</ul>
+<h2 id="00601-reference-point"><a class="header" href="#00601-reference-point"><a href="t=361s">0:06:01</a> Reference Point</a></h2>
+<p>Section Overview: In this section, the speaker suggests keeping information about cargo Tamil as a reference point.</p>
+<h3 id="reference-point"><a class="header" href="#reference-point">Reference Point</a></h3>
+<ul>
+<li>It’s suggested to keep information about cargo Tamil as a reference point.</li>
+</ul>
+<h2 id="00606-committing-changes"><a class="header" href="#00606-committing-changes"><a href="t=366s">0:06:06</a> Committing Changes</a></h2>
+<p>Section Overview: In this section, the speaker discusses committing changes to fix an issue with patch overrides in
+Cargo.</p>
+<h3 id="committing-changes"><a class="header" href="#committing-changes">Committing Changes</a></h3>
+<ul>
+<li>To fix an issue with patch overrides in Cargo, it’s suggested to turn it into 70 or use rev equals one commit.</li>
+<li>This will ensure that patches are picked up correctly.</li>
+</ul>
+<h2 id="00632-skipping-duplicate-package-issue"><a class="header" href="#00632-skipping-duplicate-package-issue"><a href="t=392s">0:06:32</a> Skipping Duplicate Package Issue</a></h2>
+<p>Section Overview: In this section, the speaker talks about an issue with skipping duplicate packages when taking a git
+dependency on Cargo.</p>
+<h3 id="skipping-duplicate-package-issue"><a class="header" href="#skipping-duplicate-package-issue">Skipping Duplicate Package Issue</a></h3>
+<ul>
+<li>There seems to be an issue with skipping duplicate packages when taking a git dependency on Cargo.</li>
+<li>This needs further investigation.</li>
+</ul>
+<h2 id="00710-building-ci-pipeline"><a class="header" href="#00710-building-ci-pipeline"><a href="t=430s">0:07:10</a> Building CI Pipeline</a></h2>
+<p>Section Overview: In this section, the speaker discusses building a CI pipeline and getting packages to build somewhere
+other than their own laptop.</p>
+<h3 id="building-ci-pipeline"><a class="header" href="#building-ci-pipeline">Building CI Pipeline</a></h3>
+<ul>
+<li>The first step in building a CI pipeline is ensuring that packages can build somewhere other than their own laptop.</li>
+<li>This was not possible before due to a patch path override.</li>
+<li>The speaker has a collection of CI scripts that they use and keep in a separate GitHub repo.</li>
+<li>Configurations for dependabot, code coverage, and workflows are kept in this repo.</li>
+<li>By adding another git remote to the current git repository and fetching it, the history of that other repo can be
+merged with the history of this repo.</li>
+<li>This makes it easy to keep the CI up to date.</li>
+</ul>
+<h2 id="00850-workflows"><a class="header" href="#00850-workflows"><a href="t=530s">0:08:50</a> Workflows</a></h2>
+<p>Section Overview: In this section, the speaker talks about different workflows for different kinds of things that may or
+may not be relevant for a given crate.</p>
+<h3 id="workflows"><a class="header" href="#workflows">Workflows</a></h3>
+<ul>
+<li>Different workflows are used for different kinds of things that may or may not be relevant for a given crate.</li>
+<li>Examples include checks scheduled and test ammo.</li>
+</ul>
+<h2 id="notifications-for-github-actions"><a class="header" href="#notifications-for-github-actions"><a href="t=0:11:10s">#</a> Notifications for GitHub Actions</a></h2>
+<p>Section Overview: The speaker discusses how they use notifications for GitHub actions to update outdated versions of
+actions used in their CI.</p>
+<h3 id="using-versioned-actions"><a class="header" href="#using-versioned-actions">Using Versioned Actions</a></h3>
+<ul>
+<li><a href="t=0:11:10s"></a> The speaker uses versioned actions in their CI.</li>
+<li><a href="t=0:11:10s"></a> If an outdated version of an action is being used, a PR is filed to update it.</li>
+</ul>
+<h3 id="cargo-ecosystem"><a class="header" href="#cargo-ecosystem">Cargo Ecosystem</a></h3>
+<ul>
+<li><a href="t=0:11:30s"></a> The speaker has a daily job set up for the cargo ecosystem.</li>
+<li><a href="t=0:11:30s"></a> This job runs at the root of the crate and ignores all dependencies if the update is a patch or minor
+update.</li>
+<li><a href="t=0:11:52s"></a> If there’s a major release, the speaker wants to know so they can take action and update their crates.</li>
+</ul>
+<h2 id="codecov-configuration"><a class="header" href="#codecov-configuration"><a href="t=0:12:33s">#</a> Codecov Configuration</a></h2>
+<p>Section Overview: The speaker talks about configuring codecov for code coverage reporting.</p>
+<h3 id="configuring-code-coverage-reporting"><a class="header" href="#configuring-code-coverage-reporting">Configuring Code Coverage Reporting</a></h3>
+<ul>
+<li><a href="t=0:12:33s"></a> The speaker configures codecov for code coverage reporting.</li>
+<li><a href="t=0:12:54s"></a> They ignore the test directory because they don’t want coverage for tests.</li>
+<li><a href="t=0:12.54s"></a> They make the code comments on PRS and stuff less verbose.</li>
+</ul>
+<h2 id="real-jobs"><a class="header" href="#real-jobs"><a href="t=0.13.10s">#</a> Real Jobs</a></h2>
+<p>Section Overview: The speaker goes through the actual jobs in their workflow.</p>
+<h3 id="check-workflow"><a class="header" href="#check-workflow">Check Workflow</a></h3>
+<ul>
+<li><a href="t=0.13.31s"></a> The check workflow runs when pushing to main branch or creating a pull request.</li>
+<li><a href="t=0.13.51s"></a> It includes format, Clippy, dock, hack, and msrv jobs.</li>
+<li><a href="t=0.14.13s"></a> The format job runs cargo format check on the stable compiler.</li>
+<li><a href="t=0.14.37s"></a> The Clippy job runs both stable and beta versions.</li>
+</ul>
+<h3 id="fail-fast"><a class="header" href="#fail-fast">Fail Fast</a></h3>
+<ul>
+<li><a href="t=0:15:19s"></a> The speaker sets fail fast for the Clippy job to avoid unnecessary CI runs.</li>
+<li><a href="t=0:15:37s"></a> If something fails in one step, it will likely fail in other steps as well.</li>
+</ul>
+<h2 id="cargo-check-and-cargo-hack"><a class="header" href="#cargo-check-and-cargo-hack"><a href="t=0:16:12s">#</a> Cargo Check and Cargo Hack</a></h2>
+<p>Section Overview: In this section, the speaker talks about the importance of running <code>cargo doc</code> to check for correct
+introdoc links. They also discuss using nightly documentation features with <code>cargo doc</code>. The speaker then explains how
+to use <code>cargo hack</code> to check combinations of feature flags.</p>
+<h3 id="running-cargo-doc"><a class="header" href="#running-cargo-doc">Running cargo doc</a></h3>
+<ul>
+<li><a href="t=0:16:12s"></a> When running <code>cargo doc</code>, checks are performed that don’t run when you run any other command.</li>
+<li><a href="t=0:16:33s"></a> To check that your introdoc links are correct and not dangling, you need to run a <code>cargo doc</code>.</li>
+<li><a href="t=0:16:52s"></a> Running <code>cargo doc</code> on nightly allows you to use some nice features like config doc or doc config which
+means that you can mark a particular function or type as only being available if a certain configuration is true.</li>
+</ul>
+<h3 id="using-cargo-hack"><a class="header" href="#using-cargo-hack">Using cargo hack</a></h3>
+<ul>
+<li><a href="t=0:17:14s"></a> Cargo requires that your features are all additive so that means your crate should compile with any
+combination of your features.</li>
+<li><a href="t=0:17:37s"></a> Cargo hack allows you to check a particular combination of features or a set of combinations of
+features.</li>
+<li><a href="t=0:18:38s"></a> Power set of the features is used in cargo hack which means every possible combination is checked.</li>
+</ul>
+<h2 id="msrv-and-safety-checks"><a class="header" href="#msrv-and-safety-checks"><a href="t=0:19:02s">#</a> MSRV and Safety Checks</a></h2>
+<p>Section Overview: In this section, the speaker talks about minimum supported rust version (MSRV), what it is used for,
+and how it works. They also discuss safety checks such as Miri, leak sanitizer, thread sanitizer, address sanitizer,
+Loom and no_std.</p>
+<h3 id="minimum-supported-rust-version-msrv"><a class="header" href="#minimum-supported-rust-version-msrv">Minimum Supported Rust Version (MSRV)</a></h3>
+<ul>
+<li><a href="t=0:19:02s"></a> MSRV is used to figure out whether the crate continues to build with the version of rust that we claim
+it builds with.</li>
+<li><a href="t=0:19:26s"></a> It checks out, installs and then runs cargo check against MSRV.</li>
+</ul>
+<h3 id="safety-checks"><a class="header" href="#safety-checks">Safety Checks</a></h3>
+<ul>
+<li><a href="t=0:20:09s"></a> Miri, leak sanitizer, thread sanitizer, address sanitizer and Loom are safety checks that ensure your
+code is safe.</li>
+<li><a href="t=0:20:33s"></a> No_std makes sure that your crate still builds against targets that have no standard library and no
+allocator or targets that have an allocator but not a standard Library.</li>
+</ul>
+<h2 id="schedule-jobs"><a class="header" href="#schedule-jobs">Schedule Jobs</a></h2>
+<p>Section Overview: In this section, the speaker talks about the schedule jobs that are run on nightly and beta versions
+of Rust.</p>
+<h3 id="running-a-build-on-nightly"><a class="header" href="#running-a-build-on-nightly">Running a Build on Nightly</a></h3>
+<ul>
+<li>Run a build on nightly or at least fairly regularly.</li>
+<li>The job checks out installs nightly and runs cargo test with Dash locked.</li>
+</ul>
+<h3 id="building-on-beta"><a class="header" href="#building-on-beta">Building on Beta</a></h3>
+<ul>
+<li>This job builds on beta and runs cargo update to ensure that if you run with newer versions of dependencies, your test
+suite still passes.</li>
+<li>Checking for new deprecated items in dependencies is important.</li>
+</ul>
+<h2 id="running-test-suite"><a class="header" href="#running-test-suite">Running Test Suite</a></h2>
+<p>Section Overview: In this section, the speaker talks about running the actual test suite.</p>
+<h3 id="testing-stable-and-beta-versions"><a class="header" href="#testing-stable-and-beta-versions">Testing Stable and Beta Versions</a></h3>
+<ul>
+<li>Runs your test suite on stable and beta versions.</li>
+<li>The same little bit is used for both stable and beta versions.</li>
+</ul>
+<h3 id="github-ci-magic"><a class="header" href="#github-ci-magic">GitHub CI Magic</a></h3>
+<ul>
+<li>If a file does not exist, then run cargo generate log file.</li>
+<li>Checking in lock files allows people to bisect your crate like they can check out an old version of your crate and it
+should still be able to build by virtue of using the exact dependencies that were present at the time.</li>
+</ul>
+<h3 id="minimal-versions"><a class="header" href="#minimal-versions">Minimal Versions</a></h3>
+<ul>
+<li>Minimal only runs on stable but it happens to also install lightly because minimal versions is an unstable flag.</li>
+<li>It runs cargo update with the dash Z minimal versions flag which chooses the oldest version that’s still subject to
+the dependency requirements that you set in your cargo Tamil.</li>
+</ul>
+<h2 id="minimal-versions-1"><a class="header" href="#minimal-versions-1">Minimal Versions</a></h2>
+<p>Section Overview: In this section, the speaker discusses the importance of using full version numbers when taking a
+dependency to ensure that consumers don’t end up in weird states. They also explain how minimal versions work and their
+limitations.</p>
+<h3 id="importance-of-full-version-numbers"><a class="header" href="#importance-of-full-version-numbers">Importance of Full Version Numbers</a></h3>
+<ul>
+<li>When taking a dependency, it is recommended to use the full version number instead of just the current major version.</li>
+<li>This ensures that consumers don’t end up in weird states.</li>
+<li>It is better to look back at the version list and find exactly the minimal version needed.</li>
+<li>This may be time-consuming but it’s better than picking the current version which has everything you’re going to use.</li>
+</ul>
+<h3 id="limitations-of-minimal-versions"><a class="header" href="#limitations-of-minimal-versions">Limitations of Minimal Versions</a></h3>
+<ul>
+<li>Minimal versions choose minimal versions transitively, which means if one of your dependencies has an incorrectly
+specified minimum version, it can cause problems.</li>
+<li>If a dependency needs a specific version but hasn’t specified it themselves, we can force that minimal requirement by
+specifying it ourselves.</li>
+<li>There is another proposal called Dash Z direct minimal versions which chooses the minimal versions of your direct
+dependencies but the highest version of all transitive dependencies.</li>
+</ul>
+<h3 id="os-check-and-coverage-testing"><a class="header" href="#os-check-and-coverage-testing">OS Check and Coverage Testing</a></h3>
+<ul>
+<li>The next step after resolving dependencies is OS check to ensure that crate test suite runs on Mac OS and Windows
+using stable compiler.</li>
+<li>Coverage testing is done using cargo lvm Cub which uses instrumented coverage for more accurate reporting.</li>
+<li>Codecov.io is used for outputting coverage results as it’s free for open source projects.</li>
+</ul>
+<h2 id="oregon-origin-and-git-merge"><a class="header" href="#oregon-origin-and-git-merge"><a href="t=0:31:52s">#</a> Oregon Origin and Git Merge</a></h2>
+<p>Section Overview: In this section, the speaker discusses merging a repository from Rusty Iconf into their own
+repository. They discuss whether to preserve history or do a squash merge and why they chose to preserve history.</p>
+<h3 id="preserving-history-vs-squash-merge"><a class="header" href="#preserving-history-vs-squash-merge">Preserving History vs Squash Merge</a></h3>
+<ul>
+<li><a href="t=0:33:05s"></a> The speaker chooses to preserve history for the merge because they plan on merging from Rusty Iconf
+again in the future.</li>
+<li><a href="t=0:33:35s"></a> If they did a squash merge, there would be more merge conflicts because git wouldn’t know about the
+existing connections and merge history with that other repo.</li>
+</ul>
+<h3 id="checking-ci-and-pushing-to-origin"><a class="header" href="#checking-ci-and-pushing-to-origin">Checking CI and Pushing to Origin</a></h3>
+<ul>
+<li><a href="t=0:31:57s"></a> The speaker checks CI before pushing it to origin.</li>
+<li><a href="t=0:32:01s"></a> They push CI to origin so that they can do a PR of this later on.</li>
+</ul>
+<h3 id="adding-cargo-lock"><a class="header" href="#adding-cargo-lock">Adding Cargo Lock</a></h3>
+<ul>
+<li><a href="t=0:34:17s"></a> The speaker adds cargo lock by using “git add cargo lock” and “Ben dot get ignore”.</li>
+<li><a href="t=0:34:47s"></a> They check in their cargo lock.</li>
+</ul>
+<h3 id="merging-repositories"><a class="header" href="#merging-repositories">Merging Repositories</a></h3>
+<ul>
+<li><a href="t=0:33:48s"></a> After merging repositories, all commits from the other repo are brought in as well.</li>
+<li><a href="t=0:32:33s"></a> A PR is created from this one by adding CI and then putting the link there.</li>
+</ul>
+<h2 id="troubleshooting-openssl-sys-dependency-issue"><a class="header" href="#troubleshooting-openssl-sys-dependency-issue"><a href="t=0:35.01s">#</a> Troubleshooting OpenSSL Sys Dependency Issue</a></h2>
+<p>Section Overview: In this section, the speaker troubleshoots an issue with OpenSSL Sys dependency version.</p>
+<h3 id="open-ssl-sys-dependency-issue"><a class="header" href="#open-ssl-sys-dependency-issue">Open SSL Sys Dependency Issue</a></h3>
+<ul>
+<li><a href="t=0.36.58s"></a> Minimum supported rust version failed because of an issue with OpenSSL Sys dependency version.</li>
+<li><a href="t=0.37.13s"></a> The speaker goes to the GitHub repo for OpenSSL Sys and checks its cargo Tomo.</li>
+<li><a href="t=0.37.36s"></a> They find that OpenSSL Sys has moved away from using Rust C underscore version dependency and now uses
+Auto config.</li>
+</ul>
+<h3 id="bumping-in-msrv-for-crates-index"><a class="header" href="#bumping-in-msrv-for-crates-index">Bumping in MSRV for Crates Index</a></h3>
+<ul>
+<li><a href="t=0:35:24s"></a> The speaker bumps in MSRV for crates index to fix the issue with minimum supported rust version
+failing.</li>
+</ul>
+<h2 id="checking-ci-and-running-tests"><a class="header" href="#checking-ci-and-running-tests"><a href="t=0:32:33s">#</a> Checking CI and Running Tests</a></h2>
+<p>Section Overview: In this section, the speaker checks CI and runs tests to ensure everything is working properly.</p>
+<h3 id="checking-ci"><a class="header" href="#checking-ci">Checking CI</a></h3>
+<ul>
+<li><a href="t=0:31:57s"></a> The speaker checks CI before pushing it to origin.</li>
+<li><a href="t=0:32:01s"></a> They push CI to origin so that they can do a PR of this later on.</li>
+</ul>
+<h3 id="running-tests-1"><a class="header" href="#running-tests-1">Running Tests</a></h3>
+<ul>
+<li><a href="t=0:32:33s"></a> After merging repositories, all commits from the other repo are brought in as well.</li>
+<li><a href="t=0:32:48s"></a> Jobs are kicked off and it will be interesting to see if they pass or fail.</li>
+<li><a href="t=0:34:36s"></a> Minimum supported rust version failed but was fixed by bumping in MSRV for crates index.</li>
+<li><a href="t=0.36.58s"></a> Minimum versions failed but was not surprising since no new version was found for it.</li>
+<li>Other tests were run such as nightly dock works fine, cargo update works fine, etc.</li>
+</ul>
+<h2 id="t03839s-solving-dependency-problems"><a class="header" href="#t03839s-solving-dependency-problems">[t=0:38:39s] Solving Dependency Problems</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to solve dependency problems in Rust.</p>
+<h3 id="bumping-minimal-versions"><a class="header" href="#bumping-minimal-versions">Bumping Minimal Versions</a></h3>
+<ul>
+<li>The speaker’s first instinct is to bump minimal versions.</li>
+<li>However, this can be annoying because it may not address the problem in the specification.</li>
+<li>Pinning a much newer version of OpenSSL can be a solution.</li>
+</ul>
+<h3 id="binary-search-for-openssl-version"><a class="header" href="#binary-search-for-openssl-version">Binary Search for OpenSSL Version</a></h3>
+<ul>
+<li>The current version of OpenSSL being used is 0.10.45.</li>
+<li>A binary search is performed to find a newer version of OpenSSL that works.</li>
+<li>Version 0.8.5 is found to work.</li>
+</ul>
+<h3 id="updating-package-config"><a class="header" href="#updating-package-config">Updating Package Config</a></h3>
+<ul>
+<li>Package config version 0.3.11 does not have the required method for range version.</li>
+<li>Updating package config to version 0.3.26 solves this issue.</li>
+</ul>
+<h3 id="fixing-rand-isaac-and-hkdf"><a class="header" href="#fixing-rand-isaac-and-hkdf">Fixing Rand Isaac and HKDF</a></h3>
+<ul>
+<li>Rand Isaac version 0.1.1 is needed but was not specified in the code.</li>
+<li>HKDF through P384 has an issue with its dependencies.</li>
+<li>Finding compatible versions of these dependencies can be very tedious and annoying.</li>
+</ul>
+<h3 id="conclusion-1"><a class="header" href="#conclusion-1">Conclusion</a></h3>
+<p>Solving dependency problems in Rust can be challenging and time-consuming due to transitive dependencies and
+compatibility issues between different versions of packages and libraries.</p>
+<h2 id="updating-dependencies"><a class="header" href="#updating-dependencies">Updating Dependencies</a></h2>
+<p>Section Overview: In this section, the speaker discusses updating dependencies and how to get rid of old versions of
+packages.</p>
+<h3 id="getting-rid-of-old-versions"><a class="header" href="#getting-rid-of-old-versions">Getting Rid of Old Versions</a></h3>
+<ul>
+<li>Crossbeam Channel can be used to update Ran.</li>
+<li>The old version of Rand is completely gone after using Crossbeam Channel.</li>
+</ul>
+<h3 id="testing-new-versions"><a class="header" href="#testing-new-versions">Testing New Versions</a></h3>
+<ul>
+<li>Binary search can be used to test new versions.</li>
+<li>OpenSSL was tested and found to build successfully.</li>
+</ul>
+<h3 id="updating-cargo-lock"><a class="header" href="#updating-cargo-lock">Updating Cargo Lock</a></h3>
+<ul>
+<li>Running <code>cargo check</code> updates the Cargo lock file.</li>
+<li>Approval rules are added before merging changes.</li>
+</ul>
+<h2 id="setting-up-ci-1"><a class="header" href="#setting-up-ci-1">Setting Up CI</a></h2>
+<p>Section Overview: In this section, the speaker sets up continuous integration (CI).</p>
+<h3 id="creating-a-repository"><a class="header" href="#creating-a-repository">Creating a Repository</a></h3>
+<ul>
+<li>A repository is created for Code Curve.</li>
+<li>Workflows are run to ensure everything works as expected.</li>
+</ul>
+<h3 id="troubleshooting-nightly-build-failure"><a class="header" href="#troubleshooting-nightly-build-failure">Troubleshooting Nightly Build Failure</a></h3>
+<ul>
+<li>Checking nightly builds reveals that the lock file needs to be updated.</li>
+<li>Multiple versions of FF are brought in due to specified minimal versions.</li>
+</ul>
+<h2 id="starting-the-ci"><a class="header" href="#starting-the-ci"><a href="t=0:52:46s">#</a> Starting the CI</a></h2>
+<p>Section Overview: In this section, the speaker starts the Continuous Integration (CI) process for an open-source project
+on GitHub. They explain how GitHub limits the number of jobs that can run in parallel for open-source projects and how
+canceling previous runs can free up resources to run the current one faster.</p>
+<h3 id="starting-ci"><a class="header" href="#starting-ci">Starting CI</a></h3>
+<ul>
+<li>The speaker starts the CI process for an open-source project on GitHub. <a href="t=0:52:50s"></a></li>
+<li>They mention that there were three rockets before, but now there are only two, which makes them sad. <a href="t=0:52:50s"></a></li>
+<li>The speaker wishes that all tests would run in parallel and fast. However, they acknowledge that GitHub is donating CI
+for free for open source things. <a href="t=0:53:08s"></a></li>
+<li>The speaker cancels some runs from a previous push to free up more resources to run this one faster or more parallel
+because GitHub limits the number of jobs that can run in parallel for open-source projects. <a href="t=0:54:12s"></a></li>
+</ul>
+<h2 id="value-of-minimal-versions"><a class="header" href="#value-of-minimal-versions"><a href="t=0:55:06s">#</a> Value of Minimal Versions</a></h2>
+<p>Section Overview: In this section, the speaker discusses whether it’s worth spending time on minimal versions and
+checking them through CI.</p>
+<h3 id="minimal-versions-2"><a class="header" href="#minimal-versions-2">Minimal Versions</a></h3>
+<ul>
+<li>The speaker explains why having a correct minimal version check through CI is valuable as it can save time down the
+road when consumers come with issues related to dependencies specified in cargo.toml file.<a href="t=0:55:22s"></a></li>
+<li>They also mention that catching errors in one place is better than many places and building tooling could help reduce
+waste of time required to get to that point.<a href="t=0:55:58s"></a></li>
+</ul>
+<h2 id="streaming-as-educational-content"><a class="header" href="#streaming-as-educational-content"><a href="t=0:56:09s">#</a> Streaming as Educational Content</a></h2>
+<p>Section Overview: In this section, the speaker discusses the value of streaming as educational content.</p>
+<h3 id="streaming"><a class="header" href="#streaming">Streaming</a></h3>
+<ul>
+<li>The speaker explains that streaming can be valuable if it’s educational and useful. They mention that they try to
+build things that are useful and hope that their streams are educational.<a href="t=0:57:31s"></a></li>
+<li>They also mention that some streams may not have any value, but others like Wordle stream were just fun to
+build.<a href="t=0:57:12s"></a></li>
+</ul>
+<h2 id="introduction-1"><a class="header" href="#introduction-1"><a href="t=0:58:11s">#</a> Introduction</a></h2>
+<p>Section Overview: In this section, the speaker talks about the purpose of their streams and hopes that they are not a
+waste of time for viewers. They also discuss the value of their time compared to others.</p>
+<h3 id="purpose-of-streams"><a class="header" href="#purpose-of-streams">Purpose of Streams</a></h3>
+<ul>
+<li>The speaker hopes that their streams have a meaningful impact on viewers.</li>
+<li>They hope that viewers learn new things during the stream.</li>
+<li>The trade-off between the speaker’s time and viewer’s time is reasonable.</li>
+</ul>
+<h2 id="technical-issue-with-windows"><a class="header" href="#technical-issue-with-windows"><a href="t=0:59:03s">#</a> Technical Issue with Windows</a></h2>
+<p>Section Overview: In this section, the speaker encounters a technical issue with Windows and discusses how to fix it.</p>
+<h3 id="fixing-openssl-on-windows"><a class="header" href="#fixing-openssl-on-windows">Fixing OpenSSL on Windows</a></h3>
+<ul>
+<li>The speaker encounters an issue with OpenSSL on Windows.</li>
+<li>They search for a solution in their repositories.</li>
+<li>To fix it, they need to install OpenSSL specifically for Windows.</li>
+<li>This step should be added to their standard setup process.</li>
+</ul>
+<h2 id="testing-and-ci"><a class="header" href="#testing-and-ci"><a href="t=1:00:07s">#</a> Testing and CI</a></h2>
+<p>Section Overview: In this section, the speaker discusses testing and continuous integration (CI).</p>
+<h3 id="coverage-report"><a class="header" href="#coverage-report">Coverage Report</a></h3>
+<ul>
+<li>The coverage report shows that there is terrible testing of index.</li>
+<li>There is no test for features or dependencies in index.</li>
+</ul>
+<h3 id="pushing-changes-and-merging-branches"><a class="header" href="#pushing-changes-and-merging-branches">Pushing Changes and Merging Branches</a></h3>
+<ul>
+<li>The speaker pushes changes and merges branches.</li>
+<li>They confirm merge and delete branch afterward.</li>
+</ul>
+<h3 id="updating-readme-file"><a class="header" href="#updating-readme-file">Updating Readme File</a></h3>
+<ul>
+<li>The readme file needs updating after merging branches.</li>
+<li>Badges need to be updated as well.</li>
+</ul>
+<h2 id="improving-test-suite-with-property-based-testing"><a class="header" href="#improving-test-suite-with-property-based-testing">Improving Test Suite with Property-Based Testing</a></h2>
+<p>Section Overview: In this section, the speaker discusses the benefits of property-based testing and compares two main
+tools for it: Prop test and Quick Check.</p>
+<h3 id="property-based-testing"><a class="header" href="#property-based-testing">Property-Based Testing</a></h3>
+<ul>
+<li>Property-based testing is a way to write tests by defining patterns for test cases instead of writing individual test
+cases.</li>
+<li>Two main tools for property-based testing are Prop test and Quick Check. The recommendation is to generally favor Prop
+test because it has a more elaborate way of doing property-based testing.</li>
+<li>Property-based testing generates different inputs based on defined constraints to explore the space more efficiently
+than traditional fuzz testing.</li>
+<li>Property-based testing is less deterministic than traditional fuzz testing due to exploring an infinite or very large
+space. However, there are mechanisms in place to make it more deterministic.</li>
+</ul>
+<h3 id="example"><a class="header" href="#example">Example</a></h3>
+<ul>
+<li>An example of using property-based testing is checking that a parse date function doesn’t panic when given any string
+that matches a regular expression pattern.</li>
+<li>Another example is checking that all strings matching a pattern should be valid dates or at least parsable as dates.</li>
+</ul>
+<p>Overall, property-based testing provides an efficient way to generate inputs based on defined constraints and explore
+the space intelligently. It can be used as an alternative or complement to traditional fuzz testing.</p>
+<h2 id="t4203s-generating-inputs-for-testing"><a class="header" href="#t4203s-generating-inputs-for-testing">[t=4203s] Generating Inputs for Testing</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to generate inputs for testing and the benefits of
+generating inputs from small domains. The speaker also explains how to use prop testing to test if things work
+correctly.</p>
+<h3 id="benefits-of-generating-inputs-from-small-domains"><a class="header" href="#benefits-of-generating-inputs-from-small-domains">Benefits of Generating Inputs from Small Domains</a></h3>
+<ul>
+<li>Generating inputs from relatively small domains allows you to fully explore the space and do actual ranges.</li>
+<li>It generates a bunch of valid potential inputs that semi-intelligently explore the space.</li>
+<li>Prop testing runs a bunch of inputs and tells you what input it might fail for.</li>
+</ul>
+<h3 id="using-prop-testing"><a class="header" href="#using-prop-testing">Using Prop Testing</a></h3>
+<ul>
+<li>It is not recommended to use prop testing to test performance because it randomly explores the input space.</li>
+<li>Benchmarking based on prop testing can be weird because you may end up benchmarking the harness just as much as you’re
+going to test the actual online code.</li>
+<li>Prop testing generates a bunch of things that match a pattern and tries to be more intelligent than doing a linear
+scan.</li>
+<li>Ultimately, it refines down to a test case that fails.</li>
+</ul>
+<h2 id="t4360s-adding-dependencies-with-prop-tests"><a class="header" href="#t4360s-adding-dependencies-with-prop-tests">[t=4360s] Adding Dependencies with Prop Tests</a></h2>
+<p>Section Overview: In this section, the speaker talks about adding dependencies with prop tests and modifying cargo
+projects.</p>
+<h3 id="round-trip-function"><a class="header" href="#round-trip-function">Round Trip Function</a></h3>
+<ul>
+<li>The round trip function constructs a cargo project, expects modifications in cargo Tamil, packages it up, and runs it
+through all different steps.</li>
+<li>Currently, round trips are super simple; one does not modify anything while another was not implemented yet.</li>
+</ul>
+<h3 id="adding-dependencies-with-prop-tests"><a class="header" href="#adding-dependencies-with-prop-tests">Adding Dependencies with Prop Tests</a></h3>
+<ul>
+<li>To add prop tests, we need to add dependencies first.</li>
+<li>The speaker wonders whether they want this in the same file or not.</li>
+<li>They make some changes but encounter an error.</li>
+</ul>
+<h2 id="interesting"><a class="header" href="#interesting">Interesting</a></h2>
+<p>Section Overview: In this section, the speaker expresses interest in something.</p>
+<h3 id="speakers-interest"><a class="header" href="#speakers-interest">Speaker’s Interest</a></h3>
+<ul>
+<li>The speaker says “interesting.”</li>
+</ul>
+<h2 id="checking-out-cargo-lock"><a class="header" href="#checking-out-cargo-lock">Checking Out Cargo Lock</a></h2>
+<p>Section Overview: In this section, the speaker mentions checking out cargo lock.</p>
+<h3 id="checking-out-cargo-lock-1"><a class="header" href="#checking-out-cargo-lock-1">Checking Out Cargo Lock</a></h3>
+<ul>
+<li>The speaker says “check out cargo lock.”</li>
+</ul>
+<h2 id="huh"><a class="header" href="#huh">Huh?</a></h2>
+<p>Section Overview: In this section, the speaker expresses confusion.</p>
+<h3 id="confusion"><a class="header" href="#confusion">Confusion</a></h3>
+<ul>
+<li>The speaker says “huh?”</li>
+</ul>
+<h2 id="error-message-explanation"><a class="header" href="#error-message-explanation">Error Message Explanation</a></h2>
+<p>Section Overview: In this section, the speaker tries to understand an error message.</p>
+<h3 id="error-message-explanation-1"><a class="header" href="#error-message-explanation-1">Error Message Explanation</a></h3>
+<ul>
+<li>The speaker wonders why there is an error message.</li>
+<li>They speculate that it might be because they added prop test um but it’s not running with minimal versions.</li>
+<li>They say that shouldn’t make a difference.</li>
+</ul>
+<h2 id="build-issue"><a class="header" href="#build-issue">Build Issue</a></h2>
+<p>Section Overview: In this section, the speaker encounters a build issue.</p>
+<h3 id="build-issue-1"><a class="header" href="#build-issue-1">Build Issue</a></h3>
+<ul>
+<li>The speaker says that it doesn’t even build with the latest versions of everything.</li>
+<li>They mention finding crate bytes compiled by an incompatible version of rust compiled to their Rusty beta.</li>
+</ul>
+<h2 id="interesting-again"><a class="header" href="#interesting-again">Interesting Again!</a></h2>
+<p>Section Overview: In this section, the speaker expresses interest again.</p>
+<h3 id="interest"><a class="header" href="#interest">Interest</a></h3>
+<ul>
+<li>The speaker says “interesting” again.</li>
+</ul>
+<h2 id="environment-variable-issue"><a class="header" href="#environment-variable-issue">Environment Variable Issue</a></h2>
+<p>Section Overview: In this section, the speaker realizes there is an issue with their environment variable.</p>
+<h3 id="environment-variable-issue-1"><a class="header" href="#environment-variable-issue-1">Environment Variable Issue</a></h3>
+<ul>
+<li>The speaker realizes that their environment variable is no longer being set.</li>
+<li>They mention that it’s causing issues.</li>
+</ul>
+<h2 id="avoiding-cargo-clean"><a class="header" href="#avoiding-cargo-clean">Avoiding Cargo Clean</a></h2>
+<p>Section Overview: In this section, the speaker tries to avoid running cargo clean.</p>
+<h3 id="avoiding-cargo-clean-1"><a class="header" href="#avoiding-cargo-clean-1">Avoiding Cargo Clean</a></h3>
+<ul>
+<li>The speaker says they specifically didn’t want to run cargo clean because of a weird Target directory setup.</li>
+<li>They mention that it wouldn’t have made a difference anyway.</li>
+</ul>
+<h2 id="successful-build"><a class="header" href="#successful-build">Successful Build</a></h2>
+<p>Section Overview: In this section, the speaker successfully builds something.</p>
+<h3 id="successful-build-1"><a class="header" href="#successful-build-1">Successful Build</a></h3>
+<ul>
+<li>The speaker says that it looks like it builds and asks the listener to check out cargo lock and cargo check.</li>
+</ul>
+<h2 id="strange-behavior"><a class="header" href="#strange-behavior">Strange Behavior</a></h2>
+<p>Section Overview: In this section, the speaker encounters strange behavior.</p>
+<h3 id="strange-behavior-1"><a class="header" href="#strange-behavior-1">Strange Behavior</a></h3>
+<ul>
+<li>The speaker says “that’s very strange.”</li>
+<li>They wonder why they got into some weird fingerprinting issue here.</li>
+</ul>
+<h2 id="via-cargo-as-standard-integration-test"><a class="header" href="#via-cargo-as-standard-integration-test">Via Cargo as Standard Integration Test</a></h2>
+<p>Section Overview: In this section, the speaker discusses using Via cargo as a standard integration test.</p>
+<h3 id="using-via-cargo-as-standard-integration-test"><a class="header" href="#using-via-cargo-as-standard-integration-test">Using Via Cargo as Standard Integration Test</a></h3>
+<ul>
+<li>The speaker wants via cargo to be a standard integration test file where they have imperative tests and prop tests
+separate.</li>
+<li>They mention wanting the round trip function to be usable in both of these tests but are unsure if it will work
+without running them twice.</li>
+</ul>
+<h2 id="running-tests-twice"><a class="header" href="#running-tests-twice">Running Tests Twice</a></h2>
+<p>Section Overview: In this section, the speaker discusses running tests twice.</p>
+<h3 id="running-tests-twice-1"><a class="header" href="#running-tests-twice-1">Running Tests Twice</a></h3>
+<ul>
+<li>The speaker says that they think cargo test is actually now going to run the unit testing via cargo twice.</li>
+<li>They mention other ways to do this but find the auto-detection mechanism of cargo for test suites annoying.</li>
+</ul>
+<h2 id="dependencies"><a class="header" href="#dependencies">Dependencies</a></h2>
+<p>Section Overview: In this section, the speaker mentions dependencies.</p>
+<h3 id="dependencies-1"><a class="header" href="#dependencies-1">Dependencies</a></h3>
+<ul>
+<li>The speaker comments on how many dependencies there are.</li>
+<li>They realize that they changed their cargo config and it caused confusion when trying to reuse old artifacts.</li>
+</ul>
+<h2 id="output-issue"><a class="header" href="#output-issue">Output Issue</a></h2>
+<p>Section Overview: In this section, the speaker discusses an issue with output.</p>
+<h3 id="output-issue-1"><a class="header" href="#output-issue-1">Output Issue</a></h3>
+<ul>
+<li>The speaker realizes that it prints the output from cargo as a part of a test and mentions that it’s another thing
+they need to fix.</li>
+</ul>
+<h2 id="cargo-test-suite"><a class="header" href="#cargo-test-suite">Cargo Test Suite</a></h2>
+<p>Section Overview: In this section, the speaker discusses the Rust test suite and what it uses from the cargo. They also
+discuss modifying the workspace before packaging and checking output structs.</p>
+<h3 id="modifying-workspace-before-packaging"><a class="header" href="#modifying-workspace-before-packaging">Modifying Workspace Before Packaging</a></h3>
+<ul>
+<li>The speaker suggests starting with one of the examples given in Via Cargo.</li>
+<li>They suggest stealing a whole test from Via Cargo.</li>
+<li>The goal is to check various transit structs.</li>
+</ul>
+<h3 id="prop-testing-over-dependencies"><a class="header" href="#prop-testing-over-dependencies">Prop Testing Over Dependencies</a></h3>
+<ul>
+<li>The speaker suggests prop testing over dependencies.</li>
+<li>They want to ensure that when dependencies are added, appropriate version specifier optionality is passed through.</li>
+<li>Prop testing over whether it’s dependencies Dev dependencies or build dependencies seems reasonable.</li>
+<li>A vector of dependencies is needed for this.</li>
+</ul>
+<h3 id="generating-dependencies"><a class="header" href="#generating-dependencies">Generating Dependencies</a></h3>
+<ul>
+<li>The inputs required for generating dependencies are discussed.</li>
+<li>A function that generates dependencies is needed.</li>
+<li>It’s suggested to generate a structured representation and then turn it into a string.</li>
+<li>Struct dependency has kind, name, version, and features.</li>
+<li>Optionality is also included in dependency struct.</li>
+</ul>
+<h2 id="generating-arbitrary-dependencies"><a class="header" href="#generating-arbitrary-dependencies">Generating Arbitrary Dependencies</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to generate arbitrary dependencies and the challenges
+associated with it.</p>
+<h3 id="deriving-arbitrary-trait"><a class="header" href="#deriving-arbitrary-trait">Deriving Arbitrary Trait</a></h3>
+<ul>
+<li>The <code>arbitrary</code> trait is used to generate an arbitrary version of a struct.</li>
+<li>It can be used in Quick Check.</li>
+<li>The <code>prop</code> macro can derive it, but it’s experimental.</li>
+<li>Deriving arbitrary requires taking a dev dependency on arbitrary for the crate, which doesn’t feel right.</li>
+</ul>
+<h3 id="implementing-arbitrary-dependency"><a class="header" href="#implementing-arbitrary-dependency">Implementing Arbitrary Dependency</a></h3>
+<ul>
+<li>Instead of deriving arbitrary, we need to implement an <code>ARB dep</code> strategy for generating a dependency.</li>
+<li>We want to generate a normalized manifest for the dependency.</li>
+<li>We need to use <code>prop compose</code> for generating recursive things.</li>
+<li>An arbitrary depth kind is going to be any in kind in zero u8 to 3.</li>
+<li>We have a way to generate an arbitrary dependency kind using <code>prop compose</code>.</li>
+</ul>
+<h2 id="generating-dependency-specifiers"><a class="header" href="#generating-dependency-specifiers">Generating Dependency Specifiers</a></h2>
+<p>Section Overview: In this section, the speaker discusses how to generate dependency specifiers and names for
+dependencies.</p>
+<h3 id="generating-a-version-specifier"><a class="header" href="#generating-a-version-specifier">Generating a Version Specifier</a></h3>
+<ul>
+<li>To generate a version specifier, use a regular expression for semantic versioning specifiers.</li>
+<li>The regex can include a carrot or an equals sign (optional), followed by zero to nine numbers (at least one), followed
+by an actual dot, followed by zero to nine numbers (at least one).</li>
+<li>Build specifiers can also be included with a dash followed by arbitrary ASCII characters (limited to ASCII).</li>
+</ul>
+<h3 id="generating-a-name"><a class="header" href="#generating-a-name">Generating a Name</a></h3>
+<ul>
+<li>The name of the dependency is separate from the dependency specifier and needs to be generated separately.</li>
+<li>The name can be any string consisting of lowercase letters, numbers 0-9, dashes, and underscores.</li>
+<li>Capital letters are not allowed, but it must start with a letter.</li>
+<li>It’s allowed to be a single character.</li>
+</ul>
+<h3 id="additional-considerations"><a class="header" href="#additional-considerations">Additional Considerations</a></h3>
+<ul>
+<li>When generating arbitrary depth, there needs to be a separate name specified for each dependency.</li>
+<li>If the name is equal to the listing, it changes the logic and needs to be encoded differently.</li>
+</ul>
+<h2 id="creating-a-package"><a class="header" href="#creating-a-package">Creating a Package</a></h2>
+<p>Section Overview: In this section, the speaker discusses creating a package and setting its features.</p>
+<h3 id="setting-features"><a class="header" href="#setting-features">Setting Features</a></h3>
+<ul>
+<li>The speaker mentions that there must be an easier way to set features than using any bull.</li>
+<li>They suggest using default features instead.</li>
+<li>The speaker sets the public to true and optional to option of this.</li>
+<li>They set the package to none.</li>
+</ul>
+<h3 id="defining-package"><a class="header" href="#defining-package">Defining Package</a></h3>
+<ul>
+<li>The speaker defines the package as arbitrary and says it will take an option string.</li>
+</ul>
+<h2 id="testing-package"><a class="header" href="#testing-package">Testing Package</a></h2>
+<p>Section Overview: In this section, the speaker discusses testing the created package.</p>
+<h3 id="testing-with-different-packages"><a class="header" href="#testing-with-different-packages">Testing with Different Packages</a></h3>
+<ul>
+<li>The speaker tests both cases where the package is set to something different from the name of the crate and when it’s
+not set at all.</li>
+</ul>
+<h3 id="errors-in-testing"><a class="header" href="#errors-in-testing">Errors in Testing</a></h3>
+<ul>
+<li>There is an error message about expecting a closure that returns dependency string but it returns result.</li>
+<li>The speaker realizes they can only use prop assume inside of prop tests.</li>
+</ul>
+<h2 id="arbitrary-depth"><a class="header" href="#arbitrary-depth">Arbitrary Depth</a></h2>
+<p>Section Overview: In this section, the speaker discusses defining arbitrary depth for ARB depths.</p>
+<h3 id="defining-arb-depths"><a class="header" href="#defining-arb-depths">Defining ARB Depths</a></h3>
+<ul>
+<li>The speaker defines ARB Depp zero to some number.</li>
+<li>They map over it and turn it into a string using format.</li>
+</ul>
+<h2 id="creating-a-string-from-depth"><a class="header" href="#creating-a-string-from-depth">Creating a String from Depth</a></h2>
+<p>Section Overview: In this section, the speaker discusses creating a string from depth.</p>
+<h3 id="creating-a-string-from-depth-1"><a class="header" href="#creating-a-string-from-depth-1">Creating a String from Depth</a></h3>
+<ul>
+<li>The function returns a string. <a href="t=1:53:02"></a></li>
+<li>The speaker wants to create something like map. <a href="t=1:53:24"></a></li>
+<li>Vex strategy is not an iterator prop. <a href="t=1:53:29"></a></li>
+<li>ER returns string. <a href="t=1:53:48"></a></li>
+<li>The speaker suggests using stir takes a depth which is going to be any depth and returns a string and it just formats
+that.<a href="t=1:54:21"></a></li>
+</ul>
+<h2 id="writing-out-other-props"><a class="header" href="#writing-out-other-props">Writing Out Other Props</a></h2>
+<p>Section Overview: In this section, the speaker discusses writing out other props.</p>
+<h3 id="writing-out-other-props-1"><a class="header" href="#writing-out-other-props-1">Writing Out Other Props</a></h3>
+<ul>
+<li>The speaker wants to write out other props including getting comma right.<a href="t=1:58:10"></a></li>
+<li>They read in the existing Tamil and push a new line.<a href="t=1:58:46"></a></li>
+<li>They use standard format right as well and then they’ll do stud right to P dot join cargo Tamil and they’ll write back
+out the modify Tamil.<a href="t=1:59:35"></a></li>
+</ul>
+<h2 id="prop-tests"><a class="header" href="#prop-tests">Prop Tests</a></h2>
+<p>Section Overview: In this section, the speaker discusses prop tests.</p>
+<h3 id="prop-tests-1"><a class="header" href="#prop-tests-1">Prop Tests</a></h3>
+<ul>
+<li>There’s also a warning saying on line 69 that we don’t unwrap this and for our own sanity print out what it actually
+does so what is the list of depths that it’s trying to inject?<a href="t=2:00:42"></a></li>
+<li>It doesn’t find libar as our main RS oh actually I wonder whether the prop tests are supposed to not be integration
+tests but actually be test binaries uh oh I guess it is [Music].<a href="t=2:00:52"></a></li>
+</ul>
+<h2 id="understanding-dependency-specifiers"><a class="header" href="#understanding-dependency-specifiers"><a href="t=2:01:35s">#</a> Understanding Dependency Specifiers</a></h2>
+<p>Section Overview: In this section, the speaker discusses dependency specifiers and how to generate them. They also
+encounter errors with regular expressions and work to fix them.</p>
+<h3 id="generating-dependency-specifiers-1"><a class="header" href="#generating-dependency-specifiers-1">Generating Dependency Specifiers</a></h3>
+<ul>
+<li><a href="t=2:04:24s"></a> The speaker generates a list of dependencies, including their versions.</li>
+<li><a href="t=2:05:15s"></a> Regular expressions are used to ensure that version numbers are valid.</li>
+<li><a href="t=2:06:25s"></a> The speaker notes that they are not currently writing out all properties for the dependencies.</li>
+</ul>
+<h3 id="writing-out-dependency-properties"><a class="header" href="#writing-out-dependency-properties">Writing Out Dependency Properties</a></h3>
+<ul>
+<li><a href="t=2:06:57s"></a> The speaker writes out optional, default features, and package properties for the dependencies.</li>
+<li><a href="t=2:07:53s"></a> A dependency specifier is generated with version, optional, and default features properties.</li>
+</ul>
+<h3 id="further-customization-of-dependency-specifiers"><a class="header" href="#further-customization-of-dependency-specifiers">Further Customization of Dependency Specifiers</a></h3>
+<ul>
+<li><a href="t=2:08:03s"></a> The speaker notes that dependency specifiers can be further customized with less than or greater than
+symbols.</li>
+</ul>
+<h2 id="testing-dependencies"><a class="header" href="#testing-dependencies"><a href="t=2:08:51s">#</a> Testing Dependencies</a></h2>
+<p>Section Overview: In this section, the speaker discusses testing dependencies and ensuring that the final dependencies
+are present in the input dependencies.</p>
+<h3 id="checking-for-dependency-presence"><a class="header" href="#checking-for-dependency-presence">Checking for Dependency Presence</a></h3>
+<ul>
+<li><a href="t=2:09:29s"></a> Loop over the dependencies listed in the index and check that each one is present in the input.</li>
+<li><a href="t=2:11:11s"></a> Check that the dependency that ended up in the final index entry is actually one of the ones given in
+the input.</li>
+<li><a href="t=2:14:22s"></a> Assert that all of the input dependencies were found in the output dependencies.</li>
+</ul>
+<h3 id="helper-functions"><a class="header" href="#helper-functions">Helper Functions</a></h3>
+<ul>
+<li><a href="t=2:12:33s"></a> Create a helper function to generate a vector of dependencies instead of strings.</li>
+<li><a href="t=2:13:43s"></a> Create another helper function to check if a field zero on string is equal to another field zero on
+string.</li>
+</ul>
+<h3 id="other-notes"><a class="header" href="#other-notes">Other Notes</a></h3>
+<ul>
+<li><a href="t=2:10:35s"></a> The regex for minor versions is wrong and should be 1 to 9 or 0 or 2.</li>
+<li><a href="t=2:15:05s"></a> The assertion here is that we actually found all of the input dependencies in the output dependencies,
+but we’re not checking if they are correct beyond just their name being present.</li>
+</ul>
+<h2 id="understanding-dependency-transformation"><a class="header" href="#understanding-dependency-transformation">Understanding Dependency Transformation</a></h2>
+<p>Section Overview: In this section, the speaker discusses the final depth of type index and its dependencies. They also
+talk about various checks that need to be added for completeness.</p>
+<h3 id="index-dependencies"><a class="header" href="#index-dependencies">Index Dependencies</a></h3>
+<ul>
+<li>The final depth is of type index and has two dependencies: registry dependency and a registered dependency.</li>
+<li>A registered dependency has a name and requirements.</li>
+</ul>
+<h3 id="checks-for-completeness"><a class="header" href="#checks-for-completeness">Checks for Completeness</a></h3>
+<ul>
+<li>Various checks need to be added for completeness, such as checking if optional matches, default features made it all
+through, and package made it all through.</li>
+<li>Optional in the index is not optional because it defaults to false.</li>
+<li>Default features defaults to true in the package.</li>
+<li>Derefence both of them so they are matchable.</li>
+<li>Convert cow string to rep so they are comparable using dot map s.</li>
+</ul>
+<h3 id="limitations"><a class="header" href="#limitations">Limitations</a></h3>
+<ul>
+<li>This will break if it generates two dependencies by the same name, which hasn’t been addressed yet.</li>
+</ul>
+<h2 id="running-prop-test-job"><a class="header" href="#running-prop-test-job">Running Prop Test Job</a></h2>
+<p>Section Overview: In this section, the speaker talks about running prop test job separately from other tests since it
+takes longer to run.</p>
+<h3 id="ignoring-slow-tests"><a class="header" href="#ignoring-slow-tests">Ignoring Slow Tests</a></h3>
+<ul>
+<li>The prop test job is slow and should be ignored during normal testing.</li>
+<li>It should only run on stable tool chain.</li>
+<li>We want a separate job that runs prop test only if basic test suite succeeds.</li>
+</ul>
+<h3 id="configuring-prop-test"><a class="header" href="#configuring-prop-test">Configuring Prop Test</a></h3>
+<ul>
+<li>Prop tests are slow; 256 executions have to execute for a Tesla so hold to pass now 256 for us is actually going to
+take a while like you saw how slowly they executed but I think it’s probably okay I don’t worry too much about this um
+I think we can also skip this print.</li>
+</ul>
+<h2 id="practice-regressions"><a class="header" href="#practice-regressions">Practice Regressions</a></h2>
+<p>Section Overview: The speaker discusses the importance of checking in a file that replicates over time and recommends
+doing so. They also mention running prop tests explicitly.</p>
+<h3 id="checking-in-files"><a class="header" href="#checking-in-files">Checking in Files</a></h3>
+<ul>
+<li>It is recommended to check in files that replicate over time.</li>
+<li>The speaker suggests not checking in the initial file but doing so over time.</li>
+<li>Checking in files can be useful for running prop tests.</li>
+</ul>
+<h3 id="running-prop-tests"><a class="header" href="#running-prop-tests">Running Prop Tests</a></h3>
+<ul>
+<li>Prop tests only generate files on failure.</li>
+<li>To run prop tests, use git add Dot commit and git push.</li>
+</ul>
+<h3 id="opening-a-pull-request"><a class="header" href="#opening-a-pull-request">Opening a Pull Request</a></h3>
+<ul>
+<li>After pushing changes, open a pull request to initiate CI rules.</li>
+<li>CI rules will kick off different workflows, including basic testing and prop testing.</li>
+</ul>
+<h3 id="configuring-branch-protection"><a class="header" href="#configuring-branch-protection">Configuring Branch Protection</a></h3>
+<ul>
+<li>Configure branch protection by requiring a pull request.</li>
+<li>Require status checks to pass, including stable formatting and Ubuntu stable test suite.</li>
+<li>Do not require minimum supported rust version or nightly/beta versions.</li>
+</ul>
+<h2 id="improving-build-times-with-caching"><a class="header" href="#improving-build-times-with-caching">Improving Build Times with Caching</a></h2>
+<p>Section Overview: In this section, the speaker discusses how caching can be used to improve build times and reduce the
+time it takes to run tests.</p>
+<h3 id="using-caching-for-dependency-trees"><a class="header" href="#using-caching-for-dependency-trees">Using Caching for Dependency Trees</a></h3>
+<ul>
+<li>A chunky dependency tree can take a long time to build, so copying binary bits using caching may be faster.</li>
+</ul>
+<h3 id="defining-cache-keys"><a class="header" href="#defining-cache-keys">Defining Cache Keys</a></h3>
+<ul>
+<li>Defining cache keys is necessary when building with minimum supported Rust versions (MSRV).</li>
+<li>The cache key should be set up as follows: <code>Target cash restore</code>, <code>Target</code>, and <code>key = matrix.tool chain</code>.</li>
+</ul>
+<h3 id="saving-and-restoring-cache"><a class="header" href="#saving-and-restoring-cache">Saving and Restoring Cache</a></h3>
+<ul>
+<li>After running cargo tests, save the cache by running <code>steps.dot Target cash restore outputs</code>.</li>
+<li>To restore the cache for minimal versions, use <code>stable Target</code>.</li>
+</ul>
+<h3 id="prop-tests-2"><a class="header" href="#prop-tests-2">Prop Tests</a></h3>
+<ul>
+<li>Prop tests take a long time to run because they explore a large input space.</li>
+<li>The prop test only took 51 seconds to run despite exploring 256 different combinations of feature combinations.</li>
+</ul>
+<h2 id="conclusion-2"><a class="header" href="#conclusion-2">Conclusion</a></h2>
+<p>Section Overview: In this section, the speaker concludes by noting that more work needs to be done in taking advantage
+of dependency kinds.</p>
+<h3 id="taking-advantage-of-dependency-kinds"><a class="header" href="#taking-advantage-of-dependency-kinds">Taking Advantage of Dependency Kinds</a></h3>
+<ul>
+<li>More work needs to be done in taking advantage of dependency kinds.</li>
+</ul>
+<h2 id="configuring-ci-for-prop-tests"><a class="header" href="#configuring-ci-for-prop-tests">Configuring CI for Prop Tests</a></h2>
+<p>Section Overview: In this section, the speaker discusses configuring CI for prop tests and the trade-offs involved.</p>
+<h3 id="trade-offs-of-adding-instrumentation-for-coverage"><a class="header" href="#trade-offs-of-adding-instrumentation-for-coverage">Trade-Offs of Adding Instrumentation for Coverage</a></h3>
+<ul>
+<li>Adding instrumentation for coverage executes more slowly.</li>
+<li>It is unclear whether it’s worth the trade-off to have prop tests run more slowly to get coverage.</li>
+</ul>
+<h3 id="documentation"><a class="header" href="#documentation">Documentation</a></h3>
+<ul>
+<li>The topic of documentation is not discussed in detail but may be a topic for another day.</li>
+</ul>
+<h3 id="follow-up-questions"><a class="header" href="#follow-up-questions">Follow-Up Questions</a></h3>
+<ul>
+<li>The speaker asks if there are any follow-up questions from what was covered today.</li>
+<li>A question is asked about accessing the restore cache correctly and referencing that key from different steps. The
+speaker believes it is allowed because one of the points of the cache is that it is cross-job and possibly even
+cross-workflow.</li>
+</ul>
+<h2 id="saving-target-file-and-restoring-cache"><a class="header" href="#saving-target-file-and-restoring-cache">Saving Target File and Restoring Cache</a></h2>
+<p>Section Overview: In this section, the speaker discusses saving target files and restoring cache during CI
+configuration.</p>
+<h3 id="saving-target-file"><a class="header" href="#saving-target-file">Saving Target File</a></h3>
+<ul>
+<li>The speaker discusses how saving target files works during CI configuration.</li>
+</ul>
+<h3 id="restoring-cache"><a class="header" href="#restoring-cache">Restoring Cache</a></h3>
+<ul>
+<li>The speaker explains how cache restoration works during CI configuration.</li>
+<li>The cache was restored quickly after being downloaded.</li>
+</ul>
+<h2 id="updating-git-repository"><a class="header" href="#updating-git-repository">Updating Git Repository</a></h2>
+<p>Section Overview: In this section, the speaker talks about updating Git repositories during CI configuration.</p>
+<h3 id="pinning-revision-in-cargo-tamil"><a class="header" href="#pinning-revision-in-cargo-tamil">Pinning Revision in Cargo Tamil</a></h3>
+<ul>
+<li>Speaker mentions that they pinned revision in cargo Tamil so git repository shouldn’t need to be updated.</li>
+</ul>
+<h2 id="sparse-registries"><a class="header" href="#sparse-registries">Sparse Registries</a></h2>
+<p>Section Overview: In this section, the speaker discusses sparse registries and how they can be used to make CI faster.</p>
+<h3 id="injecting-configuration"><a class="header" href="#injecting-configuration">Injecting Configuration</a></h3>
+<ul>
+<li>The speaker mentions that they could inject configuration to make CI faster but it’s about to land anyway.
+[<em>CUTOFF_LIMIT</em>]</li>
+</ul>
+<h2 id="generated-by-video-highlight"><a class="header" href="#generated-by-video-highlight">Generated by Video Highlight</a></h2>
+<p>https://videohighlight.com/video/summary/xUH-4y92jPg</p>
+
+            </main>
+
+            <!--            <script src="https://utteranc.es/client.js"-->
+            <!--                    repo="RustMagazine/rust_magazine_2022"-->
+            <!--                    issue-term="title"-->
+            <!--                    theme="github-light"-->
+            <!--                    crossorigin="anonymous"-->
+            <!--                    async></script>-->
+
+            <nav class="nav-wrapper" aria-label="Page navigation">
+                <!-- Mobile navigation buttons -->
+                    <a rel="prev" href="../../rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html" class="mobile-nav-chapters previous"
+                       title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../rust_video_summary/code_to_the_moon/code_to_the_moon.html" class="mobile-nav-chapters next"
+                       title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+
+                <div style="clear: both"></div>
+            </nav>
+        </div>
+    </div>
+
+    <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            <a rel="prev" href="../../rust_video_summary/impl_rust/solving_distributed_system_challenges_in_rust.html" class="nav-chapters previous" title="Previous chapter"
+               aria-label="Previous chapter" aria-keyshortcuts="Left">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <a rel="next" href="../../rust_video_summary/code_to_the_moon/code_to_the_moon.html" class="nav-chapters next" title="Next chapter"
+               aria-label="Next chapter" aria-keyshortcuts="Right">
+                <i class="fa fa-angle-right"></i>
+            </a>
+    </nav>
+
+</div>
+
+
+
+    <script type="text/javascript">
+        window.playground_line_numbers = true;
+    </script>
+
+    <script type="text/javascript">
+        window.playground_copyable = true;
+    </script>
+
+    <script src="../../ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../editor.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JS scripts -->
+    <script type="text/javascript" src="../../assets/ferris/ferris.js"></script>
+    <script type="text/javascript" src="../../assets/mermaid/mermaid.min.js"></script>
+    <script type="text/javascript" src="../../assets/mermaid/mermaid-init.js"></script>
+    <script type="text/javascript" src="../../assets/smart-anchor.js"></script>
+    <script type="text/javascript" src="../../assets/pagetoc/sidebar.js"></script>
+
+</body>
+</html>
