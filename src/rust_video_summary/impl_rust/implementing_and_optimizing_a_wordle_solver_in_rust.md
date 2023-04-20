@@ -1,6 +1,11 @@
 # (3/6h)Implementing and Optimizing a Wordle Solver in Rust
 
 <!--ts-->
+
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Thu Apr 20 14:04:29 UTC 2023 -->
+
 <!--te-->
 
 ## [0:00:01](t=1s) Introduction to Wordle

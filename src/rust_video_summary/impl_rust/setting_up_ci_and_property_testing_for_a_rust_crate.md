@@ -1,6 +1,11 @@
 # Setting up CI and property testing for a Rust crate
 
 <!--ts-->
+
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: runner, at: Thu Apr 20 14:04:29 UTC 2023 -->
+
 <!--te-->
 
 ## [#](t=0:00:00) Introduction
