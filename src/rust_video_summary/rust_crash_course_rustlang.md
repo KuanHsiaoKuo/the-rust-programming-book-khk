@@ -1,107 +1,108 @@
 # Rust Crash Course | Rustlang
 
 <!--ts-->
+
 * [Rust Crash Course | Rustlang](#rust-crash-course--rustlang)
-   * [Introduction to Rust Programming Language](#introduction-to-rust-programming-language)
-      * [What is Rust?](#what-is-rust)
-      * [Garbage Collection](#garbage-collection)
-      * [Cargo Package Manager](#cargo-package-manager)
-   * [Installing Rust and Setting Up the Environment](#installing-rust-and-setting-up-the-environment)
-      * [Installing Rust](#installing-rust)
-      * [Basic Utilities](#basic-utilities)
-      * [Creating a Rust File and Compiling It](#creating-a-rust-file-and-compiling-it)
-      * [Initializing a Project with Cargo](#initializing-a-project-with-cargo)
-   * [Introduction to Print Line Command and Formatting](#introduction-to-print-line-command-and-formatting)
-      * [Creating a Function in Print File](#creating-a-function-in-print-file)
-      * [Running the Function in Main RS Files](#running-the-function-in-main-rs-files)
-      * [Basic Formatting](#basic-formatting)
-   * [Basic Formatting with Multiple Placeholders](#basic-formatting-with-multiple-placeholders)
-      * [Using Multiple Placeholders](#using-multiple-placeholders)
-      * [Positional Arguments](#positional-arguments)
-      * [Named Arguments](#named-arguments)
-   * [Placeholder Traits](#placeholder-traits)
-      * [Binary Trait](#binary-trait)
-      * [Hexadecimal Trait](#hexadecimal-trait)
-      * [Octal Trait](#octal-trait)
-   * [Debug Traits](#debug-traits)
-      * [Using Print Line Function](#using-print-line-function)
-      * [Basic Math](#basic-math)
-   * [Variables](#variables)
-      * [Creating Variables](#creating-variables)
-      * [Mutable Variables](#mutable-variables)
-      * [Constants](#constants)
-      * [Assigning Multiple Variables at Once](#assigning-multiple-variables-at-once)
-   * [Introduction to Rust Programming Language](#introduction-to-rust-programming-language-1)
-      * [Assigning Variables](#assigning-variables)
-      * [Data Types](#data-types)
-      * [Boolean Expressions](#boolean-expressions)
-   * [Rust Primitive Types](#rust-primitive-types)
-      * [Char and Unicode](#char-and-unicode)
-   * [Strings in Rust](#strings-in-rust)
-      * [Creating Strings](#creating-strings)
-      * [Modifying Strings](#modifying-strings)
-   * [Working with Strings](#working-with-strings)
-      * [Checking for Substrings and Replacing Them](#checking-for-substrings-and-replacing-them)
-      * [Looping Through Strings](#looping-through-strings)
-      * [Creating Strings with Capacity](#creating-strings-with-capacity)
-      * [Assertion Testing](#assertion-testing)
-   * [Working with Tuples](#working-with-tuples)
-      * [Introduction to Tuples](#introduction-to-tuples)
-      * [Creating and Accessing Tuples](#creating-and-accessing-tuples)
-      * [Destructuring Tuples](#destructuring-tuples)
-      * [Tuple Methods](#tuple-methods)
-   * [Tuples and Arrays in Rust](#tuples-and-arrays-in-rust)
-      * [Creating Tuples](#creating-tuples)
-      * [Creating Arrays](#creating-arrays)
-      * [Modifying Array Values](#modifying-array-values)
-      * [Debugging Arrays](#debugging-arrays)
-   * [Slicing Arrays and Using Vectors](#slicing-arrays-and-using-vectors)
-      * [Slicing Arrays](#slicing-arrays)
-      * [Using Vectors](#using-vectors)
-   * [Mutating Values in Vectors](#mutating-values-in-vectors)
-   * [Conditionals](#conditionals)
-      * [If-else statements](#if-else-statements)
-      * [Operators](#operators)
-      * [Shorthand If](#shorthand-if)
-   * [Loops](#loops)
-      * [Infinite Loop](#infinite-loop)
-      * [While Loop](#while-loop)
-      * [For Loop](#for-loop)
-   * [Introduction to Loops and Functions](#introduction-to-loops-and-functions)
-      * [While Loop](#while-loop-1)
-      * [FizzBuzz Challenge](#fizzbuzz-challenge)
-      * [For Range Loop](#for-range-loop)
-      * [Functions](#functions)
-   * [Rust Functions](#rust-functions)
-      * [Creating a Function](#creating-a-function)
-      * [Returning from a Function](#returning-from-a-function)
-      * [Closures](#closures)
-   * [Pointers and References](#pointers-and-references)
-      * [Primitive Arrays](#primitive-arrays)
-      * [Non-primitive Values](#non-primitive-values)
-   * [Rust Basics: References and Structs](#rust-basics-references-and-structs)
-      * [Creating References](#creating-references)
-      * [Creating Structs](#creating-structs)
-      * [Tuple Structs](#tuple-structs)
-   * [Creating a Struct in Rust](#creating-a-struct-in-rust)
-      * [Creating a New Person](#creating-a-new-person)
-      * [Getting Full Name of Person](#getting-full-name-of-person)
-      * [Changing Last Name of Person](#changing-last-name-of-person)
-      * [Converting Name to Tuple](#converting-name-to-tuple)
-   * [Structs](#structs)
-   * [Introduction to Structs](#introduction-to-structs)
-   * [Enums](#enums)
-      * [Introduction to Enums](#introduction-to-enums)
-      * [Using Enums](#using-enums)
-   * [Functions with Enums](#functions-with-enums)
-      * [Creating Functions with Enums](#creating-functions-with-enums)
-   * [Command Line Arguments](#command-line-arguments)
-      * [Introduction to Command Line Arguments](#introduction-to-command-line-arguments)
-      * [Getting Command Line Arguments](#getting-command-line-arguments)
-   * [Introduction to Command Line Applications](#introduction-to-command-line-applications)
-      * [Getting Input from Command Line Arguments](#getting-input-from-command-line-arguments)
-      * [Creating a Command Line Application](#creating-a-command-line-application)
-   * [Conclusion](#conclusion)
+    * [Introduction to Rust Programming Language](#introduction-to-rust-programming-language)
+        * [What is Rust?](#what-is-rust)
+        * [Garbage Collection](#garbage-collection)
+        * [Cargo Package Manager](#cargo-package-manager)
+    * [Installing Rust and Setting Up the Environment](#installing-rust-and-setting-up-the-environment)
+        * [Installing Rust](#installing-rust)
+        * [Basic Utilities](#basic-utilities)
+        * [Creating a Rust File and Compiling It](#creating-a-rust-file-and-compiling-it)
+        * [Initializing a Project with Cargo](#initializing-a-project-with-cargo)
+    * [Introduction to Print Line Command and Formatting](#introduction-to-print-line-command-and-formatting)
+        * [Creating a Function in Print File](#creating-a-function-in-print-file)
+        * [Running the Function in Main RS Files](#running-the-function-in-main-rs-files)
+        * [Basic Formatting](#basic-formatting)
+    * [Basic Formatting with Multiple Placeholders](#basic-formatting-with-multiple-placeholders)
+        * [Using Multiple Placeholders](#using-multiple-placeholders)
+        * [Positional Arguments](#positional-arguments)
+        * [Named Arguments](#named-arguments)
+    * [Placeholder Traits](#placeholder-traits)
+        * [Binary Trait](#binary-trait)
+        * [Hexadecimal Trait](#hexadecimal-trait)
+        * [Octal Trait](#octal-trait)
+    * [Debug Traits](#debug-traits)
+        * [Using Print Line Function](#using-print-line-function)
+        * [Basic Math](#basic-math)
+    * [Variables](#variables)
+        * [Creating Variables](#creating-variables)
+        * [Mutable Variables](#mutable-variables)
+        * [Constants](#constants)
+        * [Assigning Multiple Variables at Once](#assigning-multiple-variables-at-once)
+    * [Introduction to Rust Programming Language](#introduction-to-rust-programming-language-1)
+        * [Assigning Variables](#assigning-variables)
+        * [Data Types](#data-types)
+        * [Boolean Expressions](#boolean-expressions)
+    * [Rust Primitive Types](#rust-primitive-types)
+        * [Char and Unicode](#char-and-unicode)
+    * [Strings in Rust](#strings-in-rust)
+        * [Creating Strings](#creating-strings)
+        * [Modifying Strings](#modifying-strings)
+    * [Working with Strings](#working-with-strings)
+        * [Checking for Substrings and Replacing Them](#checking-for-substrings-and-replacing-them)
+        * [Looping Through Strings](#looping-through-strings)
+        * [Creating Strings with Capacity](#creating-strings-with-capacity)
+        * [Assertion Testing](#assertion-testing)
+    * [Working with Tuples](#working-with-tuples)
+        * [Introduction to Tuples](#introduction-to-tuples)
+        * [Creating and Accessing Tuples](#creating-and-accessing-tuples)
+        * [Destructuring Tuples](#destructuring-tuples)
+        * [Tuple Methods](#tuple-methods)
+    * [Tuples and Arrays in Rust](#tuples-and-arrays-in-rust)
+        * [Creating Tuples](#creating-tuples)
+        * [Creating Arrays](#creating-arrays)
+        * [Modifying Array Values](#modifying-array-values)
+        * [Debugging Arrays](#debugging-arrays)
+    * [Slicing Arrays and Using Vectors](#slicing-arrays-and-using-vectors)
+        * [Slicing Arrays](#slicing-arrays)
+        * [Using Vectors](#using-vectors)
+    * [Mutating Values in Vectors](#mutating-values-in-vectors)
+    * [Conditionals](#conditionals)
+        * [If-else statements](#if-else-statements)
+        * [Operators](#operators)
+        * [Shorthand If](#shorthand-if)
+    * [Loops](#loops)
+        * [Infinite Loop](#infinite-loop)
+        * [While Loop](#while-loop)
+        * [For Loop](#for-loop)
+    * [Introduction to Loops and Functions](#introduction-to-loops-and-functions)
+        * [While Loop](#while-loop-1)
+        * [FizzBuzz Challenge](#fizzbuzz-challenge)
+        * [For Range Loop](#for-range-loop)
+        * [Functions](#functions)
+    * [Rust Functions](#rust-functions)
+        * [Creating a Function](#creating-a-function)
+        * [Returning from a Function](#returning-from-a-function)
+        * [Closures](#closures)
+    * [Pointers and References](#pointers-and-references)
+        * [Primitive Arrays](#primitive-arrays)
+        * [Non-primitive Values](#non-primitive-values)
+    * [Rust Basics: References and Structs](#rust-basics-references-and-structs)
+        * [Creating References](#creating-references)
+        * [Creating Structs](#creating-structs)
+        * [Tuple Structs](#tuple-structs)
+    * [Creating a Struct in Rust](#creating-a-struct-in-rust)
+        * [Creating a New Person](#creating-a-new-person)
+        * [Getting Full Name of Person](#getting-full-name-of-person)
+        * [Changing Last Name of Person](#changing-last-name-of-person)
+        * [Converting Name to Tuple](#converting-name-to-tuple)
+    * [Structs](#structs)
+    * [Introduction to Structs](#introduction-to-structs)
+    * [Enums](#enums)
+        * [Introduction to Enums](#introduction-to-enums)
+        * [Using Enums](#using-enums)
+    * [Functions with Enums](#functions-with-enums)
+        * [Creating Functions with Enums](#creating-functions-with-enums)
+    * [Command Line Arguments](#command-line-arguments)
+        * [Introduction to Command Line Arguments](#introduction-to-command-line-arguments)
+        * [Getting Command Line Arguments](#getting-command-line-arguments)
+    * [Introduction to Command Line Applications](#introduction-to-command-line-applications)
+        * [Getting Input from Command Line Arguments](#getting-input-from-command-line-arguments)
+        * [Creating a Command Line Application](#creating-a-command-line-application)
+    * [Conclusion](#conclusion)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
 <!-- Added by: runner, at: Thu Apr 20 13:05:18 UTC 2023 -->
@@ -121,7 +122,7 @@ languages.
 - Rust is becoming relevant in web development because of WebAssembly, which allows us to build secure, portable, and
   fast web applications using languages like C++ and Rust.
 
-### Garbage Collection
+### ⭐️Garbage Collection
 
 - One of the biggest advantages of Rust is that it doesn't have garbage collection.
 - In JavaScript, for example, garbage collection can take multiple seconds depending on the program.
@@ -140,7 +141,7 @@ Section Overview: This section covers how to install Rust, set up the environmen
 ### Installing Rust
 
 - To install Rust, run the installer and hit one to proceed with the default installation.
-- If rustup --version returns "not found," restart your terminal.
+- If `rustup --version` returns "not found," restart your terminal.
 
 ### Basic Utilities
 
@@ -174,7 +175,7 @@ language.
 - Create a run function for each file to run it.
 - Use `printLn!` to print to console.
 
-### Running the Function in Main RS Files
+### ⭐️Running the Function in Main RS Files
 
 - Use `mod` and then the name of the file above the main function.
 - Use `print::function_name` to call the function.
@@ -185,7 +186,7 @@ language.
 - Use double quotes for strings.
 - Save and run code using cargo run.
 
-## Basic Formatting with Multiple Placeholders
+## ⭐️Basic Formatting with Multiple Placeholders
 
 Section Overview: In this section, we learn how to format multiple placeholders using Rust programming language.
 
@@ -204,26 +205,26 @@ Section Overview: In this section, we learn how to format multiple placeholders 
 - Use named parameters instead of positional ones when you have many arguments.
 - Assign names before values separated by an equal sign.
 
-## Placeholder Traits
+## ⭐️Placeholder Traits
 
 Section Overview: In this section, we learn about placeholder traits available in Rust programming language.
 
-### Binary Trait
+### Binary Trait(:B)
 
 - The binary trait is represented by :B
 - Used for converting integers into binary format
 
-### Hexadecimal Trait
+### Hexadecimal Trait(:X)
 
 - The hexadecimal trait is represented by :X
 - Used for converting integers into hexadecimal format
 
-### Octal Trait
+### Octal Trait(:O)
 
 - The octal trait is represented by :O
 - Used for converting integers into octal format
 
-## Debug Traits
+## ⭐️Debug Traits
 
 Section Overview: In this section, we learn how to use the print line function and tuples to print multiple values. We
 also learn how to do basic math.
@@ -263,7 +264,7 @@ block-scoped language.
 - Usually all uppercase.
 - Example: `const ID:i32 = 001;`
 
-### Assigning Multiple Variables at Once
+### ⭐️Assigning Multiple Variables at Once
 
 - Use commas to assign multiple variables at once.
 - Example:
@@ -284,9 +285,10 @@ assigning variables, data types, and how Rust is a statically typed language.
 - The `pub function run` is used to run the program.
 - Integers come in signed and unsigned forms with different bit sizes. Floats have 32 and 64 bits. Booleans are
   represented by `bool`. Characters are represented by `char`.
-- Strings are not primitive types in Rust. Tuples and arrays are also primitive types.
+- ⭐️Strings are not primitive types in Rust.
+- ⭐️Tuples and arrays are also primitive types.
 
-### Data Types
+### ⭐️Data Types
 
 - Vectors are growable arrays while arrays have fixed lengths.
 - Rust is a statically typed language which means that it must know the types of all variables at compile time. However,
@@ -309,7 +311,7 @@ Section Overview: In this section, the speaker discusses primitive types in Rust
 - Unicode characters can also be used by specifying them with a slash u and curly braces.
 - Emojis are also Unicode characters that can be used in Rust.
 
-## Strings in Rust
+## ⭐️Strings in Rust
 
 Section Overview: In this section, the speaker discusses strings in Rust, including primitive strings and string types.
 
@@ -361,7 +363,7 @@ Section Overview: In this section, the instructor demonstrates how to work with 
 ### Creating and Accessing Tuples
 
 - Create tuples using parentheses and commas between values.
-- Access tuple elements using dot notation and index numbers starting from 0.
+- Access tuple elements using `dot notation` and `index numbers starting from 0`.
 
 ### Destructuring Tuples
 
@@ -390,18 +392,18 @@ fixed lengths and change their values.
 - Access array elements using zero-based indexing.
 - Arrays are stack allocated, meaning they occupy contiguous memory locations.
 
-### Modifying Array Values
+### ⭐️Modifying Array Values
 
 - Use `mut` keyword to make an array mutable.
 - Change an array value by assigning a new value at its index.
 
-### Debugging Arrays
+### ⭐️Debugging Arrays
 
 - Use `println!()` macro with debug trait (`{:?}`) to print entire arrays.
 - Get the length of an array using `.len()` method.
 - Get the amount of memory occupied by an array using `std::mem::size_of_val(&array)` method.
 
-## Slicing Arrays and Using Vectors
+## ⭐️Slicing Arrays and Using Vectors
 
 Section Overview: In this section, the instructor demonstrates how to slice arrays and use vectors in Rust.
 
@@ -418,11 +420,9 @@ Section Overview: In this section, the instructor demonstrates how to slice arra
 - Use `.push()` to add elements to a vector and `.pop()` to remove them.
 - A for loop can be used to iterate through all values in a vector. Use `iter_mut()` to mutate each value individually.
 
-## Mutating Values in Vectors
+## ⭐️Mutating Values in Vectors
 
-Section Overview: In this section, the instructor shows how to mutate values in vectors by multiplying each element by
-
-2.
+Section Overview: In this section, the instructor shows how to mutate values in vectors by multiplying each element by:
 
 - Use a for loop with `iter_mut()` on a vector.
 - Multiply each element by 2 using `*=` operator.
@@ -445,7 +445,7 @@ Section Overview: This section covers the use of conditionals in Rust.
 - A boolean variable can be created using `let check_ID: bool = false;`.
 - Types can be added to variables if desired.
 
-### Shorthand If
+### ⭐️Shorthand If
 
 - Rust does not have a ternary operator like many other languages, but shorthand if statements can be used instead.
 - Shorthand if statements work similarly to ternary operators in other languages.
@@ -512,12 +512,12 @@ Section Overview: In this section, we learn about Rust functions and how to use 
 - Use an arrow syntax to specify the return type of the function.
 - To call a function, simply write its name followed by any necessary arguments in parentheses.
 
-### Returning from a Function
+### ⭐️Returning from a Function
 
 - To return a value from a Rust function, omit the semicolon at the end of the expression.
 - The last expression in a Rust function is automatically returned.
 
-### Closures
+### ⭐️Closures
 
 - Closures are similar to functions but are more compact and can use outside variables.
 - Use `let` to define closures and bind them to variables.
@@ -532,7 +532,7 @@ Section Overview: In this section, we learn about pointers and references in Rus
 - Pointers can be used with primitive arrays in Rust.
 - Use `let` to create variables that point to other variables or arrays.
 
-### Non-primitive Values
+### ⭐️Non-primitive Values
 
 - Non-primitive values require references when assigning another variable to their data.
 - Use an ampersand (`&`) before non-primitive values when creating references.
@@ -542,9 +542,9 @@ Section Overview: In this section, we learn about pointers and references in Rus
 Section Overview: In this section, the instructor covers how to create references in Rust using the ampersand symbol and
 explains how to create structs in Rust.
 
-### Creating References
+### ⭐️Creating References
 
-- To create a reference in Rust, use the ampersand symbol.
+- To create a reference in Rust, use the **ampersand** symbol.
 - If you want to point to a non-primitive value, you need to create a reference.
 - Use the ampersand symbol before the variable name to create a reference.
 
@@ -555,7 +555,7 @@ explains how to create structs in Rust.
 - Define properties or members of your struct using variables with their respective data types.
 - Access properties of your struct using dot syntax.
 
-### Tuple Structs
+### ⭐️Tuple Structs
 
 - Tuple structs are another way of creating structs in Rust.
 - They do not have named properties like traditional structs but instead rely on their order within the tuple.
@@ -595,7 +595,7 @@ manipulate it.
 Section Overview: In this section, the instructor explains how structs are used in Rust and compares them to classes in
 other programming languages.
 
-## Introduction to Structs
+## ⭐️Introduction to Structs
 
 - A struct is a data type that groups together variables of different types.
 - The syntax for creating a struct is `struct Name { field1: Type1, field2: Type2 }`.
@@ -621,7 +621,7 @@ Section Overview: In this section, the instructor introduces enums and demonstra
 Section Overview: In this section, the instructor demonstrates how to create functions that take enums as parameters and
 use match statements to perform actions based on their values.
 
-### Creating Functions with Enums
+### ⭐️Creating Functions with Enums
 
 - We can create functions that take enums as parameters by specifying the type of the parameter as the name of the enum.
 - We can use match statements to perform actions based on the value of an enum.
@@ -637,7 +637,7 @@ to get them using env::args().
 - Command line arguments are values passed into a program when it is run from the command line.
 - We can use command line arguments to customize the behavior of our program.
 
-### Getting Command Line Arguments
+### ⭐️Getting Command Line Arguments
 
 - We can get command line arguments using the env::args() function from the standard library.
 - The env::args() function returns a vector of strings containing the command line arguments.
@@ -646,7 +646,7 @@ to get them using env::args().
 
 Section Overview: In this section, the instructor introduces how to create command line applications in Rust.
 
-### Getting Input from Command Line Arguments
+### ⭐️Getting Input from Command Line Arguments
 
 - The `args` variable is used to get input from the command line.
 - The first element of the `args` vector is always the target of the executable.
