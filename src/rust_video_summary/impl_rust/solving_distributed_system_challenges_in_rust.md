@@ -1,11 +1,6 @@
 # Solving distributed systems challenges in Rust
 
 <!--ts-->
-
-
-<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Apr 20 14:04:29 UTC 2023 -->
-
 <!--te-->
 
 ## Introduction
@@ -128,7 +123,7 @@ Section Overview: In this section, the speaker runs a binary and encounters an e
 - The speaker runs a binary using "debug or sting gun".
 - The program crashes with an error message "unknown variant variant in it right".
 
-### Responding to Messages
+### ⭐Responding to Messages
 
 - The speaker explains that in response to an init message, each node must respond with a message of type init.
 - They mention that there are two types of messages: init and echo.
@@ -209,7 +204,7 @@ Section Overview: In this section, the speaker discusses why step functions don'
 Section Overview: In this section, the speaker discusses implementing a globally unique ID generation system that runs
 on Maelstrom's unique IDs workload.
 
-### Implementing a Globally Unique ID Generation System
+### ⭐️Implementing a Globally Unique ID Generation System
 
 - [](t=0:42:42s) The speaker explains that they need to implement a globally unique ID generation system that runs on
   Maelstrom's unique IDs workload.
@@ -228,7 +223,7 @@ Section Overview: The speaker introduces the topic and mentions that they want t
 
 Section Overview: The speaker discusses payload definition and how it is based on the node service being implemented.
 
-### Generic Payload
+### ⭐️Generic Payload
 
 - The payload needs to be fully defined by the collar, but it's okay because it can be generic.
 - If the payload is all of the message types used by a given service, then at deserialization time, only those messages
@@ -296,7 +291,7 @@ Section Overview: In this section, the speaker discusses generating unique IDs f
 - The speaker proposes a method for guaranteeing that message IDs are unique per node and that the combination of a
   node's ID and message ID is globally unique.
 
-### Implementing Unique IDs
+### ⭐️Implementing Unique IDs
 
 - The speaker notes that the combination of a node's ID and message ID can be used as a generated ID when responding to
   messages.
@@ -309,7 +304,7 @@ Section Overview: In this section, the speaker discusses generating unique IDs f
 - The speaker notes that it would be difficult to use step function because it is called on a node before it is
   constructed.
 
-### Extracting Init
+### ⭐️Extracting Init
 
 - The speaker suggests extracting init on payload instead.
 - However, since payload is generic, we don't know how to get at the init variant.
@@ -321,7 +316,7 @@ Section Overview: In this section, the speaker discusses generating unique IDs f
 Section Overview: In this section, the speaker discusses extracting the initialization message and using it to create a
 node.
 
-### Extracting Initialization Message
+### ⭐️Extracting Initialization Message
 
 - The initialization message is extracted from the payload.
 - The speaker mentions that "no next exists."
@@ -359,14 +354,14 @@ implementation.
 
 Section Overview: In this section, the speaker discusses implementing payload trait for Echo.
 
-### Implementing Payload Trait for Echo
+### ⭐️Implementing Payload Trait for Echo
 
 -[](4323)s This will likely cause an error.
 -[](4330s) Rusting gun payload is mentioned.
 -[](4343s) The speaker uses let else let payload in it.
 -[](4363s) Resting on in it is discussed.
 
-## Restructuring the Code
+## ⭐️Restructuring the Code
 
 Section Overview: In this section, the speaker discusses restructuring the code to handle messages more efficiently.
 
@@ -447,7 +442,7 @@ nodes in the cluster. They start by generating unique IDs and move on to impleme
 
 Section Overview: In this section, there is no new content.
 
-## Order of Returned Values and Topology
+## ⭐️Order of Returned Values and Topology
 
 Section Overview: In this section, the speaker discusses the order of returned values and topology.
 
@@ -481,9 +476,9 @@ Section Overview: In this section, the speaker discusses setting up messages.
 - There is now a reply which consumes the message. It returns itself and what it does is exactly what prepare reply
   does.
 
-## Introduction
+## ⭐️Gossip Protocols Introduction
 
-Section Overview: In this section, the speaker introduces the topic of gossip protocols and explains that they will be
+Section Overview: In this section, the speaker introduces the topic of `gossip protocols` and explains that they will be
 implementing a broadcast system that propagates values to all nodes in the cluster.
 
 ### Implementing Broadcast
@@ -497,31 +492,82 @@ implementing a broadcast system that propagates values to all nodes in the clust
 Section Overview: In this section, the speaker discusses multi-node broadcast and how values should propagate to all
 nodes within a few seconds.
 
-### Gossip Protocols
+### ⭐️Gossip Protocols
 
 - The speaker explains that they will use gossip protocols to propagate values around the network.
 - They give an example of three nodes where an operation comes in saying "broadcast 34".
 - The goal is for every node in the system to know about every broadcast message.
 
-## Broadcast and Gossip
+## Differences Between Broadcast and Gossip
 
 Section Overview: This section explains the difference between broadcast and gossip protocols, how gossip works, and how
 it scales better than broadcast.
 
-### Broadcast vs. Gossip
+### ⭐️Broadcast vs. Gossip
 
 - Broadcast sends a message to every node in the system, which doesn't scale well.
 - Gossip sends a message to nodes in its topology or neighborhood, defined by direct network links or other criteria.
 - Topologies do not have to be symmetrical; nodes can have different neighborhoods.
 - Values should propagate to all other nodes within a few seconds.
 
-### How Gossip Works
+### ⭐️How Gossip Works
+
+~~~admonish note title="How Goosip Works Sequence Diagram" collapsible=true
+```mermaid
+sequenceDiagram
+    participant Node1
+    participant Node2
+    participant Node3
+    participant Node4
+
+    Node1->>+Node2: Send message through gossip
+    Node2->>+Node3: Forward message to its topology
+    Node2-->>-Node1: Exclude sender from topology
+    Node3->>+Node4: Forward message to its topology
+    Node3-->>-Node2: Exclude sender from topology
+    Node4-->>-Node3: All nodes eventually receive the message
+
+    Note over Node2,Node3: Scheduled gossip can be used for scalability
+```
+~~~
 
 - When a node receives a message through gossip, it sends it to everyone in its topology except for the sender.
 - The receiving nodes then send the message to their topologies until every node has received it.
 - As long as there is at least one link from one node to another through transitive closures, any set of topologies will
   eventually propagate messages to every node.
 - Scheduled gossip can be used instead of immediate gossip for scalability.
+
+### ⭐️Compare Blockchain and Gossip
+
+~~~admonish note title="Comparison" collapsible=true
+```mermaid
+graph TD;
+  A[Blockchain]-->B[Immutable distributed ledger];
+  B-->C[Update all nodes];
+  C-->D[Ensure data consistency and reliability];
+  E[Gossip]-->F[Random communication between nodes];
+  F-->G[Message propagation];
+  G-->H[Problem: message loss and duplication];
+  I[Blockchain]-->J[Strong security, anti-tampering, and decentralization features];
+  K[Gossip]-->L[Focuses more on efficiency and flexibility];
+```
+~~~
+
+Blockchain Gossip are both notification methods in distributed systems, but they have some key differences.
+
+Firstly, blockchain is based on an immutable distributed ledger that contains all transaction records. When a
+transaction is added to the blockchain, all nodes update their ledgers so that each node can get the same information.
+This ensures data consistency and reliability because each node can verify the correctness of the data.
+
+In contrast, Gossip is based on random communication between nodes and relies on message propagation between nodes to
+achieve notification in distributed systems. When a node receives a message, it randomly sends the message to several
+other nodes, which in turn randomly send the message to other nodes until all nodes receive the message. Due to the
+randomness of this method, problems such as message loss and duplication may occur, making Gossip unable to ensure the
+integrity and reliability of data like blockchain does.
+
+In addition, blockchain has strong security, anti-tampering, and decentralization features, while Gossip focuses more on
+efficiency and flexibility. Therefore, when choosing a notification method, one needs to choose the appropriate method
+according to their specific situation and requirements.
 
 ## Understanding Gossip Protocol
 
@@ -535,7 +581,7 @@ forwarding. The speaker also discusses the issue of syncing data between nodes i
   and forth between nodes.
 - When a node receives a new message, it contacts its neighbors to compare notes and sync up their data sets.
 
-### Syncing Data Between Nodes
+### ⭐️Syncing Data Between Nodes
 
 - Syncing data between nodes can be problematic because sending an entire data set on every message is not practical.
 - To minimize the amount of data being sent during syncing, nodes can eliminate messages that they already have or know
@@ -543,7 +589,7 @@ forwarding. The speaker also discusses the issue of syncing data between nodes i
 - Nodes need to remember which messages they have synced with other nodes in the past to avoid sending unnecessary
   messages during future syncs.
 
-## The Two Generals Problem
+## ⭐️The Two Generals Problem
 
 Section Overview: This section discusses the challenge of consensus in distributed systems, specifically the Two
 Generals Problem.
@@ -621,7 +667,7 @@ with it.
 - One way is to start up a separate thread that generates input events every 500 milliseconds.
 - Another way is to make the main loop be a gossip protocol.
 
-## Introduction to Asynchronous Programming
+## ⭐️Introduction to Asynchronous Programming
 
 Section Overview: In this section, the speaker discusses two approaches to writing asynchronous code and decides to
 avoid making the code asynchronous for now.
@@ -644,7 +690,7 @@ avoid making the code asynchronous for now.
 - Another way is by introducing a channel and cloning the sender side of the channel. Each thread will block and perform
   operations on their respective clones.
 
-## Using Channels for Input Messages
+## ⭐️Using Channels for Input Messages
 
 Section Overview: In this section, the speaker demonstrates how channels can be used for injecting input messages into
 an outer loop.
