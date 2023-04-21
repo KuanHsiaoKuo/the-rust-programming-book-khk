@@ -181,8 +181,267 @@
                 </div>
                 <h1 id="solving-distributed-systems-challenges-in-rust"><a class="header" href="#solving-distributed-systems-challenges-in-rust">Solving distributed systems challenges in Rust</a></h1>
 <!--ts-->
+<ul>
+<li><a href="#solving-distributed-systems-challenges-in-rust">Solving distributed systems challenges in Rust</a>
+<ul>
+<li><a href="#introduction">Introduction</a>
+<ul>
+<li><a href="#%EF%B8%8Fdistributed-systems-challenges"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Distributed Systems Challenges</a></li>
+</ul>
+</li>
+<li><a href="#what-is-maelstrom">What is Maelstrom?</a>
+<ul>
+<li><a href="#about-maelstrom"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐</g-emoji>About Maelstrom</a></li>
+</ul>
+</li>
+<li><a href="#implementing-the-protocol">Implementing the Protocol</a>
+<ul>
+<li><a href="#protocol-implementation"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐</g-emoji>Protocol Implementation</a></li>
+</ul>
+</li>
+<li><a href="#setting-up-the-project">Setting up the Project</a>
+<ul>
+<li><a href="#naming-the-project">Naming the Project</a></li>
+</ul>
+</li>
+<li><a href="#defining-message-struct">Defining Message Struct</a>
+<ul>
+<li><a href="#struct-definition"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐</g-emoji>Struct Definition</a></li>
+</ul>
+</li>
+<li><a href="#enum-and-payload">Enum and Payload</a>
+<ul>
+<li><a href="#using-enums-for-message-types"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐</g-emoji>Using Enums for Message Types</a></li>
+<li><a href="#flattening-payload">Flattening Payload</a></li>
+</ul>
+</li>
+<li><a href="#state-machine-driver"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐</g-emoji>State Machine Driver</a>
+<ul>
+<li><a href="#deserializing-inputs">Deserializing Inputs</a></li>
+<li><a href="#state-machine-model">State Machine Model</a></li>
+</ul>
+</li>
+<li><a href="#echo-node-step-function">Echo Node Step Function</a>
+<ul>
+<li><a href="#echo-node-step-function-1"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐</g-emoji>Echo Node Step Function</a></li>
+</ul>
+</li>
+<li><a href="#introduction-1">Introduction</a>
+<ul>
+<li><a href="#running-a-command">Running a Command</a></li>
+</ul>
+</li>
+<li><a href="#debugging">Debugging</a>
+<ul>
+<li><a href="#running-binary">Running Binary</a></li>
+<li><a href="#responding-to-messages"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐</g-emoji>Responding to Messages</a></li>
+</ul>
+</li>
+<li><a href="#responding-to-init-message">Responding to Init Message</a>
+<ul>
+<li><a href="#node-id-and-node-ids-fields">Node ID and Node IDs Fields</a></li>
+<li><a href="#init-message-type">Init Message Type</a></li>
+<li><a href="#responding-with-required-message">Responding with Required Message</a></li>
+<li><a href="#flushing-standard-out">Flushing Standard Out</a></li>
+</ul>
+</li>
+<li><a href="#printing-new-line">Printing New Line</a>
+<ul>
+<li><a href="#pretty-formatter">Pretty Formatter</a></li>
+<li><a href="#inner-part-of-output-stream">Inner Part of Output Stream</a></li>
+<li><a href="#implementing-json-serialization">Implementing JSON Serialization</a></li>
+<li><a href="#returning-messages-from-step-function">Returning Messages from Step Function</a></li>
+<li><a href="#%EF%B8%8Fimplementing-a-globally-unique-id-generation-system"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Implementing a Globally Unique ID Generation System</a></li>
+</ul>
+</li>
+<li><a href="#introduction-2">Introduction</a>
+<ul>
+<li><a href="#testing">Testing</a></li>
+</ul>
+</li>
+<li><a href="#payload-definition">Payload Definition</a>
+<ul>
+<li><a href="#%EF%B8%8Fgeneric-payload"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Generic Payload</a></li>
+<li><a href="#node-service-implementation">Node Service Implementation</a></li>
+</ul>
+</li>
+<li><a href="#splitting-up-shareable-parts">Splitting Up Shareable Parts</a>
+<ul>
+<li><a href="#copying-echo">Copying Echo</a></li>
+<li><a href="#generating-unique-ids">Generating Unique IDs</a></li>
+<li><a href="#responding-with-generate-okay-message">Responding with Generate Okay Message</a></li>
+<li><a href="#node-receiving-generate-messages">Node Receiving Generate Messages</a></li>
+</ul>
+</li>
+<li><a href="#unique-ids">Unique IDs</a>
+<ul>
+<li><a href="#generating-unique-ids-1">Generating Unique IDs</a></li>
+<li><a href="#%EF%B8%8Fimplementing-unique-ids"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Implementing Unique IDs</a></li>
+<li><a href="#%EF%B8%8Fextracting-init"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Extracting Init</a></li>
+</ul>
+</li>
+<li><a href="#extracting-initialization-message">Extracting Initialization Message</a>
+<ul>
+<li><a href="#%EF%B8%8Fextracting-initialization-message"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Extracting Initialization Message</a></li>
+<li><a href="#creating-init-response">Creating Init Response</a></li>
+<li><a href="#generating-payload">Generating Payload</a></li>
+<li><a href="#incrementing-id">Incrementing ID</a></li>
+</ul>
+</li>
+<li><a href="#generating-init-reply">Generating Init Reply</a>
+<ul>
+<li><a href="#generating-init-reply-1">Generating Init Reply</a></li>
+<li><a href="#%EF%B8%8Fimplementing-payload-trait-for-echo"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Implementing Payload Trait for Echo</a></li>
+</ul>
+</li>
+<li><a href="#%EF%B8%8Frestructuring-the-code"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Restructuring the Code</a>
+<ul>
+<li><a href="#handling-init-messages">Handling Init Messages</a></li>
+<li><a href="#removing-payload-trait">Removing Payload Trait</a></li>
+<li><a href="#updating-echo-node">Updating Echo Node</a></li>
+<li><a href="#unique-ids-1">Unique IDs</a></li>
+</ul>
+</li>
+<li><a href="#changes-to-unique-id-generator">Changes to Unique ID Generator</a>
+<ul>
+<li><a href="#unique-id-generator-changes">Unique ID Generator Changes</a></li>
+</ul>
+</li>
+<li><a href="#debugging-echo-functionality">Debugging Echo Functionality</a>
+<ul>
+<li><a href="#debugging-echo-functionality-1">Debugging Echo Functionality</a></li>
+</ul>
+</li>
+<li><a href="#updating-stream-deserializer">Updating Stream Deserializer</a>
+<ul>
+<li><a href="#updating-stream-deserializer-1">Updating Stream Deserializer</a></li>
+</ul>
+</li>
+<li><a href="#unique-ids-and-broadcast-challenge">Unique IDs and Broadcast Challenge</a>
+<ul>
+<li><a href="#generating-unique-ids-2">Generating Unique IDs</a></li>
+<li><a href="#single-node-broadcast-system">Single Node Broadcast System</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#%EF%B8%8Forder-of-returned-values-and-topology"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Order of Returned Values and Topology</a>
+<ul>
+<li><a href="#the-order-of-returned-values">The Order of Returned Values</a></li>
+<li><a href="#topology">Topology</a></li>
+</ul>
+</li>
+<li><a href="#setting-up-messages">Setting Up Messages</a>
+<ul>
+<li><a href="#initial-setup">Initial Setup</a></li>
+<li><a href="#broadcast-message">Broadcast Message</a></li>
+</ul>
+</li>
+<li><a href="#%EF%B8%8Fgossip-protocols-introduction"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Gossip Protocols Introduction</a>
+<ul>
+<li><a href="#implementing-broadcast">Implementing Broadcast</a></li>
+</ul>
+</li>
+<li><a href="#multi-node-broadcast">Multi-node Broadcast</a>
+<ul>
+<li><a href="#%EF%B8%8Fgossip-protocols"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Gossip Protocols</a></li>
+</ul>
+</li>
+<li><a href="#differences-between-broadcast-and-gossip">Differences Between Broadcast and Gossip</a>
+<ul>
+<li><a href="#%EF%B8%8Fbroadcast-vs-gossip"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Broadcast vs. Gossip</a></li>
+<li><a href="#%EF%B8%8Fhow-gossip-works"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>How Gossip Works</a></li>
+<li><a href="#%EF%B8%8Fcompare-blockchain-and-gossip"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Compare Blockchain and Gossip</a></li>
+</ul>
+</li>
+<li><a href="#understanding-gossip-protocol">Understanding Gossip Protocol</a>
+<ul>
+<li><a href="#how-gossip-protocol-works">How Gossip Protocol Works</a></li>
+<li><a href="#%EF%B8%8Fsyncing-data-between-nodes"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Syncing Data Between Nodes</a></li>
+</ul>
+</li>
+<li><a href="#%EF%B8%8Fthe-two-generals-problem"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>The Two Generals Problem</a>
+<ul>
+<li><a href="#sending-messages-and-acknowledgments">Sending Messages and Acknowledgments</a></li>
+<li><a href="#no-solution-to-consensus">No Solution to Consensus</a></li>
+<li><a href="#optimizing-gossip-protocol">Optimizing Gossip Protocol</a></li>
+<li><a href="#implementing-known-values">Implementing Known Values</a></li>
+<li><a href="#implementing-broadcast-1">Implementing Broadcast</a></li>
+<li><a href="#determining-nodes-to-communicate-with">Determining Nodes to Communicate With</a></li>
+<li><a href="#network-partitioning-issues">Network Partitioning Issues</a></li>
+<li><a href="#implementing-gossip-protocol">Implementing Gossip Protocol</a></li>
+</ul>
+</li>
+<li><a href="#%EF%B8%8Fintroduction-to-asynchronous-programming"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Introduction to Asynchronous Programming</a>
+<ul>
+<li><a href="#two-approaches-to-writing-asynchronous-code">Two Approaches to Writing Asynchronous Code</a></li>
+<li><a href="#avoiding-asynchronous-programming-for-now">Avoiding Asynchronous Programming for Now</a></li>
+<li><a href="#synchronous-programming-techniques">Synchronous Programming Techniques</a></li>
+</ul>
+</li>
+<li><a href="#%EF%B8%8Fusing-channels-for-input-messages"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Using Channels for Input Messages</a>
+<ul>
+<li><a href="#creating-a-channel">Creating a Channel</a></li>
+<li><a href="#receiving-from-channel-and-performing-step-function">Receiving from Channel and Performing Step Function</a></li>
+<li><a href="#dropping-standard-in">Dropping Standard In</a></li>
+</ul>
+</li>
+<li><a href="#introduction-3">Introduction</a>
+<ul>
+<li><a href="#thread-panics-and-error-handling">Thread Panics and Error Handling</a></li>
+</ul>
+</li>
+<li><a href="#main-loop">Main Loop</a>
+<ul>
+<li><a href="#generating-additional-input-events">Generating Additional Input Events</a></li>
+</ul>
+</li>
+<li><a href="#event-payload">Event Payload</a>
+<ul>
+<li><a href="#differentiating-between-injected-payloads-and-actual-messages">Differentiating Between Injected Payloads and Actual Messages</a></li>
+</ul>
+</li>
+<li><a href="#echo-fix">Echo Fix</a>
+<ul>
+<li><a href="#fixing-echo">Fixing Echo</a></li>
+</ul>
+</li>
+<li><a href="#end-of-file-and-injected-payloads">End of File and Injected Payloads</a>
+<ul>
+<li><a href="#handling-end-of-file-events">Handling End-of-File Events</a></li>
+<li><a href="#handling-injected-payloads">Handling Injected Payloads</a></li>
+<li><a href="#starting-a-new-thread">Starting a New Thread</a></li>
+<li><a href="#serialized-payload">Serialized Payload</a></li>
+<li><a href="#enum-for-injected-payload">Enum for Injected Payload</a></li>
+</ul>
+</li>
+<li><a href="#understanding-gossip-protocol-1">Understanding Gossip Protocol</a>
+<ul>
+<li><a href="#implementing-injected-payload">Implementing Injected Payload</a></li>
+<li><a href="#creating-helper-functions">Creating Helper Functions</a></li>
+<li><a href="#updating-gossip-protocol">Updating Gossip Protocol</a></li>
+<li><a href="#filtering-messages">Filtering Messages</a></li>
+</ul>
+</li>
+<li><a href="#gossip-protocol-implementation">Gossip Protocol Implementation</a>
+<ul>
+<li><a href="#sending-messages">Sending Messages</a></li>
+<li><a href="#gossiping-between-nodes">Gossiping Between Nodes</a></li>
+<li><a href="#naive-gossip-implementation">Naive Gossip Implementation</a></li>
+</ul>
+</li>
+<li><a href="#performance-analysis">Performance Analysis</a>
+<ul>
+<li><a href="#broadcast-rate-vs-propagation-delay">Broadcast Rate vs. Propagation Delay</a></li>
+<li><a href="#visibility-delay">Visibility Delay</a></li>
+<li><a href="#naive-gossip-implementation-1">Naive Gossip Implementation</a></li>
+</ul>
+</li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Apr 20 14:04:29 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr 21 15:09:08 UTC 2023 -->
 <!--te-->
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>Section Overview: In this section, the speaker introduces a set of distributed systems challenges that use a platform
@@ -284,7 +543,7 @@ They talk about the input message and how it returns a mutable reference to the 
 <li>The speaker runs a binary using “debug or sting gun”.</li>
 <li>The program crashes with an error message “unknown variant variant in it right”.</li>
 </ul>
-<h3 id="responding-to-messages"><a class="header" href="#responding-to-messages">Responding to Messages</a></h3>
+<h3 id="responding-to-messages"><a class="header" href="#responding-to-messages">⭐Responding to Messages</a></h3>
 <ul>
 <li>The speaker explains that in response to an init message, each node must respond with a message of type init.</li>
 <li>They mention that there are two types of messages: init and echo.</li>
@@ -355,7 +614,7 @@ mechanism of sending messages.</li>
 <h2 id="implementing-a-globally-unique-id-generation-system"><a class="header" href="#implementing-a-globally-unique-id-generation-system"><a href="t=0:42:42s">#</a> Implementing a Globally Unique ID Generation System</a></h2>
 <p>Section Overview: In this section, the speaker discusses implementing a globally unique ID generation system that runs
 on Maelstrom’s unique IDs workload.</p>
-<h3 id="implementing-a-globally-unique-id-generation-system-1"><a class="header" href="#implementing-a-globally-unique-id-generation-system-1">Implementing a Globally Unique ID Generation System</a></h3>
+<h3 id="implementing-a-globally-unique-id-generation-system-1"><a class="header" href="#implementing-a-globally-unique-id-generation-system-1">⭐️Implementing a Globally Unique ID Generation System</a></h3>
 <ul>
 <li><a href="t=0:42:42s"></a> The speaker explains that they need to implement a globally unique ID generation system that runs on
 Maelstrom’s unique IDs workload.</li>
@@ -370,7 +629,7 @@ Maelstrom’s unique IDs workload.</li>
 </ul>
 <h2 id="payload-definition"><a class="header" href="#payload-definition">Payload Definition</a></h2>
 <p>Section Overview: The speaker discusses payload definition and how it is based on the node service being implemented.</p>
-<h3 id="generic-payload"><a class="header" href="#generic-payload">Generic Payload</a></h3>
+<h3 id="generic-payload"><a class="header" href="#generic-payload">⭐️Generic Payload</a></h3>
 <ul>
 <li>The payload needs to be fully defined by the collar, but it’s okay because it can be generic.</li>
 <li>If the payload is all of the message types used by a given service, then at deserialization time, only those messages
@@ -429,7 +688,7 @@ Generate message.</p>
 <li>The speaker proposes a method for guaranteeing that message IDs are unique per node and that the combination of a
 node’s ID and message ID is globally unique.</li>
 </ul>
-<h3 id="implementing-unique-ids"><a class="header" href="#implementing-unique-ids">Implementing Unique IDs</a></h3>
+<h3 id="implementing-unique-ids"><a class="header" href="#implementing-unique-ids">⭐️Implementing Unique IDs</a></h3>
 <ul>
 <li>The speaker notes that the combination of a node’s ID and message ID can be used as a generated ID when responding to
 messages.</li>
@@ -442,7 +701,7 @@ been stored).</li>
 <li>The speaker notes that it would be difficult to use step function because it is called on a node before it is
 constructed.</li>
 </ul>
-<h3 id="extracting-init"><a class="header" href="#extracting-init">Extracting Init</a></h3>
+<h3 id="extracting-init"><a class="header" href="#extracting-init">⭐️Extracting Init</a></h3>
 <ul>
 <li>The speaker suggests extracting init on payload instead.</li>
 <li>However, since payload is generic, we don’t know how to get at the init variant.</li>
@@ -452,7 +711,7 @@ constructed.</li>
 <h2 id="extracting-initialization-message"><a class="header" href="#extracting-initialization-message">Extracting Initialization Message</a></h2>
 <p>Section Overview: In this section, the speaker discusses extracting the initialization message and using it to create a
 node.</p>
-<h3 id="extracting-initialization-message-1"><a class="header" href="#extracting-initialization-message-1">Extracting Initialization Message</a></h3>
+<h3 id="extracting-initialization-message-1"><a class="header" href="#extracting-initialization-message-1">⭐️Extracting Initialization Message</a></h3>
 <ul>
 <li>The initialization message is extracted from the payload.</li>
 <li>The speaker mentions that “no next exists.”</li>
@@ -486,12 +745,12 @@ implementation.</p>
 </ul>
 <h2 id="s-implementing-payload-trait-for-echo"><a class="header" href="#s-implementing-payload-trait-for-echo"><a href="4312">#</a>s Implementing Payload Trait for Echo</a></h2>
 <p>Section Overview: In this section, the speaker discusses implementing payload trait for Echo.</p>
-<h3 id="implementing-payload-trait-for-echo"><a class="header" href="#implementing-payload-trait-for-echo">Implementing Payload Trait for Echo</a></h3>
+<h3 id="implementing-payload-trait-for-echo"><a class="header" href="#implementing-payload-trait-for-echo">⭐️Implementing Payload Trait for Echo</a></h3>
 <p>-<a href="4323"></a>s This will likely cause an error.
 -<a href="4330s"></a> Rusting gun payload is mentioned.
 -<a href="4343s"></a> The speaker uses let else let payload in it.
 -<a href="4363s"></a> Resting on in it is discussed.</p>
-<h2 id="restructuring-the-code"><a class="header" href="#restructuring-the-code">Restructuring the Code</a></h2>
+<h2 id="restructuring-the-code"><a class="header" href="#restructuring-the-code">⭐️Restructuring the Code</a></h2>
 <p>Section Overview: In this section, the speaker discusses restructuring the code to handle messages more efficiently.</p>
 <h3 id="handling-init-messages"><a class="header" href="#handling-init-messages">Handling Init Messages</a></h3>
 <ul>
@@ -560,7 +819,7 @@ message RPC.</li>
 </ul>
 <h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
 <p>Section Overview: In this section, there is no new content.</p>
-<h2 id="order-of-returned-values-and-topology"><a class="header" href="#order-of-returned-values-and-topology">Order of Returned Values and Topology</a></h2>
+<h2 id="order-of-returned-values-and-topology"><a class="header" href="#order-of-returned-values-and-topology">⭐️Order of Returned Values and Topology</a></h2>
 <p>Section Overview: In this section, the speaker discusses the order of returned values and topology.</p>
 <h3 id="the-order-of-returned-values"><a class="header" href="#the-order-of-returned-values">The Order of Returned Values</a></h3>
 <ul>
@@ -590,8 +849,8 @@ prepare reply that sets ID to one that’s passed in if you have one and it sets
 <li>There is now a reply which consumes the message. It returns itself and what it does is exactly what prepare reply
 does.</li>
 </ul>
-<h2 id="introduction-3"><a class="header" href="#introduction-3">Introduction</a></h2>
-<p>Section Overview: In this section, the speaker introduces the topic of gossip protocols and explains that they will be
+<h2 id="gossip-protocols-introduction"><a class="header" href="#gossip-protocols-introduction">⭐️Gossip Protocols Introduction</a></h2>
+<p>Section Overview: In this section, the speaker introduces the topic of <code>gossip protocols</code> and explains that they will be
 implementing a broadcast system that propagates values to all nodes in the cluster.</p>
 <h3 id="implementing-broadcast"><a class="header" href="#implementing-broadcast">Implementing Broadcast</a></h3>
 <ul>
@@ -602,23 +861,46 @@ implementing a broadcast system that propagates values to all nodes in the clust
 <h2 id="multi-node-broadcast"><a class="header" href="#multi-node-broadcast">Multi-node Broadcast</a></h2>
 <p>Section Overview: In this section, the speaker discusses multi-node broadcast and how values should propagate to all
 nodes within a few seconds.</p>
-<h3 id="gossip-protocols"><a class="header" href="#gossip-protocols">Gossip Protocols</a></h3>
+<h3 id="gossip-protocols"><a class="header" href="#gossip-protocols">⭐️Gossip Protocols</a></h3>
 <ul>
 <li>The speaker explains that they will use gossip protocols to propagate values around the network.</li>
 <li>They give an example of three nodes where an operation comes in saying “broadcast 34”.</li>
 <li>The goal is for every node in the system to know about every broadcast message.</li>
 </ul>
-<h2 id="broadcast-and-gossip"><a class="header" href="#broadcast-and-gossip">Broadcast and Gossip</a></h2>
+<h2 id="differences-between-broadcast-and-gossip"><a class="header" href="#differences-between-broadcast-and-gossip">Differences Between Broadcast and Gossip</a></h2>
 <p>Section Overview: This section explains the difference between broadcast and gossip protocols, how gossip works, and how
 it scales better than broadcast.</p>
-<h3 id="broadcast-vs-gossip"><a class="header" href="#broadcast-vs-gossip">Broadcast vs. Gossip</a></h3>
+<h3 id="broadcast-vs-gossip"><a class="header" href="#broadcast-vs-gossip">⭐️Broadcast vs. Gossip</a></h3>
 <ul>
 <li>Broadcast sends a message to every node in the system, which doesn’t scale well.</li>
 <li>Gossip sends a message to nodes in its topology or neighborhood, defined by direct network links or other criteria.</li>
 <li>Topologies do not have to be symmetrical; nodes can have different neighborhoods.</li>
 <li>Values should propagate to all other nodes within a few seconds.</li>
 </ul>
-<h3 id="how-gossip-works"><a class="header" href="#how-gossip-works">How Gossip Works</a></h3>
+<h3 id="how-gossip-works"><a class="header" href="#how-gossip-works">⭐️How Gossip Works</a></h3>
+<details id="admonition-how-goosip-works-sequence-diagram" class="admonition note">
+<summary class="admonition-title">
+<p>How Goosip Works Sequence Diagram</p>
+<p><a class="admonition-anchor-link" href="#admonition-how-goosip-works-sequence-diagram"></a></p>
+</summary>
+<div>
+<pre><code class="language-mermaid">sequenceDiagram
+    participant Node1
+    participant Node2
+    participant Node3
+    participant Node4
+
+    Node1-&gt;&gt;+Node2: Send message through gossip
+    Node2-&gt;&gt;+Node3: Forward message to its topology
+    Node2--&gt;&gt;-Node1: Exclude sender from topology
+    Node3-&gt;&gt;+Node4: Forward message to its topology
+    Node3--&gt;&gt;-Node2: Exclude sender from topology
+    Node4--&gt;&gt;-Node3: All nodes eventually receive the message
+
+    Note over Node2,Node3: Scheduled gossip can be used for scalability
+</code></pre>
+</div>
+</details>
 <ul>
 <li>When a node receives a message through gossip, it sends it to everyone in its topology except for the sender.</li>
 <li>The receiving nodes then send the message to their topologies until every node has received it.</li>
@@ -626,6 +908,37 @@ it scales better than broadcast.</p>
 eventually propagate messages to every node.</li>
 <li>Scheduled gossip can be used instead of immediate gossip for scalability.</li>
 </ul>
+<h3 id="compare-blockchain-and-gossip"><a class="header" href="#compare-blockchain-and-gossip">⭐️Compare Blockchain and Gossip</a></h3>
+<details id="admonition-comparison" class="admonition note">
+<summary class="admonition-title">
+<p>Comparison</p>
+<p><a class="admonition-anchor-link" href="#admonition-comparison"></a></p>
+</summary>
+<div>
+<pre><code class="language-mermaid">graph TD;
+  A[Blockchain]--&gt;B[Immutable distributed ledger];
+  B--&gt;C[Update all nodes];
+  C--&gt;D[Ensure data consistency and reliability];
+  E[Gossip]--&gt;F[Random communication between nodes];
+  F--&gt;G[Message propagation];
+  G--&gt;H[Problem: message loss and duplication];
+  I[Blockchain]--&gt;J[Strong security, anti-tampering, and decentralization features];
+  K[Gossip]--&gt;L[Focuses more on efficiency and flexibility];
+</code></pre>
+</div>
+</details>
+<p>Blockchain Gossip are both notification methods in distributed systems, but they have some key differences.</p>
+<p>Firstly, blockchain is based on an immutable distributed ledger that contains all transaction records. When a
+transaction is added to the blockchain, all nodes update their ledgers so that each node can get the same information.
+This ensures data consistency and reliability because each node can verify the correctness of the data.</p>
+<p>In contrast, Gossip is based on random communication between nodes and relies on message propagation between nodes to
+achieve notification in distributed systems. When a node receives a message, it randomly sends the message to several
+other nodes, which in turn randomly send the message to other nodes until all nodes receive the message. Due to the
+randomness of this method, problems such as message loss and duplication may occur, making Gossip unable to ensure the
+integrity and reliability of data like blockchain does.</p>
+<p>In addition, blockchain has strong security, anti-tampering, and decentralization features, while Gossip focuses more on
+efficiency and flexibility. Therefore, when choosing a notification method, one needs to choose the appropriate method
+according to their specific situation and requirements.</p>
 <h2 id="understanding-gossip-protocol"><a class="header" href="#understanding-gossip-protocol">Understanding Gossip Protocol</a></h2>
 <p>Section Overview: In this section, the speaker explains how gossip protocol works and how it differs from blind
 forwarding. The speaker also discusses the issue of syncing data between nodes in a minimal fashion.</p>
@@ -636,7 +949,7 @@ forwarding. The speaker also discusses the issue of syncing data between nodes i
 and forth between nodes.</li>
 <li>When a node receives a new message, it contacts its neighbors to compare notes and sync up their data sets.</li>
 </ul>
-<h3 id="syncing-data-between-nodes"><a class="header" href="#syncing-data-between-nodes">Syncing Data Between Nodes</a></h3>
+<h3 id="syncing-data-between-nodes"><a class="header" href="#syncing-data-between-nodes">⭐️Syncing Data Between Nodes</a></h3>
 <ul>
 <li>Syncing data between nodes can be problematic because sending an entire data set on every message is not practical.</li>
 <li>To minimize the amount of data being sent during syncing, nodes can eliminate messages that they already have or know
@@ -644,7 +957,7 @@ about.</li>
 <li>Nodes need to remember which messages they have synced with other nodes in the past to avoid sending unnecessary
 messages during future syncs.</li>
 </ul>
-<h2 id="the-two-generals-problem"><a class="header" href="#the-two-generals-problem">The Two Generals Problem</a></h2>
+<h2 id="the-two-generals-problem"><a class="header" href="#the-two-generals-problem">⭐️The Two Generals Problem</a></h2>
 <p>Section Overview: This section discusses the challenge of consensus in distributed systems, specifically the Two
 Generals Problem.</p>
 <h3 id="sending-messages-and-acknowledgments"><a class="header" href="#sending-messages-and-acknowledgments">Sending Messages and Acknowledgments</a></h3>
@@ -712,7 +1025,7 @@ with it.</p>
 <li>One way is to start up a separate thread that generates input events every 500 milliseconds.</li>
 <li>Another way is to make the main loop be a gossip protocol.</li>
 </ul>
-<h2 id="introduction-to-asynchronous-programming"><a class="header" href="#introduction-to-asynchronous-programming">Introduction to Asynchronous Programming</a></h2>
+<h2 id="introduction-to-asynchronous-programming"><a class="header" href="#introduction-to-asynchronous-programming">⭐️Introduction to Asynchronous Programming</a></h2>
 <p>Section Overview: In this section, the speaker discusses two approaches to writing asynchronous code and decides to
 avoid making the code asynchronous for now.</p>
 <h3 id="two-approaches-to-writing-asynchronous-code"><a class="header" href="#two-approaches-to-writing-asynchronous-code">Two Approaches to Writing Asynchronous Code</a></h3>
@@ -733,7 +1046,7 @@ standard in with a timeout.</li>
 <li>Another way is by introducing a channel and cloning the sender side of the channel. Each thread will block and perform
 operations on their respective clones.</li>
 </ul>
-<h2 id="using-channels-for-input-messages"><a class="header" href="#using-channels-for-input-messages">Using Channels for Input Messages</a></h2>
+<h2 id="using-channels-for-input-messages"><a class="header" href="#using-channels-for-input-messages">⭐️Using Channels for Input Messages</a></h2>
 <p>Section Overview: In this section, the speaker demonstrates how channels can be used for injecting input messages into
 an outer loop.</p>
 <h3 id="creating-a-channel"><a class="header" href="#creating-a-channel">Creating a Channel</a></h3>
@@ -754,7 +1067,7 @@ using <code>std::io::stdin().lock().lines()</code> and <code>tx.send(input)</cod
 <li>All instances of standard in are replaced with <code>std::io::stdin().lock().lines()</code>.</li>
 <li>Since <code>self</code> is consumed, there is no need to worry about dropping P.</li>
 </ul>
-<h2 id="introduction-4"><a class="header" href="#introduction-4">Introduction</a></h2>
+<h2 id="introduction-3"><a class="header" href="#introduction-3">Introduction</a></h2>
 <p>Section Overview: In this section, the speaker introduces the topic of thread panics and error handling.</p>
 <h3 id="thread-panics-and-error-handling"><a class="header" href="#thread-panics-and-error-handling">Thread Panics and Error Handling</a></h3>
 <ul>

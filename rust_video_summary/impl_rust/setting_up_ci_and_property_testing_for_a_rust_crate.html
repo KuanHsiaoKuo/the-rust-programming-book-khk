@@ -181,8 +181,309 @@
                 </div>
                 <h1 id="setting-up-ci-and-property-testing-for-a-rust-crate"><a class="header" href="#setting-up-ci-and-property-testing-for-a-rust-crate">Setting up CI and property testing for a Rust crate</a></h1>
 <!--ts-->
+<ul>
+<li><a href="#setting-up-ci-and-property-testing-for-a-rust-crate">Setting up CI and property testing for a Rust crate</a>
+* <a href="#purpose-of-the-stream">Purpose of the Stream</a>
+* <a href="#checking-out-crate">Checking Out Crate</a>
+* <a href="#fixing-cargo-config-file">Fixing Cargo Config File</a>
+* <a href="#building-crate">Building Crate</a>
+* <a href="#creating-test-suite">Creating Test Suite</a>
+* <a href="#writing-tests-for-functions">Writing Tests for Functions</a>
+* <a href="#running-tests">Running Tests</a>
+* <a href="#importance-of-readme">Importance of Readme</a>
+* <a href="#what-to-include-in-readme">What to Include in Readme</a>
+* <a href="#writing-readme">Writing Readme</a>
+* <a href="#importance-of-documentation">Importance of Documentation</a>
+* <a href="#types-of-documentation">Types of Documentation</a>
+* <a href="#using-rustdoc">Using Rustdoc</a>
+* <a href="#importance-of-coverage-testing">Importance of Coverage Testing</a>
+* <a href="#using-tarpaulin-crate">Using Tarpaulin Crate</a>
+* <a href="#running-tarpaulin-on-codebase">Running Tarpaulin on Codebase</a>
+* <a href="#summary">Summary</a>
+* <a href="#thanking-viewers">Thanking Viewers</a>
+* <a href="#cargo-versioning">Cargo Versioning</a>
+* <a href="#reference-point">Reference Point</a>
+* <a href="#committing-changes">Committing Changes</a>
+* <a href="#skipping-duplicate-package-issue">Skipping Duplicate Package Issue</a>
+* <a href="#building-ci-pipeline">Building CI Pipeline</a>
+* <a href="#workflows">Workflows</a>
+* <a href="#using-versioned-actions">Using Versioned Actions</a>
+* <a href="#cargo-ecosystem">Cargo Ecosystem</a>
+* <a href="#configuring-code-coverage-reporting">Configuring Code Coverage Reporting</a>
+* <a href="#check-workflow">Check Workflow</a>
+* <a href="#fail-fast">Fail Fast</a>
+* <a href="#running-cargo-doc">Running cargo doc</a>
+* <a href="#using-cargo-hack">Using cargo hack</a>
+* <a href="#minimum-supported-rust-version-msrv">Minimum Supported Rust Version (MSRV)</a>
+* <a href="#safety-checks">Safety Checks</a>
+<ul>
+<li><a href="#schedule-jobs">Schedule Jobs</a>
+<ul>
+<li><a href="#running-a-build-on-nightly">Running a Build on Nightly</a></li>
+<li><a href="#building-on-beta">Building on Beta</a></li>
+</ul>
+</li>
+<li><a href="#running-test-suite">Running Test Suite</a>
+<ul>
+<li><a href="#testing-stable-and-beta-versions">Testing Stable and Beta Versions</a></li>
+<li><a href="#github-ci-magic">GitHub CI Magic</a></li>
+<li><a href="#minimal-versions">Minimal Versions</a></li>
+</ul>
+</li>
+<li><a href="#minimal-versions-1">Minimal Versions</a>
+<ul>
+<li><a href="#importance-of-full-version-numbers">Importance of Full Version Numbers</a></li>
+<li><a href="#limitations-of-minimal-versions">Limitations of Minimal Versions</a></li>
+<li><a href="#os-check-and-coverage-testing">OS Check and Coverage Testing</a></li>
+<li><a href="#preserving-history-vs-squash-merge">Preserving History vs Squash Merge</a></li>
+<li><a href="#checking-ci-and-pushing-to-origin">Checking CI and Pushing to Origin</a></li>
+<li><a href="#adding-cargo-lock">Adding Cargo Lock</a></li>
+<li><a href="#merging-repositories">Merging Repositories</a></li>
+<li><a href="#open-ssl-sys-dependency-issue">Open SSL Sys Dependency Issue</a></li>
+<li><a href="#bumping-in-msrv-for-crates-index">Bumping in MSRV for Crates Index</a></li>
+<li><a href="#checking-ci">Checking CI</a></li>
+<li><a href="#running-tests-1">Running Tests</a></li>
+</ul>
+</li>
+<li><a href="#t03839s-solving-dependency-problems">[t=0:38:39s] Solving Dependency Problems</a>
+<ul>
+<li><a href="#bumping-minimal-versions">Bumping Minimal Versions</a></li>
+<li><a href="#binary-search-for-openssl-version">Binary Search for OpenSSL Version</a></li>
+<li><a href="#updating-package-config">Updating Package Config</a></li>
+<li><a href="#fixing-rand-isaac-and-hkdf">Fixing Rand Isaac and HKDF</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#updating-dependencies">Updating Dependencies</a>
+<ul>
+<li><a href="#getting-rid-of-old-versions">Getting Rid of Old Versions</a></li>
+<li><a href="#testing-new-versions">Testing New Versions</a></li>
+<li><a href="#updating-cargo-lock">Updating Cargo Lock</a></li>
+</ul>
+</li>
+<li><a href="#setting-up-ci">Setting Up CI</a>
+<ul>
+<li><a href="#creating-a-repository">Creating a Repository</a></li>
+<li><a href="#troubleshooting-nightly-build-failure">Troubleshooting Nightly Build Failure</a></li>
+<li><a href="#starting-ci">Starting CI</a></li>
+<li><a href="#minimal-versions-2">Minimal Versions</a></li>
+<li><a href="#streaming">Streaming</a></li>
+<li><a href="#purpose-of-streams">Purpose of Streams</a></li>
+<li><a href="#fixing-openssl-on-windows">Fixing OpenSSL on Windows</a></li>
+<li><a href="#coverage-report">Coverage Report</a></li>
+<li><a href="#pushing-changes-and-merging-branches">Pushing Changes and Merging Branches</a></li>
+<li><a href="#updating-readme-file">Updating Readme File</a></li>
+</ul>
+</li>
+<li><a href="#improving-test-suite-with-property-based-testing">Improving Test Suite with Property-Based Testing</a>
+<ul>
+<li><a href="#property-based-testing">Property-Based Testing</a></li>
+<li><a href="#example">Example</a></li>
+</ul>
+</li>
+<li><a href="#t4203s-generating-inputs-for-testing">[t=4203s] Generating Inputs for Testing</a>
+<ul>
+<li><a href="#benefits-of-generating-inputs-from-small-domains">Benefits of Generating Inputs from Small Domains</a></li>
+<li><a href="#using-prop-testing">Using Prop Testing</a></li>
+</ul>
+</li>
+<li><a href="#t4360s-adding-dependencies-with-prop-tests">[t=4360s] Adding Dependencies with Prop Tests</a>
+<ul>
+<li><a href="#round-trip-function">Round Trip Function</a></li>
+<li><a href="#adding-dependencies-with-prop-tests">Adding Dependencies with Prop Tests</a></li>
+</ul>
+</li>
+<li><a href="#interesting">Interesting</a>
+<ul>
+<li><a href="#speakers-interest">Speaker’s Interest</a></li>
+</ul>
+</li>
+<li><a href="#checking-out-cargo-lock">Checking Out Cargo Lock</a>
+<ul>
+<li><a href="#checking-out-cargo-lock-1">Checking Out Cargo Lock</a></li>
+</ul>
+</li>
+<li><a href="#huh">Huh?</a>
+<ul>
+<li><a href="#confusion">Confusion</a></li>
+</ul>
+</li>
+<li><a href="#error-message-explanation">Error Message Explanation</a>
+<ul>
+<li><a href="#error-message-explanation-1">Error Message Explanation</a></li>
+</ul>
+</li>
+<li><a href="#build-issue">Build Issue</a>
+<ul>
+<li><a href="#build-issue-1">Build Issue</a></li>
+</ul>
+</li>
+<li><a href="#interesting-again">Interesting Again!</a>
+<ul>
+<li><a href="#interest">Interest</a></li>
+</ul>
+</li>
+<li><a href="#environment-variable-issue">Environment Variable Issue</a>
+<ul>
+<li><a href="#environment-variable-issue-1">Environment Variable Issue</a></li>
+</ul>
+</li>
+<li><a href="#avoiding-cargo-clean">Avoiding Cargo Clean</a>
+<ul>
+<li><a href="#avoiding-cargo-clean-1">Avoiding Cargo Clean</a></li>
+</ul>
+</li>
+<li><a href="#successful-build">Successful Build</a>
+<ul>
+<li><a href="#successful-build-1">Successful Build</a></li>
+</ul>
+</li>
+<li><a href="#strange-behavior">Strange Behavior</a>
+<ul>
+<li><a href="#strange-behavior-1">Strange Behavior</a></li>
+</ul>
+</li>
+<li><a href="#via-cargo-as-standard-integration-test">Via Cargo as Standard Integration Test</a>
+<ul>
+<li><a href="#using-via-cargo-as-standard-integration-test">Using Via Cargo as Standard Integration Test</a></li>
+</ul>
+</li>
+<li><a href="#running-tests-twice">Running Tests Twice</a>
+<ul>
+<li><a href="#running-tests-twice-1">Running Tests Twice</a></li>
+</ul>
+</li>
+<li><a href="#dependencies">Dependencies</a>
+<ul>
+<li><a href="#dependencies-1">Dependencies</a></li>
+</ul>
+</li>
+<li><a href="#output-issue">Output Issue</a>
+<ul>
+<li><a href="#output-issue-1">Output Issue</a></li>
+</ul>
+</li>
+<li><a href="#cargo-test-suite">Cargo Test Suite</a>
+<ul>
+<li><a href="#modifying-workspace-before-packaging">Modifying Workspace Before Packaging</a></li>
+<li><a href="#prop-testing-over-dependencies">Prop Testing Over Dependencies</a></li>
+<li><a href="#generating-dependencies">Generating Dependencies</a></li>
+</ul>
+</li>
+<li><a href="#generating-arbitrary-dependencies">Generating Arbitrary Dependencies</a>
+<ul>
+<li><a href="#deriving-arbitrary-trait">Deriving Arbitrary Trait</a></li>
+<li><a href="#implementing-arbitrary-dependency">Implementing Arbitrary Dependency</a></li>
+</ul>
+</li>
+<li><a href="#generating-dependency-specifiers">Generating Dependency Specifiers</a>
+<ul>
+<li><a href="#generating-a-version-specifier">Generating a Version Specifier</a></li>
+<li><a href="#generating-a-name">Generating a Name</a></li>
+<li><a href="#additional-considerations">Additional Considerations</a></li>
+</ul>
+</li>
+<li><a href="#creating-a-package">Creating a Package</a>
+<ul>
+<li><a href="#setting-features">Setting Features</a></li>
+<li><a href="#defining-package">Defining Package</a></li>
+</ul>
+</li>
+<li><a href="#testing-package">Testing Package</a>
+<ul>
+<li><a href="#testing-with-different-packages">Testing with Different Packages</a></li>
+<li><a href="#errors-in-testing">Errors in Testing</a></li>
+</ul>
+</li>
+<li><a href="#arbitrary-depth">Arbitrary Depth</a>
+<ul>
+<li><a href="#defining-arb-depths">Defining ARB Depths</a></li>
+</ul>
+</li>
+<li><a href="#creating-a-string-from-depth">Creating a String from Depth</a>
+<ul>
+<li><a href="#creating-a-string-from-depth-1">Creating a String from Depth</a></li>
+</ul>
+</li>
+<li><a href="#writing-out-other-props">Writing Out Other Props</a>
+<ul>
+<li><a href="#writing-out-other-props-1">Writing Out Other Props</a></li>
+</ul>
+</li>
+<li><a href="#prop-tests">Prop Tests</a>
+<ul>
+<li><a href="#prop-tests-1">Prop Tests</a></li>
+<li><a href="#generating-dependency-specifiers-1">Generating Dependency Specifiers</a></li>
+<li><a href="#writing-out-dependency-properties">Writing Out Dependency Properties</a></li>
+<li><a href="#further-customization-of-dependency-specifiers">Further Customization of Dependency Specifiers</a></li>
+<li><a href="#checking-for-dependency-presence">Checking for Dependency Presence</a></li>
+<li><a href="#helper-functions">Helper Functions</a></li>
+<li><a href="#other-notes">Other Notes</a></li>
+</ul>
+</li>
+<li><a href="#understanding-dependency-transformation">Understanding Dependency Transformation</a>
+<ul>
+<li><a href="#index-dependencies">Index Dependencies</a></li>
+<li><a href="#checks-for-completeness">Checks for Completeness</a></li>
+<li><a href="#limitations">Limitations</a></li>
+</ul>
+</li>
+<li><a href="#running-prop-test-job">Running Prop Test Job</a>
+<ul>
+<li><a href="#ignoring-slow-tests">Ignoring Slow Tests</a></li>
+<li><a href="#configuring-prop-test">Configuring Prop Test</a></li>
+</ul>
+</li>
+<li><a href="#practice-regressions">Practice Regressions</a>
+<ul>
+<li><a href="#checking-in-files">Checking in Files</a></li>
+<li><a href="#running-prop-tests">Running Prop Tests</a></li>
+<li><a href="#opening-a-pull-request">Opening a Pull Request</a></li>
+<li><a href="#configuring-branch-protection">Configuring Branch Protection</a></li>
+</ul>
+</li>
+<li><a href="#improving-build-times-with-caching">Improving Build Times with Caching</a>
+<ul>
+<li><a href="#using-caching-for-dependency-trees">Using Caching for Dependency Trees</a></li>
+<li><a href="#defining-cache-keys">Defining Cache Keys</a></li>
+<li><a href="#saving-and-restoring-cache">Saving and Restoring Cache</a></li>
+<li><a href="#prop-tests-2">Prop Tests</a></li>
+</ul>
+</li>
+<li><a href="#conclusion-1">Conclusion</a>
+<ul>
+<li><a href="#taking-advantage-of-dependency-kinds">Taking Advantage of Dependency Kinds</a></li>
+</ul>
+</li>
+<li><a href="#configuring-ci-for-prop-tests">Configuring CI for Prop Tests</a>
+<ul>
+<li><a href="#trade-offs-of-adding-instrumentation-for-coverage">Trade-Offs of Adding Instrumentation for Coverage</a></li>
+<li><a href="#documentation">Documentation</a></li>
+<li><a href="#follow-up-questions">Follow-Up Questions</a></li>
+</ul>
+</li>
+<li><a href="#saving-target-file-and-restoring-cache">Saving Target File and Restoring Cache</a>
+<ul>
+<li><a href="#saving-target-file">Saving Target File</a></li>
+<li><a href="#restoring-cache">Restoring Cache</a></li>
+</ul>
+</li>
+<li><a href="#updating-git-repository">Updating Git Repository</a>
+<ul>
+<li><a href="#pinning-revision-in-cargo-tamil">Pinning Revision in Cargo Tamil</a></li>
+</ul>
+</li>
+<li><a href="#sparse-registries">Sparse Registries</a>
+<ul>
+<li><a href="#injecting-configuration">Injecting Configuration</a></li>
+</ul>
+</li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Apr 20 14:04:29 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr 21 15:09:08 UTC 2023 -->
 <!--te-->
 <h2 id="introduction"><a class="header" href="#introduction"><a href="t=0:00:00">#</a> Introduction</a></h2>
 <p>Section Overview: In this stream, the presenter plans to take an arbitrary crate and look at what steps to take after

@@ -181,8 +181,141 @@
                 </div>
                 <h1 id="subtyping-and-variance"><a class="header" href="#subtyping-and-variance">Subtyping and Variance</a></h1>
 <!--ts-->
+<ul>
+<li><a href="#subtyping-and-variance">Subtyping and Variance</a>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#understanding-subtyping-and-variance">Understanding Subtyping and Variance</a></li>
+<li><a href="#implementing-stir-talk-function">Implementing Stir Talk Function</a></li>
+<li><a href="#challenges-with-variance">Challenges with Variance</a></li>
+<li><a href="#introduction-to-stir-talk">Introduction to Stir Talk</a>
+<ul>
+<li><a href="#basic-signature-of-stir-talk">Basic Signature of Stir Talk</a></li>
+<li><a href="#example-usage-of-stir-talk">Example Usage of Stir Talk</a></li>
+<li><a href="#implementation-of-stir-talk">Implementation of Stir Talk</a></li>
+</ul>
+</li>
+<li><a href="#understanding-how-stir-talk-works">Understanding How Stir Talk Works</a>
+<ul>
+<li><a href="#internal-mechanics-of-stir-talk">Internal Mechanics of Stir Talk</a></li>
+<li><a href="#testing-our-implementation">Testing Our Implementation</a></li>
+<li><a href="#slicing-strings">Slicing Strings</a></li>
+<li><a href="#testing-stir_talk-function">Testing stir_talk Function</a></li>
+<li><a href="#compiler-error-message">Compiler Error Message</a></li>
+<li><a href="#extra-scope-added">Extra Scope Added</a></li>
+<li><a href="#simplified-example">Simplified Example</a></li>
+</ul>
+</li>
+<li><a href="#understanding-static-borrowing">Understanding Static Borrowing</a>
+<ul>
+<li><a href="#compilers-perspective-on-static-borrowing">Compiler’s Perspective on Static Borrowing</a></li>
+<li><a href="#shortening-lifetime-of-mutable-borrow">Shortening Lifetime of Mutable Borrow</a></li>
+<li><a href="#exploring-variance">Exploring Variance</a></li>
+<li><a href="#making-x-static">Making X Static</a></li>
+</ul>
+</li>
+<li><a href="#why-does-this-example-work">Why Does This Example Work?</a>
+<ul>
+<li><a href="#subtyping">Subtyping</a></li>
+<li><a href="#variance">Variance</a></li>
+</ul>
+</li>
+<li><a href="#covariance">Covariance</a>
+<ul>
+<li><a href="#not-every-type-is-covariant">Not Every Type Is Covariant</a></li>
+</ul>
+</li>
+<li><a href="#covariance-and-contravariance">Covariance and Contravariance</a>
+<ul>
+<li><a href="#covariant-types">Covariant Types</a></li>
+<li><a href="#contravariant-types">Contravariant Types</a></li>
+<li><a href="#example-function-arguments">Example: Function Arguments</a></li>
+<li><a href="#covariance-and-contravariance-1">Covariance and Contravariance</a></li>
+<li><a href="#invariance">Invariance</a></li>
+<li><a href="#cell-static">Cell Static</a></li>
+</ul>
+</li>
+<li><a href="#invariance-for-mutable-references">Invariance for Mutable References</a>
+<ul>
+<li><a href="#why-mutable-references-are-invariant">Why Mutable References are Invariant</a></li>
+</ul>
+</li>
+<li><a href="#covariance-and-invariance-for-immutable-references">Covariance and Invariance for Immutable References</a>
+<ul>
+<li><a href="#covariance-and-invariance-for-immutable-references-1">Covariance and Invariance for Immutable References</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-mutable-references">Introduction to Mutable References</a>
+<ul>
+<li><a href="#mutable-references">Mutable References</a></li>
+</ul>
+</li>
+<li><a href="#covariance-and-invariance-of-mutable-references">Covariance and Invariance of Mutable References</a>
+<ul>
+<li><a href="#covariance-and-invariance">Covariance and Invariance</a></li>
+</ul>
+</li>
+<li><a href="#understanding-lifetime-issues-with-mutable-references">Understanding Lifetime Issues with Mutable References</a>
+<ul>
+<li><a href="#lifetime-issues">Lifetime Issues</a></li>
+</ul>
+</li>
+<li><a href="#introduction-1">Introduction</a></li>
+<li><a href="#adding-an-additional-lifetime">Adding an Additional Lifetime</a></li>
+<li><a href="#testing-the-fixed-code">Testing the Fixed Code</a></li>
+<li><a href="#explanation-of-lifetime-assumptions">Explanation of Lifetime Assumptions</a></li>
+<li><a href="#borrow-checker-rules">Borrow Checker Rules</a>
+<ul>
+<li><a href="#mutable-reference-lifetime">Mutable Reference Lifetime</a></li>
+<li><a href="#borrowing-rules">Borrowing Rules</a></li>
+<li><a href="#phantom-data">Phantom Data</a></li>
+</ul>
+</li>
+<li><a href="#the-drop-check">The Drop Check</a>
+<ul>
+<li><a href="#the-drop-check-1">The Drop Check</a></li>
+</ul>
+</li>
+<li><a href="#touch-drop">Touch Drop</a>
+<ul>
+<li><a href="#touch-drop-1">Touch Drop</a></li>
+</ul>
+</li>
+<li><a href="#understanding-phantom-data">Understanding Phantom Data</a>
+<ul>
+<li><a href="#phantom-data-1">Phantom Data</a></li>
+<li><a href="#invariance-1">Invariance</a></li>
+<li><a href="#covariance-1">Covariance</a></li>
+</ul>
+</li>
+<li><a href="#raw-pointers-vs-phantom-data">Raw Pointers vs. Phantom Data</a>
+<ul>
+<li><a href="#raw-pointers">Raw Pointers</a></li>
+<li><a href="#auto-implementation">Auto Implementation</a></li>
+</ul>
+</li>
+<li><a href="#covariance-and-invariance-in-rust">Covariance and Invariance in Rust</a>
+<ul>
+<li><a href="#understanding-covariance-and-invariance">Understanding Covariance and Invariance</a></li>
+<li><a href="#syntax-for-lifetime-bounds">Syntax for Lifetime Bounds</a></li>
+<li><a href="#mutating-through-star-const-t">Mutating Through Star Const T</a></li>
+<li><a href="#unique-types-and-non-null-pointers">Unique Types and Non-null Pointers</a></li>
+</ul>
+</li>
+<li><a href="#rust-lifetimes-variance-and-subtyping">Rust Lifetimes: Variance and Subtyping</a>
+<ul>
+<li><a href="#understanding-lifetime-specifiers">Understanding Lifetime Specifiers</a></li>
+<li><a href="#solving-lifetime-issues-with-variance-and-subtyping">Solving Lifetime Issues with Variance and Subtyping</a></li>
+<li><a href="#writing-explicit-code">Writing Explicit Code</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Apr 20 14:04:28 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr 21 15:09:07 UTC 2023 -->
 <!--te-->
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>Section Overview: In this stream, the speaker will cover subtyping and variance in Rust. They will refer to official

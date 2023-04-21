@@ -181,8 +181,265 @@
                 </div>
                 <h1 id="36himplementing-and-optimizing-a-wordle-solver-in-rust"><a class="header" href="#36himplementing-and-optimizing-a-wordle-solver-in-rust">(3/6h)Implementing and Optimizing a Wordle Solver in Rust</a></h1>
 <!--ts-->
+<ul>
+<li><a href="#36himplementing-and-optimizing-a-wordle-solver-in-rust">(3/6h)Implementing and Optimizing a Wordle Solver in Rust</a>
+* <a href="#playing-wordle">Playing Wordle</a>
+* <a href="#what-to-expect">What to Expect</a>
+<ul>
+<li><a href="#solving-wordle-with-information-theory">Solving Wordle with Information Theory</a>
+<ul>
+<li><a href="#algorithm-explanation">Algorithm Explanation</a></li>
+<li><a href="#using-hyperfine-for-performance-optimization">Using Hyperfine for Performance Optimization</a></li>
+<li><a href="#multithreading-considerations">Multithreading Considerations</a></li>
+</ul>
+</li>
+<li><a href="#introduction">Introduction</a>
+<ul>
+<li><a href="#algorithmic-approach">Algorithmic Approach</a></li>
+</ul>
+</li>
+<li><a href="#getting-started">Getting Started</a>
+<ul>
+<li><a href="#obtaining-wordle-dictionary">Obtaining Wordle Dictionary</a></li>
+<li><a href="#obtaining-google-books-n-gram-dataset">Obtaining Google Books N-Gram Dataset</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a>
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#how-the-data-is-constructed">How the Data is Constructed</a></li>
+<li><a href="#using-ripgrep-to-search-for-five-letter-words">Using Ripgrep to Search for Five-Letter Words</a></li>
+<li><a href="#extracting-occurrence-count-for-each-word">Extracting Occurrence Count for Each Word</a></li>
+<li><a href="#normalizing-data">Normalizing Data</a></li>
+</ul>
+</li>
+<li><a href="#using-awk-to-combine-consecutive-records">Using AWK to Combine Consecutive Records</a>
+<ul>
+<li><a href="#combining-consecutive-records">Combining Consecutive Records</a></li>
+<li><a href="#computing-total-count-and-probability">Computing Total Count and Probability</a></li>
+</ul>
+</li>
+<li><a href="#creating-a-wordle-dictionary-file">Creating a Wordle Dictionary File</a>
+<ul>
+<li><a href="#importing-wordle-dictionary-as-json-file">Importing Wordle Dictionary as JSON File</a></li>
+<li><a href="#joining-dictionary-with-frequency-count-file">Joining Dictionary with Frequency Count File</a></li>
+<li><a href="#handling-words-without-counts">Handling Words Without Counts</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-wordle-solver">Introduction to Wordle Solver</a>
+<ul>
+<li><a href="#naming-the-dev-streams">Naming the Dev Streams</a></li>
+<li><a href="#writing-rust-code">Writing Rust Code</a></li>
+<li><a href="#creating-functions">Creating Functions</a></li>
+<li><a href="#guessing-functionality">Guessing Functionality</a></li>
+<li><a href="#program-structure">Program Structure</a></li>
+<li><a href="#implementing-algorithms">Implementing Algorithms</a></li>
+<li><a href="#playing-wordle-1">Playing Wordle</a></li>
+<li><a href="#computing-correctness">Computing Correctness</a></li>
+<li><a href="#pushing-guesses-into-history">Pushing Guesses into History</a></li>
+<li><a href="#returning-iteration-number">Returning Iteration Number</a></li>
+<li><a href="#setting-maximum-number-of-guesses">Setting Maximum Number of Guesses</a></li>
+<li><a href="#handling-infinite-loop">Handling Infinite Loop</a></li>
+<li><a href="#error-message">Error Message</a></li>
+</ul>
+</li>
+<li><a href="#implementing-a-guess-checker">Implementing a Guess Checker</a>
+<ul>
+<li><a href="#implementing-the-guess-checker">Implementing the Guess Checker</a></li>
+<li><a href="#optimizing-code">Optimizing Code</a></li>
+<li><a href="#marking-correctness">Marking Correctness</a></li>
+<li><a href="#marking-correctness-and-misplaced-characters">Marking Correctness and Misplaced Characters</a></li>
+<li><a href="#writing-tests-for-marking-correctness-and-misplaced-characters">Writing Tests for Marking Correctness and Misplaced Characters</a></li>
+<li><a href="#implementing-naive-functionality">Implementing Naive Functionality</a></li>
+<li><a href="#creating-a-macro-for-writing-correctness-things">Creating a Macro for Writing Correctness Things</a></li>
+</ul>
+</li>
+<li><a href="#wordle-algorithm">Wordle Algorithm</a>
+<ul>
+<li><a href="#developing-the-play-algorithm">Developing the Play Algorithm</a></li>
+<li><a href="#checking-for-valid-guesses">Checking for Valid Guesses</a></li>
+</ul>
+</li>
+<li><a href="#creating-a-dictionary">Creating a Dictionary</a>
+<ul>
+<li><a href="#creating-a-dictionary-1">Creating a Dictionary</a></li>
+</ul>
+</li>
+<li><a href="#implementing-play-function">Implementing Play Function</a>
+<ul>
+<li><a href="#implementing-play-function-1">Implementing Play Function</a></li>
+</ul>
+</li>
+<li><a href="#guess-to-string">Guess to String</a>
+<ul>
+<li><a href="#implementing-closures">Implementing Closures</a></li>
+<li><a href="#troubleshooting-errors">Troubleshooting Errors</a></li>
+</ul>
+</li>
+<li><a href="#fixing-code-and-testing-guessing-game">Fixing Code and Testing Guessing Game</a>
+<ul>
+<li><a href="#fixing-code-issues">Fixing Code Issues</a></li>
+<li><a href="#testing-guessing-game">Testing Guessing Game</a></li>
+</ul>
+</li>
+<li><a href="#checking-naive-implementation">Checking Naive Implementation</a>
+<ul>
+<li><a href="#checking-naive-implementation-1">Checking Naive Implementation</a></li>
+</ul>
+</li>
+<li><a href="#t5463s-parsing-and-computing-word-count">[t=5463s] Parsing and Computing Word Count</a>
+<ul>
+<li><a href="#parsing-words">Parsing Words</a></li>
+<li><a href="#computing-word-count">Computing Word Count</a></li>
+</ul>
+</li>
+<li><a href="#t5541s-computing-goodness-of-guesses">[t=5541s] Computing Goodness of Guesses</a>
+<ul>
+<li><a href="#looping-over-candidate-words">Looping Over Candidate Words</a></li>
+<li><a href="#comparing-goodness-of-guesses">Comparing Goodness of Guesses</a></li>
+</ul>
+</li>
+<li><a href="#t5671s-updating-remaining-based-on-history">[t=5671s] Updating Remaining Based on History</a>
+<ul>
+<li><a href="#retaining-matching-information">Retaining Matching Information</a></li>
+</ul>
+</li>
+<li><a href="#t5873s-retaining-words-based-on-guesses">[t=5873s] Retaining Words Based on Guesses</a>
+<ul>
+<li><a href="#matching-words-with-guesses">Matching Words with Guesses</a></li>
+<li><a href="#logic-for-matching-words">Logic for Matching Words</a></li>
+</ul>
+</li>
+<li><a href="#t6020s-checking-misplaced-letters">[t=6020s] Checking Misplaced Letters</a>
+<ul>
+<li><a href="#checking-greens">Checking Greens</a></li>
+<li><a href="#sorting-used-letters">Sorting Used Letters</a></li>
+<li><a href="#looping-through-characters">Looping through characters</a></li>
+<li><a href="#searching-for-unused-letters">Searching for Unused Letters</a></li>
+<li><a href="#finding-occurrences-of-characters">Finding Occurrences of Characters</a></li>
+</ul>
+</li>
+<li><a href="#matching-algorithm">Matching Algorithm</a>
+<ul>
+<li><a href="#matching-on-previous-guess">Matching on Previous Guess</a></li>
+<li><a href="#handling-misplaced-characters">Handling Misplaced Characters</a></li>
+<li><a href="#plausible-matches">Plausible Matches</a></li>
+</ul>
+</li>
+<li><a href="#testing-the-guess-matcher">Testing the Guess Matcher</a>
+<ul>
+<li><a href="#constructing-a-guess">Constructing a Guess</a></li>
+<li><a href="#writing-macros-for-testing">Writing Macros for Testing</a></li>
+<li><a href="#incremental-solver">Incremental Solver</a></li>
+</ul>
+</li>
+<li><a href="#pruning-logic">Pruning Logic</a>
+<ul>
+<li><a href="#incremental-pruning">Incremental Pruning</a></li>
+<li><a href="#eliminating-words">Eliminating Words</a></li>
+</ul>
+</li>
+<li><a href="#guessing-different-letters">Guessing Different Letters</a></li>
+<li><a href="#disallowing-incorrect-patterns">Disallowing Incorrect Patterns</a></li>
+<li><a href="#debugging-the-code">Debugging the Code</a>
+<ul>
+<li><a href="#debugging-the-disallowed-inputs">Debugging the Disallowed Inputs</a></li>
+</ul>
+</li>
+<li><a href="#the-input-rita-bond-a-b-c-d-e-plus-w-w-disallows-b-c-d-e-a-is-being-disallowed">The input “rita bond a b c d e plus w w disallows b c d e a” is being disallowed.</a></li>
+<li><a href="#the-speaker-questions-why-this-input-should-be-disallowed-since-all-letters-are-present-but-in-different-arrangements">The speaker questions why this input should be disallowed since all letters are present but in different arrangements.</a></li>
+<li><a href="#upon-further-inspection-it-is-discovered-that-all-of-the-letters-are-grayed-out-indicating-that-they-are-incorrect">Upon further inspection, it is discovered that all of the letters are grayed out, indicating that they are incorrect.</a>
+<ul>
+<li><a href="#identifying-the-issue-with-early-returns">Identifying the Issue with Early Returns</a></li>
+</ul>
+</li>
+<li><a href="#the-speaker-examines-early-returns-in-the-code-to-determine-which-one-is-being-taken">The speaker examines early returns in the code to determine which one is being taken.</a></li>
+<li><a href="#it-is-determined-that-an-incorrect-return-statement-is-being-taken-twice">It is determined that an incorrect return statement is being taken twice.</a></li>
+<li><a href="#further-investigation-reveals-that-previously-correct-letters-were-being-re-evaluated-causing-errors-in-matching-letters">Further investigation reveals that previously correct letters were being re-evaluated, causing errors in matching letters.</a>
+<ul>
+<li><a href="#optimizing-code-1">Optimizing Code</a></li>
+</ul>
+</li>
+<li><a href="#a-suggestion-is-made-to-optimize-the-code-by-comparing-candidate-words-to-answers-element-by-element-for-correctness">A suggestion is made to optimize the code by comparing candidate words to answers element by element for correctness.</a></li>
+<li><a href="#the-speaker-considers-this-proposal-but-ultimately-decides-against-it-due-to-excessive-complexity">The speaker considers this proposal but ultimately decides against it due to excessive complexity.</a></li>
+<li><a href="#refactoring-code-for-optimization">Refactoring Code for Optimization</a>
+<ul>
+<li><a href="#simplifying-code-with-zip-function">Simplifying Code with Zip Function</a></li>
+</ul>
+</li>
+<li><a href="#the-speaker-simplifies-some-of-the-code-by-using-pythons-zip-function-instead-of-manually-iterating-through-lists">The speaker simplifies some of the code by using Python’s zip function instead of manually iterating through lists.</a>
+<ul>
+<li><a href="#refactoring-for-efficiency">Refactoring for Efficiency</a></li>
+</ul>
+</li>
+<li><a href="#the-speaker-discusses-refactoring-parts-of-the-code-for-efficiency-such-as-using-sets-instead-of-lists">The speaker discusses refactoring parts of the code for efficiency, such as using sets instead of lists.</a></li>
+<li><a href="#finalizing-code">Finalizing Code</a>
+<ul>
+<li><a href="#testing-final-code">Testing Final Code</a></li>
+</ul>
+</li>
+<li><a href="#the-speaker-tests-the-final-version-of-the-code-with-various-inputs-to-ensure-that-it-is-working-correctly">The speaker tests the final version of the code with various inputs to ensure that it is working correctly.</a>
+<ul>
+<li><a href="#submitting-code">Submitting Code</a></li>
+</ul>
+</li>
+<li><a href="#the-speaker-submits-the-final-version-of-the-code-for-review">The speaker submits the final version of the code for review.</a></li>
+<li><a href="#introduction-1">Introduction</a>
+<ul>
+<li><a href="#naive-algorithm">Naive Algorithm</a></li>
+<li><a href="#improved-algorithm">Improved Algorithm</a></li>
+</ul>
+</li>
+<li><a href="#computing-correctness-1">Computing Correctness</a>
+<ul>
+<li><a href="#pruning-possibilities">Pruning Possibilities</a></li>
+<li><a href="#exploiting-equivalence">Exploiting Equivalence</a></li>
+<li><a href="#computing-goodness">Computing Goodness</a></li>
+</ul>
+</li>
+<li><a href="#probability-of-words">Probability of Words</a>
+<ul>
+<li><a href="#total-count">Total Count</a></li>
+<li><a href="#probability-calculation">Probability Calculation</a></li>
+</ul>
+</li>
+<li><a href="#conclusion-1">Conclusion</a>
+<ul>
+<li><a href="#summary-1">Summary</a></li>
+<li><a href="#efficiency">Efficiency</a></li>
+</ul>
+</li>
+<li><a href="#computing-the-goodness-of-words">Computing the Goodness of Words</a>
+<ul>
+<li><a href="#formula-for-computing-goodness">Formula for Computing Goodness</a></li>
+<li><a href="#intuition-behind-the-formula">Intuition Behind the Formula</a></li>
+<li><a href="#helper-function-for-permutations">Helper Function for Permutations</a></li>
+</ul>
+</li>
+<li><a href="#permutations">Permutations</a>
+<ul>
+<li><a href="#using-cartesian-product-for-power-sets">Using Cartesian Product for Power Sets</a></li>
+</ul>
+</li>
+<li><a href="#computing-patterns">Computing Patterns</a>
+<ul>
+<li><a href="#looping-over-possible-patterns">Looping Over Possible Patterns</a></li>
+<li><a href="#computing-what-is-left-after-each-guess">Computing What Is Left After Each Guess</a></li>
+</ul>
+</li>
+<li><a href="#understanding-the-code">Understanding the Code</a>
+<ul>
+<li><a href="#probability-of-getting-a-pattern">Probability of Getting a Pattern</a></li>
+<li><a href="#computing-entropy">Computing Entropy</a></li>
+<li><a href="#improving-code-efficiency">Improving Code Efficiency</a></li>
+</ul>
+</li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Apr 20 14:04:29 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr 21 15:09:07 UTC 2023 -->
 <!--te-->
 <h2 id="00001-introduction-to-wordle"><a class="header" href="#00001-introduction-to-wordle"><a href="t=1s">0:00:01</a> Introduction to Wordle</a></h2>
 <p>Section Overview: In this section, the speaker introduces the topic of the video, which is playing Wordle. They explain

@@ -181,8 +181,259 @@
                 </div>
                 <h1 id="atomics-and-memory-ordering"><a class="header" href="#atomics-and-memory-ordering">Atomics and Memory Ordering</a></h1>
 <!--ts-->
+<ul>
+<li><a href="#atomics-and-memory-ordering">Atomics and Memory Ordering</a>
+<ul>
+<li><a href="#introduction">Introduction</a>
+<ul>
+<li><a href="#why-do-we-need-atomics">Why Do We Need Atomics?</a></li>
+<li><a href="#what-will-be-covered">What Will Be Covered?</a></li>
+</ul>
+</li>
+<li><a href="#atomic-types">Atomic Types</a>
+<ul>
+<li><a href="#why-not-use-primitive-types">Why Not Use Primitive Types?</a></li>
+<li><a href="#what-are-atomic-types">What Are Atomic Types?</a></li>
+<li><a href="#why-do-we-need-different-apis-for-atomic-types">Why Do We Need Different APIs for Atomic Types?</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a>
+<ul>
+<li><a href="#key-takeaways">Key Takeaways</a></li>
+</ul>
+</li>
+<li><a href="#rust-memory-model">Rust Memory Model</a>
+<ul>
+<li><a href="#introduction-to-memory-model">Introduction to Memory Model</a></li>
+<li><a href="#memory-ordering-documentation">Memory Ordering Documentation</a></li>
+<li><a href="#atomic-types-in-rust">Atomic Types in Rust</a></li>
+<li><a href="#methods-for-atomic-use-size-type">Methods for Atomic Use Size Type</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-memory-ordering">Introduction to Memory Ordering</a>
+<ul>
+<li><a href="#memory-ordering-and-guarantees">Memory Ordering and Guarantees</a></li>
+<li><a href="#atomic-operations">Atomic Operations</a></li>
+<li><a href="#questions-from-viewers">Questions from Viewers</a></li>
+<li><a href="#atomic-operations-and-compiler-semantics">Atomic Operations and Compiler Semantics</a></li>
+<li><a href="#unsafe-cell-and-atomic-instructions">Unsafe Cell and Atomic Instructions</a></li>
+<li><a href="#using-arc-for-static-lifetime">Using Arc for Static Lifetime</a></li>
+<li><a href="#alternative-approach-with-box-leak">Alternative Approach with Box Leak</a></li>
+<li><a href="#defining-a-mutex-type">Defining a Mutex Type</a></li>
+<li><a href="#using-with-lock-function">Using with Lock Function</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-mutexes">Introduction to Mutexes</a>
+<ul>
+<li><a href="#naive-implementation-of-mutex">Naive Implementation of Mutex</a></li>
+<li><a href="#problems-with-naive-implementation">Problems with Naive Implementation</a></li>
+<li><a href="#testing-mutex">Testing Mutex</a></li>
+</ul>
+</li>
+<li><a href="#implementing-a-mutex">Implementing a Mutex</a>
+<ul>
+<li><a href="#collecting-thread-handles">Collecting Thread Handles</a></li>
+<li><a href="#sync-for-mutex">Sync for Mutex</a></li>
+<li><a href="#problems-with-mutex-implementation">Problems with Mutex Implementation</a></li>
+</ul>
+</li>
+<li><a href="#understanding-concurrency-issues">Understanding Concurrency Issues</a>
+<ul>
+<li><a href="#concurrency-issues-with-multiple-cores">Concurrency Issues with Multiple Cores</a></li>
+<li><a href="#race-conditions-and-preemption">Race Conditions and Preemption</a></li>
+<li><a href="#solving-concurrency-issues-with-compare-exchange-operation">Solving Concurrency Issues with Compare Exchange Operation</a></li>
+</ul>
+</li>
+<li><a href="#overview-of-compare-exchange">Overview of Compare Exchange</a>
+<ul>
+<li><a href="#how-compare-exchange-works">How Compare Exchange Works</a></li>
+<li><a href="#why-compare-exchange-is-useful">Why Compare Exchange Is Useful</a></li>
+</ul>
+</li>
+<li><a href="#compare-exchange-and-spin-locks">Compare Exchange and Spin Locks</a>
+<ul>
+<li><a href="#compare-exchange-vs-spin-locks">Compare Exchange vs. Spin Locks</a></li>
+<li><a href="#optimizing-spin-locks-for-high-contention">Optimizing Spin Locks for High Contention</a></li>
+</ul>
+</li>
+<li><a href="#compare-exchange-weak">Compare Exchange Weak</a></li>
+<li><a href="#load-exclusive-and-store-exclusive">Load Exclusive and Store Exclusive</a>
+<ul>
+<li><a href="#load-exclusive-and-store-exclusive-1">Load Exclusive and Store Exclusive</a></li>
+</ul>
+</li>
+<li><a href="#memory-ordering">Memory Ordering</a>
+<ul>
+<li><a href="#ordering-variants">Ordering Variants</a></li>
+</ul>
+</li>
+<li><a href="#memory-barriers">Memory Barriers</a>
+<ul>
+<li><a href="#memory-barriers-1">Memory Barriers</a></li>
+</ul>
+</li>
+<li><a href="#happens-before-relationship">Happens-Before Relationship</a>
+<ul>
+<li><a href="#happens-before-relationship-1">Happens-Before Relationship</a></li>
+</ul>
+</li>
+<li><a href="#lock-free-programming">Lock-Free Programming</a>
+<ul>
+<li><a href="#lock-free-programming-1">Lock-Free Programming</a></li>
+</ul>
+</li>
+<li><a href="#relaxed-ordering-in-rust">Relaxed Ordering in Rust</a>
+<ul>
+<li><a href="#relaxed-ordering-and-thread-execution">Relaxed Ordering and Thread Execution</a></li>
+<li><a href="#explanation-of-relaxed-ordering">Explanation of Relaxed Ordering</a></li>
+</ul>
+</li>
+<li><a href="#reordering-and-speculative-execution">Reordering and Speculative Execution</a>
+<ul>
+<li><a href="#reordering-in-programming">Reordering in Programming</a></li>
+<li><a href="#speculative-execution">Speculative Execution</a></li>
+<li><a href="#constraints-on-reordering">Constraints on Reordering</a></li>
+</ul>
+</li>
+<li><a href="#exclusive-access-and-relaxed-memory-ordering">Exclusive Access and Relaxed Memory Ordering</a>
+<ul>
+<li><a href="#exclusive-access">Exclusive Access</a></li>
+<li><a href="#relaxed-memory-ordering-and-locks">Relaxed Memory Ordering and Locks</a></li>
+</ul>
+</li>
+<li><a href="#memory-orderings-and-acquiringreleasing-resources">Memory Orderings and Acquiring/Releasing Resources</a>
+<ul>
+<li><a href="#store-with-release-ordering">Store with Release Ordering</a></li>
+<li><a href="#load-with-acquire-ordering">Load with Acquire Ordering</a></li>
+<li><a href="#additional-restrictions">Additional Restrictions</a></li>
+</ul>
+</li>
+<li><a href="#understanding-acquire-release-semantics">Understanding Acquire-Release Semantics</a>
+<ul>
+<li><a href="#acquire-release-semantics">Acquire-Release Semantics</a></li>
+<li><a href="#compare-exchange-operation">Compare Exchange Operation</a></li>
+<li><a href="#testing-concurrent-code">Testing Concurrent Code</a></li>
+</ul>
+</li>
+<li><a href="#relaxed-and-strong-memory-ordering">Relaxed and Strong Memory Ordering</a>
+<ul>
+<li><a href="#relaxed-memory-ordering">Relaxed Memory Ordering</a></li>
+<li><a href="#fetch-operations">Fetch Operations</a></li>
+</ul>
+</li>
+<li><a href="#fetch-operations-and-sequentially-consistent-ordering">Fetch Operations and Sequentially Consistent Ordering</a>
+<ul>
+<li><a href="#sequentially-consistent-ordering">Sequentially Consistent Ordering</a></li>
+<li><a href="#fetch-operations-with-sequentially-consistent-ordering">Fetch Operations with Sequentially Consistent Ordering</a></li>
+</ul>
+</li>
+<li><a href="#understanding-fetch-operations">Understanding Fetch Operations</a>
+<ul>
+<li><a href="#fetch-update">Fetch Update</a></li>
+<li><a href="#unique-sequence-numbers">Unique Sequence Numbers</a></li>
+</ul>
+</li>
+<li><a href="#sequentially-consistent-ordering-1">Sequentially Consistent Ordering</a>
+<ul>
+<li><a href="#example-with-atomic-bools-and-usize">Example with Atomic Bools and Usize</a></li>
+</ul>
+</li>
+<li><a href="#possible-values-for-z">Possible Values for Z</a>
+<ul>
+<li><a href="#two-is-possible">Two is Possible</a></li>
+<li><a href="#one-is-possible">One is Possible</a></li>
+<li><a href="#zero-may-not-be-possible">Zero May Not Be Possible</a></li>
+</ul>
+</li>
+<li><a href="#mutex-panic-safety">Mutex Panic Safety</a></li>
+<li><a href="#introduction-1">Introduction</a>
+<ul>
+<li><a href="#thread-execution-order">Thread Execution Order</a></li>
+</ul>
+</li>
+<li><a href="#thread-schedules">Thread Schedules</a>
+<ul>
+<li><a href="#thread-schedules-1">Thread Schedules</a></li>
+</ul>
+</li>
+<li><a href="#acquire-and-release-semantics">Acquire and Release Semantics</a>
+<ul>
+<li><a href="#acquire-and-release-semantics-1">Acquire and Release Semantics</a></li>
+</ul>
+</li>
+<li><a href="#memory-ordering-in-rust">Memory Ordering in Rust</a>
+<ul>
+<li><a href="#happens-before-relationship-2">Happens Before Relationship</a></li>
+<li><a href="#concurrent-operations">Concurrent Operations</a></li>
+<li><a href="#sequentially-consistent-operation">Sequentially Consistent Operation</a></li>
+</ul>
+</li>
+<li><a href="#memory-ordering-and-sequential-consistency">Memory Ordering and Sequential Consistency</a>
+<ul>
+<li><a href="#memory-ordering-1">Memory Ordering</a></li>
+<li><a href="#testing-concurrent-code-1">Testing Concurrent Code</a></li>
+</ul>
+</li>
+<li><a href="#detecting-concurrency-problems">Detecting Concurrency Problems</a>
+<ul>
+<li><a href="#thread-sanitizer">Thread Sanitizer</a></li>
+<li><a href="#loom">Loom</a></li>
+</ul>
+</li>
+<li><a href="#loom-a-tool-for-testing-concurrent-code">Loom: A Tool for Testing Concurrent Code</a>
+<ul>
+<li><a href="#exploring-all-possible-legal-executions">Exploring All Possible Legal Executions</a></li>
+<li><a href="#limitations-of-loom">Limitations of Loom</a></li>
+</ul>
+</li>
+<li><a href="#examples-for-sequentially-consistent-ordering">Examples for Sequentially Consistent Ordering</a>
+<ul>
+<li><a href="#no-less-contrived-example-available">No Less Contrived Example Available</a></li>
+<li><a href="#recommendation">Recommendation</a></li>
+</ul>
+</li>
+<li><a href="#limitations-of-zulu">Limitations of Zulu</a>
+<ul>
+<li><a href="#limitations-of-zulu-1">Limitations of Zulu</a></li>
+<li><a href="#example-for-relaxed-ordering">Example for Relaxed Ordering</a></li>
+</ul>
+</li>
+<li><a href="#contributing-to-loom">Contributing to Loom</a>
+<ul>
+<li><a href="#benefits-of-contributing-to-loom">Benefits of Contributing to Loom</a></li>
+<li><a href="#limitations-of-loom-1">Limitations of Loom</a></li>
+<li><a href="#how-contributions-can-help">How Contributions Can Help</a></li>
+</ul>
+</li>
+<li><a href="#testing-sequentially-consistent-ordering-with-acquire-release">Testing Sequentially Consistent Ordering with Acquire Release</a>
+<ul>
+<li><a href="#testing-sequential-consistency-with-acquire-release">Testing Sequential Consistency with Acquire Release</a></li>
+</ul>
+</li>
+<li><a href="#overview-of-loom-and-relaxed-ordering">Overview of Loom and Relaxed Ordering</a>
+<ul>
+<li><a href="#atomic-module-in-sender-library">Atomic Module in Sender Library</a></li>
+<li><a href="#memory-ordering-2">Memory Ordering</a></li>
+</ul>
+</li>
+<li><a href="#volatile-keyword">Volatile Keyword</a>
+<ul>
+<li><a href="#volatile-keyword-1">Volatile Keyword</a></li>
+</ul>
+</li>
+<li><a href="#understanding-volatile">Understanding Volatile</a>
+<ul>
+<li><a href="#what-is-volatile">What is Volatile?</a></li>
+</ul>
+</li>
+<li><a href="#atomic-pointer">Atomic Pointer</a></li>
+<li><a href="#what-is-atomic-pointer">What is Atomic Pointer?</a></li>
+</ul>
+</li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Apr 20 14:04:27 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr 21 15:09:04 UTC 2023 -->
 <!--te-->
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>Section Overview: In this video, the speaker will explain atomics and memory ordering. The speaker has been hesitant to tackle this topic because of the lack of documentation and complexity of the subject. However, after working with it enough, he feels confident in giving a correct and understandable explanation.</p>

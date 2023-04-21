@@ -181,8 +181,359 @@
                 </div>
                 <h1 id="channels"><a class="header" href="#channels">Channels</a></h1>
 <!--ts-->
+<ul>
+<li><a href="#channels">Channels</a>
+<ul>
+<li><a href="#introduction">Introduction</a>
+<ul>
+<li><a href="#introduction-to-crust-of-rust">Introduction to Crust of Rust</a></li>
+</ul>
+</li>
+<li><a href="#what-is-crust-of-rust">What is Crust of Rust?</a>
+<ul>
+<li><a href="#description-of-crust-of-rust">Description of Crust of Rust</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-standard-sync-mpsc-module">Introduction to Standard Sync Mpsc Module</a>
+<ul>
+<li><a href="#introduction-to-standard-sync-mpsc-module-1">Introduction to Standard Sync Mpsc Module</a></li>
+</ul>
+</li>
+<li><a href="#topics-covered-in-past-videos">Topics Covered in Past Videos</a>
+<ul>
+<li><a href="#topics-covered-in-past-videos-1">Topics Covered in Past Videos</a></li>
+</ul>
+</li>
+<li><a href="#overview-of-standard-sync-mpsc-module">Overview of Standard Sync Mpsc Module</a>
+<ul>
+<li><a href="#overview-of-standard-sync-mpsc-module-1">Overview of Standard Sync Mpsc Module</a></li>
+</ul>
+</li>
+<li><a href="#implementation-of-channel">Implementation of Channel</a>
+<ul>
+<li><a href="#implementation-of-channel-1">Implementation of Channel</a></li>
+</ul>
+</li>
+<li><a href="#notification-for-upcoming-streams">Notification for Upcoming Streams</a>
+<ul>
+<li><a href="#notification-for-upcoming-streams-1">Notification for Upcoming Streams</a></li>
+</ul>
+</li>
+<li><a href="#channel-implementation-in-rust">Channel Implementation in Rust</a>
+<ul>
+<li><a href="#sender-and-receiver-types">Sender and Receiver Types</a></li>
+<li><a href="#sending-data-through-channels">Sending Data through Channels</a></li>
+<li><a href="#size-constraints-for-types-sent-through-channels">Size Constraints for Types Sent through Channels</a></li>
+<li><a href="#ownership-of-data-in-channels">Ownership of Data in Channels</a></li>
+</ul>
+</li>
+<li><a href="#panama-a-simple-channel-implementation-in-rust">Panama: A Simple Channel Implementation in Rust</a>
+<ul>
+<li><a href="#implementation-details">Implementation Details</a></li>
+<li><a href="#performance-considerations">Performance Considerations</a></li>
+<li><a href="#back-pressure">Back Pressure</a></li>
+</ul>
+</li>
+<li><a href="#mutex-and-conditional-variables">Mutex and Conditional Variables</a>
+<ul>
+<li><a href="#mutex">Mutex</a></li>
+<li><a href="#arc-and-rc">Arc and Rc</a></li>
+<li><a href="#conditional-variables">Conditional Variables</a></li>
+</ul>
+</li>
+<li><a href="#channel-implementation-in-rust-1">Channel Implementation in Rust</a>
+<ul>
+<li><a href="#inner-type">Inner Type</a></li>
+<li><a href="#sender-and-receiver-types-1">Sender and Receiver Types</a></li>
+<li><a href="#alternative-implementations">Alternative Implementations</a></li>
+</ul>
+</li>
+<li><a href="#mutex-and-convar">Mutex and Convar</a>
+<ul>
+<li><a href="#parking-lot-implementations">Parking Lot Implementations</a></li>
+<li><a href="#default-implementation-of-vec">Default Implementation of Vec</a></li>
+<li><a href="#arc-mutex-vs-boolean-semaphore">Arc Mutex vs Boolean Semaphore</a></li>
+</ul>
+</li>
+<li><a href="#mutex-vs-boolean-semaphore-continued">Mutex vs Boolean Semaphore Continued</a>
+<ul>
+<li><a href="#problem-with-boolean-semaphore">Problem with Boolean Semaphore</a></li>
+<li><a href="#advantages-of-mutex">Advantages of Mutex</a></li>
+</ul>
+</li>
+<li><a href="#why-arc-is-needed">Why Arc Is Needed</a>
+<ul>
+<li><a href="#sharing-inner">Sharing Inner</a></li>
+</ul>
+</li>
+<li><a href="#implementing-sender">Implementing Sender</a>
+<ul>
+<li><a href="#send-function">Send Function</a></li>
+</ul>
+</li>
+<li><a href="#implementing-receiver">Implementing Receiver</a>
+<ul>
+<li><a href="#receive-method">Receive Method</a></li>
+</ul>
+</li>
+<li><a href="#using-vec-as-a-stack-and-ring-buffer">Using Vec as a Stack and Ring Buffer</a>
+<ul>
+<li><a href="#using-vec-as-a-stack">Using Vec as a Stack</a></li>
+<li><a href="#ring-buffer">Ring Buffer</a></li>
+</ul>
+</li>
+<li><a href="#blocking-version-of-receive">Blocking Version of Receive</a>
+<ul>
+<li><a href="#try-receive-method">Try Receive Method</a></li>
+<li><a href="#blocking-version-of-receive-1">Blocking Version of Receive</a></li>
+</ul>
+</li>
+<li><a href="#notification-and-waiting-receivers">Notification and Waiting Receivers</a>
+<ul>
+<li><a href="#using-condvar-for-notification">Using Condvar for Notification</a></li>
+</ul>
+</li>
+<li><a href="#vector-double-ended-queue">Vector Double Ended Queue</a>
+<ul>
+<li><a href="#understanding-vector-double-ended-queue">Understanding Vector Double Ended Queue</a></li>
+</ul>
+</li>
+<li><a href="#async-wait-vs-weight">Async Wait vs Weight</a>
+<ul>
+<li><a href="#difference-between-async-wait-and-weight">Difference Between Async Wait and Weight</a></li>
+</ul>
+</li>
+<li><a href="#convars-spurious-wake-ups">Convars Spurious Wake Ups</a>
+<ul>
+<li><a href="#convars-spurious-wake-ups-1">Convars Spurious Wake Ups</a></li>
+</ul>
+</li>
+<li><a href="#dropping-lock-before-notify">Dropping Lock Before Notify</a>
+<ul>
+<li><a href="#dropping-lock-before-notify-1">Dropping Lock Before Notify</a></li>
+</ul>
+</li>
+<li><a href="#notify-one-vs-notify-all">Notify One vs Notify All</a>
+<ul>
+<li><a href="#notify-one-vs-notify-all-1">Notify One vs Notify All</a></li>
+</ul>
+</li>
+<li><a href="#introduction-1">Introduction</a>
+<ul>
+<li><a href="#current-setup-for-senders">Current Setup for Senders</a></li>
+</ul>
+</li>
+<li><a href="#making-sender-cloneable">Making Sender Cloneable</a>
+<ul>
+<li><a href="#deriving-clone-for-sender">Deriving Clone for Sender</a></li>
+<li><a href="#implementing-clone-manually">Implementing Clone Manually</a></li>
+</ul>
+</li>
+<li><a href="#using-our-clone-implementation">Using Our Clone Implementation</a>
+<ul>
+<li><a href="#using-our-clone-method">Using Our Clone Method</a></li>
+<li><a href="#issues-with-dot-operator">Issues with Dot Operator</a></li>
+</ul>
+</li>
+<li><a href="#blocking-send-and-receive-methods">Blocking Send and Receive Methods</a>
+<ul>
+<li><a href="#blocking-send-and-receive-methods-1">Blocking Send and Receive Methods</a></li>
+</ul>
+</li>
+<li><a href="#testing-our-implementation">Testing Our Implementation</a>
+<ul>
+<li><a href="#ping-pong-test">Ping Pong Test</a></li>
+</ul>
+</li>
+<li><a href="#arc-clone-and-channel-implementation">Arc Clone and Channel Implementation</a>
+<ul>
+<li><a href="#coercing-to-trait-objects">Coercing to Trait Objects</a></li>
+<li><a href="#naming-channels">Naming Channels</a></li>
+<li><a href="#problems-with-channel-implementation">Problems with Channel Implementation</a></li>
+<li><a href="#implementing-shared-channels">Implementing Shared Channels</a></li>
+</ul>
+</li>
+<li><a href="#introduction-2">Introduction</a>
+<ul>
+<li><a href="#potential-optimization">Potential Optimization</a></li>
+</ul>
+</li>
+<li><a href="#complicated-case">Complicated Case</a>
+<ul>
+<li><a href="#dropping-sender">Dropping Sender</a></li>
+</ul>
+</li>
+<li><a href="#atomic-use-size">Atomic Use Size</a>
+<ul>
+<li><a href="#using-atomic-use-size">Using Atomic Use Size</a></li>
+</ul>
+</li>
+<li><a href="#notifying-all-for-drop">Notifying All for Drop</a>
+<ul>
+<li><a href="#notifying-all-for-drop-1">Notifying All for Drop</a></li>
+</ul>
+</li>
+<li><a href="#vector-default">Vector Default</a>
+<ul>
+<li><a href="#vector-default-1">Vector Default</a></li>
+</ul>
+</li>
+<li><a href="#initializing-senders">Initializing Senders</a>
+<ul>
+<li><a href="#initializing-senders-1">Initializing Senders</a></li>
+</ul>
+</li>
+<li><a href="#debugging-closed-test">Debugging Closed Test</a>
+<ul>
+<li><a href="#debugging-closed-test-1">Debugging Closed Test</a></li>
+</ul>
+</li>
+<li><a href="#debugging-rust-programs-with-gdb">Debugging Rust Programs with GDB</a>
+<ul>
+<li><a href="#using-print-debugging-instead-of-gdb">Using Print Debugging Instead of GDB</a></li>
+</ul>
+</li>
+<li><a href="#removing-unnecessary-code">Removing Unnecessary Code</a>
+<ul>
+<li><a href="#removing-unnecessary-code-1">Removing Unnecessary Code</a></li>
+</ul>
+</li>
+<li><a href="#identifying-a-problem-with-the-implementation">Identifying a Problem with the Implementation</a>
+<ul>
+<li><a href="#identifying-a-problem-with-closed-rx-channels">Identifying a Problem with Closed RX Channels</a></li>
+</ul>
+</li>
+<li><a href="#implementing-closed-flag-for-failed-sends">Implementing Closed Flag for Failed Sends</a>
+<ul>
+<li><a href="#implementing-closed-flag-for-failed-sends-1">Implementing Closed Flag for Failed Sends</a></li>
+</ul>
+</li>
+<li><a href="#multi-producer-multiple-consumer">Multi-Producer Multiple Consumer</a>
+<ul>
+<li><a href="#resurrecting-a-drop-channel-and-multi-producer-multiple-consumer-channels">Resurrecting a Drop Channel and Multi-Producer Multiple Consumer Channels</a></li>
+</ul>
+</li>
+<li><a href="#synchronous-and-asynchronous-channels">Synchronous and Asynchronous Channels</a>
+<ul>
+<li><a href="#synchronous-vs-asynchronous-channels">Synchronous vs. Asynchronous Channels</a></li>
+</ul>
+</li>
+<li><a href="#weak-counters-and-convars">Weak Counters and ConVars</a>
+<ul>
+<li><a href="#using-weak-counters">Using Weak Counters</a></li>
+<li><a href="#convars-without-mutexes">ConVars Without Mutexes</a></li>
+</ul>
+</li>
+<li><a href="#blocking-sends-on-vector-resizing">Blocking Sends on Vector Resizing</a>
+<ul>
+<li><a href="#blocking-sends-during-vector-resizing">Blocking Sends During Vector Resizing</a></li>
+</ul>
+</li>
+<li><a href="#resizing-insights">Resizing Insights</a>
+<ul>
+<li><a href="#optimization-for-channels">Optimization for Channels</a></li>
+<li><a href="#benefits-of-optimization">Benefits of Optimization</a></li>
+<li><a href="#implementation-source">Implementation Source</a></li>
+</ul>
+</li>
+<li><a href="#branch-predictor-and-channel-implementations">Branch Predictor and Channel Implementations</a>
+<ul>
+<li><a href="#branch-predictor">Branch Predictor</a></li>
+<li><a href="#channel-implementations">Channel Implementations</a>
+<ul>
+<li><a href="#synchronous-channels">Synchronous Channels</a></li>
+<li><a href="#asynchronous-channels">Asynchronous Channels</a></li>
+<li><a href="#rendezvous-channels">Rendezvous Channels</a></li>
+<li><a href="#one-shot-channels">One-Shot Channels</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#flavors-of-channels">Flavors of Channels</a>
+<ul>
+<li><a href="#two-way-synchronization">Two-way Synchronization</a></li>
+<li><a href="#one-shot-channels-1">One-shot Channels</a></li>
+<li><a href="#bounded-and-unbounded-channels">Bounded and Unbounded Channels</a></li>
+<li><a href="#rendezvous-channel">Rendezvous Channel</a></li>
+</ul>
+</li>
+<li><a href="#different-implementations-of-channels">Different Implementations of Channels</a>
+<ul>
+<li><a href="#synchronous-channel-with-mutex-plus-convar">Synchronous Channel with Mutex Plus Convar</a></li>
+<li><a href="#upgrading-channel-type-at-runtime">Upgrading Channel Type at Runtime</a></li>
+</ul>
+</li>
+<li><a href="#async-await-in-futures">Async Await in Futures</a>
+<ul>
+<li><a href="#async-await">Async-Await</a></li>
+</ul>
+</li>
+<li><a href="#implementing-channels-in-rust">Implementing Channels in Rust</a>
+<ul>
+<li><a href="#atomic-vectec-or-queue">Atomic Vectec or Queue</a></li>
+<li><a href="#signaling-mechanism">Signaling Mechanism</a></li>
+<li><a href="#linked-list-implementation">Linked List Implementation</a></li>
+<li><a href="#atomic-linked-list">Atomic Linked List</a></li>
+</ul>
+</li>
+<li><a href="#optimizing-channel-implementations">Optimizing Channel Implementations</a>
+<ul>
+<li><a href="#using-wake-up-primitive-instead-of-linked-list">Using Wake-Up Primitive Instead of Linked List</a></li>
+<li><a href="#specialized-implementations">Specialized Implementations</a></li>
+</ul>
+</li>
+<li><a href="#memory-overhead-vs-memory-allocator-performance">Memory Overhead vs. Memory Allocator Performance</a>
+<ul>
+<li><a href="#linked-lists-and-allocationdeallocation">Linked Lists and Allocation/Deallocation</a></li>
+<li><a href="#reusing-pool-of-nodes">Reusing Pool of Nodes</a></li>
+</ul>
+</li>
+<li><a href="#implementing-channels-for-async-await">Implementing Channels for Async Await</a>
+<ul>
+<li><a href="#differences-in-primitives">Differences in Primitives</a></li>
+<li><a href="#internal-implementation">Internal Implementation</a></li>
+</ul>
+</li>
+<li><a href="#channel-implementations-1">Channel Implementations</a>
+<ul>
+<li><a href="#blocking-vs-async-worlds">Blocking vs Async Worlds</a></li>
+<li><a href="#memory-allocation">Memory Allocation</a></li>
+<li><a href="#use-of-channels-in-thesis">Use of Channels in Thesis</a></li>
+</ul>
+</li>
+<li><a href="#real-implementation-examples">Real Implementation Examples</a>
+<ul>
+<li><a href="#standard-library-implementation">Standard Library Implementation</a></li>
+<li><a href="#crossbeam-channel-implementation">Crossbeam Channel Implementation</a></li>
+<li><a href="#benchmarking-channel-implementations">Benchmarking Channel Implementations</a></li>
+</ul>
+</li>
+<li><a href="#benchmarking-possible-configurations">Benchmarking Possible Configurations</a>
+<ul>
+<li><a href="#creating-a-grid-of-configurations">Creating a Grid of Configurations</a></li>
+</ul>
+</li>
+<li><a href="#async-await-ecosystem">Async Await Ecosystem</a>
+<ul>
+<li><a href="#supporting-async-without-tying-it-to-a-specific-executor">Supporting Async Without Tying It To A Specific Executor</a></li>
+</ul>
+</li>
+<li><a href="#sleeping-center-thread">Sleeping Center Thread</a>
+<ul>
+<li><a href="#waking-up-a-sleeping-center-thread">Waking Up A Sleeping Center Thread</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a>
+<ul>
+<li><a href="#recording-and-upcoming-streams">Recording and Upcoming Streams</a></li>
+</ul>
+</li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Apr 20 14:04:27 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr 21 15:09:05 UTC 2023 -->
 <!--te-->
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>Section Overview: In this section, the speaker introduces the episode and explains that it is a variant of the live

@@ -181,8 +181,71 @@
                 </div>
                 <h1 id="stop-duplicating-code-generics-traits-lifetimes"><a class="header" href="#stop-duplicating-code-generics-traits-lifetimes">Stop Duplicating Code: Generics, Traits, Lifetimes</a></h1>
 <!--ts-->
+<ul>
+<li><a href="#stop-duplicating-code-generics-traits-lifetimes">Stop Duplicating Code: Generics, Traits, Lifetimes</a>
+<ul>
+<li><a href="#introduction-to-generics">Introduction to Generics</a>
+<ul>
+<li><a href="#removing-duplication">Removing Duplication</a></li>
+<li><a href="#%EF%B8%8Fusing-generics-with-structs"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Using Generics with Structs</a></li>
+<li><a href="#implementing-traits">Implementing Traits</a></li>
+<li><a href="#lifetimes">Lifetimes</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#generics-in-type-definitions-and-functions">Generics in Type Definitions and Functions</a>
+<ul>
+<li><a href="#using-generics-in-type-definitions">Using Generics in Type Definitions</a></li>
+<li><a href="#%EF%B8%8Fusing-generics-in-enums"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Using Generics in Enums</a></li>
+<li><a href="#%EF%B8%8Fusing-generics-in-methods"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Using Generics in Methods</a></li>
+<li><a href="#mixing-types-with-generics">Mixing Types with Generics</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-generics-and-traits">Introduction to Generics and Traits</a>
+<ul>
+<li><a href="#%EF%B8%8Fgenerics"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Generics</a></li>
+<li><a href="#%EF%B8%8Ftraits"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Traits</a></li>
+<li><a href="#using-traits-as-parameters">Using Traits as Parameters</a></li>
+</ul>
+</li>
+<li><a href="#rust-generics-and-traits">Rust Generics and Traits</a>
+<ul>
+<li><a href="#%EF%B8%8Fusing-generics-with-traits"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Using Generics with Traits</a></li>
+<li><a href="#%EF%B8%8Freturning-different-concrete-types-based-on-business-logic"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Returning Different Concrete Types Based on Business Logic</a></li>
+<li><a href="#%EF%B8%8Ffixing-issues-with-partial-and-copy-traits"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Fixing Issues with Partial and Copy Traits</a></li>
+<li><a href="#conclusion-1">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#understanding-lifetimes-in-rust">Understanding Lifetimes in Rust</a>
+<ul>
+<li><a href="#introduction-to-lifetimes">Introduction to Lifetimes</a></li>
+<li><a href="#%EF%B8%8Fimplementing-lifetimes"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Implementing Lifetimes</a></li>
+<li><a href="#%EF%B8%8Foutput-lifetimes"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Output Lifetimes</a></li>
+<li><a href="#conclusion-2">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#dangling-pointers-and-lifetimes">Dangling Pointers and Lifetimes</a>
+<ul>
+<li><a href="#%EF%B8%8Fdangling-pointers"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Dangling Pointers</a></li>
+<li><a href="#lifetimes-in-structs">Lifetimes in Structs</a></li>
+<li><a href="#%EF%B8%8Frules-for-lifetime-elision"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Rules for Lifetime Elision</a></li>
+</ul>
+</li>
+<li><a href="#%EF%B8%8Funderstanding-lifetimes-in-rust"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Understanding Lifetimes in Rust</a>
+<ul>
+<li><a href="#lifetime-rules-for-functions">Lifetime Rules for Functions</a></li>
+<li><a href="#specifying-output-lifetime">Specifying Output Lifetime</a></li>
+<li><a href="#lifetime-rules-for-methods">Lifetime Rules for Methods</a></li>
+<li><a href="#static-lifetime">Static Lifetime</a></li>
+</ul>
+</li>
+<li><a href="#advanced-scenarios">Advanced Scenarios</a></li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Apr 20 14:04:34 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr 21 15:09:14 UTC 2023 -->
 <!--te-->
 <h2 id="introduction-to-generics"><a class="header" href="#introduction-to-generics">Introduction to Generics</a></h2>
 <p>Section Overview: In this section, we will learn about generics and how they can be used with functions, methods, and

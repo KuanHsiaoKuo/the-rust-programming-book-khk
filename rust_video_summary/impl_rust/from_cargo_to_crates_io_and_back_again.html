@@ -181,8 +181,234 @@
                 </div>
                 <h2 id="from-cargo-to-cratesio-and-back-again37h"><a class="header" href="#from-cargo-to-cratesio-and-back-again37h">From cargo to crates.io and back again(3/7h)</a></h2>
 <!--ts-->
+<ul>
+<li><a href="#from-cargo-to-cratesio-and-back-again37h">From cargo to crates.io and back again(3/7h)</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#cargo-and-registries">Cargo and Registries</a></li>
+<li><a href="#implementing-the-loop">Implementing the Loop</a></li>
+<li><a href="#cargo-package">Cargo Package</a></li>
+<li><a href="#publishing-on-cratesio">Publishing on Crates.io</a></li>
+<li><a href="#cargo-package-and-crate-files">Cargo Package and Crate Files</a>
+<ul>
+<li><a href="#what-happens-when-you-run-cargo-package">What Happens When You Run cargo package</a></li>
+<li><a href="#viewing-contents-of-a-crate-file">Viewing Contents of a .crate File</a></li>
+<li><a href="#body-data-sent-by-cargo">Body Data Sent by Cargo</a></li>
+<li><a href="#metadata-in-crate-api">Metadata in Crate API</a></li>
+<li><a href="#validating-crates">Validating Crates</a></li>
+<li><a href="#cratesio-crate-type-definitions">Crates.io Crate Type Definitions</a></li>
+<li><a href="#standalone-crate-type-definitions">Standalone Crate Type Definitions</a></li>
+<li><a href="#uploading-json-to-server">Uploading JSON to Server</a></li>
+<li><a href="#server-response">Server Response</a></li>
+</ul>
+</li>
+<li><a href="#understanding-the-git-pull-from-the-skit-index">Understanding the Git Pull from the Skit Index</a>
+<ul>
+<li><a href="#the-skit-index">The Skit Index</a></li>
+<li><a href="#inside-the-index-files">Inside the Index Files</a></li>
+</ul>
+</li>
+<li><a href="#transitioning-to-http-based-sparse-registries">Transitioning to HTTP-based Sparse Registries</a>
+<ul>
+<li><a href="#http-based-sparse-registries">HTTP-Based Sparse Registries</a></li>
+</ul>
+</li>
+<li><a href="#understanding-the-cargo-registry">Understanding the Cargo Registry</a>
+<ul>
+<li><a href="#the-role-of-indexes-in-hosting-versions-and-crate-files">The Role of Indexes in Hosting Versions and Crate Files</a></li>
+</ul>
+</li>
+<li><a href="#crates-index">Crates Index</a>
+<ul>
+<li><a href="#understanding-crates-as-an-abstract-concept">Understanding Crates as an Abstract Concept</a></li>
+<li><a href="#special-implementations-used-by-cargo">Special Implementations Used by Cargo</a></li>
+</ul>
+</li>
+<li><a href="#digging-into-code-on-cargo-side-and-cratesio-side">Digging into Code on Cargo Side and Crates.io Side</a>
+<ul>
+<li><a href="#understanding-the-life-cycle-from-publish-to-consume">Understanding the Life Cycle from Publish to Consume</a></li>
+</ul>
+</li>
+<li><a href="#introduction-1">Introduction</a>
+<ul>
+<li><a href="#jason-and-stream-dependency-resolution">Jason and Stream Dependency Resolution</a></li>
+</ul>
+</li>
+<li><a href="#publishing-crate-files">Publishing Crate Files</a>
+<ul>
+<li><a href="#including-dependencies-information">Including Dependencies Information</a></li>
+</ul>
+</li>
+<li><a href="#hosting-index-on-github">Hosting Index on GitHub</a>
+<ul>
+<li><a href="#git-vs-http-based-api">Git vs HTTP-based API</a></li>
+</ul>
+</li>
+<li><a href="#overview-of-git-index-and-cargo">Overview of Git Index and Cargo</a>
+<ul>
+<li><a href="#canonical-path-for-git-index">Canonical Path for Git Index</a></li>
+<li><a href="#structure-of-git-repository-managed-by-cargo">Structure of Git Repository Managed by Cargo</a></li>
+<li><a href="#logic-around-publish-command">Logic Around Publish Command</a></li>
+</ul>
+</li>
+<li><a href="#code-structure-of-cargo">Code Structure of Cargo</a>
+<ul>
+<li><a href="#source-directory">Source Directory</a></li>
+<li><a href="#publish-command-code">Publish Command Code</a></li>
+<li><a href="#ops-module">Ops Module</a></li>
+</ul>
+</li>
+<li><a href="#understanding-the-cargo-publish-process">Understanding the Cargo Publish Process</a>
+<ul>
+<li><a href="#the-definition-of-publish">The Definition of Publish</a></li>
+<li><a href="#package-one">Package One</a></li>
+<li><a href="#transmitting-payload">Transmitting Payload</a></li>
+<li><a href="#waiting-for-crate-availability">Waiting for Crate Availability</a></li>
+</ul>
+</li>
+<li><a href="#introduction-2">Introduction</a>
+<ul>
+<li><a href="#chat-block-change">Chat Block Change</a></li>
+<li><a href="#crates-io-side">Crates IO Side</a></li>
+</ul>
+</li>
+<li><a href="#definitions">Definitions</a>
+<ul>
+<li><a href="#cargo-registry-index">Cargo Registry Index</a></li>
+</ul>
+</li>
+<li><a href="#custom-registries">Custom Registries</a>
+<ul>
+<li><a href="#support-for-custom-registries">Support for Custom Registries</a></li>
+</ul>
+</li>
+<li><a href="#implementing-a-cargo-registry">Implementing a Cargo Registry</a>
+<ul>
+<li><a href="#challenges-with-alternate-registries">Challenges with Alternate Registries</a></li>
+<li><a href="#alternative-registries">Alternative Registries</a></li>
+<li><a href="#naming-the-library">Naming the Library</a></li>
+</ul>
+</li>
+<li><a href="#naming-the-cargo-index-interface">Naming the Cargo Index Interface</a></li>
+<li><a href="#adding-features-to-cargo-home">Adding Features to Cargo Home</a></li>
+<li><a href="#defining-publish-phases">Defining Publish Phases</a>
+<ul>
+<li><a href="#crateio-definition">Crate.io Definition</a></li>
+<li><a href="#index-definition">Index Definition</a></li>
+</ul>
+</li>
+<li><a href="#rust-crate-serialization">Rust Crate Serialization</a>
+<ul>
+<li><a href="#creating-a-foundational-crate">Creating a Foundational Crate</a></li>
+<li><a href="#cargo-vs-cratesio">Cargo vs Crates.IO</a></li>
+<li><a href="#index-entries">Index Entries</a></li>
+</ul>
+</li>
+<li><a href="#summary-new-function">Summary New Function</a>
+<ul>
+<li><a href="#finding-summary-new">Finding Summary New</a></li>
+<li><a href="#intern-string-and-generic-types">Intern String and Generic Types</a></li>
+<li><a href="#registry-dependency-and-cow-types">Registry Dependency and Cow Types</a></li>
+</ul>
+</li>
+<li><a href="#add-crate-job">Add Crate Job</a>
+<ul>
+<li><a href="#perform-index-add-crate">Perform Index Add Crate</a></li>
+<li><a href="#search-based-definitions">Search-Based Definitions</a></li>
+</ul>
+</li>
+<li><a href="#dependency-ordering-and-cargo-manifests">Dependency Ordering and Cargo Manifests</a>
+<ul>
+<li><a href="#dependency-ordering">Dependency Ordering</a></li>
+<li><a href="#definition-of-dependency-kind">Definition of Dependency Kind</a></li>
+<li><a href="#cargo-manifest-format">Cargo Manifest Format</a></li>
+<li><a href="#tomo-manifest-type">Tomo Manifest Type</a></li>
+</ul>
+</li>
+<li><a href="#simplifying-the-toml-manifest">Simplifying the Toml Manifest</a>
+<ul>
+<li><a href="#removing-unnecessary-fields">Removing Unnecessary Fields</a></li>
+</ul>
+</li>
+<li><a href="#verifying-tarball">Verifying Tarball</a>
+<ul>
+<li><a href="#checking-dependencies">Checking Dependencies</a></li>
+</ul>
+</li>
+<li><a href="#cargo-tamil-manifest-definition">Cargo Tamil Manifest Definition</a>
+<ul>
+<li><a href="#components-of-a-cargo-tamil-manifest">Components of a Cargo Tamil Manifest</a></li>
+</ul>
+</li>
+<li><a href="#mapping-dependencies">Mapping Dependencies</a>
+<ul>
+<li><a href="#mapping-dependencies-1">Mapping Dependencies</a></li>
+</ul>
+</li>
+<li><a href="#cleaning-up-the-code">Cleaning up the Code</a>
+<ul>
+<li><a href="#removing-unnecessary-types">Removing Unnecessary Types</a></li>
+<li><a href="#pruning-down-definitions">Pruning Down Definitions</a></li>
+</ul>
+</li>
+<li><a href="#understanding-the-cargo-manifest">Understanding the Cargo Manifest</a>
+<ul>
+<li><a href="#fields-in-the-manifest">Fields in the Manifest</a></li>
+<li><a href="#publicprivate-dependencies">Public/Private Dependencies</a></li>
+</ul>
+</li>
+<li><a href="#parsing-toml-manifests">Parsing TOML Manifests</a>
+<ul>
+<li><a href="#removing-unnecessary-fields-1">Removing Unnecessary Fields</a></li>
+<li><a href="#parsing-toml-manifests-1">Parsing TOML Manifests</a></li>
+</ul>
+</li>
+<li><a href="#understanding-the-version-encoding">Understanding the Version Encoding</a>
+<ul>
+<li><a href="#version-encoding">Version Encoding</a></li>
+</ul>
+</li>
+<li><a href="#parsing-metadata">Parsing Metadata</a>
+<ul>
+<li><a href="#cargo-metadata">Cargo Metadata</a></li>
+</ul>
+</li>
+<li><a href="#tidying-up-definitions">Tidying up Definitions</a>
+<ul>
+<li><a href="#identifying-interned-strings">Identifying Interned Strings</a></li>
+<li><a href="#type-smolster">Type Smolster</a></li>
+<li><a href="#cleaning-up-definitions">Cleaning Up Definitions</a></li>
+</ul>
+</li>
+<li><a href="#introduction-3">Introduction</a></li>
+<li><a href="#cargo-tamil">Cargo Tamil</a></li>
+<li><a href="#type-definitions">Type Definitions</a></li>
+<li><a href="#future-difficulty">Future Difficulty</a></li>
+<li><a href="#optimization">Optimization</a></li>
+<li><a href="#cargo-intern-string-usage">Cargo Intern String Usage</a>
+<ul>
+<li><a href="#intern-string-usage">Intern String Usage</a></li>
+</ul>
+</li>
+<li><a href="#normalized-manifest-conversion">Normalized Manifest Conversion</a>
+<ul>
+<li><a href="#owned-copy">Owned Copy</a></li>
+</ul>
+</li>
+<li><a href="#package-ownership-conversion">Package Ownership Conversion</a>
+<ul>
+<li><a href="#package-ownership-conversion-1">Package Ownership Conversion</a></li>
+<li><a href="#parsing-user-written-code">Parsing User-Written Code</a></li>
+<li><a href="#handling-different-types-of-dependencies">Handling Different Types of Dependencies</a></li>
+<li><a href="#mapping-cow-into-owned-cow">Mapping Cow into Owned Cow</a></li>
+<li><a href="#removing-cargo-features">Removing Cargo Features</a></li>
+<li><a href="#keeping-package">Keeping Package</a></li>
+<li><a href="#custom-implementation-of-deserialize">Custom Implementation of Deserialize</a></li>
+</ul>
+</li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Apr 20 14:04:29 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr 21 15:09:07 UTC 2023 -->
 <!--te-->
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>In this section, the speaker introduces the topic of the stream and explains that they will be tackling an

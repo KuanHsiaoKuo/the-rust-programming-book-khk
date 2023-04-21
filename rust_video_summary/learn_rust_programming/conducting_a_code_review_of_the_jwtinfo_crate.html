@@ -181,8 +181,174 @@
                 </div>
                 <h1 id="conducting-a-code-review-of-the-jwtinfo-crate"><a class="header" href="#conducting-a-code-review-of-the-jwtinfo-crate">Conducting a code review of the jwtinfo crate</a></h1>
 <!--ts-->
+<ul>
+<li><a href="#conducting-a-code-review-of-the-jwtinfo-crate">Conducting a code review of the jwtinfo crate</a>
+<ul>
+<li><a href="#introduction">Introduction</a>
+<ul>
+<li><a href="#starting-the-stream">Starting the Stream</a></li>
+</ul>
+</li>
+<li><a href="#setting-up">Setting Up</a>
+<ul>
+<li><a href="#cloning-repository">Cloning Repository</a></li>
+<li><a href="#choosing-an-ide">Choosing an IDE</a></li>
+</ul>
+</li>
+<li><a href="#reviewing-code">Reviewing Code</a>
+<ul>
+<li><a href="#cargotoml-file">Cargo.toml File</a></li>
+<li><a href="#dependencies">Dependencies</a></li>
+</ul>
+</li>
+<li><a href="#continuing-reviewing-code">Continuing Reviewing Code</a>
+<ul>
+<li><a href="#argotml">Argo.tml</a></li>
+<li><a href="#dependencies-1">Dependencies</a></li>
+</ul>
+</li>
+<li><a href="#reviewing-code-and-project-structure">Reviewing Code and Project Structure</a>
+<ul>
+<li><a href="#reviewing-project-structure">Reviewing Project Structure</a></li>
+<li><a href="#fuzzing-tools">Fuzzing Tools</a></li>
+</ul>
+</li>
+<li><a href="#asking-questions-live">Asking Questions Live</a>
+<ul>
+<li><a href="#live-qa">Live Q&amp;A</a></li>
+<li><a href="#testing-for-illegal-input">Testing for Illegal Input</a></li>
+<li><a href="#using-quick-check">Using Quick Check</a></li>
+<li><a href="#handling-null-bytes">Handling Null Bytes</a></li>
+</ul>
+</li>
+<li><a href="#introduction-1">Introduction</a>
+<ul>
+<li><a href="#speaker-introduction">Speaker Introduction</a></li>
+</ul>
+</li>
+<li><a href="#project-structure">Project Structure</a>
+<ul>
+<li><a href="#project-structure-1">Project Structure</a></li>
+<li><a href="#error-management">Error Management</a></li>
+</ul>
+</li>
+<li><a href="#pause-token">Pause Token</a>
+<ul>
+<li><a href="#pause-token-1">Pause Token</a></li>
+</ul>
+</li>
+<li><a href="#improving-the-ergonomics-of-functions">Improving the Ergonomics of Functions</a>
+<ul>
+<li><a href="#accepting-arbitrary-input">Accepting Arbitrary Input</a></li>
+<li><a href="#refactoring-function-declaration">Refactoring Function Declaration</a></li>
+<li><a href="#rusts-relationship-with-text-types">Rust’s Relationship with Text Types</a></li>
+</ul>
+</li>
+<li><a href="#limitations-of-accepting-arbitrary-input">Limitations of Accepting Arbitrary Input</a>
+<ul>
+<li><a href="#problem-with-accepting-arbitrary-bytes">Problem with Accepting Arbitrary Bytes</a></li>
+</ul>
+</li>
+<li><a href="#error-management-1">Error Management</a>
+<ul>
+<li><a href="#dealing-with-multiple-error-types">Dealing with Multiple Error Types</a></li>
+<li><a href="#custom-error-type">Custom Error Type</a></li>
+<li><a href="#displaying-errors">Displaying Errors</a></li>
+</ul>
+</li>
+<li><a href="#understanding-the-code">Understanding the Code</a>
+<ul>
+<li><a href="#simplifying-the-code">Simplifying the Code</a></li>
+<li><a href="#improving-readability">Improving Readability</a></li>
+<li><a href="#modularization">Modularization</a></li>
+<li><a href="#implementing-pattern-of-simplification">Implementing Pattern of Simplification</a></li>
+<li><a href="#alternative-method-for-returning-messages">Alternative Method for Returning Messages</a></li>
+<li><a href="#personal-opinion-on-using-rust-2018-idioms">Personal Opinion on Using Rust 2018 Idioms</a></li>
+<li><a href="#benefits-of-splitting-out-different-parts-of-code">Benefits of Splitting Out Different Parts of Code</a></li>
+<li><a href="#retaining-index-of-string-input">Retaining Index of String Input</a></li>
+<li><a href="#rusts-result-object">Rust’s Result Object</a></li>
+<li><a href="#adding-derives">Adding Derives</a></li>
+</ul>
+</li>
+<li><a href="#rust-programming-and-cultural-differences">Rust Programming and Cultural Differences</a>
+<ul>
+<li><a href="#bureaucratic-nature-of-rust">Bureaucratic Nature of Rust</a></li>
+<li><a href="#jwt-keto-types">JWT Keto Types</a></li>
+<li><a href="#claims-set">Claims Set</a></li>
+</ul>
+</li>
+<li><a href="#derive-debug-and-type-conversion">Derive Debug and Type Conversion</a>
+<ul>
+<li><a href="#deriving-debug">Deriving Debug</a></li>
+<li><a href="#type-conversion">Type Conversion</a></li>
+<li><a href="#mistake-correction">Mistake Correction</a></li>
+</ul>
+</li>
+<li><a href="#ip-addresses-and-color-change">IP Addresses and Color Change</a>
+<ul>
+<li><a href="#ip-addresses">IP Addresses</a></li>
+<li><a href="#color-change">Color Change</a></li>
+</ul>
+</li>
+<li><a href="#exposing-a-library-and-cli-together">Exposing a Library and CLI Together</a>
+<ul>
+<li><a href="#understanding-the-library-component">Understanding the Library Component</a></li>
+<li><a href="#building-documentation">Building Documentation</a></li>
+<li><a href="#improving-library-functionality">Improving Library Functionality</a></li>
+</ul>
+</li>
+<li><a href="#testing-and-code-coverage">Testing and Code Coverage</a>
+<ul>
+<li><a href="#resilience-against-malicious-input">Resilience Against Malicious Input</a></li>
+<li><a href="#code-coverage">Code Coverage</a></li>
+</ul>
+</li>
+<li><a href="#build-process-and-shell-check">Build Process and Shell Check</a>
+<ul>
+<li><a href="#installing-latest-release-based-on-dip">Installing Latest Release Based on Dip</a></li>
+<li><a href="#compliance-with-rsa-and-documenting-platforms">Compliance with RSA and Documenting Platforms</a></li>
+<li><a href="#introduction-to-shell-check">Introduction to Shell Check</a></li>
+</ul>
+</li>
+<li><a href="#importance-of-being-controversial">Importance of Being Controversial</a>
+<ul>
+<li><a href="#being-controversial">Being Controversial</a></li>
+</ul>
+</li>
+<li><a href="#qa-session">Q&amp;A Session</a>
+<ul>
+<li><a href="#questions-and-discount-code">Questions and Discount Code</a></li>
+</ul>
+</li>
+<li><a href="#discount-strategies-for-technical-books">Discount Strategies for Technical Books</a>
+<ul>
+<li><a href="#discount-strategies">Discount Strategies</a></li>
+</ul>
+</li>
+<li><a href="#wrapping-up">Wrapping Up</a>
+<ul>
+<li><a href="#final-thoughts">Final Thoughts</a></li>
+</ul>
+</li>
+<li><a href="#book-publishing-and-royalties">Book Publishing and Royalties</a>
+<ul>
+<li><a href="#book-publishing-contract">Book Publishing Contract</a></li>
+<li><a href="#book-sales">Book Sales</a></li>
+</ul>
+</li>
+<li><a href="#conclusion-and-next-steps">Conclusion and Next Steps</a>
+<ul>
+<li><a href="#wrapping-up-1">Wrapping Up</a></li>
+<li><a href="#raiding-another-streamer">Raiding Another Streamer</a></li>
+<li><a href="#future-streaming-schedule">Future Streaming Schedule</a></li>
+</ul>
+</li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Apr 20 14:04:30 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr 21 15:09:09 UTC 2023 -->
 <!--te-->
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>Section Overview: In this section, the speaker introduces the topic of the stream and explains that there may be some

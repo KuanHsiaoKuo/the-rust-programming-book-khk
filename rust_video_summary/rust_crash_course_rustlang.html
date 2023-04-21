@@ -181,8 +181,189 @@
                 </div>
                 <h1 id="rust-crash-course--rustlang"><a class="header" href="#rust-crash-course--rustlang">Rust Crash Course | Rustlang</a></h1>
 <!--ts-->
+<ul>
+<li><a href="#rust-crash-course--rustlang">Rust Crash Course | Rustlang</a>
+<ul>
+<li><a href="#introduction-to-rust-programming-language">Introduction to Rust Programming Language</a>
+<ul>
+<li><a href="#what-is-rust">What is Rust?</a></li>
+<li><a href="#%EF%B8%8Fgarbage-collection"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Garbage Collection</a></li>
+<li><a href="#cargo-package-manager">Cargo Package Manager</a></li>
+</ul>
+</li>
+<li><a href="#installing-rust-and-setting-up-the-environment">Installing Rust and Setting Up the Environment</a>
+<ul>
+<li><a href="#installing-rust">Installing Rust</a></li>
+<li><a href="#basic-utilities">Basic Utilities</a></li>
+<li><a href="#creating-a-rust-file-and-compiling-it">Creating a Rust File and Compiling It</a></li>
+<li><a href="#initializing-a-project-with-cargo">Initializing a Project with Cargo</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-print-line-command-and-formatting">Introduction to Print Line Command and Formatting</a>
+<ul>
+<li><a href="#creating-a-function-in-print-file">Creating a Function in Print File</a></li>
+<li><a href="#%EF%B8%8Frunning-the-function-in-main-rs-files"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Running the Function in Main RS Files</a></li>
+<li><a href="#basic-formatting">Basic Formatting</a></li>
+</ul>
+</li>
+<li><a href="#%EF%B8%8Fbasic-formatting-with-multiple-placeholders"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Basic Formatting with Multiple Placeholders</a>
+<ul>
+<li><a href="#using-multiple-placeholders">Using Multiple Placeholders</a></li>
+<li><a href="#positional-arguments">Positional Arguments</a></li>
+<li><a href="#named-arguments">Named Arguments</a></li>
+</ul>
+</li>
+<li><a href="#%EF%B8%8Fplaceholder-traits"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Placeholder Traits</a>
+<ul>
+<li><a href="#binary-traitb">Binary Trait(:B)</a></li>
+<li><a href="#hexadecimal-traitx">Hexadecimal Trait(:X)</a></li>
+<li><a href="#octal-traito">Octal Trait(:O)</a></li>
+</ul>
+</li>
+<li><a href="#%EF%B8%8Fdebug-traits"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Debug Traits</a>
+<ul>
+<li><a href="#using-print-line-function">Using Print Line Function</a></li>
+<li><a href="#basic-math">Basic Math</a></li>
+</ul>
+</li>
+<li><a href="#variables">Variables</a>
+<ul>
+<li><a href="#creating-variables">Creating Variables</a></li>
+<li><a href="#mutable-variables">Mutable Variables</a></li>
+<li><a href="#constants">Constants</a></li>
+<li><a href="#%EF%B8%8Fassigning-multiple-variables-at-once"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Assigning Multiple Variables at Once</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-rust-programming-language-1">Introduction to Rust Programming Language</a>
+<ul>
+<li><a href="#assigning-variables">Assigning Variables</a></li>
+<li><a href="#%EF%B8%8Fdata-types"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Data Types</a></li>
+<li><a href="#boolean-expressions">Boolean Expressions</a></li>
+</ul>
+</li>
+<li><a href="#rust-primitive-types">Rust Primitive Types</a>
+<ul>
+<li><a href="#char-and-unicode">Char and Unicode</a></li>
+</ul>
+</li>
+<li><a href="#%EF%B8%8Fstrings-in-rust"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Strings in Rust</a>
+<ul>
+<li><a href="#creating-strings">Creating Strings</a></li>
+<li><a href="#modifying-strings">Modifying Strings</a></li>
+</ul>
+</li>
+<li><a href="#working-with-strings">Working with Strings</a>
+<ul>
+<li><a href="#checking-for-substrings-and-replacing-them">Checking for Substrings and Replacing Them</a></li>
+<li><a href="#looping-through-strings">Looping Through Strings</a></li>
+<li><a href="#creating-strings-with-capacity">Creating Strings with Capacity</a></li>
+<li><a href="#assertion-testing">Assertion Testing</a></li>
+</ul>
+</li>
+<li><a href="#working-with-tuples">Working with Tuples</a>
+<ul>
+<li><a href="#introduction-to-tuples">Introduction to Tuples</a></li>
+<li><a href="#creating-and-accessing-tuples">Creating and Accessing Tuples</a></li>
+<li><a href="#destructuring-tuples">Destructuring Tuples</a></li>
+<li><a href="#tuple-methods">Tuple Methods</a></li>
+</ul>
+</li>
+<li><a href="#tuples-and-arrays-in-rust">Tuples and Arrays in Rust</a>
+<ul>
+<li><a href="#creating-tuples">Creating Tuples</a></li>
+<li><a href="#creating-arrays">Creating Arrays</a></li>
+<li><a href="#%EF%B8%8Fmodifying-array-values"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Modifying Array Values</a></li>
+<li><a href="#%EF%B8%8Fdebugging-arrays"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Debugging Arrays</a></li>
+</ul>
+</li>
+<li><a href="#%EF%B8%8Fslicing-arrays-and-using-vectors"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Slicing Arrays and Using Vectors</a>
+<ul>
+<li><a href="#slicing-arrays">Slicing Arrays</a></li>
+<li><a href="#using-vectors">Using Vectors</a></li>
+</ul>
+</li>
+<li><a href="#%EF%B8%8Fmutating-values-in-vectors"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Mutating Values in Vectors</a></li>
+<li><a href="#conditionals">Conditionals</a>
+<ul>
+<li><a href="#if-else-statements">If-else statements</a></li>
+<li><a href="#operators">Operators</a></li>
+<li><a href="#%EF%B8%8Fshorthand-if"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Shorthand If</a></li>
+</ul>
+</li>
+<li><a href="#loops">Loops</a>
+<ul>
+<li><a href="#infinite-loop">Infinite Loop</a></li>
+<li><a href="#while-loop">While Loop</a></li>
+<li><a href="#for-loop">For Loop</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-loops-and-functions">Introduction to Loops and Functions</a>
+<ul>
+<li><a href="#while-loop-1">While Loop</a></li>
+<li><a href="#fizzbuzz-challenge">FizzBuzz Challenge</a></li>
+<li><a href="#for-range-loop">For Range Loop</a></li>
+<li><a href="#functions">Functions</a></li>
+</ul>
+</li>
+<li><a href="#rust-functions">Rust Functions</a>
+<ul>
+<li><a href="#creating-a-function">Creating a Function</a></li>
+<li><a href="#%EF%B8%8Freturning-from-a-function"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Returning from a Function</a></li>
+<li><a href="#%EF%B8%8Fclosures"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Closures</a></li>
+</ul>
+</li>
+<li><a href="#pointers-and-references">Pointers and References</a>
+<ul>
+<li><a href="#primitive-arrays">Primitive Arrays</a></li>
+<li><a href="#%EF%B8%8Fnon-primitive-values"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Non-primitive Values</a></li>
+</ul>
+</li>
+<li><a href="#rust-basics-references-and-structs">Rust Basics: References and Structs</a>
+<ul>
+<li><a href="#%EF%B8%8Fcreating-references"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Creating References</a></li>
+<li><a href="#creating-structs">Creating Structs</a></li>
+<li><a href="#%EF%B8%8Ftuple-structs"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Tuple Structs</a></li>
+</ul>
+</li>
+<li><a href="#creating-a-struct-in-rust">Creating a Struct in Rust</a>
+<ul>
+<li><a href="#creating-a-new-person">Creating a New Person</a></li>
+<li><a href="#getting-full-name-of-person">Getting Full Name of Person</a></li>
+<li><a href="#changing-last-name-of-person">Changing Last Name of Person</a></li>
+<li><a href="#converting-name-to-tuple">Converting Name to Tuple</a></li>
+</ul>
+</li>
+<li><a href="#structs">Structs</a></li>
+<li><a href="#%EF%B8%8Fintroduction-to-structs"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Introduction to Structs</a></li>
+<li><a href="#enums">Enums</a>
+<ul>
+<li><a href="#introduction-to-enums">Introduction to Enums</a></li>
+<li><a href="#using-enums">Using Enums</a></li>
+</ul>
+</li>
+<li><a href="#functions-with-enums">Functions with Enums</a>
+<ul>
+<li><a href="#%EF%B8%8Fcreating-functions-with-enums"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Creating Functions with Enums</a></li>
+</ul>
+</li>
+<li><a href="#command-line-arguments">Command Line Arguments</a>
+<ul>
+<li><a href="#introduction-to-command-line-arguments">Introduction to Command Line Arguments</a></li>
+<li><a href="#%EF%B8%8Fgetting-command-line-arguments"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Getting Command Line Arguments</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-command-line-applications">Introduction to Command Line Applications</a>
+<ul>
+<li><a href="#%EF%B8%8Fgetting-input-from-command-line-arguments"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>Getting Input from Command Line Arguments</a></li>
+<li><a href="#creating-a-command-line-application">Creating a Command Line Application</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Apr 20 14:04:34 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr 21 15:09:13 UTC 2023 -->
 <!--te-->
 <h2 id="introduction-to-rust-programming-language"><a class="header" href="#introduction-to-rust-programming-language">Introduction to Rust Programming Language</a></h2>
 <p>Section Overview: This video is an introductory course on the fundamentals and syntax of the Rust programming language.

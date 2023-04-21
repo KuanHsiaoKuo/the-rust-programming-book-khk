@@ -181,8 +181,156 @@
                 </div>
                 <h1 id="considering-rust"><a class="header" href="#considering-rust">Considering Rust</a></h1>
 <!--ts-->
+<ul>
+<li><a href="#considering-rust">Considering Rust</a>
+<ul>
+<li><a href="#introduction">Introduction</a>
+<ul>
+<li><a href="#meet-rust">Meet Rust</a></li>
+<li><a href="#why-consider-rust">Why Consider Rust?</a></li>
+</ul>
+</li>
+<li><a href="#what-is-rust">What is Rust?</a>
+<ul>
+<li><a href="#systems-programming">Systems Programming</a></li>
+<li><a href="#fast-reliable--productive">Fast, Reliable &amp; Productive</a></li>
+<li><a href="#rusts-features">Rust’s Features</a></li>
+</ul>
+</li>
+<li><a href="#teaching-rust">Teaching Rust</a>
+<ul>
+<li><a href="#not-here-to-teach-rust">Not Here to Teach Rust</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a>
+<ul>
+<li><a href="#recap">Recap</a></li>
+<li><a href="#consider-using-rust">Consider Using Rust</a></li>
+</ul>
+</li>
+<li><a href="#introduction-to-rust">Introduction to Rust</a>
+<ul>
+<li><a href="#rusts-type-system">Rust’s Type System</a></li>
+<li><a href="#comparison-with-other-languages">Comparison with Other Languages</a>
+<ul>
+<li><a href="#python">Python</a></li>
+<li><a href="#java">Java</a></li>
+<li><a href="#cc">C/C++</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#additional-features-of-rust">Additional Features of Rust</a>
+<ul>
+<li><a href="#unified-build-system">Unified Build System</a></li>
+</ul>
+</li>
+<li><a href="#comparing-rust-and-go">Comparing Rust and Go</a>
+<ul>
+<li><a href="#rust-vs-go">Rust vs. Go</a></li>
+</ul>
+</li>
+<li><a href="#features-of-rust">Features of Rust</a>
+<ul>
+<li><a href="#modern-language">Modern Language</a></li>
+<li><a href="#efficient-generics">Efficient Generics</a></li>
+<li><a href="#algebraic-data-types-with-pattern-matching">Algebraic Data Types with Pattern Matching</a></li>
+<li><a href="#modern-toolchain">Modern Toolchain</a></li>
+</ul>
+</li>
+<li><a href="#rust-features-overview">Rust Features Overview</a>
+<ul>
+<li><a href="#option-type-and-algebraic-data-types">Option Type and Algebraic Data Types</a></li>
+<li><a href="#pattern-matching">Pattern Matching</a></li>
+<li><a href="#modern-tooling">Modern Tooling</a></li>
+</ul>
+</li>
+<li><a href="#rust-safety-by-construction">Rust: Safety by Construction</a>
+<ul>
+<li><a href="#checking-pointers-at-compile-time">Checking Pointers at Compile Time</a></li>
+<li><a href="#immutable-pointers-and-variables">Immutable Pointers and Variables</a></li>
+</ul>
+</li>
+<li><a href="#rusts-key-features">Rust’s Key Features</a>
+<ul>
+<li><a href="#memory-safety">Memory Safety</a></li>
+<li><a href="#thread-safety">Thread Safety</a></li>
+<li><a href="#no-hidden-states">No Hidden States</a></li>
+</ul>
+</li>
+<li><a href="#rusts-error-handling">Rust’s Error Handling</a>
+<ul>
+<li><a href="#rusts-error-handling-system">Rust’s Error Handling System</a></li>
+</ul>
+</li>
+<li><a href="#advantages-of-rust">Advantages of Rust</a>
+<ul>
+<li><a href="#lack-of-runtime-and-garbage-collector">Lack of Runtime and Garbage Collector</a></li>
+<li><a href="#free-ffi-calls">Free FFI Calls</a></li>
+<li><a href="#low-level-control">Low-Level Control</a></li>
+</ul>
+</li>
+<li><a href="#rust-a-language-for-the-next-40-years">Rust: A Language for the Next 40 Years</a>
+<ul>
+<li><a href="#low-level-control-1">Low-Level Control</a></li>
+<li><a href="#compatibility-with-other-languages">Compatibility with Other Languages</a></li>
+<li><a href="#rusts-compatibility-with-other-languages">Rust’s Compatibility with Other Languages</a></li>
+</ul>
+</li>
+<li><a href="#dependency-management-and-standard-tools">Dependency Management and Standard Tools</a>
+<ul>
+<li><a href="#dependency-management">Dependency Management</a></li>
+<li><a href="#standard-tools">Standard Tools</a></li>
+</ul>
+</li>
+<li><a href="#rusts-primary-features">Rust’s Primary Features</a>
+<ul>
+<li><a href="#metaprogramming-in-rust">Metaprogramming in Rust</a></li>
+<li><a href="#procedural-macros">Procedural Macros</a></li>
+<li><a href="#asynchronous-code-support">Asynchronous Code Support</a></li>
+</ul>
+</li>
+<li><a href="#rust-advantages-and-drawbacks">Rust: Advantages and Drawbacks</a>
+<ul>
+<li><a href="#rust-learning-curve">Rust Learning Curve</a></li>
+<li><a href="#ecosystem">Ecosystem</a></li>
+<li><a href="#object-oriented-model">Object-Oriented Model</a></li>
+</ul>
+</li>
+<li><a href="#conclusion-1">Conclusion</a></li>
+<li><a href="#rust-downsides">Rust Downsides</a>
+<ul>
+<li><a href="#no-runtime-reflection">No Runtime Reflection</a></li>
+<li><a href="#longer-compile-times">Longer Compile Times</a></li>
+<li><a href="#compiling-from-source">Compiling from Source</a></li>
+<li><a href="#vendor-support">Vendor Support</a></li>
+</ul>
+</li>
+<li><a href="#rust-support-for-windows">Rust Support for Windows</a>
+<ul>
+<li><a href="#rust-compiler-and-standard-library-support">Rust Compiler and Standard Library Support</a></li>
+<li><a href="#ecosystem-and-library-support">Ecosystem and Library Support</a></li>
+<li><a href="#long-term-viability">Long-Term Viability</a></li>
+</ul>
+</li>
+<li><a href="#importance-of-long-term-viability">Importance of Long-Term Viability</a>
+<ul>
+<li><a href="#reasons-for-choosing-a-young-language">Reasons for Choosing a Young Language</a></li>
+<li><a href="#why-choose-rust">Why Choose Rust?</a></li>
+</ul>
+</li>
+<li><a href="#incremental-rewrite-with-rust">Incremental Rewrite with Rust</a>
+<ul>
+<li><a href="#benefits-of-incremental-rewrite">Benefits of Incremental Rewrite</a></li>
+<li><a href="#how-to-do-an-incremental-rewrite">How to Do an Incremental Rewrite</a></li>
+</ul>
+</li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Apr 20 14:04:27 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr 21 15:09:04 UTC 2023 -->
 <!--te-->
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>Section Overview: The speaker introduces themselves and their experience with Rust. They explain the purpose of the talk

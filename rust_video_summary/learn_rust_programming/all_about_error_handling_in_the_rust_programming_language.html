@@ -181,8 +181,174 @@
                 </div>
                 <h1 id="all-about-error-handling-in-the-rust-programming-language"><a class="header" href="#all-about-error-handling-in-the-rust-programming-language">All About Error Handling In the Rust Programming Language</a></h1>
 <!--ts-->
+<ul>
+<li><a href="#all-about-error-handling-in-the-rust-programming-language">All About Error Handling In the Rust Programming Language</a>
+<ul>
+<li><a href="#introduction-to-errors-in-rust">Introduction to Errors in Rust</a>
+<ul>
+<li><a href="#what-is-an-error">What is an Error?</a></li>
+<li><a href="#dealing-with-errors">Dealing with Errors</a></li>
+</ul>
+</li>
+<li><a href="#handling-file-io-errors">Handling File I/O Errors</a>
+<ul>
+<li><a href="#understanding-file-io">Understanding File I/O</a></li>
+<li><a href="#handling-file-io-errors-1">Handling File I/O Errors</a></li>
+<li><a href="#introduction-to-result-enum">Introduction to Result Enum</a></li>
+<li><a href="#defining-custom-structs-with-results">Defining Custom Structs with Results</a></li>
+<li><a href="#desugaring-question-mark-operator">Desugaring Question Mark Operator</a></li>
+</ul>
+</li>
+<li><a href="#handling-errors-in-rust">Handling Errors in Rust</a>
+<ul>
+<li><a href="#printing-out-errors">Printing Out Errors</a></li>
+<li><a href="#exiting-cleanly">Exiting Cleanly</a></li>
+</ul>
+</li>
+<li><a href="#debugging-rust-code">Debugging Rust Code</a>
+<ul>
+<li><a href="#compile-error-expected-a-unit-but-found-usize">Compile Error: Expected a Unit but Found usize</a></li>
+<li><a href="#compile-error-expected-a-result-but-found-an-enum">Compile Error: Expected a Result but Found an Enum</a></li>
+<li><a href="#compile-error-not-found-in-scope-expecting-a-type-here-because-of-type-description-i-cannot-find-the-value-buffer">Compile Error: Not Found in Scope Expecting a Type Here Because of Type Description I Cannot Find the Value Buffer</a></li>
+<li><a href="#no-such-file-or-directory-error">No Such File or Directory Error</a></li>
+</ul>
+</li>
+<li><a href="#rust-language-and-productivity">Rust Language and Productivity</a>
+<ul>
+<li><a href="#influence-of-rust-on-productivity">Influence of Rust on Productivity</a></li>
+</ul>
+</li>
+<li><a href="#qa-session">Q&amp;A Session</a>
+<ul>
+<li><a href="#viewer-interaction">Viewer Interaction</a></li>
+</ul>
+</li>
+<li><a href="#creating-a-cache-in-rust">Creating a Cache in Rust</a>
+<ul>
+<li><a href="#creating-a-cache">Creating a Cache</a></li>
+</ul>
+</li>
+<li><a href="#building-a-cache">Building a Cache</a>
+<ul>
+<li><a href="#building-a-cache-1">Building a Cache</a></li>
+<li><a href="#fixing-compiler-errors">Fixing Compiler Errors</a></li>
+<li><a href="#additional-information">Additional Information</a></li>
+</ul>
+</li>
+<li><a href="#unlocking-content-and-rust-basics">Unlocking Content and Rust Basics</a>
+<ul>
+<li><a href="#unlocking-content">Unlocking Content</a></li>
+<li><a href="#rust-programming-language-basics">Rust Programming Language Basics</a></li>
+</ul>
+</li>
+<li><a href="#understanding-error-types-in-rust">Understanding Error Types in Rust</a>
+<ul>
+<li><a href="#error-types-in-rust">Error Types in Rust</a></li>
+</ul>
+</li>
+<li><a href="#composing-error-types-and-networking-example">Composing Error Types and Networking Example</a>
+<ul>
+<li><a href="#composing-error-types">Composing Error Types</a></li>
+<li><a href="#networking-example">Networking Example</a></li>
+</ul>
+</li>
+<li><a href="#writing-to-a-server-and-handling-errors">Writing to a Server and Handling Errors</a>
+<ul>
+<li><a href="#attempting-to-write-code-for-reading-data-from-a-server">Attempting to Write Code for Reading Data from a Server</a></li>
+<li><a href="#understanding-formatting-strings-and-ipv4-addresses">Understanding Formatting Strings and IPv4 Addresses</a></li>
+<li><a href="#handling-errors-in-rust-programming">Handling Errors in Rust Programming</a></li>
+<li><a href="#conceptualizing-reading-data-from-a-server">Conceptualizing Reading Data from a Server</a></li>
+<li><a href="#understanding-traits-in-rust-programming">Understanding Traits in Rust Programming</a></li>
+</ul>
+</li>
+<li><a href="#implementing-the-from-trait">Implementing the “From” Trait</a>
+<ul>
+<li><a href="#strategies-for-implementing-the-from-trait">Strategies for Implementing the “From” Trait</a></li>
+<li><a href="#handling-errors">Handling Errors</a></li>
+</ul>
+</li>
+<li><a href="#running-cargo-and-address-parser">Running Cargo and Address Parser</a>
+<ul>
+<li><a href="#running-cargo">Running Cargo</a></li>
+<li><a href="#troubleshooting-the-error">Troubleshooting the Error</a></li>
+<li><a href="#parsing-issues">Parsing Issues</a></li>
+</ul>
+</li>
+<li><a href="#understanding-box-pointers-and-custom-error-types">Understanding Box Pointers and Custom Error Types</a>
+<ul>
+<li><a href="#box-pointers">Box Pointers</a></li>
+<li><a href="#custom-error-types">Custom Error Types</a></li>
+</ul>
+</li>
+<li><a href="#creating-a-struct-for-dirty-data">Creating a Struct for Dirty Data</a>
+<ul>
+<li><a href="#creating-the-dirty-data-struct">Creating the “Dirty Data” Struct</a></li>
+</ul>
+</li>
+<li><a href="#adding-debug-trait-to-the-struct">Adding Debug Trait to the Struct</a>
+<ul>
+<li><a href="#adding-debug-trait">Adding Debug Trait</a></li>
+</ul>
+</li>
+<li><a href="#distinguishing-error-types">Distinguishing Error Types</a>
+<ul>
+<li><a href="#creating-address-parser-error">Creating Address Parser Error</a></li>
+</ul>
+</li>
+<li><a href="#converting-between-different-error-types">Converting Between Different Error Types</a>
+<ul>
+<li><a href="#using-rusts-from-trait-for-conversion">Using Rust’s “From” Trait for Conversion</a></li>
+</ul>
+</li>
+<li><a href="#using-zero-sized-types-for-internal-errors">Using Zero-Sized Types for Internal Errors</a>
+<ul>
+<li><a href="#using-zero-sized-types">Using Zero-Sized Types</a></li>
+</ul>
+</li>
+<li><a href="#using-rust-to-handle-errors">Using Rust to Handle Errors</a>
+<ul>
+<li><a href="#bringing-modules-into-local-scope">Bringing Modules into Local Scope</a></li>
+<li><a href="#understanding-function-pointers">Understanding Function Pointers</a></li>
+<li><a href="#strategies-for-handling-errors">Strategies for Handling Errors</a>
+<ul>
+<li><a href="#building-up-rapid-types">Building Up Rapid Types</a></li>
+<li><a href="#using-trait-objects">Using Trait Objects</a></li>
+<li><a href="#unwrapping-errors">Unwrapping Errors</a></li>
+</ul>
+</li>
+<li><a href="#mixing-options-and-results">Mixing Options and Results</a></li>
+</ul>
+</li>
+<li><a href="#error-conditions-and-conversions">Error Conditions and Conversions</a>
+<ul>
+<li><a href="#error-conditions">Error Conditions</a></li>
+<li><a href="#conversions">Conversions</a></li>
+</ul>
+</li>
+<li><a href="#using-options-and-results-together">Using Options and Results Together</a>
+<ul>
+<li><a href="#example-scenario">Example Scenario</a></li>
+</ul>
+</li>
+<li><a href="#converting-option-to-result">Converting Option to Result</a>
+<ul>
+<li><a href="#converting-option-i32-to-result">Converting Option i32 to Result</a></li>
+<li><a href="#understanding-rusts-orphan-rule">Understanding Rust’s Orphan Rule</a></li>
+</ul>
+</li>
+<li><a href="#defining-traits-for-arbitrary-types">Defining Traits for Arbitrary Types</a>
+<ul>
+<li><a href="#wrapping-option-in-a-new-type">Wrapping Option in a New Type</a></li>
+<li><a href="#limitations-of-using-conversion-mechanisms">Limitations of Using Conversion Mechanisms</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Apr 20 14:04:30 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr 21 15:09:09 UTC 2023 -->
 <!--te-->
 <h2 id="introduction-to-errors-in-rust"><a class="header" href="#introduction-to-errors-in-rust">Introduction to Errors in Rust</a></h2>
 <p>Section Overview: In this section, the speaker introduces the concept of errors and how they are handled in Rust.</p>

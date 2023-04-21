@@ -181,8 +181,136 @@
                 </div>
                 <h1 id="rust-programming-for-the-object-oriented-developer"><a class="header" href="#rust-programming-for-the-object-oriented-developer">Rust Programming for the object-oriented developer</a></h1>
 <!--ts-->
+<ul>
+<li><a href="#rust-programming-for-the-object-oriented-developer">Rust Programming for the object-oriented developer</a>
+<ul>
+<li><a href="#establishing-a-programming-environment">Establishing a Programming Environment</a>
+<ul>
+<li><a href="#compiling-rust-code-with-cargo">Compiling Rust Code with Cargo</a></li>
+</ul>
+</li>
+<li><a href="#understanding-objects-in-object-oriented-languages">Understanding Objects in Object-Oriented Languages</a>
+<ul>
+<li><a href="#defining-objects-in-python">Defining Objects in Python</a></li>
+<li><a href="#emulating-object-creation-in-python">Emulating Object Creation in Python</a></li>
+<li><a href="#defining-objects-in-rust">Defining Objects in Rust</a></li>
+<li><a href="#emulating-object-creation-in-rust">Emulating Object Creation in Rust</a></li>
+<li><a href="#pre-processing-with-asserts">Pre-processing with Asserts</a></li>
+<li><a href="#shorthand-syntax">Shorthand Syntax</a></li>
+<li><a href="#richer-initialization">Richer Initialization</a></li>
+<li><a href="#rust-is-an-aesthetically-typed-language">Rust is an Aesthetically Typed Language</a></li>
+<li><a href="#constructors-and-complex-behavior">Constructors and Complex Behavior</a></li>
+<li><a href="#mutating-objects-in-rust">Mutating Objects in Rust</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#scale-and-type-signature">Scale and Type Signature</a>
+<ul>
+<li><a href="#changing-type-signature">Changing Type Signature</a></li>
+<li><a href="#scalar-values-in-mathematics">Scalar Values in Mathematics</a></li>
+</ul>
+</li>
+<li><a href="#understanding-move-semantics-and-borrow-semantics">Understanding Move Semantics and Borrow Semantics</a>
+<ul>
+<li><a href="#move-semantics">Move Semantics</a></li>
+<li><a href="#borrow-semantics">Borrow Semantics</a></li>
+</ul>
+</li>
+<li><a href="#move-semantics-and-borrowing">Move Semantics and Borrowing</a>
+<ul>
+<li><a href="#move-semantics-1">Move Semantics</a></li>
+<li><a href="#borrowing">Borrowing</a></li>
+<li><a href="#read-only-vs-read-write-borrow">Read-only vs Read-write Borrow</a></li>
+</ul>
+</li>
+<li><a href="#fixing-an-issue-with-magic-ampersand">Fixing an Issue with Magic Ampersand</a>
+<ul>
+<li><a href="#fixing-magic-ampersand-issue">Fixing Magic Ampersand Issue</a></li>
+</ul>
+</li>
+<li><a href="#mutating-in-rust-programming">Mutating in Rust Programming</a>
+<ul>
+<li><a href="#mutating">Mutating</a></li>
+</ul>
+</li>
+<li><a href="#rust-zero-cost-abstractions">Rust Zero Cost Abstractions</a>
+<ul>
+<li><a href="#rusts-zero-cost-abstractions">Rust’s Zero Cost Abstractions</a></li>
+</ul>
+</li>
+<li><a href="#creating-a-method-in-rust">Creating a Method in Rust</a>
+<ul>
+<li><a href="#enabling-methods-for-types">Enabling Methods for Types</a></li>
+<li><a href="#rust-is-pedantic-but-liberating">Rust is Pedantic but Liberating</a></li>
+<li><a href="#default-transfer-of-object-responsibility">Default Transfer of Object Responsibility</a></li>
+<li><a href="#automatic-memory-management-in-rust">Automatic Memory Management in Rust</a></li>
+<li><a href="#garbage-collection-in-rust">Garbage Collection in Rust</a></li>
+<li><a href="#explanation-of-lambda-functions">Explanation of Lambda Functions</a></li>
+<li><a href="#example-of-using-lambda-functions">Example of Using Lambda Functions</a></li>
+<li><a href="#using-derived-macros-for-debugging">Using Derived Macros for Debugging</a></li>
+</ul>
+</li>
+<li><a href="#technical-review-of-a-book">Technical Review of a Book</a>
+<ul>
+<li><a href="#book-availability">Book Availability</a></li>
+</ul>
+</li>
+<li><a href="#applying-functional-programming-styles-in-rust">Applying Functional Programming Styles in Rust</a>
+<ul>
+<li><a href="#introduction-of-collections">Introduction of Collections</a></li>
+<li><a href="#object-oriented-style-vs-functional-programming-style">Object-Oriented Style vs. Functional Programming Style</a></li>
+</ul>
+</li>
+<li><a href="#understanding-bar-syntax-in-rust">Understanding Bar Syntax in Rust</a>
+<ul>
+<li><a href="#explanation-of-bar-syntax">Explanation of Bar Syntax</a></li>
+</ul>
+</li>
+<li><a href="#confusion-and-closure">Confusion and Closure</a>
+<ul>
+<li><a href="#closure-and-anonymous-function">Closure and Anonymous Function</a></li>
+</ul>
+</li>
+<li><a href="#abstraction-and-encapsulation">Abstraction and Encapsulation</a>
+<ul>
+<li><a href="#getters-and-setters">Getters and Setters</a></li>
+</ul>
+</li>
+<li><a href="#creating-accessor-methods-in-rust">Creating Accessor Methods in Rust</a>
+<ul>
+<li><a href="#creating-accessor-methods">Creating Accessor Methods</a></li>
+<li><a href="#generating-data-on-the-fly">Generating Data on the Fly</a></li>
+<li><a href="#implementing-behavior-for-multiple-classes">Implementing Behavior for Multiple Classes</a></li>
+</ul>
+</li>
+<li><a href="#creating-a-trait">Creating a Trait</a>
+<ul>
+<li><a href="#creating-an-abstract-base-class">Creating an Abstract Base Class</a></li>
+<li><a href="#implementing-the-coordinate-trait">Implementing the Coordinate Trait</a></li>
+<li><a href="#drawing-anything-that-implements-coordinate">Drawing Anything That Implements Coordinate</a></li>
+</ul>
+</li>
+<li><a href="#generating-random-numbers">Generating Random Numbers</a>
+<ul>
+<li><a href="#checking-compilation-with-point-type">Checking Compilation with Point Type</a></li>
+<li><a href="#accepting-anything-that-implements-coordinate">Accepting Anything That Implements Coordinate</a></li>
+<li><a href="#creating-zero-sized-types">Creating Zero-Sized Types</a></li>
+</ul>
+</li>
+<li><a href="#implementing-coordinates">Implementing Coordinates</a>
+<ul>
+<li><a href="#creating-a-thread-rng">Creating a Thread RNG</a></li>
+<li><a href="#simplifying-with-prelude">Simplifying with Prelude</a></li>
+<li><a href="#encapsulating-via-trait">Encapsulating via Trait</a></li>
+</ul>
+</li>
+<li><a href="#conclusion-1">Conclusion</a></li>
+<li><a href="#generated-by-video-highlight">Generated by Video Highlight</a></li>
+</ul>
+</li>
+</ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Thu Apr 20 14:04:32 UTC 2023 -->
+<!-- Added by: runner, at: Fri Apr 21 15:09:11 UTC 2023 -->
 <!--te-->
 <h2 id="establishing-a-programming-environment"><a class="header" href="#establishing-a-programming-environment">Establishing a Programming Environment</a></h2>
 <p>Section Overview: In this section, the speaker introduces Rust as a compiled language and explains how to compile code
