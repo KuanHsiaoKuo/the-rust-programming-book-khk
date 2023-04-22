@@ -61,7 +61,7 @@ happy to answer questions or chat casually with the audience.
 - The speaker explains that they haven't been live on camera since February and may be a bit rusty.
 - The speaker offers to answer questions or chat with the audience, and mentions having an editor available.
 
-## Using RC and RefCell in Rust
+## ⭐️Using RC and RefCell in Rust
 
 Section Overview: The speaker explains what RC (reference counted) and RefCell are in Rust, how they work, and provides
 examples of their usage.
@@ -82,13 +82,13 @@ discussion.
 - [](t=0:07:10s) The speaker changes the screen to dark mode to avoid blinding viewers.
 - [](t=0:07:23s) The speaker searches for Reef cell but realizes it is in the wrong place.
 
-### Introduction to Topic
+### ⭐️Introduction to Topic: RC and Ref Cell
 
 - [](t=0:07:40s) The speaker discusses RC and Reef cell and how they provide different functionalities.
-- [](t=0:08:31s) The speaker explains that RC provides a single-threaded reference counting pointer while Reef cell
+- [](t=0:08:31s) The speaker explains that RC provides a single-threaded reference counting pointer while Refcell
   provides machine ownership.
 
-## [#](t=0:08:56s) Creating an API with RC
+## ⭐️Creating an API with RC 0:08:56s
 
 Section Overview: In this section, the speaker creates an API using RC and explains its implementation.
 
@@ -107,13 +107,13 @@ Section Overview: In this section, the speaker creates an API using RC and expla
 
 Section Overview: In this section, the speaker inspects internals of created objects and manipulates them.
 
-### Inspecting Internals of Created Object
+### ⭐️Inspecting Internals of Created Object
 
 - [](t=0:12:35s) The speaker inspects the internals of the API object and notes that it is an immutable reference.
 - [](t=0:13:08s) To get to the internals, we need to look at the documentation and find some of these methods that might
   have counts.
 
-### Manipulating Created Object
+### ⭐️Manipulating Created Object
 
 - There are no bullet points for this section.
 
@@ -146,7 +146,7 @@ inherent method of type but rather a free function that exists inside RC.
 - Strong count is actually a static method of RC type and does not have self so a reference to an object needs to be
   taken.
 
-### Interior Mutability and Unsafe Cell
+### ⭐️Interior Mutability and Unsafe Cell
 
 - Interior mutability creates a facade of immutability but enables types to change their interior state.
 - All interior immutability is provided by unsafe cell which provides an immutable facade even though the interior is
@@ -160,15 +160,12 @@ Section Overview: In this section, the speaker explains Rust's memory model and 
 discuss the limitations of mutable references and introduce shared references as a solution. The speaker then introduces
 RefCell as a way to provide shared ownership semantics.
 
-### Mutable References
+### ⭐️RefCell: Mutable References
 
 - [](t=0:22:13s) Mutable references in Rust are limited to one at a time.
 - [](t=0:22:24s) This presents a problem when dealing with shared resources.
 - [](t=0:23:21s) RefCell provides an extra guarantee that reference counting and shared mutability semantics will play
   nicely together.
-
-### RefCell
-
 - [](t=0:23:56s) RefCell enables dynamic checking and provides shared ownership semantics.
 - [](t=0:24:51s) RefCell uses unsafe code under the hood but enforces the same semantics at runtime.
 - [](t=0:26:38s) RefCell provides an extra bit of correctness for shared ownership semantics.
@@ -178,7 +175,7 @@ RefCell as a way to provide shared ownership semantics.
 Section Overview: In this section, the speaker responds to a comment about implementing the drop trait themselves. They
 explain that doing so would require them to implement all of RC themselves.
 
-### Implementing Drop Trait
+### ⭐️Implementing Drop Trait
 
 - [](t=0:28:31s) Implementing the drop trait ourselves would require us to implement all of RC ourselves.
 
@@ -187,7 +184,7 @@ explain that doing so would require them to implement all of RC themselves.
 Section Overview: In this section, the speaker encourages learners to feel comfortable opening up the standard libraries
 documentation.
 
-### Importance of Standard Libraries Documentation
+### ⭐️Importance of Standard Libraries Documentation
 
 - The speaker emphasizes the importance of opening up and using the standard libraries documentation.
 - Learners are encouraged to explore and familiarize themselves with it.
@@ -221,7 +218,7 @@ Section Overview: In this section, the speaker talks about their Friday night ro
 
 Section Overview: In this section, the concept of re-borrowing in Rust is explained and examples are provided.
 
-### Explanation of Re-Borrowing in Rust
+### ⭐️⭐️⭐️Explanation of Re-Borrowing in Rust
 
 - Re-borrowing is defined as a case where emphasis on star (*) is not symmetrical when encountering Rust.
 - A blog post on re-borrowing is shared with viewers for further reading and understanding.
@@ -260,7 +257,7 @@ Section Overview: In this section, the speaker demonstrates how to increment var
 Section Overview: In this section, the speaker discusses how Rust's compiler has been smart in adding a re-borrow to the
 code. They explain how it works and why it is not a copy or clone.
 
-### Re-borrowing
+### ⭐️Re-borrowing
 
 - The compiler has added a re-borrow to the code.
 - This allows for the original data to be re-borrowed again in a different scope.
@@ -293,7 +290,7 @@ problems related to re-borrowing objects that have been moved out of scope.
 Section Overview: In this section, the speaker discusses Rust's re-borrow feature and how it enables the use of mutable
 references in places where it would be a breach of lifetime ownership rules.
 
-### Re-borrowing in Rust
+### ⭐️Re-borrowing in Rust
 
 - The compiler determines when an object has reached the end of its lifetime, allowing for a mutable reference to be
   used again.
@@ -313,7 +310,7 @@ references in places where it would be a breach of lifetime ownership rules.
 Section Overview: In this section, the speaker discusses why Rust's re-borrow feature was implemented and how it
 contributes to developer happiness.
 
-### Ergonomics in Rust
+### ⭐️Ergonomics in Rust
 
 - The compiler engineers who designed Rust wanted it to be as ergonomic as possible for developers.
 - The re-borrow feature allows for more flexibility in using mutable references without violating lifetime ownership
@@ -333,7 +330,7 @@ to mutable references.
 
 Section Overview: In this section, the speaker discusses shared references and mutable borrowing in Rust.
 
-### Shared References and Mutable Borrowing
+### ⭐️Shared References and Mutable Borrowing
 
 - [](t=0:51:47s) The speaker explains that a shared reference is needed for mutable borrowing.
 - [](t=0:52:17s) The variable R is introduced as a mutable reference to the meaning of life.
