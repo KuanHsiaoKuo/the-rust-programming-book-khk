@@ -187,7 +187,7 @@
 <li><a href="#ownership-in-rust">Ownership in Rust</a>
 <ul>
 <li><a href="#what-is-ownership">What is Ownership?</a></li>
-<li><a href="#how-ownership-works">How Ownership Works</a></li>
+<li><a href="#%EF%B8%8Fhow-ownership-works"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>How Ownership Works</a></li>
 <li><a href="#why-ownership-exists">Why Ownership Exists</a></li>
 </ul>
 </li>
@@ -195,7 +195,7 @@
 <ul>
 <li><a href="#ownership-and-the-end-of-a-variables-life-cycle">Ownership and the End of a Variable’s Life Cycle</a></li>
 <li><a href="#for-loops-and-ownership-transfer">For Loops and Ownership Transfer</a></li>
-<li><a href="#string-literals-and-no-owner">String Literals and No Owner</a></li>
+<li><a href="#%EF%B8%8Fstring-literals-and-no-owner"><g-emoji class="g-emoji" alias="star" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png">⭐️</g-emoji>String Literals and No Owner</a></li>
 </ul>
 </li>
 <li><a href="#conclusion">Conclusion</a></li>
@@ -204,7 +204,7 @@
 </li>
 </ul>
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: runner, at: Sat Apr 22 16:15:29 UTC 2023 -->
+<!-- Added by: runner, at: Sun Apr 23 13:08:13 UTC 2023 -->
 <!--te-->
 <h2 id="ownership-in-rust"><a class="header" href="#ownership-in-rust">Ownership in Rust</a></h2>
 <p>Section Overview: In this section, the speaker explains what ownership is in Rust and why it exists.</p>
@@ -217,7 +217,7 @@ preferential access to the data it owns nor can it prevent others from accessing
 <li>Rust needs to know when it’s safe to delete data since there’s no garbage collector like other programming languages
 such as Java or Python. This leads to ownership being used instead.</li>
 </ul>
-<h3 id="how-ownership-works"><a class="header" href="#how-ownership-works">How Ownership Works</a></h3>
+<h3 id="how-ownership-works"><a class="header" href="#how-ownership-works">⭐️How Ownership Works</a></h3>
 <ul>
 <li>Rust only allows a single owner, so when an owner leaves scope or becomes invalid, it must be safe to delete the owned
 data.</li>
@@ -247,7 +247,7 @@ pauses.</li>
 <li>If you have a reference to the variable or a mutable reference, you can still access the variable after the loop has
 finished.</li>
 </ul>
-<h3 id="string-literals-and-no-owner"><a class="header" href="#string-literals-and-no-owner">String Literals and No Owner</a></h3>
+<h3 id="string-literals-and-no-owner"><a class="header" href="#string-literals-and-no-owner">⭐️String Literals and No Owner</a></h3>
 <ul>
 <li>String literals behave differently because they don’t actually own the data that they refer to. They are kept alive
 for the whole program.</li>
