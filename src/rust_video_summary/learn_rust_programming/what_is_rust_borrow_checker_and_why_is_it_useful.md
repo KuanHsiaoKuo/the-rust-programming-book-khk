@@ -76,7 +76,7 @@ Section Overview: In this section, the speaker adds a warning restriction to avo
 
 Section Overview: In this section, the speaker explains what borrow checker is and how it works in Rust.
 
-### Types of Function Arguments in Rust
+### ⭐Types of Function Arguments in Rust
 
 - [](t=0:09:31) Functions in Rust can take three types of arguments - ownership, mutable borrower, and immutable
   borrower.

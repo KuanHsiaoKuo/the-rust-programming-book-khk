@@ -31,7 +31,7 @@ Section Overview: In this section, the speaker explains what ownership is in Rus
 - Rust needs to know when it's safe to delete data since there's no garbage collector like other programming languages
   such as Java or Python. This leads to ownership being used instead.
 
-### How Ownership Works
+### ⭐️How Ownership Works
 
 - Rust only allows a single owner, so when an owner leaves scope or becomes invalid, it must be safe to delete the owned
   data.
@@ -63,7 +63,7 @@ Section Overview: This section discusses how variables are passed into functions
 - If you have a reference to the variable or a mutable reference, you can still access the variable after the loop has
   finished.
 
-### String Literals and No Owner
+### ⭐️String Literals and No Owner
 
 - String literals behave differently because they don't actually own the data that they refer to. They are kept alive
   for the whole program.
