@@ -1,4 +1,4 @@
-# Rust Programming for the object-oriented developer
+# Rust Programming for the object-oriented/function-oriented developer
 
 <!--ts-->
 * [Rust Programming for the object-oriented developer](#rust-programming-for-the-object-oriented-developer)
@@ -88,7 +88,7 @@ using Cargo.
 - The terminal at the bottom of the screen is used to run Cargo.
 - The editor at the top of the screen is used to write Rust code.
 
-## Understanding Objects in Object-Oriented Languages
+## ⭐⭐⭐️️️Understanding Objects in Object-Oriented Languages
 
 Section Overview: In this section, the speaker discusses what an object is in object-oriented languages and compares
 Python's approach to creating objects with Rust's approach.
@@ -125,13 +125,13 @@ Section Overview: In this section, the speaker discusses how to add constraints 
 - We can provide these asserts using `is instance` and `float`.
 - If x is less than zero, we raise a value error.
 
-### Shorthand Syntax
+### ⭐️Shorthand Syntax
 
 - Rust provides a literal syntax for creating instances of structs and all types.
 - There is no requirement for a constructor or destructor.
 - Rust has smart rules about how initialization works.
 
-### Richer Initialization
+### ⭐⭐️️Richer Initialization
 
 - To add richer initialization, we can use the `new` method.
 - The `new` method is not baked into the language but part of Rust conventions.
@@ -141,13 +141,13 @@ Section Overview: In this section, the speaker discusses how to add constraints 
 
 Section Overview: In this section, the speaker talks about Rust programming language and its type system.
 
-### Rust is an Aesthetically Typed Language
+### ⭐⭐⭐️️️Rust is an Aesthetically Typed Language
 
 - Rust is aesthetically typed, which means it's in the middle ground between object-oriented and functional
   programming. [](t=0:15:15s)
 - It operates more like a functional programming language. [](t=0:15:33s)
 
-### Constructors and Complex Behavior
+### ⭐️Constructors and Complex Behavior
 
 - The speaker talks about constructors and complex behavior in Rust. [](t=0:16:00s)
 - This topic leads to question 3, which is how to mutate an object in Rust. [](t=0:16:27s)
@@ -179,7 +179,7 @@ Section Overview: In this section, the speaker changes the type signature and ex
 - After fixing the compiler warnings, the speaker explains that Rust can be confusing when doing something with an
   object and suddenly encountering errors.
 
-## Understanding Move Semantics and Borrow Semantics
+## ⭐⭐⭐️️️Understanding Move Semantics and Borrow Semantics
 
 Section Overview: In this section, the speaker explains move semantics and borrow semantics in Rust programming
 language.
@@ -223,7 +223,7 @@ Section Overview: In this section, the speaker discusses move semantics and borr
 
 Section Overview: In this section, the speaker discusses how to fix an issue with magic ampersand in Rust programming.
 
-### Fixing Magic Ampersand Issue
+### ⭐️Fixing Magic Ampersand Issue: &
 
 - To fix this issue, we need to use the magic ampersand.
 - The magic ampersand says that we only want to borrow you.
@@ -247,7 +247,7 @@ Section Overview: In this section, the speaker explains how Rust guarantees only
 access at any given point along the lifetime of the entire program. The speaker also clarifies that "mute" or "mutt"
 means mutation and not mutex.
 
-### Rust's Zero Cost Abstractions
+### ⭐⭐⭐️️️Rust's Zero Cost Abstractions
 
 - Rust is very enthusiastic when it talks about zero cost abstractions.
 - Its abstractions impose no runtime cost, or at least the abstractions you opt into runtime cost if you want more
@@ -261,9 +261,9 @@ means mutation and not mutex.
 Section Overview: In this section, the speaker discusses creating a method in Rust and replacing point.t with self. They
 also talk about using an assign multiply operator and how rust will refuse to compile if there is a typo.
 
-### Enabling Methods for Types
+### ⭐️Enabling Methods for Types
 
-- To create a method in Rust, use an impul block.
+- To create a method in Rust, use an impl block.
 - Unlike Python, where implementations can be created anywhere, separate blocks are needed for methods in Rust.
 - Replace point.t with self to enable methods for types.
 - Use an immutable access to self and then face all of this stuff.
@@ -356,7 +356,7 @@ available for purchase soon.
 - They offer a discount code to interested parties.
 - The speaker suggests buying the book together with friends to save even more money.
 
-## Applying Functional Programming Styles in Rust
+## ⭐⭐⭐️️️Applying Functional Programming Styles in Rust
 
 Section Overview: In this section, the speaker introduces functional programming styles in Rust and explains how they
 can be applied using collections.
@@ -376,7 +376,7 @@ can be applied using collections.
 
 Section Overview: In this section, the speaker explains bar syntax in Rust and how it is used.
 
-### Explanation of Bar Syntax
+### ⭐⭐⭐️️️Explanation of Bar Syntax
 
 - The speaker explains bar syntax as being used to create closures or anonymous functions.
 - They demonstrate two different ways of creating closures using bar syntax and traditional function syntax.
@@ -387,7 +387,7 @@ Section Overview: In this section, the speaker explains bar syntax in Rust and h
 Section Overview: In this section, the speaker is trying to figure out a problem with transfers not being satisfied.
 They introduce the concept of closures and anonymous functions in Rust.
 
-### Closure and Anonymous Function
+### ⭐⭐️️Closure and Anonymous Function
 
 - The speaker introduces an anonymous function that takes a point and creates a closure.
 - The double bar arrow syntax is used to create a closure that encloses its local environment.
@@ -407,7 +407,7 @@ Section Overview: In this section, the speaker talks about abstraction and encap
 Section Overview: In this section, the speaker discusses how to create accessor methods in Rust and compares it with
 object-oriented languages.
 
-### Creating Accessor Methods
+### ⭐️Creating Accessor Methods
 
 - In Rust, an underscore-based language, creating an accessor or getter method involves using underscores to create a
   getter method.

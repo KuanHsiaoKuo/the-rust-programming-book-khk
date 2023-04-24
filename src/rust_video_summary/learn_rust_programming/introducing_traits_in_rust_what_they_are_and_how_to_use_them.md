@@ -77,7 +77,7 @@ Rust.
 
 Section Overview: In this section, the speaker discusses how traits allow for abstraction in Rust programming.
 
-### Using Traits for Abstraction
+### ⭐️Using Traits for Abstraction
 
 - Repeatedly creating functions can become tedious.
 - Traits provide a way to create abstractions that can be used across multiple types.
@@ -89,7 +89,7 @@ Section Overview: In this section, the speaker delves deeper into defining trait
 
 ### Defining Traits
 
-- A trait defines a set of methods that a type must implement.
+- A trait defines `a set of methods` that a type must implement.
 - Types implementing a trait must provide implementations for all its methods.
 - A struct can implement multiple traits.
 
@@ -106,7 +106,7 @@ Section Overview: In this section, the speaker explains how to implement traits 
 - [](t=0:07:54s) They explain that implementing traits allows us to define an interface and give any type its own new
   method.
 
-### Why Use Traits?
+### ⭐️Why Use Traits?
 
 - [](t=0:08:35s) The speaker answers a question about why we bother with traits when we already had a free function
   called score. They explain that traits become useful when defining an interface or working with generics.
@@ -123,7 +123,7 @@ Section Overview: In this section, the speaker explains how to implement traits 
 Section Overview: In this section, the speaker introduces Rust traits and explains how they can be used to define or
 bring together functionalities that are common across types.
 
-### Operator Overloading with Traits
+### ⭐️Operator Overloading with Traits
 
 - [](t=0:13:47s) Operator overloading is implemented with traits in Rust.
 - [](t=0:14:38s) To implement operator overloading, a trait (e.g., add trait) must be implemented, and the right-hand
@@ -217,7 +217,7 @@ them.
   traits.
 - [](t=0:35:34s) The next trait to learn is iteration, which is slightly more complicated.
 
-### Iteration Trait
+### ⭐️Iteration Trait
 
 - [](t=0:36:08s) The speaker explains that iteration requires multiple computers to be created.
 - [](t=0:37:46s) Traits are important for iteration, as well as for the size of each element of an array.
@@ -271,7 +271,7 @@ can implement methods that they don't actually implement using the Deref trait.
 
 - Double equals can be used for a lot of things in Rust. [](t=0:48:47s)
 
-### Deref Trait
+### ⭐️Deref Trait
 
 - The Deref trait enables a type to masquerade as another type and convert itself into that type. [](t=0:48:58s)
 - This allows a type to implement methods that it doesn't actually implement by calling those methods on the converted
@@ -281,7 +281,7 @@ can implement methods that they don't actually implement using the Deref trait.
 - Rust provides ergonomics through implicit use of the Deref trait, but it can be confusing if you are expecting
   everything to be explicit. [](t=0:55:06s)
 
-## Traits and Associated Types
+## ⭐⭐⭐️️️Traits and Associated Types
 
 Section Overview: In this section, the speaker discusses traits and associated types in Rust. They explain what a trait
 is, when to use an associated type, and provide some useful documentation for further learning.
@@ -314,14 +314,14 @@ generics. They also explain why some traits have no methods and are used as mark
 - The definition of a trait in Rust is too loose.
 - The speaker objects to this definition.
 
-### Sync Trait
+### ⭐️Sync Trait
 
 - The `Sync` trait has no methods at all and is a marker trait.
 - It indicates to the type system about some property which matters to you as a programmer, such as concurrency.
 - There's no magical annotation on your type for implementing `Sync`.
 - It's just an assertion that you provide as a programmer to the compiler.
 
-### Marker Traits
+### ⭐️Marker Traits
 
 - Marker traits are used when there is no need for any associated information with the trait.
 - Rust by example asserts that a trait is a collection of methods, but important traits exist where that's not true.
