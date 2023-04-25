@@ -37,7 +37,7 @@
                 - [Introducing traits in rust: what they are and how to use them](rust_video_summary/learn_rust_programming/introducing_traits_in_rust_what_they_are_and_how_to_use_them.md)
                 - [Rust Programming for The Object/Function-Oriented Developer](rust_video_summary/learn_rust_programming/rust_programming_for_the_object_oriented_developer.md)
             - [Error & Test](rust_video_summary/learn_rust_programming/error_and_test.md)
-                - [All About Error Handling in the Rust Programming Language](rust_video_summary/learn_rust_programming/all_about_error_handling_in_the_rust_programming_language.md)
+                - [⭐⭐️️All About Error Handling in the Rust Programming Language](rust_video_summary/learn_rust_programming/all_about_error_handling_in_the_rust_programming_language.md)
                 - [Unit Testing Basics](rust_video_summary/learn_rust_programming/unit_testing_basics.md)
             - [Iterate](rust_video_summary/learn_rust_programming/iterate.md)
                 - [Introducing iterators in rust](rust_video_summary/learn_rust_programming/introducing_iterators_in_rust.md)

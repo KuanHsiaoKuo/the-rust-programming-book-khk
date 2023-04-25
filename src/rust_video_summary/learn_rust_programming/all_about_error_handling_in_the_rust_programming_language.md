@@ -94,14 +94,14 @@
 
 Section Overview: In this section, the speaker introduces the concept of errors and how they are handled in Rust.
 
-### What is an Error?
+### ⭐️What is an Error?
 
 - An error is a message that indicates something has gone wrong during program execution.
 - A panic is a type of error that results in a crash. It can be altered to have different semantics.
 - Errors and results happen most often when dealing with input/output (I/O).
 - I/O refers to input/output not of function arguments but of devices interacting with a program from the outside world.
 
-### Dealing with Errors
+### ⭐️Dealing with Errors: Propagating, Returning and Unwrapping
 
 - The speaker introduces three strategies for dealing with errors: Propagating, Returning, and Unwrapping.
 - The example provided in the book demonstrates how to use the Result type to handle errors in Rust.
@@ -117,7 +117,7 @@ in errors.
 - Reading from or writing to files can result in errors due to various reasons such as permission issues or file not
   found.
 
-### Handling File I/O Errors
+### ⭐️Handling File I/O Errors: Result、unwrap or ?
 
 - The Result type can be used to handle file I/O errors by propagating them up through functions.
 - Another way of handling file I/O errors is by using unwrap() method which will either return Ok value or panic if
@@ -161,7 +161,7 @@ errors and exit the program cleanly.
 - To exit cleanly, use `std::process::exit`.
 - Exit with a value of 1 using `std::process::exit(1)`.
 
-## Debugging Rust Code
+## ⭐⭐⭐️️️Debugging Rust Code
 
 Section Overview: In this section, the speaker demonstrates how to debug Rust code by going through compile errors and
 fixing them.
@@ -190,7 +190,7 @@ fixing them.
 
 Section Overview: In this section, the speaker talks about how Rust language can influence productivity and growth.
 
-### Influence of Rust on Productivity
+### ⭐️Influence of Rust on Productivity
 
 - Rust language has the ability to influence productivity and growth.
 - The comparison between two versions is not accurate because it involves reading into a string.
@@ -267,7 +267,7 @@ programming language basics.
 
 Section Overview: In this section, the speaker discusses error types in Rust programming language.
 
-### Error Types in Rust
+### ⭐️Error Types in Rust
 
 - Error types don't compose in Rust programming language.
 - Errors from different places cannot be treated similarly.
@@ -384,7 +384,7 @@ Section Overview: This section covers box pointers and custom error types in Rus
 - Using string as a way to send warning messages is discussed.
 - Implementing trait objects can result in losing the ability for the compiler to detect concrete types.
 
-## Creating a Struct for Dirty Data
+## ⭐️Creating a Struct for Dirty Data
 
 Section Overview: In this section, the speaker creates a struct called "dirty data" and explains why they are doing so.
 
@@ -446,7 +446,7 @@ strategies for dealing with them.
 - Using the full path is more explicit and makes the compiler happy, but it's not necessary.
 - The speaker chooses to keep everything quite full and somewhat ugly.
 
-### Understanding Function Pointers
+### ⭐⭐️️Understanding Function Pointers
 
 - A function pointer is just a function definition.
 - If you see `fn` as a main or a standalone function, it is a function pointer.
@@ -466,7 +466,7 @@ strategies for dealing with them.
 - The speaker demonstrates why Rust does what it does and provides options for either doing things yourself or
   leveraging third-party crates.
 
-#### Unwrapping Errors
+#### ⭐⭐⭐️️️Unwrapping Errors
 
 - Unwrapping errors is not really a strategy for dealing with errors; it causes panics in runtime code.
 - Sometimes crashing when there's an error is what we want, but this should be used sparingly.
@@ -475,7 +475,7 @@ strategies for dealing with them.
 
 - Mixing options and results semantically can be difficult because they are different. Be mindful of doing so.
 
-## Error Conditions and Conversions
+## ⭐⭐️️Error Conditions and Conversions
 
 Section Overview: In this section, the speaker discusses error conditions and conversions between Option and Result
 types in Rust.
@@ -492,7 +492,7 @@ types in Rust.
 - Applying these conversions in your own code may indicate that you have an Option that should have started as a Result
   or vice versa.
 
-## Using Options and Results Together
+## ⭐⭐⭐️️️Using Options and Results Together
 
 Section Overview: In this section, the speaker discusses using Options and Results together in Rust.
 
@@ -531,7 +531,7 @@ using conversion mechanisms like `?` operator with options and results.
 - This is because the end result, option, and error are defined outside of this particular crate.
 - We cannot tinker with any of that since it's already decided what it wants to do.
 
-### Limitations of Using Conversion Mechanisms
+### ⭐⭐️️Limitations of Using Conversion Mechanisms
 
 - The reason why using conversion mechanisms like `?` operator with options and results is failing is that we're pulling
   these from third parties or all from the standard library.

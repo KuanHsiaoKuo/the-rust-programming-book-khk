@@ -52,7 +52,7 @@ test is, how to create and run them, and why they are important.
 Overall, this video provides an introduction to unit testing in Rust. It covers creating a project, defining and fixing
 functions, and understanding what a unit test is.
 
-## Assert Equals Macro
+## ⭐️Assert Equals Macro: assert_eq!
 
 Section Overview: In this section, the speaker explains what the assert equals macro does and how it works. They also
 discuss how unit tests are defined in their own module.
@@ -63,7 +63,7 @@ discuss how unit tests are defined in their own module.
 - Unit tests are often defined in their own module.
 - Modules can be annotated with the config test annotation to only compile when running a test.
 
-## Assert Macro
+## ⭐️Assert Macro
 
 Section Overview: In this section, the speaker explains what the assert macro does and how it works.
 
@@ -77,7 +77,7 @@ Section Overview: In this section, the speaker explains what the assert macro do
 
 Section Overview: In this section, the speaker discusses pretty assertion thing and demonstrates its use.
 
-### Pretty Assertion Thing
+### ⭐⭐⭐️️️Pretty Assertion Thing
 
 - Pretty assertion thing is used to get a better understanding of why a test failed.
 - It provides more information about where the difference between expected and actual values occurred.
